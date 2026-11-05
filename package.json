@@ -1,21 +1,39 @@
 {
   "name": "opc-story",
-  "type": "module",
   "version": "1.0.0",
   "private": true,
-  "description": "全球 AI 一人公司（OPC）成功案例静态站点",
+  "description": "全球 AI 一人公司（OPC）成功案例静态站点（Docusaurus）",
   "scripts": {
-    "dev": "astro dev",
-    "build": "npm run validate && astro build",
-    "preview": "astro preview",
+    "dev": "docusaurus start",
+    "build": "npm run validate && docusaurus build",
+    "preview": "docusaurus serve",
     "validate": "node scripts/validate-content.mjs",
-    "astro": "astro"
+    "typecheck": "tsc",
+    "clear": "docusaurus clear"
   },
   "dependencies": {
-    "astro": "^5.1.0"
+    "@docusaurus/core": "^3.8.0",
+    "@docusaurus/preset-classic": "^3.8.0",
+    "gray-matter": "^4.0.3",
+    "marked": "^15.0.0",
+    "github-slugger": "^2.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "gray-matter": "^4.0.3",
+    "@docusaurus/module-type-aliases": "^3.8.0",
+    "@docusaurus/tsconfig": "^3.8.0",
+    "@docusaurus/types": "^3.8.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
     "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "browserslist": {
+    "production": [">0.5%", "not dead", "not op_mini all"],
+    "development": ["last 3 chrome version", "last 5 firefox version", "last 5 safari version"]
   }
 }

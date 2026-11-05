@@ -41,8 +41,17 @@ interface LocalState {
   synced: MetricCounts;
 }
 
-/** 远程计数端点；未配置环境变量时为空字符串，即纯本地模式 */
-export const METRICS_ENDPOINT: string = (import.meta.env.PUBLIC_METRICS_ENDPOINT ?? '').trim();
+/** 远程计数端点；未配置时为空字符串，即纯本地模式。
+ * 通过 configureMetrics() 在页面组件挂载时从 Docusaurus siteConfig.customFields 注入。 */
+let metricsEndpoint = '';
+
+/**
+ * 注入远程计数端点（来自 docusaurus.config.ts 的 customFields.metricsEndpoint）。
+ * @param endpoint 端点地址，可为空字符串
+ */
+export function configureMetrics(endpoint: string | undefined): void {
+  metricsEndpoint = (endpoint ?? '').trim();
+}
 
 /** localStorage 中存放本地状态的键前缀 */
 const STORAGE_PREFIX = 'opc:metrics:';
@@ -210,9 +219,9 @@ export async function postRemoteDelta(
   metric: MetricName,
   delta: number,
 ): Promise<boolean> {
-  if (!METRICS_ENDPOINT) return false;
+  if (!metricsEndpoint) return false;
   try {
-    const response = await fetch(METRICS_ENDPOINT, {
+    const response = await fetch(metricsEndpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ slug, metric, delta }),
@@ -233,9 +242,9 @@ export async function postRemoteDelta(
  * @returns 远端计数；未配置端点或请求失败时返回 null
  */
 export async function fetchRemoteCounts(slug: string): Promise<MetricCounts | null> {
-  if (!METRICS_ENDPOINT) return null;
+  if (!metricsEndpoint) return null;
   try {
-    const response = await fetch(`${METRICS_ENDPOINT}?slug=${encodeURIComponent(slug)}`);
+    const response = await fetch(`${metricsEndpoint}?slug=${encodeURIComponent(slug)}`);
     if (!response.ok) return null;
     const data = (await response.json()) as Partial<MetricCounts>;
     return {

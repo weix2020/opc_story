@@ -100,3 +100,15 @@
 - Task 3.3 依赖 Task 3.2 全部完成
 - Task 4 依赖 Task 2 与 Task 3 全部完成
 - Task 5 依赖 Task 4
+
+---
+
+# 迁移阶段：Astro → Docusaurus（2026-11-05）
+
+> 用户新需求：将站点框架由 Astro 迁移为 Docusaurus。50 篇案例内容与校验脚本完全保留，仅重写站点层。
+
+- [x] **M1**：Docusaurus 3 脚手架（classic preset、TypeScript、Node ≥22、`npm run build` = validate && docusaurus build，输出 `build/`）
+- [x] **M2**：自定义插件 `plugins/opc-projects.ts`：marked 渲染正文 + 标题锚点注入，globalData 分发首页元数据，`createData` + `addRoute` 生成 50 个 `/projects/:slug` 路由
+- [x] **M3**：站点层迁移：React 首页（搜索/双维筛选/排序/三计数）、详情页（七维小节/时间线表/对标表/引用锚点/上下篇/同类别推荐）、方法论页、404、计数链路（本地 + KV 远程模式）、`static/_headers`
+- [x] **M4**：构建 + 校验通过（50 篇 / 450 检查项零 FAIL），浏览器实测通过（首页 50 卡片与计数、搜索/筛选、详情页六节 + 7 维 + 103 引用链接、阅读/点赞/分享计数、方法论页、404、直链访问）
+- [x] **M5**：移除 Astro 残留（astro.config.mjs、content.config.ts、.astro 组件/布局/页面、scripts），DEPLOY.md 更新为 Docusaurus 版

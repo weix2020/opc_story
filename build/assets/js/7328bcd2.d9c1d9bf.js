@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkopc_story||=[]).push([[504],{6432(s){s.exports=JSON.parse('{"name":"opc-projects","id":"default"}')}}]);
