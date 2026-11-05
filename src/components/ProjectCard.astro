@@ -1,0 +1,104 @@
+---
+import AiTypeTag from './AiTypeTag.astro';
+import MetricIcon from './MetricIcon.astro';
+import { formatLaunchDate } from '../lib/labels';
+import { formatCount } from '../lib/metrics';
+
+interface Props {
+  /** 案例标题 */
+  title: string;
+  /** 一句话简介 */
+  summary: string;
+  /** 案例 slug，用于详情页链接 */
+  slug: string;
+  /** 类别标签 */
+  categories: string[];
+  /** 总部所在地 */
+  hq: string;
+  /** 成立年份 */
+  founded: string;
+  /** 创始人 */
+  founder: string;
+  /** 上线日期（ISO 字符串） */
+  launchDate: string;
+  /** 上线日期精度 */
+  launchDatePrecision: string;
+  /** AI 契合类型 */
+  aiType: string;
+  /** 阅读量种子值 */
+  views: number;
+  /** 点赞量种子值 */
+  likes: number;
+  /** 分享量种子值 */
+  shares: number;
+}
+
+const {
+  title,
+  summary,
+  slug,
+  categories,
+  hq,
+  founded,
+  founder,
+  launchDate,
+  launchDatePrecision,
+  aiType,
+  views,
+  likes,
+  shares,
+} = Astro.props;
+
+const launchLabel = formatLaunchDate(launchDate, launchDatePrecision);
+---
+
+<article
+  class="card"
+  data-slug={slug}
+  data-title={title}
+  data-summary={summary}
+  data-categories={categories.join(',')}
+  data-ai-type={aiType}
+  data-founder={founder}
+  data-launch={launchDate}
+  data-views={views}
+  data-likes={likes}
+  data-shares={shares}
+>
+  <div class="card-head">
+    <h2 class="card-title">
+      <a href={`/projects/${slug}/`}>{title}</a>
+    </h2>
+    <AiTypeTag type={aiType} withTitle />
+  </div>
+
+  <p class="card-summary">{summary}</p>
+
+  <div class="card-meta">
+    <span>{hq}</span>
+    <span aria-hidden="true">·</span>
+    <span>成立于 {founded}</span>
+    <span aria-hidden="true">·</span>
+    <span>上线于 {launchLabel}</span>
+  </div>
+
+  <div class="card-foot">
+    <div class="tags">
+      {categories.map((category) => <span class="tag">{category}</span>)}
+    </div>
+    <div class="card-metrics" data-metrics-slug={slug}>
+      <span class="metric" data-metric="views" title="阅读量">
+        <MetricIcon name="views" />
+        <span data-value>{formatCount(views)}</span>
+      </span>
+      <span class="metric" data-metric="likes" title="点赞量">
+        <MetricIcon name="likes" />
+        <span data-value>{formatCount(likes)}</span>
+      </span>
+      <span class="metric" data-metric="shares" title="分享量">
+        <MetricIcon name="shares" />
+        <span data-value>{formatCount(shares)}</span>
+      </span>
+    </div>
+  </div>
+</article>

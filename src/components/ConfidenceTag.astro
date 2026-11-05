@@ -1,0 +1,18 @@
+---
+import { CONFIDENCE_DESCRIPTIONS, confidenceLabel } from '../lib/labels';
+
+interface Props {
+  /** 置信度等级：A / B / C */
+  level: string;
+  /** 是否展示等级释义（悬停提示） */
+  withTitle?: boolean;
+}
+
+const { level, withTitle = false } = Astro.props;
+const label = confidenceLabel(level);
+const description = CONFIDENCE_DESCRIPTIONS[level];
+---
+
+<span class={`badge badge-conf badge-conf-${level}`} title={withTitle && description ? description : undefined}>
+  {label}
+</span>

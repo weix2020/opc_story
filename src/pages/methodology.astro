@@ -1,0 +1,218 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { AI_TYPE_DESCRIPTIONS, AI_TYPE_LABELS, CONFIDENCE_DESCRIPTIONS, CONFIDENCE_LABELS, SOURCE_TYPE_LABELS } from '../lib/labels';
+import { DATA_CUTOFF, DATA_SOURCES, SITE_DESCRIPTION } from '../lib/site';
+import { CATEGORIES } from '../lib/content-contract.mjs';
+
+const aiTypes = [
+  {
+    value: 'ai-native',
+    label: AI_TYPE_LABELS['ai-native'],
+    definition: AI_TYPE_DESCRIPTIONS['ai-native'],
+    example: 'AI 生成的播客、批量短视频、数字人直播间：交付物本身就是模型输出，作者只做选题与审美判断。',
+    counterExample: '并非所有 AI 工具都算 ai-native，若模型只是可选的润色功能，则应归入 ai-embedded。',
+  },
+  {
+    value: 'ai-embedded',
+    label: AI_TYPE_LABELS['ai-embedded'],
+    definition: AI_TYPE_DESCRIPTIONS['ai-embedded'],
+    example: '带 AI 补全的 IDE、集成模型推荐的 SaaS：在既有产品形态内嵌入模型能力，产品核心功能不以模型生成为主。',
+    counterExample: '若该产品的主要卖点就是模型生成的产物，则应归入 ai-native 而非 ai-embedded。',
+  },
+  {
+    value: 'ai-enabled-ops',
+    label: AI_TYPE_LABELS['ai-enabled-ops'],
+    definition: AI_TYPE_DESCRIPTIONS['ai-enabled-ops'],
+    example: '一人经营的设计外包、自动化营销代投服务：对外交付的是传统形态的服务，模型用于内部提效。',
+    counterExample: '若模型直接面向客户交付可复制的产品，则不属于本类。',
+  },
+];
+
+const sourceTypes = [
+  { value: 'primary', label: SOURCE_TYPE_LABELS.primary, definition: '官方定价页、产品公告、创始人访谈原文、合同或财报等第一手材料。', weight: '权重最高，可直接支撑数据类结论。' },
+  { value: 'secondary', label: SOURCE_TYPE_LABELS.secondary, definition: '媒体报道、行业评论、分析师访谈等对事实的转述。', weight: '需与一手信源交叉验证。' },
+  { value: 'database', label: SOURCE_TYPE_LABELS.database, definition: '公开产品目录、融资数据库、工具榜单的结构化条目。', weight: '适合佐证产品存在与品类归属，不作为营收依据。' },
+  { value: 'aggregator', label: SOURCE_TYPE_LABELS.aggregator, definition: '按主题聚合的清单、榜单与行业观察文章。', weight: '适合发现线索，结论需回溯原始信源。' },
+  { value: 'community', label: SOURCE_TYPE_LABELS.community, definition: '论坛帖、Reddit/知乎讨论、X/Twitter 公开推文。', weight: '反映用户口碑与争议点，单条不作为事实依据。' },
+];
+
+const confidenceLevels = ['A', 'B', 'C'].map((level) => ({
+  level,
+  label: CONFIDENCE_LABELS[level],
+  definition: CONFIDENCE_DESCRIPTIONS[level],
+}));
+
+const conflictRules = [
+  '同一指标出现口径不一致时，优先采用一手信源（官方定价页、公告、访谈原文）。',
+  '一手信源之间冲突时，保留两种口径并在「争议与不确定性」中写明分歧原因，不做单方取舍。',
+  '推算值与披露值冲突时，推算值必须标注置信度，且不得表述为官方数字。',
+  '仅有社区讨论佐证的结论，一律降级为 C 级推算，并在正文中说明证据薄弱。',
+];
+---
+
+<BaseLayout
+  title="方法论"
+  description="OPC Story 的案例判定口径、AI 相关性三分法、信源类型划分、置信度分级与营收推算规则。"
+  path="/methodology/"
+>
+  <article class="article methodology">
+    <header class="methodology-head">
+      <h1>方法论</h1>
+      <p class="methodology-lead">
+        本站所有案例按统一口径采集与推算。本页说明判定标准、信源分级与冲突处理规则，
+        便于读者独立复核每一条结论。
+      </p>
+    </header>
+
+    <section class="methodology-section" id="opc-定义">
+      <h2>一、OPC 定义与收录口径</h2>
+      <p>
+        OPC（One Person Company，一人公司）指由<strong>单一自然人</strong>创立并实际承担全部经营职能的实体：
+        没有全职雇员、没有董事会，产品研发、市场、销售、客服与运营均由创始人本人完成，
+        外部仅保留按需采购的外包、算力与模型 API 成本。
+      </p>
+      <p>
+        本站案例必须同时满足以下<strong>「一人 + AI」</strong>双重判定条件，缺一不可：
+      </p>
+      <ol class="methodology-list">
+        <li><strong>一人判定</strong>：创始团队规模为 1 人，或公开信息明确显示无其他全职成员；仅有兼职协作者不计入人数。</li>
+        <li><strong>AI 判定</strong>：AI 能力是产品交付或运营流程中的必要环节，而非可选装饰；关闭 AI 后产品核心价值即无法成立。</li>
+        <li><strong>商业化判定</strong>：已存在可验证的营收或明确的收费方案，仅有流量与关注度而没有变现路径的不予收录。</li>
+        <li><strong>证据判定</strong>：至少 5 条信源、至少 1 条一手信源、至少 2 个相互独立的发布方可核验事实。</li>
+      </ol>
+      <p>
+        类别标签共 {CATEGORIES.length} 类：{CATEGORIES.join('、')}。一个案例可同时归属多个类别，
+        类别反映的是产品的主要形态与目标客群，而非技术栈。
+      </p>
+    </section>
+
+    <section class="methodology-section" id="ai-三分法">
+      <h2>二、AI 相关性三分法</h2>
+      <p>
+        三分法判断的是<strong>模型在价值链中的位置</strong>，而不是公司是否「用了 AI」。
+        判定时以产品对外交付给客户的东西为准：交付物是模型生成的，归 ai-native；
+        交付物是含模型的软件，归 ai-embedded；交付物是服务，模型只用于内部提效，归 ai-enabled-ops。
+      </p>
+      <div class="methodology-cards">
+        {
+          aiTypes.map((item) => (
+            <div class="methodology-card">
+              <h3>{item.label}</h3>
+              <p class="methodology-card-definition">{item.definition}</p>
+              <p><strong>判定示例：</strong>{item.example}</p>
+              <p class="methodology-card-note"><strong>边界说明：</strong>{item.counterExample}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="methodology-section" id="信源类型">
+      <h2>三、信源类型划分</h2>
+      <p>所有信源按可核验强度分为五类，每篇案例至少包含 1 条一手信源与 2 个独立发布方。</p>
+      <div class="table-scroll">
+        <table class="methodology-table">
+          <thead>
+            <tr>
+              <th>类型</th>
+              <th>含义</th>
+              <th>采信权重</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              sourceTypes.map((item) => (
+                <tr>
+                  <td>
+                    <span class={`badge badge-source badge-source-${item.value}`}>{item.label}</span>
+                  </td>
+                  <td>{item.definition}</td>
+                  <td>{item.weight}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+      <p class="methodology-note">信源总数：{DATA_SOURCES}</p>
+    </section>
+
+    <section class="methodology-section" id="置信度分级">
+      <h2>四、置信度分级</h2>
+      <p>
+        每条营收推算结论都标注 A/B/C 三级置信度，读者可据此判断引用风险。
+      </p>
+      <div class="table-scroll">
+        <table class="methodology-table">
+          <thead>
+            <tr>
+              <th>等级</th>
+              <th>判定标准</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              confidenceLevels.map((item) => (
+                <tr>
+                  <td>
+                    <span class={`badge badge-conf badge-conf-${item.level}`}>{item.label}</span>
+                  </td>
+                  <td>{item.definition}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="methodology-section" id="营收推算">
+      <h2>五、营收推算方法</h2>
+      <p>
+        绝大多数一人公司不公开营收，因此本站的营收数字几乎都是推算值。推算遵循以下步骤，
+        并在每篇案例的「推算方法」中写明具体路径：
+      </p>
+      <ol class="methodology-list">
+        <li><strong>锚定单价</strong>：取官方定价页或订阅页的公开价格。</li>
+        <li><strong>估算规模</strong>：由用户量、榜单排名、招聘与外包支出、支付通道记录等交叉反推付费规模。</li>
+        <li><strong>换算年化</strong>：按月均价乘以 12，或按活跃团队席位 × 单席位价得出年经常性收入。</li>
+        <li><strong>标注区间与置信度</strong>：给出区间而非单点，并按上一节的 A/B/C 标准定级。</li>
+      </ol>
+      <p>
+        常见口径示例：由公开订阅价格与作者披露的付费用户数区间换算；由支付网关公开收款页面与历史价格表交叉推算；
+        由客户席位数量与单席位价格推算年经常性收入。所有推算均以区间表述，不做精确到个位的断言。
+      </p>
+    </section>
+
+    <section class="methodology-section" id="数据冲突">
+      <h2>六、数据冲突处理规则</h2>
+      <ol class="methodology-list">
+        {conflictRules.map((rule) => <li>{rule}</li>)}
+      </ol>
+    </section>
+
+    <section class="methodology-section" id="未公开披露">
+      <h2>七、「未公开披露」原则</h2>
+      <p>
+        对公司未公开、且无法通过公开信息可靠推算的指标（真实营收、精确用户数、创始人收入结构等），
+        本站一律写作<strong>「未公开披露」</strong>，不以估值、同行类比或媒体猜测填充。
+        「未公开披露」本身就是一个有效结论，它标记了信息边界的位置，也避免用推算值覆盖事实缺口。
+      </p>
+      <p>
+        对于「团队规模」这类容易被夸大的指标，若公开材料只能证明「创始人一人 + 外包」，
+        则记为「1 人（含外包）」而非单纯「1 人」，以保留真实协作结构的差异。
+      </p>
+    </section>
+
+    <section class="methodology-section" id="截止时间">
+      <h2>八、数据检索截止时间</h2>
+      <p>
+        本站数据的检索截止时间为 <strong>{DATA_CUTOFF}</strong>。截止时间之后的变更（融资、定价调整、
+        产品形态变化）不在本期案例的结论范围内；后续更新会同步刷新截止时间并复核受影响的案例。
+      </p>
+      <p class="methodology-note">
+        本站为公开资料整理型案例库，所有结论均标注信源与置信度，引用请以信源链接的原始内容为准。
+      </p>
+    </section>
+  </article>
+</BaseLayout>

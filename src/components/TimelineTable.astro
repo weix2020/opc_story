@@ -1,0 +1,43 @@
+---
+import { cellCitations } from '../lib/body-sections';
+
+/** 时间线表格的一行 */
+interface TimelineRow {
+  /** 日期 */
+  date: string;
+  /** 事件描述 */
+  event: string;
+  /** 信源标记（如 [S1]） */
+  source: string;
+}
+
+interface Props {
+  /** 时间线数据行 */
+  rows: TimelineRow[];
+}
+
+const { rows } = Astro.props;
+---
+
+<div class="table-scroll">
+  <table class="timeline-table">
+    <thead>
+      <tr>
+        <th>日期</th>
+        <th>事件</th>
+        <th>信源</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        rows.map((row) => (
+          <tr>
+            <td class="timeline-date">{row.date}</td>
+            <td set:html={cellCitations(row.event)} />
+            <td set:html={cellCitations(row.source)} />
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>

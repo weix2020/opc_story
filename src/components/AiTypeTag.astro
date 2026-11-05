@@ -1,0 +1,18 @@
+---
+import { AI_TYPE_DESCRIPTIONS, aiTypeLabel } from '../lib/labels';
+
+interface Props {
+  /** AI 契合类型：ai-native / ai-embedded / ai-enabled-ops */
+  type: string;
+  /** 是否展示类型释义（悬停提示） */
+  withTitle?: boolean;
+}
+
+const { type, withTitle = false } = Astro.props;
+const label = aiTypeLabel(type);
+const description = AI_TYPE_DESCRIPTIONS[type];
+---
+
+<span class={`badge badge-ai badge-ai-${type}`} title={withTitle && description ? description : undefined}>
+  {label}
+</span>

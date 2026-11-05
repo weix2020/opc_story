@@ -1,0 +1,297 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AiTypeTag from '../../components/AiTypeTag.astro';
+import ConfidenceTag from '../../components/ConfidenceTag.astro';
+import SourceList from '../../components/SourceList.astro';
+import TimelineTable from '../../components/TimelineTable.astro';
+import BenchmarkTable from '../../components/BenchmarkTable.astro';
+import DimensionSection from '../../components/DimensionSection.astro';
+import MetricIcon from '../../components/MetricIcon.astro';
+import { formatLaunchDate } from '../../lib/labels';
+import { formatCount } from '../../lib/metrics';
+import { normalizePublisher } from '../../lib/content-contract.mjs';
+import { parseBenchmarkRows, parseTimelineRows } from '../../lib/project-content';
+import { sortProjects } from '../../lib/sorting';
+import { linkifyCitations, splitBodySections, splitSubsectionChunks } from '../../lib/body-sections';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.data.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { data } = project;
+
+// 正文按二级标题切分：散文段落保持 Astro 的 Markdown 渲染结果，
+// 表格改由 TimelineTable / BenchmarkTable 等组件渲染，避免同一张表出现两次。
+const sections = splitBodySections(project.rendered?.html ?? '');
+const sectionByTitle = (title: string) => sections.find((section) => section.title === title);
+
+const timelineSection = sectionByTitle('来龙去脉');
+const historySection = sectionByTitle('历时性分析');
+const benchmarkSection = sectionByTitle('共时性横向对标');
+const dimensionSection = sectionByTitle('七维深度分析');
+const controversySection = sectionByTitle('争议与不确定性');
+const verificationSection = sectionByTitle('信源与核验');
+
+const timelineRows = parseTimelineRows(project.body ?? '');
+const benchmarkRows = parseBenchmarkRows(project.body ?? '');
+const { lead: dimensionLead, chunks: dimensionChunks } = splitSubsectionChunks(
+  dimensionSection?.html ?? '',
+);
+
+// 核验统计
+const sourceCount = data.sources.length;
+const primaryCount = data.sources.filter((source) => source.type === 'primary').length;
+const publisherCount = new Set(
+  data.sources.map((source) => normalizePublisher(source.publisher)).filter(Boolean),
+).size;
+
+// 上一案例 / 下一案例 / 同类别推荐：与首页使用同一排序规则
+const allProjects = sortProjects(
+  (await getCollection('projects')).map((item) => ({
+    slug: item.data.slug,
+    launchDate: item.data.launchDate,
+    views: item.data.metrics.views,
+    project: item,
+  })),
+).map((item) => item.project);
+
+const currentIndex = allProjects.findIndex((item) => item.data.slug === data.slug);
+const prevProject = currentIndex > 0 ? allProjects[currentIndex - 1] : undefined;
+const nextProject =
+  currentIndex >= 0 && currentIndex < allProjects.length - 1 ? allProjects[currentIndex + 1] : undefined;
+
+const relatedProjects = allProjects
+  .filter((item) => item.data.slug !== data.slug)
+  .filter((item) => item.data.category.some((category) => data.category.includes(category)))
+  .slice(0, 4);
+
+const launchLabel = formatLaunchDate(data.launchDate, data.launchDatePrecision);
+---
+
+<BaseLayout
+  title={data.title}
+  description={data.summary}
+  ogType="article"
+  path={`/projects/${data.slug}/`}
+>
+  <article class="article detail" data-project-detail={data.slug}>
+    <nav class="breadcrumb" aria-label="面包屑">
+      <a href="/">首页</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{data.title}</span>
+    </nav>
+
+    <header class="detail-head">
+      <h1 class="detail-title">{data.title}</h1>
+      <div class="tags">
+        {data.category.map((category) => <span class="tag">{category}</span>)}
+        <AiTypeTag type={data.aiType} />
+      </div>
+    </header>
+
+    <section class="overview" aria-label="速览">
+      <p class="overview-summary">{data.summary}</p>
+      <dl class="overview-grid">
+        <div class="overview-item">
+          <dt>创始人</dt>
+          <dd>{data.founder}</dd>
+        </div>
+        <div class="overview-item">
+          <dt>成立年份</dt>
+          <dd>{data.founded}</dd>
+        </div>
+        <div class="overview-item">
+          <dt>上线时间</dt>
+          <dd>{launchLabel}</dd>
+        </div>
+        <div class="overview-item">
+          <dt>总部</dt>
+          <dd>{data.hq}</dd>
+        </div>
+        <div class="overview-item">
+          <dt>当前团队规模</dt>
+          <dd>{data.teamSize}</dd>
+        </div>
+        <div class="overview-item">
+          <dt>融资状态</dt>
+          <dd>{data.funding}</dd>
+        </div>
+        <div class="overview-item overview-item-wide">
+          <dt>营收预估</dt>
+          <dd>
+            <strong>{data.revenueEstimate.value}</strong>
+            <ConfidenceTag level={data.revenueEstimate.confidence} withTitle />
+            <span class="overview-basis">推算方法：{data.revenueEstimate.basis}</span>
+          </dd>
+        </div>
+        <div class="overview-item overview-item-wide">
+          <dt>AI 作用</dt>
+          <dd>
+            <AiTypeTag type={data.aiType} withTitle />
+            <span class="overview-basis">{data.aiRole}</span>
+          </dd>
+        </div>
+        <div class="overview-item overview-item-wide">
+          <dt>官网</dt>
+          <dd>
+            <a href={data.website} target="_blank" rel="noopener noreferrer">{data.website}</a>
+          </dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="detail-actions" aria-label="互动">
+      <div class="detail-metrics">
+        <span class="metric" data-metric="views" title="阅读量" data-seed-views={data.metrics.views}>
+          <MetricIcon name="views" />
+          <span data-value>{formatCount(data.metrics.views)}</span>
+        </span>
+        <span class="metric" data-metric="likes" title="点赞量" data-seed-likes={data.metrics.likes}>
+          <MetricIcon name="likes" />
+          <span data-value>{formatCount(data.metrics.likes)}</span>
+        </span>
+        <span class="metric" data-metric="shares" title="分享量" data-seed-shares={data.metrics.shares}>
+          <MetricIcon name="shares" />
+          <span data-value>{formatCount(data.metrics.shares)}</span>
+        </span>
+      </div>
+      <div class="action-buttons">
+        <button type="button" class="action-button" data-action="like" aria-pressed="false">
+          <MetricIcon name="likes" />
+          <span>点赞</span>
+        </button>
+        <button type="button" class="action-button" data-action="share">
+          <MetricIcon name="shares" />
+          <span>分享</span>
+        </button>
+      </div>
+    </section>
+
+    {
+      timelineSection && (
+        <section class="prose-section" id="来龙去脉">
+          <h2>来龙去脉</h2>
+          {timelineSection.html && (
+            <div class="prose" set:html={linkifyCitations(timelineSection.html)} />
+          )}
+          {timelineRows.length > 0 && <TimelineTable rows={timelineRows} />}
+        </section>
+      )
+    }
+
+    {
+      historySection && (
+        <section class="prose-section" id="历时性分析">
+          <h2>历时性分析</h2>
+          <div class="prose" set:html={linkifyCitations(historySection.html)} />
+        </section>
+      )
+    }
+
+    {
+      benchmarkSection && (
+        <section class="prose-section" id="共时性横向对标">
+          <h2>共时性横向对标</h2>
+          {benchmarkSection.html && (
+            <div class="prose" set:html={linkifyCitations(benchmarkSection.html)} />
+          )}
+          {benchmarkRows.length > 0 && <BenchmarkTable rows={benchmarkRows} />}
+        </section>
+      )
+    }
+
+    {
+      dimensionSection && (
+        <section class="prose-section" id="七维深度分析">
+          <h2>七维深度分析</h2>
+          {dimensionLead && <div class="prose" set:html={linkifyCitations(dimensionLead)} />}
+          <div class="dimension-list">
+            {dimensionChunks.map((chunk, index) => (
+              <DimensionSection title={chunk.title} index={index + 1}>
+                <div class="prose" set:html={linkifyCitations(chunk.html)} />
+              </DimensionSection>
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    {
+      controversySection && (
+        <section class="prose-section prose-section-callout" id="争议与不确定性">
+          <h2>争议与不确定性</h2>
+          <div class="prose" set:html={linkifyCitations(controversySection.html)} />
+        </section>
+      )
+    }
+
+    {
+      verificationSection && (
+        <section class="prose-section" id="信源与核验">
+          <h2>信源与核验</h2>
+          {verificationSection.html && (
+            <div class="prose" set:html={linkifyCitations(verificationSection.html)} />
+          )}
+          <ul class="verification-stats">
+            <li>信源总数：<strong>{sourceCount}</strong> 条</li>
+            <li>一手信源：<strong>{primaryCount}</strong> 条</li>
+            <li>独立发布方：<strong>{publisherCount}</strong> 个</li>
+          </ul>
+          <SourceList sources={data.sources} />
+        </section>
+      )
+    }
+
+    <nav class="pager" aria-label="案例导航">
+      {
+        prevProject ? (
+          <a class="pager-link pager-prev" href={`/projects/${prevProject.data.slug}/`}>
+            <span class="pager-label">上一案例</span>
+            <span class="pager-title">{prevProject.data.title}</span>
+          </a>
+        ) : (
+          <span class="pager-link pager-empty" aria-hidden="true" />
+        )
+      }
+      {
+        nextProject ? (
+          <a class="pager-link pager-next" href={`/projects/${nextProject.data.slug}/`}>
+            <span class="pager-label">下一案例</span>
+            <span class="pager-title">{nextProject.data.title}</span>
+          </a>
+        ) : (
+          <span class="pager-link pager-empty" aria-hidden="true" />
+        )
+      }
+    </nav>
+
+    {
+      relatedProjects.length > 0 && (
+        <section class="related" aria-label="同类别推荐">
+          <h2 class="related-title">同类别推荐</h2>
+          <ul class="related-list">
+            {relatedProjects.map((item) => (
+              <li class="related-item">
+                <a href={`/projects/${item.data.slug}/`}>{item.data.title}</a>
+                <span class="related-meta">
+                  {item.data.category.join(' · ')} · 上线于{' '}
+                  {formatLaunchDate(item.data.launchDate, item.data.launchDatePrecision)}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+  </article>
+</BaseLayout>
+
+<script>
+  import '../../scripts/detail';
+</script>

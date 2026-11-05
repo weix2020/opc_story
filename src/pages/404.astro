@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="页面不存在"
+  description="你访问的页面不存在或已被移动，可以返回首页浏览全部案例。"
+  path="/404/"
+  noindex
+>
+  <section class="notfound">
+    <p class="notfound-code">404</p>
+    <h1 class="notfound-title">页面不存在</h1>
+    <p class="notfound-text">
+      你访问的地址可能已被移动或删除。可以回到首页浏览全部收录案例，或查看方法论页了解本站的收录与推算口径。
+    </p>
+    <div class="notfound-actions">
+      <a class="button button-primary" href="/">返回首页</a>
+      <a class="button button-ghost" href="/methodology/">阅读方法论</a>
+    </div>
+  </section>
+</BaseLayout>
