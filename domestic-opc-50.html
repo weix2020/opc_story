@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OPC 案例墙 · 国内 AI 一人公司案例 · OPC Story</title>
+<meta name="description" content="国内 AI 一人公司案例墙：动态收录以 AI 为核心生产力的中国独立创业者案例，按时间锚点降序排列，第一名《归墟》附深度报告，全部信源可溯源。">
+<style>
+/* ===== REPORT WRITING STANDARD — CANONICAL CSS v1.1 ===== */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,fr)}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+.opc-card{flex-direction:column}
+}
+
+/* ===== OPC 卡片墙 ===== */
+.opc-filters{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:6px 0 18px}
+.opc-search{flex:1;min-width:220px;border:1px solid #d5dce5;border-radius:20px;padding:8px 16px;font-size:14px;font-family:inherit;color:#2c3e50;outline:none;transition:border-color .15s}
+.opc-search:focus{border-color:#c9a961}
+.fbtn{border:1px solid #d5dce5;background:#fff;border-radius:18px;padding:5px 14px;font-size:12.5px;color:#4a5b6e;cursor:pointer;font-family:inherit;transition:all .15s}
+.fbtn:hover{border-color:#c9a961;color:#1e3a5f}
+.fbtn.is-active{background:#1e3a5f;border-color:#1e3a5f;color:#fff}
+.opc-count{font-size:13px;color:#8b97a6;margin-left:auto}
+.opc-grid{display:flex;flex-direction:column;gap:14px;max-width:880px;margin:0 auto}
+.opc-card .oc-main{display:flex;flex-direction:column;gap:7px}
+.filter-sep{font-size:12.5px;color:#8b97a6;margin-left:4px}
+.op-views{display:flex;align-items:center;gap:4px;font-size:12.5px;color:#6b7a8c;border:1px solid #e3e8ef;background:#fafbfc;border-radius:18px;padding:4px 10px;white-space:nowrap}
+.op-views svg{width:13px;height:13px}
+.op-views b{font-family:Georgia,serif;font-weight:700}
+.opc-card{background:#fff;border:1px solid #e3e8ef;border-top:3px solid #1e3a5f;border-radius:6px;padding:15px 17px 13px;display:flex;flex-direction:column;gap:7px;transition:transform .18s ease,box-shadow .18s ease,border-top-color .18s ease}
+.opc-card:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(30,58,95,.12);border-top-color:#c9a961}
+.oc-top{display:flex;justify-content:space-between;align-items:center}
+.oc-time{font-size:12px;color:#9a7b28;font-weight:700;font-family:Georgia,serif;letter-spacing:.3px}
+.oc-rank{font-size:11.5px;font-weight:800;color:#c9a961;background:#1e3a5f;border-radius:12px;padding:1px 9px;font-family:Georgia,serif}
+.oc-title{font-size:16px;line-height:1.45;color:#1e3a5f;font-weight:800;margin:0}
+.oc-title a{color:inherit;text-decoration:none}
+.oc-title a:hover{color:#c9a961}
+.oc-founder{font-size:13px;color:#6b7a8c;margin:0}
+.oc-founder b{color:#3c4c5e}
+.oc-desc{font-size:13.5px;color:#3c4c5e;margin:0;flex:1}
+.oc-result{font-size:12.5px;color:#c0392b;font-weight:600;margin:0;background:#fdf5f4;border-radius:4px;padding:5px 9px}
+.oc-foot{display:flex;justify-content:space-between;align-items:center;border-top:1px dashed #e3e8ef;padding-top:9px;margin-top:3px}
+.oc-cats{font-size:11.5px;color:#8b97a6}
+.oc-actions{display:flex;gap:7px}
+.op-btn{border:1px solid #d5dce5;background:#f7f9fb;border-radius:18px;padding:4px 10px;font-size:12.5px;color:#4a5b6e;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:4px;transition:all .15s;white-space:nowrap}
+.oc-actions{display:flex;gap:7px;align-items:center}
+.op-btn:hover{border-color:#c9a961;color:#1e3a5f}
+.op-btn svg{width:13px;height:13px}
+.op-btn.liked{background:#fdf1f0;border-color:#c0392b;color:#c0392b}
+.op-btn b{font-family:Georgia,serif;font-weight:700}
+.empty-state{display:none;text-align:center;color:#8b97a6;padding:36px;border:1px dashed #d5dce5;border-radius:6px}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · AI ONE-PERSON COMPANY CASE WALL · 持续更新</div>
+    <h1>国内 AI 一人公司案例墙</h1>
+    <h2>收录以 AI 为核心生产力的中国独立创业者案例<br>按时间锚点降序排列 · 点开第一名《归墟》阅读深度案例报告 · 动态更新</h2>
+    <div class="tags">
+      <span class="tag">动态更新 · 持续收录</span>
+      <span class="tag">作品与工具并重</span>
+      <span class="tag">榜首案例深度报告 ↗</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar" style="grid-template-columns:repeat(2,1fr)">
+  <div class="stat"><div class="v neutral" id="statCases">—</div><div class="k">收录案例</div></div>
+  <div class="stat"><div class="v neutral">5</div><div class="k">覆盖赛道</div></div>
+</div>
+
+<div class="wrap">
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">壹</div><h3>OPC 案例墙</h3><span class="en">Case Wall</span></div>
+  <div class="opc-filters">
+    <input type="search" class="opc-search" id="opcSearch" placeholder="搜索项目、创业者或关键词…" autocomplete="off">
+    <span class="filter-sep">排序</span>
+    <button class="fbtn sort is-active" data-sort="time">按时间</button>
+    <button class="fbtn sort" data-sort="views">按阅读</button>
+    <button class="fbtn sort" data-sort="likes">按点赞</button>
+    <button class="fbtn sort" data-sort="shares">按分享</button>
+  </div>
+  <div class="opc-filters">
+    <button class="fbtn is-active" data-group="">全部</button>
+    <button class="fbtn" data-group="作品型">作品型</button>
+    <button class="fbtn" data-group="开发者工具">开发者工具 · 客户端</button>
+    <button class="fbtn" data-group="内容创作">内容创作</button>
+    <button class="fbtn" data-group="垂直应用">垂直应用</button>
+    <button class="fbtn" data-group="营销电商">营销 · 电商 · 生态</button>
+    <span class="opc-count" id="opcCount">—</span>
+  </div>
+  <div class="opc-grid" id="opcGrid"></div>
+  <p class="empty-state" id="opcEmpty">没有匹配的案例，换个关键词或筛选条件试试。</p>
+
+  <div class="box insight">
+    <div class="bt">💡 分布观察</div>
+    按锚点年份统计：2026 年 16 个、2025 年 11 个、2024 年 10 个、2023 年 12 个、2022 年 2 个——AI 一人创业的供给在 2023 年（大模型应用元年）与 2026 年（AI 内容工业化年）出现两个峰值。赛道分布：开发者工具/客户端 13、内容创作/作品型 14、垂直行业应用 11、营销/微信生态 5、社区高热度 7。作品型 OPC（AI 短剧/漫剧/短片）为 2026 年新增形态，锚点集中于 2026 年中后期。
+  </div>
+</section>
+
+<footer>
+  <div class="fin">— 公开资料整理型案例墙，动态更新 —</div>
+  数据检索截止：2026-11-09 · 榜首深度报告：<a href="domestic-opc-guixu.html" style="color:#2980b9">《归墟》↗</a> · 原全球 50 案例库见 opc-story 站点<br>
+  营收、热度等推算值均标注置信口径，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+
+<script>
+/* ===== 50 案例卡片墙：数据（按时间锚点降序）===== */
+/* 字段：r 序号 / t 时间锚点 / n 项目名 / href 详情链接（仅榜首）/ c 主信源编号 / cc 信源核验色 /
+   f 创业者 / g 赛道分组 / d 产品功能一句话 / res 成功迹象 */
+const CASES = [
+{r:1,t:"2026-08-29 ▲",n:"AI 短剧《归墟》",href:"domestic-opc-guixu.html",c:1,cc:"verified",f:"泫九（江澜）",g:"作品型",d:"12 集末世科幻 AI 短剧：即梦 Seedance + Suno 全流程一人制作，周更连载。",res:"全网播放破亿（年末口径破 2 亿），红果热度 4400 万+ · 深度报告 ↗"},
+{r:2,t:"2026-08-20 ▲",n:"我和我的 AI 男友：樱时叙归途",href:"",c:2,cc:"cross",f:"李四姑娘",g:"作品型",d:"一人用字节系 AI 工具完成 60 集 2D 纯爱漫剧，小说-漫剧-小游戏 IP 联动。",res:"红果热度 1200 万（上线 5 天）"},
+{r:3,t:"2026-08-04 ▲月",n:"咱家剑宗团宠小师妹",href:"",c:3,cc:"partial",f:"六爻",g:"作品型",d:"修仙题材 AI 漫剧，剧本/分镜/生成/剪辑一人独立制作，长季连载。",res:"红果漫剧热播榜第三，规划超 1000 集"},
+{r:4,t:"2026-07-15 ▲月",n:"易经图卦系列",href:"",c:4,cc:"cross",f:"刘健",g:"垂直应用",d:"AI 转译易经卦象的情绪卡牌 + AI 生成小程序，一人包揽产品全流程。",res:"年销售额破百万，月营收稳定 6 万+"},
+{r:5,t:"2026（年）▲",n:"红墨 RedInk",href:"",c:5,cc:"partial",f:"默子（HisMax）",g:"内容创作",d:"一句话生成整套小红书图文笔记：标题/正文/封面配图可直发。",res:"GitHub 5.7k★，会员 68 元/月起"},
+{r:6,t:"2026（年）▲",n:"Sitesfy AI",href:"",c:6,cc:"partial",f:"王喆（Steve Wang）",g:"营销电商",d:"AI 获客系统：自动生成面向搜索引擎的多语言获客网站与内容。",res:"自述月收入近 100 万元（自述口径）"},
+{r:7,t:"2026（年）▲",n:"MuMuAINovel",href:"",c:7,cc:"partial",f:"xiamuceer-j",g:"内容创作",d:"可自部署的 AI 长篇小说工作台：角色卡/伏笔追踪/批量挂机写作。",res:"GitHub 3.3k★，网文圈自部署社区"},
+{r:8,t:"2026-06-24 ▲",n:"作文说",href:"",c:8,cc:"verified",f:"李雲帆",g:"垂直应用",d:"AI 作文批改：拍照上传生成可打印批改报告，支持班级批量精批。",res:"4 个月用户 1.5 万，月入近 5 万（自述）"},
+{r:9,t:"2026-06-15 ✓",n:"无事AI",href:"",c:9,cc:"partial",f:"佟晨",g:"垂直应用",d:"AI 小额纠纷解决：免费诊断案情/测算赔偿，按结果收费。",res:"两月 40 余单付费、营收约 6 万元"},
+{r:10,t:"2026-06-11 ▲",n:"星织科技",href:"",c:10,cc:"cross",f:"Kevin Li",g:"营销电商",d:"AI 智能体做「数字员工」，一人同时运营 8 个亚马逊品牌。",res:"亚马逊官方白皮书收录 OPC 典型"},
+{r:11,t:"2026-06-05 ▲",n:"戴森云",href:"",c:11,cc:"cross",f:"田志雄",g:"营销电商",d:"大模型驱动直播电商：话术生成/生命周期预测/智能运营。",res:"直播年流水数千万、技术营收超千万"},
+{r:12,t:"2026-05-24 ▲",n:"AI 短片《丧尸清道夫》",href:"",c:12,cc:"verified",f:"刘梓瑜",g:"作品型",d:"3 分 34 秒原子朋克 AI 科幻短片，全流程一人 10 天完成。",res:"播放 6000 万至破亿，获好莱坞制作人盛赞"},
+{r:13,t:"2026-05-06 ▲",n:"Kre.ai",href:"",c:13,cc:"cross",f:"武培文",g:"营销电商",d:"AI 智能体流水线为跨境电商优化广告投放与素材复盘。",res:"200 万元大单，年营收超百万"},
+{r:14,t:"2026-03-15 ✓",n:"聪明钱监控",href:"",c:14,cc:"cross",f:"许洋",g:"垂直应用",d:"开源智能体手搓的 AI 股市投研系统，日报推送，200 元/年。",res:"半月 90 个付费用户、收入超 1 万元"},
+{r:15,t:"2026-01-31 ✓",n:"hupoCADNet",href:"",c:15,cc:"partial",f:"何思康",g:"垂直应用",d:"AI 彩平图生成引擎：CAD 平面图 3 分钟生成可商用彩色平面图。",res:"半年 1740 位付费设计师、营收 5.1 万元"},
+{r:16,t:"2026-01-15 ✓",n:"天之灵AI",href:"",c:16,cc:"partial",f:"张翼",g:"垂直应用",d:"AI 哀伤陪伴小程序：亲人照片生成数字形象陪对话疗愈。",res:"用户 11.1 万、付费会员 2000+、已盈利"},
+{r:17,t:"2025-11-15 ▲月",n:"互动内容产品（名称未公开）",href:"",c:17,cc:"cross",f:"叶纯俊",g:"垂直应用",d:"AI 驱动的互动内容与情感陪伴产品，90% 代码由 AI Agent 编写。",res:"全球百万用户、月收入 2-3 万美元"},
+{r:18,t:"2025-11-10 ▲",n:"NuxtPro 等 AI 工具矩阵",href:"",c:18,cc:"partial",f:"IndieMakerKevin",g:"开发者工具",d:"一人多产品：SaaS 模板/API 中转/视频去水印等工具站矩阵。",res:"自述月额外收入 1 万美元+（自述口径）"},
+{r:19,t:"2025（年）▲",n:"Raphael AI",href:"",c:19,cc:"partial",f:"刘小排",g:"内容创作",d:"基于 Flux.1 的免费无限制 AI 文生图出海站，免注册打法。",res:"上线一月月活破 100 万"},
+{r:20,t:"2025（年）▲",n:"AIClient-2-API",href:"",c:20,cc:"partial",f:"justlovemaki",g:"开发者工具",d:"把 Gemini CLI/Codex 等客户端协议反代为本地 OpenAI 兼容 API。",res:"GitHub 8.9k★、Docker 下载 10 万+"},
+{r:21,t:"2025（年）▲",n:"AI 音乐生成出海站",href:"",c:21,cc:"partial",f:"lsaiah",g:"内容创作",d:"AI 音乐生成 API 包装的订阅站，SEO 获自然流量，Stripe 收款。",res:"自述月收入 1.2 万美元+（自述口径）"},
+{r:22,t:"2025（年）▲",n:"PaywallPro",href:"",c:22,cc:"partial",f:"鱼总聊AI",g:"开发者工具",d:"iOS 订阅付费墙与 Onboarding 数据的分析 Agent，辅助定价决策。",res:"自述单款营收 $200k+（自述口径）"},
+{r:23,t:"2025（年）▲",n:"AI 效率小程序矩阵",href:"",c:23,cc:"partial",f:"陈宇明（码个蛋）",g:"营销电商",d:"面向短视频创作者的 AI 配音/写作小程序矩阵，订阅+按量付费。",res:"200 万+ 用户、连续 12 个月盈利"},
+{r:24,t:"2025-06-15 ▲",n:"求职精灵",href:"",c:24,cc:"cross",f:"奕甫",g:"垂直应用",d:"Agent 化 AI 求职全链路：规划/简历逐字改/全真语音模拟面试。",res:"用户将破 100 万、年化收益千万级（自述）"},
+{r:25,t:"2025-04-16 ▲",n:"胃之书",href:"",c:25,cc:"partial",f:"赵纯想",g:"垂直应用",d:"拍照记录饮食 AI App：大模型生成热量与代谢分析。",res:"9 万用户、5 个月收入 1.2 万美元"},
+{r:26,t:"2025-04-15 ▲推算",n:"猜盐 / 猜病",href:"",c:26,cc:"cross",f:"张月",g:"垂直应用",d:"大模型游戏化矩阵：AI 模拟病人供问诊推理、街景定位等玩法。",res:"用户 160 万、2025 年营收同比增 3 倍"},
+{r:27,t:"2025-03-15 ▲",n:"张sir 弹幕游戏矩阵",href:"",c:27,cc:"partial",f:"张sir（化名）",g:"垂直应用",d:"抖音弹幕互动游戏：AI 工具链承担约 70% 美术与代码，15 天/款。",res:"总流水近 2000 万（自述口径）"},
+{r:28,t:"2024-12-24 ✓",n:"PodLM / ShipAny / ThinkAny 产品组合",href:"",c:28,cc:"verified",f:"艾逗笔（idoubi）",g:"开发者工具",d:"AI 播客生成器 + AI 搜索引擎 + MCP 市场 + SaaS 开发框架等 11+ 产品。",res:"ShipAny 预售 4 小时破 1 万美元"},
+{r:29,t:"2024-11-15 ✓",n:"ChatWise",href:"",c:29,cc:"cross",f:"egoist",g:"开发者工具",d:"多模型桌面 AI 客户端：多模态 + MCP，BYOK 买断制。",res:"Pro $29 买断持续销售"},
+{r:30,t:"2024-09-15 ✓",n:"HivisionIDPhotos",href:"",c:30,cc:"partial",f:"林泽毅（Zeyi-Lin）",g:"内容创作",d:"轻量 AI 证件照工具：抠图/多规格生成/排版，可离线自部署。",res:"GitHub 21.6k★，登 GitHub 热榜第一"},
+{r:31,t:"2024-09-15 ✓",n:"PDFMathTranslate（pdf2zh）",href:"",c:31,cc:"cross",f:"Byaidu",g:"开发者工具",d:"保留排版的 PDF 学术文档 AI 全文双语翻译，CLI/GUI/Zotero。",res:"GitHub 38.3k★，入选 EMNLP 2025 Demo"},
+{r:32,t:"2024（年）✓",n:"AI选校鸟",href:"",c:32,cc:"verified",f:"李涛",g:"垂直应用",d:"AI 留学选校：99 元/次输出保底/匹配/冲刺三梯度院校推荐。",res:"3000+ 用户（人民日报海外版报道）"},
+{r:33,t:"2024（年）▲",n:"MoneyPrinterTurbo",href:"",c:33,cc:"cross",f:"harry0703",g:"内容创作",d:"输入主题自动完成文案/素材/字幕/配音的短视频生成器。",res:"GitHub 133k★，AI 视频类最高星之一"},
+{r:34,t:"2024（年）▲",n:"VideoLingo",href:"",c:34,cc:"cross",f:"Huanshere",g:"内容创作",d:"一键 Netflix 级视频本地化：字幕切割/上下文翻译/克隆配音。",res:"GitHub 19k★"},
+{r:35,t:"2024（年）▲",n:"小猫补光灯（Pro）",href:"",c:35,cc:"verified",f:"陈云飞",g:"内容创作",d:"拍照补光 App：可调色温背光板，用 Cursor 一小时完成 MVP。",res:"下载 30-50 万、Pro 收入 30-40 万元"},
+{r:36,t:"2024（年）▲",n:"Cherry Studio",href:"",c:36,cc:"partial",f:"亢奋猫（kangfenmao）",g:"开发者工具",d:"开源多模型 AI 桌面客户端：300+ 模型/知识库/智能体/MCP。",res:"GitHub 32k★、下载超 1000 万次"},
+{r:37,t:"2024-01-15 ✓",n:"GPT-SoVITS",href:"",c:37,cc:"cross",f:"花儿不哭（RVC-Boss）",g:"内容创作",d:"5 秒音频克隆音色的少样本 TTS/语音转换，多语言。",res:"GitHub 64k★，中文语音克隆事实标准"},
+{r:38,t:"2024-01-15 ✓",n:"哄哄模拟器 / 6pen",href:"",c:38,cc:"partial",f:"王登科（DK）",g:"内容创作",d:"哄女友情景对话 AI 游戏 + 开源模型 AI 绘画平台。",res:"上线 24 小时 60 万用户/2000 万次对话"},
+{r:39,t:"2023（年）▲",n:"ChatNio",href:"",c:39,cc:"partial",f:"zmh（Kairo）",g:"开发者工具",d:"多模型对话 + API 中转计费一站式开源平台。",res:"2024 年被七位数收购，月活近 10 万"},
+{r:40,t:"2023（年）▲",n:"沉浸式翻译",href:"",c:40,cc:"cross",f:"Owen Young",g:"开发者工具",d:"AI 双语对照网页/PDF/视频字幕/漫画翻译，聚合 10+ 引擎。",res:"全球激活用户破 3000 万，Chrome 年度精选"},
+{r:41,t:"2023（年）▲",n:"chatGPTBox",href:"",c:41,cc:"partial",f:"josStorer",g:"开发者工具",d:"把 ChatGPT 深度集成进浏览器：划词翻译/网页总结/视频对话。",res:"GitHub 10.7k★，Chrome 用户约 3 万"},
+{r:42,t:"2023（年）▲",n:"Easydict",href:"",c:42,cc:"cross",f:"tisfeng",g:"开发者工具",d:"macOS 词典翻译应用：OpenAI/Gemini/DeepL 与离线 OCR 查词。",res:"GitHub 15.2k★"},
+{r:43,t:"2023-04-15 ✓",n:"one-api",href:"",c:43,cc:"cross",f:"songquanpeng（justsong）",g:"开发者工具",d:"LLM API 网关：统一适配多模型，密钥管理与二次分发。",res:"GitHub 37.3k★，中转站生态事实标准"},
+{r:44,t:"2023-03-15 ✓",n:"NextChat",href:"",c:44,cc:"cross",f:"Yidadaa",g:"开发者工具",d:"一键免费部署的私人 ChatGPT 跨平台客户端，多模型。",res:"GitHub 88.8k★"},
+{r:45,t:"2023-03-15 ✓",n:"GPT 学术优化",href:"",c:45,cc:"cross",f:"binary-husky",g:"开发者工具",d:"学术场景 LLM 工具：论文润色/翻译/代码解析，插件化。",res:"GitHub 71.6k★"},
+{r:46,t:"2023-03-15 ✓",n:"openai-translator + avante.nvim",href:"",c:46,cc:"cross",f:"yetone",g:"开发者工具",d:"划词翻译插件 + Neovim 里的 Cursor 式 AI 编程插件。",res:"avante.nvim 17.8k★"},
+{r:47,t:"2023-02-15 ▲",n:"BibiGPT（AI 课代表）",href:"",c:47,cc:"partial",f:"吕立青（JimmyLv）",g:"内容创作",d:"粘贴 B站/YouTube/播客链接生成结构化摘要与脑图，可追问。",res:"累计 100 万+ 用户（官网自述）"},
+{r:48,t:"2023-02-15 ▲",n:"chatgpt-on-wechat + LinkAI",href:"",c:48,cc:"cross",f:"查雨捷（zhayujie）",g:"开发者工具",d:"微信生态大模型机器人：公众号/企微/飞书接入 + 知识库客服。",res:"GitHub 47.7k★，事实标准方案"},
+{r:49,t:"2022-11-15 ▲约",n:"Umi-OCR",href:"",c:49,cc:"cross",f:"hiroi-sora",g:"开发者工具",d:"开源离线 OCR 软件：截图/批量图片/PDF 识别，解压即用。",res:"GitHub 48.4k★，免费 OCR 标杆"},
+{r:50,t:"2022-07-15 ✓",n:"Bob",href:"",c:50,cc:"cross",f:"ripperhe",g:"开发者工具",d:"macOS 划词翻译/截图 OCR，接入 OpenAI/DeepSeek/豆包等。",res:"Pro ¥58 买断持续销售，GitHub 9.7k★"}
+];
+
+/* ===== 渲染 ===== */
+const HEART = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1L12 21l7.7-7.6 1.1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg>';
+const EYE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>';
+const SHARE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>';
+const GROUP_LABEL = {"作品型":"作品型","开发者工具":"工具 · 客户端","内容创作":"内容创作","垂直应用":"垂直应用","营销电商":"营销 · 电商"};
+
+function render() {
+  const grid = document.getElementById('opcGrid');
+  grid.innerHTML = CASES.map(c => {
+    const title = c.href ? `<a href="${c.href}">${c.n} ↗</a>` : c.n;
+    return `<article class="opc-card" id="case-${c.r}" data-g="${c.g}" data-key="${c.n} ${c.f} ${c.d} ${c.res} ${GROUP_LABEL[c.g]}" data-r="${c.r}">
+      <div class="oc-main">
+        <div class="oc-top"><span class="oc-time">${c.t}</span><span class="oc-rank">#${c.r}</span></div>
+        <h4 class="oc-title">${title}</h4>
+        <p class="oc-founder">创业者 · <b>${c.f}</b></p>
+        <p class="oc-desc">${c.d}</p>
+        <p class="oc-result">${c.res}</p>
+      </div>
+      <div class="oc-foot">
+        <span class="oc-cats">${GROUP_LABEL[c.g]}</span>
+        <div class="oc-actions">
+          <span class="op-views" title="阅读量（仅保存在本机，按会话累计）">${EYE} <b data-vc>0</b></span>
+          <button type="button" class="op-btn" data-like="${c.r}" aria-pressed="false" title="点赞（仅保存在本机）">${HEART} <b data-lc>0</b></button>
+          <button type="button" class="op-btn" data-share="${c.r}" title="分享（复制/调用系统分享，计数保存在本机）">${SHARE} <b data-sc>0</b></button>
+        </div>
+      </div>
+    </article>`;
+  }).join('');
+}
+
+/* ===== 本地互动计数（localStorage 持久化，无服务端）===== */
+const LK = r => `opc:like:${r}`, SH = r => `opc:share:${r}`;
+const lsGet = k => { try { return window.localStorage.getItem(k); } catch { return null; } };
+const lsSet = (k,v) => { try { window.localStorage.setItem(k,v); } catch {} };
+
+function paintCounts(r) {
+  const card = document.getElementById('case-' + r);
+  if (!card) return;
+  const liked = lsGet(LK(r)) === '1';
+  const shares = parseInt(lsGet(SH(r)) || '0', 10);
+  const likeBtn = card.querySelector('[data-like]');
+  likeBtn.classList.toggle('liked', liked);
+  likeBtn.setAttribute('aria-pressed', liked ? 'true' : 'false');
+  likeBtn.querySelector('[data-lc]').textContent = liked ? 1 : 0;
+  card.querySelector('[data-sc]').textContent = shares;
+  card.querySelector('[data-vc]').textContent = parseInt(lsGet(VW(r)) || '0', 10);
+}
+
+/* 阅读量：每个浏览器会话对每个案例只计 1 次 */
+const VW = r => `opc:view:${r}`;
+function countViews() {
+  try {
+    if (!window.sessionStorage.getItem('opc:viewed-session')) {
+      CASES.forEach(c => lsSet(VW(c.r), String(parseInt(lsGet(VW(c.r)) || '0', 10) + 1)));
+      window.sessionStorage.setItem('opc:viewed-session', '1');
+    }
+  } catch {}
+}
+
+function bindActions() {
+  document.getElementById('opcGrid').addEventListener('click', (e) => {
+    const likeBtn = e.target.closest('[data-like]');
+    const shareBtn = e.target.closest('[data-share]');
+    if (likeBtn) {
+      const r = likeBtn.dataset.like;
+      const liked = lsGet(LK(r)) === '1';
+      lsSet(LK(r), liked ? '0' : '1');   // 点赞可切换
+      paintCounts(r);
+    } else if (shareBtn) {
+      const r = shareBtn.dataset.share;
+      const c = CASES.find(x => x.r === Number(r));
+      lsSet(SH(r), String(parseInt(lsGet(SH(r)) || '0', 10) + 1));
+      paintCounts(r);
+      const shareData = { title: `OPC 案例墙 · ${c.n}（${c.f}）`, url: location.href.split('#')[0] + '#case-' + r };
+      if (navigator.share) { navigator.share(shareData).catch(() => undefined); }
+      else if (navigator.clipboard) { navigator.clipboard.writeText(shareData.url).catch(() => undefined); }
+    }
+  });
+}
+
+/* ===== 搜索 + 赛道筛选 ===== */
+let keyword = '', group = '';
+function applyFilter() {
+  const cards = document.querySelectorAll('.opc-card');
+  let visible = 0;
+  cards.forEach(card => {
+    const okGroup = !group || card.dataset.g === group;
+    const okKey = !keyword || card.dataset.key.toLowerCase().includes(keyword);
+    const show = okGroup && okKey;
+    card.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+  document.getElementById('opcCount').textContent = `共 ${visible} 个案例`;
+  document.getElementById('opcEmpty').style.display = visible ? 'none' : 'block';
+}
+function bindFilters() {
+  document.getElementById('opcSearch').addEventListener('input', (e) => {
+    keyword = e.target.value.trim().toLowerCase();
+    applyFilter();
+  });
+  document.querySelectorAll('.fbtn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      group = btn.dataset.group;
+      applyFilter();
+    });
+  });
+}
+
+/* ===== 排序（默认按时间；阅读/点赞/分享为降序）===== */
+function metricOf(key, r) {
+  const k = key === 'likes' ? LK(r) : key === 'shares' ? SH(r) : VW(r);
+  return parseInt(lsGet(k) || '0', 10);
+}
+function sortCards(key) {
+  const grid = document.getElementById('opcGrid');
+  const order = key === 'time'
+    ? CASES.map(c => c.r)
+    : [...CASES].sort((a, b) => metricOf(key, b.r) - metricOf(key, a.r)).map(c => c.r);
+  order.forEach(r => grid.appendChild(document.getElementById('case-' + r)));
+}
+function bindSort() {
+  document.querySelectorAll('.fbtn.sort').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.fbtn.sort').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      sortCards(btn.dataset.sort);
+    });
+  });
+}
+
+/* ===== 初始化 ===== */
+render();
+countViews();
+CASES.forEach(c => paintCounts(c.r));
+bindActions();
+bindFilters();
+bindSort();
+document.getElementById('statCases').textContent = CASES.length;
+</script>
+
+</body>
+</html>
