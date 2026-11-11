@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · 42 分钟 AI 动画长片《一掌熊猫》—— 秦文山与苏州画宗的「一人一部门」 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · AI 动画长片《一掌熊猫》">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="前苏州轨道交通「地铁人」秦文山：核心团队 4 人、28 天、约 3 万元做出国内首部 42 分钟原创 AIGC 动画长片《一掌熊猫》，全网播放破百万、入围第十六届北京国际电影节，推进院线电影《字圣仓颉》。14 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>42 分钟 AI 动画长片《一掌熊猫》深度案例报告</h1>
+    <h2>前苏州轨道交通「地铁人」秦文山：核心团队 4 人、28 天、约 3 万元<br>做出国内首部 42 分钟原创 AIGC 动画长片，入围北影节、冲刺院线 —— 14 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">作品型 OPC</span>
+      <span class="tag">AIGC 动画长片</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">42 分钟</div><div class="k">国内首部原创 AIGC 动画长片</div></div>
+  <div class="stat"><div class="v up">破百万</div><div class="k">全网播放量（央媒口径 · 单部）</div></div>
+  <div class="stat"><div class="v neutral">28 天 / 3 万元</div><div class="k">周期与成本（本人自述 · 央媒引述）</div></div>
+  <div class="stat"><div class="v neutral">4 人</div><div class="k">核心团队（参保 4 人 · 持股 95%）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">《一掌熊猫》是苏州画宗推出的国内首部 42 分钟原创 AIGC 动画长片：「皮克斯+废土画风」、标准电影三幕式结构，讲述未来 AI 纪元中被判定为「失败情绪体」的 AI 熊猫侠 PX-1 与小女孩豆豆相互救赎的故事。团队以「专人 + AI」远程协作，从剧本到成片 28 天、成本约 3 万元（本人自述）<sup class="cite cross">[1]</sup><sup class="cite verified">[2]</sup>，上线后全网播放量破百万<sup class="cite verified">[3]</sup>，并入围第十六届北京国际电影节<sup class="cite verified">[4]</sup>。其公司是江苏省首个落户的 AIGC 视频领域 OPC（一人公司）创新企业<sup class="cite verified">[3]</sup>。</p>
+  <div class="two">
+    <div class="card"><div class="ct">作品</div><div class="cb">画爷爷 AI 工作室与生数科技 Vidu 合作，28 天完成，全程生成 2600 余个镜头，工作流由 57 天压缩至 28 天；正片已在腾讯视频上线，导演、编剧署名均为秦文山。已规划下集与 90 分钟院线重剪版。</div><div class="cm">信源：<a class="cref partial" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-6">[6]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">秦文山，画爷爷 AI 工作室创始人、《一掌熊猫》编剧导演。转行前是苏州轨道交通安全管理岗——「三年前，秦文山盯着的是另一条『轨道』」（新华社），澎湃专访称其在地铁管理系统「做到科长位置」；2023 年 11 月因 B 站 AI 二创视频入坑，2025 年 4 月辞职全职创业。出生年份、学历未检索到公开信息，留白。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-5">[5]</a> <a class="cref verified" href="#ref-2">[2]</a></div></div>
+    <div class="card"><div class="ct">公司</div><div class="cb">苏州画宗人工智能科技有限公司：2025-11-27 注册，注册资本 300 万元（实缴 10 万元），秦文山持股 95%、王妍持股 5%，参保 4 人；注册于苏州相城区高铁新城；2026-04 经营范围新增广播电视节目制作、电视剧制作发行、电影发行等许可。</div><div class="cm">信源：<a class="cref cross" href="#ref-7">[7]</a> <a class="cref cross" href="#ref-8">[8]</a> <a class="cref cross" href="#ref-9">[9]</a></div></div>
+    <div class="card blue"><div class="ct">荣誉与进展</div><div class="cb">江苏省首个（苏州市妇联称「首家经官方认定」）AIGC 视频领域 OPC；《一掌熊猫》入围第十六届北京国际电影节；承接央视 AI 春晚等合作；推进国内首部 AIGC 古代历史神话院线电影《字圣仓颉》——已取得广电总局备案号，官宣年内上映。</div><div class="cm">信源：<a class="cref verified" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-4">[4]</a> <a class="cref cross" href="#ref-10">[10]</a> <a class="cref cross" href="#ref-11">[11]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2023 年 11 月</div><div class="tx">B 站一条 AI 二创视频「打开新世界的大门」</div><div class="td">刷到 up 主用 AI 重制的真人版《海贼王》，开始自学 AI；新华社口径「转变始于 2023 年底」互证。<a class="cref partial" href="#ref-5">[5]</a><a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2023 冬 - 2024 年</div><div class="tx">Midjourney 儿童绘本卖出「第一桶金」，进入 AI 视频创作</div><div class="td">绘本挂亚马逊售卖；随 AI 导师「李太白」共同开发「军事熊猫」系列——彼时仍是国企兼职。<a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2024 年 7 月</div><div class="tx">「军事熊猫」系列上线，全网播放 5000 万+</div><div class="td">国际局势化用成 AI 动物形象、台词玩梗；视频号粉丝超 35 万。<a class="cref partial" href="#ref-5">[5]</a><a class="cref verified" href="#ref-8">[8]</a><a class="cref cross" href="#ref-9">[9]</a></div></div>
+    <div class="node"><div class="dt">2024 年 9 月</div><div class="tx">AI 短剧《大英博物馆》，第二个流量爆发期</div><div class="td">10 集全网播放 3000 万+；当时视频大模型仍以静态长镜头拼接为主，做简单运镜都吃力。<a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2024 年底</div><div class="tx">受邀参加央视新闻《AI 奇妙夜》，组建远程协作团队</div><div class="td">「中国 AI 创作者的第一个年会」，在此结识后续同路人；成员来自后期剪辑、游戏原画、汽车、AI 技术开发等行业。<a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2025 年 3 月</div><div class="tx">大模型能力质变，第二次转型：all in 叙事长片</div><div class="td">入局者涌入、同质化加剧，「碎片式内容创作领域我们已经不占优势了，那就往长片的方向探索」。<a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2025 年 4 月</div><div class="tx">辞去苏州轨道交通（国企）工作，全职投入 AIGC</div><div class="td">成立画爷爷 AI 工作室，与网上认识的创作者远程协作；光明日报首报，新华社、澎湃、新华日报多源一致。<a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-12">[12]</a><a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2025-11-11 → 11-27</div><div class="tx">江苏首届 OPC 大会提出「单人成军」，苏州画宗注册成立</div><div class="td">「片子爆了，团队却犯了难」——决定落户苏州高铁新城 OPC 社区；11 月 27 日注册，12 月 2 日领取纸质执照。<a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-7">[7]</a><a class="cref cross" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2025-11-29</div><div class="tx">澎湃专访复盘：2600 个镜头、57 天→28 天提效</div><div class="td">全流程拥抱 Vidu Q2 多参；预告下集明年上线、重剪 90 分钟 AI 科幻电影长片，并计划开发《山海经》系列。<a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2025-12-17</div><div class="tx">新华日报探访：「一人一部门，AI 作支撑」</div><div class="td">四名核心成员（美术/技术/策划/后期）各独当一面；披露注册前团队营业额 160 余万元、商单报价约每分钟 3 万元。<a class="cref cross" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2026 年春</div><div class="tx">《一掌熊猫》入围第十六届北京国际电影节</div><div class="td">苏州发布、苏州市妇联、腾讯新闻等多个独立发布方一致表述；官方名单页面未检索到（见捌节）。<a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-10">[10]</a><a class="cref partial" href="#ref-13">[13]</a></div></div>
+    <div class="node"><div class="dt">2026-01 / 2026-04</div><div class="tx">公司迁址扩容，经营范围升级为「持证」制作发行</div><div class="td">注册地址迁入长三角国际研发社区启动区；经营范围新增广播电视节目制作经营、电视剧制作发行、电影发行等许可。<a class="cref cross" href="#ref-7">[7]</a></div></div>
+    <div class="node"><div class="dt">2026 年 6 月</div><div class="tx">《字圣仓颉》官宣并取得广电总局备案号；自述估值 1 亿元</div><div class="td">中国经营报：申请江苏省重点文化项目、计划年内上映；秦文山称估值 1 亿元、暂不考虑融资，希望孵化 20 个 OPC 项目。<a class="cref cross" href="#ref-11">[11]</a><a class="cref cross" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2026-07 / 2026-09</div><div class="tx">央媒接力：播放破百万获新华网确认，28 天/3 万元口径登上新华社稿</div><div class="td">新华网确认《一掌熊猫》全网播放量破百万、《字圣仓颉》瞄准院线市场；新华社稿引述「仅耗时 28 天、花费 3 万元便完成制作」。<a class="cref verified" href="#ref-3">[3]</a><a class="cref cross" href="#ref-1">[1]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：「地铁人」的兴趣突围——先兼职验证，再全职 all in</div><div class="cb">与影视、AI 毫无关联的国企安全管理岗，因一条 B 站二创视频入坑；先用 Midjourney 儿童绘本在亚马逊卖出「第一桶金」。从入坑到 2025 年 4 月辞职经历约一年半兼职期——期间「军事熊猫」已做到全网 5000 万+ 播放、2024 年变现三四万元。先跑通变现再全职，是本案例与「裸辞豪赌」叙事的最大差异。</div><div class="cm">信源：<a class="cref partial" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-8">[8]</a></div></div>
+  <div class="card"><div class="ct">转折二：从「流量型短片」到「差异化长片」的二次转型</div><div class="cb">军事熊猫爆火后秦文山陷入迷茫：「流量型 AI 短片的同质化问题非常严重……会迅速被模仿、被复制、被搬运，没办法持续做一些东西」，结论是差异化=内容。2025 年 3 月大模型质变后，碎片内容赛道不再占优，工作室 all in 42 分钟叙事长片——从「流量生意」切换到「作品生意」。</div><div class="cm">信源：<a class="cref partial" href="#ref-5">[5]</a></div></div>
+  <div class="card blue"><div class="ct">转折三：OPC 社区把「散装创业」变成「规范经营」</div><div class="cb">「片子爆了，团队却犯了难」——人散在各地、沟通成本高、缺乏议价权。OPC 大会后落户苏州高铁新城：一到两年免租、人才公寓租金优惠三分之一、算力补贴，协会与社区对接资源，「政府推荐的企业客户主动找上门」。团队随即从湖南、陕西、北京、上海等地聚拢苏州。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-8">[8]</a></div></div>
+  <div class="quote">
+    <p>过去影视创作是「大兵团作战」，现在可以是「一个核心创作者 + 一支 AI 团队 + 按需协作的伙伴」。</p>
+    <span class="src">—— 秦文山，新华网「AI 赋能千行百业一线观察」系列（2026-07-03），<a class="cref verified" href="#ref-3">[3]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:110px">维度</th><th>内容</th><th style="width:90px">信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>产品形态</b></td><td>国内首部 42 分钟原创 AIGC 动画长片《一掌熊猫》（上半部，下集与 90 分钟院线重剪版规划中）；「军事熊猫」IP 短片矩阵；AI 短剧《大英博物馆》、爱国短剧《熊猫战国策》；AI 漫剧（集中发力）；院线电影《字圣仓颉》（推进中）；品牌/文旅宣传片承制</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref partial" href="#ref-5">[5]</a><a class="cref cross" href="#ref-9">[9]</a><a class="cref cross" href="#ref-11">[11]</a></td></tr>
+      <tr><td><b>制作流程</b></td><td>「一人一部门，AI 作支撑」：剧本质证智能体 10 分钟出优化建议 → Sora 分镜 → Vidu Q2 多参生成（单镜头最多 7 图参考）→ 剪辑与前期同步迭代，素材不佳立即重出；全片生成 2600 余个镜头，工作流由 57 天压缩至 28 天</td><td><a class="cref partial" href="#ref-5">[5]</a><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td><b>AI 工具链</b></td><td>Vidu Q2（多参流核心）、Sora（分镜）、Nano Banana Pro（文生图）；自研近 10 个轻量化智能体 + 300 余条分类提示词——「与智能体沟通的成本大幅降低，但对人的专业能力要求更高」「就像看医生要找专科医生」</td><td><a class="cref partial" href="#ref-5">[5]</a><a class="cref cross" href="#ref-8">[8]</a><a class="cref cross" href="#ref-9">[9]</a></td></tr>
+      <tr><td><b>变现方式</b></td><td><span class="hl">承制</span>：品牌/文旅宣传片、AI 漫剧商单——约每分钟 3 万元、2-3 分钟单笔 6-9 万元，交付四五天，报价较传统影视公司低三分之一但复购率高；<span class="hl">培训</span>：AI 创作授课与技能培训；<span class="hl">版权/院线</span>：《字圣仓颉》瞄准院线；另布局游戏、直播带货</td><td><a class="cref cross" href="#ref-8">[8]</a><a class="cref verified" href="#ref-3">[3]</a><a class="cref cross" href="#ref-9">[9]</a></td></tr>
+      <tr><td><b>面向客群</b></td><td>政企与品牌客户（政府/协会推荐订单占比高）；短剧/漫剧平台（「接到了来自短剧平台的橄榄枝」）；高校与准 OPC 创业者——与苏州大学、南京艺术学院产教融合，开设创作营与孵化入口</td><td><a class="cref cross" href="#ref-8">[8]</a><a class="cref partial" href="#ref-5">[5]</a><a class="cref cross" href="#ref-10">[10]</a></td></tr>
+      <tr><td><b>解决痛点</b></td><td>传统同类动画需 20 人以上团队、数月周期、数百万元启动资金，本案 28 天/约 3 万元（自述）；初创「找订单难」由 OPC 社区对接解决；远程散装协作沟通成本高由注册公司+智能体协同平台解决</td><td><a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box insight">
+    <div class="bt">💡 模式要点</div>
+    「作品打招牌、商单养公司、院线博上限」三层结构：《一掌熊猫》本身未必直接盈利，但它以 28 天/3 万元的极致成本结构完成了一次面向政企客户与政府的「能力证明」，换来商单溢价与 OPC 生态资源；真正押注营收上限的是持证进入电影发行的《字圣仓颉》。
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>《一掌熊猫》全网播放量（口径 A · 单部）</td><td class="hl">破百万</td><td>2025-11 上线后 → 2026-07 央媒确认</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref partial" href="#ref-5">[5]</a></td></tr>
+      <tr><td>作品累计播放量（口径 B · 疑为全作品累计）</td><td class="hl">「破亿」</td><td>2026-06 苏州市妇联探访文</td><td><a class="cref partial" href="#ref-10">[10]</a></td></tr>
+      <tr><td>系列短视频视频号浏览量（关联佐证）</td><td>上亿</td><td>2026-09 新华社稿</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>「军事熊猫」系列播放量</td><td>全网 5000 万+</td><td>2024-07 起连载</td><td><a class="cref partial" href="#ref-5">[5]</a></td></tr>
+      <tr><td>「军事熊猫」视频号粉丝</td><td class="pos">超 35 万</td><td>2025-12</td><td><a class="cref verified" href="#ref-8">[8]</a><a class="cref cross" href="#ref-9">[9]</a></td></tr>
+      <tr><td>《大英博物馆》播放量</td><td>10 集全网 3000 万+</td><td>2024-09</td><td><a class="cref partial" href="#ref-5">[5]</a></td></tr>
+      <tr><td>注册公司前团队营业额</td><td class="pos">160 余万元</td><td>截至 2025-11 注册前</td><td><a class="cref verified" href="#ref-8">[8]</a><a class="cref cross" href="#ref-9">[9]</a></td></tr>
+      <tr><td>2024 年 AI 内容变现</td><td>三四万元</td><td>2024 年</td><td><a class="cref verified" href="#ref-8">[8]</a><a class="cref cross" href="#ref-9">[9]</a></td></tr>
+      <tr><td>商单报价</td><td>约每分钟 3 万元；2-3 分钟单笔 6-9 万元</td><td>2025-12</td><td><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td>OPC 项目估值 / 年度营收目标</td><td>1 亿元 / 500 万-1000 万元（均自述）</td><td>2026-06</td><td><a class="cref partial" href="#ref-11">[11]</a></td></tr>
+      <tr><td>公司参保人数</td><td>4 人</td><td>天眼查 2026-10-27 更新</td><td><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 播放量双口径说明</div>
+    口径 A（单部作品）：新华网 2026-07-03 与澎湃湃客专访 2025-11-29 两个独立发布方一致表述《一掌熊猫》「全网播放量破百万」，可交叉验证，为事实基线。口径 B（全作品累计）：苏州市妇联探访文称「作品……播放量破亿」，新华社稿亦称系列短视频「视频号上亿浏览量」——结合既往成绩，「破亿」疑为<b>全部作品累计</b>口径，与单部破百万不可调和，双口径并列；引用时建议区分表述。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将《一掌熊猫》放入案例墙「AI 影像作品型 OPC」坐标系（对标行数据均为案例墙既有核验值，检索时点 2026-11-09，非本次重新核验；详见案例墙 <a href="../../index.html" style="color:#2980b9">index.html</a> 对应卡片）：</p>  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态 / 时长</th><th>成本</th><th>周期</th><th>数据表现</th><th>团队规模</th></tr></thead>
+    <tbody>
+      <tr><td><b>《一掌熊猫》</b></td><td>秦文山</td><td>42 分钟 AIGC 动画长片（单部）</td><td>约 3 万元（自述）</td><td>28 天</td><td>全网播放破百万；入围第十六届北影节</td><td>核心团队 4 人（参保 4 人）</td></tr>
+      <tr><td>《归墟》</td><td>泫九（江澜）</td><td>末世科幻 AI 短剧 12-14 集 × 约 8 分钟</td><td>近 20 万元</td><td>约 5 个月（周更）</td><td>全网播放破亿、红果热度 4400 万+</td><td>1 人</td></tr>
+      <tr><td>《丧尸清道夫》</td><td>刘梓瑜</td><td>3 分 34 秒科幻短片（单部）</td><td>3000 余元</td><td>不到 10 天</td><td>播放 6000 万至破亿</td><td>1 人</td></tr>
+      <tr><td>《众神之战》（星境引擎）</td><td>彭青云</td><td>神话题材 AI 短剧</td><td>总成本约 10 万元</td><td>未披露</td><td>热度近 2000 万、海外上亿流量</td><td>2 人</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>四组样本呈「成本-时长-数据」梯度：《丧尸清道夫》3000 元搏 10 天算法流量，《归墟》近 20 万元、5 个月周更打磨，《众神之战》走平台承制路线。《一掌熊猫》是四者中<b>唯一以动画长片这一电影级形态为目标</b>、且唯一把 OPC 做成<b>注册实体 + 持证资质 + 院线管线</b>的案例——单部播放数据虽最低，但官方背书密度最高，价值更多沉淀为公司资产与政企客群，而非单点流量。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:130px">维度</th><th>分析</th><th style="width:80px">信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>AIGC 全流程影视制作：① 自有 IP 内容——动画长片、AI 短剧、爱国短剧、AI 漫剧；② 商单承制——品牌/文旅宣传片；③ 能力产品化——近 10 个自研智能体拟整合推向市场；④ 院线电影《字圣仓颉》管线。</td><td><a class="cref partial" href="#ref-5">[5]</a><a class="cref cross" href="#ref-9">[9]</a><a class="cref cross" href="#ref-11">[11]</a></td></tr>
+      <tr><td><b>2. 面向客群</b></td><td>直接客群：政企文旅与品牌方、短剧与漫剧平台；间接客群：高校与准 OPC 创业者（与苏州大学、南京艺术学院产教融合）——秦文山另创立了一个 AIGC 领域 OPC 社区，希望孵化 20 个 OPC 项目。</td><td><a class="cref cross" href="#ref-8">[8]</a><a class="cref cross" href="#ref-10">[10]</a><a class="cref cross" href="#ref-11">[11]</a></td></tr>
+      <tr><td><b>3. 解决痛点</b></td><td>对客户：传统同类动画需 20 人以上团队、数月周期、数百万元启动资金，本案 28 天/约 3 万元（自述）、交付四五天；对行业：验证「一个核心创作者+AI 团队+按需协作」可替代「大兵团作战」，示范 OPC 从散装创业走向持证经营。</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td><b>4. 预估年化营收</b></td><td><b>承制口径</b>：约每分钟 3 万元、2-3 分钟单笔 6-9 万元、平均一周交付——按年均 30-40 单粗算商单年流水约 200 万-350 万元；可核验锚点是注册前营业额已达 160 余万元。<b>目标口径</b>：自述 2026 年营收 500 万-1000 万元。<b>版权/院线</b>：《字圣仓颉》宣发收入、《一掌熊猫》分账均未披露；实际单量无公开数据，测算置信度 C。</td><td><a class="cref cross" href="#ref-8">[8]</a><a class="cref partial" href="#ref-11">[11]</a></td></tr>
+      <tr><td><b>5. 融资进展</b></td><td>无外部融资：「业务单量已经能够养活自己，还不太考虑融资」；自述估值 1 亿元（无第三方验证）。非货币资源：OPC 社区免租/人才公寓/算力补贴、相城区「4个2」补贴。以公司主体对外投资湖州画宗影视（54 万元、18%）、光正影业（14.5 万元、29%）。</td><td><a class="cref partial" href="#ref-11">[11]</a><a class="cref cross" href="#ref-7">[7]</a><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td><b>6. 市场评价</b></td><td>官方背书密度居前列：新华社/新华网两度专题、光明日报调研、新华日报实地探访、中国经营报专访，两级政务账号点名；行业定位获多源公认——「国内首部 42 分钟原创 AIGC 动画长片」「江苏省首个 AIGC 视频领域 OPC」。</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a><a class="cref verified" href="#ref-3">[3]</a><a class="cref cross" href="#ref-8">[8]</a><a class="cref partial" href="#ref-5">[5]</a></td></tr>
+      <tr><td><b>7. 投入成本与合规风险</b></td><td><b>成本</b>：单部 3 万元（自述，央媒引述，单源）+ 4 人人力 + 社区算力补贴。<b>合规</b>：2026-04 经营范围新增广播电视节目制作、电视剧制作发行、电影发行等许可，持证经营是承接央视级合作与院线发行的资质前提。<b>行业性风险</b>：AI 训练数据版权争议升温（2026-02 迪士尼指控字节 Seedance 2.0 侵权）；未检索到针对《一掌熊猫》本身的版权指控。</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-7">[7]</a><a class="cref cross" href="#ref-11">[11]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 六处不确定性（截至 2026-11-11 检索）</div>
+    ① <b>播放量双口径</b>：单部「破百万」（双源）vs「作品破亿」（疑为全作品累计），不可调和，双口径并列（见伍节）。② <b>北影节入围细节待证</b>：苏州发布、苏州市妇联、腾讯新闻、创客公社多方一致表述<sup class="cite cross">[4]</sup><sup class="cite cross">[10]</sup><sup class="cite partial">[13]</sup><sup class="cite partial">[14]</sup>，但影展官方入围名单未能直接回溯。③ <b>央视合作三种表述</b>：《AI 奇妙夜》/央视 AI 春晚/央视春晚，按扬子晚报口径采信<sup class="cite partial">[5]</sup><sup class="cite cross">[9]</sup><sup class="cite cross">[10]</sup>。④ <b>成本「3 万元」为本人自述</b>、新华社单源引述<sup class="cite cross">[1]</sup>；「28 天」获四家独立发布方一致。⑤ <b>估值 1 亿元、营收目标 500 万-1000 万元均为自述</b><sup class="cite partial">[11]</sup>，无第三方验证。⑥ <b>持股 95% 非 100% 独资</b>：王妍持股 5%<sup class="cite cross">[7]</sup>，「一人公司」系 OPC 范式口径，非股权意义上的独资。
+  </div>
+  <div class="box note">
+    <div class="bt">📌 背景信息勘误（重要）</div>
+    底稿所记「1991 年生、前品牌设计师、2023 年因 AI 被裁员后转型」未能在秦文山本人一手信源中检索到支持，且与案例墙另一案例「星境引擎」彭青云（前品牌设计师）背景高度相似，疑为串档。按实际核验修正：秦文山原为<b>苏州轨道交通安全管理岗</b>（国企「地铁人」，澎湃专访称「做到科长位置」），2023 年 11 月接触 AIGC，2025 年 4 月<b>主动辞职</b>创业<sup class="cite cross">[1]</sup><sup class="cite verified">[2]</sup><sup class="cite partial">[5]</sup>；出生年份、学历未检索到公开信息，留白处理。
+  </div>
+  <div class="card"><div class="ct">创作者的清醒表态（如实收录）</div><div class="cb">秦文山对作品局限并不讳言：「剧本打磨时间太短、文戏表达还可以进步、打斗节奏有点慢、人物一致性还会有点小问题」；同时告诫——「目前行业内真正能实现稳定盈利的 OPC 不多，盲目入局只会面临失败」。与案例墙《归墟》创作者「别全职入局」的告诫互证。</div><div class="cm">信源：<a class="cref partial" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-8">[8]</a></div></div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">《一掌熊猫》展示了「作品型 OPC」的另一种终局：把作品做成公司的「能力凭证」，借江苏 OPC 政策东风完成从远程散装团队到持证影视实体的惊险一跃，上限押注院线电影《字圣仓颉》。其天花板同样清晰——公司品牌高度绑定秦文山一人，能否承接院线级交付与发行，是未来 1-2 年最值得跟踪的验证点。</div><div class="cm">信源：<a class="cref cross" href="#ref-7">[7]</a> <a class="cref cross" href="#ref-11">[11]</a> <a class="cref verified" href="#ref-2">[2]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">捌·附</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 14 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉且原文回溯），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx cross">[1]</span><span class="rt">A+</span><span class="st">央媒通稿</span></div><div class="ti">人工智能技术驱动中国影视产业变革（新华社）</div><div class="mt"><b>来源：</b>新华网（原发新华社）　<b>发布日期：</b>2026-09-20<br><a href="http://www.xinhuanet.com/ent/20260920/5ddb878785ad48f9b19136b89559d34b/c.html" target="_blank" rel="noopener">http://www.xinhuanet.com/ent/20260920/5ddb878785ad48f9b19136b89559d34b/c.html</a></div><div class="note">事实核查：原文回溯完成。「苏州轨道交通安全管理岗」背景、「转变始于 2023 年底」「视频号上亿浏览量」、「28 天/3 万元」成本口径（秦文山自述）及广电总局 43 万部微短剧等行业数据均出自此稿；成本为单一发布方引述的自述口径。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx verified">[2]</span><span class="rt">A+</span><span class="st">央媒调研</span></div><div class="ti">从「单人成军」到「蔚然成林」——人工智能 OPC（一人公司）创新创业如何先行先试（光明日报，记者苏雁/姬尊雨）</div><div class="mt"><b>来源：</b>光明网-《光明日报》2026 年 03 月 24 日 07 版　<b>发布日期：</b>2026-03-24<br><a href="https://news.gmw.cn/2026-03/24/content_38665220.htm" target="_blank" rel="noopener">https://news.gmw.cn/2026-03/24/content_38665220.htm</a></div><div class="note">事实核查：原文回溯完成。2025 年 4 月辞去苏州国企工作、远程协作 28 天做出 42 分钟《一掌熊猫》、落户高铁新城 OPC 社区及免租/人才公寓政策均出自此稿；与澎湃 [5]、新华社 [1]、新华日报 [8] 多源交叉。另见数字中国建设峰会官网转载 <a class="cref cross" href="#ref-12">[12]</a>。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx verified">[3]</span><span class="rt">A+</span><span class="st">央媒专题</span></div><div class="ti">AI 赋能千行百业一线观察丨AI 拍剧成常态，人真的会被取代吗？（新华网，记者王岩）</div><div class="mt"><b>来源：</b>新华网　<b>发布日期：</b>2026-07-03<br><a href="https://www.news.cn/20260703/291c363955084f928bc7ca3000def687/c.html" target="_blank" rel="noopener">https://www.news.cn/20260703/291c363955084f928bc7ca3000def687/c.html</a></div><div class="note">事实核查：原文回溯完成。「江苏省首个落户的 AIGC 视频领域 OPC」、《一掌熊猫》全网播放量破百万、《字圣仓颉》瞄准院线、「大兵团作战」引语均出自此稿；破百万与澎湃 [5] 交叉，OPC 地位与新华日报 [8]、苏州女性 [10] 交叉。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx cross">[4]</span><span class="rt">A+</span><span class="st">政府新闻办</span></div><div class="ti">周星驰入股苏州企业（苏州发布，苏州市政府新闻办官方澎湃号）</div><div class="mt"><b>来源：</b>澎湃号·政务（原发苏州发布公众号）　<b>发布日期：</b>2026-06-02<br><a href="https://m.thepaper.cn/newsDetail_forward_33292635" target="_blank" rel="noopener">https://m.thepaper.cn/newsDetail_forward_33292635</a></div><div class="note">事实核查：原文回溯完成。「苏州画宗推出的国内首部 AIGC 动画长片《一掌熊猫》成功入围第十六届北京国际电影节」及《字圣仓颉》官宣今年上映出自此稿；北影节口径与苏州市妇联 [10]、腾讯新闻 [13] 交叉。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx partial">[5]</span><span class="rt">B</span><span class="st">行业媒体专访</span></div><div class="ti">独家专访丨一个「外行」，是怎么肝出一部 42 分钟电影级 AI 动画长片的？（澎湃号·湃客「极客电影」，文丨子路）</div><div class="mt"><b>来源：</b>澎湃新闻·湃客（北京极影未来科技有限公司）　<b>发布日期：</b>2025-11-29<br><a href="https://m.thepaper.cn/newsDetail_forward_32062124" target="_blank" rel="noopener">https://m.thepaper.cn/newsDetail_forward_32062124</a></div><div class="note">事实核查：原文回溯完成。一级自述信源：地铁科长背景、2023-11 入坑、绘本「第一桶金」、军事熊猫 5000 万+、《大英博物馆》3000 万+、央视《AI 奇妙夜》、2600 个镜头、57 天→28 天提效、Vidu Q2 多参工作流、团队构成、90 分钟重剪计划等均出自此稿；数据多为受访者自述口径，按 B 级收录。另见观察者网风闻同文转载。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx cross">[6]</span><span class="rt">B+</span><span class="st">平台正片页</span></div><div class="ti">《一掌熊猫·AI 作品》高清完整版（腾讯视频）</div><div class="mt"><b>来源：</b>腾讯视频　<b>发布日期：</b>2026-11 查询<br><a href="https://v.qq.com/x/cover/mzc0020085wyqpd/l41020o9ngw.html" target="_blank" rel="noopener">https://v.qq.com/x/cover/mzc0020085wyqpd/l41020o9ngw.html</a></div><div class="note">事实核查：平台一手页面，正片可在线观看；导演、编剧署名秦文山及「PX 计划/熊猫侠/豆豆/EVA」剧情简介出自此页，与澎湃 [5] 一致。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">A+</span><span class="st">工商信息（一手）</span></div><div class="ti">苏州画宗人工智能科技有限公司 · 工商信息（含秦文山个人页）</div><div class="mt"><b>来源：</b>天眼查　<b>发布日期：</b>2026-10-27 更新（2026-11-11 查询）<br><a href="https://m.tianyancha.com/company/7868193570" target="_blank" rel="noopener">https://m.tianyancha.com/company/7868193570</a>　｜　<a href="https://m.tianyancha.com/human/2096999752-c7868193570" target="_blank" rel="noopener">秦文山个人页</a></div><div class="note">事实核查：页面回溯成功（一手）。成立日期 2025-11-27、注册资本 300 万（实缴 10 万）、秦文山持股 95%（认缴 285 万，实际控制人）、王妍持股 5%、参保 4 人、2026-01-08 地址变更、2026-04-22 经营范围新增节目制作/电影发行许可、对外投资湖州画宗（54 万/18%）与光正影业（14.5 万/29%）均出自此页。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx cross">[8]</span><span class="rt">A</span><span class="st">省委机关报探访</span></div><div class="ti">「单人成军」究竟怎么「成」？探访江苏首个 AIGC 视频领域 OPC 公司（新华日报·交汇点，记者张宣）</div><div class="mt"><b>来源：</b>新华日报·交汇点　<b>发布日期：</b>2025-12-17<br><a href="https://www.xhby.net/content/s694205eee4b05fbb22fddade.html" target="_blank" rel="noopener">https://www.xhby.net/content/s694205eee4b05fbb22fddade.html</a></div><div class="note">事实核查：原文回溯完成。12-02 领取纸质执照、四名核心成员「一人一部门」、剧本质证智能体/300 余提示词、商单每分钟 3 万元报价、注册前营业额 160 余万元、军事熊猫 35 万粉丝、「稳定盈利的 OPC 不多」告诫均出自此稿；另见中国江苏网同日转载。与扬子晚报 [9]、光明日报 [2] 交叉一致。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx cross">[9]</span><span class="rt">B+</span><span class="st">省级都市报</span></div><div class="ti">手握 AI，一人开干！（扬子晚报/紫牛新闻，记者梅方滢）</div><div class="mt"><b>来源：</b>扬子晚报网（原发紫牛新闻）　<b>发布日期：</b>2025-12-11<br><a href="https://www.yangtse.com/news/jiangsu/suzhou/202512/t20251211_299135.html" target="_blank" rel="noopener">https://www.yangtse.com/news/jiangsu/suzhou/202512/t20251211_299135.html</a></div><div class="note">事实核查：原文回溯完成。苏州市首个专注 AIGC 视频领域「一人公司」落户相城、承接央视 AI 春晚与《熊猫战国策》、智能体「专科医生」论述、技术总监王曾、相城区「4个2」补贴均出自此稿；与新华日报 [8] 交叉一致。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx cross">[10]</span><span class="rt">A+</span><span class="st">政务探访（搜狐分发）</span></div><div class="ti">【拥抱数智时代】女大学生「聚心」行动走进 AIGC 视频领域 OPC 公司（苏州市妇联「苏州女性」）</div><div class="mt"><b>来源：</b>搜狐号（原发苏州市妇联公众号「苏州女性」，2026-06-09 活动）　<b>发布日期：</b>2026-06-10<br><a href="https://m.sohu.com/a/1034901953_121106832/" target="_blank" rel="noopener">https://m.sohu.com/a/1034901953_121106832/</a></div><div class="note">事实核查：搜狐分发页回溯完成，原发为市妇联官方公众号。「作品……播放量破亿」「参与制作了央视春晚」两种表述均出自此稿——「破亿」疑为全作品累计口径（见伍节双口径说明）；「入围第十六届北京国际电影节」与苏州发布 [4] 交叉，「核心团队 4 人」与新华日报 [8] 交叉。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx cross">[11]</span><span class="rt">A</span><span class="st">主流财经专访</span></div><div class="ti">探路「一人公司」丨地铁人跨界 AIGC：OPC 项目估值亿元 首部神话剧年内上映（中国经营报，记者杨让晨）</div><div class="mt"><b>来源：</b>中国经营报（今日头条号分发）　<b>发布日期：</b>约 2026-06<br><a href="http://m.toutiao.com/group/7632900060515041855/" target="_blank" rel="noopener">http://m.toutiao.com/group/7632900060515041855/</a></div><div class="note">事实核查：头条号分发页回溯完成，原发中国经营报（署名中经记者）。《字圣仓颉》取得广电总局备案号、申请江苏省重点文化项目、千万元以内成本、团队不到 10 人、估值 1 亿元（自述）、2026 年营收目标 500 万-1000 万元（自述）、孵化 20 个 OPC 项目、迪士尼指控字节 Seedance 2.0 版权事件均出自此稿；自述财务数据按 partial 口径引用。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx cross">[12]</span><span class="rt">A+</span><span class="st">政府官网转载</span></div><div class="ti">从「单人成军」到「蔚然成林」——人工智能 OPC 创新创业如何先行先试（数字中国建设峰会官网转载）</div><div class="mt"><b>来源：</b>数字中国建设峰会官网 / 苏州市数字政府官网　<b>发布日期：</b>2026-03-24<br><a href="https://www.digitalchina.gov.cn/2026/xwzx/szkx/202603/t20260324_5299829.htm" target="_blank" rel="noopener">https://www.digitalchina.gov.cn/2026/xwzx/szkx/202603/t20260324_5299829.htm</a></div><div class="note">事实核查：政府官网转载页回溯完成，与光明网原发 [2] 为同一稿件，作为政府侧交叉回溯佐证。</div></li>
+  <li id="ref-13" class="src"><div class="sh"><span class="idx partial">[13]</span><span class="rt">B</span><span class="st">门户行业稿</span></div><div class="ti">祝贺《哪吒2》——苏州高铁新城 AI 产业综述（腾讯新闻）</div><div class="mt"><b>来源：</b>腾讯新闻　<b>发布日期：</b>2026-08-13<br><a href="https://view.inews.qq.com/a/20260813A09L7Z00" target="_blank" rel="noopener">https://view.inews.qq.com/a/20260813A09L7Z00</a></div><div class="note">事实核查：搜索命中页摘要可核。「苏州画宗人工智能科技有限公司探索 AIGC 全流程影视制作路径，推出的国内首部 AIGC 动画长片《一掌熊猫》成功入围第十六届北京国际电影节」出自此稿，作为北影节口径的第三方交叉；页面为行业综述性质，转载链不明，按 B/partial 收录。</div></li>
+  <li id="ref-14" class="src"><div class="sh"><span class="idx partial">[14]</span><span class="rt">B</span><span class="st">转载链（创客公社）</span></div><div class="ti">被周星驰看中！这家成立仅 2 年的苏州公司，来头不小（创客公社，商业新知转载）</div><div class="mt"><b>来源：</b>商业新知（原发创客公社）　<b>发布日期：</b>约 2026<br><a href="https://www.shangyexinzhi.com/article/32439480.html" target="_blank" rel="noopener">https://www.shangyexinzhi.com/article/32439480.html</a></div><div class="note">事实核查：转载页回溯完成（原发创客公社）。「画宗文化推出的国内首部 AIGC 动画长片《一掌熊猫》入围了北京国际电影节」与苏州高铁新城产业生态背景出自此稿；转载链按 partial 收录，注明原发。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 14 条。核验标签分布：🟢 已核验（verified）2 条、🔵 多源印证（cross）9 条、🟡 部分映证（partial）3 条。信源评级分布：A+/A 级 9 条（央媒/政府/主流财经/工商一手，原文回溯全部完成）、B+/B 级 5 条（均为专访/平台页/转载链，已标注口径）。三处口径分歧（播放量双口径、央视合作三种表述、成本 3 万元单源自述）与两处留白（北影节官方名单未回溯、秦文山出生年份/学历无公开信息）已在正文显式标注；底稿背景信息一处串档嫌疑已按一手信源修正为「苏州轨道交通安全管理岗」。未发现伪造链接，全部 URL 均为检索过程实际命中页面。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-11 · 营收与估值推算值均标注置信口径，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

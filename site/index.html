@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OPC 案例墙 · 国内 AI 一人公司案例 · OPC Story</title>
+<meta property="og:title" content="OPC 案例墙 · 国内 AI 一人公司案例">
+<meta property="og:image" content="/og-default.svg">
+<link rel="icon" href="favicon.svg">
+<meta property="og:title" content="OPC 案例墙 · 国内 AI 一人公司案例">
+<meta property="og:image" content="og-default.svg">
+<meta name="description" content="国内 AI 一人公司案例墙：动态收录以 AI 为核心生产力的中国独立创业者案例，按时间锚点降序排列，附深度案例报告，动态更新。">
+<style>
+/* ===== OPC CASE WALL · 方案 B 暗黑终端风 ===== */
+:root{--bg:#0a0e14;--card:#111823;--line:#1e2a3a;--line2:#26334a;--txt:#e6edf3;--sub:#9fb0c5;--dim:#7d8ca3;--faint:#5a6a80;--cyan:#58a6ff;--gold:#c9a961;--green:#3fd68f;--red:#ff6b63;--mono:ui-monospace,Menlo,"SF Mono",Consolas,monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,sans-serif;background:var(--bg);color:var(--sub);line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,#0a0e14 0%,#101821 55%,#1a2332 100%);border-bottom:1px solid var(--line);color:var(--txt);padding:58px 24px 46px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-family:var(--mono);font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);margin-bottom:20px}
+.hero h1{font-size:38px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px;color:var(--txt)}
+.hero h2{font-size:16.5px;font-weight:400;color:var(--dim);letter-spacing:.5px;margin-bottom:26px;line-height:1.7}
+.hero h2 b{color:var(--gold);font-weight:600}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid var(--line2);border-radius:4px;padding:4px 15px;font-size:12px;color:#8fa3bd;font-family:var(--mono)}
+
+/* 筛选条 */
+.opc-filters{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:10px 0 0}
+.opc-search{flex:1;min-width:220px;background:#0d1420;border:1px solid var(--line2);border-radius:6px;padding:9px 16px;font-size:14px;font-family:inherit;color:var(--txt);outline:none;transition:border-color .15s}
+.opc-search:focus{border-color:var(--cyan)}
+.opc-search::placeholder{color:var(--faint)}
+.filter-sep{font-size:12px;color:var(--faint);margin-left:4px;font-family:var(--mono)}
+.fbtn{border:1px solid var(--line2);background:#0d1420;border-radius:6px;padding:5px 14px;font-size:12.5px;color:#8fa3bd;cursor:pointer;font-family:inherit;transition:all .15s}
+.fbtn:hover{border-color:var(--cyan);color:var(--txt)}
+.fbtn.is-active{background:var(--cyan);border-color:var(--cyan);color:#0a0e14;font-weight:600}
+.opc-count{font-size:12px;color:var(--faint);margin-left:auto;font-family:var(--mono)}
+.opc-filters:first-of-type{margin-top:6px}
+.opc-filters + .opc-filters{margin-bottom:18px}
+
+/* 卡片流 */
+.opc-grid{display:flex;flex-direction:column;gap:13px;max-width:880px;margin:18px auto 0}
+.opc-card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:15px 17px 13px;display:flex;flex-direction:column;gap:7px;transition:border-color .18s ease,transform .18s ease}
+.opc-card:hover{border-color:var(--cyan);transform:translateX(3px)}
+.oc-top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:11px;margin-bottom:3px}
+.oc-time{color:var(--gold);letter-spacing:.3px}
+.oc-rank{color:var(--cyan);border:1px solid var(--line2);border-radius:4px;padding:1px 8px}
+.oc-title{font-size:15.5px;line-height:1.5;color:var(--txt);font-weight:700;margin:0}
+.oc-title a{color:var(--txt);text-decoration:none;transition:color .15s}
+.oc-title a:hover{color:var(--cyan)}
+.oc-founder{font-size:12.5px;color:var(--dim);margin:0}
+.oc-founder b{color:#a8b8cc;font-weight:600}
+.oc-desc{font-size:13.5px;color:var(--sub);margin:0;flex:1}
+.oc-result{font-size:12.5px;color:var(--green);font-family:var(--mono);margin:0;line-height:1.6}
+.oc-result:before{content:"▸ "}
+.rp-badge{display:inline-flex;align-items:center;gap:3px;margin-left:9px;padding:2px 8px;border:1px solid #3a3325;border-radius:4px;color:var(--gold);font-size:10.5px;font-family:var(--mono);font-weight:700;letter-spacing:1px;vertical-align:2px;text-decoration:none;line-height:1.4;transition:all .18s ease;animation:rpGlow 2.8s ease-in-out infinite}
+.rp-badge svg{width:10px;height:10px;transition:transform .18s ease}
+.rp-badge:hover{background:var(--cyan);border-color:var(--cyan);color:#0a0e14;animation:none;box-shadow:0 0 12px rgba(0,229,255,.4)}
+.rp-badge:hover svg{transform:translateX(2px)}
+@keyframes rpGlow{0%,100%{border-color:#3a3325}50%{border-color:var(--gold)}}
+
+/* 深度报告抽屉：从右侧浮现 */
+.rp-modal{position:fixed;inset:0;z-index:99;display:flex;justify-content:flex-end;background:rgba(3,7,12,.84);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);animation:rpFade .22s ease}
+.rp-modal[hidden]{display:none}
+.rp-panel{position:relative;display:flex;flex-direction:column;width:min(1000px,94vw);height:100vh;background:#0a0e14;border-left:1px solid var(--line2);overflow:hidden;box-shadow:-24px 0 80px rgba(0,0,0,.6);animation:rpSlideIn .3s cubic-bezier(.22,.9,.3,1)}
+.rp-bar{display:flex;align-items:center;gap:12px;padding:10px 16px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:12px;color:var(--gold);letter-spacing:1px;flex-shrink:0}
+.rp-close{margin-left:auto;flex-shrink:0;border:1px solid var(--line2);background:#0d1420;color:#8fa3bd;border-radius:5px;padding:3px 12px;font-size:12px;cursor:pointer;font-family:inherit;transition:all .15s}
+.rp-close:hover{border-color:var(--red);color:var(--red)}
+.rp-frame{flex:1;border:0;width:100%;background:#fafbfc}
+@keyframes rpFade{from{opacity:0}to{opacity:1}}
+@keyframes rpSlideIn{from{transform:translateX(100%)}to{transform:translateX(0)}}
+.oc-foot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #1c2531;padding-top:9px;margin-top:3px}
+.oc-cats{font-size:11px;color:var(--faint);font-family:var(--mono)}
+.oc-actions{display:flex;gap:7px;align-items:center}
+.op-views{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--gold);border:1px solid #3a3325;background:#0d1420;border-radius:6px;padding:3px 10px;white-space:nowrap;font-family:var(--mono)}
+.op-btn{border:1px solid var(--line2);background:#0d1420;border-radius:6px;padding:3px 10px;font-size:12px;color:#8fa3bd;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:4px;transition:all .15s;white-space:nowrap;font-family:var(--mono)}
+.op-btn:hover{border-color:var(--cyan);color:var(--txt)}
+.op-btn.liked{color:var(--red);border-color:var(--red)}
+.op-btn svg,.op-views svg{width:12px;height:12px}
+.op-btn b,.op-views b{font-family:var(--mono);font-weight:700}
+.empty-state{display:none;text-align:center;color:var(--faint);padding:36px;border:1px dashed var(--line2);border-radius:8px;font-family:var(--mono)}
+
+/* Hero 上的锚点跳转链接（归墟标题等） */
+.opc-card a{color:inherit}
+
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:26px}
+.hero h2{font-size:14px}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · AI ONE-PERSON COMPANY CASE WALL · 持续更新</div>
+    <h1>国内 AI 一人公司案例墙</h1>
+    <h2>收录以 AI 为核心生产力的中国独立创业者案例</h2>
+    <div class="tags">
+      <span class="tag">动态更新 · 持续收录</span>
+      <span class="tag">作品与工具并重</span>
+      <span class="tag">案例深度挖掘</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="opc-filters">
+    <input type="search" class="opc-search" id="opcSearch" placeholder="搜索项目、创业者或关键词…" autocomplete="off">
+    <span class="filter-sep">排序</span>
+    <button class="fbtn sort is-active" data-sort="time">按时间</button>
+    <button class="fbtn sort" data-sort="views">按阅读</button>
+    <button class="fbtn sort" data-sort="likes">按点赞</button>
+    <button class="fbtn sort" data-sort="shares">按分享</button>
+  </div>
+  <div class="opc-filters">
+    <button class="fbtn is-active" data-group="">全部</button>
+    <button class="fbtn" data-group="作品型">作品型</button>
+    <button class="fbtn" data-group="开发者工具">开发者工具 · 客户端</button>
+    <button class="fbtn" data-group="内容创作">内容创作</button>
+    <button class="fbtn" data-group="垂直应用">垂直应用</button>
+    <button class="fbtn" data-group="营销电商">营销 · 电商 · 生态</button>
+    <span class="opc-count" id="opcCount">—</span>
+  </div>
+  <div class="opc-grid" id="opcGrid"></div>
+  <p class="empty-state" id="opcEmpty">没有匹配的案例，换个关键词或筛选条件试试。</p>
+
+  <div class="box insight">
+    <div class="bt">💡 分布观察</div>
+    按锚点年份统计：2026 年 23 个、2025 年 20 个、2024 年 14 个、2023 年 11 个、2022 年 2 个——AI 一人创业的供给在 2023 年（大模型应用元年）与 2026 年（AI 内容工业化年）出现两个峰值。赛道分布：作品型 7、开发者工具/客户端 23、内容创作 14、垂直行业应用 19、营销/电商/生态 7。</div>
+</section>
+
+<!-- 深度报告浮层（置于脚本之前，保证脚本执行时可取到节点） -->
+<div class="rp-modal" id="rpModal" hidden role="dialog" aria-modal="true" aria-label="深度案例报告">
+  <div class="rp-panel">
+    <div class="rp-bar"><span id="rpTitle">◈ 深度案例报告</span><button class="rp-close" id="rpClose" type="button">关闭 ✕</button></div>
+    <iframe class="rp-frame" id="rpFrame" title="深度案例报告全文"></iframe>
+  </div>
+</div>
+
+<script>
+/* ===== 70 案例卡片墙：数据（按时间锚点降序）===== */
+/* 字段：r 序号 / t 时间锚点 / n 项目名 / href 详情链接（仅榜首）/ c 主信源编号 / cc 信源核验色 /
+   f 创业者 / g 赛道分组 / d 产品功能一句话 / res 成功迹象 */
+const CASES = [
+{r:1,t:"2026-08-29 ▲",n:"AI 短剧《归墟》",href:"report/guixu/",c:1,cc:"verified",f:"泫九（江澜）",g:"作品型",d:"12 集末世科幻 AI 短剧：即梦 Seedance + Suno 全流程一人制作，周更连载。",res:"全网播放破亿（年末口径破 2 亿），红果热度 4400 万+",s:"guixu"},
+{r:2,t:"2026-08-20 ▲",n:"我和我的 AI 男友：樱时叙归途",href:"",c:2,cc:"cross",f:"李四姑娘",g:"作品型",d:"一人用字节系 AI 工具完成 60 集 2D 纯爱漫剧，小说-漫剧-小游戏 IP 联动。",res:"红果热度 1200 万（上线 5 天）",s:"sakura-journey"},
+{r:3,t:"2026-08-04 ▲月",n:"咱家剑宗团宠小师妹",href:"",c:3,cc:"partial",f:"六爻",g:"作品型",d:"修仙题材 AI 漫剧，剧本/分镜/生成/剪辑一人独立制作，长季连载。",res:"红果漫剧热播榜第三，规划超 1000 集",s:"sword-sect"},
+{r:4,t:"2026-07-17 ▲",n:"《发配边关，罪妻开荒养出战神》",href:"report/fapei-bianguan/",c:0,cc:"verified",f:"何杰 / 张芬（夫妻二人）",g:"作品型",d:"534 集 AI 漫剧连载：夫妻二人用 AI 工具链完成剧本/绘制/配音全流程，已更新至第九季。",res:"抖音播放破 41 亿（≥5 信源交叉）、系列 6 部进红果百强榜 TOP15（第六季热度 8251 万·榜内第二，DataEye 回溯口径）",s:"fapei-bianguan"},
+{r:5,t:"2026-07-15 ▲月",n:"易经图卦系列",href:"",c:4,cc:"cross",f:"刘健",g:"垂直应用",d:"AI 转译易经卦象的情绪卡牌 + AI 生成小程序，一人包揽产品全流程。",res:"年销售额破百万，月营收稳定 6 万+",s:"yijing-cards"},
+{r:6,t:"2026（年）▲",n:"红墨 RedInk",href:"",c:5,cc:"partial",f:"默子（HisMax）",g:"内容创作",d:"一句话生成整套小红书图文笔记：标题/正文/封面配图可直发。",res:"GitHub 5.7k★，会员 68 元/月起",s:"redink"},
+{r:7,t:"2026（年）▲",n:"Sitesfy AI",href:"",c:6,cc:"partial",f:"王喆（Steve Wang）",g:"营销电商",d:"AI 获客系统：自动生成面向搜索引擎的多语言获客网站与内容。",res:"自述月收入近 100 万元（自述口径）",s:"sitesfy"},
+{r:8,t:"2026（年）▲",n:"MuMuAINovel",href:"",c:7,cc:"partial",f:"xiamuceer-j",g:"内容创作",d:"可自部署的 AI 长篇小说工作台：角色卡/伏笔追踪/批量挂机写作。",res:"GitHub 3.3k★，网文圈自部署社区",s:"mumu-ainovel"},
+{r:9,t:"2026-06-24 ▲",n:"作文说",href:"",c:8,cc:"verified",f:"李雲帆",g:"垂直应用",d:"AI 作文批改：拍照上传生成可打印批改报告，支持班级批量精批。",res:"4 个月用户 1.5 万，月入近 5 万（自述）",s:"zuowenshuo"},
+{r:10,t:"2026-06-15 ✓",n:"无事AI",href:"",c:9,cc:"partial",f:"佟晨",g:"垂直应用",d:"AI 小额纠纷解决：免费诊断案情/测算赔偿，按结果收费。",res:"两月 40 余单付费、营收约 6 万元",s:"wushi-ai"},
+{r:11,t:"2026-06-11 ▲",n:"星织科技",href:"",c:10,cc:"cross",f:"Kevin Li",g:"营销电商",d:"AI 智能体做「数字员工」，一人同时运营 8 个亚马逊品牌。",res:"亚马逊官方白皮书收录 OPC 典型",s:"xingzhi-tech"},
+{r:12,t:"2026-06-05 ▲",n:"戴森云",href:"",c:11,cc:"cross",f:"田志雄",g:"营销电商",d:"大模型驱动直播电商：话术生成/生命周期预测/智能运营。",res:"直播年流水数千万、技术营收超千万",s:"daisen-cloud"},
+{r:13,t:"2026-05-24 ▲",n:"AI 短片《丧尸清道夫》",href:"",c:12,cc:"verified",f:"刘梓瑜",g:"作品型",d:"3 分 34 秒原子朋克 AI 科幻短片，全流程一人 10 天完成。",res:"播放 6000 万至破亿，获好莱坞制作人盛赞",s:"zombie-cleaner"},
+{r:14,t:"2026-05-06 ▲",n:"Kre.ai",href:"",c:13,cc:"cross",f:"武培文",g:"营销电商",d:"AI 智能体流水线为跨境电商优化广告投放与素材复盘。",res:"200 万元大单，年营收超百万",s:"kre-ai"},
+{r:15,t:"2026-04-29 ▲",n:"音行三界",href:"",c:0,cc:"cross",f:"陶雯煜",g:"内容创作",d:"AI 音乐公司：AI 生成多风格歌曲 + 音乐数据标注 + AI 虚拟偶像 IP 运营，两人运营。",res:"虚拟偶像全网粉丝 20 万+、播放 3000 万+，与山西文旅等机构合作",s:"yinxing-sanjie"},
+{r:16,t:"2026-04-16 ▲",n:"碳基圈",href:"",c:0,cc:"cross",f:"杨平（Yapie程序员哥）",g:"垂直应用",d:"AI 社交平台：「仅 AI 可见」匿名树洞 + AI 歌曲生成，用 Claude Code 独立开发。",res:"用户 4 万+、日访问 100 万+，AI 音乐上线 2 天即产生收入",s:"tanjiquan"},
+{r:17,t:"2026-03-24 ▲",n:"《一掌熊猫》AI 动画长片",href:"report/yizhang-panda/",c:0,cc:"verified",f:"秦文山（苏州画宗智能）",g:"内容创作",d:"42 分钟 AI 动画长片：28 天、约 3 万元成本一人主导完成，一人公司（持股 95%）承制 AIGC 视频。",res:"全网播放破百万（新华网/澎湃交叉），入围北京国际电影节，推进院线项目《字圣仓颉》",s:"yizhang-panda"},
+{r:18,t:"2026-03-15 ✓",n:"聪明钱监控",href:"",c:14,cc:"cross",f:"许洋",g:"垂直应用",d:"开源智能体手搓的 AI 股市投研系统，日报推送，200 元/年。",res:"半月 90 个付费用户、收入超 1 万元",s:"smart-money"},
+{r:19,t:"2026-03 ✓",n:"声序智能（AI 曲谱智能体）",href:"report/shengxu-ai/",c:0,cc:"cross",f:"王钰博（前字节风控算法工程师）",g:"垂直应用",d:"五线谱↔简谱 1 分钟互转的 AI 曲谱智能体（OMR），订阅收费，服务传统民乐行业。",res:"上线半年多用户超 6000（新华/新京报实探交叉），成立约 3 个月现金流回正进入盈利",s:"shengxu-ai"},
+{r:20,t:"2026-03 ▲",n:"炘扬贸易（AI 棒球帽出海）",href:"report/xinyang-trade/",c:0,cc:"cross",f:"张乾超（95 后，丽水云和）",g:"营销电商",d:"个人 + 8 个 AI 智能体（阿里国际 Accio）跑通选品/设计/交付全链的定制棒球帽跨境电商。",res:"开业当月即回本、首单 3600 美元；智能体数两口径并列：8 个（潮新闻）/ 80 个（新华每日电讯）",s:"xinyang-trade"},
+{r:21,t:"2026-01-31 ✓",n:"hupoCADNet",href:"",c:15,cc:"partial",f:"何思康",g:"垂直应用",d:"AI 彩平图生成引擎：CAD 平面图 3 分钟生成可商用彩色平面图。",res:"半年 1740 位付费设计师、营收 5.1 万元",s:"hupocad"},
+{r:22,t:"2026-01-15 ✓",n:"天之灵AI",href:"",c:16,cc:"partial",f:"张翼",g:"垂直应用",d:"AI 哀伤陪伴小程序：亲人照片生成数字形象陪对话疗愈。",res:"用户 11.1 万、付费会员 2000+、已盈利",s:"tianzhiling"},
+{r:23,t:"2026-01 ▲",n:"AI 短剧《安徽小木匠》",href:"report/anhui-xiaomujiang/",c:0,cc:"verified",f:"小果哥哥（前婚庆摄像，初中没毕业）",g:"作品型",d:"一人用豆包改编番茄小说 IP 剧本 + Seedance 生成的 AI 仿真人短剧：约 2900 元成本、7 天制作。",res:"全网播放 3.5 亿、分账收益 50 万+（≥4 信源交叉）；成本 2900/3000 元两口径；后续三部未过审",s:"anhui-xiaomujiang"},
+{r:24,t:"2025-12-15 ▲",n:"BettaFish（微舆）",href:"",c:0,cc:"cross",f:"郭航江（BaiFu）",g:"开发者工具",d:"多智能体舆情分析系统：自动分析 30+ 社媒平台数百万条评论并预测走向，10 天 Vibe Coding 完成。",res:"GitHub 37.7k★，两度登顶 GitHub 趋势榜第一，获 3000 万元注资",s:"bettafish"},
+{r:25,t:"2025-11-15 ▲月",n:"互动内容产品（名称未公开）",href:"",c:17,cc:"cross",f:"叶纯俊",g:"垂直应用",d:"AI 驱动的互动内容与情感陪伴产品，90% 代码由 AI Agent 编写。",res:"全球百万用户、月收入 2-3 万美元",s:"ye-chunjun"},
+{r:26,t:"2025-11-14 ✓",n:"《明末：欲火重生》",href:"report/late-ming-reborn/",c:0,cc:"partial",f:"阿拉丁巴图（43 岁前上海美术设计师）",g:"作品型",d:"8 个月 AI 辅助独立开发的 2D 开放世界视觉小说，Steam EA 上线，开发/发行均为单人署名。",res:"首月收入约 6 万元（GameLook 报道口径，单源）；Steam 评价 449/551 双口径佐证商业落地",s:"late-ming-reborn"},
+{r:27,t:"2025-11-10 ▲",n:"NuxtPro 等 AI 工具矩阵",href:"",c:18,cc:"partial",f:"IndieMakerKevin",g:"开发者工具",d:"一人多产品：SaaS 模板/API 中转/视频去水印等工具站矩阵。",res:"自述月额外收入 1 万美元+（自述口径）",s:"nuxtpro"},
+{r:28,t:"2025（年）▲",n:"AIClient-2-API",href:"",c:20,cc:"partial",f:"justlovemaki",g:"开发者工具",d:"把 Gemini CLI/Codex 等客户端协议反代为本地 OpenAI 兼容 API。",res:"GitHub 8.9k★、Docker 下载 10 万+",s:"aiclient-2-api"},
+{r:29,t:"2025（年）▲",n:"Raphael AI",href:"",c:19,cc:"partial",f:"刘小排",g:"内容创作",d:"基于 Flux.1 的免费无限制 AI 文生图出海站，免注册打法。",res:"上线一月月活破 100 万",s:"raphael-ai"},
+{r:30,t:"2025（年）▲",n:"AI 音乐生成出海站",href:"",c:21,cc:"partial",f:"lsaiah",g:"内容创作",d:"AI 音乐生成 API 包装的订阅站，SEO 获自然流量，Stripe 收款。",res:"自述月收入 1.2 万美元+（自述口径）",s:"lsaiah-music"},
+{r:31,t:"2025（年）▲",n:"PaywallPro",href:"",c:22,cc:"partial",f:"鱼总聊AI",g:"开发者工具",d:"iOS 订阅付费墙与 Onboarding 数据的分析 Agent，辅助定价决策。",res:"自述单款营收 $200k+（自述口径）",s:"paywallpro"},
+{r:32,t:"2025（年）▲",n:"AI 效率小程序矩阵",href:"",c:23,cc:"partial",f:"陈宇明（码个蛋）",g:"营销电商",d:"面向短视频创作者的 AI 配音/写作小程序矩阵，订阅+按量付费。",res:"200 万+ 用户、连续 12 个月盈利",s:"chenyuming"},
+{r:33,t:"2025（年）▲",n:"星境引擎（AI 短剧承制）",href:"report/xingjing-engine/",c:0,cc:"verified",f:"彭青云（前品牌设计师，两人团队）",g:"内容创作",d:"全球首部神话题材 AI 短剧《众神之战》主创：注册一人公司，AI 承制短剧/视频业务。",res:"《众神之战》平台热度近 2000 万（天下网商/杭州日报交叉）、海外上亿流量、总成本约 10 万元",s:"xingjing-engine"},
+{r:34,t:"2025-06-30 ✓",n:"Chat Memo",href:"",c:0,cc:"cross",f:"一泽 Eze",g:"开发者工具",d:"跨 AI 平台「记忆中枢」插件：自动存档 ChatGPT/Claude/豆包等对话并全库检索。",res:"20000+ 用户，Chrome 商店 4.9 分获 Google 精选认证",s:"chat-memo"},
+{r:35,t:"2025-06-15 ▲",n:"求职精灵",href:"",c:24,cc:"cross",f:"奕甫",g:"垂直应用",d:"Agent 化 AI 求职全链路：规划/简历逐字改/全真语音模拟面试。",res:"用户将破 100 万、年化收益千万级（自述）",s:"qiuzhi-jingling"},
+{r:36,t:"2025-05 ▲",n:"江苏梧桐 AI（大学生就业平台）",href:"report/wutong-ai/",c:0,cc:"verified",f:"何汕杉（苏州工业园区，唯一全职员工）",g:"垂直应用",d:"AI 大学生就业服务平台 +「OPC×AI」供需对接平台：简历匹配/企业对接，一人公司运营。",res:"月活近 60 万人次、48 万份简历、13 万家企业（新华网/园区管委会交叉）",s:"wutong-ai"},
+{r:37,t:"2025-04-16 ▲",n:"胃之书",href:"",c:25,cc:"partial",f:"赵纯想",g:"垂直应用",d:"拍照记录饮食 AI App：大模型生成热量与代谢分析。",res:"9 万用户、5 个月收入 1.2 万美元",s:"weizhishu"},
+{r:38,t:"2025-04-17 ▲",n:"EmoEase（AI 情绪疗愈 App）",href:"report/emoease/",c:0,cc:"verified",f:"冼星朗（05 后香港高中生）",g:"垂直应用",d:"16 岁高中生用 Cursor/Trae 零基础 20 天开发的 AI 情绪记录疗愈 App，另有「牛马时钟」工资计算器。",res:"上线即冲 App Store 付费工具榜第 5（4 信源交叉）；获苹果 SSC 全球杰出获奖者并受邀 WWDC25",s:"emoease"},
+{r:39,t:"2025-04-15 ▲推算",n:"猜盐 / 猜病",href:"",c:26,cc:"cross",f:"张月",g:"垂直应用",d:"大模型游戏化矩阵：AI 模拟病人供问诊推理、街景定位等玩法。",res:"用户 160 万、2025 年营收同比增 3 倍",s:"caiyanguess"},
+{r:40,t:"2025-03-15 ▲",n:"张sir 弹幕游戏矩阵",href:"",c:27,cc:"partial",f:"张sir（化名）",g:"垂直应用",d:"抖音弹幕互动游戏：AI 工具链承担约 70% 美术与代码，15 天/款。",res:"总流水近 2000 万（自述口径）",s:"zhang-sir"},
+{r:41,t:"2025-03-14 ✓",n:"Simen AI（猴子说话）",href:"report/simen-ai/",c:0,cc:"verified",f:"雷圳鹏（27 岁，武汉光谷）",g:"垂直应用",d:"本地办公智能体「师门」：聊天即完成发票合并/工资表拆分，联动 Word/Excel；延伸 OpenClaw AI 数字员工工具。",res:"产品未正式发布即获字节跳动近 4000 万元投资（长江日报/央视网交叉）+ 奇绩创坛 200 余万元天使轮",s:"simen-ai"},
+{r:42,t:"2025-02-15 ✓",n:"claude-code-router",href:"",c:0,cc:"cross",f:"musistudio",g:"开发者工具",d:"让 Claude Code 路由到任意大模型的开源网关，支持按任务类型分流供应商。",res:"GitHub 38k★，Kimi 成为内置 provider 及赞助方",s:"claude-code-router"},
+{r:43,t:"2025-01-15 ▲",n:"Leadmore AI",href:"",c:0,cc:"cross",f:"Richard Wang",g:"营销电商",d:"AI 驱动的 Reddit 营销自动化 SaaS：智能匹配社区、合规发帖、挖掘潜在客户。",res:"上线 4 个月 $30K MRR、突破 $1M ARR（自述口径）",s:"leadmore-ai"},
+{r:44,t:"2024-12-24 ✓",n:"PodLM / ShipAny / ThinkAny 产品组合",href:"",c:28,cc:"verified",f:"艾逗笔（idoubi）",g:"开发者工具",d:"AI 播客生成器 + AI 搜索引擎 + MCP 市场 + SaaS 开发框架等 11+ 产品。",res:"ShipAny 预售 4 小时破 1 万美元",s:"idoubi"},
+{r:45,t:"2024-11-29 ▲",n:"供春AI",href:"",c:0,cc:"cross",f:"张雨航",g:"垂直应用",d:"国内首款陶瓷 AIGC 辅助设计软件：数十秒生成紫砂壶等工艺美术方案并对接 3D 打印。",res:"用户 3 万+，走进近 30 所高校，落地全国首个 AI+手工艺 OPC 创业基地",s:"gongchun"},
+{r:46,t:"2024-11-15 ✓",n:"ChatWise",href:"",c:29,cc:"cross",f:"egoist",g:"开发者工具",d:"多模型桌面 AI 客户端：多模态 + MCP，BYOK 买断制。",res:"Pro $29 买断持续销售",s:"chatwise"},
+{r:47,t:"2024-09-26 ✓",n:"敲敲门童话（Knock AI）",href:"",c:0,cc:"cross",f:"Chris & Tony Lai",g:"垂直应用",d:"AI 原生儿童互动童话平台：孩子引导 AI 续写专属绘本/儿歌/卡通，三端上线。",res:"累计读者 10 万+ 人次，获 300 万元融资（含 Google Cloud 25 万美元）",s:"knock-ai"},
+{r:48,t:"2024-09-15 ✓",n:"HivisionIDPhotos",href:"",c:30,cc:"partial",f:"林泽毅（Zeyi-Lin）",g:"内容创作",d:"轻量 AI 证件照工具：抠图/多规格生成/排版，可离线自部署。",res:"GitHub 21.6k★，登 GitHub 热榜第一",s:"hivision-idphotos"},
+{r:49,t:"2024-09-15 ✓",n:"PDFMathTranslate（pdf2zh）",href:"",c:31,cc:"cross",f:"Byaidu",g:"开发者工具",d:"保留排版的 PDF 学术文档 AI 全文双语翻译，CLI/GUI/Zotero。",res:"GitHub 38.3k★，入选 EMNLP 2025 Demo",s:"pdf2zh"},
+{r:50,t:"2024-07-24 ✓",n:"new-api",href:"",c:0,cc:"cross",f:"Calcium-Ion",g:"开发者工具",d:"开源大模型网关：GPT/Claude/Midjourney/Suno 统一封装为 OpenAI 格式并带计费。",res:"GitHub 51.3k★，大量商用 API 中转站的底座",s:"moneyprinter-turbo"},
+{r:51,t:"2024（年）▲",n:"MoneyPrinterTurbo",href:"",c:33,cc:"cross",f:"harry0703",g:"内容创作",d:"输入主题自动完成文案/素材/字幕/配音的短视频生成器。",res:"GitHub 133k★，AI 视频类最高星之一",s:"videolingo"},
+{r:52,t:"2024（年）▲",n:"VideoLingo",href:"",c:34,cc:"cross",f:"Huanshere",g:"内容创作",d:"一键 Netflix 级视频本地化：字幕切割/上下文翻译/克隆配音。",res:"GitHub 19k★",s:"kitten-light"},
+{r:53,t:"2024（年）▲",n:"小猫补光灯（Pro）",href:"",c:35,cc:"verified",f:"陈云飞",g:"内容创作",d:"拍照补光 App：可调色温背光板，用 Cursor 一小时完成 MVP。",res:"下载 30-50 万、Pro 收入 30-40 万元",s:"cherry-studio"},
+{r:54,t:"2024（年）▲",n:"Cherry Studio",href:"",c:36,cc:"partial",f:"亢奋猫（kangfenmao）",g:"开发者工具",d:"开源多模型 AI 桌面客户端：300+ 模型/知识库/智能体/MCP。",res:"GitHub 32k★、下载超 1000 万次",s:"xuanxiao-niao"},
+{r:55,t:"2024（年）✓",n:"AI选校鸟",href:"",c:32,cc:"verified",f:"李涛",g:"垂直应用",d:"AI 留学选校：99 元/次输出保底/匹配/冲刺三梯度院校推荐。",res:"3000+ 用户（人民日报海外版报道）",s:"new-api"},
+{r:56,t:"2024-01-15 ✓",n:"GPT-SoVITS",href:"",c:37,cc:"cross",f:"花儿不哭（RVC-Boss）",g:"内容创作",d:"5 秒音频克隆音色的少样本 TTS/语音转换，多语言。",res:"GitHub 64k★，中文语音克隆事实标准",s:"gpt-sovits"},
+{r:57,t:"2024-01-15 ✓",n:"哄哄模拟器 / 6pen",href:"",c:38,cc:"partial",f:"王登科（DK）",g:"内容创作",d:"哄女友情景对话 AI 游戏 + 开源模型 AI 绘画平台。",res:"上线 24 小时 60 万用户/2000 万次对话",s:"honghong"},
+{r:58,t:"2023（年）▲",n:"Copilot for Obsidian",href:"",c:0,cc:"cross",f:"Logan Yang",g:"开发者工具",d:"Obsidian 笔记库 AI 副驾插件：全库问答/检索/改写，支持本地模型，付费订阅。",res:"下载突破 100 万（2026-02），GitHub 7.8k★",s:"immersive-translate"},
+{r:59,t:"2023（年）▲",n:"沉浸式翻译",href:"",c:40,cc:"cross",f:"Owen Young",g:"开发者工具",d:"AI 双语对照网页/PDF/视频字幕/漫画翻译，聚合 10+ 引擎。",res:"全球激活用户破 3000 万，Chrome 年度精选",s:"chatnio"},
+{r:60,t:"2023（年）▲",n:"ChatNio",href:"",c:39,cc:"partial",f:"zmh（Kairo）",g:"开发者工具",d:"多模型对话 + API 中转计费一站式开源平台。",res:"2024 年被七位数收购，月活近 10 万",s:"easydict"},
+{r:61,t:"2023（年）▲",n:"Easydict",href:"",c:42,cc:"cross",f:"tisfeng",g:"开发者工具",d:"macOS 词典翻译应用：OpenAI/Gemini/DeepL 与离线 OCR 查词。",res:"GitHub 15.2k★",s:"chatgptbox"},
+{r:62,t:"2023（年）▲",n:"chatGPTBox",href:"",c:41,cc:"partial",f:"josStorer",g:"开发者工具",d:"把 ChatGPT 深度集成进浏览器：划词翻译/网页总结/视频对话。",res:"GitHub 10.7k★，Chrome 用户约 3 万",s:"one-api"},
+{r:63,t:"2023-04-15 ✓",n:"one-api",href:"",c:43,cc:"cross",f:"songquanpeng（justsong）",g:"开发者工具",d:"LLM API 网关：统一适配多模型，密钥管理与二次分发。",res:"GitHub 37.3k★，中转站生态事实标准",s:"nextchat"},
+{r:64,t:"2023-03-15 ✓",n:"NextChat",href:"",c:44,cc:"cross",f:"Yidadaa",g:"开发者工具",d:"一键免费部署的私人 ChatGPT 跨平台客户端，多模型。",res:"GitHub 88.8k★",s:"gpt-academic"},
+{r:65,t:"2023-03-15 ✓",n:"GPT 学术优化",href:"",c:45,cc:"cross",f:"binary-husky",g:"开发者工具",d:"学术场景 LLM 工具：论文润色/翻译/代码解析，插件化。",res:"GitHub 71.6k★",s:"openai-translator"},
+{r:66,t:"2023-03-15 ✓",n:"openai-translator + avante.nvim",href:"",c:46,cc:"cross",f:"yetone",g:"开发者工具",d:"划词翻译插件 + Neovim 里的 Cursor 式 AI 编程插件。",res:"avante.nvim 17.8k★",s:"bibigpt"},
+{r:67,t:"2023-02-15 ▲",n:"BibiGPT（AI 课代表）",href:"",c:47,cc:"partial",f:"吕立青（JimmyLv）",g:"内容创作",d:"粘贴 B站/YouTube/播客链接生成结构化摘要与脑图，可追问。",res:"累计 100 万+ 用户（官网自述）",s:"chatgpt-on-wechat"},
+{r:68,t:"2023-02-15 ▲",n:"chatgpt-on-wechat + LinkAI",href:"",c:48,cc:"cross",f:"查雨捷（zhayujie）",g:"开发者工具",d:"微信生态大模型机器人：公众号/企微/飞书接入 + 知识库客服。",res:"GitHub 47.7k★，事实标准方案",s:"umi-ocr"},
+{r:69,t:"2022-11-15 ▲约",n:"Umi-OCR",href:"",c:49,cc:"cross",f:"hiroi-sora",g:"开发者工具",d:"开源离线 OCR 软件：截图/批量图片/PDF 识别，解压即用。",res:"GitHub 48.4k★，免费 OCR 标杆",s:"bob-tool"},
+{r:70,t:"2022-07-15 ✓",n:"Bob",href:"",c:50,cc:"cross",f:"ripperhe",g:"开发者工具",d:"macOS 划词翻译/截图 OCR，接入 OpenAI/DeepSeek/豆包等。",res:"Pro ¥58 买断持续销售，GitHub 9.7k★",s:"obsidian-copilot"}
+];
+
+/* ===== 渲染 ===== */
+const HEART = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1L12 21l7.7-7.6 1.1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg>';
+const EYE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>';
+const SHARE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>';
+const GROUP_LABEL = {"作品型":"作品型","开发者工具":"工具 · 客户端","内容创作":"内容创作","垂直应用":"垂直应用","营销电商":"营销 · 电商"};
+/* 「深度」报告徽章（标题右侧），含引导点击特效：边框呼吸 + 悬停变色 + 箭头滑动 */
+const DOC = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>';
+
+function render() {
+  const grid = document.getElementById('opcGrid');
+  grid.innerHTML = CASES.map(c => {
+    const title = c.href ? `<a href="${c.href}">${c.n}</a>` : c.n;
+    return `<article class="opc-card" id="case-${c.r}" data-g="${c.g}" data-key="${c.n} ${c.f} ${c.d} ${c.res} ${GROUP_LABEL[c.g]}" data-r="${c.r}">
+      <div class="oc-main">
+        <div class="oc-top"><span class="oc-time">${c.t}</span><span class="oc-rank">#${c.r}</span></div>
+        <h4 class="oc-title">${title}${c.href ? `<a class="rp-badge" href="${c.href}" title="查看深度案例报告">深度${DOC}</a>` : ''}</h4>
+        <p class="oc-founder">创业者 · <b>${c.f}</b></p>
+        <p class="oc-desc">${c.d}</p>
+        <p class="oc-result">${c.res}</p>
+      </div>
+      <div class="oc-foot">
+        <span class="oc-cats">${GROUP_LABEL[c.g]}</span>
+        <div class="oc-actions">
+          <span class="op-views" title="阅读量（仅保存在本机，按会话累计）">${EYE} <b data-vc>0</b></span>
+          <button type="button" class="op-btn" data-like="${c.r}" aria-pressed="false" title="点赞（仅保存在本机）">${HEART} <b data-lc>0</b></button>
+          <button type="button" class="op-btn" data-share="${c.r}" title="分享（复制/调用系统分享，计数保存在本机）">${SHARE} <b data-sc>0</b></button>
+        </div>
+      </div>
+    </article>`;
+  }).join('');
+}
+
+/* ===== 本地互动计数（localStorage 持久化，无服务端）===== */
+const LK = r => `opc:like:${r}`, SH = r => `opc:share:${r}`;
+const lsGet = k => { try { return window.localStorage.getItem(k); } catch { return null; } };
+const lsSet = (k,v) => { try { window.localStorage.setItem(k,v); } catch {} };
+
+function paintCounts(r) {
+  const card = document.getElementById('case-' + r);
+  if (!card) return;
+  const liked = lsGet(LK(r)) === '1';
+  const shares = parseInt(lsGet(SH(r)) || '0', 10);
+  const likeBtn = card.querySelector('[data-like]');
+  likeBtn.classList.toggle('liked', liked);
+  likeBtn.setAttribute('aria-pressed', liked ? 'true' : 'false');
+  likeBtn.querySelector('[data-lc]').textContent = liked ? 1 : 0;
+  card.querySelector('[data-sc]').textContent = shares;
+  card.querySelector('[data-vc]').textContent = parseInt(lsGet(VW(r)) || '0', 10);
+}
+
+/* 阅读量：每个浏览器会话对每个案例只计 1 次 */
+const VW = r => `opc:view:${r}`;
+function countViews() {
+  try {
+    if (!window.sessionStorage.getItem('opc:viewed-session')) {
+      CASES.forEach(c => lsSet(VW(c.r), String(parseInt(lsGet(VW(c.r)) || '0', 10) + 1)));
+      window.sessionStorage.setItem('opc:viewed-session', '1');
+    }
+  } catch {}
+}
+
+function bindActions() {
+  document.getElementById('opcGrid').addEventListener('click', (e) => {
+    const likeBtn = e.target.closest('[data-like]');
+    const shareBtn = e.target.closest('[data-share]');
+    if (likeBtn) {
+      const r = likeBtn.dataset.like;
+      const liked = lsGet(LK(r)) === '1';
+      lsSet(LK(r), liked ? '0' : '1');   // 点赞可切换
+      paintCounts(r);
+    } else if (shareBtn) {
+      const r = shareBtn.dataset.share;
+      const c = CASES.find(x => x.r === Number(r));
+      lsSet(SH(r), String(parseInt(lsGet(SH(r)) || '0', 10) + 1));
+      paintCounts(r);
+      const shareData = { title: `OPC 案例墙 · ${c.n}（${c.f}）`, url: location.href.split('#')[0] + '#case-' + r };
+      if (navigator.share) { navigator.share(shareData).catch(() => undefined); }
+      else if (navigator.clipboard) { navigator.clipboard.writeText(shareData.url).catch(() => undefined); }
+    }
+  });
+}
+
+/* ===== 搜索 + 赛道筛选 ===== */
+let keyword = '', group = '';
+function applyFilter() {
+  const cards = document.querySelectorAll('.opc-card');
+  let visible = 0;
+  cards.forEach(card => {
+    const okGroup = !group || card.dataset.g === group;
+    const okKey = !keyword || card.dataset.key.toLowerCase().includes(keyword);
+    const show = okGroup && okKey;
+    card.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+  document.getElementById('opcCount').textContent = `共 ${visible} 个案例`;
+  document.getElementById('opcEmpty').style.display = visible ? 'none' : 'block';
+}
+function bindFilters() {
+  document.getElementById('opcSearch').addEventListener('input', (e) => {
+    keyword = e.target.value.trim().toLowerCase();
+    applyFilter();
+  });
+  /* 仅绑定赛道筛选按钮（.sort 排序按钮有自己的事件处理） */
+  document.querySelectorAll('.fbtn[data-group]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.fbtn[data-group]').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      group = btn.dataset.group;
+      applyFilter();
+    });
+  });
+}
+
+/* ===== 排序（默认按时间；阅读/点赞/分享为降序）===== */
+function metricOf(key, r) {
+  const k = key === 'likes' ? LK(r) : key === 'shares' ? SH(r) : VW(r);
+  return parseInt(lsGet(k) || '0', 10);
+}
+function sortCards(key) {
+  const grid = document.getElementById('opcGrid');
+  const order = key === 'time'
+    ? CASES.map(c => c.r)
+    : [...CASES].sort((a, b) => metricOf(key, b.r) - metricOf(key, a.r)).map(c => c.r);
+  order.forEach(r => grid.appendChild(document.getElementById('case-' + r)));
+}
+function bindSort() {
+  document.querySelectorAll('.fbtn.sort').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.fbtn.sort').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      sortCards(btn.dataset.sort);
+    });
+  });
+}
+
+/* ===== 初始化 ===== */
+render();
+countViews();
+CASES.forEach(c => paintCounts(c.r));
+bindActions();
+bindFilters();
+bindSort();
+applyFilter();
+
+/* ===== 深度报告浮层：点击「深度」徽章/标题，当前页中央浮出报告全文，不跳转 ===== */
+const rpModal = document.getElementById('rpModal');
+const rpFrame = document.getElementById('rpFrame');
+function openReport(href) {
+  /* 目录路径补全为 index.html：file:// 直开不经过服务器，无法自动解析目录默认页 */
+  const src = href.endsWith('/') ? href + 'index.html' : href;
+  rpFrame.src = src;
+  rpModal.hidden = false;
+  document.body.style.overflow = 'hidden';   // 弹层期间锁定背景滚动
+  document.getElementById('rpClose').focus();
+}
+function closeReport() {
+  rpModal.hidden = true;
+  rpFrame.src = 'about:blank';               // 关闭即卸载，停止报告页脚本/滚动位置
+  document.body.style.overflow = '';
+}
+/* 委托：标题链接与「深度」徽章（href 均以 report/ 开头）统一走浮层 */
+document.getElementById('opcGrid').addEventListener('click', (e) => {
+  const link = e.target.closest('a[href^="report/"]');
+  if (link) { e.preventDefault(); openReport(link.getAttribute('href')); }
+});
+rpModal.addEventListener('click', (e) => { if (e.target === rpModal) closeReport(); });
+document.getElementById('rpClose').addEventListener('click', closeReport);
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !rpModal.hidden) closeReport(); });
+/* 报告与案例墙同源：加载后隐藏报告内的「返回案例墙」面包屑（浮层场景冗余） */
+rpFrame.addEventListener('load', () => {
+  try {
+    const doc = rpFrame.contentDocument;
+    if (doc && doc.head) {
+      const s = doc.createElement('style');
+      s.textContent = '.crumb{display:none}';
+      doc.head.appendChild(s);
+    }
+  } catch {}
+});
+</script>
+
+</body>
+</html>

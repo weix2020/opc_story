@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · EmoEase——05 后高中生冼星朗的 AI 情绪疗愈 App · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · EmoEase——05 后高中生的 AI 疗愈 App">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="EmoEase 深度案例报告：16 岁（05 后）高中生冼星朗零基础用 Cursor/Trae 约 20 天开发 AI 情绪疗愈 App，上线冲至 App Store 付费工具榜第 5，获苹果 SSC 全球前 50 杰出获奖者并受邀 WWDC25。12 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>EmoEase 深度案例报告</h1>
+    <h2>05 后高中生冼星朗：零基础、Cursor/Trae、约 20 天<br>做出冲进 App Store 付费工具榜第 5 的 AI 疗愈 App，并拿下苹果 SSC 全球前 50 —— 12 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">学生开发者</span>
+      <span class="tag">vibe coding</span>
+      <span class="tag">AI 疗愈</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">第 5 名</div><div class="k">App Store 付费工具榜（4 发布方交叉）</div></div>
+  <div class="stat"><div class="v up">全球前 50</div><div class="k">苹果 SSC 杰出获奖者（2025-03-28）</div></div>
+  <div class="stat"><div class="v neutral">月入过万</div><div class="k">奖金+咨询+教学（自述口径）</div></div>
+  <div class="stat"><div class="v neutral">16 岁</div><div class="k">05 后 · 完全独立开发（无团队）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">EmoEase 是「国内 AI 一人公司案例墙」上年龄最小的样本之一：开发者冼星朗 2024 年 8 月才第一次接触 AI 编程，此前是毫无编程基础的普通高中生<a class="cref verified" href="#ref-1">[1]</a>；约 20 天后，这款 AI 情绪记录疗愈 App 上线并冲至 App Store 付费工具榜第 5 名<a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a><a class="cref verified" href="#ref-3">[3]</a>；2025 年 3 月，他又以另一款作品入选苹果 Swift Student Challenge（SSC）全球 50 名「杰出获奖者」（Distinguished Winners），受邀赴美参加 WWDC25<a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a>。</p>
+  <div class="two">
+    <div class="card"><div class="ct">App</div><div class="cb">EmoEase — 心灵笔记·正念时光（副标题「每日心情故事创作馆」），免费生活类应用，2024-12-25 上架 App Store（开发者署名 Wai Man SIN，id6739771915）。功能：晨暮记录仪式、情绪笔记智能分类、情绪轨迹可视化与心情报告、正念呼吸与冥想；1.0.2 版起接入 DeepSeek AI 情绪分析，支持锁屏小组件快速打卡。</div><div class="cm">信源：<a class="cref verified" href="#ref-4">[4]</a> <a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="card"><div class="ct">开发者</div><div class="cb">冼星朗，2008 年生（05 后），广东佛山顺德人，高中就读于香港（高二，学生会主席）。2025 年 4 月报道时年龄口径有二：南方都市报与南方+称 16 岁，豹变称 17 岁（2026 年钛媒体稿件称 18 岁，随报道时点浮动）。小红书账号 xxl.ai，即刻账号 xxxxl08。全部报道口径均为个人独立开发，无团队、无合伙人信息。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-2">[2]</a> <a class="cref partial" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-6">[6]</a></div></div>
+    <div class="card"><div class="ct">开发方式</div><div class="cb">vibe coding 全 AI 编程：零基础通过 B 站教程与小红书社区自学，主力工具 Cursor，SSC 参赛作品由 Cursor 与 Trae 两款 AI 编程软件协作完成，过程中接触 AR 技术并自行训练了一个视觉识别模型；EmoEase 从开发到上架约 20 天。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="card"><div class="ct">支持网络</div><div class="cb">上架第一道坎是 688 元/年的苹果开发者年费——Manus 创始人肖弘经「小猫补光灯」开发者花叔转介，无偿赞助 688 元；产品以小红书为主分发阵地，「听劝式开发」让用户在评论区自发当起「产品经理」；系小红书首届独立开发大赛年纪最小的开发者。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-5">[5]</a> <a class="cref verified" href="#ref-2">[2]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2024-08</div><div class="tx">转学香港后，在小红书/B 站第一次接触 AI 编程</div><div class="td">刚转学香港，课余时间充裕；刷到「小猫补光灯」爆火与花叔的 AI 编程教程视频，意识到「做一款产品似乎也没那么困难」。<a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a><a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2024-09 → 11</div><div class="tx">第一个项目：5 天约 20 小时做出学生会网站</div><div class="td">作为学生会主席，用 Cursor 从整理需求、生成代码到搭服务器独立完成；随后做出视频转 Live Photo 小工具 LiveMaster。<a class="cref verified" href="#ref-1">[1]</a><a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2024-12</div><div class="tx">688 元年费危机 → 肖弘无偿赞助；EmoEase 上架</div><div class="td">LiveMaster 上架受阻于 688 元/年开发者年费，向花叔求助被转发到网上，Manus 创始人肖弘看到后转账 688 元；2024-12-25 EmoEase 正式上架 App Store。<a class="cref verified" href="#ref-1">[1]</a><a class="cref partial" href="#ref-5">[5]</a><a class="cref verified" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2025-01 → 02</div><div class="tx">EmoEase 接入 DeepSeek 冲榜；编程比赛奖金 2 万元</div><div class="td">1.0.2 版上线 DeepSeek AI 情绪分析与小组件；产品冲至 App Store 付费工具榜第 5 名；1 月参加 AI 编程比赛进决赛，获学生赛道第二名、奖金 2 万元。<a class="cref verified" href="#ref-4">[4]</a><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a><a class="cref verified" href="#ref-3">[3]</a><a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2025-03-28</div><div class="tx">SSC 结果公布：全球前 50「杰出获奖者」</div><div class="td">参赛最初动机是免掉 688 元年费（前 350 名获一年免费开发者资格），结果以 Cursor+Trae 开发的四星球心理健康小游戏进入全球前 50 杰出获奖者，受邀赴美参加 WWDC25。「这是我开发以来最大的荣誉。」<a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2025-04</div><div class="tx">媒体报道密集落地，成为「05 后开发者」现象样本</div><div class="td">4-15 小红书首届独立开发大赛颁奖（年纪最小开发者）；豹变 4-18、南方都市报 4-21、南方+ 4-22、中华网转载 4-23、创业最前线 4-25 相继报道；4-25 EmoEase 1.1 更新。<a class="cref verified" href="#ref-2">[2]</a><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-7">[7]</a><a class="cref partial" href="#ref-8">[8]</a><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2025-06</div><div class="tx">母亲陪同赴美参加 WWDC25</div><div class="td">媒体报道其将于 6 月赴美并「有机会与库克当面交流」；Apple 官方 In the Loop 记录 SSC 获奖者 6 月 9 日现身 WWDC25 现场。<a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-9">[9]</a></div></div>
+    <div class="node"><div class="dt">2025 年起持续</div><div class="tx">「牛马时钟」发布即数千下载，产品矩阵扩至 6 款</div><div class="td">与开发者合作上架「牛马时钟」打工人高精度工资计算器，发布即数千下载；SSC 作品以 EmotionGalaxy 上架；后续陆续发布 Liyn、DSE 口语助手等，App Store 开发者账号下已有 6 款应用。<a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-10">[10]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：启蒙来自「看见同辈的可能性」</div><div class="cb">2024 年 8 月，冼星朗在小红书刷到「小猫补光灯」爆火——这款恰恰由独立开发者花叔用 Cursor 约 1 小时完成 MVP 的产品（案例墙既有核验值）让他第一次意识到普通人借助 AI 也能开发。随后 5 天 20 小时的学生会网站给了他第一次强正反馈，「让像我这样的普通人也能通过代码实现创意」。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-5">[5]</a></div></div>
+  <div class="card"><div class="ct">转折二：688 元年费危机与「正反馈」帮助链</div><div class="cb">给学生开发者造成最大障碍的不是技术而是 688 元/年的开发者年费。花叔把求助发到网上后，肖弘转账并留言「如果真的有天赋这种东西，它的一半应该是由正向反馈构成的」。这句被广泛传播的话恰好概括了本案的成长模型：社区前辈资助 → 上架 → 用户正反馈 → 更多产品。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-5">[5]</a></div></div>
+  <div class="card red"><div class="ct">转折三：从「免年费」到「杰出获奖者」的意外跃迁</div><div class="cb">参加 SSC 的最初动机只是免掉 688 元年费（前 350 名获一年免费开发者资格）；热心网友在其求助帖下指路。他以四星球心理健康小游戏参赛（Cursor+Trae 协作），结果超出预期进入全球前 50 杰出获奖者，获苹果提供差旅住宿、受邀 WWDC25——从「省 688 元」跃迁到苹果官方最高层级的学生认证。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a></div></div>
+  <div class="quote">
+    <p>这不是什么天才剧本，而是每个普通人都能复制的现实——当手中工具足够锋利时，莽撞的开始比完美的计划更有力量。</p>
+    <span class="src">—— 冼星朗小红书发帖，南方都市报与豹变两源引述，转引自 <a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-2">[2]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>内容</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>产品功能</td><td>AI 情绪记录 + 疗愈对话：晨暮记录仪式（清晨写下期待、睡前回顾感恩）、情绪标签智能分类、DeepSeek AI 情绪分析报告、情绪预警系统（识别连续负面情绪并推送关怀提醒）、呼吸练习与冥想课程、锁屏小组件快速打卡</td><td><a class="cref verified" href="#ref-4">[4]</a></td></tr>
+      <tr><td>技术实现</td><td>vibe coding 全 AI 编程：零编程基础自学，Cursor 为主、SSC 作品由 Trae 协作；服务端接入 DeepSeek 情绪分析；页面宣称本地数据存储、端到端加密、「不收集任何数据」</td><td><a class="cref verified" href="#ref-4">[4]</a><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td>变现</td><td>App 本体免费（页面未见内购项）；媒体口径的「月入过万」来自三部分：比赛奖金（2 万元）、企业 AI 咨询（500-800 元/次）、个人 AI 编程教学（2000 元/次·2 小时，每周末赴深圳授课）</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref partial" href="#ref-5">[5]</a></td></tr>
+      <tr><td>面向客群</td><td>起点是开发者本人与同龄人：因学业压力、人际关系、沉迷电子产品而受情绪困扰的青少年学生；App 免费与 4+ 年龄分级面向泛情绪管理用户</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>解决痛点</td><td>青少年情绪表达渠道稀缺；市面情绪类 App 普遍缺少 AI 集成，「不能实现情绪记录和管理的统一」——EmoEase 把情绪记录与 AI 分析合并进一个入口</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>值得注意的是，与「下载付费」的直觉相反，EmoEase 本体免费，媒体口径的「月入过万」几乎全部来自奖金与咨询、教学服务——这是一个「App 获客 + 个人 IP 变现」的结构，而非 App 直接收费结构：产品带来媒体曝光与信任背书，咨询与教学把影响力兑现为现金流<a class="cref verified" href="#ref-1">[1]</a><a class="cref partial" href="#ref-5">[5]</a>。</p>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>App Store 付费工具榜</td><td class="hl">第 5 名</td><td>2025 年初（上线后）</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a><a class="cref verified" href="#ref-3">[3]</a><a class="cref cross" href="#ref-6">[6]</a>（4 发布方交叉）</td></tr>
+      <tr><td>苹果 SSC 杰出获奖者</td><td class="hl">全球前 50（Distinguished Winners）</td><td>2025-03-28</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a>（双源）+ <a class="cref cross" href="#ref-9">[9]</a>（Apple 官方机制佐证）</td></tr>
+      <tr><td>月收入</td><td>过万（自述「差不多一万」）</td><td>2025-04 自述</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref partial" href="#ref-5">[5]</a>（南都系单一发布方自述口径）</td></tr>
+      <tr><td>牛马时钟下载</td><td>发布即数千下载</td><td>2025-04</td><td><a class="cref verified" href="#ref-1">[1]</a>（单源自述）</td></tr>
+      <tr><td>EmoEase 当前评分</td><td>4.0 分（4 个评分）</td><td>2026-11 查询</td><td><a class="cref verified" href="#ref-4">[4]</a>（一手，样本极小）</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    付费工具榜第 5 名为南方都市报、豹变、创业最前线、钛媒体 4 个发布方交叉的媒体口径，未见 Apple 官方榜单存档；SSC「全球前 50」有南都+腾讯双源，Apple 官方页确认 2025 年度杰出获奖者共 50 名及受邀机制，但官方页面未直接列出冼星朗姓名；「月入过万」为南都系单一发布方的受访者自述（含 2 万元一次性奖金）；「牛马时钟数千下载」仅南都单一信源；EmoEase 下载量、留存与收入数据均未披露。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">把 EmoEase 放入案例墙「个人开发者 + AI App」坐标系（对标数据均为案例墙既有核验值，详见案例墙对应卡片）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>案例</th><th>开发者背景</th><th>开发速度</th><th>变现路径</th><th>数据表现</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>EmoEase</b></td><td>冼星朗，16 岁（05 后）高中生，学生开发者、零基础</td><td>约 20 天（Cursor/Trae）</td><td>免费 App + 奖金/咨询/教学</td><td>付费工具榜第 5；SSC 全球前 50 杰出获奖者</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-4">[4]</a></td></tr>
+      <tr><td>小猫补光灯（Pro）</td><td>陈云飞（花叔），2023 年裸辞数字游民，职业转型者</td><td>Cursor 约 1 小时 MVP</td><td>下载付费 + Pro 内购</td><td>下载 30-50 万；Pro 收入约 30-40 万元</td><td><a href="../../index.html" style="color:#2980b9">案例墙 [44]</a></td></tr>
+      <tr><td>胃之书</td><td>赵纯想，文科生前大厂产品经理，职业转型者</td><td>AI App 独立开发</td><td>免费 + 订阅</td><td>5 个月收入 1.2 万美元；约 9 万用户</td><td><a href="../../index.html" style="color:#2980b9">案例墙 [38]</a></td></tr>
+      <tr><td>ChatNio</td><td>zmh，15 岁创办，学生开发者</td><td>开源多模型对话平台</td><td>开源 + 商业化，2024 年七位数被收购</td><td>月活近 10 万</td><td><a href="../../index.html" style="color:#2980b9">案例墙 [3]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>学生开发者与职业转型者的分野清晰：职业转型者（花叔、赵纯想）直接以 App 收入为目标，产品即生意；学生开发者（冼星朗、zmh）的第一桶金往往来自奖金、赞助与个人服务，App 更多是「技术名片」与正反馈引擎。EmoEase 的特殊之处在于：它是本组案例中被主流媒体确认的<b>最年轻样本</b>，且获得 Apple 官方赛事的最高层级认证（SSC 杰出获奖者）<a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-9">[9]</a>；而它的启蒙产品「小猫补光灯」恰是本表的职业转型者样本——花叔本人正是资助链条中的一环，两案在社区网络中直接相连<a class="cref verified" href="#ref-1">[1]</a><a class="cref partial" href="#ref-5">[5]</a>。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:130px">维度</th><th>分析</th><th style="width:90px">信源</th></tr></thead>
+    <tbody>
+      <tr><td>1. 产品功能</td><td>AI 情绪记录 + 疗愈对话：晨暮记录仪式、情绪标签智能分类、DeepSeek AI 情绪分析报告、情绪预警系统（识别连续负面情绪、及时关怀提醒）、呼吸/冥想正念课程、锁屏小组件</td><td><a class="cref verified" href="#ref-4">[4]</a></td></tr>
+      <tr><td>2. 面向客群</td><td>核心为青少年学生（产品起点即开发者本人与同学的情绪困扰）；免费策略与 4+ 年龄分级面向泛情绪管理用户；后续上架 DSE 口语助手，显示其持续深耕学生场景</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-10">[10]</a></td></tr>
+      <tr><td>3. 解决痛点</td><td>青少年情绪表达渠道稀缺——开发者希望产品「能成为年轻人倾诉情绪的树洞」；功能层面解决市面情绪类 App「无 AI 集成、记录与管理割裂」的问题</td><td><a class="cref cross" href="#ref-12">[12]</a><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>4. 预估年化营收</td><td>「月入过万」自述口径外推约 12 万元/年；但其中含 2 万元一次性比赛奖金，剔除后经常性收入以企业咨询（500-800 元/次）与个人教学（2000 元/次）为主；App 本体免费、无直接收入披露。<span class="hl">年化营收为 C 级推算</span>，且属学生个人兼职收入而非公司营收</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref partial" href="#ref-5">[5]</a></td></tr>
+      <tr><td>5. 融资进展</td><td>未检索到公开信息。仅有的外部资金为 Manus 创始人肖弘个人无偿赞助 688 元（非股权投资）；全部媒体报道未提及任何融资安排</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>6. 市场评价</td><td>Apple 官方认证含金量最高：SSC 杰出获奖者全球仅 50 席、官方提供差旅住宿并受邀 WWDC25；南方都市报、南方+、豹变、钛媒体等主流媒体密集正面报道；App Store 4 个评分 4.0 分（样本极小，参考意义有限）</td><td><a class="cref cross" href="#ref-9">[9]</a><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-7">[7]</a><a class="cref verified" href="#ref-4">[4]</a></td></tr>
+      <tr><td>7. 投入成本与合规风险</td><td>开发成本近零（自有设备 + AI 工具订阅，具体金额未披露）。风险：①未成年人创业合规——收入以个人咨询形式取得，无公司主体信息；②AI 疗愈的心理边界——情绪预警与 AI 对话非医疗服务，面向青少年用户的伦理责任与内容安全待观察；③数据隐私——宣称本地存储、端到端加密、不收集数据，但隐私政策托管于飞书个人文档，合规成熟度有限</td><td><a class="cref verified" href="#ref-4">[4]</a><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 三处口径冲突与三处留白（截至 2026-11-11 检索）</div>
+    ① 年龄三说：16 岁（南方都市报/南方+）、17 岁（豹变/新浪转载）、18 岁（钛媒体 2026 年稿）——2008 年出生属实，周岁随报道时点浮动，本报告以首发报道「16 岁」为主口径；② 开发时长两说：约 20 天（南都/豹变/网易多源一致）vs「18 小时做完」（PANews 转引投资人口径，单源孤证，按 20 天采信）<sup class="cite partial">[11]</sup>；③「月入过万」为南都系单一发布方的自述口径（BookAI 访谈自述「差不多一万」互证，但同为自述，无第三方验证）。留白：WWDC25「面见库克」系 2025-04 报道的预期表述（「有机会当面交流」），未检索到 2025-06 之后的实际会面专门报道，Apple 官方仅记录 SSC 获奖者群体现身 WWDC25；EmoEase 下载量、留存、收入均未披露；公司/主体注册信息未检索到。
+  </div>
+  <div class="box note">
+    <div class="bt">📌 AI 疗愈的效果边界与学业平衡</div>
+    AI 疗愈类 App 普遍不构成医疗服务，情绪预警与 AI 对话对真实心理危机的拦截能力有限，而本案例的核心用户恰是情绪脆弱期的青少年，使这一边界更为敏感。学业平衡方面，钛媒体引述其自述「放学回家第一件事就是打开电脑做开发，很多时候连作业都不想写」——对未成年开发者，精力分配是长期可持续性的真实约束，也是所有「高中生创业」叙事应保留的注脚。
+  </div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">EmoEase 证明了 OPC 模式在「零资源起点」的极限位置：无编程基础、无团队、连 688 元年费都需要社会资助的 16 岁学生，靠「AI 编程工具（Cursor/Trae）+ 社区分发（小红书）+ 赛事体系（SSC）」三级正反馈，八个月内走完从零到 App Store 付费工具榜第 5、SSC 全球前 50 的路径。它同时提示：学生开发者的「营收」结构以奖金与服务为主，与职业转型者的「产品收入」结构不可直接比较；其可复制性依附于社区网络与赛事通道，而非单一工具。</div><div class="cm"><a class="cref verified" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-6">[6]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 12 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立发布方交叉且可回溯），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/转载链）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx verified">[1]</span><span class="rt">A</span><span class="st">主流媒体专访（转载渠道）</span></div><div class="ti">16岁高中生创业奇遇记，用AI编程在八个月内月入过万（南方都市报，记者赵唯佳）</div><div class="mt"><b>来源：</b>南方都市报官方账号（腾讯新闻转载）　<b>发布日期：</b>2025-04-21<br><a href="https://view.inews.qq.com/a/20250421A06J1Y00" target="_blank" rel="noopener">https://view.inews.qq.com/a/20250421A06J1Y00</a></div><div class="note">事实核查：一手专访。零基础起点、2024-08 接触 AI 编程、小猫补光灯启蒙、5 天 20 小时学生会网站、688 元年费与肖弘赞助、牛马时钟数千下载、EmoEase 20 天开发与榜第 5、SSC 杰出获奖者（2025-03-28）、收入三结构、6 月母亲陪同赴美均出自此稿；与 [2][3][7][8] 多源交叉。「月入过万」为受访者自述口径。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx verified">[2]</span><span class="rt">B+</span><span class="st">商业观察媒体</span></div><div class="ti">「听劝」的小红书，长出了一批00后AI开发者（豹变，作者陈法善）</div><div class="mt"><b>来源：</b>豹变（腾讯新闻转载）　<b>发布日期：</b>2025-04-18<br><a href="https://view.inews.qq.com/a/20250417A0A8X000" target="_blank" rel="noopener">https://view.inews.qq.com/a/20250417A0A8X000</a></div><div class="note">事实核查：与南都独立成稿，确认 2008 年出生、2024-08 接触 AI 编程、20 天做出软件入围 SSC 前 50、EMOEASE 冲上 Apple Store 工具付费榜第五、SSC 过程接触 AR 并自训视觉识别模型、「莽撞的开始」引语；该稿年龄口径为 17 岁（与南都 16 岁并列标注）。新浪财经 2025-04-18 同步转载（finance.sina.com.cn/roll/2025-04-18/doc-inetptpf2787614.shtml）。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx verified">[3]</span><span class="rt">B</span><span class="st">创业垂直媒体</span></div><div class="ti">「AI+社区」成为现象，超5万独立开发者涌入小红书（创业最前线，作者庆艳）</div><div class="mt"><b>来源：</b>网易号（创业最前线）　<b>发布日期：</b>2025-04-25<br><a href="https://c.m.163.com/news/a/JU16SV4P0511C9DR.html" target="_blank" rel="noopener">https://c.m.163.com/news/a/JU16SV4P0511C9DR.html</a></div><div class="note">事实核查：第三个独立发布方，确认 2008 年出生、「Cursor+小红书」两件套、20 天做出第一款 App EMOEASE、一上线冲上 Apple Store 工具付费榜第五；另确认「胃之书」获小红书独立开发大赛最佳 AI 项目（陆节对标互证）。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx verified">[4]</span><span class="rt">A+</span><span class="st">App Store 产品页（一手）</span></div><div class="ti">EmoEase — 心灵笔记·正念时光（App Store 中国区）</div><div class="mt"><b>来源：</b>Apple App Store（开发者 Wai Man SIN，id6739771915）　<b>发布日期：</b>上架 2024-12-25（版本 1.1 更新于 2025-04-25）<br><a href="https://apps.apple.com/cn/app/emoease-%E5%BF%83%E7%81%B5%E7%AC%94%E8%AE%B0-%E6%AD%A3%E5%BF%B5%E6%97%B6%E5%85%89/id6739771915" target="_blank" rel="noopener">https://apps.apple.com/cn/app/emoease-心灵笔记-正念时光/id6739771915</a></div><div class="note">事实核查：一手官方页。免费生活类应用、DeepSeek AI 情绪分析（1.0.2 版本说明）、情绪预警系统（1.0.1）、锁屏小组件、「本地数据存储、端到端加密」「未收集数据」、隐私政策挂飞书文档均出自此页；版本说明中「小红书：xxl.ai」与 [5] 访谈互证账号；上架时间 2024-12-25 与肖弘资助时间线（2024-12）衔接自洽。第三方数据页 appshunter.io（id6739771915）佐证发布日期。注意：App Store 另有同名近似应用「EmoSea」（开发者 Traffic Heroes Ltd.），与本案例无关，已甄别排除。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx partial">[5]</span><span class="rt">C+</span><span class="st">一手访谈（署名自媒体）</span></div><div class="ti">16岁的高中生，靠AI编程月入过万（BookAI.TOP，花叔采访冼星朗）</div><div class="mt"><b>来源：</b>BookAI.TOP 实战案例（原发微信公众号）　<b>发布日期：</b>2025 年（约 4 月）<br><a href="https://www.bookai.top/cursor/%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/highschool" target="_blank" rel="noopener">https://www.bookai.top/cursor/实战案例/highschool</a></div><div class="note">事实核查：资助链条当事人花叔（自称「花生」）的访谈实录，属一手但为署名自媒体。确认学生会主席身份、B 站教程起点、2024-12 LiveMaster 求助与肖弘 688 元资助、收入三结构与「一个月差不多能有一万块」自述、小红书账号 xxl.ai 与即刻 xxxxl08；钛媒体 [6] 将「花叔」写作「花生」，为同一人两种称呼。收入数据为自述口径，与 [1] 互证但不构成第三方验证。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx cross">[6]</span><span class="rt">B</span><span class="st">科技媒体</span></div><div class="ti">Vibe coding，撕裂程序员旧世界（钛媒体，作者李程程）</div><div class="mt"><b>来源：</b>钛媒体 APP（头条号分发）　<b>发布日期：</b>约 2026 年（文中引用 2026 年 4 月行业数据）<br><a href="http://m.toutiao.com/group/7634438887780008500/" target="_blank" rel="noopener">http://m.toutiao.com/group/7634438887780008500/</a></div><div class="note">事实核查：第四个独立发布方，确认 2008 年出生、EmoEase 登上 App Store 付费榜第五、Cursor 开发学生会网站、肖弘 688 元资助；该稿年龄口径为 18 岁（2026 年视角），并补充「放学回家第一件事就是打开电脑做开发，很多时候连作业都不想写」的自述。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">A</span><span class="st">省级党媒（同集团稿件）</span></div><div class="ti">佛山05后高中生，用AI创业月入过万（南方+，记者高雨宁）</div><div class="mt"><b>来源：</b>南方新闻网（南方+）　<b>发布日期：</b>2025-04-22<br><a href="https://www.nfnews.com/content/v3aZkADK61.html" target="_blank" rel="noopener">https://www.nfnews.com/content/v3aZkADK61.html</a></div><div class="note">事实核查：确认佛山顺德、高二、16 岁、半年内开发 AI 疗愈应用登付费工具榜第五、小红书首届独立开发大赛年纪最小开发者、月入过万。核查注记：南方+与南方都市报同属南方报业传媒集团，稿件图源标注南都，属同集团改写稿，独立发布方效力按打折计（故标 cross 而非计入 verified 交叉源）。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx partial">[8]</span><span class="rt">C+</span><span class="st">门户转载</span></div><div class="ti">16岁高中生用AI创业月入过万 从零基础到开发者奇遇记（中华网转载）</div><div class="mt"><b>来源：</b>中华网热点频道（原发南方都市报头条号）　<b>发布日期：</b>2025-04-23<br><a href="https://3g.china.com/act/redian/13004758/20250423/48248604.html" target="_blank" rel="noopener">https://3g.china.com/act/redian/13004758/20250423/48248604.html</a></div><div class="note">事实核查：转载链，内容与 [1] 同稿（注明原发南都）；作为传播广度佐证收录，不计独立交叉源。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx cross">[9]</span><span class="rt">A+</span><span class="st">Apple 官方（机制佐证组）</span></div><div class="ti">Swift Student Challenge 杰出获奖者官方页 + Apple Newsroom 相关记录</div><div class="mt"><b>来源：</b>Apple Developer / Apple Newsroom　<b>发布日期：</b>2025 年<br><a href="https://developer.apple.com/cn/swift-student-challenge/distinguished-winners/" target="_blank" rel="noopener">https://developer.apple.com/cn/swift-student-challenge/distinguished-winners/</a></div><div class="note">事实核查：官方页确认杰出获奖者机制——受邀亲赴库比提诺 Apple 园区三天、Apple 提供差旅费和住宿费；Apple Newsroom（2025-05）确认 2025 年度「Fifty Distinguished Winners」受邀出席 WWDC；Apple「In the Loop」（2025-06-09）记录 SSC 获奖者现身 WWDC25 现场并获得 Tim Cook 迎接。重要留白：官方页面未直接列出冼星朗姓名，其获奖事实依赖南都+腾讯双源媒体报道，Apple 官方仅作机制佐证。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx cross">[10]</span><span class="rt">A+</span><span class="st">App Store 开发者页（一手）</span></div><div class="ti">Wai Man SIN 开发者主页（App Store 中国区，6 款应用）</div><div class="mt"><b>来源：</b>Apple App Store（开发者 id1786960385）　<b>发布日期：</b>2026-11 查询<br><a href="https://apps.apple.com/cn/developer/wai-man-sin/id1786960385" target="_blank" rel="noopener">https://apps.apple.com/cn/developer/wai-man-sin/id1786960385</a></div><div class="note">事实核查：一手产品矩阵——EmoEase、牛马时钟——打工人的时间提款机（id6740142547，与 [1] 报道互证）、EmotionGalaxy（id6744534726，与 SSC「四星球心理健康小游戏」描述对应）、Liyn、DSE 口语助手（DSE 为香港中学文凭考试，佐证香港就读背景）；未检索到公司主体信息，与「个人开发者」口径一致。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx partial">[11]</span><span class="rt">C+</span><span class="st">投资机构专栏（转述）</span></div><div class="ti">下一个 $50 mm ARR 的种子，或许就埋在小红书的笔记里（Folius Ventures 创始人 MapleLeafCap，PA荐读）</div><div class="mt"><b>来源：</b>PANews　<b>发布日期：</b>约 2026 年<br><a href="https://www.panewslab.com/zh-hant/articles/019d1b6d-92fc-77d7-98c2-237faa636fb0" target="_blank" rel="noopener">https://www.panewslab.com/zh-hant/articles/019d1b6d-92fc-77d7-98c2-237faa636fb0</a></div><div class="note">事实核查：该文称 EmoEase「18 小时做完，登上 App Store 付费工具排行榜第 5」——榜第 5 与多源一致，但「18 小时」与主流「约 20 天」口径冲突，且为投资人间接转述（单源孤证），仅作口径冲突记录，不采信。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx cross">[12]</span><span class="rt">A</span><span class="st">省级党媒面孔专栏</span></div><div class="ti">今日面孔｜这群广东年轻人，正在改写AI规则（南方新闻网）</div><div class="mt"><b>来源：</b>南方新闻网　<b>发布日期：</b>2025 年<br><a href="https://www.nfnews.com/content/732Ge24N6W.html" target="_blank" rel="noopener">https://www.nfnews.com/content/732Ge24N6W.html</a></div><div class="note">事实核查：检索片段确认关键表述——「关注到青少年普遍存在情绪焦虑问题，零基础起步」「一度冲到苹果付费工具榜单第五位，短短半年实现稳定收入」「希望这款产品，能成为年轻人倾诉情绪的树洞」；与 [1][7] 同属南方报业系，内容互证。「树洞」引语出自此稿。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 12 条。核验标签分布：🟢 已核验（verified）4 条、🔵 多源印证（cross）5 条、🟡 部分映证（partial）3 条。信源评级分布：A+/A 级 6 条（Apple 官方 2 条、App Store 一手 2 条、南都/南方+系 2 条，原文回溯全部完成）、B+/B 级 3 条、C+ 级 3 条（转载链、一手自述访谈、投资机构转述——均已标注口径）。核验方式：11 条 URL 直接回溯命中，1 条（[12]）经检索片段确认；任务底账全部 URL 核验可达，无一失败。三处口径冲突（年龄 16/17/18 岁、开发时长 20 天 vs 18 小时、「月入过万」单源自述）与三处留白（WWDC25 实际面见库克未确证、EmoEase 运营数据未披露、公司主体信息未检索到）已在正文显式标注。未发现伪造链接；同名近似应用「EmoSea」（Traffic Heroes Ltd.）已甄别排除。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-11 · 营收与年化推算值均标注置信口径，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

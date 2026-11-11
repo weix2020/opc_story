@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · Steam《明末：欲火重生》—— 43 岁失业美术师的 AI 独立游戏 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · Steam《明末：欲火重生》">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="AI 游戏《明末：欲火重生》深度案例报告：43 岁失业美术设计师阿拉丁巴图，8 个月全程 AI 辅助独立开发 2D 开放世界视觉小说，Steam EA 单人署名上线，首月进账约 6 万元（单源口径）。11 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>AI 游戏《明末：欲火重生》深度案例报告</h1>
+    <h2>43 岁失业美术设计师阿拉丁巴图：一个人、8 个月、全程 AI 辅助<br>做出上架 Steam 的 2D 开放世界视觉小说，首月进账约 6 万元 —— 11 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">作品型 OPC</span>
+      <span class="tag">AI 原生</span>
+      <span class="tag">Steam EA</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">约 6 万元</div><div class="k">首月收入（GameLook 报道口径 · 单源）</div></div>
+  <div class="stat"><div class="v neutral">551 条</div><div class="k">Steam 累计评价 · Mixed（308 好 / 243 差）</div></div>
+  <div class="stat"><div class="v neutral">1 人</div><div class="k">开发与发行署名（AladdinBatu）</div></div>
+  <div class="stat"><div class="v neutral">8 个月</div><div class="k">从零学虚幻引擎到 Steam 上架</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">《明末：欲火重生》（Late Ming: Reborn in Flames）是案例墙中罕见的「中年失业转型 + 全程 AI 辅助做游戏」样本：一位 43 岁、失业一年多的上海美术设计师，从零自学虚幻引擎，用 8 个月把一款 2D 开放世界视觉小说做到上架 Steam——开发与发行栏均为他本人一人署名，并在上线首月获得了约 6 万元的收入。它同时也是一个争议样本：上线次日作者便发布道歉视频，Steam 口碑至今停在「褒贬不一」。</p>
+  <div class="two">
+    <div class="card"><div class="ct">作品</div><div class="cb">2D 开放世界视觉小说（Steam AppId 3948550，EA 抢先体验）：玩家扮演穿越至明朝末年的少年「魏邪」，在各方势力间游走，通过完成任务与互动提升好感度、解锁角色故事线。EA 版已含种田经营、商店系统、城寨建设、军团作战、攻略系统与多结局分支；支持简体中文全程配音（AI 语音）与英/俄/日三语界面字幕。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="card"><div class="ct">开发者</div><div class="cb">网名「阿拉丁巴图」（AladdinBatu，真名未公开），43 岁，上海，原美术设计师（B 站简介自述「以前是平面设计师，搞过音乐，做过三维动画，拍过广告」）；长期失业转型中，写小说、做 AI 短视频均未成气候；B 站 UP 主（UID 22281485，2026-11 实测粉丝 1.3 万，2019 年 10 月开号）。</div><div class="cm">信源：<a class="cref partial" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-4">[4]</a></div></div>
+    <div class="card"><div class="ct">开发方式</div><div class="cb">全程 AI 辅助、完全独立开发：立绘与场景美术由 AI 绘画生成，配音由 AI 语音完成，程序为自学 UE5 加 AI 辅助（本人自述上线时「分不清显存和内存」）；从 2025 年 3 月开始学虚幻引擎到 2025-11-14 上架 Steam，前后 8 个月。</div><div class="cm">信源：<a class="cref partial" href="#ref-5">[5]</a> <a class="cref partial" href="#ref-6">[6]</a></div></div>
+    <div class="card"><div class="ct">商业状态</div><div class="cb">2025-11-14 Steam EA 上线，开发/发行均单人署名 AladdinBatu；首发国区定价 15 元（促销折后 9 元），2026-11 实测国区 ¥18、美区 $2.99；首月收入约 6 万元（GameLook 2026-01-13 报道口径，<b>营收单源</b>）；Steam 累计评价 551 条、口碑 Mixed，佐证商业真实落地。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-8">[8]</a> <a class="cref partial" href="#ref-5">[5]</a></div></div>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 名称区分提醒（务必注意）</div>
+    本案《明末：欲火重生》与灵泽科技开发、505 Games 发行的国产 3A 动作游戏《明末：渊虚之羽》（2025-07-24 发售）<b>毫无关系</b>，两者仅题材背景（明末）与命名结构相似。游戏媒体 17173 直接称本案「硬蹭国内某款知名 3A 大作」，并称两者上线口碑「难分伯仲，都被打进了『褒贬不一』的冷宫」<a class="cref cross" href="#ref-4">[4]</a>。检索、引用与购买时请认准 Steam AppId 3948550 与开发者署名 AladdinBatu<a class="cref partial" href="#ref-11">[11]</a>。
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2019-10 → 2021</div><div class="tx">B 站记录生活，短视频转主业未遂</div><div class="td">2019 年 10 月发布第一条视频（coser 采访），内容杂乱、播放量低；2021 年剃掉长发，决定把短视频当主业拼一把，一次拍摄中手机摔碎，火苗几乎熄灭。<a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2020 → 2024-10</div><div class="tx">两段「失业」叙事的交织</div><div class="td">GameLook 口径：2020 年疫情失业、孩子出生，2021 年起全力做自媒体；17173 口径：在上海从事美术设计工作、常年加班，2024 年 10 月辞职后陷入中年焦虑，一年多找不到工作——期间写小说（签约两本无收益）、做 AI 故事视频与原创歌曲，自媒体运营两三年粉丝不足 1 万。两稿侧重不同，如实并列。<a class="cref partial" href="#ref-5">[5]</a><a class="cref cross" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2023-08</div><div class="tx">第一支 AI 短视频走红：为刀郎《罗刹海市》做 AI 动画 MV</div><div class="td">播放量突破 155 万，是过去生活 vlog 的数百倍；但百万播放的平台收益仅 146 元，2023 年 11 月短视频月收入降至 1436 元，全年自述「一共收入 1900 块」。<a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2023 → 2024</div><div class="tx">AI 视频与 vlog 来回摇摆、炒股亏钱、求职焦虑</div><div class="td">AIGC 摸索积累了经验，也让他萌生念头：结合自己的 AI 经验，做一款属于自己的游戏。<a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2025-03</div><div class="tx">从零开始学虚幻引擎（8 个月口径的起点）</div><div class="td">本人自述「去年三月，我开始学虚幻引擎」；当时没有任何程序背景，选文字冒险/视觉小说正是因其对程序要求低，能发挥 AI 叙事与生成美术优势。<a class="cref partial" href="#ref-6">[6]</a><a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2025 年中</div><div class="tx">第一部作品《饥民：重生之东汉末年》练手</div><div class="td">美术全部 AI 绘画，含多场景、分支选项、任务链（后山挖矿、铁匠铺换钱推进剧情），甚至实现全中文 AI 配音；GameLook 称其「闭关几个月」完成。<a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2025-07 底</div><div class="tx">全面投入《明末》开发（17173 口径：立项到上线不到半年）</div><div class="td">综合此前各方向经验加自学 UE5，形成游戏雏形；同期持续在 B 站连载开发日志、直播开发，但收效甚微。<a class="cref cross" href="#ref-4">[4]</a><a class="cref partial" href="#ref-10">[10]</a></div></div>
+    <div class="node"><div class="dt">2025-08</div><div class="tx">更名《明末：浴火重生/欲火重生》，背景扩展至清军与李自成对抗时期</div><div class="td">地图大幅扩充，人物加入对话与属性系统，剧情因玩家选择产生分歧；Steam 审核多次退回，「折腾了一个多月，愣是让我把一个 GalGame 变成了生存游戏」。<a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2025-10-22</div><div class="tx">Steam 商店页上线，游民星空报道「又一款明末游戏」</div><div class="td">报道确认 2D 开放世界视觉小说定位、魏邪设定与「游戏制作：AladdinBatu / 游戏发行：AladdinBatu」单人署名。<a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2025-11-14</div><div class="tx"><b>锚点：Steam EA 正式发售</b></div><div class="td">国区定价 15 元，单人署名开发+发行；因独自开发、缺乏测试，发售即 BUG 频出，第一天修到凌晨四点。<a class="cref verified" href="#ref-1">[1]</a><a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2025-11-15</div><div class="tx">上线次日发布 B 站道歉视频</div><div class="td">道歉原因：上线初期恶性 BUG 频出（存档异常回档、游戏进不去、好感度卡任务进度），美术「一眼 AI」，而生活压力使他无法继续打磨、只能「先发后改」——「急需给家庭一个交代」。17173 描述其在视频中红了眼眶。<a class="cref cross" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2025-11-28</div><div class="tx">17173 报道：折后 9 元卖出近 3000 份</div><div class="td">报道同时抛出行业之问：当「开发日志/制作人故事」成为加分项，感情牌能否弥补游戏质量缺陷？<a class="cref cross" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2026-01-13</div><div class="tx">GameLook 复盘：首月进账约 6 万元</div><div class="td">「这款带着些许擦边内容、被部分玩家戏称为《明末：X火焚身》的游戏，在评论区争议不少的同时，竟实现了第一个月进账六万的成绩」；腾讯新闻、中华网同日转载。<a class="cref partial" href="#ref-5">[5]</a><a class="cref partial" href="#ref-7">[7]</a><a class="cref partial" href="#ref-9">[9]</a></div></div>
+    <div class="node"><div class="dt">2026-08-12</div><div class="tx">游民星空论坛「菜鸟开发者报道贴」：第三章上线，版本 1.3.4</div><div class="td">本人一手自述：游戏从「进都进不去」修到能玩，从第一章《锄禾日当午》做到第三章《弯弓射大雕》，新增城寨系统、军团作战、攻略系统等；一个「门」BUG 修了四个月；「我一个人，还在继续做」。<a class="cref partial" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2026-11-11（本报告实测）</div><div class="tx">口碑 Mixed 走平，近 30 天转「差评偏多」</div><div class="td">Steam 商店页实测全部评价 Mixed（449 条，53% 好评）、近 30 天 Mostly Negative（38 条，39%）；Steambase 2026-11-06 口径累计 551 条（308 好/243 差）。<a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-8">[8]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：AI 短视频试水教会他「流量不值钱，产品才值钱」</div><div class="cb">2023 年 8 月《罗刹海市》AI 动画 MV 的 155 万播放是高光，也是幻觉——一条百万播放视频的平台收益只有 146 元，2023 年全年自媒体收入 1900 元。这段经历决定了他的下一步选品逻辑：不再追纯内容流量，而是寻找「能直接卖钱」的交付物。视觉小说/文字冒险被选中，正是因为它是「无程序背景者 + AI 生成美术 + AI 配音」三重优势的交集，且 Steam 买断制天然可收款。</div><div class="cm">信源：<a class="cref partial" href="#ref-5">[5]</a></div></div>
+  <div class="card"><div class="ct">转折二：《饥民》练手 → 《明末》冲榜的「两步走」</div><div class="cb">他没有直接上马《明末》，而是先做出体量更小的《饥民：重生之东汉末年》验证全流程（AI 美术、任务链、AI 全中文配音），再更名扩容、把背景扩展到清军与李自成对抗时期，用同一套管线做出《明末：欲火重生》。这种「小成本练手 — 同管线放大」的路径，是个人开发者对冲能力不足的典型策略；代价是 Steam 审核反复退回、上线节奏被打乱。</div><div class="cm">信源：<a class="cref partial" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-2">[2]</a></div></div>
+  <div class="card red"><div class="ct">转折三：「先发后改」的代价与道歉循环</div><div class="cb">上线版本几乎未经内测，恶性 BUG 频出（存档回档、无法进入游戏），美术「一眼 AI」，上线次日即发布道歉视频。本人此后一年自述活在「一直在道歉、一直在修 BUG，完后再道歉」的循环里：第一个版本把所有素材塞进显存导致启动黑屏，一个「门」的交互 BUG 修了四个月。生活压力既是「先发后改」的原因——失业一年多，他急需给家庭一个交代——也让他无法承担延期打磨的机会成本。这是 OPC 模式最真实的暗面样本：AI 压低的是开发门槛，压不掉的是质量责任。</div><div class="cm">信源：<a class="cref cross" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-6">[6]</a></div></div>
+  <div class="quote">
+    <p>我一个人，还在继续做。说实话，我不是一个合格的开发者，程序弄得很烂……但我也许是一个愿意一直改、一直更、一直把这件事做下去的人。起码要对得起用户花的每一分钱、每一分钟。</p>
+    <span class="src">—— 阿拉丁巴图，游民星空论坛「一个菜鸟开发者的报道贴」（2026-08-12，一手自述），见 <a class="cref partial" href="#ref-6">[6]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>内容</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>产品形态</td><td>2D 开放世界视觉小说（RPG + 经营元素）：种田经营、委任管理、城寨建设、建筑升级、军团编制与战斗、地图探索、随机事件、多位可攻略角色、多线剧情与多结局</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-6">[6]</a></td></tr>
+      <tr><td>AI 工具链各环节</td><td>美术立绘/场景 → AI 绘画生成（「一眼 AI」为玩家共识）；配音 → AI 语音（简体中<strong>文全音频</strong>，含过场动画）；程序 → 自学 UE5 + AI 辅助（自述「会写函数但依然看不懂自己的代码」）；本地化 → 英/俄/日界面与字幕</td><td><a class="cref partial" href="#ref-5">[5]</a> <a class="cref partial" href="#ref-6">[6]</a> <a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>定价与平台</td><td>Steam 独占 PC（Windows/Mac/Linux，Steam Deck Playable）；首发国区 15 元、促销折后 9 元，2026-11 实测国区 ¥18、美区 $2.99；开发者承诺 EA 转正式版不涨价</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-8">[8]</a> <a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td>面向客群</td><td>国产独立游戏玩家、明末历史题材受众、视觉小说/文字冒险玩家；低价买断策略贴合「支持国产独游」情感消费场景。背景：简体中文玩家已占 Steam 用户 33.6%，为第一大用户群体（V 社员工 2025 科隆展口径）</td><td><a class="cref cross" href="#ref-4">[4]</a> <a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td>解决痛点</td><td>供给端：无团队、无预算、无程序背景的普通人无法承担传统游戏研发——本案验证「个人 + AI 工具链」可走通程序、美术、配音、本地化到发行的全流程；需求端：低价、持续更新、可共情的开发者叙事构成小体量独游的差异化卖点</td><td><a class="cref partial" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td>分发与社区</td><td>Steam EA + B 站开发日志连载（地图系统、战斗系统等专期）+ 抖音 + Discord + QQ 群；商店页开发者承诺「社区是共同创作者」，玩家投票决定新地图/新角色/新剧情优先级</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-10">[10]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>首月收入</td><td class="hl">约 6 万元（GameLook 报道口径，<b>单源</b>；流水/分成口径未注明）</td><td>2026-01-13 报道</td><td><a class="cref partial" href="#ref-5">[5]</a><a class="cref partial" href="#ref-9">[9]</a></td></tr>
+      <tr><td>首发两周销量</td><td>折后 9 元卖出近 3000 份（17173 报道口径，单源）</td><td>2025-11-28</td><td><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td>Steam 累计评价</td><td>551 条（308 好评 / 243 差评，Mixed，Player Score 56/100）</td><td>2026-11-06（Steambase）</td><td><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td>Steam 商店页实测</td><td>全部评价 Mixed（449 条，53% 好评）；近 30 天 Mostly Negative（38 条，39%）</td><td>2026-11-11 实测</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>首月评价</td><td>105 条（65 好 / 40 差，好评率约 62%）</td><td>2025-11（Steambase 月度曲线）</td><td><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td>评价增长曲线</td><td>2025-11：105 → 2026-01：243 → 2026-06：392 → 2026-10：551（12 个月月均约 40 条）</td><td>2025-11 → 2026-10</td><td><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td>当前同时在线</td><td>约 6 人（Steambase 实测）</td><td>2026-11-06</td><td><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td>B 站粉丝</td><td>1.3 万（UID 22281485）</td><td>2026-11-11 实测</td><td><a class="cref partial" href="#ref-3">[3]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    ① <b>营收为单源</b>：「首月约 6 万元」仅出自 GameLook 一稿（腾讯新闻、中华网均为同稿转载），未见开发者本人或平台方独立确认；② <b>评价总数存在两口径</b>：Steam 商店页实测 449 条（53%）与 Steambase 551 条（55.9%）并存，疑为统计口径/抓取时点差异，引用时建议并列标注；③ <b>口碑走势恶化</b>：好评率从首月约 62% 滑落至总体约 56%、近 30 天 39%（Mostly Negative），长线口碑是本案最大经营风险；④ 43 岁年龄信息仅见 17173 报道单源。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将本案放入案例墙「作品型 / AI 游戏个人开发」坐标系（对标行均为案例墙既有核验值，非本次新检索）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>开发周期</th><th>成本</th><th>收入/数据口径</th><th>平台</th></tr></thead>
+    <tbody>
+      <tr><td><b>《明末：欲火重生》</b>（本案）</td><td>阿拉丁巴图（43 岁失业美术设计师）</td><td>2D 开放世界视觉小说（EA）</td><td>8 个月（自 2025-03 学 UE5 起算）</td><td>未披露（个人 + AI 工具订阅）</td><td class="hl">首月收入约 6 万元（媒体口径，单源）；Steam 551 条评价 Mixed</td><td>Steam 买断制 ¥15-18</td></tr>
+      <tr><td>AI 短剧《归墟》</td><td>泫九（江澜，90 后奶爸）</td><td>12-14 集末世科幻 AI 短剧</td><td>约 5 个月（周更连载）</td><td>近 20 万元（算力为主）</td><td>全网播放破亿（央媒口径），红果热度 4400 万+；平台分成金额未披露</td><td>抖音 / 红果 / B 站（分成制）</td></tr>
+      <tr><td>AI 短片《丧尸清道夫》</td><td>刘梓瑜（云南玉溪）</td><td>3 分 34 秒科幻短片（单部）</td><td>不到 10 天</td><td>3000 余元</td><td>全网播放 6000 万至破亿</td><td>全网分发</td></tr>
+      <tr><td>张sir 弹幕游戏矩阵</td><td>张sir（化名）</td><td>抖音弹幕互动游戏（AI 承担约 70% 美术与代码，15 天/款）</td><td>15 天/款（矩阵量产）</td><td>未披露</td><td>总流水近 2000 万、个人到手约 80-100 万（自述口径）</td><td>抖音直播</td></tr>
+      <tr><td>传统对照：《明末：渊虚之羽》</td><td>灵泽科技（团队化 3A，505 Games 发行）</td><td>国产 3A 动作 RPG（巴蜀明末背景）</td><td>多年团队研发</td><td>3A 级投入（未披露）</td><td>发售口碑同为「褒贬不一」；2026 年续作《无常》新篇章已官宣</td><td>Steam / PS5 / Xbox（2025-07-24 发售）</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>三组对照的启示：与《归墟》《丧尸清道夫》同属作品型 OPC，但本案是唯一走<b>Steam 买断制直接向玩家收款</b>的——收入绝对值（首月 6 万）远小于《归墟》的流量盘子，却是「作品 → 商品」转化链路最完整的一个；与张sir 弹幕游戏矩阵相比，本案是单品慢打磨而非矩阵量产，赌的是长线更新；而与《渊虚之羽》的对照则最具警示性——一款团队 3A 与一款个人 AI 游戏 shared 同一个「褒贬不一」起跑线，说明 AI 平权了「做出游戏」，但没有平权「做好游戏」。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:130px">维度</th><th>分析</th><th style="width:170px">信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>EA 形态的 2D 开放世界视觉小说：以「穿越明末 + 好感度 + 故事线解锁」为骨架，叠加种田、城寨、军团、攻略等模拟经营与 RPG 系统；12 个月内从第一章《锄禾日当午》迭代至第三章《弯弓射大雕》（版本 1.3.4），功能面持续扩张——功能广度是它的更新诚意，完成度则是它的持续软肋。</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-6">[6]</a></td></tr>
+      <tr><td><b>2. 面向客群</b></td><td>核心客群为国产独立游戏玩家、明末历史题材受众与视觉小说玩家，辅以「支持落魄开发者」的情感消费群体（17173 记者自购即典型）；低价买断（一杯奶茶钱）降低了尝鲜门槛。未检索到用户画像数据；简中玩家占 Steam 33.6% 的背景是该定位成立的市场前提。</td><td><a class="cref cross" href="#ref-4">[4]</a> <a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>3. 解决痛点</b></td><td>对行业：提供了「零程序基础者 8 个月做出可售游戏」的全流程实证，AI 承担了程序、美术、配音、本地化四个原本需要外包或团队协作的环节；对玩家：以极低价格提供持续更新的国产题材单品。痛点解决的质量上限受 AI 素材水准与个人工程能力双重约束。</td><td><a class="cref partial" href="#ref-5">[5]</a> <a class="cref partial" href="#ref-6">[6]</a></td></tr>
+      <tr><td><b>4. 预估年化营收<br>（外推，置信度 C）</b></td><td>可核验基线：首月约 6 万元（单源）。外推：按独立游戏常见评价率 1:20-30 折算，累计 551 条评价对应总销量约 1.1-1.7 万份；均价按首发 9 元（促销）与现价 ¥15-18 混合估约 12 元，EA 首年累计流水约 <b>13-20 万元</b>（Steam 分成前），首月占大头、长尾月均数千至万元级。注意：营收原始数据仅 GameLook 单源、流水/分成口径不明、评价率假设粗糙，<b>该外推仅供量级参考</b>。</td><td><a class="cref partial" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-8">[8]</a> <a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>5. 融资进展</b></td><td>未检索到公开信息：无融资报道、无公司注册主体披露，与 Steam 商店页个人署名一致，应视为纯个人自担成本模式；非货币资源为 B 站开发日志的视频流量（可小幅反哺创作）与玩家社区（QQ 群/Discord）共创作用。</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-3">[3]</a></td></tr>
+      <tr><td><b>6. 市场评价<br>（Mixed 双面）</b></td><td>正面：价格低廉、更新勤快（一年持续迭代至第三章）、开发者叙事获得共情（越南玩家留言「不要忘记初心」、17173 记者最终自购支持）；负面：上线即恶性 BUG、美术「一眼 AI」、玩法俗套、含「擦边」内容、名称被指硬蹭 3A 大作——17173 标题即质问「游戏做成这β样，制作人还好意思让我为故事买单？」；近 30 天好评率跌至 39%（Mostly Negative），口碑趋势未扭转。</td><td><a class="cref cross" href="#ref-4">[4]</a> <a class="cref verified" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td><b>7. 投入成本与合规风险</b></td><td>成本：未披露具体金额（个人时间成本为主 + AI 绘画/语音工具订阅，属案例墙成本结构中「人力只有自己」的极端形态）。合规风险三条：① <b>AI 生成素材版权</b>——AI 立绘/场景/AI 配音的商业化权属在全球范围仍在演进；② <b>Steam 平台政策</b>——EA 承诺（约 2 个月转正式版）实际未兑现，审核多次退回、「擦边」内容受平台约束；③ <b>品牌混淆风险</b>——与灵泽科技《明末：渊虚之羽》名称/题材高度相似，被主流游戏媒体定性为「硬蹭」，存在口碑与法律层面的双重隐患。</td><td><a class="cref partial" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-11">[11]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 道歉事件全貌与四处不确定（截至 2026-11-11 检索）</div>
+    <b>道歉事件全貌</b>：游戏 2025-11-14 上线，因未经大规模内测，上线初期恶性 BUG 频出（存档异常导致回档、游戏完全进不去、好感度卡死任务进度、UI 无响应），且美术基本全为 AI 生成「一眼 AI」；开发者于上线次日（2025-11-15）在 B 站发布道歉视频，原因被 17173 归纳为：各种尝试失利后的极度焦虑 + 生活压力使其无法再扛着打磨，「急需给家庭一个交代，只能先发后改」，17173 描述其「在道歉视频中红了眼眶」<a class="cref cross" href="#ref-4">[4]</a>；本人一年后自述「一直在道歉、一直在修 BUG，完后再道歉」<a class="cref partial" href="#ref-6">[6]</a>。<br><br>
+    四处不确定：① <b>营收单源</b>——「首月 6 万」仅 GameLook 一稿及其转载，无开发者本人或第三方独立确认；② <b>口碑分歧持续</b>——总体 Mixed（约 56%）但近 30 天已跌至 Mostly Negative（39%），长期口碑走向未定；③ <b>EA 承诺未兑现口径</b>——商店页自述 EA 约持续 2 个月，实际一年后仍在更新第三章，正式版时间未定；④ <b>开发者信息单源</b>——43 岁、上海、原美术设计师等个人背景主要依赖 17173 与 GameLook 两稿叙事，真名未公开。
+  </div>
+  <div class="box note">
+    <div class="bt">📝 口径差异备注</div>
+    ① <b>名称写法</b>：Steam 官方中文名为《明末：欲火重生》，GameLook 文内与 17173 报道一度写作《明末：浴火重生》，玩家戏称《明末：X火焚身》（指向其「擦边」内容）——本报告统一采用 Steam 官方名；② <b>评价总数</b>：Steam 商店页实测 449 条 vs Steambase 551 条，两口径并存如实标注；③ <b>上线日期</b>：Steam 商店页为 2025-11-14，游民星空专区标注 2025-11-15，疑为时区差异，按 Steam 官方口径采信；④ <b>失业叙事</b>：GameLook（2020 年疫情失业、2021 转型自媒体）与 17173（2024-10 从美术岗辞职）侧重不同人生片段，本报告并行呈现不强行调和；⑤ <b>开发周期</b>：8 个月（2025-03 学 UE5 起，本人自述 + GameLook）与「不到半年」（2025-07 立项起，17173）系统计起点不同，均予保留。
+  </div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">在案例墙的作品型坐标里，《明末：欲火重生》处于「成功水位」的低端：首月 6 万元、551 条评价、口碑 Mixed——远不及《归墟》的破亿播放，但它回答了另一个更普遍的问题：<b>AI 是否能让一个没有团队、没有代码能力、已失业的中年人做出「能卖钱」的游戏？答案是有条件的能。</b>条件是：选对低程序门槛的品类、用一年时间死磕更新、接受上线即道歉的粗糙开局。它同时是「感情牌经济」的一面镜子——玩家为共情买单的同时，媒体已在追问这种模式能否兑现质量承诺。对 OPC 创业者的启示：AI 平权的是「做出产品」，不是「做出好产品」；对个人开发者而言，把「愿意一直改」变成可持续的现金流，比爆款叙事更接近真相。</div><div class="cm">信源：<a class="cref partial" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-8">[8]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 11 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx verified">[1]</span><span class="rt">A+</span><span class="st">官方平台一手</span></div><div class="ti">Late Ming: Reborn in Flames · Steam 商店页（AppId 3948550）</div><div class="mt"><b>来源：</b>Steam（Valve 官方）　<b>核验时点：</b>2026-11-11 实测<br><a href="https://store.steampowered.com/app/3948550/" target="_blank" rel="noopener">https://store.steampowered.com/app/3948550/</a></div><div class="note">事实核查：一手回溯完成。开发者/发行者均署名 AladdinBatu、2025-11-14 EA 发售、魏邪设定、EA 计划（约 2 个月转正式版、不涨价）、当前定价 ¥18、语言支持、社区链接（B 站 UID 22281485）均出自此页；评价口径 Mixed (449) 53%、近 30 天 Mostly Negative (38) 39% 为实测值。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx cross">[2]</span><span class="rt">B+</span><span class="st">主流游戏媒体</span></div><div class="ti">又一款"明末"游戏即将问世：有带娃寡妇（游民星空，作者 co1dsleep）</div><div class="mt"><b>来源：</b>游民星空　<b>发布日期：</b>2025-10-22<br><a href="http://www.gamersky.com/news/202510/2032933.shtml" target="_blank" rel="noopener">http://www.gamersky.com/news/202510/2032933.shtml</a></div><div class="note">事实核查：与 Steam 商店页 [1] 交叉。上线前报道，确认「游戏制作：AladdinBatu / 游戏发行：AladdinBatu」单人署名、魏邪玩法设定与专区上市时间；「已在 Steam 商店上线」指商店页开放。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx partial">[3]</span><span class="rt">B+</span><span class="st">平台个人主页（一手自述）</span></div><div class="ti">阿拉丁巴图 · B 站个人空间（UID 22281485）</div><div class="mt"><b>来源：</b>哔哩哔哩　<b>核验时点：</b>2026-11-11 实测（粉丝 1.3 万）<br><a href="https://space.bilibili.com/22281485/dynamic" target="_blank" rel="noopener">https://space.bilibili.com/22281485/dynamic</a></div><div class="note">事实核查：一手页面回溯完成。签名自述「目前是独立游戏制作人，以前是平面设计师，搞过音乐，做过三维动画，拍过广告」——职业背景为本人自述口径；粉丝数为平台一手数据。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx cross">[4]</span><span class="rt">B</span><span class="st">游戏媒体（门户分发）</span></div><div class="ti">"游戏做成这β样，制作人还好意思让我为故事买单？"（17173 游戏网，腾讯新闻分发）</div><div class="mt"><b>来源：</b>腾讯新闻（原发 17173 游戏网官方账号）　<b>发布日期：</b>2025-11-28<br><a href="http://news.qq.com/rain/a/20251128A060LX00" target="_blank" rel="noopener">http://news.qq.com/rain/a/20251128A060LX00</a></div><div class="note">事实核查：道歉事件（上线次日 B 站道歉视频、原因与「先发后改」）、43 岁失业老美术背景、2024-10 辞职、折后 9 元近 3000 份、与《渊虚之羽》口碑对照等出自此稿；该稿写作《明末：浴火重生》与官方名《欲火重生》并存；销量与年龄为该稿单一报道口径。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx partial">[5]</span><span class="rt">B</span><span class="st">行业垂直媒体（原发）</span></div><div class="ti">首月赚了6万：中年大叔的"人生逆袭"，竟然是靠做AI游戏？（GameLook 游戏大观）</div><div class="mt"><b>来源：</b>GameLook.com.cn　<b>发布日期：</b>2026-01-13<br><a href="http://www.gamelook.com.cn/2026/01/585813/" target="_blank" rel="noopener">http://www.gamelook.com.cn/2026/01/585813/</a></div><div class="note">事实核查：<b>「首月收入约 6 万元」为本案营收唯一原发信源（单源）</b>；2019-2024 个人经历（罗刹海市 MV 155 万播放、百万播放收益 146 元、月收入 1436 元）、《饥民》练手作、2025-08 更名、Steam 审核退回、国区 15 元定价、八个月口径等出自此稿，多为本人视频自述的转述口径。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx partial">[6]</span><span class="rt">C+</span><span class="st">论坛一手自述</span></div><div class="ti">《明末：欲火重生》一个菜鸟开发者的报道贴（阿拉丁巴图本人发帖）</div><div class="mt"><b>来源：</b>游民星空论坛　<b>发布日期：</b>2026-08-12（2026-08-25 修改）<br><a href="https://club.gamersky.com/m/activity/1590961" target="_blank" rel="noopener">https://club.gamersky.com/m/activity/1590961</a></div><div class="note">事实核查：一手自述回溯完成。「去年三月学虚幻引擎、去年十一月上线」的 8 个月口径、显存/内存梗、道歉-修 BUG 循环、第三章《弯弓射大雕》、版本 1.3.4、「一个门 BUG 修了四个月」、「我一个人，还在继续做」等均出自本人原帖。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx partial">[7]</span><span class="rt">B</span><span class="st">门户转载</span></div><div class="ti">首月赚了6万：中年大叔的"人生逆袭"，竟然是靠做AI游戏？从失业到月入六万的转变（中华网转载）</div><div class="mt"><b>来源：</b>中华网　<b>发布日期：</b>2026-01-13<br><a href="https://3g.china.com/act/ent/11005281/20260113/49158811.html" target="_blank" rel="noopener">https://3g.china.com/act/ent/11005281/20260113/49158811.html</a></div><div class="note">事实核查：为 GameLook [5] 同稿转载，用于佐证转载链存在与八个月/独立开发表述；不构成营收数字的独立第二信源。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx cross">[8]</span><span class="rt">B+</span><span class="st">第三方数据聚合</span></div><div class="ti">Late Ming: Reborn in Flames Reviews（Steambase 评价数据页）</div><div class="mt"><b>来源：</b>Steambase（数据直采自 Steam）　<b>更新时点：</b>2026-11-06<br><a href="https://steambase.io/games/late-ming-reborn-in-flames/reviews" target="_blank" rel="noopener">https://steambase.io/games/late-ming-reborn-in-flames/reviews</a></div><div class="note">事实核查：与 Steam 商店页 [1] 的 Mixed 口径交叉。551 条累计评价（308 好/243 差，56/100）、月度评价曲线（2025-11 首月 105 条）、当前在线约 6 人、美区 $2.99 出自此页；注意该页另列「CHANG FEI」为第二开发者/发行者，与 Steam 商店页（仅 AladdinBatu）不一致，按 Steam 官方页为准。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx partial">[9]</span><span class="rt">B</span><span class="st">门户转载</span></div><div class="ti">首月赚了6万：中年大叔的"人生逆袭"，竟然是靠做AI游戏？（腾讯新闻转载 GameLook）</div><div class="mt"><b>来源：</b>腾讯新闻（GameLook 官方账号）　<b>发布日期：</b>2026-01-13<br><a href="https://view.inews.qq.com/a/20260113A0007G00" target="_blank" rel="noopener">https://view.inews.qq.com/a/20260113A0007G00</a></div><div class="note">事实核查：为 GameLook [5] 同稿的腾讯新闻分发页（可达核验完成）；评论区「人家是卖课的」等质疑声音收录于此，本报告如实呈现争议环境。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx partial">[10]</span><span class="rt">C+</span><span class="st">平台视频（一手自述）</span></div><div class="ti">《明末：欲火重生》开发日志系列（阿拉丁巴图 B 站视频：地图系统 / 战斗系统 等）</div><div class="mt"><b>来源：</b>哔哩哔哩　<b>发布时点：</b>2025 年开发期连载<br><a href="https://www.bilibili.com/video/BV1jxwTziEbs/" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1jxwTziEbs/</a> · <a href="https://www.bilibili.com/video/BV1JdHSzyEZx/" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1JdHSzyEZx/</a></div><div class="note">事实核查：一手回溯完成。开发日志连载形式、「两个星期埋头制作地图内容」、战斗系统自述等出自视频简介；为开发者一手自述口径。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx partial">[11]</span><span class="rt">B</span><span class="st">平台词条页（对照用）</span></div><div class="ti">TapTap「明末」话题页（《明末：渊虚之羽》开发/发行信息，用于名称区分）</div><div class="mt"><b>来源：</b>TapTap　<b>核验时点：</b>2026-11-11 检索<br><a href="https://www.taptap.cn/hashtag/%E6%98%8E%E6%9C%AB" target="_blank" rel="noopener">https://www.taptap.cn/hashtag/明末</a></div><div class="note">事实核查：《明末：渊虚之羽》由灵泽科技开发、505 Games 发行、2025-07-24 发售的信息出自此页，仅用于捌节名称区分提醒与陆节对照行；本案与之无关的结论另经 17173 [4] 交叉。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 11 条。核验标签分布：🟢 已核验（verified）1 条、🔵 多源印证（cross）3 条、🟡 部分映证（partial）7 条。信源评级分布：A+ 级 1 条（Steam 官方一手，原文回溯完成）、B+/B 级 8 条、C+ 级 2 条（论坛自述、B 站视频一手自述——均已标注口径）。全部 11 条 URL 经实际回溯可达，未发现伪造链接。三处口径冲突（评价总数 449 vs 551、游戏名「欲火/浴火」写法、上线日期 11-14 vs 11-15）与两处单源关键数据（首月 6 万元营收、43 岁年龄）已在正文与捌节显式标注；「首月 6 万元」营收为 GameLook 单源口径，腾讯新闻/中华网均系同稿转载，不构成独立交叉。年化营收外推含评价率与均价假设，置信度 C，仅供量级参考。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-11 · 营收与年化推算值均标注置信口径，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · 声序智能——王钰博的一个人民乐 AI 曲谱智能体 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · 声序智能（AI 曲谱智能体）">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="AI 曲谱智能体「声序智能」深度案例报告：前字节跳动风控算法工程师王钰博一人以 OMR 视觉大模型实现五线谱↔简谱 1 分钟互转，上线半年用户超 6000，成立约 3 个月收支平衡。12 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>AI 曲谱智能体「声序智能」深度案例报告</h1>
+    <h2>前字节跳动风控算法工程师王钰博：20 多年民乐功底 × 5 年 AI 工程经验<br>一个人训模型、写前后端、做 UI、跑运营 —— 五线谱↔简谱 1 分钟互转，成立约 3 个月收支平衡 · 12 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">产品型 OPC</span>
+      <span class="tag">垂直订阅</span>
+      <span class="tag">传统民乐行业 × AI 转型</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">6000+</div><div class="k">用户数（上线半年多 · 央媒口径）</div></div>
+  <div class="stat"><div class="v up">95%+</div><div class="k">乐谱识别准确率</div></div>
+  <div class="stat"><div class="v up">3 个月</div><div class="k">成立约 3 个月收支平衡（政府官网口径）</div></div>
+  <div class="stat"><div class="v neutral">1 人</div><div class="k">模型训练 / 前后端 / UI / 运营全流程</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">声序智能是 2026 年「一人 + 垂直行业」赛道被央媒与地方政府双重确认的样本：一名前字节跳动风控算法工程师，将视觉大模型技术用在「五线谱转简谱」这个巨头看不上的民乐细分痛点上，从训练垂类模型到前后端、UI、运营全部一人完成，产品上线半年多用户超过 6000 人，识别准确率达 95% 以上<sup class="cite verified">[1]</sup>。它同时是「传统民乐行业 × AI 转型」的典型切片——全国约 6000 万民族乐器学习者中，80% 只看懂简谱，而 90% 的现代音乐出版物是五线谱<sup class="cite verified">[4]</sup>，供需错配存在了几十年。</p>
+  <div class="two">
+    <div class="card"><div class="ct">产品</div><div class="cb">微信小程序「声序智能」，2026 年 4 月 10 日上线：用户上传一张五线谱图片，几秒钟返回对应简谱<sup class="cite partial">[2]</sup>；媒体口径为「1 分钟内实现五线谱与简谱快速互转」<sup class="cite verified">[1]</sup><sup class="cite cross">[3]</sup>。除转谱外，支持转调、人声分离、声部拆分和图文识谱<sup class="cite cross">[3]</sup>，并延伸出解决找谱难的曲谱库、解决读谱难的音频生成、AI 教学和笔记社区等功能<sup class="cite verified">[4]</sup>。收费采用「免费音符额度 + 订阅制」。</div><div class="cm">信源：<a class="cref partial" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-4">[4]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">王钰博，毕业后当了 5 年 AI 工程师，拥有 20 多年民乐演奏经验<sup class="cite verified">[4]</sup>；自述从 5 岁开始学二胡<sup class="cite cross">[6]</sup>（中青报口径为 6 岁<sup class="cite verified">[8]</sup>），拥有自己的乐队；此前在字节跳动从事风控方向工作<sup class="cite cross">[6]</sup><sup class="cite cross">[3]</sup>，为互联网公司广告风控岗位，本科之外硕士研究生阶段学习区块链，曾在一家信贷公司从事模型开发<sup class="cite verified">[8]</sup>。亿邦动力报道其 1997 年生、天津人，本硕均在英国就读金融科技专业<sup class="cite partial">[2]</sup>。</div><div class="cm">信源：<a class="cref verified" href="#ref-4">[4]</a> <a class="cref cross" href="#ref-6">[6]</a> <a class="cref verified" href="#ref-8">[8]</a> <a class="cref partial" href="#ref-2">[2]</a></div></div>
+    <div class="card"><div class="ct">一人工作方式</div><div class="cb">「写代码靠 Claude，做演示用 Figma，写 PPT 用 Gamma，深度思考找 GPT」——王钰博指挥一队「AI 员工」完成全部开发<sup class="cite verified">[4]</sup>；亿邦动力补充工具链细节：GPT 写需求文档、Gemini 生成 UI 界面、Claude Code 写代码，同时开三个窗口分别处理前端、后端和全栈测试<sup class="cite partial">[2]</sup>。每月 AI 工具会员约 200 美元，另租用月均 2000 多元的服务器支撑 AI 推理<sup class="cite cross">[3]</sup>。她对「人机分工」的表述是：「AI 相当于我的多个员工，前端、后端、运营宣发，跟我组成团队。」<sup class="cite cross">[5]</sup></div><div class="cm">信源：<a class="cref verified" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-5">[5]</a></div></div>
+    <div class="card"><div class="ct">公司状态</div><div class="cb">2026 年 3 月成立声序智能并入驻北京中关村 AI 北纬社区<sup class="cite cross">[6]</sup>，注册主体为北京声序智能科技有限公司<sup class="cite cross">[3]</sup>。2026 年 7 月初，王钰博在全球数字经济大会现场自述：「虽然创业才 3 个月，但公司已经实现收支平衡，走向盈利了。」<sup class="cite verified">[7]</sup>融资方面：未检索到任何公开融资信息；其自述「不急着融资，不用养团队」但「并不排斥」<sup class="cite cross">[3]</sup>，2026 年 4 月表示「也在融资，也在见投资人」<sup class="cite partial">[9]</sup>。</div><div class="cm">信源：<a class="cref cross" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-7">[7]</a> <a class="cref partial" href="#ref-9">[9]</a></div></div>
+  </div>
+  <div class="two">
+    <div class="card blue"><div class="ct">产品矩阵（第二个产品已在路上）</div><div class="cb">除转谱主产品外：第二款产品为基于情绪感知的音乐疗愈工具「知音虾」（2026 年 4 月时处于内测阶段）<sup class="cite cross">[3]</sup>；2026 年 7 月全球数字经济大会上，声序智能以「民乐 × AI」垂类产品矩阵参展，旗下声序实验室首个落地作品《音海拾贝》获「候鸟 300 贰零贰陆最佳跨界创作奖」，另有 AI 民乐效果器等产品被央媒报道提及<sup class="cite verified">[7]</sup>。</div><div class="cm">信源：<a class="cref cross" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-7">[7]</a></div></div>
+    <div class="card blue"><div class="ct">媒体曝光密度</div><div class="cb">2026 年 3-11 月，人民日报海外版<sup class="cite cross">[5]</sup>、北京日报<sup class="cite verified">[4]</sup>、中国青年报冰点特稿<sup class="cite verified">[8]</sup>、中国经营报<sup class="cite cross">[3]</sup>、人民网<sup class="cite cross">[11]</sup>、新京报贝壳财经<sup class="cite cross">[6]</sup>、新华每日电讯深读<sup class="cite verified">[1]</sup>先后报道——一个上线仅半年、用户几千量级的产品获得如此跨层级媒体覆盖，在案例墙垂直应用类样本中罕见。</div><div class="cm">信源：见「捌·附」全清单</div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2025 年上半年</div><div class="tx">字节平台引入多模态大模型，所在团队从几十人锐减到个位数</div><div class="td">「被替代的恐慌」成为创业的心理起点；「与其等着被替代，不如提前站到 AI 这一边，去用它，而不是被它用」<a class="cref verified" href="#ref-8">[8]</a><a class="cref partial" href="#ref-9">[9]</a>。</div></div>
+    <div class="node"><div class="dt">2025 年年中（夏）</div><div class="tx">从字节裸辞</div><div class="td">触动因素叠加：团队收缩、GPT 快速迭代让她看到「过去七八个人团队做的网站，一个人加 AI 工具，两三天就能做完」、大厂「螺丝钉」式的跨部门协作消耗与体检指标亮红灯。<a class="cref cross" href="#ref-6">[6]</a><a class="cref partial" href="#ref-2">[2]</a><a class="cref verified" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2025 年 9 月起</div><div class="tx">约 4 个月方向头脑风暴，连续试错四个方向</div><div class="td">裸辞后先休假调整（自述「三个月的假」，亿邦报道为去欧洲旅行两个月），随后相继尝试留学生短租平台（因隐私侵权与售后风险放弃）、AI 眼动摄影（论文看不懂搁置）、小提琴自动翻页器、审计表格转 Word 大模型——均因「不是我的领域，我很难判断做好了是否达标」而终止。<a class="cref verified" href="#ref-8">[8]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref partial" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2025 年 10 月</div><div class="tx">锚定民乐转谱痛点，开始训练乐谱识别模型</div><div class="td">6 岁学二胡（另一口径 5 岁）、上过央视与国外舞台的民乐功底成为「非对称优势」：学二胡要看简谱，但流行歌多数只有五线谱，找人转谱淘宝一张 5-10 元还要等半天到一天。10-12 月训模反复拉锯：「目标 80 分，我从 75 掉到 40，又升到 78，再跌回 30」。<a class="cref verified" href="#ref-8">[8]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref partial" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2026 年 1 月</div><div class="tx">模型跑通，算法链路打通</div><div class="td">在改简历准备重新找工作前夜，新参数跑出显著提升。方法论：「我给 AI 一个『接近正确但有错误』的答案，让 AI 学着修正，AI 慢慢学会了什么是『正确』」；从几个小节扩展到几行、再到整页乐谱又花了两个月。<a class="cref verified" href="#ref-8">[8]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref partial" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2026 年 2 月初</div><div class="tx">踩空台阶意外骨折，拄拐工作与路演</div><div class="td">OPC「单点故障风险」的真实注脚——创始人健康问题直接冲击运营，但她骨折后仍对着电脑工作、拄拐参加路演。<a class="cref verified" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2026 年 3 月</div><div class="tx">成立公司、入驻中关村 AI 北纬社区；3 月下旬内测版小程序完成</div><div class="td">邀请 50 位音乐相关朋友测试，60% 反馈「挺不错」，也有人反映杂调式曲谱转谱准确率不够；同月人民日报海外版报道其用 OpenClaw（「龙虾」）搭建民乐曲谱转换平台。<a class="cref verified" href="#ref-8">[8]</a><a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2026 年 4 月 10 日</div><div class="tx">微信小程序「声序智能」正式上线；同日在 2026 中关村人工智能 OPC 生态大会分享</div><div class="td">海淀同期发布《关于全面打造 OPC 创业生态的若干措施》，北京日报报道其「AI 员工」工作法与民乐供需错配数据。<a class="cref partial" href="#ref-2">[2]</a><a class="cref cross" href="#ref-10">[10]</a><a class="cref verified" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2026 年 5 月</div><div class="tx">OMR（光学乐谱识别）技术突破，实现乐谱提取与识别</div><div class="td">贝壳财经口径；与中经报「1 月跑通算法链路、两个多月独自完成垂类模型训练」为递进关系——1 月模型跑通，5 月完成面向真实使用场景的乐谱提取与识别。<a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2026 年 6-7 月</div><div class="tx">获客初步跑通；7 月初自述「成立约 3 个月收支平衡，走向盈利」</div><div class="td">人民网「活力中国调研行」报道其一人完成全部开发<sup class="cite cross">[11]</sup>；7 月 2 日海淀 30 余家 OPC 组团亮相全球数字经济大会「全球 OPC 共创节」，王钰博现场自述收支平衡<sup class="cite verified">[7]</sup>；7 月下旬 BRTV 报道小程序已有约 1000 名线上使用用户<sup class="cite cross">[12]</sup>。</div></div>
+    <div class="node"><div class="dt">2026 年 9 月前后 → 11 月</div><div class="tx">用户量三级跳：约 1000 → 大几千 → 6000+</div><div class="td">新京报贝壳财经 11 月初实探：在没做任何推广的情况下，4 个月积累大几千用户、实现现金流回正<sup class="cite cross">[6]</sup>；新华每日电讯 11 月 9 日深读：产品上线半年多用户已超过 6000 人、识别准确率 95% 以上<sup class="cite verified">[1]</sup>。获客动作从路演曝光转向社交媒体 IP + 线下老年乐队/培训班地推<sup class="cref partial" href="#ref-2">[2]</sup>。</div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：「被替代的恐慌」与「螺丝钉」困境——裸辞的三重推力</div><div class="cb">与「追风口」叙事不同，王钰博的出发点是防御性的：所在团队因引入多模态大模型从几十人缩到个位数<sup class="cite verified" >[8]</sup><sup class="cite partial">[9]</sup>；叠加字节跨部门协作的消耗感——「你像一颗螺丝钉，只知道自己的环节，但前后都不搭」<sup class="cite partial">[2]</sup>，以及 GPT 快速迭代带来的认知冲击<sup class="cite cross">[6]</sup>。值得注意的细节：她裸辞后没有立刻创业，而是先休假调整、再用约 4 个月做方向头脑风暴，四个方向全部主动放弃——「在没有想清楚的情况下贸然创业，是不负责任的」<sup class="cite cross">[3]</sup>。</div><div class="cm">信源：<a class="cref verified" href="#ref-8">[8]</a> <a class="cref partial" href="#ref-9">[9]</a> <a class="cref partial" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-3">[3]</a></div></div>
+  <div class="card"><div class="ct">转折二：回到自己最熟悉的领域找「真需求」——民乐转谱的供需错配</div><div class="cb">四次试错后她得出方法论：「只有在熟悉的领域找痛点，才能坚持下去」<sup class="cite verified">[8]</sup>。民乐是她的第二身份：6 岁学二胡、音乐带她走上央视和国外舞台、去孔子学院当老师<sup class="cite verified">[8]</sup>。痛点真实且可货币化：学民乐要看简谱，但流行歌曲谱多为五线谱；淘宝代翻一张 A4 纸 5-10 元、等半天到一天；自己转谱简单的要半小时、复杂的要几个小时<sup class="cite cross">[3]</sup><sup class="cite verified">[8]</sup>。市场画像自下而上清晰：全国约 6000 万民族乐器学习者，80% 只能看懂简谱，而 90% 的现代音乐是五线谱<sup class="cite verified">[4]</sup>；其中真正有转谱需求的约 1000 万<sup class="cite cross">[3]</sup>。她先用 AI 做了一版小程序界面给做音乐的朋友看，得到「你赶紧开发，我要用」的即时验证<sup class="cite verified">[8]</sup>。</div><div class="cm">信源：<a class="cref verified" href="#ref-8">[8]</a> <a class="cref cross" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-4">[4]</a></div></div>
+  <div class="card red"><div class="ct">转折三：训模三个月的「80 分拉锯」与骨折危机——OPC 单点故障的实证</div><div class="cb">2025 年 10-12 月训模期，准确率在 30-78 分之间反复震荡，「每天起来心情都很差，不知道什么时候是个头」，一度改简历准备重新求职<sup class="cite partial">[2]</sup><sup class="cite verified">[8]</sup>。跑通靠的是一套与 AI 协作的训练方法论：给模型「接近正确但有错误」的答案让它学着修正；同时警惕 AI 的顺从性——用「第一性原理」对话、把同一问题发给多个大模型对比，避免「它会顺着你说，让你觉得自己很厉害」<sup class="cite verified">[8]</sup>。2026 年 2 月初踩空台阶骨折，暴露了一人公司的结构性脆弱：研发、销售、法务、融资全链条压力集中于一人，创始人健康即系统风险<sup class="cite verified">[8]</sup>。</div><div class="cm">信源：<a class="cref partial" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-8">[8]</a></div></div>
+  <div class="quote">
+    <p>60 分的设计，AI 能做；90 到 100 分的，还得人来，因为它替代不了审美——审美主观，本质是创造新事物。</p>
+    <span class="src">—— 王钰博，新京报贝壳财经实探（2026-11-03），<a class="cref cross" href="#ref-6">[6]</a></span>
+  </div>
+  <p>对「套壳」质疑，她的回应是技术路线本身：声序做的并非「把现有接口拼在一起、套一层应用的壳」，而是自研微调大模型——在她看来，前者一旦商业模式跑通「一定会被抄」；AI 是放大器，「只想一个模糊的方向，让 AI 帮你补所有细节，出来的就是四不像」<sup class="cite cross">[6]</sup>。她还将经验抽象为一个公式：「OPC 利润 = 领域深度 × 编码效率 ÷ 组织摩擦」——编码效率与低组织摩擦是时代红利，真正决定成败的是领域深度<sup class="cite partial">[9]</sup>。</p>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>内容</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>产品功能</td><td>五线谱↔简谱互转（核心）；转调、人声分离、声部拆分、图文识谱<sup class="cite cross">[3]</sup>；曲谱库（找谱难）、音频生成（读谱难）、AI 教学、笔记社区（延伸功能）<sup class="cite verified">[4]</sup></td><td><a class="cref cross" href="#ref-3">[3]</a><a class="cref verified" href="#ref-4">[4]</a></td></tr>
+      <tr><td>OMR 技术路线</td><td>OMR（光学乐谱识别）类比 OCR 但成熟度远低：传统 OMR 工具准确率约 50-60%，用视觉大模型提升到 80-90%<sup class="cite cross">[3]</sup>；央媒后续口径为 95% 以上<sup class="cite verified">[1]</sup>；路线为自研微调垂类模型而非接口拼装「套壳」<sup class="cite cross">[6]</sup>；对民乐符号（二胡弓法、古筝刮奏和琶音）专门优化，市面工具因训练数据基于西洋乐而无法识别<sup class="cite cross">[3]</sup></td><td><a class="cref cross" href="#ref-3">[3]</a><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td>订阅定价</td><td>新用户最多赠送 200 音符；一张普通 A4 乐谱消耗约 15-20 音符（免费额度约可转 10 张）；超出后订阅制：月费 29.9 元、年费 259.9 元<sup class="cite cross">[3]</sup></td><td><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td>面向客群</td><td>民乐从业者、民乐教师、乐团、业余琴童与老年乐队：全国民族乐器学习者约 6000 万、80% 只懂简谱<sup class="cite verified">[4]</sup>；其中真正有转谱需求约 1000 万<sup class="cite cross">[3]</sup>；地推画像对象为老年乐队与业余培训班<sup class="cite partial">[2]</sup></td><td><a class="cref verified" href="#ref-4">[4]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref partial" href="#ref-2">[2]</a></td></tr>
+      <tr><td>解决痛点</td><td>曲谱稀缺：民乐曲谱数字资源少，流行歌曲多仅有五线谱版本；人工转谱贵且慢（代翻 5-10 元/张、等半天到一天；自己转谱 0.5 至数小时）<sup class="cite cross">[3]</sup><sup class="cite verified">[8]</sup></td><td><a class="cref cross" href="#ref-3">[3]</a><a class="cref verified" href="#ref-8">[8]</a></td></tr>
+      <tr><td>获客方式</td><td>零付费投放：早期靠路演与媒体报道带来的曝光（「前期没有什么压力」）<sup class="cite verified">[8]</sup>；中期转向社交媒体注册账号做 IP 推广 + 线下跑老年乐队、业余培训班摸用户画像<sup class="cite partial">[2]</sup>；下一步思路是先 B 端切入机构、再经机构触达 C 端用户<sup class="cite partial">[9]</sup></td><td><a class="cref verified" href="#ref-8">[8]</a><a class="cref partial" href="#ref-2">[2]</a><a class="cref partial" href="#ref-9">[9]</a></td></tr>
+      <tr><td>成本结构</td><td>研发成本近 4 万元（一人完成）；月度运营：AI 会员约 200 美元 + 服务器 2000 多元，月均总成本不到 1 万元<sup class="cite verified">[8]</sup><sup class="cite cross">[3]</sup><sup class="cite partial">[2]</sup></td><td><a class="cref verified" href="#ref-8">[8]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref partial" href="#ref-2">[2]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box insight">
+    <div class="bt">💡 商业模式一句话</div>
+    「免费音符额度获客 → 订阅制变现」的轻量 SaaS 模型，切的是巨头因市场规模不足以立项的「夹缝刚需」。王钰博对壁垒的判断颇为清醒：「我做的这个产品，用户群体其实非常小……大厂要开发产品，可能要组 10 到 20 人的团队，几周内就要看到产品落地。同样的人力和时间，他们肯定优先做普适性更强的产品」——这正是 OPC 的「非对称优势」<sup class="cite cross">[3]</sup>。
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>线上使用用户</td><td>约 1000 人</td><td>2026-07 下旬（上线约 3 个月）</td><td><a class="cref cross" href="#ref-12">[12]</a></td></tr>
+      <tr><td>用户量（第二口径）</td><td class="hl">大几千（未做任何推广）</td><td>2026-09 前后（上线约 4 个月）</td><td><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td>用户量（央媒口径）</td><td class="hl">超过 6000 人</td><td>2026-11 初（上线半年多）</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>识别准确率</td><td>80-90%（视觉大模型）→ <b>95% 以上</b>（央媒口径）</td><td>2026-04 → 2026-11</td><td><a class="cref cross" href="#ref-3">[3]</a><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>盈利状态</td><td class="pos">成立约 3 个月收支平衡、走向盈利（创始人现场自述，政府官网收录）；「现金流回正」（贝壳财经）</td><td>2026-07-02 自述 / 2026-11-03 报道</td><td><a class="cref verified" href="#ref-7">[7]</a><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td>研发成本</td><td>近 4 万元（一人完成，含模型训练与前后端）</td><td>2026-05 报道口径</td><td><a class="cref verified" href="#ref-8">[8]</a></td></tr>
+      <tr><td>月度运营成本</td><td>AI 会员约 200 美元 + 服务器 2000 余元，月均总成本不到 1 万元</td><td>2026-04 报道口径</td><td><a class="cref cross" href="#ref-3">[3]</a><a class="cref partial" href="#ref-2">[2]</a></td></tr>
+      <tr><td>具体营收额</td><td class="hl">未检索到公开信息</td><td>截至 2026-11-11 检索</td><td>—</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    用户数三条口径（约 1000 → 大几千 → 6000+）来自三个不同发布方、对应三个时间点，构成一条自洽的增长弧线，非冲突数据：BRTV（7 月下旬）与贝壳财经（11 月初回顾 9 月前后）之间为增长关系，新华每日电讯（11 月上旬）与贝壳财经互为独立印证。「收支平衡/盈利」为创始人自述口径经政府官网收录，未见经审计的财务数据；「现金流回正」与「收支平衡」表述不同但方向一致。研发成本「近 4 万元」出自中青报采访的创始人自述，未见票据级核验。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将声序智能放入案例墙「个人开发者 + 垂直订阅」坐标系（对标数据均为案例墙既有核验值，口径为各案例独立信源的公开报道值）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>定价</th><th>用户量</th><th>盈利节奏</th><th>数据来源</th></tr></thead>
+    <tbody>
+      <tr><td><b>声序智能</b></td><td>王钰博（前字节风控算法工程师）</td><td>OMR 曲谱智能体（微信小程序）</td><td>月 29.9 元 / 年 259.9 元</td><td>上线半年 6000+（7 月约 1000 → 9 月前后大几千）</td><td>成立约 3 个月收支平衡，约 8 个月时「现金流回正」</td><td>本报告信源 <a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref verified" href="#ref-7">[7]</a><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td>聪明钱监控</td><td>许洋</td><td>AI 股市投研日报（开源智能体手搓）</td><td>200 元/年</td><td>上线半月 90 个付费用户</td><td>半月收入超 1 万元</td><td>案例墙核验值（cross 级）</td></tr>
+      <tr><td>AI选校鸟</td><td>李涛</td><td>AI 留学选校（保底/匹配/冲刺三梯度推荐）</td><td>99 元/次</td><td>3000+ 用户（人民日报海外版报道）</td><td>案例墙未标注盈利时点</td><td>案例墙核验值（verified 级）</td></tr>
+      <tr><td>作文说</td><td>李雲帆</td><td>AI 作文批改（拍照生成可打印批改报告，支持班级批量精批）</td><td>未检索到公开定价</td><td>4 个月用户 1.5 万</td><td>月入近 5 万（自述口径）</td><td>案例墙核验值（verified 级，营收为自述）</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>四案共性清晰：均以「个人开发者 + 小额付费」切入巨头无暇顾及的垂直场景，定价在百元上下量级，从上线到正向现金流的周期以月计。差异在付费模型：聪明钱监控（年订阅）与作文说（自述月流水）偏 C 端订阅/按次付费；AI选校鸟（99 元/次）为低决策成本按次付费；声序智能则「免费额度 + 订阅」双轨，且付费人群黏性来自持续性的转谱工作量（按音符计费与使用频次正相关）。相较其余三案的纯 C 端路径，声序智能已公开讨论 B 端（机构）切入思路<sup class="cite partial">[9]</sup>，是本组样本中唯一明确「先 B 后 C」获客路线的案例。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>分析</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>以 OMR 为核心的曲谱工具集：互转（95%+ 准确率口径）+ 转调/人声分离/声部拆分/图文识谱 + 曲谱库/音频生成/AI 教学/笔记社区，产品矩阵向「民乐 × AI」工具箱延展（AI 民乐效果器、《音海拾贝》、知音虾情绪疗愈内测）。功能演进路径为「单一痛点打穿 → 周边需求自然生长」。</td><td><a class="cref cross" href="#ref-3">[3]</a><a class="cref verified" href="#ref-4">[4]</a><a class="cref verified" href="#ref-7">[7]</a><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>2. 面向客群</b></td><td>核心客群为民乐生态的学习者与从业者：约 6000 万民族乐器学习者、80% 只懂简谱，其中约 1000 万有转谱需求；细分画像含老年乐队、业余培训班、琴童家长、民乐教师。这是一个「市场天花板可见」的利基市场——创始人自己承认「符合条件的人并不多」，反而构成对大厂的天然护城河。</td><td><a class="cref verified" href="#ref-4">[4]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref partial" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>3. 解决痛点</b></td><td>痛点存在数十年且已有付费习惯（淘宝代翻 5-10 元/张）：学习侧「看不懂五线谱」、从业者侧「手抄/扫谱低效」。产品将单张转谱成本从 5-10 元/半天压缩到秒级-分钟级、近乎零边际成本，价值主张可量化，属于「替代已有付费行为」而非「教育新需求」——这是订阅转化率的基础假设相对扎实之处。</td><td><a class="cref cross" href="#ref-3">[3]</a><a class="cref verified" href="#ref-8">[8]</a><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>4. 预估年化营收（推算，置信度 C）</b></td><td><b>零官方披露</b>，以下仅为订阅价 × 用户量的方法演示：以 6000 用户、付费率 3%/5%/10% 三情景、年费 259.9 元为主口径，年化订阅收入约 <b>4.7 万 / 7.8 万 / 15.6 万元</b>；若按月费 29.9 元连续订阅折算上限为 6.5 万 / 10.8 万 / 21.5 万元。参考锚点：创始人自述「200 个稳定年度会员客户即可回本」（≈5.2 万元/年费口径）<sup class="cite verified">[8]</sup>，与 3 个月收支平衡的时间线相互印证其付费规模在数百会员量级。<b>实际值受付费率、月付/年付结构、B 端订单影响极大，本估算不构成任何事实陈述。</b></td><td>推算依据：<a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref verified" href="#ref-8">[8]</a>，推算口径 C 级</td></tr>
+      <tr><td><b>5. 融资进展</b></td><td>未检索到公开融资信息。创始人的态度两阶段并存：2026-04「不急于融资，但也不排斥」「也在融资，也在见投资人」<sup class="cite cross">[3]</sup><sup class="cite partial">[9]</sup>；对未来的定位是「能自给自足的创业者，不一定要融资烧钱」<sup class="cite partial">[2]</sup>。非货币资源支持明确：中关村 AI 北纬社区的集群注册、企业管家、算力/模型券补贴（海淀 OPC 八条：10 万元启动资金、最高 200 万元/年模型券等）<sup class="cite verified">[4]</sup><sup class="cite verified">[7]</sup>，创始人公开肯定算力券/模型券「真金白银」的帮助<sup class="cite cross">[12]</sup>。</td><td><a class="cref cross" href="#ref-3">[3]</a><a class="cref partial" href="#ref-9">[9]</a><a class="cref partial" href="#ref-2">[2]</a><a class="cref verified" href="#ref-4">[4]</a><a class="cref verified" href="#ref-7">[7]</a><a class="cref cross" href="#ref-12">[12]</a></td></tr>
+      <tr><td><b>6. 市场评价</b></td><td>权威正评价密集且跨层级：新华每日电讯深读将其列为「一人公司潮起」样本案例<sup class="cite verified">[1]</sup>；中国青年报冰点特稿以近半篇幅复盘其找方向与训模过程<sup class="cite verified">[8]</sup>；人民日报海外版借其阐述「AI 是帮手不是万能」的判断层/执行层分工<sup class="cite cross">[5]</sup>；北京日报两度报道<sup class="cite verified">[4]</sup><sup class="cite cross">[10]</sup>；人民网调研行报道<sup class="cite cross">[11]</sup>；《音海拾贝》获「候鸟 300 最佳跨界创作奖」<sup class="cite verified">[7]</sup>。学术侧，复旦大学姚建华教授以本案印证「创新的核心壁垒从资源占有转向问题意识与价值判断」<sup class="cite verified">[8]</sup>。负面/隐忧性评价见「捌」节。</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-8">[8]</a><a class="cref cross" href="#ref-5">[5]</a><a class="cref verified" href="#ref-4">[4]</a><a class="cref cross" href="#ref-10">[10]</a><a class="cref cross" href="#ref-11">[11]</a><a class="cref verified" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>7. 投入成本与合规风险</b></td><td>成本侧：总研发投入近 4 万元、月运营成本不到 1 万元（AI 会员 200 美元 + 服务器 2000 余元），在案例墙软件类 OPC 中属轻量级；隐性成本为时间（裸辞到上线约 9 个月）与健康（骨折事件）。合规与版权风险：① 曲谱版权结构复杂——转谱对象多为已出版物，涉及原曲著作权与记谱版式权益，OMR 识别并转换他人出版乐谱的侵权边界在音乐出版行业尚无清晰判例，属行业性灰区；② 截至检索日<b>未检索到针对声序智能的任何版权纠纷或指控</b>；③ OPC 单点故障风险已被骨折事件实证；④ 技术边界：内测中杂调式曲谱转谱准确率不足的反馈仍存在<sup class="cite verified">[8]</sup>。</td><td><a class="cref verified" href="#ref-8">[8]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref partial" href="#ref-2">[2]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 五处留白与三处口径差异（截至 2026-11-11 检索）</div>
+    ① <b>营收金额零披露</b>：没有任何信源给出营收数字，七维测算仅为方法演示；② <b>付费用户数未公开</b>：6000+ 为「使用用户」口径，付费转化率未知；③ <b>盈利程度未量化</b>：「收支平衡/走向盈利」（7 月自述）与「现金流回正」（11 月报道）方向一致但均非经审计口径，盈利幅度无法判断；④ <b>公司股权与注册资本细节未检索到公开信息</b>；⑤ <b>产品载体为微信小程序，无可公开访问的官网/落地页</b>，一手信源缺失。口径差异：学二胡年龄 5 岁（贝壳财经[6]）vs 6 岁（中青报[8]）；裸辞后休整「三个月的假」（中国经营报[3]）vs「欧洲旅行两个月」（亿邦[2]）与约 4 个月方向头脑风暴（中青报[8]）——三者可按时间线兼容理解（休假与头脑风暴部分重叠）；信源性别指称不一致（北京日报稿[4]用「他」，其余多稿用「她」），本报告统一仅使用姓名、不做性别表述。
+  </div>
+  <div class="box note">
+    <div class="bt">📌 核验方法说明</div>
+    用户数与盈利状态均要求 ≥2 独立发布方交叉：用户 6000+ 由新华每日电讯与新京报贝壳财经（「大几千」）交叉、盈利状态由北京市科委官网（ncsti.gov.cn，政府一手）与新京报贝壳财经交叉；创始人与产品核心事实经首都之窗（北京市政府门户）、新华每日电讯、中国青年报、中国经营报四家独立发布方互证。行业背景数据（《2026 一人公司洞察报告》92.4% 企业仍处筹备或初创阶段、30.8% 创业者尚未盈利等）为经由中青报转引的行业研报口径，未直接核验研报原文。未检索到产品官网，微信小程序页面无法作为公开信源收录——如需引用产品功能细节，建议以中国经营报[3]与首都之窗[4]为准。
+  </div>
+  <div class="card"><div class="ct">本案的样本价值与边界</div><div class="cb">声序智能验证了 OPC 模式在「传统行业 × AI」方向的可行性：一个人的非对称优势（20 多年民乐 × 5 年算法工程）+ 月均不到 1 万元的成本，切进了被大厂忽略数十年的民乐数字化缝隙，且在 9 个月内走通「训模 → 上线 → 收支平衡」。它的边界同样清晰：市场天花板可见（约 1000 万潜在需求人群）、营收量级尚小、获客仍是「构建能力过剩、获客能力短缺」结构失衡的典型样本——创始人自己对最现实问题的判断是用户增长：「第一批用户来自身边圈子，但很快就会用完」<sup class="cite partial">[9]</sup>。对模仿者而言，本案真正的壁垒不是工具链（Claude Code + 视觉大模型人人可用），而是「领域深度」——这正是王钰博公式 <b>OPC 利润 = 领域深度 × 编码效率 ÷ 组织摩擦</b> 中唯一无法被时代红利直接给到的变量<sup class="cite partial">[9]</sup>。</div><div class="cm">信源：<a class="cref partial" href="#ref-9">[9]</a> <a class="cref verified" href="#ref-8">[8]</a> <a class="cref cross" href="#ref-3">[3]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">捌·附</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 12 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉且原文回溯），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx verified">[1]</span><span class="rt">A+</span><span class="st">央媒报道</span></div><div class="ti">新华深读｜"一人公司"潮起（新华每日电讯，记者李延霞、吴雨、刘羽佳、张璇、胡洁菲、滕军伟）</div><div class="mt"><b>来源：</b>新华网浙江频道（原发 11 月 9 日《新华每日电讯》，新华网客户端同日刊发）　<b>发布日期：</b>2026-11-09<br><a href="http://www.zj.xinhuanet.com/20261109/9fc152953b6c404aa1e43818f0b8c298/c.html" target="_blank" rel="noopener">http://www.zj.xinhuanet.com/20261109/9fc152953b6c404aa1e43818f0b8c298/c.html</a></div><div class="note">事实核查：风控算法工程师背景、"纠结了很久……终于决定放手一搏"、AI 曲谱智能体 1 分钟互转、识别准确率 95% 以上、上线半年多用户超 6000 人、4 月深圳 AI 黑客松遇前同事等出自此稿；用户数与贝壳财经[6]独立交叉，原文回溯完成。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx partial">[2]</span><span class="rt">B</span><span class="st">行业媒体（专访一手）</span></div><div class="ti">裸辞的年轻人，涌向OPC创业（亿邦动力，作者胡镤心、编辑张睿；创业邦经授权转载）</div><div class="mt"><b>来源：</b>创业邦（原发微信公众号"亿邦动力"）　<b>发布日期：</b>约 2026-06（文中提及"上周六（5月30日）"黑客松）<br><a href="https://m.cyzone.cn/article/835446.html" target="_blank" rel="noopener">https://m.cyzone.cn/article/835446.html</a></div><div class="note">事实核查：小程序 2026-04-10 上线、97 年天津/英国金融科技本硕/金融机构模型开发→字节风控、2025 年中裸辞与欧洲旅行、工具链（GPT/Gemini/Claude Code 三窗口）、月均成本不到一万元、训模 75→40→78→30 拉锯、螺丝钉自述、地推画像等出自此稿；个人履历细节为单源自述口径，按 partial 收录。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx cross">[3]</span><span class="rt">A</span><span class="st">主流财经深度稿</span></div><div class="ti">探路"一人公司"｜从大厂"螺丝钉"到用AI创业：一个民乐极客的OPC生存样本（中国经营报，中经记者吴静、卢志坤，北京报道）</div><div class="mt"><b>来源：</b>新浪财经（原发中国经营网/贝果财经）　<b>发布日期：</b>2026-04-22<br><a href="https://finance.sina.com.cn/jjxw/2026-04-22/doc-inhvkuqa4285003.shtml" target="_blank" rel="noopener">https://finance.sina.com.cn/jjxw/2026-04-22/doc-inhvkuqa4285003.shtml</a></div><div class="note">事实核查：注册北京声序智能科技有限公司、2025 年中裸辞与三个月假期、淘宝转谱 5-10 元/张、OMR 准确率 50-60%→80-90%、1 月跑通算法链路、4 月上线小程序、民乐符号优化、功能清单、定价（赠 200 音符/月 29.9/年 259.9）、月成本 200 美元 AI 会员+2000 元服务器、知音虾内测、6000 万爱好者/1000 万转谱需求、"不急于融资"等出自此稿；转载链为新浪财经，原发中国经营报。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx verified">[4]</span><span class="rt">A+</span><span class="st">政府官网（原发党媒）</span></div><div class="ti">海淀支持OPC八项举措发布 助"一人公司"跑出"千军万马"（北京日报，记者孙奇茹、孙颖）</div><div class="mt"><b>来源：</b>首都之窗·北京市人民政府门户网站（原发北京日报）　<b>发布日期：</b>2026-04-12<br><a href="https://www.beijing.gov.cn/fuwu/lqfw/gggs/202604/t20260412_4580107.html" target="_blank" rel="noopener">https://www.beijing.gov.cn/fuwu/lqfw/gggs/202604/t20260412_4580107.html</a></div><div class="note">事实核查：5 年 AI 工程师+20 多年民乐演奏经验、6000 万学习者/80% 简谱/90% 五线谱、AI 员工清单（Claude/Figma/Gamma/GPT）、曲谱库/音频生成/AI 教学/笔记社区延伸功能、第二款产品开发中、海淀 OPC 八条政策细节等出自此稿；政府官网原文回溯完成，与中国经营报[3]、亿邦[2]多源交叉。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx cross">[5]</span><span class="rt">A+</span><span class="st">央媒报道</span></div><div class="ti">OpenClaw等AI智能体火爆——"龙虾悖论"怎么破？（人民日报海外版，记者韩维正、赵文博）</div><div class="mt"><b>来源：</b>新华网科技频道（原发人民日报海外版）　<b>发布日期：</b>2026-03-23<br><a href="http://www3.xinhuanet.com/tech/20260323/9f0a4d4ea17a462f8813b10bb7a5f55e/c.html" target="_blank" rel="noopener">http://www3.xinhuanet.com/tech/20260323/9f0a4d4ea17a462f8813b10bb7a5f55e/c.html</a></div><div class="note">事实核查："AI相当于我的多个员工，前端、后端、运营宣发，跟我组成团队"、用"龙虾"（OpenClaw）搭建民乐曲谱转换平台、"执行层/判断层"分工论、修改代码忘指令卡壳的踩坑细节等出自此稿；央媒原文回溯完成，为最早报道王钰博的全国性媒体之一。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx cross">[6]</span><span class="rt">B+</span><span class="st">主流财经实探</span></div><div class="ti">实探北京OPC社区：做AI创业，靠不靠谱？（新京报贝壳财经，首席记者罗亦丹）</div><div class="mt"><b>来源：</b>新京报贝壳财经（新浪新闻/今日头条同步分发）　<b>发布日期：</b>2026-11-03<br><a href="https://m.bjnews.com.cn/detail/1793711503129568.html" target="_blank" rel="noopener">https://m.bjnews.com.cn/detail/1793711503129568.html</a></div><div class="note">事实核查：字节风控策略、去年年中裸辞、"七八个人团队做的网站一个人两三天做完"、5 岁学二胡与乐队、3 月成立声序智能并入驻北纬社区、5 月 OMR 技术突破（乐谱提取与识别）、无推广 4 个月大几千用户+现金流回正、自研微调大模型非套壳、"60 分/90-100 分"审美论、"对话OPC创业者"直播、北纬社区 57 家 OPC/41 家纯一人（北京市科委披露）等出自此稿；用户数与盈利状态与[1][7]独立交叉。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx verified">[7]</span><span class="rt">A+</span><span class="st">政府官网（一手）</span></div><div class="ti">中央及市属主流媒体广泛报道 海淀"一人公司"组团亮相全球数字经济大会（信息来源：中关村科学城微信公众号，汇编人民网等央媒报道）</div><div class="mt"><b>来源：</b>北京市国际科技创新中心（北京市科委、中关村管委会官网 ncsti.gov.cn）　<b>发布日期：</b>2026-07-08<br><a href="https://www.ncsti.gov.cn/kjdt/scyq/zgckxc/zgcdt/202607/t20260708_250961.html" target="_blank" rel="noopener">https://www.ncsti.gov.cn/kjdt/scyq/zgckxc/zgcdt/202607/t20260708_250961.html</a></div><div class="note">事实核查：王钰博现场引语"虽然创业才3个月，但公司已经实现收支平衡，走向盈利了"、央媒报道汇编"三个月时间就实现了收支平衡"、乐谱转换平台/AI 民乐效果器等多款产品、声序实验室《音海拾贝》获"候鸟300贰零贰陆最佳跨界创作奖"、全球数字经济大会与"全球OPC共创节"、海淀 OPC 八条与 406 家申报等出自此稿；政府官网一手回溯完成，盈利事实与贝壳财经[6]独立交叉。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx verified">[8]</span><span class="rt">A+</span><span class="st">央媒特稿</span></div><div class="ti">一人公司，只是开始（冰点特稿第 1348 期，中青报·中青网记者尹海月）</div><div class="mt"><b>来源：</b>中国青年报 2026 年 5 月 20 日 07 版（冰点周刊）　<b>发布日期：</b>2026-05-20<br><a href="https://zqb.cyol.com/pc/content/202605/20/content_425990.html" target="_blank" rel="noopener">https://zqb.cyol.com/pc/content/202605/20/content_425990.html</a></div><div class="note">事实核查：裸辞后 9 个月上线、广告风控岗位与团队几十人锐减到个位数、硕士学区块链与信贷公司模型开发、四次方向试错、6 岁学二胡/央视/孔子学院、转谱耗时半小时到几小时、训模卡壳与"接近正确但有错误的答案"方法论、2 月初骨折拄拐路演、3 月下旬内测、50 位朋友测试 60% 好评、研发成本近 4 万元/200 个年度会员回本、获客路径与"身边资源用完后是压力"等出自此稿；央媒原文回溯完成，细节与中国经营报[3]、亿邦[2]多源交叉。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx partial">[9]</span><span class="rt">B</span><span class="st">行业媒体（大会共创稿）</span></div><div class="ti">一人公司，开始闷声赚钱：预计年入1000万（铅笔道，与 2026 中关村人工智能 OPC 生态大会主办方氪星创服共创）</div><div class="mt"><b>来源：</b>36氪（原发铅笔道）　<b>发布日期：</b>2026-04-13<br><a href="https://eu.36kr.com/zh/p/3765176437621512" target="_blank" rel="noopener">https://eu.36kr.com/zh/p/3765176437621512</a></div><div class="note">事实核查：王钰博自述"与其等着被替代，不如提前站到AI这一边"、团队几十人缩到个位数、OPC 利润公式（领域深度×编码效率÷组织摩擦）、OPC 创业者三特质、两个踩坑（滥用 AI/自我定价过低）、B 端切入获客思路、"也在融资也在见投资人"等出自此稿；第一人称自述口径，按 partial 收录。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx cross">[10]</span><span class="rt">A+</span><span class="st">党媒客户端（转载链）</span></div><div class="ti">来海淀，一个人的梦想也有世界级舞台！（北京日报客户端，记者倪恒虎；北京海淀官方发布）</div><div class="mt"><b>来源：</b>新浪财经（原发北京日报客户端/北京号"北京海淀官方发布"）　<b>发布日期：</b>2026-04-13<br><a href="https://finance.sina.com.cn/jjxw/2026-04-13/doc-inhukknu2245189.shtml" target="_blank" rel="noopener">https://finance.sina.com.cn/jjxw/2026-04-13/doc-inhukknu2245189.shtml</a></div><div class="note">事实核查：4 月 10 日 2026 中关村人工智能 OPC 生态大会、王钰博以"声序智能创始人兼CEO"身份分享"非对称优势与AI放大器结合"实践、《海淀区关于全面打造OPC创业生态的若干措施（试行）》发布、海淀 AI 产业背景数据（核心产值 3600 亿/26 家独角兽/130 款备案大模型）等出自此稿；转载链为新浪财经，原发北京日报客户端。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx cross">[11]</span><span class="rt">A+</span><span class="st">央媒调研行（政府官网转载）</span></div><div class="ti">活力中国调研行｜在北京海淀，看见AI的千万种可能（人民网，记者董兆瑞、李世奇）</div><div class="mt"><b>来源：</b>海淀区政府门户网站知识库（原发人民网-北京频道；环球网等亦有分发）　<b>发布日期：</b>2026-06-15<br><a href="https://zyk.bjhd.gov.cn/ywdt/mtbd/202606/t20260615_4818252_hd.shtml" target="_blank" rel="noopener">https://zyk.bjhd.gov.cn/ywdt/mtbd/202606/t20260615_4818252_hd.shtml</a></div><div class="note">事实核查：3 月王钰博以 OPC 创始人身份入驻中关村 AI 北纬社区、曲谱转译音乐小程序"前不久上线"、五线谱与简谱互转、整个开发过程"全凭她一人借助AI工具独立完成"、北纬社区 OPC 报名 322 家/入驻超 70 家、社区赋能体系等出自此稿；政府官网转载央媒原文，回溯完成。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx cross">[12]</span><span class="rt">B+</span><span class="st">广电媒体（官方公众号转载）</span></div><div class="ti">媒体聚焦｜算力券 模型券 数据券齐发 北京全链条支持智能体产业发展（BRTV北京时间，记者孙烁、韩鹏健）</div><div class="mt"><b>来源：</b>搜狐号"发展北京"（原发 BRTV 北京时间/北京市发改委公众号）　<b>发布日期：</b>2026-07-24<br><a href="https://m.sohu.com/a/1054216064_121106842/" target="_blank" rel="noopener">https://m.sohu.com/a/1054216064_121106842/</a></div><div class="note">事实核查：7 月 23 日《北京市关于支持智能体引领发展的若干措施政策》发布、王钰博引语"把五线谱直接甩到声序智能小程序上，一键获得对应简谱。这款小程序是4月底上线的，到现在已经有约1000人的线上使用用户"、算力券/模型券"真金白银"帮助等出自此稿；"4月底上线"与亿邦"4月10日上线"为月内口径差，按媒体各自表述收录；约 1000 用户为单一发布方口径，标 cross（单一权威广电媒体、官方公众号转载链可回溯）。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 12 条。核验标签分布：🟢 已核验（verified）4 条、🔵 多源印证（cross）6 条、🟡 部分映证（partial）2 条。信源评级分布：A+/A 级 8 条（政府官网 2 条、央媒/党媒 5 条、主流财经 1 条，原文回溯全部完成）、B+/B 级 4 条（贝壳财经、BRTV、亿邦、铅笔道）。关键事实交叉情况：用户量 6000+ 为新华每日电讯 × 新京报贝壳财经双独立发布方交叉（并经 BRTV 约 1000 人、大几千两条中间口径构成自洽增长弧线）；「成立约 3 个月收支平衡」为创始人现场自述经北京市科委官网收录，与贝壳财经「现金流回正」独立交叉；产品与履历核心事实经首都之窗（原发北京日报）、中国青年报、中国经营报、新华每日电讯四家独立发布方互证。三处细节口径差异（学二胡年龄、裸辞后休整时长、性别指称）与五处留白（营收金额、付费用户数、盈利幅度、股权细节、产品官网）已在正文与「捌」节显式标注。未发现伪造链接；全部 12 条 URL 均为检索过程实际命中并核验可达的页面。未检索到产品官网/小程序公开页，一手信源缺失已按媒体交叉替代处理。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-11 · 营收与年化推算值均标注置信口径（推算置信度 C），<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

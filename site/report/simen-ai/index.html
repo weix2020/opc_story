@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · 猴子说话 / Simen AI—— 雷圳鹏的融资驱动型一人公司 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · 猴子说话 / Simen AI">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="猴子说话（Simen AI）深度案例报告：27 岁会计硕士雷圳鹏读研开源成名、单枪匹马赴京融资，产品未正式发布即获字节跳动近 4000 万元投资，再借 OpenClaw「养龙虾」出海。12 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>猴子说话 / Simen AI 深度案例报告</h1>
+    <h2>27 岁会计硕士雷圳鹏：读研开源成名、单枪匹马赴京融资，产品未发布即获字节系近 4000 万元投资<br>再借 OpenClaw「养龙虾」出海 —— 12 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">融资驱动型 OPC</span>
+      <span class="tag">AI Agent / 数字员工</span>
+      <span class="tag">武汉光谷</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">近 4000 万</div><div class="k">字节系投资（元 · 产品未发布即获 · 央媒/党媒双源以上）</div></div>
+  <div class="stat"><div class="v up">200 余万</div><div class="k">奇绩创坛天使轮（元 · 另有 30 万美金口径）</div></div>
+  <div class="stat"><div class="v neutral">约 10 人</div><div class="k">团队规模（平均年龄 20 岁出头 · 工商参保 4 人）</div></div>
+  <div class="stat"><div class="v up">一周 10 万</div><div class="k">「养龙虾」营收（元 · 电话自述口径）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">猴子说话（武汉）科技有限公司是 2026 年光谷「一人公司（OPC）创新主力军」叙事的头部样本：非科班的会计硕士，读研期间靠飞书 AI 开源项目在 GitHub 一战成名，24 岁做到年营收数百万元的集成生意，随后拒绝数千万元并购、宁可赔付投资款也要与合伙人拆分，单枪匹马重启第三次创业——第一款产品尚未正式发布，即获字节跳动近 4000 万元投资，被央视网列为光谷 OPC 典型<a class="cref verified" href="#ref-4">[4]</a>。</p>
+  <div class="two">
+    <div class="card"><div class="ct">产品</div><div class="cb">本地办公智能体「Simen（师门）」：不用上传文件，靠聊天即可在本地电脑完成发票合并、工资表拆分、论文下载、营销视频剪辑，并联动 Word、Excel 等办公软件；正与母校合作深耕金融等行业研发场景。延伸业务为基于开源智能体 OpenClaw 的「AI 数字员工」工具——业内戏称「养龙虾」。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-4">[4]</a> <a class="cref cross" href="#ref-7">[7]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">雷圳鹏，27 岁，湖北麻城人。中南财经政法大学会计学院本科、金融工程硕士（央视网表述为「会计学毕业生」，与「金融工程硕士」两说并存）；高中自学编程，高考自己拍板选会计——只因「商科自由时间多，能安心啃编程」；本科期间开「一人公司」接编程单赚到第一笔 10 万元；读研期间独立开发飞书 AI 开源项目成名，融资时单枪匹马。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-4">[4]</a> <a class="cref cross" href="#ref-9">[9]</a></div></div>
+    <div class="card blue"><div class="ct">融资状态</div><div class="cb">读研期间获奇绩创坛超 200 万元天使轮（长江日报系列稿口径为「30 万美金」）；2025 年带产品赴京融资，现场演示后投资人仅追问两个产品细节便让其自填金额与薪资，敲定 4000 万元投资——长江日报与九派新闻明确表述为「字节跳动」，央视网表述为「头部机构近 4000 万元」，且无对赌协议、无硬性业绩考核、无时间限制。工商登记的天使轮投资方为奇绩创坛与北京锦秋私募基金管理有限公司。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-4">[4]</a> <a class="cref verified" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-6">[6]</a></div></div>
+    <div class="card blue"><div class="ct">团队演变</div><div class="cb">单枪匹马起步：赴京融资时一人到场，飞书高层曾因开源项目专程飞武汉，见到创始人时才发现其只是一名研一学生；现约 10 人团队、平均年龄 20 岁出头，一半非科班（电影学、心理学的开源爱好者），校园面试七八十人筛出「全校最喜欢写代码的人」，大二实习生月薪 5000 元；工商参保人数 4 人（2025 年报口径）；另设两家员工持股平台（老虎/狐狸说话合伙企业）与 100% 全资子公司「狮子说话」。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-4">[4]</a> <a class="cref cross" href="#ref-6">[6]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">高中 — 本科（中南财经政法大学会计学院）</div><div class="tx">自学编程 + 「一人公司」雏形：闲鱼接单、一天最多 8 单</div><div class="td">泡图书馆冷门编程书架、GitHub 与 B 站教程死磕；闲鱼接单从 100 元小单做起、六成把握就接——「客户付了学费，我还学会了知识」；本科开发网站、小程序，赚到人生第一笔 10 万元。<a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">读研（金融工程硕士）</div><div class="tx">将 AI 接入飞书群聊，开源社区一战成名</div><div class="td">独立开发支持图片、视频交互的飞书 AI 项目，在 GitHub 声名鹊起（对应开源仓库 Leizhenpeng/feishu-chatgpt，一手核验存在，与报道描述高度吻合）；获奇绩创坛超 200 万元天使轮投资。<a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-3">[3]</a><a class="cref cross" href="#ref-9">[9]</a></div></div>
+    <div class="node"><div class="dt">24 岁（约 2023-2024）</div><div class="tx">开源项目商业化：飞书 AI 系统集成生意年营收数百万元</div><div class="td">为头部企业提供飞书 AI 系统集成，背靠大厂渠道、拥有稳定现金流（自述口径）；飞书相关高层专程飞武汉，见到创始人时才发现其只是一名研一学生。<a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">拆分旧项目</div><div class="tx">拒绝数千万元并购诱惑，宁可赔付投资款与合伙人拆分</div><div class="td">反思「用上一代互联网思维做 AI、用流量思维做智能生意」是「用旧地图寻找新大陆」，定下「做药不做糖」信条，轻装再出发。<a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2025-03-14</div><div class="tx">猴子说话（武汉）科技有限公司注册成立</div><div class="td">初始法定代表人颜梦婷；注册资本 1 万元起步。<a class="cref cross" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2025-09-25</div><div class="tx">法定代表人变更为雷圳鹏，地址迁入光谷</div><div class="td">由洪山区万盈国际迁至东湖新技术开发区神墩五路（通信地址为中南财大南湖校区创新创业大楼）；注册资本 11 月增至 50 万元。<a class="cref cross" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2025 年</div><div class="tx">赴京融资：现场演示后获 4000 万元投资，无对赌</div><div class="td">投资人仅追问两个产品细节，便让他自行填写融资金额和团队薪资；他事后自嘲「当时太腼腆，或许填少了」。<a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2025-10 — 12</div><div class="tx">股权重构与天使轮工商落地；媒体首次公开「近 4000 万」</div><div class="td">员工持股平台（老虎/狐狸说话）入股、注册资本增至 57.14 万元；12-11/19 北京锦秋私募（锦秋基金）与奇绩创坛天使轮入股 12.5%。12-09 长报系列稿首报「近 4000 万」，12-30 湖北日报跟进。<a class="cref cross" href="#ref-6">[6]</a><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2026 年春节前夕</div><div class="tx">OpenClaw 发布当天关注，带队进入「养龙虾」赛道</div><div class="td">带 10 名核心员工搭配全天候在线的 AI 数字员工矩阵，打磨 AI 数字分身工具，率先在海外赛道拿下营收，「以周为单位迭代，节奏直接对标硅谷」。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-03-09 → 03-10</div><div class="tx">长江日报专访《雷圳鹏是谁？》+ 九派双稿；「一周赚 10 万」电话自述</div><div class="td">记者拨通电话，他答「我在养『龙虾』，一周能赚 10 万吧」；次日东湖高新区政务网刊发「光谷首批养虾人」报道。<a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a><a class="cref partial" href="#ref-8">[8]</a><a class="cref cross" href="#ref-7">[7]</a></div></div>
+    <div class="node"><div class="dt">2026-03-17 / 03-18</div><div class="tx">光谷「AI+行动推进大会」，央视网将其列为 OPC 创新主力军典型</div><div class="td">央视网报道光谷建设全国智能体「分身经济」先行区，以雷圳鹏为一人公司代表案例。<a class="cref verified" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2026-09 — 11</div><div class="tx">组织与产品持续扩张：全资子公司、新软著、官网上线订阅</div><div class="td">9 月设立 100% 全资子公司「狮子说话」；11 月新增软件著作权「ViceMe-AI 工作分身平台」；simen.ai 官网已上线面向海外的 AI 员工订阅制产品（$1 试用 + 赠 3 美元 AI 积分）。<a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-10">[10]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：会计生把「时间自由」兑换成编程资产——闲鱼接单方法论</div><div class="cb">高考自己拍板选会计，逻辑是「商科自由时间多，能安心啃编程」：专业给时间，图书馆冷门书架、GitHub 与 B 站给技能，闲鱼给实战——一天最多接 8 单、从 100 元小单做起、六成把握就接，「客户付了学费，我还学会了知识」。这条「无科班、无资源」的自学路径，完成了 AI 时代的第一重积累：工程手感与交付意识。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a></div></div>
+  <div class="card"><div class="ct">转折二：开源成名 → 集成生意的天花板 → 「旧地图找不到新大陆」</div><div class="cb">读研时的开源项目带来双重杠杆：奇绩创坛超 200 万元天使轮 + 飞书企业的 AI 系统集成订单，24 岁便手握年营收数百万元、背靠大厂渠道的公司。但他随后拒绝数千万元并购诱惑，宁可赔付投资款也要与合伙人拆分——《像火箭科学家一样思考》的「猴子优先」隐喻（先解决「让猴子开口」这一最核心难题，而非先造展示进展的基座）成为公司名由来，也是二次创业的反思起点。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-3">[3]</a></div></div>
+  <div class="card red"><div class="ct">转折三：融资驱动的组织实验——不找「大佬」，校园筛出 10 个「想成功的年轻人」</div><div class="cb">这次创业彻底放弃引入「成功过的大佬」：校园面试七八十人，筛出 10 个「全校最喜欢写代码的人」，大二实习生月薪 5000 元；团队一半非科班（电影学、心理学），「天天绕着南湖聊需求」。用人逻辑：「他们未必是最懂代码的，但一定有强自驱力和快速学习能力，更能适应与 AI 做工作搭子」；其风险自警同样锋利——「最要防范的核心风险就一条：要有真实成交」。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a></div></div>
+  <div class="quote">
+    <p>AI 红利期的宽容在于代码不问出身、创新自带流量。</p>
+    <span class="src">—— 雷圳鹏，央视网 2026-03-18 报道，转引自 <a class="cref verified" href="#ref-4">[4]</a>；长江日报系列稿同文，见 <a class="cref verified" href="#ref-3">[3]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>内容</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>产品功能</b></td><td>本地办公智能体「Simen（师门）」：聊天即完成发票合并、工资表拆分、论文下载、营销视频剪辑，联动 Word/Excel 等本地应用，「把整间办公室装进语音助手」，对标「AI 时代的 WPS」；延伸 OpenClaw「AI 数字员工」工具——给职场人配一个 24 小时在线替人干重复活的 AI 帮手（「养龙虾」），以网红营销岗 AI 分身为样板（自动扒数据、算合作价、发邮件谈合作、汇报闭环）。</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>技术路线</b></td><td>本地化部署、不上传文件（数据不出本地的隐私卖点）；官方文档将 Simen 定义为「100% Agent 驱动的 Vibe Working 编辑器」，孵化垂类 Agent（Bonnie 办公自动化、Taylor 计量经济学），理念为「做专不做泛、只做行业第一」。simen.ai 现售的 AI 员工产品采用 OAuth 连接 1000+ SaaS、预装 3000+ OpenClaw skills、云端沙箱执行 + 本地双模式，宣称「1 分钟部署、零技术门槛」。</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-10">[10]</a> <a class="cref cross" href="#ref-11">[11]</a></td></tr>
+      <tr><td><b>变现</b></td><td>三层：① 历史业务——飞书 AI 系统集成服务，24 岁时年营收数百万元（自述口径）；② 当前业务——「养龙虾」工具与教程，率先在海外赛道拿下营收，自述「一周赚 10 万元」；官网已上线订阅制（$1 试用 + AI 积分赠金）；③ 资金面——字节系近 4000 万元投资构成研发储备而非收入（无对赌、无业绩考核）。</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-8">[8]</a> <a class="cref cross" href="#ref-10">[10]</a> <a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td><b>面向客群</b></td><td>国内：中小企业与个体的办公场景（发票/工资表等重复劳动），并深耕金融等行业研发场景；海外：个人与中小客户的「AI 员工」订阅（英文产品页、支持 Telegram/WhatsApp/Discord/Slack），以及「教素人养龙虾」的工具买家。</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-10">[10]</a></td></tr>
+      <tr><td><b>解决痛点</b></td><td>需求端：Excel/发票/工资表类高重复办公劳动、以及「传统工具只解决人与人的协同、新工具要让人和 AI 劳动力协同」；供给端：OpenClaw 自部署门槛（自托管需 1-5 天 + 2-5 小时工程师级调试），Simen 官网将其压缩为「1 分钟部署、零 token 浪费、零调试」——本质是给「养龙虾」热潮「卖铲子」。</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-10">[10]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 产品形态演进说明</div>
+    2026-03 媒体报道时，Simen（师门）「未正式发布」<a class="cref verified" href="#ref-4">[4]</a>；2026-11 查询 simen.ai 官网时，在售产品已是以 OpenClaw 托管为核心的英文「AI Employee」订阅服务<a class="cref cross" href="#ref-10">[10]</a>，与长报专访中「打造工具、教素人养龙虾」的定位一致<a class="cref verified" href="#ref-1">[1]</a>——即公司重心已从「本地办公智能体」延伸至「AI 数字员工托管」，两个形态并行。
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源与口径</th></tr></thead>
+    <tbody>
+      <tr><td>字节系投资</td><td class="hl">4000 万元（央视网口径「头部机构近 4000 万元」）</td><td>2025 年 · 产品未发布时</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a><a class="cref verified" href="#ref-4">[4]</a><a class="cref verified" href="#ref-5">[5]</a> 双以上独立发布方交叉，原文全部回溯</td></tr>
+      <tr><td>奇绩创坛天使轮</td><td>200 余万元（长江日报系列稿另有「30 万美金」口径）</td><td>读研期间（2025 年前）</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-8">[8]</a><a class="cref cross" href="#ref-6">[6]</a> 投资方身份获工商登记一手确认；金额为媒体口径</td></tr>
+      <tr><td>锦秋基金持股</td><td>12.5%（天使轮，2025-12-11 首次持股）</td><td>2025-12</td><td><a class="cref cross" href="#ref-6">[6]</a> 工商登记一手</td></tr>
+      <tr><td>飞书集成业务年营收</td><td>数百万元</td><td>24 岁时（约 2023-2024）</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a> 受访者自述口径，未经审计</td></tr>
+      <tr><td>「养龙虾」海外营收</td><td class="hl">一周赚 10 万元（另有「两周实现盈利」表述）</td><td>2026-03 电话自述</td><td><a class="cref partial" href="#ref-8">[8]</a><a class="cref cross" href="#ref-7">[7]</a><a class="cref verified" href="#ref-1">[1]</a> 自述口径，两处发布方印证但同源于受访者</td></tr>
+      <tr><td>团队规模</td><td>约 10 人、平均年龄 20 岁出头（工商参保 4 人 · 2025 年报）</td><td>2025-12 → 2026-03 报道</td><td><a class="cref verified" href="#ref-4">[4]</a><a class="cref cross" href="#ref-6">[6]</a> 两口径并列：团队口径含实习生/未参保成员</td></tr>
+      <tr><td>注册资本 / 实缴</td><td>57.142857 万元 / 7.142857 万元</td><td>2025-12-15 变更后</td><td><a class="cref cross" href="#ref-6">[6]</a> 工商登记一手</td></tr>
+      <tr><td>官网订阅</td><td>$1 试用（赠 $3 AI 积分）、1000+ SaaS、3000+ OpenClaw skills</td><td>2026-11 查询</td><td><a class="cref cross" href="#ref-10">[10]</a> 官网一手</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    ① 「近 4000 万元」为三组独立发布方（长江日报系/央视网/湖北日报）交叉的媒体口径，原始投资协议未公开；② 「一周赚 10 万元」出自记者电话中受访者的原话「我在养『龙虾』，一周能赚 10 万吧」，东湖高新区政务网与九派新闻的表述同源于该自述，按单一信源链的转述口径处理；③ 团队「10 人」与工商「参保 4 人」并存，前者为报道时点团队口径、后者为 2025 年报社保口径，时间与统计口径均不同。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将 Simen AI 放入案例墙「开发者工具 / Agent」类同期坐标系（对标数据均为案例墙既有核验值，口径为各案例公开报道值，详见案例墙 <a href="../../index.html" style="color:#2980b9">index.html</a> 对应卡片）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>方向</th><th>融资</th><th>商业化程度</th><th>OPC 类型</th></tr></thead>
+    <tbody>
+      <tr><td><b>Simen AI（本案）</b></td><td>雷圳鹏（武汉光谷）</td><td>本地办公智能体 + OpenClaw 数字员工工具</td><td class="hl">字节系近 4000 万 + 奇绩创坛 200 余万</td><td>历史集成业务年营收数百万元（自述）+「养龙虾」周营收 10 万元（自述）+ 海外订阅制上线</td><td>融资驱动型</td></tr>
+      <tr><td>BettaFish（微舆）</td><td>郭航江（北邮大四）</td><td>多智能体舆情分析系统（10 天 Vibe Coding）</td><td>获 3000 万元注资</td><td>GitHub 37.7k★、两度登顶趋势榜第一，产品化早期</td><td>融资驱动型</td></tr>
+      <tr><td>叶纯俊互动内容</td><td>叶纯俊（上海，自然人独资）</td><td>AI 互动内容与情感陪伴产品</td><td>无融资披露</td><td>90% 代码由 AI Agent 编写；全球百万用户、月收入 2-3 万美元</td><td>现金流驱动型</td></tr>
+      <tr><td>claude-code-router</td><td>musistudio</td><td>Claude Code 多模型路由网关</td><td>无融资披露</td><td>GitHub 38k★、获 Kimi 内置赞助，开源捐赠变现</td><td>开源赞助型</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>四者的分野揭示了 OPC 的两条主干路线：Simen 与 BettaFish 走<b>融资驱动型</b>——用「未发布即获大额注资」换研发时间与组织扩张，收入压力后置；叶纯俊是<b>现金流驱动型</b>的极限样本——不融资、收入即生存线；claude-code-router 则以开源影响力换赞助与生态位。Simen 的特殊性在于同时握有两条路线的要素：巨额投资给足弹药，「养龙虾」又提供自我造血的周现金流——「投资款保底、海外营收验证需求」的组合，是 2026 年光谷 OPC 叙事中最激进的一种结构。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>事实与分析</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>1. 产品功能</td><td>双产品线并行：「Simen（师门）」本地办公智能体（聊天完成发票合并、工资表拆分、论文下载，联动 Word/Excel，隐私卖点为数据不出本地）+ OpenClaw「AI 数字员工」托管工具（24 小时在线替人执行重复任务，海外订阅制）。前者主打国内办公场景，后者承接 2026 年 OpenClaw 热潮的托管化红利。</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-10">[10]</a></td></tr>
+      <tr><td>2. 面向客群</td><td>国内 To B/To P：中小企业办公场景、金融行业（与母校合作的研发场景）、以及「想养虾但不会部署」的素人买家；海外 To C/To SMB：英文产品页直接售卖 AI 员工订阅。客群分层清晰但均未披露用户量数据。</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-10">[10]</a></td></tr>
+      <tr><td>3. 解决痛点</td><td>三层递进：办公重复劳动自动化（发票/工资表）→ 数据安全顾虑（本地部署、不上传文件）→ Agent 部署门槛（自托管 1-5 天压缩至 1 分钟、OAuth 免密码）。第三层踩中的是 OpenClaw 全民热潮中「想用不会配」的普遍摩擦，属于典型的「卖铲子」定位。</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-10">[10]</a> <a class="cref cross" href="#ref-11">[11]</a></td></tr>
+      <tr><td>4. 预估年化营收</td><td class="hl">投资款≠营收：近 4000 万元是资金储备而非收入。可核验收入事实：① 24 岁时飞书集成业务年营收数百万元（自述）；② 2026-03「养龙虾」海外业务「一周赚 10 万元」——按 52 周线性外推年化约 500 万元，但持续性、成本与口径均不可知，测算不确定性极高，仅作量级参考；③ Simen 正式商业化收入未披露，官网订阅 2026-11 才可查。综合：当前真实年化营收未检索到公开信息。</td><td><a class="cref partial" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-8">[8]</a> <a class="cref cross" href="#ref-10">[10]</a></td></tr>
+      <tr><td>5. 融资进展</td><td>两轮：奇绩创坛天使轮（200 余万元/30 万美金口径，投资方身份获工商登记确认）+ 媒体口径「字节跳动 4000 万元」（央视网：「头部机构近 4000 万元」）。工商登记的天使轮落地于 2025-12，投资方为奇绩创坛与北京锦秋私募基金；锦秋由原字节财投负责人杨洁创立、字节为其重要 LP，「字节系」表述与工商登记在此衔接。无对赌、无业绩考核为罕见条款。</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-4">[4]</a> <a class="cref cross" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-12">[12]</a></td></tr>
+      <tr><td>6. 市场评价</td><td>权威背书密集：央视网以「一人公司成创新主力军」将其列为光谷 OPC 典型；长江日报《雷圳鹏是谁？》整版专访定位为「无科班、无资源的普通年轻人，走出一条可参照的普通人 AI 创业路径」；东湖高新区政务网将其纳入「光谷首批养虾人」官方叙事。未检索到公开的负面评价或质疑报道。</td><td><a class="cref verified" href="#ref-4">[4]</a> <a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-7">[7]</a> <a class="cref verified" href="#ref-5">[5]</a></td></tr>
+      <tr><td>7. 投入成本与合规风险</td><td>生态依赖：最大资方为字节系 LP 基金，深度绑定字节/飞书生态（历史业务即飞书集成）。承诺兑现：「数据不出域」的本地化卖点与官网云端沙箱执行并存，一致性需持续验证。海外合规：托管服务经 OAuth 代客户操作境外 SaaS 账号，涉跨境数据与账号代管灰区。公司基础：知识产权仅著作权 1 条（科创分 46）、参保 4 人、2025-09 经营范围扩至营业性演出、出版物零售等与主业无关项。</td><td><a class="cref cross" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-10">[10]</a> <a class="cref cross" href="#ref-12">[12]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 五处留白与两处口径张力（截至 2026-11-11 检索）</div>
+    ① <b>「字节 4000 万」的股权结构未公开</b>：工商登记股东为雷圳鹏 61.75%、老虎说话 17.00%、北京锦秋私募 12.5%、狐狸说话 8.75%，未见字节直投主体；「字节跳动投资」的媒体表述与「锦秋天使轮」的工商登记之间，仅能以「锦秋由原字节财投负责人创立、字节为其 LP」的公开报道衔接，本轮投资主体、估值与股比未披露。② <b>「一周赚 10 万」为电话自述</b>：政务网与九派的表述同源于受访者，无财务佐证。③ <b>投资到账情况未披露</b>：注册资本仅 57.14 万元（实缴 7.14 万元），大额投资是否入账、以增资还是可转债形式，工商层面不可见。④ <b>团队口径并存</b>：媒体「10 人团队」vs 工商「参保 4 人（2025 年报）」。⑤ <b>一人公司属性随扩张弱化</b>：从单枪匹马到 10 人团队、两家员工持股平台、100% 全资子公司，「一人公司」标签已属「一人主导起步」的沿革型叙事。
+  </div>
+  <div class="box note">
+    <div class="bt">📝 口径差异如实并列</div>
+    ① 学历表述：央视网称「会计学毕业生」<a class="cref verified" href="#ref-4">[4]</a>，长江日报/九派称「金融工程硕士」<a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a>——两者可并存（本科会计 + 硕士金融工程），本报告按「会计本科、金融工程硕士」处理。② 奇绩天使轮金额：「超 200 万元」（长报专访、九派）与「30 万美金」（长报系列稿）为同一轮的两种表述，量级一致（约 210 万元）。③ 盈利节奏：长报专访称「养龙虾」「两周就实现盈利」，九派/政务网称「一周赚 10 万元」——前者是盈利时点、后者是周营收量级，不构成直接矛盾但均为自述口径。
+  </div>
+  <div class="card"><div class="ct">本案的样本价值</div><div class="cb">Simen AI 是「融资驱动型 OPC」的完整标本：用开源声誉撬动天使轮，用「背靠大厂渠道」的集成生意完成原始积累，再用「产品未发布即获巨额注资」的信任杠杆重启创业；组织上验证了「不给大佬、给年轻人 + AI 工作搭子」的极客单价团队模型。其风险结构也同样典型：最大的资产（字节系投资）与最大的软肋（生态依赖、股权不透明、自述营收）互为表里。对后来者而言，最可复制的不是「拿到 4000 万」，而是其开源→集成→产品化的三级阶梯，以及「要有真实成交」的风险自警。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-6">[6]</a> <a class="cref verified" href="#ref-4">[4]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">捌·附</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 12 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一信源链）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx verified">[1]</span><span class="rt">A+</span><span class="st">党媒一手专访</span></div><div class="ti">雷圳鹏是谁？（长江日报，记者李佳）</div><div class="mt"><b>来源：</b>长江日报（长江网发布）　<b>发布日期：</b>2026-03-09<br><a href="http://news.cjn.cn/whpd/yw_19947/202603/t5270741.htm" target="_blank" rel="noopener">http://news.cjn.cn/whpd/yw_19947/202603/t5270741.htm</a></div><div class="note">事实核查：全文回溯完成。闲鱼接单、奇绩创坛超 200 万元、「字节跳动 4000 万元投资」、无对赌条款、飞书高层飞武汉、24 岁年营收数百万元、《像火箭科学家一样思考》与公司命名由来、养龙虾两周盈利、「要有真实成交」等核心细节均出自此稿；与央视网 [4]、九派 [2] 多源交叉。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx cross">[2]</span><span class="rt">B+</span><span class="st">门户转载（原发九派新闻）</span></div><div class="ti">做智能体拿下4000万投资小伙发声：团队平均年龄20岁出头，给大二实习生开5000元/月的薪水</div><div class="mt"><b>来源：</b>新浪财经（原发九派新闻，长江日报报业集团旗下）　<b>发布日期：</b>2026-03-09<br><a href="https://finance.sina.com.cn/jjxw/2026-03-09/doc-inhqksxn6968983.shtml" target="_blank" rel="noopener">https://finance.sina.com.cn/jjxw/2026-03-09/doc-inhqksxn6968983.shtml</a></div><div class="note">事实核查：与 [1] 交叉一致；「获字节跳动 4000 万元投资」「投资人让他自填金额与薪资」「校园面试七八十人」为九派口径，转载链已注明原发。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx verified">[3]</span><span class="rt">A+</span><span class="st">党媒系列稿（头条号分发）</span></div><div class="ti">寻访武汉AI新势力 | 商科生跨界AI创业 武汉「猴子」会「说话」（长江日报大武汉客户端，记者李佳）</div><div class="mt"><b>来源：</b>长江日报（今日头条号分发）　<b>发布日期：</b>2025-12-09<br><a href="http://m.toutiao.com/group/7582056707975561766/" target="_blank" rel="noopener">http://m.toutiao.com/group/7582056707975561766/</a></div><div class="note">事实核查：全文回溯完成。「奇绩创坛 30 万美金天使轮」「本科赚到第一笔 10 万元」「拒绝数千万元并购」「做药不做糖」、Simen 功能含视频剪辑等出自此稿；与 [1][4][5] 交叉一致，系「近 4000 万投资」的最早公开报道之一。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx verified">[4]</span><span class="rt">A+</span><span class="st">央媒地方频道</span></div><div class="ti">武汉光谷打造全国智能体「分身经济」先行区 一人公司成创新主力军（央视网，记者来巧雲）</div><div class="mt"><b>来源：</b>央视网　<b>发布日期：</b>2026-03-18<br><a href="https://local.cctv.com/2026/03/18/ARTIEkXV9lgJf83SvmQzoqRT260318.shtml" target="_blank" rel="noopener">https://local.cctv.com/2026/03/18/ARTIEkXV9lgJf83SvmQzoqRT260318.shtml</a></div><div class="note">事实核查：全文回溯完成。央视网口径「头部机构近 4000 万元」与 [1][5] 交叉；「平均年龄 20 岁的 10 人团队」「产品未正式发布便获投」「代码不问出身」引语出自此稿；其「会计学毕业生」表述与 [1]「金融工程硕士」已并列处理。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx verified">[5]</span><span class="rt">A</span><span class="st">省级党媒</span></div><div class="ti">Manus破茧地更多「蝴蝶」起舞 光谷一栋楼长出近20家AI创业公司（湖北日报全媒记者马文俊、张真真）</div><div class="mt"><b>来源：</b>湖北日报客户端　<b>发布日期：</b>2025-12-30<br><a href="https://news.hubeidaily.net/mobile/c_4970168.html" target="_blank" rel="noopener">https://news.hubeidaily.net/mobile/c_4970168.html</a></div><div class="note">事实核查：全文回溯完成。「高中自学编程、大学时经营一人公司、连续两次成功创业、十人极客军团、产品尚未发布便获近 4000 万元投资」出自此稿，与 [3][4] 交叉；报道时点早于央视网约三个月。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx cross">[6]</span><span class="rt">A+</span><span class="st">工商信息（一手）</span></div><div class="ti">猴子说话（武汉）科技有限公司 · 工商登记与变更记录（天眼查）</div><div class="mt"><b>来源：</b>天眼查　<b>数据更新：</b>2026-10-14（查询日 2026-11-11）<br><a href="https://www.tianyancha.com/company/7458048617" target="_blank" rel="noopener">https://www.tianyancha.com/company/7458048617</a></div><div class="note">事实核查：一手工商数据。成立日期 2025-03-14、注册资本 57.142857 万元（实缴 7.142857 万元）、股东结构（雷圳鹏 61.7467%/老虎说话 17.0033%/锦秋私募 12.5%/狐狸说话 8.75%）、2025-12-19 天使轮（奇绩创坛+锦秋）、参保 4 人（2025 年报）、全资子公司狮子说话（2026-09-07）、软著 ViceMe（2026-11-02）均出自此页；股东中未见字节跳动直投主体，已列入捌节争议项。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">A+</span><span class="st">政府官网</span></div><div class="ti">光谷首批「养虾人」已尝鲜，有人养了7只，有公司全岗位应用（东湖高新区党工委宣传部）</div><div class="mt"><b>来源：</b>武汉东湖新技术开发区政务网　<b>发布日期：</b>2026-03-10<br><a href="https://www.wehdz.gov.cn/2022/ggxw_68627/cydt_68630/202603/t20260310_2737387.shtml" target="_blank" rel="noopener">https://www.wehdz.gov.cn/2022/ggxw_68627/cydt_68630/202603/t20260310_2737387.shtml</a></div><div class="note">事实核查：政府原文回溯完成。「猴子说话创始人雷圳鹏教人『养龙虾』，仅一周就赚了 10 万元」及 OpenClaw 背景（开源智能体、昵称龙虾、接入豆包/Kimi、联动飞书钉钉）出自此稿；该表述与 [8] 同源于受访者自述，按转述口径处理。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx partial">[8]</span><span class="rt">B</span><span class="st">省级新媒体（转九派新闻）</span></div><div class="ti">27岁小伙教「养龙虾」 一周赚10万元</div><div class="mt"><b>来源：</b>新海南客户端（海南日报旗下，原发九派新闻微博）　<b>发布日期：</b>2026-03-09<br><a href="https://rm-xhn-1.hinews.cn/v_page.html?mediumTypeId=2&newsId=2805447" target="_blank" rel="noopener">https://rm-xhn-1.hinews.cn/v_page.html?mediumTypeId=2&amp;newsId=2805447</a></div><div class="note">事实核查：「我在养『龙虾』，一周能赚 10 万吧」为记者电话中受访者自述原话，属单一信源链的转述口径；另载「真正的安全感，站在别人的瞭望台里，看不到」。奇绩创坛「200 多万元天使投资」亦见于此稿，与 [1] 交叉。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx cross">[9]</span><span class="rt">A</span><span class="st">开源仓库（一手）</span></div><div class="ti">Leizhenpeng/feishu-chatgpt · 飞书 AI 对话机器人开源仓库（GitHub）</div><div class="mt"><b>来源：</b>GitHub　<b>查询日期：</b>2026-11-11<br><a href="https://github.com/Leizhenpeng/feishu-chatgpt" target="_blank" rel="noopener">https://github.com/Leizhenpeng/feishu-chatgpt</a></div><div class="note">事实核查：一手核验仓库真实存在，为「AI 接入飞书群聊」方向的机器人项目（Docker/Serverless 等多种部署方式，关联 ConnectAI-E 社区），与 [1][3] 描述的读研期开源项目高度吻合；作者 ID「Leizhenpeng」与「雷圳鹏」拼音一致，但仓库页面未标注中文实名，对应关系为合理推断（推断依据已如实标注）。star 数未在本次抓取中获取，不作引用。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx cross">[10]</span><span class="rt">A</span><span class="st">产品官网（一手）</span></div><div class="ti">Simen AI — Your AI Employee that works while you sleep（simen.ai）</div><div class="mt"><b>来源：</b>simen.ai 官网　<b>查询日期：</b>2026-11-11<br><a href="https://simen.ai/" target="_blank" rel="noopener">https://simen.ai/</a></div><div class="note">事实核查：一手产品页。$1 试用（赠 $3 积分）、OAuth 连接 1000+ SaaS、3000+ OpenClaw skills、Telegram/WhatsApp/Discord/Slack 多端接入、云端沙箱 + 本地双模式、「自托管 1-5 天 vs Simen 1 分钟」对比、67+ 用例均出自此页；产品形态与「养龙虾」定位对应。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx cross">[11]</span><span class="rt">A</span><span class="st">官方文档（一手）</span></div><div class="ti">Welcome to Simen AI（docs.simen.site）</div><div class="mt"><b>来源：</b>Simen AI 官方文档　<b>查询日期：</b>2026-11-11<br><a href="https://docs.simen.site/" target="_blank" rel="noopener">https://docs.simen.site/</a></div><div class="note">事实核查：一手文档。「100% Agent-driven Vibe Working editor」定义、四条 Agent 理念（做专不做泛、真实案例导向、持续进化、行业第一或不做）、孵化中 Agent（Bonnie 办公自动化、Taylor 计量经济学）出自此页。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx cross">[12]</span><span class="rt">B</span><span class="st">财经媒体</span></div><div class="ti">一级市场没有「字节时间」（36氪；锦秋基金与字节跳动关系）</div><div class="mt"><b>来源：</b>36氪　<b>发布日期：</b>2026 年（具体日期页面未标注）<br><a href="https://m.36kr.com/p/4052484853568640" target="_blank" rel="noopener">https://m.36kr.com/p/4052484853568640</a></div><div class="note">事实核查：锦秋基金由原字节跳动财务投资部负责人杨洁创立、名称取自字节首间办公室「锦秋家园」、字节为其重要 LP、「一度被视为字节跳动的外部产业投资」出自此稿；证券时报同口径报道（stcn.com，搜索摘要级佐证）亦见「字节是锦秋众多 LP 之一」。该条仅用于解释「字节系投资」与工商登记「锦秋天使轮」的衔接，不作为本案直接事实。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 12 条。核验标签分布：🟢 已核验（verified）4 条、🔵 多源印证（cross）7 条、🟡 部分映证（partial）1 条。信源评级分布：A+/A 级 9 条（长江日报×2、央视网、湖北日报、天眼查、东湖高新区政务网、GitHub/官网/文档一手，原文回溯全部完成）、B+/B 级 3 条（新浪转九派、新海南转九派、36氪）。核验过程中 12 条 URL 全部实际命中、无核验失败链接；「养龙虾一周赚 10 万」为受访者自述口径（两处发布方同源印证，按 partial 从严处理）；「字节 4000 万投资」与工商登记锦秋天使轮的衔接关系、以及 GitHub 仓库与创始人的对应关系，均以推断依据形式显式标注于对应信源 note 与捌节。三处口径差异（学历表述、天使轮金额表述、盈利节奏）已如实并列。本报告不构成投资建议。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-11 · 营收与年化推算值均标注置信口径，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>
