@@ -102,3 +102,22 @@
 - 主动排除的不可核实案例：API2D、OhMyGPT（创始人身份无法核实）、腾讯云 OPC 案例 045（匿名月入 11 万）、哥飞/小杨哥/赫兹（产品名不可考）。
 - 赛道缺口：医疗赛道未找到同时满足三条标准的个人开发者案例，宁缺毋滥未收录。
 - 口径提醒：35/32/43/48/49/50 等条目的营收为创始人自述；开源项目成功迹象以 GitHub 星标关注度为主；21-24 为作品型 OPC（AI 全流程制作的内容作品），与传统软件产品型 OPC 并列呈现。
+
+---
+
+## 增补批次（2026-11-10 · 第 11–60 号中新增 10 例）
+
+> 经两路检索回收 17 个候选，去重后（胃之书、小猫补光灯、CowAgent/chatgpt-on-wechat 与已有案例重复；QRBTF 一人属性存疑剔除）入选 10 个。信源底稿如下（详见案例墙 domestic-opc-50.html 对应卡片）：
+
+1. **音行三界**｜陶雯煜｜AI 音乐公司（生成+数据标注+虚拟偶像 IP，两人运营）｜虚拟偶像粉丝 20 万+、播放 3000 万+｜锚点 2026-04-29（界面新闻 OPC 报道）｜信源：jiemian.com/article/14358087.html｜置信度：中
+2. **碳基圈**｜杨平（Yapie程序员哥）｜AI 社交平台+AI 歌曲生成，Claude Code 独立开发｜用户 4 万+、日访问 100 万+、AI 音乐 2 天产生收入；拟获 3000 万投前估值投资意向｜锚点 2026-04-16（中国经营报"探路一人公司"）｜信源：finance.sina.com.cn/jjxw/2026-04-16/doc-inhuskuk4050239.shtml｜置信度：高
+3. **BettaFish（微舆）**｜郭航江（BaiFu，北邮大四）｜多智能体舆情分析系统，10 天 Vibe Coding｜GitHub 37.7k★、两度登顶趋势榜第一、获 3000 万元注资｜锚点 2025-12（发布）｜信源：36kr.com/p/3720728841763465｜置信度：高
+4. **Chat Memo**｜一泽 Eze｜跨 AI 平台对话存档"记忆中枢"插件｜20000+ 用户、Chrome 4.9 分 Google 精选｜锚点 2025-06-30（即刻发布）｜信源：chatmemo.ai、m.okjike.com/originalPosts/6861e8137669c1bbaf51a98d｜置信度：中高
+5. **claude-code-router**｜musistudio｜Claude Code 多模型路由网关｜GitHub 38k★、Kimi 内置赞助｜锚点 2025-02（首提交）｜信源：github.com/musistudio/claude-code-router｜置信度：高
+6. **Leadmore AI**｜Richard Wang｜AI Reddit 营销自动化 SaaS，80-90% 代码 AI 完成｜上线 4 个月 $30K MRR → $1M ARR（自述）｜锚点 2025 年初上线｜信源：aiforautomation.io/cases/leadmore-ai-richard-wang、startupfounderstories.com｜置信度：高（营收自述）
+7. **供春AI**｜张雨航｜国内首款陶瓷 AIGC 辅助设计软件（宜兴 OPC）｜用户 3 万+、近 30 所高校、天猫校园 OPC 基地｜锚点 2024-11-29（宜兴市政府网）｜信源：xinhuanet.com/globe/20260831/89d03f0573a148f79943fc444cdaad2f/c.html、yixing.gov.cn｜置信度：高
+8. **敲敲门童话（Knock AI）**｜Chris & Tony Lai（05 后兄弟两人）｜AI 原生儿童互动童话平台，三端上线｜读者 10 万+ 人次、获 300 万元融资（含 Google Cloud 25 万美元）｜锚点 2024-09-26（上线）｜信源：m.36kr.com/p/2963790071566595、m.hexun.com/stock/2024-09-26/214722025.html｜置信度：高
+9. **new-api**｜Calcium-Ion（个人发起，后转 QuantumNous 组织）｜LLM 网关与 AI 资产管理｜GitHub 51.3k★、大量商用中转站底座｜锚点 2024-07-24｜信源：github.com/Calcium-Ion/new-api｜置信度：高（数据）/一人属性：中（已组织化）
+10. **Copilot for Obsidian**｜Logan Yang（Brevilabs）｜Obsidian AI 副驾插件，solo developer 起步｜下载破 100 万（2026-02）、GitHub 7.8k★、付费订阅｜锚点 2023（首发）｜信源：obsidiancopilot.com/en/newsletter/2026-02-launching-self-host-mode-retiring-believer-plan、mother-of-success.com｜置信度：高
+
+**本轮落选（证据不足或重复）**：CowAgent（=已收录 chatgpt-on-wechat 同一开发者）、胃之书/小猫补光灯（重复）、QRBTF/倪豪（Latent Cat 公司归属与个人项目说法冲突）、Seeu.food/阴明（单一播客转述链）、观察者悖论/柔树（成功迹象仅"覆盖生活支出"）、Textideo/Ethan Tian（自报营收、华人身份待证，维持观察名单）。
