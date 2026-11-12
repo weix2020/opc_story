@@ -72,6 +72,18 @@ body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-sys
 .rp-frame{flex:1;border:0;width:100%;background:#fafbfc}
 @keyframes rpFade{from{opacity:0}to{opacity:1}}
 @keyframes rpSlideIn{from{transform:translateX(100%)}to{transform:translateX(0)}}
+
+/* 分享菜单与轻提示 */
+.sh-menu{position:fixed;z-index:98;width:216px;background:#0d1420;border:1px solid var(--line2);border-radius:8px;padding:8px;box-shadow:0 12px 40px rgba(0,0,0,.55);font-family:var(--mono)}
+.sh-menu[hidden]{display:none}
+.shm-title{font-size:11px;color:var(--faint);letter-spacing:1px;margin:2px 4px 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sh-menu button[data-ch]{display:block;width:100%;text-align:left;background:transparent;border:0;border-radius:5px;color:#a8b8cc;font-size:12.5px;padding:7px 10px;cursor:pointer;font-family:inherit;transition:all .12s}
+.sh-menu button[data-ch]:hover{background:rgba(0,229,255,.08);color:var(--cyan)}
+.shm-qr{margin-top:6px;padding:10px;text-align:center;border-top:1px dashed var(--line2)}
+.shm-qr img{width:168px;height:168px;background:#fff;padding:6px;border-radius:6px;display:block;margin:0 auto}
+.shm-qr p{font-size:11px;color:var(--dim);margin-top:8px;line-height:1.6}
+.sh-toast{position:fixed;left:50%;bottom:32px;transform:translateX(-50%);z-index:100;background:#0d1420;border:1px solid var(--cyan);color:var(--cyan);font-family:var(--mono);font-size:12.5px;padding:9px 18px;border-radius:6px;box-shadow:0 8px 30px rgba(0,0,0,.5)}
+.sh-toast[hidden]{display:none}
 .oc-foot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #1c2531;padding-top:9px;margin-top:3px}
 .oc-cats{font-size:11px;color:var(--faint);font-family:var(--mono)}
 .oc-actions{display:flex;gap:7px;align-items:center}
@@ -145,6 +157,10 @@ thead th,tbody td{padding:8px 10px}
     <iframe class="rp-frame" id="rpFrame" title="深度案例报告全文"></iframe>
   </div>
 </div>
+
+<!-- 分享菜单与轻提示 -->
+<div class="sh-menu" id="shMenu" hidden></div>
+<div class="sh-toast" id="shToast" hidden></div>
 
 <script>
 /* ===== 70 案例卡片墙：数据（按时间锚点降序）===== */
@@ -246,9 +262,9 @@ function render() {
       <div class="oc-foot">
         <span class="oc-cats">${GROUP_LABEL[c.g]}</span>
         <div class="oc-actions">
-          <span class="op-views" title="阅读量（仅保存在本机，按会话累计）">${EYE} <b data-vc>0</b></span>
+          <span class="op-views" title="阅读量：点击本项目卡片累计（仅保存在本机）">${EYE} <b data-vc>0</b></span>
           <button type="button" class="op-btn" data-like="${c.r}" aria-pressed="false" title="点赞（仅保存在本机）">${HEART} <b data-lc>0</b></button>
-          <button type="button" class="op-btn" data-share="${c.r}" title="分享（复制/调用系统分享，计数保存在本机）">${SHARE} <b data-sc>0</b></button>
+          <button type="button" class="op-btn" data-share="${c.r}" title="分享到微信 / 朋友圈 / 小红书 / 微博">${SHARE} <b data-sc>0</b></button>
         </div>
       </div>
     </article>`;
@@ -273,19 +289,18 @@ function paintCounts(r) {
   card.querySelector('[data-vc]').textContent = parseInt(lsGet(VW(r)) || '0', 10);
 }
 
-/* 阅读量：每个浏览器会话对每个案例只计 1 次 */
+/* 阅读量 = 用户点击该项目卡片的次数（点击卡片主体累计，与底部互动按钮区分） */
 const VW = r => `opc:view:${r}`;
-function countViews() {
-  try {
-    if (!window.sessionStorage.getItem('opc:viewed-session')) {
-      CASES.forEach(c => lsSet(VW(c.r), String(parseInt(lsGet(VW(c.r)) || '0', 10) + 1)));
-      window.sessionStorage.setItem('opc:viewed-session', '1');
-    }
-  } catch {}
-}
 
 function bindActions() {
   document.getElementById('opcGrid').addEventListener('click', (e) => {
+    /* 阅读量：点击卡片主体（标题/简介区）= 点击该项目，累计 +1 */
+    const main = e.target.closest('.oc-main');
+    if (main) {
+      const r = main.closest('.opc-card').dataset.r;
+      lsSet(VW(r), String(parseInt(lsGet(VW(r)) || '0', 10) + 1));
+      paintCounts(r);
+    }
     const likeBtn = e.target.closest('[data-like]');
     const shareBtn = e.target.closest('[data-share]');
     if (likeBtn) {
@@ -294,16 +309,89 @@ function bindActions() {
       lsSet(LK(r), liked ? '0' : '1');   // 点赞可切换
       paintCounts(r);
     } else if (shareBtn) {
-      const r = shareBtn.dataset.share;
-      const c = CASES.find(x => x.r === Number(r));
-      lsSet(SH(r), String(parseInt(lsGet(SH(r)) || '0', 10) + 1));
-      paintCounts(r);
-      const shareData = { title: `OPC 案例墙 · ${c.n}（${c.f}）`, url: location.href.split('#')[0] + '#case-' + r };
-      if (navigator.share) { navigator.share(shareData).catch(() => undefined); }
-      else if (navigator.clipboard) { navigator.clipboard.writeText(shareData.url).catch(() => undefined); }
+      openShareMenu(shareBtn);           // 打开四通道分享菜单
     }
   });
 }
+
+/* ===== 分享菜单：微信 / 朋友圈 / 小红书 / 微博 ===== */
+const shareDataOf = r => {
+  const c = CASES.find(x => x.r === Number(r));
+  return { c, title: `OPC 案例墙 · ${c.n}（${c.f}）`, url: location.href.split('#')[0] + '#case-' + r };
+};
+const shMenu = document.getElementById('shMenu');
+const shToast = document.getElementById('shToast');
+let shToastTimer = null;
+function showToast(msg) {
+  shToast.textContent = msg;
+  shToast.hidden = false;
+  clearTimeout(shToastTimer);
+  shToastTimer = setTimeout(() => { shToast.hidden = true; }, 2400);
+}
+function incShare(r) {
+  lsSet(SH(r), String(parseInt(lsGet(SH(r)) || '0', 10) + 1));
+  paintCounts(r);
+}
+function openShareMenu(btn) {
+  const r = btn.dataset.share;
+  const { c } = shareDataOf(r);
+  shMenu.dataset.r = r;
+  shMenu.innerHTML = `
+    <div class="shm-title">分享「${c.n}」</div>
+    <button type="button" data-ch="wechat">💬 微信 · 扫码转发</button>
+    <button type="button" data-ch="moments">🌞 朋友圈 · 扫码分享</button>
+    <button type="button" data-ch="xhs">📕 小红书 · 复制文案</button>
+    <button type="button" data-ch="weibo">🔥 微博 · 打开分享页</button>
+    <button type="button" data-ch="copy">🔗 复制链接</button>
+    <div class="shm-qr" hidden><img alt="分享二维码"><p class="shm-hint"></p></div>`;
+  shMenu.hidden = false;
+  /* 定位：菜单底边贴住按钮顶部，水平方向夹在视口内 */
+  const rect = btn.getBoundingClientRect();
+  const mw = shMenu.offsetWidth;
+  shMenu.style.left = Math.min(Math.max(8, rect.left - mw / 2), window.innerWidth - mw - 8) + 'px';
+  shMenu.style.top = Math.max(8, rect.top - 10) + 'px';
+  shMenu.style.transform = 'translateY(-100%)';
+}
+shMenu.addEventListener('click', (e) => {
+  const item = e.target.closest('button[data-ch]');
+  if (!item) return;
+  const r = shMenu.dataset.r;
+  const { title, url } = shareDataOf(r);
+  const enc = encodeURIComponent;
+  const ch = item.dataset.ch;
+  if (ch === 'wechat' || ch === 'moments') {
+    /* 微信/朋友圈无网页直发通道，标准做法：二维码扫码 → 手机端转发/分享 */
+    const qr = shMenu.querySelector('.shm-qr');
+    const img = qr.querySelector('img');
+    img.src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=0&data=${enc(url)}`;
+    img.onerror = () => { qr.querySelector('.shm-hint').textContent = '二维码生成失败（需联网），可复制链接后手动打开'; };
+    qr.querySelector('.shm-hint').textContent = ch === 'wechat'
+      ? '微信扫码打开本案例 → 右上角「…」转发给好友或群聊'
+      : '朋友圈无网页直发通道：微信扫码打开后 → 右上角「…」分享到朋友圈';
+    qr.hidden = false;
+    incShare(r);
+  } else if (ch === 'xhs') {
+    navigator.clipboard?.writeText(`${title}\n${url}`)
+      .then(() => showToast('小红书文案已复制，打开小红书 App 粘贴发布即可'))
+      .catch(() => showToast('复制失败，请手动复制链接'));
+    incShare(r);
+    shMenu.hidden = true;
+  } else if (ch === 'weibo') {
+    window.open(`https://service.weibo.com/share/share.php?title=${enc(title)}&url=${enc(url)}`, '_blank', 'noopener');
+    incShare(r);
+    shMenu.hidden = true;
+  } else if (ch === 'copy') {
+    navigator.clipboard?.writeText(url)
+      .then(() => showToast('链接已复制'))
+      .catch(() => showToast('复制失败'));
+    shMenu.hidden = true;
+  }
+});
+/* 点击菜单外区域关闭（分享按钮本身除外） */
+document.addEventListener('click', (e) => {
+  if (!shMenu.hidden && !shMenu.contains(e.target) && !e.target.closest('[data-share]')) shMenu.hidden = true;
+});
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') shMenu.hidden = true; });
 
 /* ===== 搜索 + 赛道筛选 ===== */
 let keyword = '', group = '';
@@ -360,7 +448,6 @@ function bindSort() {
 
 /* ===== 初始化 ===== */
 render();
-countViews();
 CASES.forEach(c => paintCounts(c.r));
 bindActions();
 bindFilters();
