@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · VideoLingo—— 独立开发者 Huanshere 的「一键 Netflix 级视频本地化」 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · VideoLingo">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="VideoLingo 深度案例报告：独立开发者 Huanshere 开源「一键 Netflix 级视频本地化」工具，GitHub 19,225 星（2026-11-13 API 实测），开源 + 云订阅双轨商业化。13 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>VideoLingo 深度案例报告</h1>
+    <h2>独立开发者 Huanshere：把「Netflix 级字幕组」装进一个开源仓库<br>GitHub 19,225 星 · 开源引流 + 云订阅变现的双轨一人公司 —— 13 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">工具型 OPC</span>
+      <span class="tag">开源 + SaaS</span>
+      <span class="tag">质量标准驱动</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">19,225</div><div class="k">GitHub Stars（2026-11-13 API 实测）</div></div>
+  <div class="stat"><div class="v neutral">2,125</div><div class="k">GitHub Forks（同上实测）</div></div>
+  <div class="stat"><div class="v neutral">$0 / $5 / $30</div><div class="k">云端订阅三档（月付）</div></div>
+  <div class="stat"><div class="v neutral">2024 ▲</div><div class="k">开源元年（仓库创建 2024-08-09）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">VideoLingo 是一款开源的视频本地化一站式工具，定位为「Netflix 级字幕切割、翻译、对齐、甚至加上配音，一键全自动视频搬运 AI 字幕组」<a class="cref verified" href="#ref-2">[2]</a>：用 NLP 与大模型替代传统字幕组的人工流程，消除生硬机翻与多行字幕，并附加高质量克隆配音<sup class="cite verified">[3]</sup>。项目由个人开发者 Huanshere 于 2024 年 8 月开源（GitHub 仓库创建于 2024-08-09），持续维护至今，GitHub 星标于 2026-11-13 经 API 实测为 19,225、Fork 2,125<sup class="cite verified">[1]</sup>。</p>
+  <div class="two">
+    <div class="card"><div class="ct">产品</div><div class="cb">一条「下载 → 词级语音识别 → 智能字幕分割 → 上下文翻译 → 字幕对齐 → 克隆配音」的全自动流水线：yt-dlp 下载视频，Qwen3-ASR + ForcedAligner 做词级时间轴识别，NLP+LLM 按句意分割字幕，GPT 提取术语知识库做上下文连贯翻译（直接翻译—反思—意译三步），再以 GPT-SoVITS、OpenAI TTS、CosyVoice2、F5-TTS 等多后端合成配音<sup class="cite verified">[2]</sup>。Streamlit 界面一键启动，支持 Windows / macOS / Linux 与 Docker 部署<sup class="cite verified">[2]</sup>。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">Huanshere（GitHub 个人账号）：<b>真名未公开</b>——GitHub 用户页无实名与详细介绍信息，各公开报道亦未见实名口径，本报告按「网名 Huanshere」收录<sup class="cite verified">[4]</sup>。其 GitHub 主页置顶即 VideoLingo（19.2k 星），另有一个小实验项目 so1（在 claude-3-5-sonnet 上复现 o1 式思维链，76 星）；近一年 123 次提交，2026 年 11 月仍有提交记录<sup class="cite verified">[4]</sup>。</div><div class="cm">信源：<a class="cref verified" href="#ref-4">[4]</a></div></div>
+    <div class="card"><div class="ct">公司 / 融资状态</div><div class="cb">是否注册公司、有无雇员、有无融资：<b>未检索到公开信息</b>。对外联系渠道为 GitHub Issues、Twitter @Huanshere 与邮箱 team@videolingo.io<sup class="cite verified">[2]</sup>，商业形态表现为「开源仓库 + 在线服务站」双轨，未见公司化运营的公开信号。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a></div></div>
+    <div class="card blue"><div class="ct">商业模式速览</div><div class="cb">开源侧：Apache 2.0 许可，本地部署完全免费、允许商用<sup class="cite verified">[2]</sup>；云侧：videolingo.io 在线服务提供三档月订阅——免费档 15 分钟额度（仅中英文、480p、含水印）、入门档 $5/月（1 小时、8 种语言、1080p）、专业档 $30/月（6 小时、解锁 F5-TTS 克隆配音、API 接口「即将推出」）<sup class="cite verified">[6]</sup>。</div><div class="cm">信源：<a class="cref verified" href="#ref-6">[6]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2024-08-09</div><div class="tx">GitHub 仓库创建，项目开源（锚点 2024 ▲）</div><div class="td">仓库创建时间为 GitHub API 实测值 created_at<sup class="cite verified">[1]</sup>；项目以「一键全自动视频搬运 AI 字幕组」定位开源，Python 编写、Apache 2.0 许可。</div></div>
+    <div class="node"><div class="dt">2024-09-21</div><div class="tx">开源初期即获中文技术社区关注</div><div class="td">掘金作者「开源星探」发文《自媒体神器！油管视频一键全自动搬运！》，称其为「最新开源」的一键全自动视频处理工具，并点明「自媒体视频搬运是作者开发该项目的起始点」<sup class="cite cross">[7]</sup>。</div></div>
+    <div class="node"><div class="dt">2024（年内）</div><div class="tx">被 AI 工具导航站收录，早期管线定型</div><div class="td">OpenI 等 AI 工具集站点收录（标注「2024 年发布」）；早期技术架构为 yt-dlp 下载 + Whisper 语音识别 + SpaCy 分割 + SoVITS 配音<sup class="cite partial">[8]</sup>。</div></div>
+    <div class="node"><div class="dt">2025–2026</div><div class="tx">技术栈持续演进：识别引擎换代</div><div class="td">现行 README 显示语音识别已升级为 Qwen3-ASR + Qwen3-ForcedAligner 本地词级对齐（另可选 ElevenLabs、MAI-Transcribe-2 等云端方案），TTS 扩展至 GPT-SoVITS / OpenAI / Fish Audio / CosyVoice2 / Edge TTS / F5-TTS 多后端，并新增 HTTP API 与任务暂停恢复控制<sup class="cite verified">[2]</sup>——与 2024 年早期架构对比可见明显的迭代轨迹<sup class="cite partial">[8]</sup>。</div></div>
+    <div class="node"><div class="dt">2026-09 → 2026-11</div><div class="tx">星标进入 1.8 万→1.9 万区间稳步爬升</div><div class="td">第三方每日快照跟踪：2026-09-21 约 18.5k → 2026-11-08 约 19.1k，48 天净增 629 星<sup class="cite cross">[9]</sup>；另一跟踪页 2026-10-16 观测值 18,808 星 / 2,077 Fork<sup class="cite partial">[10]</sup>。</div></div>
+    <div class="node"><div class="dt">2026-11-10</div><div class="tx">最后一次代码推送，项目处于活跃维护状态</div><div class="td">GitHub API 实测 pushed_at = 2026-11-10，当前 25 个开放 Issue；第三方跟踪亦确认「仍在维护，最近收到提交」<sup class="cite verified">[1]</sup><sup class="cite cross">[9]</sup>。</div></div>
+    <div class="node"><div class="dt">2026-11-13</div><div class="tx">本报告实测：19,225 Stars / 2,125 Forks / 106 Watchers</div><div class="td">与官方文档站首页展示的 19,225 Stars 一致<sup class="cite verified">[1]</sup><sup class="cite verified">[3]</sup>。</div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：从自己的「搬运」痛点出发，逆向定义产品</div><div class="cb">社区复盘口径一致：这个项目的起点不是「做一个翻译工具」，而是「自媒体视频搬运」——把 YouTube 热门英文视频翻译成中文进行知识传播时，字幕切割、翻译对齐、配音制作每个环节都繁琐到劝退<sup class="cite cross">[7]</sup>。Huanshere 把字幕组的人工工序拆解为流水线：识别 → 分割 → 翻译 → 对齐 → 配音，再用 AI 逐环替代——「一键全自动 AI 字幕组」的产品隐喻直接来自被替代的对象本身<sup class="cite verified">[2]</sup>。</div><div class="cm">信源：<a class="cref cross" href="#ref-7">[7]</a> <a class="cref verified" href="#ref-2">[2]</a></div></div>
+  <div class="card"><div class="ct">转折二：用「Netflix 级」给质量定锚——标准即定位</div><div class="cb">在开源翻译工具普遍卷「支持多少引擎」时，VideoLingo 选择卷「质量上限」：官方文档开宗明义以「生成 Netflix 级字幕」为目标，明确消灭两个具体痛点——生硬的机器翻译、多行字幕<sup class="cite verified">[3]</sup>；官网则把卖点浓缩为「影视级双语字幕」「单行字幕 绝不越界」<sup class="cite verified">[5]</sup>。Netflix 这个外部质量标杆替代了抽象的「高质量」，让用户在下载前就能预期成片水准——这是本案区别于同类工具的核心定位手法。</div><div class="cm">信源：<a class="cref verified" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-5">[5]</a></div></div>
+  <div class="card"><div class="ct">转折三：开源资产与云服务双轨并行——个人开发者的变现闭环</div><div class="cb">本地部署免费且 Apache 2.0 允许商用<sup class="cite verified">[2]</sup>，在线服务则用「免费 15 分钟」降低试用门槛<sup class="cite verified">[5]</sup>，再以 $5 / $30 两档订阅承接愿意付费的用户，把最强的「克隆配音」能力留在 $30 专业档<sup class="cite verified">[6]</sup>。社区用户对「本地免费、云端收费」的双轨制出现过预期分歧——掘金评论区有用户直言「最关键一点儿这玩意儿收费！」<sup class="cite cross">[7]</sup>；但结构上，开源带来的星标与口碑正是云服务最低成本的获客渠道，这一双轨闭环由一人同时运维。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-7">[7]</a></div></div>
+  <div class="quote">
+    <p>之前要弄一整天，现在一个小时就弄完了！</p>
+    <span class="src">—— k，B 站 30 万粉 UP 主，VideoLingo 官方文档站首页用户见证，转引自 <a class="cref verified" href="#ref-3">[3]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product & Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>内容</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>产品功能</b><br>（Netflix 级标准的三步流水线）</td><td>① 智能字幕分割：NLP + LLM 按句意切割，确保单行字幕不越界；② 上下文感知翻译：GPT 总结提取术语知识库，「直接翻译—反思—意译」三步流程，对标字幕组精翻；③ 精确对齐：Qwen3-ASR + ForcedAligner 词级时间轴；④ 高质量配音：GPT-SoVITS 个性化克隆及多 TTS 后端；⑤ 一键全自动串联以上全部环节</td><td><a class="cref verified" href="#ref-2">[2]</a><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td><b>技术架构</b></td><td>Python + Streamlit 界面；视频获取用 yt-dlp；语音识别本地跑 Qwen3-ASR + ForcedAligner（Apple Silicon 走 MLX），可切换 ElevenLabs / MAI-Transcribe-2 / WhisperX（手动安装）；LLM 走 OpenAI 兼容 Chat Completions 接口（要求返回结构化 JSON）；TTS 后端含 GPT-SoVITS、OpenAI、Fish Audio、SiliconFlow CosyVoice2、Edge TTS、F5-TTS 及自定义适配器；另提供本地 HTTP API 供智能体与脚本调用</td><td><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>部署形态</b></td><td>本地：Windows 一键安装包 OneKeyStart.bat（自动装 uv / Python 3.12 / FFmpeg）、源码 uv run、Docker（NVIDIA GPU 容器）；云端：videolingo.io 在线服务（免安装，贴链接即用）；支持 macOS（Apple Silicon / Intel）与 Linux</td><td><a class="cref verified" href="#ref-2">[2]</a><a class="cref verified" href="#ref-5">[5]</a></td></tr>
+      <tr><td><b>面向客群</b></td><td>个人视频创作者（官方见证用户为 B 站 30 万粉、小红书 10 万粉、抖音日涨 7 千粉量级的 UP 主）与本地化团队/小团队——第三方分析将其适用面描述为「想要本地一键出字幕与配音的创作者和小团队」，应用场景覆盖在线教育、企业培训、自媒体搬运、国际营销等</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref cross" href="#ref-9">[9]</a><a class="cref partial" href="#ref-8">[8]</a></td></tr>
+      <tr><td><b>解决痛点</b></td><td>传统字幕翻译的三大顽疾：机翻感生硬、多行字幕破坏观影体验、配音制作昂贵繁琐；对搬运型创作者而言再叠加「人工处理一整天」的效率痛点（见证用户口径：缩短至一小时）</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref partial" href="#ref-8">[8]</a><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>商业模式</b></td><td>双轨制：开源侧 Apache 2.0（可商用、本地免费）；云侧 Freemium 订阅——免费档 $0（15 分钟/仅中英/480p/水印）、入门档 $5/月（1 小时/8 语言/1080p）、专业档 $30/月（6 小时/F5-TTS 克隆配音仅中英/API「即将推出」）；官方 FAQ 将自身与 heygen、rask.ai 等海外付费竞品作差异化对比</td><td><a class="cref verified" href="#ref-6">[6]</a><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 官方自认的能力边界（README「Current Limitations」）</div>
+    背景噪声与语言影响识别与词级时间戳精度；LLM 输出需满足工作流 JSON 结构（失败需查错误日志）；配音的自然度与音画同步受翻译、TTS 与语速影响，「速度调整不保证自然流畅或完美同步」；混合语言语音不保证各语言文本与时间轴准确；配音工作流不自动为多说话人分配不同声音<sup class="cite verified">[2]</sup>——这份诚实的局限清单本身是本案工程判断力的佐证。
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>GitHub Stars</td><td class="hl">19,225</td><td>2026-11-13（API 实测）</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>官方文档站展示星标</td><td>19,225</td><td>2026-11-13 查询</td><td><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td>GitHub Forks</td><td>2,125</td><td>2026-11-13（API 实测）</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>Watchers / 订阅仓库人数</td><td>106</td><td>2026-11-13（API 实测）</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>近期增长速度</td><td class="pos">48 天 +629 星（18.5k → 19.1k）</td><td>2026-09-21 → 11-08</td><td><a class="cref cross" href="#ref-9">[9]</a></td></tr>
+      <tr><td>第三方观测中间点</td><td>18,808 星 / 2,077 Fork</td><td>2026-10-16</td><td><a class="cref partial" href="#ref-10">[10]</a></td></tr>
+      <tr><td>开放 Issue / 维护状态</td><td>25 个；最后推送 2026-11-10</td><td>2026-11-13（API 实测）</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>营收 / 用户量 / 付费订阅数</td><td colspan="2"><b>未检索到公开信息</b>（在线服务未公布付费用户数或收入口径）</td><td>—</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    星标为本报告经 GitHub API 一手实测的时点值，随时间变动；官方在线服务页曾展示 17,042 星的快照值<sup class="cite verified">[5]</sup>、文档站展示 19,225<sup class="cite verified">[3]</sup>，差异源于页面缓存时点不同，引用一律以 API 实测为准。各第三方跟踪站因快照日期不同呈现 18,147 / 18,808 / 19,121 等多个历史值<sup class="cite partial">[10]</sup><sup class="cite cross">[9]</sup>，均可与实测值衔接成连续增长曲线，未发现矛盾。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将 VideoLingo 放入「一人主导的开源 AI 内容工具」坐标系。对标数据均为<b>案例墙既有核验值</b>（2026-10/11 时点，详见案例墙底稿 domestic-pool.md 对应条目），本案数据为本报告实测：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态与场景</th><th>数据表现</th><th>数据口径</th></tr></thead>
+    <tbody>
+      <tr><td><b>VideoLingo（本案）</b></td><td>Huanshere</td><td>视频本地化：字幕切割/上下文翻译/克隆配音，开源 + 云订阅</td><td class="hl">GitHub 19,225★</td><td>本报告 2026-11-13 API 实测 <a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>MoneyPrinterTurbo</td><td>harry0703</td><td>输入主题自动生成高清短视频（文案/素材/字幕/配音/合成）</td><td>GitHub 133k+★</td><td>案例墙既有核验值 <a class="cref partial" href="#ref-11">[11]†</a></td></tr>
+      <tr><td>pdf2zh（PDFMathTranslate）</td><td>Byaidu</td><td>保留排版的 PDF 学术文档 AI 全文双语翻译，另有在线服务 pdf2zh.com</td><td>GitHub 38.3k★</td><td>案例墙既有核验值 <a class="cref partial" href="#ref-11">[11]†</a></td></tr>
+      <tr><td>沉浸式翻译 Immersive Translate</td><td>Owen Young（前腾讯前端工程师）</td><td>AI 双语对照网页/PDF/视频字幕/漫画翻译插件，起步期一人开发后被收购</td><td>全球激活用户破 3,000 万</td><td>案例墙既有核验值（2026-09 官方博客） <a class="cref partial" href="#ref-11">[11]†</a></td></tr>
+      <tr><td>pyvideotrans</td><td>jianchang512</td><td>同赛道最接近的开源竞品：开源视频翻译配音工具（GPL-3.0）</td><td>GitHub 19.7k★、53 贡献者</td><td>HelloGitHub 平台页 <a class="cref partial" href="#ref-11">[11]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>这一坐标系的分工清晰：<b>MoneyPrinterTurbo 卷产能</b>（零基础批量造短视频）、<b>pdf2zh 卷垂直场景</b>（学术 PDF 排版保真）、<b>沉浸式翻译卷覆盖面</b>（全平台亿级用户），而 VideoLingo 是其中唯一以<b>外部质量标杆</b>立身的项目——「Netflix 级」不是功能参数，而是把字幕组行业千百人协作的专业标准（术语库、三步精翻、词级对齐、克隆配音）压缩进一条个人可运行的流水线<sup class="cite verified">[3]</sup>。在「视频翻译」细分赛道，它与 pyvideotrans 星标量级咬得极紧（19.2k vs 19.7k<sup class="cite verified">[1]</sup><a class="cref partial" href="#ref-11">[11]</a>），但两者的差异化路线在于：VideoLingo 以「Netflix 级质量标准 + 云订阅」驱动，pyvideotrans 则以功能广度与开源社区协作（53 贡献者）见长——本案是典型的「质量标准驱动」型一人开源公司。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:16%">维度</th><th>分析</th><th style="width:12%">信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>「识别 → 分割 → 翻译 → 对齐 → 配音」全自动流水线，核心资产是三步翻译流程（直接翻译—反思—意译）与术语知识库两项「字幕组工艺」的产品化；一键 Streamlit 界面 + HTTP API 双入口，兼顾普通创作者与智能体/脚本调用</td><td><a class="cref verified" href="#ref-2">[2]</a><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td><b>2. 面向客群</b></td><td>双层客群：免费/入门档面向个人创作者与搬运型 UP 主（官方见证用户画像均为中腰部创作者），专业档 $30/月面向有克隆配音与更高额度需求的本地化团队/重度用户；本地部署版则服务开发者和隐私敏感型团队</td><td><a class="cref verified" href="#ref-6">[6]</a><a class="cref verified" href="#ref-3">[3]</a><a class="cref cross" href="#ref-9">[9]</a></td></tr>
+      <tr><td><b>3. 解决痛点</b></td><td>需求端痛点真实且高频：跨境内容消费需要字幕，人工字幕组贵且慢，机翻工具质量下限太低；本案以「Netflix 级」回应质量焦虑，以「一小时替代一整天」（用户见证口径）回应效率焦虑<sup class="cite cross">[7]</sup></td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>4. 预估年化营收（推算，置信度 C）</b></td><td><b>零披露，营收未检索到公开信息。</b>可核验的是商业化结构而非收入：免费档 15 分钟额度是获客成本，$5/$30 订阅是变现层，API 接口「即将推出」暗示面向开发者的计量付费层在规划中<sup class="cite verified">[6]</sup>。<b>开源商业化程度评估：</b>本案属于「开源获客 + 云端变现」的经典 Freemium 双轨，但存在结构性自竞争——Apache 2.0 允许任何人本地免费部署全部能力（含商用）<sup class="cite verified">[2]</sup><sup class="cite cross">[9]</sup>，付费点实质落在「免安装便利性、算力托管、克隆配音托管与更高额度」上；重度技术用户可永久停留在免费层，云端订阅收入的可触达池限于便利型用户，天花板取决于非技术创作者占比（无公开数据，仅作结构判断）</td><td><a class="cref verified" href="#ref-6">[6]</a><a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-9">[9]</a></td></tr>
+      <tr><td><b>5. 融资进展</b></td><td>未检索到任何融资、投资或公司注册的公开信息；项目以个人开源项目形态存续两年余，无外部资本信号。非货币资源：依托 GPT-SoVITS、Qwen3-ASR、yt-dlp 等上游开源生态（README 致谢清单），自身也成为下游内容搬运生态的底座组件</td><td><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>6. 市场评价</b></td><td>社区正评价为主：官方见证中 B 站/小红书/抖音三平台创作者给出「一小时替代一整天」「配音比我说得还准」等反馈<sup class="cite verified">[3]</sup>；英文技术社区将其列为「告别付费配音」的开源替代方案并追踪其 GitHub 趋势榜表现（C 级口径）<a class="cref partial" href="#ref-10">[10]</a>；第三方项目分析认可其管线完整性，但明确指出「每一环都有自己的失败模式」，且不适合多说话人配音、混合语言音频与并行批处理任务<sup class="cite cross">[9]</sup>；作者在 README 中主动披露五条局限，工程诚实度获得社区默认信任<sup class="cite verified">[2]</sup></td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref cross" href="#ref-9">[9]</a><a class="cref partial" href="#ref-10">[10]</a><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>7. 投入成本与合规风险（重点：克隆配音的声纹授权）</b></td><td><b>成本侧：</b>个人项目无公开成本口径；显性成本为开发维护投入（近一年 123 次提交<a class="cref verified" href="#ref-4">[4]</a>）与云端服务算力。<b>合规侧（重点）：</b>克隆配音功能要求用户提供参考音频以合成个性化声线<a class="cref verified" href="#ref-2">[2]</a>，直接触及声音权益的法律边界——依《民法典》第 1023 条第 2 款，对自然人声音的保护<b>参照适用肖像权保护规定</b>，最高人民法院法答网明确可参照肖像权权能、禁止侵权行为及合理使用等条款适用<a class="cref verified" href="#ref-12">[12]</a>；法治日报 2026 年 4 月评论进一步强调「利用 AI 克隆声音须严守法律边界」<a class="cref cross" href="#ref-13">[13]</a>。就本案而言，<b>未检索到项目方公开的声纹授权合规指引</b>（README 五条局限与文档 FAQ 均未涉及参考音频授权要求），克隆配音功能存在「参考音频来源合法性由使用者自担」的留白——这是工具类产品的普遍合规缺口，使用者若未经授权克隆他人声线，法律风险由使用者承担；对项目方而言，随着 AI 声音侵权裁判案例增多，补齐授权提示与合规条款是显性的改进义务。另需留意：yt-dlp 下载视频环节与各平台服务条款存在天然张力，同属工具类灰色地带（无针对本案的公开处置记录）</td><td><a class="cref verified" href="#ref-2">[2]</a><a class="cref verified" href="#ref-4">[4]</a><a class="cref verified" href="#ref-12">[12]</a><a class="cref cross" href="#ref-13">[13]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 五处留白（截至 2026-11-13 检索）</div>
+    ① <b>创业者实名未公开</b>：GitHub 用户页与公开报道均无实名口径，仅能以网名 Huanshere 收录<a class="cref verified" href="#ref-4">[4]</a>；② <b>营收与付费数据零披露</b>：在线服务未公布付费用户数、转化率或收入；③ <b>团队规模未公开</b>：仓库主要提交由个人账号主导，但贡献者完整清单与协作模式未检索到明确口径；④ <b>声纹授权合规指引缺位</b>：克隆配音触及声音权益边界（民法典第 1023 条第 2 款参照肖像权保护<sup class="cite verified">[12]</sup>），项目侧未见公开授权要求<sup class="cite verified">[2]</sup>；⑤ <b>公司注册与融资状态不明</b>：无公开信息。
+  </div>
+  <div class="box note">
+    <div class="bt">📌 两处口径说明</div>
+    ① 星标口径：官网首页快照（17,042）与文档站（19,225）存在缓存差<sup class="cite verified">[5]</sup><sup class="cite verified">[3]</sup>，本报告以 2026-11-13 GitHub API 实测 19,225 为唯一基线<sup class="cite verified">[1]</sup>；② 技术架构口径：2024 年社区报道与导航站描述为 WhisperX + SpaCy + SoVITS 早期管线<sup class="cite partial">[8]</sup>，现行 README 已换代为 Qwen3-ASR + ForcedAligner 与多 TTS 后端<sup class="cite verified">[2]</sup>——非事实冲突，属两年迭代的正常演进，引用历史文章时须注意版本时点。
+  </div>
+  <div class="card"><div class="ct">第三方与社区的负面/审慎评价（如实收录）</div><div class="cb">第三方项目分析的编辑结论：VideoLingo 把 Qwen3-ASR、LLM 翻译器与 TTS 串成一条管线，「每一环都有自己的失败模式」，适合本地一键出字幕配音的创作者与小型团队，但对多说话人配音、重度混合语言音频、经 API 的并行批处理是「不合适」的场景<sup class="cite cross">[9]</sup>；掘金评论区出现「这玩意儿收费」的预期落差反馈<sup class="cite cross">[7]</sup>；作者自认配音自然度与音画同步「不保证完美」<sup class="cite verified">[2]</sup>。未检索到针对 VideoLingo 的版权诉讼、平台下架或重大安全事件记录。</div><div class="cm">信源：<a class="cref cross" href="#ref-9">[9]</a> <a class="cref cross" href="#ref-7">[7]</a> <a class="cref verified" href="#ref-2">[2]</a></div></div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">VideoLingo 验证了 OPC 的另一种成立路径：不以营收数字、而以<b>开源资产的质量密度</b>立身——一个人用一条流水线对标一个行业（字幕组），用外部质量标准（Netflix 级）替代营销叙事，再把开源声望低成本转化为云订阅收入。与作品型 OPC（如 AI 短剧）相比，工具型 OPC 的护城河是持续迭代（两年余不间断<sup class="cite verified">[1]</sup>）与生态位（下游搬运生态的底座）；其代价则是营收不透明与合规留白。对后来者的启示：选一个「专业标准清晰可感知」的垂直工序做 AI 化，比泛泛的「AI 视频工具」更容易在一人尺度上建立认知与口碑。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-3">[3]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 13 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（一手权威或 ≥2 独立信源交叉），蓝 = 多源印证（可回溯/与其他信源交叉），黄 = 部分映证（自述/单一低级别信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx verified">[1]</span><span class="rt">A</span><span class="st">一手 · GitHub API 实测</span></div><div class="ti">Huanshere/VideoLingo 仓库元数据（星标/Fork/创建与推送时间/许可）</div><div class="mt"><b>来源：</b>GitHub REST API + 仓库页　<b>实测时点：</b>2026-11-13<br><a href="https://api.github.com/repos/Huanshere/VideoLingo" target="_blank" rel="noopener">https://api.github.com/repos/Huanshere/VideoLingo</a>　<a href="https://github.com/Huanshere/VideoLingo" target="_blank" rel="noopener">https://github.com/Huanshere/VideoLingo</a></div><div class="note">事实核查：stargazers_count=19,225、forks=2,125、created_at=2024-08-09、pushed_at=2026-11-10、Apache-2.0、Python、homepage=docs.videolingo.io 均为 API 一手返回；与文档站展示值 [3] 交叉一致。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx verified">[2]</span><span class="rt">A</span><span class="st">一手 · 官方 README</span></div><div class="ti">VideoLingo GitHub README（功能清单/技术栈/安装与部署/HTTP API/五条局限/许可与联系方式）</div><div class="mt"><b>来源：</b>GitHub 仓库主页　<b>查询时点：</b>2026-11-13<br><a href="https://github.com/Huanshere/VideoLingo" target="_blank" rel="noopener">https://github.com/Huanshere/VideoLingo</a></div><div class="note">事实核查：yt-dlp、Qwen3-ASR + ForcedAligner、三步翻译、GPT-SoVITS 等多 TTS 后端、OneKeyStart/Docker/HTTP API、Apache 2.0、Twitter @Huanshere 与 team@videolingo.io、Current Limitations 五条均为原文回溯；早期架构（WhisperX/SpaCy）与现行管线差异由 [8] 对照确认。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx verified">[3]</span><span class="rt">A</span><span class="st">一手 · 官方文档站</span></div><div class="ti">VideoLingo 官方文档站首页（定位语/六大功能/三步翻译流程/19,225 Stars 展示/用户见证）</div><div class="mt"><b>来源：</b>docs.videolingo.io　<b>查询时点：</b>2026-11-13<br><a href="https://docs.videolingo.io/" target="_blank" rel="noopener">https://docs.videolingo.io/</a></div><div class="note">事实核查：「Netflix 级字幕切割、翻译、对齐、甚至加上配音」定位语、智能分割/上下文翻译/三步过程/词级对齐/高质量配音/开发者友好六功能、B 站·小红书·抖音三平台创作者见证均原文回溯；展示星标 19,225 与 API 实测 [1] 一致。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx verified">[4]</span><span class="rt">A</span><span class="st">一手 · 开发者主页</span></div><div class="ti">Huanshere 的 GitHub 个人主页（置顶仓库/提交活跃度/账号信息）</div><div class="mt"><b>来源：</b>GitHub 用户页　<b>查询时点：</b>2026-11-13<br><a href="https://github.com/Huanshere" target="_blank" rel="noopener">https://github.com/Huanshere</a></div><div class="note">事实核查：置顶 VideoLingo（19.2k 星/2.1k Fork）、so1 实验（76 星）、近一年 123 次贡献、2026 年 11 月仍有提交均一手确认；页面无实名与个人简介——「真名未公开」即基于此一手观察（负向事实，穷尽公开渠道未见）。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx verified">[5]</span><span class="rt">A</span><span class="st">一手 · 官网在线服务页</span></div><div class="ti">videolingo.io 在线服务官网（免费 15 分钟/影视级双语字幕/六大卖点/页面星标快照）</div><div class="mt"><b>来源：</b>videolingo.io　<b>查询时点：</b>2026-11-13<br><a href="https://videolingo.io/" target="_blank" rel="noopener">https://videolingo.io/</a></div><div class="note">事实核查：「免费翻译 15 分钟视频」「影视级双语字幕和配音」「单行字幕 绝不越界」等卖点原文回溯；页面展示 17,042 星为快照值，与 [1][3] 存在缓存时点差，已在正文口径说明。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx verified">[6]</span><span class="rt">A</span><span class="st">一手 · 官方定价页</span></div><div class="ti">videolingo.io/pricing 订阅定价（免费/入门 $5/专业 $30 三档与 FAQ）</div><div class="mt"><b>来源：</b>videolingo.io/pricing　<b>查询时点：</b>2026-11-13<br><a href="https://videolingo.io/pricing" target="_blank" rel="noopener">https://videolingo.io/pricing</a></div><div class="note">事实核查：免费档（15 分钟/仅中英/480p/水印）、入门档 $5/月（1 小时/8 语言/1080p/基础配音）、专业档 $30/月（6 小时/F5-TTS 克隆配音仅中英/开放 API「即将推出」）、与 heygen/rask.ai 对比 FAQ 均原文回溯；按月计费口径明确。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">B</span><span class="st">技术社区文章</span></div><div class="ti">《自媒体神器！油管视频一键全自动搬运！帮你生成 Netflix 级字幕翻译，还可个性化配音！》（掘金 · 开源星探）</div><div class="mt"><b>来源：</b>掘金（aicoding.juejin.cn）　<b>发布日期：</b>2024-09-21（阅读 2,149）<br><a href="https://aicoding.juejin.cn/post/7416527767142219810" target="_blank" rel="noopener">https://aicoding.juejin.cn/post/7416527767142219810</a></div><div class="note">事实核查：「最新开源」发布期表述与 GitHub created_at 2024-08-09 [1] 交叉印证；「自媒体视频搬运是作者开发该项目的起始点」为社区作者转述口径；评论区「收费」反馈为一手评论原文。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx partial">[8]</span><span class="rt">C</span><span class="st">工具导航站收录</span></div><div class="ti">VideoLingo 收录页（2024 年发布标注/早期技术原理描述）</div><div class="mt"><b>来源：</b>OpenI（openi.cn）AI 工具集　<b>发布日期：</b>标注「2 年前（2024）发布」，查询时点 2026-11-13<br><a href="https://openi.cn/285197.html" target="_blank" rel="noopener">https://openi.cn/285197.html</a></div><div class="note">事实核查：其描述的早期架构（Whisper 识别 + SpaCy 分割 + SoVITS 配音）与现行 README [2] 对比可佐证技术栈演进；「2024 年发布」标注与 [1] 一致；单一 C 级导航站，仅作辅助佐证。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx cross">[9]</span><span class="rt">C+</span><span class="st">第三方项目跟踪/分析</span></div><div class="ti">VideoLingo 项目分析页（星标增长曲线/维护状态/适用场景与失败模式评析）</div><div class="mt"><b>来源：</b>HysenLabs　<b>数据同步时点：</b>2026-11-08<br><a href="https://hysenlabs.com/projects/huanshere-videolingo" target="_blank" rel="noopener">https://hysenlabs.com/projects/huanshere-videolingo</a></div><div class="note">事实核查：18.5k（2026-09-21）→ 19.1k（2026-11-08）、48 天 +629 的快照曲线与 API 实测 [1] 衔接一致；「仍在维护」「Apache-2.0 可商用」与其 GitHub 数据页一致；「每环都有失败模式/不适合多说话人与混合语言」为该站编辑分析观点，按 C+ 级收录。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx partial">[10]</span><span class="rt">C</span><span class="st">第三方观测快照</span></div><div class="ti">VideoLingo 观测页（2026-10-16 快照：18,808 星 / 2,077 Fork）</div><div class="mt"><b>来源：</b>Ross（ross.abutalabs.com，AI 提取的项目观测页）　<b>观测时点：</b>2026-10-16<br><a href="https://ross.abutalabs.com/products/videolingo" target="_blank" rel="noopener">https://ross.abutalabs.com/products/videolingo</a></div><div class="note">事实核查：快照值 18,808/2,077 落在 [9] 曲线与 [1] 实测之间，时序自洽；页面为 AI 自动提取生成，仅作增长曲线辅助点位，不作独立事实来源。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx partial">[11]</span><span class="rt">B</span><span class="st">平台数据页 + 案例墙底稿</span></div><div class="ti">pyvideotrans（HelloGitHub 平台页）及案例墙对标条目既有核验值</div><div class="mt"><b>来源：</b>HelloGitHub；案例墙底稿 data/domestic-pool.md（MoneyPrinterTurbo #15、pdf2zh #11、沉浸式翻译 #1 条目）　<b>查询时点：</b>2026-11-13<br><a href="https://hellogithub.com/repository/40d62189cb864d88b60897bece64509b" target="_blank" rel="noopener">https://hellogithub.com/repository/40d62189cb864d88b60897bece64509b</a></div><div class="note">事实核查：pyvideotrans 19.7k★/GPL-3.0/53 贡献者为 HelloGitHub 页面一手数据；MoneyPrinterTurbo 133k+★、pdf2zh 38.3k★、沉浸式翻译 3,000 万激活用户为案例墙既有核验值（2026-10/11 时点），本报告未重复实测，以 † 标注转引口径。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx verified">[12]</span><span class="rt">A+</span><span class="st">最高司法权威答问</span></div><div class="ti">法答网精选答问（第十九批）人格权专题：对自然人声音的保护如何参照适用肖像权保护规定</div><div class="mt"><b>来源：</b>中华人民共和国最高人民法院官网　<b>发布日期：</b>法答网第十九批（查询时点 2026-11-13）<br><a href="https://www.court.gov.cn/zixun/xiangqing/464401.html" target="_blank" rel="noopener">https://www.court.gov.cn/zixun/xiangqing/464401.html</a></div><div class="note">事实核查：原文确认《民法典》第 1023 条第 2 款「对自然人声音的保护，参照适用肖像权保护的有关规定」，并可参照第 1018/1019/1020/1021-1022 条有关权能、禁止侵权行为与合理使用的规定；为柒·合规维度的权威法律依据。第 1023 条条文原文另经最高人民检察院官网全文页交叉印证。</div></li>
+  <li id="ref-13" class="src"><div class="sh"><span class="idx cross">[13]</span><span class="rt">A</span><span class="st">法治媒体评论</span></div><div class="ti">《利用 AI 克隆声音须严守法律边界》（法治日报评论）</div><div class="mt"><b>来源：</b>法治日报网（legaldaily.com.cn）　<b>发布日期：</b>2026-04-01<br><a href="http://www.legaldaily.com.cn/commentary/content/2026-04/01/content_9366284.html" target="_blank" rel="noopener">http://www.legaldaily.com.cn/commentary/content/2026-04/01/content_9366284.html</a></div><div class="note">事实核查：明确「我国法律未将声音权规定为具体人格权，但民法典第 1023 条第 2 款规定对自然人声音的保护参照适用肖像权保护的有关规定」，与 [12] 互证；作为 AI 克隆声音合规边界的行业语境信源；未检索到针对 VideoLingo 本案的声纹侵权个案。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 13 条。核验标签分布：🟢 已核验（verified）7 条（GitHub API/README/开发者主页三个一手页面 + 官网/文档站/定价页三个官方一手页面 + 最高法答问权威原文）、🔵 多源印证（cross）3 条（掘金与仓库创建时间交叉、HysenLabs 与 API 实测交叉、法治日报与法答网互证）、🟡 部分映证（partial）3 条（OpenI 收录、Ross 快照、HelloGitHub 平台页——均标注口径与级别）。信源评级分布：A+/A 级 8 条（一手占比超六成，GitHub 类全部按 A 级一手处理）、B/C+ 级 3 条、C 级 2 条。关键数据双源核对：星标 19,225 经 API 实测与文档站展示双一致；增长曲线 18,147→18,808→19,121→19,225 各快照时序自洽无矛盾。五处留白（实名、营收、团队、声纹授权指引、公司状态）与两处口径说明（星标缓存差、技术栈版本演进）已在正文显式标注。核验失败 URL：0 条——首轮 GitHub API 经 WebFetch 返回 2024-11 旧缓存快照（5,141★），判定为缓存不可信后改用 curl 直连 API 实测成功；brightcoding.dev 与腾讯云社区文章因与其他信源重复度高未采信，不影响结论。全部 URL 为检索过程实际命中页面，未发现伪造链接。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-13 · GitHub 星标等数据为时点实测值会随时间变动，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · 沉浸式翻译 Immersive Translate —— Owen Young 的一个人翻译产品 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · 沉浸式翻译 Immersive Translate">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="沉浸式翻译（Immersive Translate）深度案例报告：前腾讯前端工程师 Owen Young 一人开发 AI 双语对照翻译插件，5 个月自然增长 40 万用户，2026-09 全球激活用户破 3000 万，Chrome 2024 年度精选，2023 年被推文科技收购后保持独立运营。14 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>沉浸式翻译 Immersive Translate 深度案例报告</h1>
+    <h2>前腾讯前端工程师 Owen Young：从惠州大亚湾的一个人副业，把「双语对照」做成翻译品类的交互标准<br>5 个月自然增长 40 万用户 · 全球激活破 3000 万 · Chrome 2024 年度精选 · 被收购后保持独立运营 —— 14 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">工具型 OPC</span>
+      <span class="tag">AI 原生</span>
+      <span class="tag">个人项目 → 被收购</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">3000万+</div><div class="k">全球激活用户（2026-09 官方口径）</div></div>
+  <div class="stat"><div class="v neutral">40 万 / 5 个月</div><div class="k">早期自然增长（零投放起步）</div></div>
+  <div class="stat"><div class="v neutral">2024 精选</div><div class="k">Chrome Web Store 年度精选扩展</div></div>
+  <div class="stat"><div class="v neutral">2023-05</div><div class="k">被推文科技收购（金额未披露）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">沉浸式翻译（Immersive Translate）是 2023 年以来中文独立开发出海产品中被引用最多的样本之一：一个以「双语对照」为核心交互的 AI 翻译产品，从个人副业起步，上线 5 个月自然增长 40 万用户，2023 年 5 月被推文科技收购后保持独立运营与高频迭代，2026 年 9 月官方宣布全球激活用户突破 3000 万<sup class="cite cross">[1]</sup>——其「段段对照」范式被极客公园评价为「行业最佳实践」<sup class="cite cross">[11]</sup>。</p>
+  <div class="two">
+    <div class="card"><div class="ct">产品</div><div class="cb">AI 双语对照翻译插件与多端应用：网页双语对照翻译、PDF 文档翻译（保留排版）、EPUB 电子书翻译、在线视频字幕翻译（YouTube、Netflix）、实时会议翻译（Zoom、Meet、Teams）、图片与漫画翻译；内置 ChatGPT、DeepL、DeepSeek、Gemini 等 20+ 翻译引擎，支持 100+ 语言互译，适配 Chrome、Edge、Safari、Firefox 及 iOS / Android 移动端。</div><div class="cm">信源：<a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="card"><div class="ct">创业者（独立起步 → 被收购的完整轨迹）</div><div class="cb">Owen Young，前腾讯财付通部门前端工程师（工作约 3 年），2019 年底裸辞成为独立开发者；此后尝试社交 APP 等多个未完成项目，2022 年做出信息聚合网站 Buzzing.cc；迁居惠州大亚湾，以极低生活成本维持「注意力自由」，长期在个人博客公开构建（Build in Public）；2023 年 5 月项目被收购后留任，继续负责产品与技术。</div><div class="cm">信源：<a class="cref partial" href="#ref-3">[3]</a> <a class="cref partial" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-6">[6]</a></div></div>
+    <div class="card"><div class="ct">用户规模（官方口径）</div><div class="cb">全球激活用户突破 3000 万（2026-09-28 官方博客，2026-11-04 新闻稿重申并宣布获 ISO/IEC 27001、27701 安全与隐私认证）<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-12">[12]</a>；Chrome 商店单渠道在册用户约 300 万、评分 4.53（3,173 条评价，2026-10 镜像数据）<a class="cref cross" href="#ref-8">[8]</a>。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-12">[12]</a> <a class="cref cross" href="#ref-8">[8]</a></div></div>
+    <div class="card"><div class="ct">收购状态</div><div class="cb">2023 年 5 月，在上线约 5 个月、40 万用户量级被推文科技收购，收购金额未披露；双方成立独立子公司负责开发运营，Owen 留任产品与技术 <a class="cref cross" href="#ref-6">[6]</a><a class="cref partial" href="#ref-4">[4]</a>。工商交叉印证：子公司「沉浸式翻译(深圳)有限责任公司」由北京推文信息科技有限公司 100% 持股，「沉浸式翻译 Android 端软件」著作权亦登记在该公司名下（2025-07 批准）。</div><div class="cm">信源：<a class="cref verified" href="#ref-7">[7]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2019 年底</div><div class="tx">从腾讯财付通裸辞，开始独立开发生涯</div><div class="td">厌倦「大厂螺丝钉」与极少的自我支配时间，攒够几年生活费后裸辞；之后尝试社交 APP 等多个项目，「多次从 0 做到 80% 后放弃」。<a class="cref partial" href="#ref-3">[3]</a><a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2022 年</div><div class="tx">信息聚合网站 Buzzing.cc —— 痛点与灵感的源头</div><div class="td">爬取海外热门文章聚合阅读，Owen 自己是第一个深度用户；读萧伯纳剧本《巴巴拉少校》时受原文译文对照排版的启发，确认「双语对照」这一核心交互。<a class="cref partial" href="#ref-4">[4]</a><a class="cref partial" href="#ref-5">[5]</a><a class="cref cross" href="#ref-11">[11]</a></div></div>
+    <div class="node"><div class="dt">2022-11-05 → 11-10</div><div class="tx">基于开源项目 TPW 开发双语翻译插件，初版上架 Chrome 商店</div><div class="td">在开源项目 Traduzir-paginas-web（TPW）之上改造 20 余天做概念验证；第三方商店追踪记录显示初版于 2022-11-10 首次发布。<a class="cref cross" href="#ref-9">[9]</a><a class="cref partial" href="#ref-10">[10]</a></div></div>
+    <div class="node"><div class="dt">2023-01-18</div><div class="tx">Deno 从零重写 50 天后，新版上架并取代旧版</div><div class="td">因原架构「改不动了」，全职重写 50 天后新版在 Chrome 商店上架；旧版开源项目于 2023-01-17 归档。Owen 自述「99.9% 以上的用户都是在新版发布后获取的」。<a class="cref cross" href="#ref-9">[9]</a></div></div>
+    <div class="node"><div class="dt">2023-05</div><div class="tx">5 个月 40 万用户，宣布被推文科技收购</div><div class="td">开发者在个人社交平台宣布收购消息：金额未披露，将成立独立子公司负责开发运营，本人继续负责扩展的产品和技术工作。<a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-11">[11]</a></div></div>
+    <div class="node"><div class="dt">2023-08</div><div class="tx">「假开源」社区争议，Owen 发长文逐条反省整改</div><div class="td">V2EX 帖《10k+ star 的项目也搞假开源》盖到 400+ 楼；Owen 发表《对「假开源」事件的反省》，承认关切合理、公开道歉并完成 8 项整改（详见捌）。<a class="cref cross" href="#ref-9">[9]</a></div></div>
+    <div class="node"><div class="dt">2024-04</div><div class="tx">硬地骇客 EP56 对话 Owen：诞生故事与独立开发者方法论</div><div class="td">47 分钟访谈覆盖产品诞生、口碑传播、Build in Public、极简生活与「注意力自由」。<a class="cref partial" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2024-12</div><div class="tx">Chrome Web Store 2024 年度精选；入选极客公园 InnoForce 50；AI 搜索 BiLin 上线</div><div class="td">官网展示「2024 Favorite」徽章；极客公园评价其范式「成为行业最佳实践」；同期团队推出多语言 AI 搜索产品 BiLin。<a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-11">[11]</a><a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2025-04-20</div><div class="tx">枫言枫语 Vol.139：确认「被一家与 Owen 三观相符的公司收购」</div><div class="td">81 分钟访谈回顾 Buzzing.cc、遛狗时看双语剧本的灵感、搬去惠州、AI 辅助写代码等；确认项目被收购后仍在积极更新。<a class="cref partial" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2026-09-28</div><div class="tx">官方博客：全球激活用户突破 3000 万</div><div class="td">《沉浸式翻译全球激活用户突破 3000 万：打破信息差，读懂更大的世界》——官方里程碑口径。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-11-04</div><div class="tx">新闻通讯社通稿：重申 3000 万用户 + ISO/IEC 27001、27701 认证</div><div class="td">Media OutReach Newswire 发布，与官方博客口径一致，补充安全与隐私合规认证信息。<a class="cref cross" href="#ref-12">[12]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：痛点来自自己的阅读流水线，而非市场调研</div><div class="cb">Owen 的产品起点是「先做自己的深度用户」：Buzzing.cc 让他每天读大量外文文章，「机翻的质量实在不敢恭维，到重点段落还是会回去看原文，来回来去切换很麻烦」；读《巴巴拉少校》时剧本的原文译文对照排版给出答案。从有想法到开发完成上线只用了不到一个月。早期版本基于 TPW 改造 20 余天后因架构太老推倒重来——「做自己能用的东西」这一原则贯穿始终。</div><div class="cm">信源：<a class="cref partial" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-9">[9]</a></div></div>
+  <div class="card"><div class="ct">转折二：以体验设计定义品类——「对照」取代「替换」</div><div class="cb">把主流「整页替换翻译」改成一段原文配一段译文的对照呈现，最大限度保留原网页的上下文与阅读节奏；为此他拒绝了用户呼声很高的「划词翻译」——因为该功能需借助弹窗实现、会打断注意力，也与「不做弹窗推广」的极简哲学一致。2024 年 12 月极客公园将其列入年度 InnoForce 50，并评价「分段双语对照的翻译模式已被广泛采纳，成为行业最佳实践」——个人项目反向定义了品类标准。</div><div class="cm">信源：<a class="cref partial" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-11">[11]</a> <a class="cref partial" href="#ref-3">[3]</a></div></div>
+  <div class="card red"><div class="ct">转折三：用「被收购」替代「融资」的退出路径</div><div class="cb">与独立开发者常见的「买断制单干」或「VC 融资团队化」不同，Owen 在产品上线仅 5 个月、40 万用户的早期时点选择被推文科技收购（金额未披露）：成立独立子公司承接开发运营，本人留任产品与技术——既保住创始人主导的产品文化，又获得商业化支撑。此后三年项目保持高频迭代（2026-10 商店仍在更新 1.34.x 版本），并陆续开源 BabelDOC 等组件回馈社区。</div><div class="cm">信源：<a class="cref cross" href="#ref-6">[6]</a> <a class="cref verified" href="#ref-7">[7]</a> <a class="cref cross" href="#ref-8">[8]</a> <a class="cref cross" href="#ref-9">[9]</a></div></div>
+  <div class="quote">
+    <p>世界上有那么多值得了解的事。我们希望，语言不再决定你能看见多少。</p>
+    <span class="src">—— 沉浸式翻译团队，官方博客《全球激活用户突破 3000 万》（2026-09-28），转引自 <a class="cref cross" href="#ref-1">[1]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>内容</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>产品功能</b></td><td>双语对照「沉浸式」阅读体验：段段对照、原文不丢失；覆盖网页、PDF（保留公式与图表排版）、EPUB 电子书、在线视频字幕（YouTube / Netflix）、实时会议（Zoom / Meet / Teams）、图片与漫画等场景</td><td><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>引擎聚合策略</b></td><td>聚合 20+ 翻译引擎（ChatGPT、DeepL、DeepSeek、Gemini、Google 等），用户可自选引擎，也可自带 API Key——官方翻译服务与个人 Key 双轨并行，兼顾易用与成本</td><td><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>定价</b></td><td>免费增值（Freemium）：免费版覆盖基础引擎与基础额度；官方会员服务协议载明 Pro 月订阅 $14.99、Max 月订阅 $39.99（自动续订）<a class="cref cross" href="#ref-13">[13]</a>；App Store 国区内购：Pro 月费 ¥68、年费 ¥598、Max 月会员 ¥198<a class="cref cross" href="#ref-14">[14]</a>；另有 PDF Pro / 漫画 / AI 字幕等按量流量包</td><td><a class="cref cross" href="#ref-13">[13]</a> <a class="cref cross" href="#ref-14">[14]</a></td></tr>
+      <tr><td><b>面向客群</b></td><td>官网锚定学生、科研人员、投资者、科技从业者、跨境业务从业者、内容创作者六类人群；开发者与研究者社区的口碑传播是主要获客路径（硬地骇客、Podwise 等独立开发者社区长期推荐）</td><td><a class="cref cross" href="#ref-2">[2]</a> <a class="cref partial" href="#ref-3">[3]</a></td></tr>
+      <tr><td><b>解决痛点</b></td><td>传统翻译要么整页替换原文、无法对照回看，要么跳转词典打断阅读；「对照」范式让「译文帮助你理解，同时把原文留在身边」——直指跨语言阅读中的信息差与对机翻结果的不信任</td><td><a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>全球激活用户（官方口径）</td><td class="hl">3000 万+</td><td>2026-09-28 官宣；2026-11-04 通稿重申</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-12">[12]</a></td></tr>
+      <tr><td>Chrome 商店在册用户</td><td>约 300 万</td><td>2026-10-22（镜像数据）</td><td><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td>Chrome 商店评分</td><td>4.53 / 3,173 条评价</td><td>2026-10-22（镜像数据）</td><td><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td>早期增长速度</td><td class="pos">5 个月自然增长 40 万用户</td><td>2023-05（收购宣布时点）</td><td><a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-11">[11]</a></td></tr>
+      <tr><td>Chrome 商店用户（媒体引用口径）</td><td>超 100 万（全网估计 150 万+）</td><td>2024-12</td><td><a class="cref partial" href="#ref-5">[5]</a></td></tr>
+      <tr><td>渠道荣誉（官网展示徽章）</td><td>Chrome 2024 年度精选；Edge Editors' pick；Safari Top 10 扩展；Firefox 推荐</td><td>2024 → 至今</td><td><a class="cref cross" href="#ref-2">[2]</a><a class="cref partial" href="#ref-4">[4]</a></td></tr>
+      <tr><td>行业认可</td><td>极客公园 2024 年度 InnoForce 50</td><td>2024-12-14</td><td><a class="cref cross" href="#ref-11">[11]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    「全球激活用户 3000 万」为官方全渠道累计激活口径（含各浏览器扩展、移动端 App、油猴脚本等），Chrome 商店约 300 万为单一渠道在册用户数——两者相差近一个数量级，引用时不可混用；官方未披露活跃用户、留存与付费转化数据，所有用户数字均为公司自报，未经第三方审计。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将本案放入案例墙「AI 翻译工具」坐标系（对标数据均取自案例墙 <a href="../../index.html" style="color:#2980b9">《国内 AI 一人公司案例墙》</a>既有核验值，GitHub 星标为 2026-10/11 时点值）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态与平台</th><th>商业模式</th><th>成功迹象（案例墙核验值）</th><th>路径特征</th></tr></thead>
+    <tbody>
+      <tr><td><b>沉浸式翻译（本案）</b></td><td>Owen Young（前腾讯前端）</td><td>全平台双语对照翻译插件 + 移动端 App</td><td>免费 + Pro/Max 订阅 + 流量包</td><td class="hl">全球激活 3000 万+（2026-09 官方）；Chrome 2024 年度精选</td><td>个人项目 → 2023 年被收购，创始人留任独立子公司</td></tr>
+      <tr><td>Easydict</td><td>tisfeng</td><td>macOS 词典/划词翻译（开源，接入 OpenAI/Gemini/DeepL 与离线 OCR）</td><td>开源免费</td><td>GitHub 15.2k stars（2026-11）</td><td>开源社区持续经营</td></tr>
+      <tr><td>PDFMathTranslate（pdf2zh）</td><td>Byaidu</td><td>PDF 学术文档全文双语翻译，CLI/GUI/Zotero 插件 + 在线服务</td><td>开源 + 在线服务</td><td>GitHub 38.3k stars；入选 EMNLP 2025 Demo</td><td>开源 + 学术影响力路线</td></tr>
+      <tr><td>Bob</td><td>ripperhe（北京独立开发者）</td><td>macOS 划词翻译/截图 OCR，接入 OpenAI/DeepSeek/豆包等</td><td>Pro ¥58 买断制</td><td>GitHub 9.7k stars；持续付费销售</td><td>买断制独立收费单干</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>两点结构性差异使本案在四者中独树一帜：其一，它是唯一以<b>交互范式创新</b>（双语对照）而非「功能/模型接入」立身的产品——Easydict、pdf2zh、Bob 的核心价值在工具能力，沉浸式翻译的核心价值在阅读体验的重构；其二，它是唯一走通「个人项目 → 公司收购」退出路径的案例——其余三者仍为独立开源或买断制经营，而本案以收购完成商业化收束、同时保留创始人的产品主导权，为独立开发者提供了一条介于「单干到底」与「融资团队化」之间的第三条路。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>核心判断</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>以双语对照为核心的 AI 翻译产品矩阵：网页/PDF/EPUB/视频字幕/实时会议/图片/漫画多场景覆盖，20+ 引擎聚合，全平台适配；「段段对照」交互为品类定义者，后被同行广泛采纳</td><td><a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-11">[11]</a></td></tr>
+      <tr><td><b>2. 面向客群</b></td><td>大众知识工作者（学生、科研人员、科技从业者、跨境从业者、内容创作者）为主力客群，开发者社区口碑放大传播；漏斗结构为「免费好用 → 高频依赖 → 订阅增值」</td><td><a class="cref cross" href="#ref-2">[2]</a><a class="cref partial" href="#ref-3">[3]</a></td></tr>
+      <tr><td><b>3. 解决痛点</b></td><td>跨语言阅读的信息差：整页替换翻译丢失原文、词典跳转打断心流——双语对照让译文辅助理解、原文留在身边，可回看、可对照、可核实出处</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>4. 预估年化营收（推算，置信度 C）</b></td><td class="hl">营收数据零披露。可核验的仅是商业结构：免费增值 + Pro/Max 订阅（协议价 $14.99/$39.99 每月）+ 按量流量包，以及 3000 万激活的庞大用户漏斗。按免费增值产品常规低个位数付费转化率定性推断，订阅收入具备可观量级，但无任何公开数据支撑具体金额，本报告不作数字推断</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-13">[13]</a><a class="cref cross" href="#ref-14">[14]</a></td></tr>
+      <tr><td><b>5. 融资进展</b></td><td>无公开 VC 融资记录；2023-05 被推文科技收购（金额未披露）——以战略收购替代股权融资的退出路径；收购后设立独立子公司、创始人留任，运营独立性通过工商结构（推文信息 100% 持股子公司）与两档后续播客访谈可证</td><td><a class="cref cross" href="#ref-6">[6]</a><a class="cref verified" href="#ref-7">[7]</a><a class="cref partial" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>6. 市场评价</b></td><td>Chrome 商店 2024 年度精选、Edge Editors' pick、Safari Top 10（官方展示徽章）；极客公园 InnoForce 50 评价其范式「成为行业最佳实践」；阮一峰（「周五软件推荐」）、倪爽等知名博主长期公开推荐（官网口碑栏收录）；两档独立开发者播客（硬地骇客 EP56、枫言枫语 Vol.139）以专访形式背书</td><td><a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-11">[11]</a><a class="cref partial" href="#ref-3">[3]</a><a class="cref partial" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>7. 投入成本与合规风险</b></td><td>成本端：一人主导开发 + 用户自带 API Key 模式将推理边际成本部分外包给用户，获客依赖口碑近乎零投放。风险端：① 浏览器厂商原生翻译与内置 AI 的竞争挤压；② 对第三方翻译引擎与模型厂商的依赖；③ 2023 年「假开源」争议后的社区信任修复（详见捌）；④ 跨语言数据合规——已获 ISO/IEC 27001、27701 认证，官网承诺翻译内容零保留、不用于训练</td><td><a class="cref cross" href="#ref-9">[9]</a><a class="cref cross" href="#ref-12">[12]</a><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 四处留白（截至 2026-11-13 检索）</div>
+    ① 收购金额、条款与收购后的股权/治理结构未披露，仅可通过工商登记确认子公司归属；② 营收、订阅数、付费转化率零披露，任何收入量级判断均为推算；③ 收购方推文科技（北京推文信息科技有限公司）的公开业务资料有限，除工商登记与软著记录外缺乏独立深度报道；④ 「3000 万激活用户」未附活跃/留存口径，无法换算真实使用规模——官方口径与 Chrome 商店单渠道 300 万的差异已在伍节显式标注。
+  </div>
+  <div class="box note">
+    <div class="bt">📌 「假开源」争议（如实收录）</div>
+    2023 年 8 月，V2EX 帖子《10k+ star 的项目也搞假开源》引发 400+ 楼讨论，核心关切包括：新版闭源后仓库结构与 README 形似开源项目、容易误导用户，文档中邀请用户给 GitHub 点赞等。Owen 于 2023-08-06 发布长文《对「假开源」事件的反省》，承认「帖子里的关切是合理的」，向「被误导的朋友表示歉意」，并逐条完成 8 项整改：迁出文档仓库、精简 README、移除 star 引导、新仓库显著标注「并非开源软件」；旧版以 MPL2.0 协议存档，后续陆续开源 immersiveL 翻译模型与 BabelDOC PDF 解析引擎（2025-04）。该事件是「个人项目公司化过程中开源叙事管理」的典型样本。另注：部分第三方目录站对创始人真实姓名存在不同说法，无法与官方信源互证，本报告一律采用其公开自称 Owen Young。<a class="cref cross" href="#ref-9">[9]</a>
+  </div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">沉浸式翻译证明了 OPC 模式在「体验设计驱动」赛道的完整生命周期：一个人、零投放、以产品体验取胜 → 5 个月 40 万用户 → 早期被收购但保留创始人主导 → 三年后官方口径 3000 万激活。它同时展示了独立开发者最稀缺的两项能力：对交互范式的定义力（双语对照成为行业最佳实践）与对产品哲学的克制力（拒绝划词、拒绝弹窗、拒绝过度商业化）——这正是其能从数百个翻译插件中突围的根因。</div><div class="cm"><a class="cref partial" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-11">[11]</a> <a class="cref partial" href="#ref-5">[5]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 14 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx cross">[1]</span><span class="rt">A</span><span class="st">官方博客（一手）</span></div><div class="ti">沉浸式翻译全球激活用户突破 3000 万：打破信息差，读懂更大的世界</div><div class="mt"><b>来源：</b>沉浸式翻译官方博客　<b>发布日期：</b>2026-09-28<br><a href="https://immersivetranslate.com/blog/30-million-users/" target="_blank" rel="noopener">https://immersivetranslate.com/blog/30-million-users/</a></div><div class="note">事实核查：一手原文回溯完成；「全球激活用户突破 3000 万」、产品理念（双语对照、降低信息获取门槛）及团队署名均出自此稿；与官网首页 [2]、新闻通稿 [12] 口径一致（同为公司自报，未经第三方审计，故标蓝）。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx cross">[2]</span><span class="rt">A</span><span class="st">官网（一手）</span></div><div class="ti">沉浸式翻译官网首页 / 价格页（功能矩阵、渠道徽章、口碑栏）</div><div class="mt"><b>来源：</b>immersivetranslate.com　<b>查询日期：</b>2026-11-13<br><a href="https://immersivetranslate.com/zh-Hans/home" target="_blank" rel="noopener">https://immersivetranslate.com/zh-Hans/home</a>　·　<a href="https://immersivetranslate.com/zh-Hans/pricing/" target="_blank" rel="noopener">价格页</a></div><div class="note">事实核查：20+ 引擎、100+ 语言、全平台适配、「Chrome 2024 年度精选 / Edge Editors' pick / Safari Top 10」徽章、3000 万+ 用户喜爱、隐私三原则（零保留/不训练/加密）均为页面原文；阮一峰、倪爽等推荐语收录于此。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx partial">[3]</span><span class="rt">B+</span><span class="st">播客专访（自述）</span></div><div class="ti">EP56 沉浸式翻译背后的故事 | 对话创始人 Owen（硬地骇客）</div><div class="mt"><b>来源：</b>硬地骇客　<b>发布日期：</b>2024-04-15（Podwise 记录）<br><a href="https://hardhacker.com/podcasts/661d2dc748c40e2fb07c6b99" target="_blank" rel="noopener">https://hardhacker.com/podcasts/661d2dc748c40e2fb07c6b99</a></div><div class="note">事实核查：47 分钟节目页硬地笔记回溯完成——诞生故事、早期口碑传播、Build in Public、大亚湾「注意力自由」、Pro 会员等出自此稿；为创始人自述口径，故标黄。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx partial">[4]</span><span class="rt">B+</span><span class="st">播客专访（自述）</span></div><div class="ti">Vol. 139 Owen: 那个弄「沉浸式翻译」的后生（枫言枫语）</div><div class="mt"><b>来源：</b>枫言枫语（PodParley 节目页，RSS 元数据）　<b>发布日期：</b>2025-04-20　<b>时长：</b>81 分钟<br><a href="https://podparley.com/Episode/Details/vol-139-owen-na-ge-nong-chen-jin-shi-fan-yi-de-hou-sheng-18aaf4c675bd3fbe-55a062" target="_blank" rel="noopener">https://podparley.com/Episode/Details/vol-139-…</a>　·　蜻蜓 FM 节目页亦收录</div><div class="note">事实核查：时间轴确认 Buzzing.cc、双语剧本灵感、Deno 重构、搬去惠州、「获得 2024 Chrome Web Store 年度最佳」「被一家与 Owen 三观相符的公司收购，目前项目仍在积极更新中」等；为自述口径，标黄。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx partial">[5]</span><span class="rt">C+</span><span class="st">自媒体专访整理</span></div><div class="ti">独立开发者携百万用户余威，再推爆款 AI 搜索引擎（搜狐号·如峰出海）</div><div class="mt"><b>来源：</b>搜狐号「如峰出海」　<b>发布日期：</b>2024-12-17<br><a href="https://m.sohu.com/a/838575204_122123087/" target="_blank" rel="noopener">https://m.sohu.com/a/838575204_122123087/</a></div><div class="note">事实核查：腾讯财付通前端 3 年裸辞、Buzzing.cc、《巴巴拉少校》启发、不到一个月上线、拒绝划词翻译、月租 1500 元、BiLin 上线、「Chrome 商店用户超 100 万、全网估计 150 万+」出自此稿；内容与播客 [3][4] 互证但为转述整理，标黄。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx cross">[6]</span><span class="rt">B+</span><span class="st">技术社区媒体报道</span></div><div class="ti">翻译工具「沉浸式翻译」已被收购（OSCHINA）</div><div class="mt"><b>来源：</b>OSCHINA（开源中国）　<b>发布日期：</b>2023-05-25<br><a href="https://www.oschina.net/news/242344" target="_blank" rel="noopener">https://www.oschina.net/news/242344</a></div><div class="note">事实核查：原文回溯完成——「过去 5 个月积累 40 万用户」「被推文科技公司收购，金额未公开」「成立独立子公司」「开发者继续负责扩展的产品和技术工作」均出自此稿；与工商信息 [7]、播客 [4] 三方互证。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx verified">[7]</span><span class="rt">A</span><span class="st">工商/知识产权登记（双库互证）</span></div><div class="ti">沉浸式翻译(深圳)有限责任公司工商信息；「沉浸式翻译 Android 端软件」软著登记</div><div class="mt"><b>来源：</b>企查查 + 天眼查　<b>查询日期：</b>2026-11-13<br><a href="https://m.qcc.com/firm/a9bb434fa73029950ea7a54e57129514.html" target="_blank" rel="noopener">企查查：沉浸式翻译(深圳)有限责任公司</a>　·　<a href="https://banquan.tianyancha.com/rj/914m7eeza4acc83714c057170l447b08" target="_blank" rel="noopener">天眼查：软著登记</a></div><div class="note">事实核查：企查查载明子公司由北京推文信息科技有限公司 100% 持股；天眼查载明 Android 端软著著作权人为北京推文信息科技有限公司（登记批准 2025-07-21）——两个独立登记库互证收购主体，标绿。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx cross">[8]</span><span class="rt">A</span><span class="st">Chrome 商店（一手，镜像读取）</span></div><div class="ti">Immersive Translate: AI Web, PDF &amp; Video Translator — Chrome Web Store 列表页</div><div class="mt"><b>来源：</b>Chrome Web Store　<b>数据时点：</b>2026-10-22（chrome-stats 镜像快照）<br><a href="https://chromewebstore.google.com/detail/immersive-translate-trans/bpoadfkcbjbfhfodiogcnhhhpibjhbnh" target="_blank" rel="noopener">https://chromewebstore.google.com/detail/immersive-translate-trans/bpoadfkcbjbfhfodiogcnhhhpibjhbnh</a></div><div class="note">事实核查：商店直连抓取为空（JS 动态渲染），经 chrome-stats.com 镜像读取：在册用户约 300 万、评分 4.53（3,173 条）、版本 1.34.2（2026-10-20 更新）、总榜 #155；开发者署名 Immersive Translate。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx cross">[9]</span><span class="rt">A</span><span class="st">创始人博客（一手）</span></div><div class="ti">对「假开源」事件的反省（Owen Young 个人博客）</div><div class="mt"><b>来源：</b>owenyoung.com　<b>发布日期：</b>2023-08-06<br><a href="https://www.owenyoung.com/blog/fake-open-source/" target="_blank" rel="noopener">https://www.owenyoung.com/blog/fake-open-source/</a></div><div class="note">事实核查：一手原文回溯完成——2022-11-05 基于 TPW 开发、2022-11-28 起重写、全职 50 天、2023-01-18 新版上架 Chrome 商店、旧版 2023-01-17 归档（MPL2.0）、「99.9% 以上用户来自新版」、V2EX 争议 400+ 楼与 8 项整改、BabelDOC 开源（2025-04 更新注）均出自此稿；关键日期与商店追踪记录 [10] 互证。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx partial">[10]</span><span class="rt">C</span><span class="st">第三方商店追踪</span></div><div class="ti">Immersive Translate — Permissions, Stats &amp; Release History（ExtWise）</div><div class="mt"><b>来源：</b>ExtWise　<b>查询日期：</b>2026-11-13<br><a href="https://extwise.com/extension/immersive-translate-translate-web-pdf/" target="_blank" rel="noopener">https://extwise.com/extension/immersive-translate-translate-web-pdf/</a></div><div class="note">事实核查：记录「首次发布至 Chrome Web Store：2022-11-10」「最新更新 2026-10-26（1.34.4）」；与 Owen 博客 [9] 的首发时间线一致（初版 2022-11、新版 2023-01），单一第三方来源，标黄。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx cross">[11]</span><span class="rt">A-</span><span class="st">主流科技媒体</span></div><div class="ti">看见创新力量！极客公园 2024 年度「InnoForce 50」发布</div><div class="mt"><b>来源：</b>腾讯新闻（原发极客公园）　<b>发布日期：</b>2024-12-14<br><a href="http://news.qq.com/rain/a/20241214A065GG00" target="_blank" rel="noopener">http://news.qq.com/rain/a/20241214A065GG00</a></div><div class="note">事实核查：「开发者 Owen 以一己之力做出沉浸式翻译」「仅 5 个月后用户量自然增长至 40 万」「分段双语对照的翻译模式已被广泛采纳，成为行业最佳实践」出自此稿；与 OSCHINA [6] 的 40 万用户口径交叉一致。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx cross">[12]</span><span class="rt">B+</span><span class="st">新闻通讯社通稿</span></div><div class="ti">Immersive Translate Surpasses 30 Million Users Worldwide and Achieve ISO Certifications（Media OutReach Newswire）</div><div class="mt"><b>来源：</b>Media OutReach Newswire（dailywire.asia 发布页）　<b>发布日期：</b>2026-11-04<br><a href="https://dailywire.asia/immersive-translate-surpasses-30-million-users-worldwide-and-achieve-iso-certifications-for-security-and-privacy/" target="_blank" rel="noopener">https://dailywire.asia/immersive-translate-surpasses-30-million-users-…</a></div><div class="note">事实核查：通稿重申「全球用户突破 3000 万」并宣布获 ISO/IEC 27001、27701 认证；为厂商发布的新闻稿分发（非独立编辑内容），用于与官方博客 [1] 互证发布事实。</div></li>
+  <li id="ref-13" class="src"><div class="sh"><span class="idx cross">[13]</span><span class="rt">A</span><span class="st">官方协议（一手）</span></div><div class="ti">Immersive Translate Membership Service Agreement（会员服务协议）</div><div class="mt"><b>来源：</b>沉浸式翻译官方文档　<b>查询日期：</b>2026-11-13<br><a href="https://immersivetranslate.com/en/docs/MEMBERSHIP-TERMS/" target="_blank" rel="noopener">https://immersivetranslate.com/en/docs/MEMBERSHIP-TERMS/</a></div><div class="note">事实核查：协议原文载明两类会员——Pro 月订阅 $14.99/月、Max 月订阅 $39.99/月（自动续订）；价格可随市场调整；为定价结构的一手依据。</div></li>
+  <li id="ref-14" class="src"><div class="sh"><span class="idx cross">[14]</span><span class="rt">A</span><span class="st">App Store（一手）</span></div><div class="ti">沉浸式翻译 Safari 浏览器插件 — App Store（国区内购价）</div><div class="mt"><b>来源：</b>Apple App Store（id6447957425）　<b>查询日期：</b>2026-11-13<br><a href="https://apps.apple.com/cn/app/id6447957425" target="_blank" rel="noopener">https://apps.apple.com/cn/app/id6447957425</a></div><div class="note">事实核查：内购项目原文——「月费会员 pro ¥68.00」「年费会员 pro ¥598.00」「Max 月会员 ¥198.00」；与官方协议 [13]（美元区）互证订阅制结构。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 14 条。核验标签分布：🟢 已核验（verified）1 条（工商双库互证）、🔵 多源印证（cross）9 条、🟡 部分映证（partial）4 条（两档播客、一家自媒体转述与一条第三方商店追踪——自述/单一来源口径均已标注）。全部官方口径数字（3000 万激活、Chrome 精选徽章、定价）均为公司自报，未经第三方审计，故标蓝处理；核心事实「2023-05 被推文科技收购」由媒体报道 [6]、工商登记 [7] 与播客 [4] 三方互证。一处关键口径差异（Chrome 单渠道约 300 万 vs 全渠道 3000 万激活）已在正文显式标注。核验失败及处理：Chrome 商店页直连抓取为空（JS 动态渲染）→ 改用 chrome-stats 镜像快照（2026-10-22）；Podwise 单集页反爬抓取为空 → 改用硬地骇客官网节目页 [3]，数据均可回溯。未发现伪造链接；全部 URL 为检索过程实际命中页面。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-13 · 用户与营收相关数字均为官方口径或标注推算置信度，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

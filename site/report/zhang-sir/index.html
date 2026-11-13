@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · 张sir 弹幕游戏矩阵 —— 一人 AI 流水线量产抖音弹幕互动游戏 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · 张sir 弹幕游戏矩阵">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="张sir（化名）弹幕游戏矩阵深度案例报告：AI 工具链承担约 70% 美术与代码，15 天量产一款抖音弹幕互动游戏，一年 6 款、自述总流水近 2000 万元。7 条信源逐条核验，化名自述证据边界显式标注。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>张sir 弹幕游戏矩阵深度案例报告</h1>
+    <h2>游戏研发人张sir（化名）：AI 工具链承担约 70% 美术与代码，15 天量产一款抖音弹幕互动游戏<br>一年 6 款、自述总流水近 2000 万元 —— 7 条信源逐条核验，化名自述证据边界全程标注</h2>
+    <div class="tags">
+      <span class="tag">游戏研发型 OPC</span>
+      <span class="tag">AI 量产流水线</span>
+      <span class="tag">化名自述案例</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">近 2000 万</div><div class="k">总流水（化名自述口径 · 元）</div></div>
+  <div class="stat"><div class="v up">80-100 万</div><div class="k">个人到手（自述 · 无第三方验证）</div></div>
+  <div class="stat"><div class="v neutral">6 款</div><div class="k">一年量产弹幕互动游戏</div></div>
+  <div class="stat"><div class="v neutral">15 天</div><div class="k">单款开发周期（自述）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">张sir 弹幕游戏矩阵是案例墙中「AI 量产流水线」的代表性样本：一位游戏研发领域从业者离职后，以 AI 工具链替代美术与程序团队，单人批量开发抖音直播间弹幕互动游戏，自述一年 6 款、总流水接近 2000 万元。本案例的全部经营数据来自 Tech星球采访中受访者的化名自述，无任何第三方验证——匿名性本身构成该案例最重要的证据边界。</p>
+  <div class="two">
+    <div class="card"><div class="ct">业务</div><div class="cb">抖音直播「小玩法」形态的弹幕互动游戏矩阵：观众在直播间发送弹幕加入对抗阵营、刷礼物触发技能，主播居中组织气氛。自 2025 年 3 月离职创业起一年时间开发 6 款，单款开发周期约 15 天，最成功一款累计流水 800 多万元。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a>（自述口径，同稿另见 <a class="cref cross" href="#ref-2">[2]</a>）</div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">张sir（化名，真名未公开），游戏研发领域从业者，自述 2025 年 3 月从行业离职创业。<b>匿名性作为证据边界呈现</b>：真名、公司注册主体、过往任职经历均未检索到公开信息，其行业经验年限、团队背景不可核验。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a></div></div>
+    <div class="card blue"><div class="ct">个人角色</div><div class="cb">AI 承担约 70% 美术工作量与代码辅助开发（AI 写 Java 自述正确率 99%）；个人负责最终拼装、UI 界面调整与引擎适配。另以成熟 AI 制作流程承接外包项目：单笔报价 3-5 万元、工期约一周，作为「旱涝保收」的现金流补充。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a></div></div>
+    <div class="card blue"><div class="ct">公司 / 投资状态</div><div class="cb">是否注册公司主体、有无融资、团队规模（是否严格意义「一人」）均未检索到公开信息——Tech星球稿件以「创业者：张sir，游戏研发领域」一句话引入，未交代组织形态。按一人公司（OPC）模式呈现，组织形态存疑待证。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <p class="lead">张sir 的创业起点恰好卡在弹幕游戏赛道「野蛮生长→生态下行→形态迭代」的转折带上。先看赛道背景，再看个人时间线：</p>
+  <div class="tl">
+    <div class="node"><div class="dt">2022 年</div><div class="tx">弹幕游戏搭「元宇宙」概念首次出现在直播间</div><div class="td">初代玩法强调观众免费参与（挤地铁、开派对、守塔、三国攻城），商业模式为游戏广告推广，利润小、不温不火。<a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2023 年初</div><div class="tx">《森林派对》等对抗玩法出现，弹幕游戏赛道爆发</div><div class="td">观众发弹幕选阵营、刷礼物召唤技能对抗；抖音开设「弹幕玩法榜」给流量扶持，「弹幕游戏」话题词播放量达 4.5 亿次。<a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2023-05 → 2023-12</div><div class="tx">头部产品月流水千万级：兵临城下 6000 万 / 星辰无双日流水破 150 万</div><div class="td">赛道吸金效应确立；玩家刷 100 元的分成惯例为「平台 50 + 游戏商 8 + 主播 42」。<a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2024-05 / 2024-07</div><div class="tx">法治日报、人民网两度聚焦弹幕游戏直播乱象</div><div class="td">「氪金」人群不乏未成年人、主播话术鼓动付费；专家提出若属网络游戏平台应核查版号资质、建议制定专门管理办法。<a class="cref verified" href="#ref-5">[5]</a><a class="cref verified" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2024-09</div><div class="tx">DataEye 判断「弹幕 PK 第一阶段」热度已过，生态下行</div><div class="td">平台流量向秀场/娱乐直播回摆、玩家留存差、公会内卷；抖音转向推进「小游戏+弹幕游戏」第二阶段并更新直播小玩法文档。<a class="cref cross" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2025-03（案例墙锚点 2025-03-15 ▲）</div><div class="tx">张sir 从游戏行业离职，开始一人创业</div><div class="td">自述背景：游戏行业裁员严重、传统岗位求职困难，「AI 工具的应用使得个人具备了与团队抗衡的生产力」。<a class="cref partial" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2025-03 → 2026 年中</div><div class="tx">一年时间开发 6 款弹幕游戏，累计流水近 2000 万元</div><div class="td">自述口径：单款周期约 15 天、单款成本 1000-1500 元，最成功一款累计流水 800 多万元，个人到手 80-100 万元。<a class="cref partial" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-06-01</div><div class="tx">Tech星球《「一人公司」爆火》发布，张sir 以化名受访</div><div class="td">稿件经 36氪授权发布、界面新闻 JMedia 转载；同期受访的另一位创业者自述创业后收入缩水 90%，与张sir 构成同稿对照组。<a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：行业经验是准入壁垒——「零基础」难吃这碗饭</div><div class="cb">张sir 明确给「一人游戏公司」设了人群边界：适合「有渠道（甲方资源）」或「懂流程、有想法」的从业者，AI 无法替代创意和项目管理能力。他特别指出，缺乏行业经验的零基础人员难以驾驭 AI 工具链，「因为无法判断 AI 生成内容的正确性从而进行有效纠偏」。这与案例墙多数「跨行零基础起飞」叙事相反，是更清醒的入场条件表述。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a></div></div>
+  <div class="card"><div class="ct">转折二：AI 工具链把「10 人团队 × 2-4 个月」压缩为「单人 × 15 天」</div><div class="cb">美术环节构建了五级流水线：豆包（关键词）→ Banana（原画）→ Triple3D / 会员3D（建模）→ Blender（减面优化）→ Mixamo（骨骼绑定），AI 承担约 70% 美术工作量；代码环节用 AI 编写 Java，自述正确率可达 99%。传统团队（10 人左右）开发同类游戏需 2-4 个月，单人压缩至 15 天左右，自述成品质量「几乎可以对标大厂」，普通玩家及主播几乎无法辨别是否由 AI 制作。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a></div></div>
+  <div class="card red"><div class="ct">转折三：分成链条末端生存——8% 的生意必须靠「矩阵 + 外包」对冲</div><div class="cb">弹幕游戏的分成惯例把开发者放在链条末端：平台抽 50%、主播拿 42%、开发者仅约 8%。这意味着单款游戏再成功，绝大部分流水也过不了自己的手。张sir 的对冲策略有两条：一是<b>量产矩阵</b>——15 天一款、单款成本仅 1000-1500 元（AI 工具订阅与资产包购买），以数量摊薄低分成率；二是<b>外包现金流</b>——用成熟 AI 流程接外部订单，单笔 3-5 万元、工期约一周，自称「旱涝保收」。行业分析同样印证该结构的残酷：DataEye 引从业者观点称开发者做不到行业 TOP10 很难赚钱。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-4">[4]</a></div></div>
+  <div class="quote">
+    <p>虽然 AI 降低了技术门槛，但缺乏行业经验的「零基础」人员难以驾驭，因为无法判断 AI 生成内容的正确性从而进行有效纠偏。经验是最好的创业壁垒。</p>
+    <span class="src">—— 张sir（化名），Tech星球采访（2026-06-01），自述口径，转引自 <a class="cref partial" href="#ref-1">[1]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Business Model</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>要点</th><th>说明</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>业务模式</td><td class="hl">弹幕互动游戏量产：15 天/款 × 6 款矩阵</td><td>以「直播小玩法」形态上架抖音直播间，观众发弹幕/刷礼物参与对抗；零宣发，完全依托平台流量分发</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td>AI 工具链</td><td class="hl">承担约 70% 美术与代码</td><td>豆包（关键词）→ Banana（原画）→ Triple3D/会员3D（建模）→ Blender（减面优化）→ Mixamo（骨骼绑定）；AI 写 Java 自述正确率 99%；个人负责拼装/UI/引擎适配</td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td>分成结构</td><td class="hl">流水 → 个人到手：平台 50% / 主播 42% / 开发者约 8%</td><td>自述口径与 2024 年行业稿的分成惯例（刷 100 元：平台 50、游戏商 8、主播 42）完全互证；到手 80-100 万 ≈ 理论分成 160 万扣减成本/税费后的量级</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td>面向客群</td><td>抖音直播间（主播与公会）</td><td>直接客户是开播弹幕游戏的主播/公会生态，间接付费方为直播间「大哥」（观众打赏）；外包业务的客群为需要弹幕游戏/美术资产的外部甲方</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td>解决痛点</td><td>弹幕游戏内容供给不足 + 传统游戏研发「高成本、长周期」</td><td>赛道玩法迭代极快、平台流量榜需要持续新品供给（有游戏商每月上新 2-3 款）；传统团队动辄 200 万研发成本，本案压缩至千元级</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box insight">
+    <div class="bt">🔍 商业结构判读</div>
+    本质上这是一门「B2B2C 的直播生态生意」：开发者不直接触达玩家，收入完全寄生于「平台抽成规则 × 主播开播意愿 × 观众打赏行为」三层外部变量。AI 工具链解决的是供给端成本问题（把试错成本压到千元级），但需求端的流量分配权、结算规则、玩法准入全部掌握在平台手中——高毛利与高风险同源。
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <p class="lead">本案全部经营数据为单一化名受访者自述（Tech星球采访口径），<b>证据等级整体为「部分映证（partial）」</b>：无平台结算单、无审计报告、无公司工商与税务信息可交叉。</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点 / 口径</th><th>证据等级</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>总流水</td><td class="hl">接近 2000 万元</td><td>2025-03 → 2026 年中，约 15 个月</td><td><span class="cite partial" style="display:inline-block;font-family:Georgia,serif;font-size:11px;font-weight:700;padding:1px 5px;border-radius:3px;background:#fdf3e0;color:#a67c14">自述</span> 化名、无验证</td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td>个人到手</td><td class="hl">约 80-100 万元</td><td>同期累计</td><td><span class="cite partial" style="display:inline-block;font-family:Georgia,serif;font-size:11px;font-weight:700;padding:1px 5px;border-radius:3px;background:#fdf3e0;color:#a67c14">自述</span> 化名、无验证</td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td>最成功单款流水</td><td>累计 800 多万元</td><td>上线至受访时累计</td><td><span class="cite partial" style="display:inline-block;font-family:Georgia,serif;font-size:11px;font-weight:700;padding:1px 5px;border-radius:3px;background:#fdf3e0;color:#a67c14">自述</span></td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td>在营产品数</td><td>6 款弹幕游戏</td><td>一年内开发</td><td><span class="cite partial" style="display:inline-block;font-family:Georgia,serif;font-size:11px;font-weight:700;padding:1px 5px;border-radius:3px;background:#fdf3e0;color:#a67c14">自述</span></td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td>单款开发周期</td><td>约 15 天（传统 10 人团队 2-4 个月）</td><td>自述对比口径</td><td><span class="cite partial" style="display:inline-block;font-family:Georgia,serif;font-size:11px;font-weight:700;padding:1px 5px;border-radius:3px;background:#fdf3e0;color:#a67c14">自述</span></td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td>单款制作成本</td><td>1000-1500 元</td><td>AI 工具订阅 + 资产包购买；传统团队动辄 200 万</td><td><span class="cite partial" style="display:inline-block;font-family:Georgia,serif;font-size:11px;font-weight:700;padding:1px 5px;border-radius:3px;background:#fdf3e0;color:#a67c14">自述</span></td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td>分成结构</td><td>平台 50% / 主播 42% / 开发者约 8%</td><td>自述口径，与行业稿分成惯例互证</td><td class="pos">自述 + 行业印证</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td>外包订单</td><td>单笔 3-5 万元、工期约一周</td><td>承接频率未披露</td><td><span class="cite partial" style="display:inline-block;font-family:Georgia,serif;font-size:11px;font-weight:700;padding:1px 5px;border-radius:3px;background:#fdf3e0;color:#a67c14">自述</span></td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明（自洽性推算，置信度 C）</div>
+    按 8% 开发者分成对自述流水做算术校验：2000 万 × 8% = 160 万元理论分成，与自述「到手 80-100 万」之间存在约 60-80 万元差额——可解释的方向包括 AI 工具订阅与资产包成本、个人所得税与结算通道费用、非自然月口径差异等，量级自洽但<b>每一步均无法独立核验</b>。头部产品流水可作旁证：赛道头部《星辰无双》日流水曾破 150 万、《兵临城下》月流水超 6000 万（2023 年行业数据），一款累计 800 万的产品在 2025-2026 年的赛道语境中属于可信区间，但仍属自述。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将张sir 放入案例墙「AI 量产流水线 × 游戏出海 × 自述型创业者」坐标系。对标数据均为<b>案例墙既有核验值</b>（详见案例墙 index.html 各条信源），非本次重新核验：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>AI 参与度</th><th>数据表现</th><th>案例墙核验色</th></tr></thead>
+    <tbody>
+      <tr><td><b>张sir 弹幕游戏矩阵</b></td><td>张sir（化名）</td><td>抖音弹幕互动游戏 6 款矩阵</td><td class="hl">AI 承担约 70% 美术与代码，15 天/款</td><td>总流水近 2000 万、到手 80-100 万（自述口径）</td><td>partial（化名自述）</td></tr>
+      <tr><td>王腾工业机械出海（Accio Work）</td><td>王腾（2004 年生，郑州）</td><td>工业机械 B2B 出海，AI Agent 管选品/询盘/客服</td><td>AI Agent 全流程辅助</td><td>一年销售额破 300 万（环球网/政府官网双源交叉）；8 个月 200 万（演进口径）</td><td>cross</td></tr>
+      <tr><td>NuxtPro 等 AI 工具矩阵</td><td>IndieMakerKevin（网名）</td><td>SaaS 模板 / API 中转 / 视频去水印等工具站矩阵</td><td>AI 编码批量交付</td><td>自述月额外收入 1 万美元+（自述口径）</td><td>partial（自述）</td></tr>
+      <tr><td>互动内容产品（Rochat）</td><td>叶纯俊</td><td>AI 互动内容与情感陪伴产品</td><td class="hl">90% 代码由 AI Agent 编写</td><td>全球百万用户、月收入 2-3 万美元</td><td>cross</td></tr>
+      <tr><td>MoneyPrinterTurbo（开源）</td><td>harry0703（网名）</td><td>输入主题自动完成文案/素材/字幕/配音的短视频生成器</td><td class="hl">AI 内容量产工具本身</td><td>GitHub 133k★，AI 视频类最高星之一</td><td>cross</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>两条共性把张sir 与上述案例连成谱系：<b>其一，「AI 量产流水线」</b>——MoneyPrinterTurbo 把短视频生产开源工具化，张sir 把游戏美术/代码工序流水线化（15 天/款），NuxtPro 与 Rochat 把软件交付矩阵化/Agent 化，本质都是把「团队产能」翻译成「个人 + 工具链产能」；<b>其二，「匿名创业者」</b>——张sir（化名）、IndieMakerKevin 与 harry0703（网名）均不以真名示人，其中张sir 是唯一由传统媒体采访确认的化名案例，可信度边界最宽。差异点在于：王腾（双源交叉）与叶纯俊（多源）有独立信源背书，而张sir 的全部数据仅有一条自述信源——在案例墙的证据链上属于置信度「低中」一档。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>分析</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>抖音直播小玩法形态的弹幕互动游戏矩阵（6 款）：观众发弹幕加入阵营、点赞/刷礼物触发技能与 buff，直播间同屏呈现对局；产品即「直播内容组件」，依附抖音直播生态分发，无独立客户端、无游戏内充值（付费形式为直播礼物打赏）。</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>2. 面向客群</b></td><td>B2B2C 结构：直接客群为抖音直播间主播与公会（选品开播），最终付费方为直播间观众（礼物打赏）；外包业务面向有弹幕游戏/美术资产需求的外部甲方。玩家侧「中、大 R」占比有限、留存差是全行业痛点，主播开播意愿决定一款产品的生死。</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>3. 解决痛点</b></td><td>供给端：弹幕玩法迭代极快，平台流量榜需要持续新品（有游戏商每月上新 2-3 款），传统 10 人团队 2-4 个月/款、动辄 200 万成本的研发模式无法适配——本案以千元级成本 + 15 天/款填补快速供给缺口；需求端：主播需要「低直播难度、高打赏转化」的内容形态撑场。</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td><b>4. 商业模式与营收（推算，置信度 C）</b></td><td>自述流水近 2000 万 × 8% 开发者分成 ≈ 160 万理论分成，扣除工具订阅、资产包、税费后与自述到手 80-100 万量级自洽（无法逐项核验）；外包 3-5 万/单构成第二曲线，承接频率未披露、年化区间无法推算。收入结构对平台抽成规则零议价权——8% 的比例由平台单方决定，规则一变模型即失效。</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td><b>5. 技术与生产方式</b></td><td>五级美术流水线（豆包→Banana→Triple3D/会员3D→Blender→Mixamo）+ AI 写 Java（自述正确率 99%），把「美术 + 程序 + 测试」三个职能压缩为「AI 生成 + 个人拼装/UI/引擎适配」。生产方式与 MoneyPrinterTurbo 式「一键流水线」同构，但保留了需要专业判断的人工卡点——与张sir 本人「零基础无法纠偏」的论断一致。</td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>6. 平台规则与版号合规（重点）</b></td><td>法律定性模糊：行业分析认为弹幕游戏「横亘在现行法条对『游戏』和『直播』的定义之间」，大部分不属于法律意义上的游戏、仅属直播间玩法、<b>不需要版号</b>——但这是现状而非监管豁免。平台准入趋严：抖音开放平台要求直播小玩法具备「玩法」要素并通过提案评估前置准入、资质提交需软著（明确不能是 APP 或游戏类软著）、行为管理规范设三级违规处置（一级违规立即下线并永久封禁）。监管层已两度发声：法治日报指出「氪金」人群不乏未成年人、专家建议若属网络游戏平台应核查版号资质；人民网呼吁进一步规范主播诱导付费话术。2024-09 平台大幅更新直播小玩法文档指引后，规则体系仍在演进中。</td><td><a class="cref cross" href="#ref-4">[4]</a><a class="cref verified" href="#ref-7">[7]</a><a class="cref verified" href="#ref-5">[5]</a><a class="cref verified" href="#ref-6">[6]</a></td></tr>
+      <tr><td><b>7. 化名案例的可信度边界</b></td><td>本案所有经营数字（流水、到手、成本、周期、正确率）出自单一化名受访者的自我陈述，媒体无法验证、平台不公开结算数据、无工商税务信息可查，AI 生成内容占比 70% 与代码正确率 99% 亦为自评口径。可信度支撑仅有两条间接链：其一，8% 分成结构与 2024 年行业稿的分成惯例完全互证；其二，单款 800 万流水落在赛道头部产品的历史数据区间内。按案例墙证据分级，本案例整体置信度「低中」，引用时必须携带「化名自述」限定语。</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 五处不可核验与三重结构性风险（截至 2026-11-13 检索）</div>
+    ① <b>化名自述无第三方验证</b>：总流水近 2000 万、到手 80-100 万均无结算单/审计/税务佐证；② <b>真名与组织形态留白</b>：真名未公开，是否注册公司、是否严格「一人」、有无协作团队未检索到公开信息；③ <b>产品不可回溯</b>：6 款游戏名称未披露，无法在抖音平台侧核对上线与运营状态；④ <b>分成比例的平台单方性</b>：50/42/8 由平台规则决定，历史上「弹幕玩法榜」流量扶持已随生态调整而缩减，抽成与准入规则变动直接冲击收入模型；⑤ <b>赛道处于下行与迭代交接期</b>：DataEye 2024-09 即判断弹幕 PK 阶段生态下行，2025-2026 年张sir 的 6 款产品恰在此窗口上线——个体自述的高增长与行业稿的整体下行并存，需警惕幸存者叙事。结构性风险：法律定性模糊（免版号是现状而非豁免，监管一旦将其归入网络游戏即触发版号资质问题）；未成年人打赏与诱导付费的合规压力持续存在；AI 生成内容的平台审核标准尚在演进。
+  </div>
+  <div class="card"><div class="ct">同稿对照组的警示（如实收录）</div><div class="cb">与张sir 同刊于 Tech星球《「一人公司」爆火》一稿的另一位受访者（跨境电商阿源），自述从大厂年薪 60 万到创业两个月销售额仅 1 万余元、盈利 1000 多元，「收入缩水 90%」，并明确「不建议盲目辞职创业」——同一篇报道同时呈现「年赚百万」与「缩水九成」两个极端，编辑部本身的立场即是「任何时候创业都有风险，创业成功的人永远只是少数」。此外，行业评论对弹幕游戏形态本身争议未消：36氪评论区高赞观点认为「弹幕游戏游戏性很差，主要是一个直播氛围，本质上不算游戏，是一种直播方式」；DataEye 引从业者分析指出换皮复制快、无核心竞争力、极度依赖公会资源等结构性弱点。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-4">[4]</a> <a class="cref cross" href="#ref-3">[3]</a></div></div>
+  <div class="box note">
+    <div class="bt">📌 化名 + 自述的证据边界说明（捌节显式声明）</div>
+    本案例创业者以化名「张sir」接受采访，真名未公开；全部经营数据为受访者向媒体提供的自我陈述，属于一手口述但非经核验的事实。本报告的处理原则：①凡出自该采访的事实句一律标注黄色 partial 上标，不使用绿色 verified；②不将自述数据与其他案例的可核验数据直接并列比较；③营收推算一律标注置信度 C；④对「AI 承担 70%」「代码正确率 99%」等能力性表述均冠以「自述」限定。读者引用本案时，请保持同等审慎。
+  </div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 7 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx partial">[1]</span><span class="rt">B+</span><span class="st">财经科技媒体 · 化名自述</span></div><div class="ti">「一人公司」爆火：有人年赚百万，有人收入缩水90%（Tech星球，作者翟元元）</div><div class="mt"><b>来源：</b>36氪（经授权发布，原发微信公众号 Tech星球 ID: tech618）　<b>发布日期：</b>2026-06-01<br><a href="https://36kr.com/p/3833862243788422" target="_blank" rel="noopener">https://36kr.com/p/3833862243788422</a></div><div class="note">事实核查：张sir 全部自述事实（2025-03 离职、6 款游戏、流水近 2000 万、到手 80-100 万、单款 800 多万、50/42/8 分成、千元级成本、70% 美术、Java 99%、15 天周期、外包 3-5 万/单、经验壁垒论）唯一出处。化名自述口径，按从严原则整体标黄。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx cross">[2]</span><span class="rt">B</span><span class="st">门户转载（同稿）</span></div><div class="ti">「一人公司」爆火:有人年赚百万，有人收入缩水90%（界面新闻 JMedia 转载）</div><div class="mt"><b>来源：</b>界面新闻 JMedia　<b>发布日期：</b>2026-06（转载）<br><a href="https://www.jiemian.com/article/14513633.html" target="_blank" rel="noopener">https://www.jiemian.com/article/14513633.html</a></div><div class="note">事实核查：与 [1] 为同一篇稿件的多平台传播，佐证稿件传播链路可达性；<b>同稿转载不构成独立信源</b>，不用于提升张sir 自述数据的核验等级。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx cross">[3]</span><span class="rt">B+</span><span class="st">行业媒体 · 赛道深度稿</span></div><div class="ti">疯狂的弹幕游戏：主播日流水破150万，开发商月赚百万（Tech星球，作者陈桥辉）</div><div class="mt"><b>来源：</b>36氪（经授权发布，原发微信公众号 Tech星球 ID: tech618）　<b>发布日期：</b>2024-01-02<br><a href="https://www.36kr.com/p/2586736152372867" target="_blank" rel="noopener">https://www.36kr.com/p/2586736152372867</a></div><div class="note">事实核查：弹幕游戏发展史（2022 元宇宙概念、2023 对抗玩法爆发）、「弹幕游戏」话题 4.5 亿播放、《兵临城下》月流水超 6000 万、《星辰无双》日流水破 150 万、「平台 50 / 游戏商 8 / 主播 42」分成惯例、抖音弹幕玩法榜流量扶持、游戏商月上新 2-3 款等出自此稿；其分成惯例与张sir 自述 [1] 互证。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx cross">[4]</span><span class="rt">B+</span><span class="st">行业研究机构</span></div><div class="ti">抖音、TikTok双双发力，小游戏+弹幕游戏，会是新风口？有何利弊？（DataEye研究院，作者小羊）</div><div class="mt"><b>来源：</b>36氪（经授权发布，原发微信公众号 DataEye游戏观察）　<b>发布日期：</b>2024-09-23<br><a href="https://www.36kr.com/p/2962068313857667" target="_blank" rel="noopener">https://www.36kr.com/p/2962068313857667</a></div><div class="note">事实核查：「大部分弹幕游戏不属于法律意义上的游戏、仅属直播间玩法、不需要版号」之法律定性、开发者 8% 分成「做不到 TOP10 很难赚钱」、弹幕 PK 阶段生态下行判断、2024-09 抖音开放平台更新直播小玩法文档、TikTok 东南亚出海进展（印尼单天 1 万美金）出自此稿。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx verified">[5]</span><span class="rt">A</span><span class="st">央媒法治报</span></div><div class="ti">弹幕游戏直播「氪金」人群不乏未成年人（法治日报 04 版法治经纬）</div><div class="mt"><b>来源：</b>法治日报（司法部「智慧普法平台」同日转载：<a href="http://legalinfo.moj.gov.cn/pub/sfbzhfx/zhfxfzzx/fzzxyw/202405/t20240514_498757.html" target="_blank" rel="noopener">legalinfo.moj.gov.cn</a>）　<b>发布日期：</b>2024-05-14<br><a href="http://epaper.legaldaily.com.cn/fzrb/content/20240514/Articel04002GN.htm" target="_blank" rel="noopener">http://epaper.legaldaily.com.cn/fzrb/content/20240514/Articel04002GN.htm</a></div><div class="note">事实核查：未成年人氪金乱象、北师大赵精武「若属网络游戏平台负有版号资质审核义务」、泰和泰律所朱杰「制定专门管理办法」等监管观点出自此稿；与人民网 [6] 同议题交叉印证。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx verified">[6]</span><span class="rt">A+</span><span class="st">央媒 · 建议版</span></div><div class="ti">弹幕游戏直播有待进一步规范（建议）</div><div class="mt"><b>来源：</b>人民网·社会法治频道　<b>发布日期：</b>2024-07-29<br><a href="http://society.people.com.cn/n1/2024/0729/c1008-40287328.html" target="_blank" rel="noopener">http://society.people.com.cn/n1/2024/0729/c1008-40287328.html</a></div><div class="note">事实核查：「扣1加入游戏」「多刷礼物挽回劣势」等诱导付费话术的批评与规范化建议出自此稿；与法治日报 [5] 交叉印证监管层对弹幕游戏直播的持续关注。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx verified">[7]</span><span class="rt">A</span><span class="st">平台官方文档</span></div><div class="ti">抖音开放平台：直播小玩法准入规则 / 行为管理规范 / 常见问题（官方规则体系）</div><div class="mt"><b>来源：</b>抖音开放平台官网　<b>发布日期：</b>持续更新（2024-09 大幅更新文档指引，见 [4]）<br><a href="https://partner.open-douyin.com/docs/resource/zh-CN/interaction/introduction/introduction/creation" target="_blank" rel="noopener">https://partner.open-douyin.com/docs/resource/zh-CN/interaction/introduction/introduction/creation</a><br>行为管理规范：<a href="https://partner.open-douyin.com/docs/resource/zh-CN/interaction/operation/rules/behavior" target="_blank" rel="noopener">partner.open-douyin.com/…/rules/behavior</a>　常见问题（软著要求）：developer.open-douyin.com</div><div class="note">事实核查：直播小玩法需「玩法要素 + 提案评估前置准入」、资质提交需软著且「不能是 APP 或游戏类软著」、行为管理规范三级违规处置（一级违规立即下线并永久封禁）、不维护玩法可邮件申请下架等平台规则为官方原文一手核验；与 DataEye [4] 所述「平台更新文档指引」互证。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 7 条。核验标签分布：🟢 已核验（verified）3 条（法治日报 + 人民网同议题交叉、抖音开放平台官方文档一手原文）、🔵 多源印证（cross）3 条（界面新闻同稿转载、Tech星球 2024 赛道深度稿、DataEye 研究院稿）、🟡 部分映证（partial）1 条（36氪/Tech星球 2026-06 张sir 化名自述——本案核心数据唯一出处）。信源评级分布：A+/A 级 3 条（央媒法治报、人民网、平台官方原文）、B+/B 级 4 条（主流财经科技媒体与行业研究）。<b>本案证据结构特殊：核心经营数据全部依赖单一化名自述信源 [1]，无独立交叉可能</b>，故全部相关上标从严标黄；8% 分成结构获行业稿 [3][4] 双重互证，为自述数据中交叉强度最高的一项。全部 7 条 URL 为检索过程实际命中页面（36氪×3、界面新闻×1、法治日报+司法部平台×1、人民网×1、抖音开放平台×3 个文档页），未发现伪造链接。三处留白（真名与公司主体、6 款产品名称、外包承接频率）与化名自述边界已在壹、捌节显式标注。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-13 · 本案核心数据为化名自述口径（证据等级 partial），<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

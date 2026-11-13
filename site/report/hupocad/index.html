@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · hupoCADNet —— 15 年设计老兵的 AI 彩平图生意 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · hupoCADNet">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="hupoCADNet 深度案例报告：15 年室内设计经验的何思康一人开发 AI 彩平图生成引擎，CAD 平面图 + 风格参考图 3 分钟生成可商用彩色平面图，上线半年 1740 位付费设计师、营收 5.1 万元、毛利率超 80%。9 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>hupoCADNet 深度案例报告</h1>
+    <h2>15 年室内设计老兵何思康：一人写引擎、一人定价、一人运营<br>CAD 平面图 + 风格参考图 3 分钟生成可商用彩平图，上线半年 1740 位付费设计师 —— 9 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">工具型 OPC</span>
+      <span class="tag">垂直行业 AIGC</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">1740 位</div><div class="k">付费设计师（上线半年 · 自述口径）</div></div>
+  <div class="stat"><div class="v neutral">5.1 万元</div><div class="k">累计营收（51,170 元 · 自述口径）</div></div>
+  <div class="stat"><div class="v up">80%+</div><div class="k">毛利率（自述口径）</div></div>
+  <div class="stat"><div class="v neutral">3 分钟</div><div class="k">CAD 平面图 → 可商用彩平图</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">在通用 AIGC 席卷全球的 2026 年，hupoCADNet 提供了一个教科书级的「行业老兵 + 垂直工具」样本：它不追通用大模型的风口叙事，而是盯住室内设计行业一个极小但刚性的切口——彩色平面图。彩平图是室内设计行业签单转化率最高的沟通工具，长期因人工绘制一张需 2-8 小时、单张成本 30-300 元而未能在中小设计师中普及<sup class="cite partial">[1]</sup>；行业规模层面，按中国室内装饰协会 2024 年披露口径，室内装饰行业年装饰工程量达 5.8 万亿元、从业人员 1300 万、设计师 300 万<sup class="cite cross">[2]</sup>；行业周期层面，家装市场正经历「增量退潮、存量接棒」的存量时代转折<sup class="cite cross">[3]</sup>——专业展示能力取代黑白线稿成为谈单核心，正是本案切入的时代缝隙。</p>
+  <div class="two">
+    <div class="card"><div class="ct">产品</div><div class="cb">hupoCADNet —— 面向室内设计师的 AI 彩平图生成引擎：设计师上传 A3 尺寸 CAD 平面布置方案、选定一张风格参考图，约 3 分钟生成一张风格一致、可直接商用的彩色平面图。自述定位为该细分赛道「唯一的规模化玩家」。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">何思康 —— 15 年室内设计与施工管理两大领域一线经验，覆盖从方案沟通到施工落地的完整链路；技术层面独立完成 DGC 引擎从 0 到 1 的架构与开发、GPU 调度与图像管线，商业层面独立完成定价、内容营销与用户运营。15 年设计经验向 AI 转型，构成本案的行业纵深价值。教育背景与历任机构未检索到公开信息。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a></div></div>
+    <div class="card"><div class="ct">运营与融资状态</div><div class="cb">自述完全一人运营——「从代码到用户、从产品到收入，全部由 1 人完成」；上线起无流量投放、无免费用户补贴。2026-01-30 正式上线（案例墙锚点标注 2026-01-31 ✓，两口径并存），至 2026-07-31 恰满半年；正寻求种子轮融资，未检索到融资交割或工商注册公开信息。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a></div></div>
+    <div class="card"><div class="ct">渠道与形态</div><div class="cb">未检索到可公开访问的产品官网（hupocad.net / hupocad.com 抓取均为空）；按自述稿，销售依托小红书等内容渠道（商品评分 4.7 分、评论真实可见），规划中的渠道扩张包括直播销售、线下地推、买手分销与机构合作返点。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">创业前 · 15 年</div><div class="tx">室内设计与施工管理一线积累</div><div class="td">覆盖从方案沟通到施工落地的完整链路，深知设计师每个真实痛点；具体履历与任职机构未披露。<a class="cref partial" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2025 年前后 · 行业背景</div><div class="tx">家装行业进入存量时代</div><div class="td">2024-2025 年度住宅产业年会主题即「深耕存量市场，拥抱焕新经济」，中国建筑装饰协会会长称「增量退潮、存量接棒」<a class="cref cross" href="#ref-3">[3]</a>；按自述稿，存量精耕时代客户对品质与性价比有了清晰判断力，彩平图从黑白线稿时代的「可选」升级为「谈单核心」<a class="cref partial" href="#ref-1">[1]</a>。</div></div>
+    <div class="node"><div class="dt">2026-01-30</div><div class="tx">hupoCADNet 正式上线（案例墙锚点 2026-01-31 ✓）</div><div class="td">上线即收费、100% 真实付费，无免费用户补贴。<a class="cref partial" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026 上半年</div><div class="tx">纯内容渠道自然获客</div><div class="td">依托小红书等渠道，未投放任何流量广告；自述日均 25 张真实业务图纸回流形成数据飞轮（自述口径）。<a class="cref partial" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-07-31</div><div class="tx">半年节点数据出炉</div><div class="td">累计 1,740 位付费设计师、累计营收 51,170 元、稳态月均收入约 6,128 元、7 月单月峰值 2 万元以上、毛利率超 80%。<a class="cref partial" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-08-12</div><div class="tx">36氪发布自述稿，公开寻求种子轮融资</div><div class="td">发布方账号「室内AI设计助理」即产品团队账号；同稿宣布三阶段路径：0-6 月强化小红书并开启直播销售；6-18 月多渠道立体覆盖并向轴测图、爆炸图、SU 基础建模延伸；18-36 月建立行业标准、深耕 B 端、尝试海外。<a class="cref partial" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-08 → 11</div><div class="tx">截至本报告检索日（2026-11-12），未检索到独立媒体跟进报道、融资交割或团队扩张的公开信息</div><div class="td">案例的全部公开面仍依赖这一篇自述稿（详见捌·附核查小结）。</div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：十五年老兵的「痛点即产品」——从自己最熟的工序切进去</div><div class="cb">彩平图是室内设计行业签单转化率最高的沟通工具——它让客户在签订设计合同前「看到未来家的样子」，但传统人工绘制一张需 2-8 小时、单张成本 30-300 元，中小工作室与独立设计师大多负担不起，效果最好的工具因成本未能普及。这个「行业共识级痛点」正是何思康 15 年一线经验沉淀出的选品判断：在 OPC 创业范式席卷全国——超 700 个 OPC 社区、WeOPC 平台聚集 45 万创业者的 2026 年<sup class="cite verified">[4]</sup>，AI 创业不追热点叙事，而从自己最熟、客户感知最强的单一工序切入——这是一人公司用行业纵深对冲「技术单兵劣势」的典型打法。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a></div></div>
+  <div class="card"><div class="ct">转折二：不套壳，从底层重构「确定性生成」</div><div class="cb">自述稿称市面上大多数「AI 室内设计」应用底层是调用 GPT Image 2、Nano Banana 2 等通用大模型的 API，而建筑/室内设计对一致性零容忍——户型图中任何内容变化都意味着设计方案失效，这是「概率生成」范式与行业场景的根本冲突。hupoCADNet 自研 DGC 确定性生成控制系统，以「感知-校验-输出」三阶段闭环替代通用模型的「感知→生成」两阶段架构，内置一致性校验与内部纠偏，实现「相同输入→相同输出」；并以自建 GPU 推理集群（最高 16 并发、日均生成量仅占总容量 0.4%）和日均 25 张真实图纸回流构筑数据飞轮。该技术叙事全部为自述口径，未检索到第三方技术评测印证。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a></div></div>
+  <div class="card red"><div class="ct">转折三：¥9.9 起步跑通商业闭环，拒绝补贴叙事</div><div class="cb">与「烧钱换增长」的常见路径相反，hupoCADNet 上线即收费、100% 真实付费、无免费用户补贴，从 5 张 9.9 元的次数卡起步——半年 1,740 位付费设计师、累计营收 5.1 万元、毛利率超 80%，是一个「微型但完整」的商业闭环。自述的商业逻辑：设计师签下一单室内设计客单价通常 5-10 万元，而单次生成成本仅约 2 元——「用几块钱换一个可能落地十万级签单的机会」。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a></div></div>
+  <div class="quote">
+    <p>30 年前，AutoCAD 让每一位建筑设计师告别手绘。hupoCADNet 团队希望，今天由自己让每一位室内设计师告别手工制作基础用图——成为继 AutoCAD 之后，室内设计行业下一个绕不开的基础设计软件。</p>
+    <span class="src">—— hupoCADNet 团队，36氪自述稿（2026-08-12），转引自 <a class="cref partial" href="#ref-1">[1]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>内容</th><th>口径与说明</th></tr></thead>
+    <tbody>
+      <tr><td><b>产品功能</b></td><td>上传 A3 尺寸 CAD 平面布置图 + 选定风格参考图 → 约 <span class="hl">3 分钟</span>生成风格一致、可直接商用的彩色平面图</td><td>自述口径 <a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>技术路线</b></td><td>自研 DGC 确定性生成控制系统：「感知-校验-输出」三阶段闭环、多层级一致性校验与内部纠偏，实现「相同输入→相同输出」；自建 GPU 推理集群，最高 16 并发，日均生成量仅占总容量 0.4%</td><td>自述口径，无第三方评测 <a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>定价</b></td><td>次数卡按量（一次购买永久有效）：5 张 9.9 元 → 200 张 310 元；会员卡按期：月卡 18 / 36 元、永久卡 3,600 元；单次生成边际成本约 2 元</td><td>自述口径 <a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>面向客群</b></td><td>室内设计师 / 中小工作室 / 装饰公司的谈单场景；目标锁定 200 万室内设计师中 20-50 岁、月均可承担 20-100 元效率工具支出的核心付费群体，预估规模 8-15 万人（注：协会口径全国设计师为 300 万 <a class="cref cross" href="#ref-2">[2]</a>）</td><td>自述口径 + 行业协会口径对照 <a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>解决痛点</b></td><td>彩平图人工绘制 2-8 小时/张、外包 30-300 元/张，费时费钱；存量时代谈单从「黑白线稿够用」升级为「专业展示能力」，彩平图成为签单刚需</td><td>自述口径；存量趋势另见 <a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td><b>商业模式</b></td><td>100% 真实付费、零补贴，毛利率超 80%；获客依托小红书等内容渠道（自述「军备竞赛」传播战略），规划直播、地推、买手分销、机构合作返点</td><td>自述口径 <a class="cref partial" href="#ref-1">[1]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>累计付费设计师</td><td class="hl">1,740 位</td><td>2026-01-30 → 07-31（半年）</td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td>累计营收</td><td class="hl">51,170 元（约 5.1 万元）</td><td>同上</td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td>稳态月均收入</td><td>约 6,128 元</td><td>同上</td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td>单月峰值</td><td class="pos">2 万元以上（7 月）</td><td>2026-07</td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td>毛利率</td><td class="pos">超 80%</td><td>2026-01-30 → 07-31</td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td>商品评分</td><td>4.7 分，自述无一例幻觉相关差评</td><td>截至 2026-08</td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td>流量投放 / 用户补贴</td><td>0（无投放、无免费补贴、100% 真实付费）</td><td>上线起全程</td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    上述全部数据出自 36氪用户投稿——发布方账号「室内AI设计助理」即产品团队账号，36氪页面明示「该文观点仅代表作者本人，36氪平台仅提供信息存储空间服务」：属创始人自述口径，未经第三方审计，亦无支付渠道或平台方数据印证，正文均已逐条标注。需要指出的是，半年 5.1 万元营收在国内 OPC 案例中属早期小微量级——与媒体叙事中常见的「月入十万」故事相去甚远；数字足够小、且与 9.9 元低客单定价和 1740 人付费规模在算术上自洽（约合客单 29 元/人），反而符合一人小生意的真实基线，这也是自述数据可信度的侧面佐证。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将 hupoCADNet 放入案例墙「垂直工具型 OPC」谱系对标（对标数据均为案例墙既有核验值，本报告未重新核验原文，引用时已注明）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>定价</th><th>数据表现</th><th>行业纵深</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>hupoCADNet</b></td><td>何思康</td><td>AI 彩平图生成引擎（谈单工具）</td><td>9.9 元起按次 + 月卡 18/36 元</td><td>上线半年 1,740 位付费、营收 5.1 万元、毛利率 80%+</td><td>15 年室内设计 + 施工管理</td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td>供春AI</td><td>张雨航</td><td>国内首款陶瓷 AIGC 辅助设计软件：数十秒生成紫砂壶等工艺美术方案并对接 3D 打印</td><td>未检索到公开定价</td><td>用户 3 万+、走进近 30 所高校、落地全国首个 AI+手工艺 OPC 创业基地</td><td>陶瓷 / 工艺美术垂直</td><td><a class="cref partial" href="#ref-5">[5]</a></td></tr>
+      <tr><td>聪明钱监控</td><td>许洋（北京程序员）</td><td>开源智能体手搓的 AI 股市投研系统：资金流向 / 主力动向日报</td><td>200 元/年</td><td>上线半月 90 个付费用户、收入超 1 万元</td><td>编程能力 + 个人投资经验</td><td><a class="cref partial" href="#ref-6">[6]</a></td></tr>
+      <tr><td>声序智能（AI 曲谱智能体）</td><td>王钰博（前字节风控算法工程师）</td><td>五线谱↔简谱 1 分钟互转（OMR）订阅制</td><td>月卡 29.9 / 年卡 259.9 元</td><td>上线半年多用户超 6000（新华/新京报实探交叉），成立约 3 个月现金流回正进入盈利</td><td>算法工程 + 20 多年民乐演奏</td><td><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>四例同属案例墙「垂直工具型 OPC」谱系，共同结构是<b>「行业双背景 × 订阅/按次付费的窄工具」</b>：供春AI 与 hupoCADNet 同为传统设计行业的 AIGC 化（工艺美术 vs 室内设计），声序智能与 hupoCADNet 同为「专业工具订阅制」。差异在量级与成熟度：hupoCADNet 单体营收最小（5.1 万元/半年），但 100% 真实付费 + 80% 毛利率的单位经济模型最清晰；声序智能已跑出 6000+ 用户并实现现金流回正，供春AI 用户规模最大。四例共同指向 OPC 在垂直工具赛道的生存公式——<b>不与大平台竞争通用能力，用行业纵深换定价权与复购</b>；而 hupoCADNet 的 15 年设计经验（本案）与王钰博的「风控算法 + 民乐」双背景<sup class="cite cross">[7]</sup>提示：垂直工具型 OPC 的创始人几乎都是「行业老兵 + 工具能力」的复合体。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:15%">维度</th><th>分析要点</th><th style="width:12%">信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>输入 CAD 平面图 + 风格参考图，3 分钟输出可商用彩平图。「产品即工序」——不做效果图、不做 3D，只切谈单环节最高频的一张图；路线图规划从彩平图向轴测图、爆炸图、SU 基础建模延伸，由单一工具升级为设计师日常工作台。</td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>2. 面向客群</b></td><td>直接客群为室内设计师与中小工作室/装饰公司（签单前的方案沟通场景）；目标市场为 200 万设计师中愿为效率工具月付 20-100 元的 8-15 万人。未披露真实用户画像、复购率与地区分布数据。</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>3. 解决痛点</b></td><td>供给端：彩平图人工 2-8 小时、外包 30-300 元一张，中小设计师负担不起；需求端：存量房时代谈单从「黑白线稿够用」升级为「专业展示能力」——行业年会口径「增量退潮、存量接棒」与之互证，痛点有独立信源支撑。</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td><b>4. 预估年化营收（推算，置信度 C）</b></td><td>零增长外推：稳态月均 6,128 元 × 12 ≈ <span class="hl">7.3 万元/年</span>；乐观外推：按 7 月峰值 2 万元+ × 12 ≈ 24 万元+/年。自述融资叙事目标为 Y1 5,000 付费、Y2 2 万、Y3 8 万付费用户、年营收 2,880 万元——对照当前半年 1,740 付费，Y1 目标需在下半年再增约 1.9 倍，Y3 目标与现状相差约 39 倍，达成高度不确定，应按融资叙事口径理解而非预测。</td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>5. 融资进展</b></td><td>自述「寻求种子轮融资」，资金用途为招募前后端工程师、增长负责人、直播/客服团队，多渠道触达投入与产品线延展。未检索到融资交割、估值或工商注册公开信息。</td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>6. 市场评价</b></td><td>独立第三方媒体报道未检索到——唯一定深度信源即 36氪自述稿；店铺商品评分 4.7 分、无幻觉相关差评为自述口径。「该细分赛道唯一规模化玩家」为自述，且与可查证据存在张力：工具导航站已收录云图AI（扮家家系）的彩平图批量生成功能<sup class="cite cross">[9]</sup>，建E网等设计垂直社区的通用模型彩平图教程已成系列化内容<sup class="cite cross">[8]</sup>——差异化应理解为「确定性生成」技术路线之争，而非「市场空白」。</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-8">[8]</a><a class="cref cross" href="#ref-9">[9]</a></td></tr>
+      <tr><td><b>7. 投入成本与合规风险</b></td><td>GPU 推理集群成本金额未披露（仅披露单次生成边际成本约 2 元、日均生成量占总容量 0.4%，暗示固定算力投入有限但未量化）。合规面：未检索到针对本产品的纠纷或诉讼——行业共性风险包括 AI 生成图纸「可商用」承诺与著作权归属认定的争议、客户户型图上传的授权与隐私边界，均为同类工具共性问题，未见本案涉诉公开记录。</td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 五处留白与一处口径张力（截至 2026-11-12 检索）</div>
+    ① 全部经营数据（1,740 付费 / 5.1 万营收 / 80% 毛利率 / 4.7 评分）均为 36氪自述投稿口径，36氪页面明示「观点仅代表作者本人」，未经第三方审计；② 产品官网与可公开访问的在线服务页未检索到（hupocad.net / hupocad.com 抓取为空），产品可访问性无法独立验证；③ 团队规模「1 人独立运营」与工商注册信息均未检索到佐证；④ 融资仅有「寻求种子轮」自述，无交割信息；⑤ 独立媒体跟进报道为零，案例全部公开面依赖一篇自述稿。口径张力：自述称「细分赛道唯一的规模化玩家」，但工具导航与设计社区证据显示通用模型彩平图教程化流行、云图AI 等竞品已提供同类功能<sup class="cite cross">[8]</sup><sup class="cite cross">[9]</sup>——宜作差异化叙事理解，不宜按字面采信。
+  </div>
+  <div class="box note">
+    <div class="bt">📌 口径细节存档</div>
+    上线日期：36氪原文写「2026 年 1 月 30 日正式上线」，案例墙锚点标注 2026-01-31 ✓，差异 1 天，两口径并存呈现；设计师总量：自述稿「200 万室内设计师」vs 中国室内装饰协会 2024 年口径「设计师 300 万」<sup class="cite cross">[2]</sup>，本报告以协会口径为行业规模基线、自述口径为目标市场筛选前提。
+  </div>
+  <div class="card green">
+    <div class="ct">本案的样本价值：「行业老兵 + 垂直工具」的教科书切片</div>
+    <div class="cb">hupoCADNet 展示了 OPC 的另一种真实活法——不追爆款叙事、不烧流量补贴，用 9.9 元的低门槛把「确定性」卖成一门小而纯的生意：100% 付费率、80%+ 毛利率、半年 1,740 个真实客户。它的营收规模（5.1 万元/半年）恰是本案最诚实的数据——它提醒读者：国内多数「一人公司」不是媒体叙事里的暴富神话，而是行业老兵用 15 年积累换来的月均六千余元的稳定现金流。这也是它区别于作品型 OPC（《归墟》式内容创作）与平台型案例的核心：工具型 OPC 的护城河不在流量，而在「行业 know-how × 确定性交付」的时间复利——自述稿「每一张用户生成的图纸都成为 DGC 模型的迭代养料」，说的正是这种越用越深的垂直数据壁垒。</div>
+    <div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-4">[4]</a></div>
+  </div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 9 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx partial">[1]</span><span class="rt">B</span><span class="st">主流财经（用户投稿 · 自述）</span></div><div class="ti">AI解决工程生图一致性痛点，室内AI设计助理寻求种子轮融资</div><div class="mt"><b>来源：</b>36氪（发布方：用户「室内AI设计助理」，即 hupoCADNet 团队账号）　<b>发布日期：</b>2026-08-12<br><a href="https://m.36kr.com/p/3933122513337733" target="_blank" rel="noopener">https://m.36kr.com/p/3933122513337733</a></div><div class="note">事实核查：全文逐句回溯完成。产品定义（A3 CAD 图 + 风格参考图 → 3 分钟可商用彩平图）、DGC 技术路线、定价体系、1740 位付费/51170 元营收/月均 6128 元/7 月峰值 2 万+/毛利率 80%+/4.7 评分、15 年经验背景、三阶段规划、Y1-Y3 目标与种子轮意向均出自此稿。页面明示「本文来自36氪用户室内AI设计助理，该文观点仅代表作者本人，36氪平台仅提供信息存储空间服务」——自述口径按 partial 收录，为本案唯一深度信源。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx cross">[2]</span><span class="rt">A</span><span class="st">行业协会官网</span></div><div class="ti">中国室内装饰协会换届会议在长沙举行（张崇和讲话披露行业规模数据）</div><div class="mt"><b>来源：</b>中国室内装饰协会官网　<b>发布日期：</b>2024-06-21<br><a href="http://www.cida.org.cn/a/6678c70f151bac65dd63da60" target="_blank" rel="noopener">http://www.cida.org.cn/a/6678c70f151bac65dd63da60</a></div><div class="note">事实核查：原文回溯完成——「室内装饰行业年装饰工程量达 5.8 万亿元，从业人员 1300 万，设计师 300 万」出自中国轻工业联合会会长张崇和讲话；用于行业规模基线，与自述稿「200 万室内设计师」口径对照。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx cross">[3]</span><span class="rt">A</span><span class="st">国家经济门户</span></div><div class="ti">住宅产业年会及T20大会在成都召开</div><div class="mt"><b>来源：</b>中国经济网·经济参考网　<b>发布日期：</b>2025-09-22<br><a href="http://bgimg.ce.cn/cysc/fdc/fc/202509/t20250922_2484162.shtml" target="_blank" rel="noopener">http://bgimg.ce.cn/cysc/fdc/fc/202509/t20250922_2484162.shtml</a></div><div class="note">事实核查：原文回溯完成——「市场从『增量抢滩』转向『存量深耕』」三重关键转变、中国建筑装饰协会会长王中奇「增量退潮、存量接棒」出自此稿；与自述稿的存量时代论述互证，为行业趋势独立信源。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx verified">[4]</span><span class="rt">B+</span><span class="st">主流财经（趋势背景）</span></div><div class="ti">「一人公司」火了，谁靠AI员工挣到第一桶金？</div><div class="mt"><b>来源：</b>36氪（锌刻度）　<b>发布日期：</b>2026-05-21<br><a href="https://m.36kr.com/p/3818829160170633" target="_blank" rel="noopener">https://m.36kr.com/p/3818829160170633</a></div><div class="note">事实核查：原文回溯完成——全国超 700 个 OPC 社区、WeOPC 平台聚集超 45 万 OPC 创业者与 AI 开发者、2026 年 3 月首届 OPC 创造者大会近千名创业者出自此稿；OPC 扩散趋势与案例墙声序智能信源（新华每日电讯「一人公司」潮起，2026-11-09）交叉印证，标 verified。该稿同时提示「第一批 OPC 创业者的悄然退场」争议面。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx partial">[5]</span><span class="rt">A+</span><span class="st">央媒杂志（案例墙转引）</span></div><div class="ti">供春AI：陶瓷 AIGC 辅助设计软件（对标数据）</div><div class="mt"><b>来源：</b>新华网《环球》杂志（案例墙另含宜兴市政府网信源）　<b>发布日期：</b>约 2026-08-31（案例墙既有核验值）<br><a href="https://www.xinhuanet.com/globe/20260831/89d03f0573a148f79943fc444cdaad2f/c.html" target="_blank" rel="noopener">https://www.xinhuanet.com/globe/20260831/89d03f0573a148f79943fc444cdaad2f/c.html</a></div><div class="note">事实核查：对标表《供春AI》行数据（用户 3 万+、走进近 30 所高校、全国首个 AI+手工艺 OPC 创业基地）转引自案例墙增补批次第 7 条（信源含新华网 + 宜兴市政府网双源、置信度高），本报告未重新核验原文。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx partial">[6]</span><span class="rt">B+</span><span class="st">财经媒体（案例墙转引）</span></div><div class="ti">聪明钱监控：AI 股市投研日报订阅（对标数据）</div><div class="mt"><b>来源：</b>经济观察报　<b>发布日期：</b>2026-03-16（案例墙既有核验值）<br><a href="https://eeo.com.cn/2026/0316/811691.shtml" target="_blank" rel="noopener">https://eeo.com.cn/2026/0316/811691.shtml</a></div><div class="note">事实核查：对标表中《聪明钱监控》行数据（上线半月 90 个付费用户、收入超 1 万元、200 元/年）转引自案例墙 domestic-pool.md 第 35 条及深度报告 report/smart-money/（该报告已完成经观原文多版本交叉核验），本报告未重新核验原站。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">A+</span><span class="st">央媒报道（案例墙转引）</span></div><div class="ti">声序智能：五线谱↔简谱 OMR 订阅制（对标数据）</div><div class="mt"><b>来源：</b>新华每日电讯（新华网浙江频道刊发）　<b>发布日期：</b>2026-11-09<br><a href="http://www.zj.xinhuanet.com/20261109/9fc152953b6c404aa1e43818f0b8c298/c.html" target="_blank" rel="noopener">http://www.zj.xinhuanet.com/20261109/9fc152953b6c404aa1e43818f0b8c298/c.html</a></div><div class="note">事实核查：对标表《声序智能》行数据（上线半年多用户超 6000、成立约 3 个月现金流回正）出自案例墙深度报告 report/shengxu-ai/ 已核验信源（该报告内新华每日电讯 + 新京报贝壳财经 + 北京市科委官网多源交叉），本文转引其结论。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx cross">[8]</span><span class="rt">B</span><span class="st">设计行业垂直媒体</span></div><div class="ti">Nano Banana一键搞定室内、建筑、景观各类分析图，提示词直接抄！</div><div class="mt"><b>来源：</b>建E网（justeasy.cn · 设计资讯/AI绘图频道）　<b>发布日期：</b>2026-04-28<br><a href="https://news.justeasy.cn/news/38552.html" target="_blank" rel="noopener">https://news.justeasy.cn/news/38552.html</a></div><div class="note">事实核查：原文回溯完成——通用大模型（Nano Banana）制作彩平图与分析图的系列化教程，及前篇《用Nano Banana做彩平图有多简单？》出自此稿；佐证「通用 AIGC 正被设计师实际用于彩平图工序」的行业现状，与自述稿「通用模型攻不下彩平图」论断构成张力，用于柒-6 与捌的从严交叉。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx cross">[9]</span><span class="rt">C+</span><span class="st">工具导航站</span></div><div class="ti">云图AI-室内外建筑设计师的AI智能绘图工具（AIHub 收录页）</div><div class="mt"><b>来源：</b>AIHub（收录页；云图AI 为扮家家 &amp; 纯粹设计 &amp; 广州设计师周联合打造，官网 ytaiccg.com）　<b>发布日期：</b>2024-05-11 收录<br><a href="https://www.aihub.cn/tools/image/yuntu-ai/" target="_blank" rel="noopener">https://www.aihub.cn/tools/image/yuntu-ai/</a></div><div class="note">事实核查：原文回溯完成——云图AI 明确提供「彩平图：通过添加平面布局图及描述词快速批量生成多种彩色平面布局图」功能；证明彩平图 AI 生成赛道在 hupoCADNet 上线前已有玩家，「唯一规模化玩家」仅能按自述口径理解（规模化程度无公开可比数据）。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 9 条。核验标签分布：🟢 已核验（verified）1 条、🔵 多源印证（cross）5 条、🟡 部分映证（partial）3 条。信源评级分布：A+/A 级 4 条（行业协会官网、国家经济门户、央媒——其中 3 条原文回溯完成）、B+/B 级 4 条、C+ 级 1 条（工具导航站）。核心事实约束：本案全部经营数据出自唯一深度信源（36氪用户自述投稿 [1]，原文回溯完成），无第三方审计与独立媒体交叉，正文已逐句标注自述属性；行业背景（存量时代、设计师规模）与赛道竞品证据由独立信源 [2][3][8][9] 补足。两处口径细节（上线日期 1 天差、设计师总量 200 万 vs 300 万）与五处留白（产品官网、工商注册、融资交割、团队佐证、独立报道）已在正文显式标注。未发现伪造链接；全部外部 URL 为检索过程实际命中页面，其中 6 条（[1][2][3][4][8][9]）经本报告逐条回溯原文，3 条（[5][6][7]）为案例墙既有核验值转引并已注明。产品官网检索失败处理：hupocad.net / hupocad.com / www.hupocad.net 抓取均为空，按「不可达项注明」原则在壹-渠道卡片与捌风险框中如实记录。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-12 · 营收推算值均标注置信口径，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

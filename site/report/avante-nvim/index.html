@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · openai-translator + avante.nvim——yetone 的双爆品开源路 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · openai-translator + avante.nvim">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="开源开发者 yetone 深度案例报告：openai-translator（现 NextAI Translator，25,046★）与 avante.nvim（18,191★）跨两个 AI 周期的双爆品开源路，Cursor 热潮下的 Neovim 生态回应。15 条信源逐条核验，双仓库星标 2026-11-13 API 实测。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>openai-translator + avante.nvim 深度案例报告</h1>
+    <h2>开源开发者 yetone：2023 年用 ChatGPT API 重做划词翻译（25.0k★），2024 年再把 Cursor 搬进 Neovim（18.2k★）<br>——跨两个 AI 周期的双爆品开源路 · 15 条信源逐条核验 · 星标 API 实测</h2>
+    <div class="tags">
+      <span class="tag">工具型 OPC</span>
+      <span class="tag">开源双爆品</span>
+      <span class="tag">编辑器生态细分</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">25,046★</div><div class="k">openai-translator（2026-11-13 API 实测）</div></div>
+  <div class="stat"><div class="v up">18,191★</div><div class="k">avante.nvim（2026-11-13 API 实测）</div></div>
+  <div class="stat"><div class="v neutral">300 pts</div><div class="k">Hacker News 首页讨论热值（2024-08-26）</div></div>
+  <div class="stat"><div class="v neutral">2 个</div><div class="k">连续爆品 · 跨 2023/2024 两个 AI 周期</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">这是国内 AI 一人公司案例墙中少见的「双产品连续输出」样本：同一个开发者，在 2023 年 ChatGPT API 周期用一款划词翻译插件收获数万星标，又在 2024 年 Cursor/Agentic 周期把 Cursor 的 AI 编程体验完整搬进 Neovim，再度成为编辑器生态的标杆开源项目。两份仓库至今保持活跃维护。</p>
+  <div class="two">
+    <div class="card"><div class="ct">创业者</div><div class="cb">yetone，GitHub 显示名与常用名均为 yetone，<b>真名未公开</b>，公开资料中仅以「知名开源开发者」指称；账号定位中国（China），2011-11-19 注册（14 年以上老账号），现有 641 个公开仓库、10,831 名关注者，X（Twitter）账号同名 yetone。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="card"><div class="ct">双产品</div><div class="cb">① <b>openai-translator</b>：基于 ChatGPT API 的划词翻译浏览器插件 + 跨平台桌面应用（Tauri），2023-03-04 仓库创建，现星标 25,046★，AGPL-3.0，已转移至 nextai-translator 组织并更名 NextAI Translator。② <b>avante.nvim</b>：把 Cursor AI IDE 的编程体验搬进 Neovim 的 Lua 插件，2024-08-14 仓库创建，现星标 18,191★，Apache-2.0，现属 avante-corp 组织。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="card blue"><div class="ct">产品定位</div><div class="cb">avante.nvim 自述「designed to emulate the behaviour of the Cursor AI IDE」——提供 AI 代码问答、建议一键应用、avante.md 项目级指令、ACP Agent 协议（codex/gemini 等）、多 provider 接入（OpenAI/Anthropic/Mistral/DeepSeek/Ollama/llama-cpp）、可选本地 RAG 与 Zen Mode（命令行敲 avante 即可像 Claude Code 一样使用）。</div><div class="cm">信源：<a class="cref cross" href="#ref-4">[4]</a></div></div>
+    <div class="card blue"><div class="ct">商业与状态</div><div class="cb">两产品均<b>开源免费、BYOK（用户自带 API Key）</b>，avante.nvim 仅通过 Patreon 接受赞助以支撑维护；openai-translator 曾被 36氪列入「普通人用得上的 GPT 免费工具」推荐清单。是否注册公司、团队规模、融资与营收情况均<b>未检索到公开信息</b>；可观察到的组织化迹象是两仓库分别移入 avante-corp 与 nextai-translator 组织。</div><div class="cm">信源：<a class="cref cross" href="#ref-4">[4]</a> <a class="cref cross" href="#ref-5">[5]</a> <a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-3">[3]</a></div></div>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 时点值说明</div>
+    本案双仓库星标为 <b>2026-11-13 GitHub API 实测值</b>：avante.nvim 18,191★（案例墙底稿时点约 17.8k★）、openai-translator 25,046★（底稿口径「数万 stars」）。星标数随时间持续变动，引用请注明时点。仓库转移组织与更名事实目前仅能以 GitHub API 元数据单源佐证（详见捌·附）。
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2011-11-19</div><div class="tx">yetone 注册 GitHub</div><div class="td">此后十余年持续开源产出，累计 641 个公开仓库。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2023-03 上旬</div><div class="tx">先有 Bob 插件，再有跨平台版：openai-translator 仓库创建</div><div class="td">3-04 仓库创建。起因：yetone 此前为 macOS 翻译软件 Bob 写过一款调用 ChatGPT API 的划词翻译插件，因 Windows/Linux 用户无法使用，遂开发独立跨平台版——从 Chrome 扩展起步，逐步演化为多平台桌面应用。<a class="cref verified" href="#ref-3">[3]</a><a class="cref cross" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2023-03-15（案例墙锚点）</div><div class="tx">发布爆火周</div><div class="td">仓库创建（3-04）后约十天内完成首版 Chrome 插件发布并快速冲榜；3-20 日本苹果资讯网即发布产品报道，3-28 中文开发者社区记录其「短时间内 star 冲到 9.7k」。锚点取发布爆火周中点，为案例墙收录口径。<a class="cref cross" href="#ref-7">[7]</a><a class="cref partial" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2023-03-28</div><div class="tx">中文开发者社区证实现象级起量</div><div class="td">掘金作者「狂奔滴小马」撰文：openai-translator 短时间内 star 冲到 9.7k，除翻译外支持润色与总结，并已用 Tauri 打包桌面端。<a class="cref partial" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2024-08-14 → 08-15</div><div class="tx">第二个周期：avante.nvim 创建并发布</div><div class="td">Cursor AI IDE 爆红后，Neovim 社区出现「编辑器自由 vs AI 体验」的撕裂。yetone 用 Lua 实现 Cursor 式工作流，仓库创建次日（08-15）即登陆 Product Hunt，俄语技术媒体 Habr 亦发布介绍。<a class="cref verified" href="#ref-2">[2]</a><a class="cref partial" href="#ref-9">[9]</a><a class="cref cross" href="#ref-10">[10]</a></div></div>
+    <div class="node"><div class="dt">2024-08-26</div><div class="tx">Hacker News 首页大讨论</div><div class="td">「Avante.nvim: Use Your Neovim Like Using Cursor AI IDE」冲上 HN 前台，斩获 300 points、87 条评论——这是「Cursor 式体验搬进 Neovim」路线获得国际开发者社区背书的标志性节点。<a class="cref cross" href="#ref-11">[11]</a></div></div>
+    <div class="node"><div class="dt">2025–2026</div><div class="tx">项目组织化：双仓库先后移入组织</div><div class="td">avante.nvim 现属 avante-corp 组织；openai-translator 移入 nextai-translator 组织并更名 NextAI Translator（Chrome/Firefox 插件随同更名）。转移与更名的官方说明未检索到公开信息，目前仅能以 GitHub API 元数据佐证。<a class="cref verified" href="#ref-2">[2]</a><a class="cref verified" href="#ref-3">[3]</a><a class="cref cross" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2026-11-12 → 11-13</div><div class="tx">双仓库保持活跃，个人仍在高频输出</div><div class="td">双仓库最近一次推送均在 2026-11-12，项目仍处活跃维护状态；11-13 实测星标 18,191★ / 25,046★。同一时期，yetone 个人账号名下的新项目 magpie（Agent 模型聚合）已积累 35,642★，显示其仍保持高频爆款输出节奏。<a class="cref verified" href="#ref-2">[2]</a><a class="cref verified" href="#ref-3">[3]</a><a class="cref cross" href="#ref-1">[1]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：「平台围墙」倒逼跨平台化——Bob 插件成为第一个 MVP</div><div class="cb">openai-translator 的起点不是野心，而是一堵墙：yetone 先为 macOS 专属的 Bob 写了 ChatGPT API 划词翻译插件，功能验证成功后却发现 Windows/Linux 用户被挡在门外。于是他直接把验证过的产品思路重写为浏览器扩展 + Tauri 桌面端——「先在受限平台上验证需求，再跨平台放大」成为第一款爆品的路径。这与案例墙中 Bob（ripperhe，9.7k★）形成有趣的接力：Bob 是这款产品的前置参照系。</div><div class="cm">信源：<a class="cref cross" href="#ref-6">[6]</a> <a class="cref partial" href="#ref-8">[8]</a></div></div>
+  <div class="card"><div class="ct">转折二：从「翻译工具」切到「编辑器生态」——Cursor 热潮下的 Neovim 生态回应</div><div class="cb">2024 年 Cursor 以「AI 原生 IDE」吞噬开发工具话语权，大量 Vim/Neovim 老用户面临「要 AI 体验还是要编辑器自由」的两难。yetone 没有去做又一个 VS Code 分叉，而是选择最深的护城河——把 Cursor 的 Composer + Inline Edit + Diff Apply 工作流用 Lua 搬进 Neovim。这个切口足够细分，但用户黏性与身份认同极强：HN 前台 300 points 的讨论热度证明该需求真实存在，也证明「不换编辑器」是一部分开发者不可让渡的底线。</div><div class="cm">信源：<a class="cref cross" href="#ref-11">[11]</a> <a class="cref cross" href="#ref-4">[4]</a></div></div>
+  <div class="card red"><div class="ct">转折三：个人爆品走向组织化，但变现几乎停留在「赞助」</div><div class="cb">两仓库先后移入 avante-corp 与 nextai-translator 组织（转移动因未检索到官方说明），avante.nvim 的 README 以「帮助我继续维护和改进它」为词引导 Patreon 赞助——这是一个十万级星标项目与「个人赞助制」商业模式之间的落差：产品影响力跨越两个 AI 周期，公开可查的收入机制却仅限捐赠与赞助，未检索到付费墙、托管服务或商业化产品。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-4">[4]</a></div></div>
+  <div class="quote">
+    <p>I have developed a Bob plugin that utilizes ChatGPT API to provide global word translation on macOS. However, since not all users have access to macOS to benefit from the plugin, I have created this project!（我先为 macOS 的 Bob 写了一个用 ChatGPT API 做全局划词翻译的插件；但并非所有用户都能用上 macOS，所以我创建了这个项目。）</p>
+    <span class="src">—— yetone，openai-translator README 起因段（现仓库已更名 NextAI Translator），转引自 <a class="cref cross" href="#ref-6">[6]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>openai-translator（现 NextAI Translator）</th><th>avante.nvim</th></tr></thead>
+    <tbody>
+      <tr><td>产品定位</td><td>基于 ChatGPT API 的<b>划词翻译</b>浏览器插件 + 跨平台桌面应用</td><td>把 <b>Cursor 式 AI 编程体验</b>完整搬进 Neovim 的 Lua 插件</td></tr>
+      <tr><td>核心功能</td><td>翻译/润色/总结三模式，55 种语言互译，流式响应，截图翻译，TTS 朗读，生词本与助记生成</td><td>Ask 代码问答、建议一键应用、avante.md 项目指令、Zen Mode（类 Claude Code CLI）、agentic/legacy 双模式</td></tr>
+      <tr><td>技术形态</td><td>Chrome/Firefox/Edge 扩展 + Tauri 桌面端（macOS/Windows/Linux）</td><td>Neovim 插件（要求 v0.12+），支持 ACP Agent 协议（codex/gemini 等）</td></tr>
+      <tr><td>模型接入</td><td>OpenAI、Azure OpenAI、MiniMax 等多 provider</td><td>OpenAI、Anthropic、Mistral、DeepSeek、Ollama、llama-cpp 等，可选本地 RAG</td></tr>
+      <tr><td>面向客群</td><td>大众用户与外语阅读场景（后被开发者社区用作日常工具）</td><td class="hl">Neovim 重度用户 / 不肯迁移 IDE 的开发者</td></tr>
+      <tr><td>解决痛点</td><td>Bob 等优秀划词工具被 macOS 锁定，跨平台用户无同等体验；机器翻译质量不满足专业场景</td><td>Cursor AI 体验强但绑定专有 IDE；Vim/Neovim 用户不愿放弃键盘工作流；BYOK 让模型成本与数据流向可控</td></tr>
+      <tr><td>开源许可</td><td>AGPL-3.0（强 copyleft，抑制闭源商用套壳）</td><td>Apache-2.0（宽松，利于生态集成）</td></tr>
+      <tr><td>商业模式</td><td>完全免费，未检索到公开收费机制</td><td>开源免费 + BYOK，Patreon 赞助支撑维护</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p style="font-size:12.5px;color:#8b97a6">表内双产品功能与形态信息来源：<a class="cref cross" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-4">[4]</a>（均为项目 README 一手文档）。</p>
+  <h4>为什么 avante.nvim 能成为「编辑器生态细分」的标杆</h4>
+  <p>与通用 AI 编程工具不同，avante.nvim 赌的是编辑器的「身份认同经济」：Cursor 需要开发者迁移到其专有 IDE，而 avante.nvim 借用用户<b>已有的编辑器和已有的模型 Key</b>——第三方评测将其概括为「完全开源、无状态：API 调用从本地直连你选定的 provider（Anthropic/OpenAI/Bedrock/Ollama），按 token 精确付费」<a class="cref partial" href="#ref-12">[12]</a>。一个耐人寻味的佐证是：Cursor 官方文档在 ACP（Agent Client Protocol）页面把 avante.nvim 列为接入 Cursor Agent 的支持客户端之一——竞品的官方文档为它背书，这是编辑器生态位价值的直接证明<a class="cref cross" href="#ref-13">[13]</a>。</p>
+  <h4>商业模式的「轻」与「重」</h4>
+  <p>两款产品都是典型的「影响力资产」而非「现金流资产」：不收订阅、不设付费墙、不代管 API。受益结构是间接的——BYOK 模式把模型成本完全转嫁给用户，项目维护成本靠 Patreon 赞助覆盖<a class="cref cross" href="#ref-4">[4]</a>；对开发者本人而言，真正的回报形态是技术声誉、社区影响力与职业机会（这类收益不可货币化核验）。对比案例墙中以买断制收费的 Bob Pro（案例墙既有核验值：¥58 买断持续销售）或订阅制的沉浸式翻译，本案是「工具型 OPC」中商业化最克制的一支。</p>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <p class="lead">双仓库关键数据均为 2026-11-13 通过 GitHub API 实测的一手时点值：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>openai-translator（NextAI Translator）</th><th>avante.nvim</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>GitHub 星标</td><td class="hl">25,046★（2026-11-13 实测）</td><td class="hl">18,191★（2026-11-13 实测；案例墙底稿时点约 17.8k★）</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td>Fork 数</td><td>1,853</td><td>856</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td>仓库创建时间</td><td>2023-03-04</td><td>2024-08-14</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td>最近推送</td><td>2026-11-12（活跃）</td><td>2026-11-12（活跃）</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td>开源许可</td><td>AGPL-3.0</td><td>Apache-2.0</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td>爆火速度</td><td>发布约 3 周内 9.7k★（2023-03-28 记录）</td><td>发布约 12 天后登 HN 前台</td><td><a class="cref partial" href="#ref-8">[8]</a><a class="cref cross" href="#ref-11">[11]</a></td></tr>
+      <tr><td>社区热度峰值</td><td>开发者社区多篇推荐文（掘金/36氪/日媒）</td><td class="pos">HN 前台 300 points / 87 comments（2024-08-26）</td><td><a class="cref cross" href="#ref-11">[11]</a><a class="cref cross" href="#ref-5">[5]</a></td></tr>
+      <tr><td>双仓库星标合计</td><td class="hl" colspan="2">43,237★（同一开发者名下两个过万星项目，2026-11-13 时点）</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    GitHub 星标为 API 单源时点值，会随时间变动；「爆火速度」依据第三方报道的转述时点推算，非逐日追踪曲线。Product Hunt 显示 avante.nvim 上线当期仅获 2 个赞、日榜第 150 位——与 HN 300 points 形成鲜明反差，说明其爆发场域是黑客社区而非大众发布平台（PH 页面有反爬限制，数据经搜索快照与聚合站确认，按部分映证处理）<a class="cref partial" href="#ref-9">[9]</a>。Chrome Web Store 用户数未实测，不列入。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将本案放入案例墙「开发者工具开源项目」坐标系。对标星标为 2026-11-13 GitHub API 本轮复测值（案例墙底稿核验值为 2026-10/11 时点，两者基本吻合）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>星标（2026-11-13 复测）</th><th>案例墙底稿时点</th><th>首仓创建</th></tr></thead>
+    <tbody>
+      <tr><td><b>openai-translator</b>（本案）</td><td>yetone</td><td>划词翻译插件 + 跨端桌面应用</td><td class="hl">25,046★</td><td>数万 stars</td><td>2023-03</td></tr>
+      <tr><td><b>avante.nvim</b>（本案）</td><td>yetone</td><td>Neovim 的 Cursor 式 AI 编程插件</td><td class="hl">18,191★</td><td>约 17.8k★</td><td>2024-08</td></tr>
+      <tr><td>Umi-OCR</td><td>hiroi-sora</td><td>开源离线 OCR 软件</td><td>48,625★</td><td>48.4k★</td><td>2022-03</td></tr>
+      <tr><td>pdf2zh（PDFMathTranslate）</td><td>Byaidu</td><td>保留排版的 PDF 学术文档 AI 双语翻译，EMNLP 2025 Demo</td><td>38,399★</td><td>38.3k★</td><td>2024-09</td></tr>
+      <tr><td>claude-code-router</td><td>musistudio</td><td>Claude Code 多模型路由网关</td><td>38,131★</td><td>38k★</td><td>2025-02</td></tr>
+      <tr><td>Easydict</td><td>tisfeng</td><td>macOS 词典翻译应用</td><td>15,296★</td><td>15.2k★</td><td>2022-11</td></tr>
+      <tr><td>Bob</td><td>ripperhe</td><td>macOS 划词翻译/OCR（Pro 买断制）</td><td>9,759★</td><td>9.7k★</td><td>2019-10</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>对标星标均为本轮 API 实测（<a class="cref cross" href="#ref-14">[14]</a>）。两个结构性观察：<b>其一，编辑器生态细分的价值</b>——avante.nvim 单体星标在对照池中仅居中游，低于 pdf2zh 与 claude-code-router，但它占据的是「Neovim × Cursor 式编程」这个几乎无人竞争的生态位，且获得 Cursor 官方文档的 ACP 接入引用<a class="cref cross" href="#ref-13">[13]</a>，细分赛道头部地位稳固；<b>其二，双产品连续输出的稀缺性</b>——对照池中多数开发者是一条产品线走深（Umi-OCR、pdf2zh、Easydict 均为单一主线），而 yetone 在两个相隔 17 个月的 AI 周期里各打中一个万星级需求：2023 年押中「ChatGPT API 平民化翻译」，2024 年押中「Agentic 编程 × 终端编辑器」。名下新项目 magpie 35,642★（2026-11-13 实测）说明该节奏仍在延续<a class="cref cross" href="#ref-1">[1]</a>。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>分析结论</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>双产品构成「广撒网 + 深扎根」组合：翻译插件面向大众高频场景做流量与口碑入口；avante.nvim 则在开发者深水区做高黏性工具（问答、一键应用、项目指令、ACP 协议、多 provider、RAG、Zen Mode 七大能力齐备）。两者共用同一能力底座——对 LLM API 的工程化封装与交互打磨。</td><td><a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td><b>2. 面向客群</b></td><td>openai-translator 客群为普通用户与知识工作者（55 语言、截图翻译、生词本均为大众功能）；avante.nvim 客群精准锁定 Neovim 重度用户——一个规模不大但忠诚度与传播力极强的圈层。HN 300 points 的讨论几乎全部来自这一人群，自传播由身份认同驱动（「不换编辑器」宣言式转发）。</td><td><a class="cref cross" href="#ref-11">[11]</a><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td><b>3. 解决痛点</b></td><td>两层痛点：其一，优秀工具的平台垄断（Bob 只在 macOS）与 AI 编程体验的 IDE 绑定（Cursor 专有化）；其二，开发者对数据流向与成本的掌控欲——BYOK 让用户用自有 Key 直连 provider，模型开销透明可控。avante.nvim 的存在证明：迁移 IDE 的摩擦成本，高于用户为 AI 功能付费换平台的意愿。</td><td><a class="cref cross" href="#ref-6">[6]</a><a class="cref partial" href="#ref-12">[12]</a></td></tr>
+      <tr><td><b>4. 预估年化营收（推算，置信度 C）</b></td><td class="hl">零披露，未检索到任何公开营收数据。可核验的收入机制仅有 avante.nvim README 的 Patreon 赞助引导。参照开源工具类项目普遍的赞助规模（远低于同等星标的商业产品），且 avante.nvim 用户默认自带 Key、项目无抽成环节，估算其直接年收入大概率在万元美元级或以下——<b>本案是案例墙中「影响力与变现反差最大」的样本之一</b>；间接收益（声誉、机会、议价能力）不可货币化核验。</td><td><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>5. 融资进展</b></td><td>未检索到融资或公司主体公开信息。非货币资源：GitHub 生态位（10,831 关注者、641 仓库的持续性背书）、Discord 社区、Cursor 官方 ACP 文档引用、组织化基础设施（avante-corp / nextai-translator）。无 VC 化迹象，与案例墙中公司化案例路线截然不同。</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-13">[13]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>6. 市场评价</b></td><td>正面：HN 前台 300 points/87 comments；36氪将其列为「普通人跑进 AI 时代」的推荐工具；日本苹果资讯即时报道；俄语技术媒体 Habr 专文介绍；Cursor 官方文档收录为 ACP 客户端。审慎面：Emacs China 社区认为 avante「整体是照着 Cursor 照猫画虎」，并对其 tab completion 的实现（整文件带行号投入模型、要求返回 JSON 行号再解析 diff）提出工程质疑。总体口碑为「国际开发者社区高度认可 + 部分极客圈层保留意见」。</td><td><a class="cref cross" href="#ref-11">[11]</a><a class="cref cross" href="#ref-5">[5]</a><a class="cref cross" href="#ref-7">[7]</a><a class="cref cross" href="#ref-10">[10]</a><a class="cref cross" href="#ref-13">[13]</a><a class="cref partial" href="#ref-15">[15]</a></td></tr>
+      <tr><td><b>7. 投入成本与合规风险</b></td><td>成本侧：BYOK 模式下运行成本近乎为零（服务器无状态），主要成本是个人维护时间——但双仓库转移组织暗示单人维护压力已接近上限。风险侧：① <b>开源维护可持续性</b>是本案核心风险，AI 编程工具迭代极快，Cursor 原生能力与 Neovim 生态竞品持续挤压；② 许可差异埋下路径分叉——AGPL-3.0（翻译插件）防闭源套壳但抑制商用合作，Apache-2.0（avante.nvim）利于生态但允许商业闭源复用；③ 深度依赖第三方模型 API 政策（provider 封禁/涨价/协议变更均直接冲击）；④ 仓库转移与更名未附公开说明，治理透明度存疑。</td><td><a class="cref verified" href="#ref-2">[2]</a><a class="cref verified" href="#ref-3">[3]</a><a class="cref cross" href="#ref-4">[4]</a><a class="cref partial" href="#ref-15">[15]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 五处留白与一处待证（截至 2026-11-13 检索）</div>
+    ① 营收与赞助收入金额零披露，Patreon 页面数据未核验；② 是否注册公司、团队规模与协作方式未检索到公开信息；③ 双仓库转移组织（avante-corp / nextai-translator）与更名 NextAI Translator 的动因、时间与治理结构<b>无官方公开说明</b>，目前仅以 GitHub API 元数据单源佐证<a class="cref verified" href="#ref-2">[2]</a><a class="cref verified" href="#ref-3">[3]</a>；④ Chrome Web Store / Firefox Add-ons 的用户量与评分未实测，商业化程度无法间接推断；⑤ 星标、fork、issue 数均为时点值，会随时间波动。待证：avante.nvim 的「17.8k★ → 18.2k★」增长斜率依赖底稿时点（2026-10/11）与本次实测（2026-11-13）两点插值，精确增速不可得。
+  </div>
+  <div class="card"><div class="ct">负面与审慎评价（如实收录）</div><div class="cb">Emacs China 社区讨论中对 avante.nvim 的评价较为挑剔：「整体的设计的感觉是照着 cursor 在照猫画虎」，并具体指出其 tab completion 的实现路径（把当前文件完整代码加行号丢给模型、要求 LLM 输出 JSON 行号与建议文本、再解析生成 diff 预览）在工程上显得粗糙——该讨论代表了高级 Vim 用户群体对「Cursor 仿真」路线的真实疑虑：模仿交互易，复刻底层索引与模型能力难。此外，BYOK 模式把模型成本与配置复杂度转嫁给用户，对非硬核用户构成门槛。</div><div class="cm">信源：<a class="cref partial" href="#ref-15">[15]</a> <a class="cref partial" href="#ref-12">[12]</a></div></div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">本案补上了案例墙的关键一格：<b>纯开源、零营收披露、以技术声誉为本位的 OPC</b>。它证明「一人公司」的成功可以不体现为收入，而体现为跨两个 AI 周期连续命中万星级需求的产品嗅觉，以及「编辑器生态细分」这种大厂不屑做、初创公司做不了的缝隙打法。它同时是一面警示牌：开源捐赠模式的变现天花板极低，个人维护的可持续性最终靠组织化（转组织）续命——影响力资产如何转化为可持续生计，仍是这类 OPC 未解的命题。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-4">[4]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 15 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx cross">[1]</span><span class="rt">A</span><span class="st">GitHub API（一手）</span></div><div class="ti">yetone 用户档案（China / 2011-11-19 注册 / 10,831 followers / 641 public repos / name 仍为 yetone / 新项目 magpie 35,642★、cumora 4,173★）</div><div class="mt"><b>来源：</b>GitHub API 实测　<b>核验日期：</b>2026-11-13<br><a href="https://github.com/yetone" target="_blank" rel="noopener">https://github.com/yetone</a>（API：api.github.com/users/yetone）</div><div class="note">事实核查：name 字段显示「yetone」，无真名信息，故正文注明「真名未公开」；magpie/cumora 星标为同批 API 实测。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx verified">[2]</span><span class="rt">A</span><span class="st">GitHub API（一手）</span></div><div class="ti">avante.nvim 仓库元数据（18,191★ / 856 forks / Apache-2.0 / 创建 2024-08-14 / 最近推送 2026-11-12）</div><div class="mt"><b>来源：</b>GitHub API 实测（原址 github.com/yetone/avante.nvim，现 301 至 avante-corp 组织）　<b>核验日期：</b>2026-11-13<br><a href="https://github.com/avante-corp/avante.nvim" target="_blank" rel="noopener">https://github.com/avante-corp/avante.nvim</a>（API：api.github.com/repos/avante-corp/avante.nvim）</div><div class="note">事实核查：创建时间与 Product Hunt [9]、Habr [10]、HN [11] 交叉一致；星标为 API 单源时点值。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx verified">[3]</span><span class="rt">A</span><span class="st">GitHub API（一手）</span></div><div class="ti">openai-translator 仓库元数据（25,046★ / 1,853 forks / AGPL-3.0 / 创建 2023-03-04 / 最近推送 2026-11-12 / 现名 nextai-translator）</div><div class="mt"><b>来源：</b>GitHub API 实测（原址 github.com/yetone/openai-translator，现 301 至 nextai-translator 组织）　<b>核验日期：</b>2026-11-13<br><a href="https://github.com/nextai-translator/nextai-translator" target="_blank" rel="noopener">https://github.com/nextai-translator/nextai-translator</a>（API：api.github.com/repos/nextai-translator/nextai-translator）</div><div class="note">事实核查：创建时间与日媒报道 [7]、掘金 9.7k★ 记录 [8] 的时间线吻合；转移组织与更名仅 API 单源佐证。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx cross">[4]</span><span class="rt">A</span><span class="st">GitHub 项目文档（一手）</span></div><div class="ti">avante.nvim README（Cursor 仿真定位 / 功能清单 / ACP / 多 provider / RAG / Zen Mode / Patreon 赞助 / Neovim v0.12+ / Discord）</div><div class="mt"><b>来源：</b>经 GitHub API 拉取 raw README　<b>核验日期：</b>2026-11-13<br><a href="https://github.com/avante-corp/avante.nvim/blob/main/README.md" target="_blank" rel="noopener">https://github.com/avante-corp/avante.nvim/blob/main/README.md</a></div><div class="note">事实核查：「emulate the behaviour of the Cursor AI IDE」原文确认；Patreon 赞助引导原文「helps me to continue maintaining and improving it」确认。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx cross">[5]</span><span class="rt">B+</span><span class="st">财经媒体</span></div><div class="ti">收藏：普通人用得上的 GPT 免费工具，跑步进入 AI 时代（36氪）</div><div class="mt"><b>来源：</b>36氪　<b>发布日期：</b>约 2023 年<br><a href="https://m.36kr.com/p/2190922065887878" target="_blank" rel="noopener">https://m.36kr.com/p/2190922065887878</a></div><div class="note">事实核查：将 OpenAI Translator 描述为「界面优雅的多端划词翻译应用，拥有浏览器插件和全平台（Windows + macOS + Linux）桌面客户端」；与 README [6] 功能描述一致。HTTP 200 已核验可达。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx cross">[6]</span><span class="rt">A</span><span class="st">GitHub 项目文档（一手）</span></div><div class="ti">NextAI Translator（openai-translator）README（Bob 插件起因段 / Chrome 扩展→多平台桌面应用 / 三模式 55 语言 / 截图翻译 / 生词本 / 多 provider / Chrome 与 Firefox 商店链接）</div><div class="mt"><b>来源：</b>经 GitHub API 拉取 raw README　<b>核验日期：</b>2026-11-13<br><a href="https://github.com/nextai-translator/nextai-translator/blob/main/README.md" target="_blank" rel="noopener">https://github.com/nextai-translator/nextai-translator/blob/main/README.md</a></div><div class="note">事实核查：起因段与 SourceForge 镜像、GeekRepos 等历史镜像文本一致；插件已随仓库更名为 NextAI Translator。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">B</span><span class="st">海外垂直媒体</span></div><div class="ti">ChatGPT API を利用し macOS/Windows/Linux/ブラウザ上で動作する翻訳ツール「OpenAI Translator」がリリース（日本苹果资讯 applech2）</div><div class="mt"><b>来源：</b>applech2.com　<b>发布日期：</b>2023-03-20<br><a href="https://applech2.com/archives/20230320-openai-translator-translation-based-on-chatgpt.html" target="_blank" rel="noopener">https://applech2.com/archives/20230320-openai-translator-translation-based-on-chatgpt.html</a></div><div class="note">事实核查：独立第三方于 2023-03-20 即报道该产品发布，佐证「2023-03-15 发布爆火周」锚点合理（仓库创建 03-04，日媒报道 03-20，掘金记录 9.7k★ 于 03-28）。HTTP 200 已核验可达。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx partial">[8]</span><span class="rt">B</span><span class="st">开发者社区文章</span></div><div class="ti">基于 ChatGPT API 的划词翻译浏览器脚本实现（掘金 · 狂奔滴小马）</div><div class="mt"><b>来源：</b>掘金　<b>发布日期：</b>2023-03-28<br><a href="https://juejin.cn/post/7215517443728130106" target="_blank" rel="noopener">https://juejin.cn/post/7215517443728130106</a></div><div class="note">事实核查：「短时间内 star 冲到了 9.7k」「除了浏览器插件外，还使用了 tauri 打包」为单一 B 级信源转述，用于佐证 2023-03 爆火速度，按部分映证处理。HTTP 200 已核验可达。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx partial">[9]</span><span class="rt">B</span><span class="st">平台数据页</span></div><div class="ti">avante.nvim 于 Product Hunt 上线（Launched on August 15th, 2024）</div><div class="mt"><b>来源：</b>Product Hunt　<b>核验日期：</b>2026-11-13<br><a href="https://www.producthunt.com/products/avante-nvim/launches" target="_blank" rel="noopener">https://www.producthunt.com/products/avante-nvim/launches</a></div><div class="note">事实核查：上线日期经搜索快照确认并与仓库创建日 [2] 吻合；页面存在反爬限制（程序化抓取返回 403），当期热度数据（2 赞、日榜 150 位）经第三方聚合页转述确认，按部分映证处理。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx cross">[10]</span><span class="rt">B+</span><span class="st">国际技术媒体</span></div><div class="ti">Представлен проект avante.nvim — плагин для Neovim…（Habr 发布介绍）</div><div class="mt"><b>来源：</b>Habr（俄语技术社区媒体）　<b>发布日期：</b>2024-08<br><a href="https://habr.com/ru/news/836150/" target="_blank" rel="noopener">https://habr.com/ru/news/836150/</a></div><div class="note">事实核查：报道 avante.nvim 发布并描述其「模拟 Cursor AI IDE 行为、Lua 编写、GitHub 开源发布」，与 README [4] 一致。HTTP 200 已核验可达。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx cross">[11]</span><span class="rt">A</span><span class="st">HN 官方数据（一手）</span></div><div class="ti">Avante.nvim: Use Your Neovim Like Using Cursor AI IDE（Hacker News 前台讨论，300 points / 87 comments）</div><div class="mt"><b>来源：</b>Hacker News（经 HN Algolia 官方 API 实测确认）　<b>讨论日期：</b>2024-08-26<br><a href="https://news.ycombinator.com/item?id=41353835" target="_blank" rel="noopener">https://news.ycombinator.com/item?id=41353835</a>（API：hn.algolia.com/api/v1/search?query=avante.nvim）</div><div class="note">事实核查：points 与评论数、日期均为 Algolia API 一手返回值；发布周内另有 4 个自发提交（2024-08-15/18/21/25）佐证集中爆发。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx partial">[12]</span><span class="rt">C+</span><span class="st">第三方评测站</span></div><div class="ti">avante.nvim vs Cursor (2026)（aicoolies 对比评测）</div><div class="mt"><b>来源：</b>aicoolies.com　<b>发布日期：</b>2026 年<br><a href="https://aicoolies.com/comparisons/avante-nvim-vs-cursor" target="_blank" rel="noopener">https://aicoolies.com/comparisons/avante-nvim-vs-cursor</a></div><div class="note">事实核查：「完全开源无状态、API 从本地直连 provider、BYOK 按 token 付费」等表述与 README [4] 一致；站点为第三方评测性质，按 C+ 级部分映证处理。HTTP 200 已核验可达。</div></li>
+  <li id="ref-13" class="src"><div class="sh"><span class="idx cross">[13]</span><span class="rt">A</span><span class="st">官方文档</span></div><div class="ti">ACP | Cursor Docs（Cursor 官方文档将 avante.nvim 列为支持 ACP 的 Neovim 客户端）</div><div class="mt"><b>来源：</b>Cursor 官方文档　<b>核验日期：</b>2026-11-13<br><a href="https://cursor.com/docs/cli/acp" target="_blank" rel="noopener">https://cursor.com/docs/cli/acp</a></div><div class="note">事实核查：原文「avante.nvim is a Neovim plugin that provides an AI-powered coding assistant. It supports ACP, so you can connect it to Cursor's agent for agentic coding inside Neovim.」——竞品官方文档引用为本案生态位的关键佐证。HTTP 200 已核验可达。</div></li>
+  <li id="ref-14" class="src"><div class="sh"><span class="idx cross">[14]</span><span class="rt">A</span><span class="st">GitHub API（一手）</span></div><div class="ti">对标仓库星标复测（pdf2zh 38,399★ / claude-code-router 38,131★ / Umi-OCR 48,625★ / Easydict 15,296★ / Bob 9,759★）</div><div class="mt"><b>来源：</b>GitHub API 逐仓实测　<b>核验日期：</b>2026-11-13<br><a href="https://api.github.com/repos/PDFMathTranslate/PDFMathTranslate" target="_blank" rel="noopener">api.github.com/repos/PDFMathTranslate/PDFMathTranslate</a> 等五仓库（musistudio/claude-code-router、tisfeng/Easydict、hiroi-sora/Umi-OCR、ripperhe/Bob）</div><div class="note">事实核查：复测值与案例墙底稿既有核验值（2026-10/11 时点）全部吻合（差异 ≤0.5%），对标表采用本轮实测值并注明双时点。</div></li>
+  <li id="ref-15" class="src"><div class="sh"><span class="idx partial">[15]</span><span class="rt">C</span><span class="st">社区论坛观点</span></div><div class="ti">25 年我最希望能有个 emacs ai 插件（Emacs China 社区讨论，含对 avante 的批评）</div><div class="mt"><b>来源：</b>Emacs China 论坛　<b>发布日期：</b>约 2025 年<br><a href="https://emacs-china.org/t/25-emacs-ai/28856/21" target="_blank" rel="noopener">https://emacs-china.org/t/25-emacs-ai/28856/21</a></div><div class="note">事实核查：「照着 cursor 在照猫画虎」与 tab completion 实现细节质疑（整文件加行号投喂、JSON 行号 diff 解析）为论坛用户观点，按 C 级观点性内容如实收录。HTTP 200 已核验可达。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 15 条。核验标签分布：🟢 已核验（verified）2 条、🔵 多源印证（cross）9 条、🟡 部分映证（partial）4 条。信源评级分布：A 级一手 8 条（GitHub API ×4、项目 README ×2、Cursor 官方文档、HN Algolia 官方数据）、B+/B 级 5 条、C+/C 级 2 条（第三方评测、社区观点——均已标注口径）。双仓库星标与时间线为 GitHub API 2026-11-13 一手实测；发布时间节点经 Product Hunt、Habr、HN、日媒四路独立信源交叉。核验受阻处理：SegmentFault 转载文返回 HTTP 410 已剔除；LibHunt 聚合页与 Reddit 搜索因反爬/超时未收录（以 HN Algolia 官方 API 替代）；aihubmix 文档与 updatestar 收录页连接失败剔除；GitHub 网页偶发连接超时但 API 全部 200 通过，故以 API 为一手依据。两处单源事实（仓库转移组织与更名的来龙去脉、Chrome 商店用户数）已在正文显式标注。未发现伪造链接；全部 URL 为检索过程实际命中或经官方 API 实测的页面。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  双仓库星标为 GitHub API 2026-11-13 实测时点值 · 数据检索截止：2026-11-13 · <b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

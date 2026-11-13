@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · BettaFish（微舆）—— 北邮大四学生郭航江的十日开源奇迹 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · BettaFish（微舆）">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="BettaFish（微舆）深度案例报告：北邮大四学生郭航江（BaiFu）10 天 Vibe Coding 完成多智能体舆情分析系统，登顶 GitHub 趋势榜第一，获陈天桥/盛大 3000 万元注资。10 条信源逐条核验，GitHub 数据为 API 一手实测。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>BettaFish（微舆）深度案例报告</h1>
+    <h2>北邮大四学生郭航江（BaiFu）：10 天 Vibe Coding 出多智能体舆情分析系统<br>登顶 GitHub 趋势榜、获陈天桥 3000 万元注资 —— 10 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">开源型 OPC</span>
+      <span class="tag">多智能体</span>
+      <span class="tag">学生创业者</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">42,666</div><div class="k">BettaFish GitHub 星标（2026-11-12 API 实测）</div></div>
+  <div class="stat"><div class="v up">3000 万元</div><div class="k">陈天桥 / 盛大集团注资（24 小时拍板）</div></div>
+  <div class="stat"><div class="v neutral">10 天</div><div class="k">Vibe Coding 开发周期（两代项目均为十天）</div></div>
+  <div class="stat"><div class="v neutral">5 天</div><div class="k">GitHub Trending 第一名累计天数（Trendshift 记录）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">BettaFish（中文名「微舆」）是 2025 年末中国开源社区最陡峭的增长曲线之一：一位北京邮电大学大四学生用 10 天 Vibe Coding 完成的多智能体舆情分析系统，从几百个 star 起步，数日内冲至数万，登顶 GitHub 全球趋势榜，并由此把「盛大集团创始人陈天桥 3000 万元注资一个大学生开源项目」带成了 AI 超级个体叙事的标志性样本<sup class="cite verified">[1]</sup><sup class="cite cross">[2]</sup>。</p>
+  <div class="two">
+    <div class="card"><div class="ct">项目</div><div class="cb">BettaFish（微舆）：从 0 实现的创新型多智能体舆情分析系统，定位「破除信息茧房，还原舆情原貌，预测未来走向，辅助决策」。用户像聊天一样提出分析需求，智能体即全自动分析国内外主流社媒与数百万条大众评论，输出数十页的结构化舆情分析报告<sup class="cite verified">[1]</sup><sup class="cite cross">[2]</sup>。仓库名 BettaFish 即斗鱼——「体型很小但非常好斗、漂亮的鱼」，象征「小而强大，不畏挑战」<sup class="cite verified">[3]</sup>。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">郭航江，GitHub 主页名 BaiFu（登录名 666ghj），北京邮电大学大四学生（案例墙底稿口径，36氪/新智元一致）<sup class="cite verified">[1]</sup>；主修 Python，长期关注深度学习、大语言模型、图计算与智能体系统。GitHub 个人页 company 一栏同时标注「USTC, BUPT」，坐标上海——升学去向为中科大（《浙商》杂志即按「中国科学技术大学的大四学生」口径报道，详见捌节口径辨析）<sup class="cite verified">[4]</sup><sup class="cite cross">[5]</sup>。Twitter/X 账号 whoisbaifu，GitHub 关注者 4,802（2026-11-12 实测）<sup class="cite verified">[4]</sup>。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-4">[4]</a> <a class="cref cross" href="#ref-5">[5]</a></div></div>
+    <div class="card"><div class="ct">发轫场景</div><div class="cb">2025 年，升学去向尘埃落定、毕设提前做完之后，他想利用空闲找一份实习——「没有选择从零手写上万行代码，而是打开 Claude Code 这类工具」开始 Vibe Coding，十天之内把大学几年的积累整合成一个开源项目。项目刚完成时甚至被博士学长痛批「这不是一个合格的毕设，你得再花心思改改」<sup class="cite cross">[2]</sup>。</div><div class="cm">信源：<a class="cref cross" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="card"><div class="ct">成功迹象</div><div class="cb">GitHub 37.7k★（36氪 2026-03-13 报道时点值；本报告 2026-11-12 API 一手实测 42,666★、7,632 forks）<sup class="cite verified">[1]</sup><sup class="cite verified">[6]</sup>；两度登顶 GitHub 趋势榜第一——BettaFish 与后续项目 MiroFish 连续两个开源项目先后登顶（BettaFish 自身在 GitHub Trending #1 累计 5 天）<sup class="cite cross">[2]</sup><sup class="cite cross">[7]</sup>；获盛大集团创始人陈天桥注资 3000 万元，从实习生一夜变身 AI 创业公司 CEO<sup class="cite verified">[1]</sup>。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-7">[7]</a> <a class="cref verified" href="#ref-6">[6]</a></div></div>
+  </div>
+  <div class="two">
+    <div class="card blue"><div class="ct">时间锚点</div><div class="cb">案例墙底稿锚点：2025-12-15 ▲（发布，约值）。GitHub Trending 监测记录区间为 2025-10-31 至 2026-03-09（Trendshift 一手）<sup class="cite cross">[7]</sup>；MiroFish 仓库创建于 2025-11-26（GitHub API 一手）<sup class="cite verified">[8]</sup>；注资落地与媒体密集报道集中在 2026 年 3 月上中旬<sup class="cite verified">[1]</sup>。</div><div class="cm">信源：<a class="cref cross" href="#ref-7">[7]</a> <a class="cref verified" href="#ref-8">[8]</a> <a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="card blue"><div class="ct">后续演进：MiroFish</div><div class="cb">「BettaFish 分析过去，MiroFish 预测未来」：加入盛大后，他用又一个十天实现了 BettaFish 时期构思的「预测」功能——多智能体驱动的 AI 预测引擎，从突发新闻、政策草案、金融信号等种子信息构建「平行数字世界」推演未来路径。MiroFish 同样登顶 GitHub 趋势榜榜首，2026-11-12 实测 85,109★、12,897 forks，采用 AGPL-3.0 协议<sup class="cite verified">[1]</sup><sup class="cite cross">[2]</sup><sup class="cite verified">[8]</sup>。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-8">[8]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2025 年（夏—冬，双口径并列）</div><div class="tx">升学落定、提前毕设，10 天 Vibe Coding 出 BettaFish</div><div class="td">新智元与《浙商》杂志口径为「2025 年夏天」启动<sup class="cite cross">[2]</sup><sup class="cite cross">[5]</sup>；36氪（2026-03-13 发稿）称「三个月前还在为实习焦虑」即约 2025 年 12 月<sup class="cite verified">[1]</sup>。用 Claude Code 等 AI 编程工具，十天整合大学积累成开源项目。</div></div>
+    <div class="node"><div class="dt">2025-12-15 ▲（底稿锚点 · 发布）</div><div class="tx">项目上线 GitHub，冷启动期推广收效平平</div><div class="td">给开源周刊和公众号投稿、B 站发视频、技术社区发帖；博士学长评「不是合格毕设」。约 1k star 时他写小红书总结《1K+ Star 的开源项目能给一个大学生带来什么》，自认为已经足够满意。<sup class="cite cross">[2]</sup></div></div>
+    <div class="node"><div class="dt">2025 年末—2026 年初</div><div class="tx">小红书文章被技术社区大V转发，star 爆炸式增长</div><div class="td">文章发布一周后流量爆发：star 沿 5K→10K→20K→30K 陡升，数日新增超 2 万<sup class="cite cross">[2]</sup>；36氪口径为「一周内从几百飙升到 20k」<sup class="cite verified">[1]</sup>。</div></div>
+    <div class="node"><div class="dt">2025-10-31 ~ 2026-03-09（监测区间）</div><div class="tx">登顶 GitHub 全球趋势榜第一</div><div class="td">Trendshift 一手记录：该仓库在 GitHub Trending 榜第一名累计 5 天，Achievements 列「#1 on the list」<sup class="cite cross">[7]</sup>；同期成为国内 AI 开发圈讨论度最高的开源项目之一<sup class="cite cross">[2]</sup>。</div></div>
+    <div class="node"><div class="dt">爆火后（约 2025-12 / 2026-01）</div><div class="tx">邮箱被 offer 与投资意向塞爆，盛大电话到来</div><div class="td">大厂实习邀请、技术合作、投资机构橄榄枝涌入；邮箱爆满几乎没空回复的 BaiFu 被盛大团队的锲而不舍打动，同意「聊一聊」。陈天桥直言 BettaFish「技术水平并非特别出色」，但看重其全流程规划与「看见并定义真实有价值的问题」的行动力<sup class="cite verified">[1]</sup><sup class="cite cross">[2]</sup>。</div></div>
+    <div class="node"><div class="dt">2025-11-26</div><div class="tx">MiroFish 仓库创建（GitHub API 一手）；此后只身赴上海加入盛大</div><div class="td">挂断电话后背起行囊只身来到上海，以实习生身份与盛大合作<sup class="cite cross">[2]</sup>；在盛大的支持与充分自由下着手实现 BettaFish 时期无暇顾及的「预测」功能<sup class="cite verified">[1]</sup>。<sup class="cite verified">[8]</sup></div></div>
+    <div class="node"><div class="dt">2026-03 上旬</div><div class="tx">MiroFish 又用十天完成，登顶 GitHub 趋势榜榜首</div><div class="td">深夜录制略显粗糙的 demo 直接递交陈天桥案头<sup class="cite verified">[1]</sup>；「连续两个开源项目都登顶 GitHub 趋势榜第一，并且都是十天」<sup class="cite cross">[2]</sup>。</div></div>
+    <div class="node"><div class="dt">2026-03-05 前后（演示递交后 24 小时内）</div><div class="tx">陈天桥拍板：集团注资 3000 万元，全力支持 MiroFish 深度孵化</div><div class="td">一夜之间从盛大实习生跃升为 AI 创业公司 CEO<sup class="cite verified">[1]</sup>；《浙商》杂志称陈天桥评价该引擎「具有范式意义」<sup class="cite cross">[5]</sup>。</div></div>
+    <div class="node"><div class="dt">2026-03-08 / 03-12 / 03-13</div><div class="tx">新智元、《浙商》杂志、36氪（东四十条资本）密集报道</div><div class="td">36氪报道时点 BettaFish 37.7k★<sup class="cite verified">[1]</sup>；新民晚报随后以「十天 vibe coding！00 后小孩哥获盛大 3000 万投资，当上 CEO」跟进转发<sup class="cite partial">[9]</sup>，正和岛以「AI 时代超级个体的崛起」解读<sup class="cite partial">[10]</sup>。</div></div>
+    <div class="node"><div class="dt">2026-11-12（本报告检索日）</div><div class="tx">GitHub API 一手实测：BettaFish 42,666★ / MiroFish 85,109★</div><div class="td">BettaFish 近 61 天仍保持日均约 7.6 星的自然增长（Trendshift：+465★/61 天），热度并未因时间流逝衰减<sup class="cite verified">[6]</sup><sup class="cite verified">[8]</sup><sup class="cite cross">[7]</sup>。</div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：毕设焦虑的逆向操作——把「找实习」变成了「被找」</div><div class="cb">在升学落定、毕设提前完成、正准备投简历找实习的空档，他用 Vibe Coding 十天整合大学几年的积累做出 BettaFish<sup class="cite cross">[2]</sup>。真正的分水岭不是十天写完代码，而是 1k star 时那篇小红书复盘——《1K+ Star 的开源项目能给一个大学生带来什么》被技术社区多位大V转发推荐，一周后 star 从 5K 直冲 30K<sup class="cite cross">[2]</sup>。冷启动期的笨功夫（投稿、发视频、发帖）看似无效，实为引爆前的燃料堆积；「一周从几百到 20k」的速度让他邮箱被 offer 和投资意向塞满，主动权就此易手<sup class="cite verified">[1]</sup>。</div><div class="cm">信源：<a class="cref cross" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-1">[1]</a></div></div>
+  <div class="card"><div class="ct">转折二：陈天桥的「反技术」决策——投人而非投项目</div><div class="cb">在众多追逐者中，陈天桥直言不讳：BettaFish 的技术水平并非特别出色。盛大真正看中的是两样东西——从数据收集、分析到预测的全流程完整规划，以及「看见并定义真实有价值的问题，并尝试用 AI 的新方式去解决」的行动力<sup class="cite verified">[1]</sup><sup class="cite cross">[2]</sup>。这与陈天桥 2025 年底的「超级个体」论述一脉相承：超级个体不需要是全才，只需要给出极具野心的 Prompt（选择）、赌上一切去担责（Ownership）<sup class="cite verified">[1]</sup>。一个被博士学长批为「不合格毕设」的项目，在另一种评价体系里成了「具有范式意义」的标的<sup class="cite cross">[5]</sup>——评价框架的差异，正是本案例最值得复盘的一课。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-5">[5]</a></div></div>
+  <div class="card red"><div class="ct">转折三：连续创业的十日节奏——「分析的终点是预测的起点」</div><div class="cb">BettaFish 解决「分析过去」，MiroFish 解决「预测未来」：以 BettaFish 的数据分析成果为起点，再次十天完成开发，演示视频递交后 24 小时内获注资 3000 万元<sup class="cite verified">[1]</sup><sup class="cite cross">[2]</sup>。从舆情分析到社会推演，产品逻辑一以贯之；「又是十天」的开发节奏则把 Vibe Coding 从口号变成了可复现的个人工程方法论——两次十天、两次登顶，构成了这个案例最具传播力的证据链<sup class="cite cross">[2]</sup>。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a></div></div>
+  <div class="quote">
+    <p>知识正在被平权化，很多过去需要十倍百倍精力才能摸到门槛的东西，很快都会被拉到大众面前，只是时间问题。</p>
+    <span class="src">—— 郭航江（BaiFu），转引自新智元报道（2026-03-08），<a class="cref cross" href="#ref-2">[2]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>内容</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>产品功能</td><td><span class="hl">多智能体舆情分析引擎</span>：自然语言提问 → 智能体全自动检索与分析国内外主流社媒（报道口径 30+<sup class="cite verified">[1]</sup>，README 当前版口径 10+<sup class="cite verified">[3]</sup>）与数百万条大众评论 → 融合自动化数据抓取、大模型分析与自动报告生成，输出数十页可交互的 HTML 舆情报告（支持 PDF 导出）；官方示例为「武汉大学品牌声誉深度分析报告」<sup class="cite verified">[3]</sup></td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td>四引擎架构</td><td>QueryEngine（国内外新闻广度搜索 Agent）+ MediaEngine（多模态内容理解，可解析抖音/快手短视频）+ InsightEngine（私有数据库挖掘）+ ReportEngine（多轮报告生成：模板选择→布局→篇幅→章节→IR 渲染）；另有 ForumEngine（Agent「论坛」辩论协作机制，引入辩论主持人模型）与 MindSpider 社媒爬虫系统、SentimentAnalysisModel 微调情感模型（BERT/GPT-2 LoRA、Qwen3 小参数微调、传统 ML）<sup class="cite verified">[3]</sup></td><td><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td>开源策略</td><td>GPL-2.0 协议开源（GitHub API/Trendshift 一手）<sup class="cite verified">[6]</sup><sup class="cite cross">[7]</sup>、「从 0 实现，不依赖任何框架」、纯 Python 模块化一键部署<sup class="cite verified">[3]</sup>；以 LLM API 赞助商（AIHubMix、Anspire、APIMart）覆盖运行成本<sup class="cite verified">[3]</sup>；后续 MiroFish 升级为更限制商用闭源套壳的 AGPL-3.0<sup class="cite verified">[8]</sup></td><td><a class="cref verified" href="#ref-6">[6]</a><a class="cref verified" href="#ref-3">[3]</a><a class="cref cross" href="#ref-7">[7]</a><a class="cref verified" href="#ref-8">[8]</a></td></tr>
+      <tr><td>面向客群</td><td>品牌方与舆情机构（内置「企业品牌声誉分析报告」模板）；有垂直数据资产的企业（公私域数据无缝融合，「外部趋势+内部洞察」）；开发者/研究者自部署（三大单引擎 Streamlit 独立应用）；「始于舆情，而不止于舆情」——目标是驱动一切业务场景的通用数据分析引擎<sup class="cite verified">[3]</sup></td><td><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td>解决痛点</td><td>传统舆情分析通常「需要一个团队」完成（新智元口径）<sup class="cite cross">[2]</sup>；信息茧房导致舆情原貌失真<sup class="cite verified">[1]</sup>；短视频等多模态内容是传统监测盲区；结构化专业报告（数十页）以往依赖人工撰写<sup class="cite cross">[2]</sup><sup class="cite verified">[3]</sup></td><td><a class="cref cross" href="#ref-2">[2]</a><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box insight">
+    <div class="bt">💡 商业模式小结</div>
+    BettaFish 本身完全免费开源，截至本报告检索日<b>未检索到直接营收的公开信息</b>；其价值变现走的是「开源作品 → 战略注资 → 新项目孵化」路径：3000 万元注资的对象是 MiroFish 的深度孵化（官网 mirofish.ai 已上线<sup class="cite verified">[8]</sup>），而非 BettaFish 的商业化<sup class="cite verified">[1]</sup>。README 中「修改 Agent 工具集的 api 参数与 prompt 就能变成金融领域市场分析系统」的表述，暗示其引擎化的横向扩展想象<sup class="cite verified">[3]</sup>。
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>BettaFish GitHub 星标</td><td class="hl">42,666（forks 7,632）</td><td>2026-11-12（GitHub API 一手实测）</td><td><a class="cref verified" href="#ref-6">[6]</a></td></tr>
+      <tr><td>BettaFish 星标（报道时点）</td><td>37.7k</td><td>2026-03-13（36氪）</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>爆发期增长曲线</td><td>几百 → 1k → 5K → 10K → 20K → 30K（数日新增 2 万+；36氪口径「一周从几百到 20k」）</td><td>2025 年末—2026 年初</td><td><a class="cref cross" href="#ref-2">[2]</a><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>GitHub Trending 榜第一</td><td class="hl">累计 5 天（Achievements「#1 on the list」）</td><td>记录区间 2025-10-31 ~ 2026-03-09（Trendshift 一手）</td><td><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td>趋势榜两度登顶</td><td>BettaFish + MiroFish 连续两个开源项目先后登顶（且均十天开发）</td><td>2025 年末 / 2026-03</td><td><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td>MiroFish GitHub 星标</td><td class="hl">85,109（forks 12,897，AGPL-3.0）</td><td>2026-11-12（GitHub API 一手实测）</td><td><a class="cref verified" href="#ref-8">[8]</a></td></tr>
+      <tr><td>注资</td><td>3000 万元人民币（盛大集团 / 陈天桥，演示递交后 24 小时拍板）</td><td>2026-03 上旬</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-5">[5]</a></td></tr>
+      <tr><td>社区贡献者</td><td>39 人（Merged PRs 近 61 天 2 个）；近 61 天自然增长 +465★</td><td>2026-09-13 ~ 11-12（Trendshift）</td><td><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    ① 星标为时点值：37.7k 出自 36氪 2026-03-13 报道<sup class="cite verified">[1]</sup>，42,666 为本报告 2026-11-12 经 GitHub API 一手实测<sup class="cite verified">[6]</sup>，两者均为历史快照、随时间变动；② GitHub API 显示 BettaFish 仓库 created_at 为 2024-07-01——仓库注册时间远早于项目公开传播（2025 年末），属开发者占位/复用仓库的常见行为，评估增长曲线时应以传播起点为准<sup class="cite verified">[6]</sup>；③ 「30+ 社媒平台」为 36氪报道口径<sup class="cite verified">[1]</sup>，README 当前版本（v1.2.1）自述为「10+ 国内外关键社媒」<sup class="cite verified">[3]</sup>，以一手 README 为准并双口径存档；④ 「两度登顶」按新智元口径指 BettaFish 与 MiroFish 两项目先后登顶<sup class="cite cross">[2]</sup>，BettaFish 自身在 GitHub Trending #1 累计 5 天（Trendshift 一手记录）<sup class="cite cross">[7]</sup>。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将 BettaFish 放入案例墙「开源工具 / Agent 项目」坐标系。下列对标数据均为案例墙既有核验值（data/domestic-pool.md，时点见案例墙卡片），非本轮重新实测：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>成功迹象（案例墙核验值）</th><th>变现路径</th></tr></thead>
+    <tbody>
+      <tr><td><b>BettaFish（本案）</b></td><td>郭航江（BaiFu，北邮大四）</td><td>多智能体舆情分析系统（GPL-2.0）</td><td>42.7k★（2026-11 实测）；趋势榜 #1×5 天；3000 万元注资</td><td>开源 → 战略注资孵化（MiroFish）</td></tr>
+      <tr><td>claude-code-router</td><td>musistudio</td><td>Claude Code 多模型路由网关</td><td>GitHub 38k★（案例墙时点值）</td><td>开源影响力 + Kimi 内置赞助</td></tr>
+      <tr><td>new-api</td><td>Calcium-Ion（个人发起，后转 QuantumNous 组织）</td><td>LLM 网关与 AI 资产管理</td><td>GitHub 51.3k★（案例墙时点值）；大量商用中转站底座</td><td>开源底座 → 生态/托管变现（已组织化，一人属性中）</td></tr>
+      <tr><td>Simen AI（猴子说话）</td><td>雷圳鹏（27 岁，武汉光谷）</td><td>本地办公智能体 + AI 数字员工工具</td><td>产品未正式发布即获字节跳动近 4000 万元投资 + 奇绩创坛 200 余万元天使（融资驱动型）</td><td>融资驱动，现约 10 人团队</td></tr>
+      <tr><td>HivisionIDPhotos</td><td>林泽毅（Zeyi-Lin，西电学生开发者）</td><td>轻量 AI 证件照工具（可自部署）</td><td>GitHub 21.6k★；曾登 GitHub 热榜第一，机器之心/量子位报道</td><td>学生开源出圈样本（商业化未披露）</td></tr>
+      <tr><td>ChatNio</td><td>zmh（创办时 15 岁）</td><td>多模型对话 + API 中转/计费开源平台</td><td>2024 年被七位数收购；月活近 10 万、月净利约 5 万元</td><td>开源 → 并购退出</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>BettaFish 在坐标系中的独特位置在于：它是六者中<b>唯一以「学生 + 十天 + 舆情垂直赛道」三者叠加获得数千万元级注资的开源案例</b>——claude-code-router 与 new-api 证明了「开源工具的持续影响力可以养活个人」，Simen AI 证明了「融资可以先于产品」，而 BettaFish 把三者压缩进同一条叙事线：一个尚未商业化的 GPL 开源仓库，凭借趋势榜声量直接完成从学生到 CEO 的跃迁<sup class="cite verified">[1]</sup>。同时应注意到它与 Simen AI 一样属于「注资在先、商业化在后」的融资驱动型样本，营收验证均未发生。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>分析</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>1. 产品功能</td><td>多智能体舆情分析引擎：自然语言驱动 → 四引擎并行（搜索/多模态/私库/报告）→ ForumEngine 论坛式多轮辩论协作 → IR 中间表示渲染为交互式报告；超越单一 LLM 的复合分析（5 类 Agent + 微调模型 + 统计模型中间件），可深度解析短视频并提取结构化信息卡片<sup class="cite verified">[3]</sup></td><td><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td>2. 面向客群</td><td>直接客群：品牌方、公关/舆情机构、有内部业务数据库的企业（公私域融合）；开发者与研究者（自部署、单引擎独立应用）；间接客群：盛大（战略孵化方）、API 赞助商生态<sup class="cite verified">[3]</sup><sup class="cite verified">[1]</sup>。未检索到公开的用户规模/付费画像数据</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>3. 解决痛点</td><td>需求端：企业舆情分析通常需要一个团队的人工投入（监测—分析—成报），信息茧房导致判断失真<sup class="cite cross">[2]</sup><sup class="cite verified">[1]</sup>；供给端：个人开发者验证了「AI 原生工程整合能力」可替代「团队规模」，数十页专业报告的生成门槛被压到一条自然语言提问<sup class="cite cross">[2]</sup></td><td><a class="cref cross" href="#ref-2">[2]</a><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>4. 商业模式与营收</td><td>BettaFish 免费开源、<b>未检索到直接营收的公开信息</b>；运行成本部分由 LLM API 赞助商（AIHubMix/Anspire/APIMart）补贴<sup class="cite verified">[3]</sup>；价值兑现依赖注资后的 MiroFish（mirofish.ai 官网已上线，目标场景为金融决策、政策舆论预测、公关危机模拟等<sup class="cite cross">[2]</sup><sup class="cite verified">[8]</sup>）。整体处于「注资孵化期」而非「营收验证期」</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-8">[8]</a></td></tr>
+      <tr><td>5. 融资进展</td><td>盛大集团（陈天桥）注资 3000 万元人民币，用于 MiroFish 深度孵化<sup class="cite verified">[1]</sup><sup class="cite cross">[5]</sup>；媒体口径均为「注资」，股权比例、估值、公司主体名称均未披露。背景：陈天桥近年提出「AI 原生时代」构想与「超级个体 = 马斯克模式的民主化」论断，2025-12 底曾宣布 AI Native 企业形态实验（Tanka），对郭航江的投资是其方法论的一次自我验证<sup class="cite verified">[1]</sup><sup class="cite partial">[10]</sup></td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-5">[5]</a><a class="cref partial" href="#ref-10">[10]</a></td></tr>
+      <tr><td>6. 开源商业化路径</td><td>本案呈现一条罕见的「作品型开源」路径：不靠托管/企业版收费（对比 new-api 生态底座、ChatNio 并购），而是把开源仓库当作个人能力与工程判断力的公开证明书——「GitHub 趋势榜第一」本身就是估值依据<sup class="cite cross">[2]</sup><sup class="cite cross">[7]</sup>。协议设计亦有演进逻辑：BettaFish 用 GPL-2.0 保证永续开放<sup class="cite verified">[6]</sup>，MiroFish 升级 AGPL-3.0 为未来商业化保留控制权<sup class="cite verified">[8]</sup>。对个人开发者的启示：在「开源获客—托管变现」之外，存在「开源证明—战略注资」的第三条路，但其成立高度依赖时运与叙事窗口</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref cross" href="#ref-7">[7]</a><a class="cref verified" href="#ref-6">[6]</a><a class="cref verified" href="#ref-8">[8]</a></td></tr>
+      <tr><td class="hl">7. 舆情数据合规（爬虫与个人信息保护）</td><td>系统的 MindSpider 模块对微博、小红书、抖音、快手等平台进行 7×24 爬取并下钻至海量用户评论——恰好落入国内数据合规的高压区：《个人信息保护法》对公开个人信息的处理限制、《网络数据安全管理条例》（2025-01-01 施行）对自动化采集的规范、平台反爬条款与 robots 协议边界均构成潜在约束；README 自述 InsightEngine 对私有库仅做 SQLAlchemy 只读查询封装，且强调「高安全性接口」<sup class="cite verified">[3]</sup>。截至本报告检索日，<b>未检索到针对 BettaFish 的监管处罚或涉诉公开信息</b>，但「爬虫 + 个人评论分析」类产品的合规成本将在其商业化（尤其面向企业客户交付）时被重新定价，属本案最主要的行业性风险敞口<sup class="cite verified">[1]</sup></td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 五处留白与一条同源链风险（截至 2026-11-12 检索）</div>
+    ① <b>注资性质未披露</b>：3000 万元系股权投资还是集团孵化预算、占股比例与估值均无公开信息，「集团注资」与媒体标题的「投资」表述并存<sup class="cite verified">[1]</sup><sup class="cite cross">[2]</sup>；② <b>公司主体不明</b>：郭航江出任 CEO 的「AI 创业公司」名称、注册地、股权结构均未公开<sup class="cite verified">[1]</sup>；③ <b>事实链同源</b>：「十天开发」「24 小时拍板」「3000 万」等核心细节均溯源自郭航江本人公众号复盘《3 个月，从微舆 BettaFish 开源项目爆火到获三千万投资，我亲历了 Vibe Coding 带来的超级个体时代》——36氪（转东四十条资本）与新智元为两条独立发布链，但上游均系当事人自述口径<sup class="cite verified">[1]</sup><sup class="cite cross">[2]</sup>；④ <b>未检索到新华网/央媒直接报道</b>，亦未检索到盛大集团官方公告（《浙商》杂志为距注资方语境最近的财经采访<sup class="cite cross">[5]</sup>）；⑤ <b>营收零披露</b>：BettaFish 与 MiroFish 均无任何营收/付费用户公开数据。
+  </div>
+  <div class="box note">
+    <div class="bt">🔍 两处口径冲突与一处待观察</div>
+    ① <b>学校口径</b>：36氪/新智元及案例墙底稿为「北京邮电大学大四」<sup class="cite verified">[1]</sup><sup class="cite cross">[2]</sup>，<b>《浙商》杂志称「中国科学技术大学的大四学生」</b><sup class="cite cross">[5]</sup>——GitHub 个人页 company「USTC, BUPT」双校并列提示：北邮为在读本科院校、中科大大概率为已确定的升学去向<sup class="cite verified">[4]</sup>，两说实为同一事实的不同切面，本报告以北邮（底稿口径）为基线；② <b>起点时点</b>：「2025 年夏天开始毕设」（新智元/浙商）<sup class="cite cross">[2]</sup><sup class="cite cross">[5]</sup> vs「三个月前还在为实习焦虑」（36氪，约 2025-12）<sup class="cite verified">[1]</sup>，与底稿锚点 2025-12-15 ▲（发布）并存，按 ▲ 约值处理；③ <b>毕业走向待观察</b>：升学（中科大）与创业（CEO）并行，公司化进展、MiroFish 团队规模、BettaFish 是否持续由其本人维护（近 61 天仅 2 个 merged PR、39 位贡献者<sup class="cite cross">[7]</sup>）均需后续跟踪。
+  </div>
+  <div class="card"><div class="ct">本案的样本价值</div><div class="cb">BettaFish 案例把「超级个体」从硅谷叙事拉回中国语境<sup class="cite partial">[10]</sup>：一个尚未商业化、甚至被博士学长批为「不合格毕设」的开源仓库，凭借趋势榜声量与问题定义能力完成 3000 万元级的资源跃迁<sup class="cite verified">[1]</sup><sup class="cite cross">[2]</sup>——它验证的不是舆情赛道的商业价值，而是<b>「开源作品作为个人能力公开证明书」的定价机制</b>。同时它自带警示：注资发生在营收验证之前，故事的可复制性依赖「十天 × 登顶 × 首富注资」这一罕见的事件组合，普通开发者不宜将「开源即融资」当作默认路径。</div><div class="cm">信源：<a class="cref cross" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-10">[10]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 10 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（摘要级/单一 B 级信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx verified">[1]</span><span class="rt">A</span><span class="st">主流财经</span></div><div class="ti">陈天桥投了个00后（36氪，经授权发布微信公众号「东四十条资本」文章，作者韦香惠）</div><div class="mt"><b>来源：</b>36氪　<b>发布日期：</b>2026-03-13 11:42<br><a href="https://36kr.com/p/3720728841763465" target="_blank" rel="noopener">https://36kr.com/p/3720728841763465</a></div><div class="note">事实核查：全文回溯完成。郭航江/BaiFu/北邮、十天 Vibe Coding、一周几百→20k、37.7k★ 时点、陈天桥「技术水平并非特别出色」评语、24 小时内拍板注资 3000 万、「3 个月」公众号复盘标题、超级个体与 Tanka 背景均出自此稿；与 [2][5] 交叉一致。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx cross">[2]</span><span class="rt">B</span><span class="st">门户转载（科技自媒体）</span></div><div class="ti">00后小孩哥10天AI编程，陈天桥24小时砸3000万！靠大四作业当上CEO（新智元，新浪财经转载）</div><div class="mt"><b>来源：</b>新浪财经（原发新智元公众号）　<b>发布日期：</b>2026-03-08 15:21<br><a href="https://finance.sina.com.cn/wm/2026-03-08/doc-inhqhisp0760007.shtml" target="_blank" rel="noopener">https://finance.sina.com.cn/wm/2026-03-08/doc-inhqhisp0760007.shtml</a></div><div class="note">事实核查：全文回溯完成。「2025 年夏天」起点、博士学长「不合格毕设」、小红书《1K+ Star 的开源项目能给一个大学生带来什么》引爆、5K→10K→20K→30K、BettaFish 与 MiroFish「两度登顶且都是十天」、盛大锲而不舍联系、只身赴上海、MiroFish 报道时点 5.7k★、BaiFu「知识正在被平权化」引语均出自此稿；「两个项目都曾登顶榜首」与 [7] Trendshift 记录交叉。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx verified">[3]</span><span class="rt">A</span><span class="st">GitHub 一手（README）</span></div><div class="ti">BettaFish 仓库 README（main 分支，v1.2.1）：项目概述 / 六大优势 / 系统架构</div><div class="mt"><b>来源：</b>raw.githubusercontent.com　<b>查询时点：</b>2026-11-12<br><a href="https://raw.githubusercontent.com/666ghj/BettaFish/main/README.md" target="_blank" rel="noopener">https://raw.githubusercontent.com/666ghj/BettaFish/main/README.md</a></div><div class="note">事实核查：全文回溯完成。「微舆」命名与斗鱼寓意、QueryEngine/MediaEngine/InsightEngine/ReportEngine 四引擎 + ForumEngine/MindSpider/SentimentAnalysisModel 架构、六大优势、覆盖「10+ 国内外关键社媒」（当前版口径）、武汉大学示例报告、赞助商 AIHubMix/Anspire/APIMart、Trendshift 徽章均出自此一手文档；与 [1] 「30+ 社媒」报道口径差异已双口径存档。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx verified">[4]</span><span class="rt">A</span><span class="st">GitHub 一手（API）</span></div><div class="ti">GitHub API：用户 666ghj（BaiFu）</div><div class="mt"><b>来源：</b>api.github.com　<b>查询时点：</b>2026-11-12<br><a href="https://api.github.com/users/666ghj" target="_blank" rel="noopener">https://api.github.com/users/666ghj</a>（页面版：github.com/666ghj）</div><div class="note">事实核查：name=BaiFu、company=USTC, BUPT、location=Shanghai、followers=4,802、twitter=whoisbaifu、bio「Do what you love, and love what you do.」；与 [1] 「主页名 BaiFu」及 [5] 升学口径互证。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx cross">[5]</span><span class="rt">B</span><span class="st">财经杂志</span></div><div class="ti">前中国首富陈天桥投下3000万元，押注"00后"大学生！（世界浙商网，原发《浙商》杂志，记者李艳霄）</div><div class="mt"><b>来源：</b>世界浙商网（供稿：世界浙商）　<b>发布日期：</b>2026-03-12 16:12<br><a href="http://wzs.org.cn/sjzs/news?id=23692" target="_blank" rel="noopener">http://wzs.org.cn/sjzs/news?id=23692</a></div><div class="note">事实核查：全文回溯完成。陈天桥「具有范式意义」评价、「两次登顶 GitHub」、BettaFish「star 千级飙升至三万以上」、MiroFish 红楼梦推演细节（905 实体/580 智能体/30 轮推演/14 元成本）出自此稿；注意该校名口径为「中国科学技术大学的大四学生」，与 [1][2] 北邮口径并存（详见捌节辨析）。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx verified">[6]</span><span class="rt">A</span><span class="st">GitHub 一手（API）</span></div><div class="ti">GitHub API：仓库 666ghj/BettaFish（微舆）</div><div class="mt"><b>来源：</b>api.github.com　<b>查询时点：</b>2026-11-12<br><a href="https://api.github.com/repos/666ghj/BettaFish" target="_blank" rel="noopener">https://api.github.com/repos/666ghj/BettaFish</a>（页面版：github.com/666ghj/BettaFish）</div><div class="note">事实核查：stargazers_count 42,666、forks_count 7,632、license GPL v2（与 Trendshift [7] 同证）、description 与 [3] README 一致；created_at 2024-07-01（早于公开传播，占位仓库行为，已注记）；pushed_at 2026-10-16。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">B+</span><span class="st">第三方监测（一手记录）</span></div><div class="ti">Trendshift：666ghj/BettaFish 仓库档案（GitHub Trending 历史与成就）</div><div class="mt"><b>来源：</b>trendshift.io　<b>查询时点：</b>2026-11-12<br><a href="https://trendshift.io/repositories/15286" target="_blank" rel="noopener">https://trendshift.io/repositories/15286</a></div><div class="note">事实核查：GitHub trending history 区间 2025-10-31 ~ 2026-03-09 内「#1 on 5 days」、Achievements「#1 on the list」、39 contributors、近 61 天 +465★/+115 forks/2 merged PRs；license GPL-2.0 与 [6] 交叉一致。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx verified">[8]</span><span class="rt">A</span><span class="st">GitHub 一手（API）</span></div><div class="ti">GitHub API：仓库 666ghj/MiroFish（预测万物）</div><div class="mt"><b>来源：</b>api.github.com　<b>查询时点：</b>2026-11-12<br><a href="https://api.github.com/repos/666ghj/MiroFish" target="_blank" rel="noopener">https://api.github.com/repos/666ghj/MiroFish</a>（页面版：github.com/666ghj/MiroFish；官网 mirofish.ai）</div><div class="note">事实核查：stargazers_count 85,109、forks 12,897、license AGPL-3.0、created_at 2025-11-26、topics 含 public-opinion-analysis/financial-forecasting/swarm-intelligence；与 [2] 报道时点 5.7k★ 对比印证增长。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx partial">[9]</span><span class="rt">B+</span><span class="st">主流都市媒体</span></div><div class="ti">十天 vibe coding！00 后小孩哥获盛大 3000 万投资，当上 CEO（新民晚报，头条号分发）</div><div class="mt"><b>来源：</b>头条号（原发新民晚报）　<b>发布日期：</b>2026-03（转载窗口）<br><a href="http://m.toutiao.com/group/7615805771711922729/" target="_blank" rel="noopener">http://m.toutiao.com/group/7615805771711922729/</a></div><div class="note">事实核查：搜索摘要级核验（正文未全文回溯）。郭航江「我们需要的不是一群'标准答案'，而是一群'非标准化'的年轻伙伴」招贤引语出自此稿摘要；关键事实与 [1][2] 一致，按 partial 收录。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx partial">[10]</span><span class="rt">B</span><span class="st">商业媒体</span></div><div class="ti">00后开发者获陈天桥3000万投资：AI时代超级个体的崛起（正和岛）</div><div class="mt"><b>来源：</b>tojoyun.com（正和岛）　<b>发布日期：</b>2026-03（转载窗口）<br><a href="https://www.tojoyun.com/news/zixun/69b48dcc452105142509bc93" target="_blank" rel="noopener">https://www.tojoyun.com/news/zixun/69b48dcc452105142509bc93</a></div><div class="note">事实核查：搜索摘要级核验（正文未全文回溯）。「10 天 Vibe coding / 大四学生 / 3000 万元投资」等摘要要素与 [1][2][5] 交叉一致，用于「超级个体」舆论背景佐证，按 partial 收录。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 10 条。核验标签分布：🟢 已核验（verified）5 条、🔵 多源印证（cross）3 条、🟡 部分映证（partial）2 条。信源评级分布：A 级 5 条（36氪主流财经 1 条 + GitHub API/README 一手 4 条，全部原文回溯完成）、B+/B 级 5 条（Trendshift、新民晚报为 B+，新智元、浙商、正和岛为 B）。GitHub 星标与仓库数据全部为 2026-11-12 API/一手实测而非转述。核验失败 URL：无；两处（新民晚报头条号分发、正和岛）仅完成搜索摘要级核验并按 partial 标注；新智元微信原文链接未直接回溯，以其新浪财经转载版为可达版本。两处口径冲突（学校归属、起点时点）与一处双口径（社媒覆盖 30+/10+）已在正文与捌节显式标注；注资性质、公司主体、营收均为公开信息留白，未做任何推测性补写。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-12 · GitHub 星标为时点实测值会随时间变动，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

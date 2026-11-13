@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · AI 短片《纸手机》—— WAI 工作室的两人影像工业 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · AI 短片《纸手机》">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="AI 短片《纸手机》深度案例报告：杨选、李婷两位潮汕主创用可灵 AI 三天完成 5 分钟清明短片，全网播放破亿、曝光 2.3 亿，入围北影节 AIGC 单元。13 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>AI 短片《纸手机》深度案例报告</h1>
+    <h2>两人、三天、一部 5 分钟清明短片：潮汕主创用可灵 AI 拍出<br>「最没人味的 AI，最有人味的思念」—— 13 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">作品型 OPC</span>
+      <span class="tag">两人工作室</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">破亿</div><div class="k">全网播放量（4 月中下旬口径）</div></div>
+  <div class="stat"><div class="v up">2.3 亿</div><div class="k">全网传播曝光</div></div>
+  <div class="stat"><div class="v neutral">2 人</div><div class="k">主创团队（杨选 / 李婷）</div></div>
+  <div class="stat"><div class="v neutral">3 天</div><div class="k">成片周期</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">《纸手机》是 2026 年清明节点现象级的「小团队 + AI 影像」样本：一部没有炫酷特效、没有跌宕剧情的 5 分钟短片，讲一个小男孩用攒下的 15 元买纸手机烧给去世的奶奶做最后一次通话，被央视《焦点访谈》与人民网双重背书，也是案例墙中首个以「两人」形态跑通从爆款到商单闭环的 AI 工作室案例<sup class="cite verified">[1]</sup><sup class="cite verified">[2]</sup><sup class="cite verified">[3]</sup>。</p>
+  <div class="two">
+    <div class="card"><div class="ct">作品</div><div class="cb">5 分钟清明主题 AI 短片：一个连「去世」都不懂的小男孩，想用攒下的 15 元给奶奶烧一部「纸手机」；纸扎店老板先画假手机打发他，得知真相后追出去，用「信号不好」「奶奶付过钱了」这些笨拙借口温柔地圆了孩子的梦。全片无真人演员，唯一实拍道具是一只手绘的纸手机<sup class="cite verified">[1]</sup><sup class="cite verified">[2]</sup><sup class="cite verified">[3]</sup>。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="card"><div class="ct">主创（两人分工）</div><div class="cb"><b>杨选</b>：WAI 工作室创始人、编剧与导演，广州美术学院毕业，深耕广告行业多年、怀揣导演梦，2025 年 6 月起放弃全部实拍业务转型 AI 视频；负责编剧与音乐填词，抖音账号 <b>@FOS</b>。<b>李婷</b>：1998 年生，深圳大学传播学院毕业，曾任广州一家游戏直播大厂产品经理 5 年，2025 年 7 月辞职加入；主导分镜与脚本设计，共同完成画面生成，抖音账号 <b>@WAI-你听</b>。两人均为土生土长的潮汕人。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="card"><div class="ct">创作方式（三天成片）</div><div class="cb">使用可灵 3.0 Omni 模型辅助制作：先设人设，再出分镜，每个分镜生成视频，拼接后做后期包装；杨选作词、与 AI 沟通约半小时做出歌曲。李婷描述生成过程像「抽卡」——有些镜头一两次就过，有些要生成十几次。全片唯一的真实道具，是李婷用纸壳板亲手画的纸手机，只因 AI 生成的手绘动作少了一份手工的温度<sup class="cite verified">[1]</sup><sup class="cite verified">[2]</sup><sup class="cite verified">[4]</sup>。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-4">[4]</a></div></div>
+    <div class="card blue"><div class="ct">荣誉与传播</div><div class="cb">入围第十六届北京国际电影节 AIGC 单元最佳短片，李婷并凭该片捧起同单元短片组最佳音乐奖；被央视新闻、人民日报等主流媒体转发；获央视《焦点访谈》专题报道、人民网人物特稿；网友评为「用最没人味的 AI，拍出最有人味的短片」。</div><div class="cm">信源：<a class="cref partial" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-7">[7]</a> <a class="cref partial" href="#ref-5">[5]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2024-12-19</div><div class="tx">可灵 1.6 模型发布，杨选坚定入局 AI 视频</div><div class="td">一次商业实拍中，杨选在朋友启发下用可灵 1.6 实现了实拍无法实现的镜头：「我当时就觉得这个东西就是未来」。<a class="cref verified" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2025-06</div><div class="tx">WAI 工作室在深圳创立，杨选放弃全部实拍业务</div><div class="td">工作室专注用 AI 生成视频，走「真实叙事」路线；央视《焦点访谈》后来将其作为「手搓经济」样本拍摄。<a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2025-07</div><div class="tx">李婷辞去游戏直播大厂产品经理，加入工作室</div><div class="td">此前她做了 5 年产品经理；2025 年夏天看到杨选的 AI 作品后被吸引，「从零起步，经过半年多学习便已经可以上手」。<a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-4">[4]</a><a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2025 年内</div><div class="tx">李婷获「AI CREATORS 100」年度人物、黑客松冠军</div><div class="td">接触 AI 影视行业的第一年即被外界冠以「天才少女」之名。<a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2026 清明前夕</div><div class="tx">回潮汕老家见烧纸扎寄思，灵感落地，三天成片</div><div class="td">「要是孩子想给离世的奶奶打电话，会不会买一部纸手机？」两人分工协作：杨选编剧与音乐填词，李婷分镜与脚本，用可灵 3.0 Omni 完成。<a class="cref verified" href="#ref-2">[2]</a><a class="cref verified" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2026-04-01 / 04-02</div><div class="tx">全网刷屏：新京报、北京日报客户端（转南都）报道</div><div class="td">全网视频播放量已超 4000 万；「最没人味的 AI，拍出了最有人味的短片」成为评论区高频金句。<a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2026-04-03</div><div class="tx">人民网刊发人物特稿《三天、两人、一部刷屏短片》</div><div class="td">央媒确认「技术服务创作者」叙事，将本案与「十五五」规划纲要「繁荣互联网条件下新大众文艺」相关联。<a class="cref verified" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2026-04-05</div><div class="tx">《最人物》长文（观察者网风闻收录）披露账号对应关系</div><div class="td">抖音创作者 @WAI-你听 与 @FOS 即导演李婷与创始人杨选；评论区「明知道是 AI，但还是看哭了」。<a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2026-04-16</div><div class="tx">播放破亿：南都数字报道引为「技术平权」案例</div><div class="td">中国网络视听大会报道中，快手高级副总裁马宏彬以《纸手机》论证「AI 的终极价值，是把表达权还给每个人」。<a class="cref cross" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2026-04 下旬</div><div class="tx">第十六届北影节 AIGC 单元：入围最佳短片、获最佳音乐奖</div><div class="td">新榜口径为「入围北影节 AIGC 单元最佳短片」；中新网现场报道确认李婷为「短片组最佳音乐」获奖者；同期全网曝光达 2.3 亿。<a class="cref partial" href="#ref-6">[6]</a><a class="cref cross" href="#ref-7">[7]</a><a class="cref cross" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2026-04-30</div><div class="tx">商业变现闭环：订单「像潮水一样涌进」工作室</div><div class="td">中新网北影节报道：可灵创作者计划提供算力、内测模型、宣发流量与商业项目对接的全方位扶持，WAI 开始规划更长叙事。<a class="cref cross" href="#ref-7">[7]</a></div></div>
+    <div class="node"><div class="dt">2026-05-20</div><div class="tx">央视《焦点访谈》专题《"搓"出来的新赛道》收录本案</div><div class="td">节目口径播放量突破 2000 万次（口径讨论见伍）；杨选、李婷以「手搓」创业者身份登上央视，与清华学者、可灵负责人同框。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-10-07</div><div class="tx">新华社对话 @WAI-你听：热度长尾仍在延续</div><div class="td">2026 抖音创作者大会上，《纸手机》在抖音平台已获 180 万点赞、110 万转发；机构预测 2026 年国内 AI 剧和漫剧市场规模有望突破 400 亿元。<a class="cref cross" href="#ref-9">[9]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：从「乙方」到「创作者」——机会只有一两次</div><div class="cb">2025 年之前，杨选做传统商业拍摄，是帮别人讲故事的「乙方」。2024 年 12 月可灵 1.6 发布成为显性分水岭：他在商业实拍中验证了 AI 能实现实拍做不到的镜头，半年后（2025 年 6 月）放弃全部实拍业务。他的自述带着潮汕式的执拗：「我这个人有点头铁……机会往往只有一两次，我既然看见了，就必须抓住。」<a class="cref verified" href="#ref-4">[4]</a></div></div>
+  <div class="card"><div class="ct">转折二：互补型两人结构——「创始人与天才少女」</div><div class="cb">李婷 2025 年 7 月辞去广州游戏直播大厂产品经理加入，让工作室从「个人」升级为「两人」：杨选出创意、剧本与音乐（产品端），李婷出分镜、脚本与画面执行（工程端），共同完成画面生成。这个最小可用团队恰好覆盖了 AI 短片生产所需的全部工种——一个人能拍片，两个人能稳定出片并接住商单。<a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-4">[4]</a></div></div>
+  <div class="card red"><div class="ct">转折三：爆款不是终点——「订单像潮水一样涌进」</div><div class="cb">《纸手机》爆火后，「来的每一个项目都很好」，订单涌入这间原本「不怎么加班」的工作室；可灵 AI 创作者计划的扶持（算力保障、内测模型优先体验、宣发流量、商业项目直接对接）让两人得以「从技术门槛和成本中跳脱出来，只为创意负责」——从流量到收入的转化在爆火后一个月内即被中新网记录，是本案区别于多数「纯作品型」案例的关键。<a class="cref cross" href="#ref-7">[7]</a></div></div>
+  <div class="quote">
+    <p>「AI 再强大，也代替不了我们对生活的观察与情感的沉淀。」</p>
+    <span class="src">—— 杨选，人民网《三天、两人、一部刷屏短片》（2026-04-03），转引自 <a class="cref verified" href="#ref-2">[2]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>内容</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>作品形态</td><td>5 分钟清明主题 AI 短片（单部）；情感叙事向、无真人演员、可灵 3.0 Omni 全流程生成；后续延续「真实叙事」路线并规划更长叙事乃至大银幕作品</td><td><a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td>AI 工具链</td><td>可灵 3.0 Omni（图生视频/视频编辑/分镜呈现）为核心；「设人设 → 出分镜 → 逐分镜生成 → 拼接 → 后期包装」五步工作流；杨选与 AI 沟通约半小时产出歌曲；提示词方法论为「不写抽象情绪，写具体动作」（如「脚趾在鞋里抠地」「手指搓衣角」）</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td>变现现状</td><td>爆火后商单「像潮水一样涌进」，且「来的每一个项目都很好」；具体商单金额、分成与营收数据<b>未披露</b>（未检索到公开信息）；可推断路径：品牌商单/定制短片（B 端）+ 平台创作者扶持与赛事奖金，推断口径为 C 级</td><td><a class="cref cross" href="#ref-7">[7]</a> <a class="cref partial" href="#ref-6">[6]</a></td></tr>
+      <tr><td>面向客群</td><td>C 端：抖音等平台清明节点的大众情感受众（评论区涌入缅怀亲人人群）；B 端：媒体转载（央视新闻、人民日报等上百家）与广告主/品牌方；间接客群：可灵 AI（超级创作者身份，获算力/流量/商业对接扶持）</td><td><a class="cref verified" href="#ref-3">[3]</a> <a class="cref partial" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td>解决痛点</td><td>供给端：传统实拍的高成本与高门槛——杨选估算《纸手机》若真人实拍至少需小几十万元，结尾低机位行车长镜头仅拖车、悬臂等设备成本就需大几十万元；需求端：流水线 AI 内容泛滥后，「没有 AI 味」的真实情感内容成为稀缺品</td><td><a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-7">[7]</a> <a class="cref verified" href="#ref-3">[3]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 商业模式注解</div>
+    与平台分账型短剧不同，《纸手机》是「单片爆款 → 商单承接」的模式：短片本身不以分账为目标，而是作为能力证明与品牌资产，为工作室带来 B 端项目。可灵 AI 创作者计划在其中扮演了「平台化扶持」角色——算力、内测、流量、商业对接四位一体<sup class="cite cross"><a class="cref cross" href="#ref-7">[7]</a></sup>。这一模式对个人/小团队的可复制性较高，但依赖模型平台的生态意愿。
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>全网播放（首发期）</td><td class="hl">超 4000 万</td><td>2026-04-01 / 04-02 / 04-05</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-4">[4]</a><a class="cref partial" href="#ref-5">[5]</a></td></tr>
+      <tr><td>全网播放（中下旬口径）</td><td class="hl">破亿</td><td>2026-04-16 起多源并列</td><td><a class="cref cross" href="#ref-8">[8]</a><a class="cref partial" href="#ref-6">[6]</a><a class="cref partial" href="#ref-10">[10]</a></td></tr>
+      <tr><td>全网传播曝光</td><td class="hl">2.3 亿</td><td>2026-04 下旬</td><td><a class="cref partial" href="#ref-6">[6]</a><a class="cref partial" href="#ref-10">[10]</a></td></tr>
+      <tr><td>央视口径播放</td><td>突破 2000 万次</td><td>2026-05-20 播出节目</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>媒体转发</td><td>央视新闻、人民日报等上百家</td><td>2026-04</td><td><a class="cref partial" href="#ref-5">[5]</a><a class="cref partial" href="#ref-10">[10]</a></td></tr>
+      <tr><td>抖音端互动</td><td class="pos">180 万点赞 / 110 万转发</td><td>2026-10-07（新华社）</td><td><a class="cref cross" href="#ref-9">[9]</a><a class="cref partial" href="#ref-11">[11]</a></td></tr>
+      <tr><td>第三方评价引用</td><td>「抖音播放量破亿」；评论区「没人提醒我，真没注意到是 AI 做的」</td><td>2026-04-08</td><td><a class="cref partial" href="#ref-12">[12]</a></td></tr>
+      <tr><td>北影节荣誉</td><td>入围 AIGC 单元最佳短片；短片组最佳音乐奖</td><td>2026-04 下旬</td><td><a class="cref partial" href="#ref-6">[6]</a><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 三口径并列与时点关系说明</div>
+    本案播放数据存在三个并行口径：<b>4000 万</b>（4 月初新京报/北京日报「全网视频播放量」口径）→ <b>破亿 / 曝光 2.3 亿</b>（4 月中下旬新榜、快科技、南都等行业口径）——两者在时间上呈递进关系，符合清明节后长尾发酵曲线；而<b>央视 2000 万</b>（5 月 20 日播出）数值更低、时点更晚，<b>不构成递进关系</b>，推断为节目采访期或特定平台口径，与「全网播放」统计范围不同，未获官方解释。引用建议：以「全网播放破亿、曝光 2.3 亿」为传播效果上限口径，以央视 2000 万为央媒审慎口径并列呈现。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将《纸手机》放入案例墙 2026 年「个人/小团队 + AI 影像」坐标系（对标数据均为<b>案例墙既有核验值</b>，口径为各案例独立信源的公开报道值）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>主创</th><th>团队规模</th><th>形态时长</th><th>成本</th><th>周期</th><th>播放表现</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>《纸手机》</b></td><td>杨选 / 李婷（深圳）</td><td class="hl">2 人</td><td>5 分钟清明短片（单部）</td><td>未披露（推断为数千元级算力，C 级）</td><td class="hl">3 天</td><td>全网破亿、曝光 2.3 亿</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref partial" href="#ref-6">[6]</a></td></tr>
+      <tr><td>《归墟》</td><td>泫九（江澜）</td><td>1 人</td><td>末世科幻 AI 短剧 12-14 集 × 约 8 分钟</td><td>近 20 万元</td><td>约 5 个月（周更）</td><td>全网播放破亿、红果热度 4400 万+</td><td>案例墙核验值</td></tr>
+      <tr><td>《丧尸清道夫》</td><td>刘梓瑜</td><td>1 人</td><td>3 分 34 秒科幻短片（单部）</td><td>3000 余元</td><td>不到 10 天</td><td>播放 6000 万至破亿</td><td>案例墙核验值</td></tr>
+      <tr><td>《一掌熊猫》</td><td>秦文山（苏州画宗智能）</td><td>1 人主导</td><td>42 分钟 AI 动画长片</td><td>约 3 万元</td><td>28 天</td><td>全网播放破百万；入围北京国际电影节</td><td>案例墙核验值</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>四案对照可见「小团队 AI 影像」的三条路线：《归墟》走<b>连载长跑</b>（重成本、重运营），《一掌熊猫》走<b>长片攻坚</b>（重资产、重叙事），而《纸手机》与《丧尸清道夫》代表<b>单片冲刺</b>路线——以节日情绪节点 + 极短周期引爆。本案的差异化恰在「两人」形态：比一人路线多了一道创意与执行的互补校验，三天成片却是四者中最快的；它同时是四者中唯一被央视《焦点访谈》以「手搓经济」产业样本规格专题报道的案例<sup class="cite verified">[1]</sup>，且是唯一在爆火一个月内被央媒确认「商业变现跑通」的案例<sup class="cite cross">[7]</sup>。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:16%">维度</th><th>分析</th><th style="width:18%">信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>AI 原生短片创作与商业化承接：以「真实叙事」为方法论的单片内容产品（5 分钟、情感向、全 AI 生成 + 单点实拍道具），配套五步工作流与提示词方法论；产品即内容，同时作为工作室的能力名片面向 B 端输出。</td><td><a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>2. 面向客群</b></td><td>双客群结构：C 端为短视频平台的节点型大众受众（清明缅怀情绪人群，评论区分享真实经历形成共振）；B 端为需要 AI 影像能力的品牌方与媒体（爆火后商单涌入、上百家媒体转发形成背书）。未披露用户画像数据。</td><td><a class="cref partial" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>3. 解决痛点</b></td><td>用 AI 拉平影视创作的资金与团队门槛（实拍需小几十万元级预算 vs 三天零实拍完成），同时解决 AI 内容普遍「有 AI 味」的信任痛点——以潮汕民俗细节、心理真实复刻（成年人被问死亡时「先愣住、缓和一下再回答」）换取观众「看不出是 AI」的情感投入。</td><td><a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>4. 预估年化营收（推断，置信度 C）</b></td><td><b>零披露</b>。可核验事实：订单「像潮水一样涌进」且质量高；获可灵创作者计划算力/流量/商业对接扶持。<b>推断路径</b>：AI 广告/品牌定制短片商单（行业单条数万至数十万元级）+ 平台扶持折算 + 赛事奖金；按工作室体量与「项目不断」状态推断年营收为数十万至百万元量级，纯属推断，未获任何信源印证。</td><td><a class="cref cross" href="#ref-7">[7]</a> <a class="cref partial" href="#ref-6">[6]</a></td></tr>
+      <tr><td><b>5. 融资进展</b></td><td>未检索到公开信息。非货币资源：可灵 AI 超级创作者身份（算力保障、内测模型优先体验、宣发流量、商业项目直接对接）、平台创作者计划与赛事体系（北影节等）。</td><td><a class="cref cross" href="#ref-7">[7]</a> <a class="cref partial" href="#ref-6">[6]</a></td></tr>
+      <tr><td><b>6. 市场评价</b></td><td>权威背书密度极高：央视《焦点访谈》以「手搓经济」产业样本专题收录（快手高级副总裁盖坤评「手搓视频经济正在兴起」）；人民网特稿将本案与「新大众文艺」政策叙事关联；北影节 AIGC 单元入围 + 获奖双重认可；观众口碑「最没人味的 AI，拍出了最有人味的短片」「AI 又怎么样，又不影响我哭」。</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-3">[3]</a> <a class="cref partial" href="#ref-6">[6]</a></td></tr>
+      <tr><td><b>7. 投入成本与合规风险</b></td><td>成本：具体算力支出未披露，仅知三天周期与可灵扶持下的低现金成本（同类单片参照《丧尸清道夫》3000 元量级，推断 C 级）。合规基线：《人工智能生成合成内容标识办法》（国信办等四部门）2025-09-01 施行，AI 生成合成内容须添加标识，平台端提示义务随之强化；版权层面，AI 生成内容的训练数据与音乐权属存在行业性争议，<b>未检索到针对《纸手机》本身的版权指控</b>；内容端无宗教、历史等敏感题材，题材风险低。</td><td><a class="cref verified" href="#ref-13">[13]</a> <a class="cref verified" href="#ref-1">[1]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 一处口径冲突与四处留白（截至 2026-11-12 检索）</div>
+    ① <b>播放量口径冲突</b>：央视《焦点访谈》（2026-05-20 播出）称播放突破 2000 万次，早于该时点的媒体口径已是「4000 万+」乃至「破亿」——推断央视口径为节目采访期或特定平台数据，与全网口径不可直接相比，未获官方解释；② 商单金额与营收<b>零披露</b>；③ 工作室公司注册信息未检索到；④「入围北影节 AIGC 单元最佳短片」（新榜口径）与「获短片组最佳音乐奖」（中新网口径）并存——两者可兼容（入围提名且获得单项），但不同信源侧重不同，引用时宜并列；⑤ 李婷前东家表述存在「广州游戏直播大厂」与「大厂产品经理」两种粒度（可兼容）。
+  </div>
+  <div class="card"><div class="ct">作品瑕疵与创作者回应（如实收录）</div><div class="cb">片中老爷爷打电话一幕，话筒明显缺失、数字按键不连贯，被不少观众视为「看出是 AI」的破绽；李婷回应「瑕不掩瑜」——该镜头用可灵 3.0 Omni「抽了好几次」，最终选择人物微动作与镜头衔接更好的一版：「在那种情况下，我愿意选择更好的表达。」这是一次典型的「叙事真实优先于物理真实」的创作取舍。</div><div class="cm">信源：<a class="cref verified" href="#ref-3">[3]</a></div></div>
+  <div class="box note">
+    <div class="bt">💡 本案的样本价值：「两人」是 OPC 的最小团队变体</div>
+    案例墙主语境是「一人公司」，而《纸手机》展示了 OPC 的一个重要变体：<b>两人 = 一个人 + 一个分身</b>。杨选（创意、剧本、音乐、商业判断）与李婷（分镜、执行、审美校验）构成互为备份的最小可用组织，分工即架构，无需管理成本。它同时是一面镜子：三天、破亿、获央视背书的 explosive 结果，前提是主创多年广告拍摄功底（杨选）与 5 年产品经理方法论（李婷）的沉淀——AI 平权的是生产资料，而非审美与叙事能力本身。新榜的提醒值得放在案头：「爆款易造、长效难营，流量易得、变现难稳」<a class="cref partial" href="#ref-6">[6]</a>。
+  </div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 13 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级信源或未逐字核验）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx verified">[1]</span><span class="rt">A+</span><span class="st">央视节目（一手）</span></div><div class="ti">《焦点访谈》20260520「"搓"出来的新赛道」（央视网节目页全文）</div><div class="mt"><b>来源：</b>央视网　<b>发布日期：</b>2026-05-20<br><a href="https://tv.cctv.cn/2026/05/20/VIDEaed6g5XGNrJt4aa2Xxee260520.shtml" target="_blank" rel="noopener">https://tv.cctv.cn/2026/05/20/VIDEaed6g5XGNrJt4aa2Xxee260520.shtml</a></div><div class="note">事实核查：原文回溯完成。WAI 工作室深圳 2025 年 6 月创立、两人三天成片、五步工作流、李婷半年学习、播放 2000 万口径、盖坤「手搓视频经济」评价均出自此稿；与人民网 [2]、新京报 [3] 交叉印证。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx verified">[2]</span><span class="rt">A+</span><span class="st">央媒特稿（一手）</span></div><div class="ti">三天、两人、一部刷屏短片（人民网，记者乔雪峰）</div><div class="mt"><b>来源：</b>人民网·经济科技频道　<b>发布日期：</b>2026-04-03<br><a href="http://finance.people.com.cn/n1/2026/0403/c1004-40695025.html" target="_blank" rel="noopener">http://finance.people.com.cn/n1/2026/0403/c1004-40695025.html</a></div><div class="note">事实核查：原文回溯完成。潮汕背景、两人教育履历与分工、可灵 3.0 Omni、纸壳板实拍道具、实拍小几十万估算、「新大众文艺」政策关联均出自此稿；与 [1][3][4] 交叉印证。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx verified">[3]</span><span class="rt">A</span><span class="st">主流媒体</span></div><div class="ti">AI 又怎样？可灵这支短片让无数人破防（新京报·HI 财讯）</div><div class="mt"><b>来源：</b>新京报　<b>发布日期：</b>2026-04-01<br><a href="https://m.bjnews.com.cn/detail/1775033971129451.html" target="_blank" rel="noopener">https://m.bjnews.com.cn/detail/1775033971129451.html</a></div><div class="note">事实核查：原文回溯完成。李婷 1998 年生、深大传播系、5 年产品经理、纸壳板道具、话筒缺失破绽与「瑕不掩瑜」回应、4000 万口径均出自此稿；与 [4][5] 交叉印证。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx verified">[4]</span><span class="rt">A</span><span class="st">主流媒体（转南都）</span></div><div class="ti">AI 短片《纸手机》爆火，创作者讲述背后的故事（北京日报客户端·京报网，原发南方都市报）</div><div class="mt"><b>来源：</b>北京日报客户端（标注来源南方都市报）　<b>发布日期：</b>2026-04-02<br><a href="https://news.bjd.com.cn/2026/04/02/11667242.shtml" target="_blank" rel="noopener">https://news.bjd.com.cn/2026/04/02/11667242.shtml</a></div><div class="note">事实核查：原文回溯完成。可灵 1.6 入局节点（2024-12-19）、2025-06 转型、2025-07 李婷加入、抽卡与提示词方法论、片尾近 2 分钟长镜头、爷爷去世的私人记忆均出自此稿；与 [1][2][3] 交叉印证。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx partial">[5]</span><span class="rt">B</span><span class="st">门户风闻社区</span></div><div class="ti">4000 万人围观，一位 AI 奶奶的去世（《最人物》，观察者网风闻收录）</div><div class="mt"><b>来源：</b>观察者网·风闻（原发《最人物》官方账号，作者皮格马利）　<b>发布日期：</b>2026-04-05<br><a href="https://user.guancha.cn/main/content?id=1628833&s=fwzwyzzwzbt" target="_blank" rel="noopener">https://user.guancha.cn/main/content?id=1628833&s=fwzwyzzwzbt</a></div><div class="note">事实核查：原文回溯完成。抖音账号 @FOS（杨选）/@WAI-你听（李婷）对应关系出自此稿；账号存在与 @WAI-你听 数据另经新华社 [9] 佐证；人物特稿属转述型内容，从严标 partial。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx partial">[6]</span><span class="rt">B</span><span class="st">行业媒体</span></div><div class="ti">《纸手机》爆红之后：AI 创作者的春天真的来了？（新榜，作者 Kino / 编辑张洁）</div><div class="mt"><b>来源：</b>新榜（今日头条号发布页）　<b>发布日期：</b>约 2026-04 下旬<br><a href="http://m.toutiao.com/group/7637331179795989027/" target="_blank" rel="noopener">http://m.toutiao.com/group/7637331179795989027/</a></div><div class="note">事实核查：原文回溯完成。「入围北影节 AIGC 单元最佳短片」「播放量破亿、全网曝光超 2.3 亿」及「爆款易造、长效难营」行业判断出自此稿；破亿/曝光数据与 [8][10] 交叉，北影节入围口径以 [7] 中新网获奖报道部分印证，渠道为头条号转载故从严标 partial。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">A</span><span class="st">央媒报道</span></div><div class="ti">当「人味儿」贵过「Token」：AI 创作者在北影节的一次集体突围（中国新闻网，作者苏亦瑜）</div><div class="mt"><b>来源：</b>中国新闻网·财经频道　<b>发布日期：</b>2026-04-30<br><a href="http://www.chinanews.com.cn/cj/2026/04-30/10614096.shtml" target="_blank" rel="noopener">http://www.chinanews.com.cn/cj/2026/04-30/10614096.shtml</a></div><div class="note">事实核查：原文回溯完成。李婷获北影节 AIGC 电影单元短片组最佳音乐奖、订单涌入、可灵创作者计划四项扶持、长镜头设备成本「大几十万」估算、提示词具体动作方法论、更长叙事与大银幕规划均出自此稿。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx cross">[8]</span><span class="rt">B+</span><span class="st">主流都市报</span></div><div class="ti">快手以 AI 驱动「数字新市井」共建有价值有温度的视听生态（南方都市报数字报，记者汪陈晨）</div><div class="mt"><b>来源：</b>南方都市报·南都数字报　<b>发布日期：</b>2026-04-16<br><a href="https://ipaper.oeeee.com/ipaper/A/html/2026-04/16/content_3153.htm" target="_blank" rel="noopener">https://ipaper.oeeee.com/ipaper/A/html/2026-04/16/content_3153.htm</a></div><div class="note">事实核查：原文回溯完成。「两位非科班创作者三天完成、无真人演员无实拍团队、收获破亿播放量」及马宏彬「把表达权还给每个人」出自此稿；破亿口径与 [6][10] 交叉印证；报道带有视听大会企业发言语境，标 cross。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx cross">[9]</span><span class="rt">A+</span><span class="st">央媒报道（一手）</span></div><div class="ti">秀我中国丨对话 AI 创作者 @WAI-你听 @潘鱼晏（新华社）</div><div class="mt"><b>来源：</b>新华网·科技频道（新华社音视频部）　<b>发布日期：</b>2026-10-07<br><a href="http://imgs.xinhuanet.com/tech/20261007/f50f1b0f057943108d68c9c75645657d/c.html" target="_blank" rel="noopener">http://imgs.xinhuanet.com/tech/20261007/f50f1b0f057943108d68c9c75645657d/c.html</a></div><div class="note">事实核查：原文回溯完成。《纸手机》抖音平台 180 万点赞、110 万转发，2026 抖音创作者大会场景，AI 剧/漫剧市场规模 400 亿元预测出自此稿；@WAI-你听 账号存在性据此与 [5] 互证。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx partial">[10]</span><span class="rt">B</span><span class="st">行业媒体</span></div><div class="ti">可灵 AI 发布创作者计划 3.0：从创作者支持到商业化赋能全面加码（快科技）</div><div class="mt"><b>来源：</b>快科技（mydrivers）　<b>发布日期：</b>约 2026-04 下旬<br><a href="https://news.mydrivers.com/1/1119/1119098.htm" target="_blank" rel="noopener">https://news.mydrivers.com/1/1119/1119098.htm</a></div><div class="note">事实核查：搜索摘要命中关键数据（总播放量突破 1 亿、全网传播曝光 2.3 亿、上百家媒体转发、「最没人味/最有人味」网友评价），与 [6][8] 交叉；未逐字核验全文，从严标 partial。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx partial">[11]</span><span class="rt">B+</span><span class="st">平台账号页（一手）</span></div><div class="ti">抖音账号 @FOS（杨选）/ @WAI-你听（李婷）主页</div><div class="mt"><b>来源：</b>抖音平台　<b>查询日期：</b>2026-11-12<br><b>备注：</b>账号主页 URL 含动态 sec_uid 参数，公开检索未能直接抓取主页快照；账号存在、昵称与对应关系经观察者网风闻 <a class="cref partial" href="#ref-5">[5]</a> 与新华社 <a class="cref cross" href="#ref-9">[9]</a> 双重佐证，互动数据（180 万点赞/110 万转发）以新华社口径为准。</div><div class="note">事实核查：按「一手账号页未能直接抓取」如实标注，从严标 partial。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx partial">[12]</span><span class="rt">B+</span><span class="st">行业官方媒体</span></div><div class="ti">AI 何以拍出中国人最真挚的思念（中国作家网·艺术频道）</div><div class="mt"><b>来源：</b>中国作家网（中国作家协会主办）　<b>发布日期：</b>2026-04-08<br><a href="http://www.chinawriter.com.cn/n1/2026/0408/c419388-40697012.html" target="_blank" rel="noopener">http://www.chinawriter.com.cn/n1/2026/0408/c419388-40697012.html</a></div><div class="note">事实核查：搜索摘要命中「抖音播放量破亿」口径与读者评论「没人提醒我，真没注意到是 AI 做的」，与 [8] 方向一致；未逐字核验全文，从严标 partial。</div></li>
+  <li id="ref-13" class="src"><div class="sh"><span class="idx verified">[13]</span><span class="rt">A+</span><span class="st">政府规章（一手）</span></div><div class="ti">《人工智能生成合成内容标识办法》（国信办通字〔2025〕2 号）</div><div class="mt"><b>来源：</b>国家互联网信息办公室官网（四部门联合发布：网信办、工信部、公安部、广电总局）　<b>发布日期：</b>2025-03-07（2025-09-01 施行）<br><a href="https://www.cac.gov.cn/2025-03/14/c_1743654684782215.htm" target="_blank" rel="noopener">https://www.cac.gov.cn/2025-03/14/c_1743654684782215.htm</a></div><div class="note">事实核查：政府原文（第十四条施行日期）经网信办官网与中国政府网四部门通稿双重检索印证；用于第七节合规基线与 AI 生成内容标识义务说明。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 13 条。核验标签分布：🟢 已核验（verified）5 条、🔵 多源印证（cross）3 条、🟡 部分映证（partial）5 条。信源评级分布：A+/A 级 7 条（央视、人民网、新华社、新京报、北京日报客户端、中新网、网信办规章，一手原文回溯全部完成）、B+/B 级 6 条。两处口径事项（央视 2000 万与全网口径的统计范围差异、「入围最佳短片」与「获最佳音乐奖」表述并存）与三处留白（商单金额、公司注册信息、抖音主页快照）已在正文显式标注；营收推断均标 C 级。未发现伪造链接；全部 URL 为检索过程实际命中页面，央视与人民网两个一手信源全文核验通过。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-12 · 营收与成本推断值均标注置信口径，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

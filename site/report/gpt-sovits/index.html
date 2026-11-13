@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · GPT-SoVITS——B 站 UP 主「花儿不哭」的社区开源语音克隆事实标准 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · GPT-SoVITS">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="GPT-SoVITS 深度案例报告：B 站 UP 主花儿不哭（RVC-Boss）发起的社区开源少样本语音克隆与 TTS 工具，5 秒音频克隆音色，GitHub 64,420★（2026-11-13 API 实测），中文语音克隆事实标准。11 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>GPT-SoVITS 深度案例报告</h1>
+    <h2>B 站 UP 主「花儿不哭」（RVC-Boss）发起的社区开源项目：<br>5 秒音频克隆音色，64k 星标铸成中文语音克隆事实标准 —— 11 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">开源工具型 OPC</span>
+      <span class="tag">UP 主发起 + 社区共建</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">64,420</div><div class="k">GitHub Star（2026-11-13 API 实测）</div></div>
+  <div class="stat"><div class="v neutral">5 秒</div><div class="k">Zero-shot 克隆参考音频下限</div></div>
+  <div class="stat"><div class="v neutral">5 语种</div><div class="k">中英日韩粤跨语种合成</div></div>
+  <div class="stat"><div class="v neutral">MIT</div><div class="k">开源许可（GitHub API 确认）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">GPT-SoVITS 是一个「少样本语音转换与文本转语音（Few-shot Voice Conversion &amp; TTS）」的开源 WebUI 工具：输入 5 秒参考音频即可零样本克隆音色，用 1 分钟数据微调即可显著提升相似度，并支持中、英、日、韩、粤五语种跨语种合成<sup class="cite verified">[2]</sup>。项目由 B 站 UP 主「花儿不哭」（GitHub ID：RVC-Boss）创建于 2024 年 1 月（北京时间 2024-01-15，UTC 时间戳 2024-01-14T18:05:21Z），至 2026-11-13 实测 64,420 Star、6,782 Fork、911 个开放 Issue，MIT 许可，最后提交 2026-10-31——发布近三年仍处高频维护状态<sup class="cite verified">[1]</sup>。它并非公司化产品，而是一例典型的「UP 主发起 + 社区共建」开源项目：本报告如实按此口径呈现。</p>
+  <div class="two">
+    <div class="card"><div class="ct">项目与产品</div><div class="cb">GPT-SoVITS-WebUI：零样本 TTS（5 秒参考音频）+ 少样本 TTS（1 分钟数据微调）+ 跨语种推理（中英日韩粤）；配套 WebUI 内置训练集切分、ASR 自动标注、伴奏分离等全流程工具链，提供 Windows 一键整合包、Colab 训练与 HuggingFace 在线 Demo。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="card"><div class="ct">发起人</div><div class="cb">花儿不哭，B 站 UP 主，真名未公开（以网名行世），GitHub ID 为 RVC-Boss，其 B 站空间简介自述「RVC 变声器创始人」。此前已以开源实时变声器 RVC 在中文 AI 语音社区成名，是中文语音开源圈头部个人维护者。</div><div class="cm">信源：<a class="cref partial" href="#ref-3">[3]</a> <a class="cref partial" href="#ref-8">[8]</a></div></div>
+    <div class="card blue"><div class="ct">「UP 主发起 + 社区共建」口径</div><div class="cb">仓库 owner 为个人账号 RVC-Boss（GitHub 用户类型 User 而非 Organization），但代码演进高度依赖社区：6,782 个 Fork 构成外围改进池，911 个开放 Issue 汇聚用户反馈，学术与下游项目反向贡献用例。RVC 时代社区即以「与很多大佬共同领创」描述其形态——严格说是「一人核心维护者 + 社区贡献」，非字面意义的单打独斗。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-4">[4]</a></div></div>
+    <div class="card blue"><div class="ct">成功迹象（时点值）</div><div class="cb">GitHub Star 64,420、Fork 6,782（2026-11-13 API 实测）；被 VideoLingo 等下游开源项目列为官方集成的配音后端，被声纹归因学术研究选为基准系统；案例墙标注其为「中文语音克隆事实标准」（多源印证口径）。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-7">[7]</a></div></div>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 口径声明</div>
+    本案例收录口径为「一人主导 + 社区贡献」。发起人真名、公司注册与商业化情况均未检索到公开信息；「事实标准」一说无权威机构认定，系基于下游集成与学术引用密度的多源印证判断（详见柒、捌）。
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">GPT-SoVITS 发布之前</div><div class="tx">RVC 变声器：UP 主身份的开源积累</div><div class="td">花儿不哭以「RVC 变声器创始人」为社区公认身份：RVC（Retrieval-based-Voice-Conversion）系其与多位社区开发者共同领创的国内首个开源免费 AI 实时变声器（另有 w-okada 日版并立），同期已出现套皮收费乱象。<a class="cref partial" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2024-01-15 ✓（锚点）</div><div class="tx">GPT-SoVITS 仓库创建，开源发布</div><div class="td">GitHub 仓库创建时间戳为 UTC 2024-01-14T18:05:21Z，对应北京时间 2024-01-15，与案例墙锚点一致；仓库描述即「1 分钟语音数据也能训练出好的 TTS 模型（少样本语音克隆）」。<a class="cref verified" href="#ref-1">[1]</a> 发布者同期在 B 站开设「AI 语音·音色克隆教程&amp;效果展示」合集（页面显示 2024-1-15）。<a class="cref partial" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2024 年内</div><div class="tx">社区引爆：中文语音克隆的默认选项</div><div class="td">低成本克隆 + 中文友好使其在虚拟主播、游戏二创、视频配音圈快速铺开；技术社区以「B 站大佬『花儿不哭』开源的低成本 AI 音色克隆软件，MIT 协议」为口径传播，同时发出「效果很逼真，请谨慎使用」的滥用提醒。<a class="cref cross" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2024 年（V2 发布）</div><div class="tx">V2 迭代：底膜 5k 小时、新增韩粤语种</div><div class="td">V2 对低音质参考音频的合成音质更好；底膜训练集增加到 5,000 小时，zero-shot 音色更像、所需数据更少；增加韩语与粤语，形成中日英韩粤五语种跨语种合成；并加入多音字优化。<a class="cref cross" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2024-2025</div><div class="tx">进入下游生态与学术视野</div><div class="td">视频本地化开源项目 VideoLingo 将 GPT-SoVITS-v2 写入官方文档，作为「Netflix 级字幕 + 克隆配音」管线的核心 TTS 后端，提供专用配置教程。<a class="cref verified" href="#ref-6">[6]</a> 声纹归因学术研究亦将其 v1–v4 与 v2ProPlus 列为基准零样本 TTS 系统。<a class="cref cross" href="#ref-7">[7]</a></div></div>
+    <div class="node"><div class="dt">2025-02 起</div><div class="tx">版本冲刺：v3 → v4 → v2Pro → v2ProPlus</div><div class="td">Windows 整合包文件名（GPT-SoVITS-v3lora-20250228）可见 2025-02 的 v3 LoRA 版发布节奏；官方 README 记录 v4（48k 原生输出、修复 v3 金属音）、v2Pro（v4 性能 + v2 硬件成本）与 v2ProPlus 的持续演进，并给出推理速度实测：v2ProPlus RTF 0.028（4060Ti）/ 0.014（4090）/ 0.526（M4 CPU）。<a class="cref verified" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2026-10-31 → 2026-11-13</div><div class="tx">仍在高频维护，Star 站上 64k</div><div class="td">最后提交 2026-10-31；2026-11-13 API 实测 Star 64,420、Fork 6,782——发布近三年仍处于活跃维护状态，星标数随时间变动，本报告所有星标均注明时点。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：先做「变声」，再做「克隆」——UP 主身份即产品冷启动</div><div class="cb">与典型独立开发者「写代码 → 发产品」路径不同，花儿不哭的起点是 B 站内容创作者：RVC 实时变声器阶段已积累教程、效果展示视频与粉丝社区，其「AI 语音·音色克隆教程&amp;效果展示&amp;RVC 变声器宣传视频」合集构成 GPT-SoVITS 发布时的天然分发渠道<sup class="cite partial">[3]</sup>。「内容引流 → 开源沉淀 → 社区共建」三段式，让项目在发布即拥有中文用户密度最高的语境——这也是其成为「中文语音克隆事实标准」的社区土壤<sup class="cite cross" href="#ref-5">[5]</sup>。</div><div class="cm">信源：<a class="cref partial" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-5">[5]</a> <a class="cref partial" href="#ref-4">[4]</a></div></div>
+  <div class="card"><div class="ct">转折二：把克隆门槛压到 5 秒——技术选型上的「极限压缩」</div><div class="cb">GPT-SoVITS 采用 GPT（语义理解）+ SoVITS（声学合成）的混合架构：前者负责文本语言学建模与韵律迁移，后者负责音色还原。官方功能表明确两级门槛——Zero-shot TTS 仅需 5 秒人声样本即时合成，Few-shot TTS 用 1 分钟训练数据微调即可显著提升相似度与真实感<sup class="cite verified">[2]</sup>。传统 TTS 模型训练动辄需要数小时级语料，本案把个人可负担的数据准备成本压缩两个数量级，直接决定了其病毒式扩散。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-5">[5]</a></div></div>
+  <div class="card"><div class="ct">转折三：拒绝收费变现——以「免费开源」对抗套皮乱象</div><div class="cb">RVC 时代已出现套皮其原版变声器谎称自研、包装收费的灰产<sup class="cite partial" href="#ref-4">[4]</sup>；GPT-SoVITS 发布后同类乱象再现——大量以项目名义收费的站点与整合包出现，其 B 站简介以加粗口径声明「RVC 唯一官方账号，无任何合作，声称官网/收费的均为诈骗」<sup class="cite partial">[3]</sup>。第三方站 gpt-sovits.com 至今仍标注「38.2K+ Stars、5.6K+ Forks」等与实测值（64,420★）严重不符的滞后数据<sup class="cite verified">[1]</sup><sup class="cite partial">[9]</sup>。在开源生态里，「免费 + 官方唯一渠道」本身成为一种护城河与信誉管理策略。</div><div class="cm">信源：<a class="cref partial" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-3">[3]</a> <a class="cref partial" href="#ref-9">[9]</a></div></div>
+  <div class="quote">
+    <p>RVC 变声器创始人，要让所有人都能免费享受到科技进步带来的成果。RVC 唯一官方账号，无任何合作，声称官网/收费的均为诈骗。</p>
+    <span class="src">—— 花儿不哭，B 站空间简介（搜索快照口径），转引自 <a class="cref partial" href="#ref-3">[3]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>内容</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>产品功能</td><td><b>5 秒克隆</b>：Zero-shot TTS 输入 5 秒人声样本即时合成；<b>少样本 TTS</b>：1 分钟数据微调提升音色相似度与真实感；<b>多语言</b>：中英日韩粤五语种跨语种推理（训练语料与推理语种可不同）；配套训练集切分、中文 ASR 标注、伴奏分离等 WebUI 工具链，开箱即用。</td><td><a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-5">[5]</a></td></tr>
+      <tr><td>技术架构</td><td><b>GPT + SoVITS 混合</b>：GPT 段做语言学建模与韵律迁移，SoVITS 段做音色声学合成；版本链 v1→v2（底膜 5k 小时）→v3（LoRA）→v4（48k 原生输出）→v2Pro/v2ProPlus（v4 性能 + v2 成本），推理速度对消费级显卡友好（RTF 0.028 @4060Ti）。</td><td><a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td>生态（集成/引用）</td><td><b>集成产品</b>：VideoLingo 官方文档将 GPT-SoVITS-v2 设为一键 Netflix 级本地化配音的 TTS 后端（gpt_sovits_tts.py 接口）<a class="cref verified" href="#ref-6">[6]</a>；<b>学术引用</b>：声纹归因研究将其四个大版本列为基准系统 <a class="cref cross" href="#ref-7">[7]</a>；<b>商业 API</b>：未检索到官方商业 API 或付费服务——官方口径为「无任何合作，声称官网/收费的均为诈骗」<a class="cref partial" href="#ref-3">[3]</a>，其能力仅以自部署形态被第三方间接商用（第三方站点口径）<a class="cref partial" href="#ref-9">[9]</a>。</td><td><a class="cref verified" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-7">[7]</a> <a class="cref partial" href="#ref-3">[3]</a></td></tr>
+      <tr><td>面向客群</td><td>虚拟主播与二创作者（角色音色复刻）、视频本地化团队（跨语种配音）、AI 爱好者与开发者（消费级显卡/Apple Silicon 自部署）、学术研究者（零样本 TTS 基准）；中文用户为最大基本盘。</td><td><a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td>解决痛点</td><td>传统 TTS 定制音色需数小时级语料与专业训练管线，商用 API 按量收费且音色受限；本案将门槛压至「5 秒参考 + 1 分钟微调」，并以 MIT 许可 + Windows 整合包 + Colab 消除部署门槛，使个人创作者获得此前只有商业服务才有的音色定制能力。</td><td><a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-5">[5]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box insight">
+    <div class="bt">💡 商业模式实质</div>
+    GPT-SoVITS 没有传统意义的「商业模式」：MIT 许可、官方免费、无付费墙。其价值实现路径是开源公共品模式——发起人获得社区声誉与影响力，下游生态（本地化工具、整合包、教程、第三方部署）自行增值；「成功」以事实标准地位而非营收衡量。这与案例墙中以付费订阅/收购退出的开源 OPC（如 Copilot for Obsidian、ChatNio）构成方法论对照（见陆）。
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>GitHub Star</td><td class="hl">64,420</td><td>2026-11-13 API 实测（时点值，随时间变动）</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>GitHub Fork</td><td class="hl">6,782</td><td>2026-11-13 API 实测</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>开放 Issue</td><td>911</td><td>2026-11-13 API 实测（社区活跃度佐证）</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>仓库创建</td><td>UTC 2024-01-14T18:05:21Z（北京时间 2024-01-15）✓ 与案例墙锚点一致</td><td>创建时间戳</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>最后提交</td><td class="pos">2026-10-31（活跃维护近 3 年）</td><td>pushed_at</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>开源许可 / 主语言</td><td>MIT / Python</td><td>2026-11-13 API 实测</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>推理速度（v2ProPlus）</td><td>RTF 0.028（4060Ti）/ 0.014（4090）/ 0.526（M4 CPU）</td><td>README 官方口径</td><td><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td>生态位</td><td>VideoLingo 官方集成后端；学术基准系统（40 targets）</td><td>2025-2026 文档/论文口径</td><td><a class="cref verified" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-7">[7]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    星标与 Fork 为 GitHub API 一手实测值（A级），但属时点数据：底稿 2026-10/11 口径「64k+」与本报告 2026-11-13 实测 64,420 一致。用户量、下载量无公开统计口径，未检索到官方披露；B 站账号粉丝数因页面快照动态性强，本报告不采信具体数值。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将 GPT-SoVITS 放入案例墙坐标系（对标数据均为案例墙 index.html 既有核验值，检索时点 2026-11，本报告不再重复溯源）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>商业模式</th><th>成功迹象（案例墙核验值）</th><th>口径</th></tr></thead>
+    <tbody>
+      <tr><td><b>GPT-SoVITS</b></td><td>花儿不哭（RVC-Boss）</td><td>开源少样本语音克隆/TTS 工具</td><td>MIT 免费，无官方商业化</td><td>GitHub 64,420★（2026-11-13 实测）；中文语音克隆事实标准</td><td>GitHub API 一手实测</td></tr>
+      <tr><td>Copilot for Obsidian</td><td>Logan Yang（Brevilabs）</td><td>Obsidian AI 副驾插件，solo developer 起步</td><td>付费订阅（Believer Plan 等）</td><td>下载破 100 万（2026-02）、GitHub 7.8k★；2023 年首发</td><td>案例墙 cross 值</td></tr>
+      <tr><td>ChatNio</td><td>zmh（Kairo，创办时 15 岁）</td><td>多模型对话 + API 中转计费开源平台</td><td>开源 + 商业化，2024 年被七位数收购</td><td>月活近 10 万、月净利约 5 万元（媒体口径）</td><td>案例墙 partial 值</td></tr>
+      <tr><td>音行三界</td><td>陶雯煜</td><td>AI 音乐公司（生成 + 数据标注 + 虚拟偶像 IP），两人运营</td><td>商业运营（B 端 + IP）</td><td>虚拟偶像粉丝 20 万+、播放 3000 万+；2026-04-29 界面新闻报道</td><td>案例墙 cross 值</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>四案同为「AI 声音/内容生成」赛道的个人或准个人起点，但价值实现形态截然不同：Copilot for Obsidian 走<b>订阅变现</b>，ChatNio 走<b>收购退出</b>，音行三界走<b>公司化经营</b>，而 GPT-SoVITS 是四者中唯一<b>零商业化</b>者——它以「社区开源事实标准」形态取胜：不收一分钱，却成为整个中文语音克隆生态的地基（被 VideoLingo 等集成产品、被学术基准、被无数第三方部署引用）<sup class="cite verified">[6]</sup><sup class="cite cross">[7]</sup>。对「一人公司」命题而言，本案代表一种极端解：个人维护者的「公司资产」是声誉与生态位，而非现金流。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>分析</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>1. 产品功能</td><td>三段能力构成完整工具链：5 秒零样本克隆（即时可用）、1 分钟少样本微调（质量进阶）、五语种跨语种合成（中文创作者出海/引进双向可用）；WebUI 一站式覆盖「数据 → 训练 → 推理」全流程，非研究者亦可操作。</td><td><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td>2. 面向客群</td><td>核心客群为中文虚拟主播、二创与视频本地化创作者（VideoLingo 官方集成即为明证）；次级客群为需要私有化部署规避 API 成本与数据出境的开发者；学术客群以之为零样本 TTS 基准。</td><td><a class="cref verified" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td>3. 解决痛点</td><td>音色定制的「价格墙」与「数据墙」：商业 TTS API 按量收费且音色库受限，自研模型需小时级语料。本案以 5 秒/1 分钟阈值 + 消费级显卡推理（RTF 0.028 @4060Ti）双降门槛，让个人获得准商业级音色能力。</td><td><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td>4. 商业模式与营收</td><td class="hl">零商业化：无官方付费服务、无商业 API、未检索到任何营收数据。价值以「事实标准」生态位兑现——下游集成与部署繁荣，但价值流不经发起人。案例墙口径下其「成功迹象」为关注度而非收入，属开源公共品型 OPC。</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-3">[3]</a></td></tr>
+      <tr><td>5. 融资进展</td><td>未检索到任何融资信息；无公司主体公开关联（发起人真名未公开）。社区资源替代资本投入：社区贡献者的 PR、教程与整合包是主要「无对价资源」。</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-4">[4]</a></td></tr>
+      <tr><td>6. 市场评价</td><td>中文语音克隆事实标准（案例墙多源印证口径）：技术社区以「低成本 AI 音色克隆软件」为标签传播并明确其 MIT 协议与免费定位；下游 VideoLingo 官方文档收录；学术研究列其为基准零样本 TTS 系统——三个独立评价体系（社区/产业/学术）均给出事实标准级引用。</td><td><a class="cref cross" href="#ref-5">[5]</a> <a class="cref verified" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td class="hl">7. 合规风险（授权与滥用）</td><td class="hl"><b>声音克隆的授权与滥用是本案最大暗面：</b>① 声纹盗用/语音诈骗——AI 克隆语音冒充领导诈骗已成规模化骗局（安全媒体记录「克隆老板声音骗走 120 万」案例，样本仅取自公开演讲视频）<a class="cref cross" href="#ref-11">[11]</a>；② 声纹安全——学术研究证实少样本训练的克隆模型可轻易绕过商业说话人验证系统，且反欺骗检测器跨方法泛化困难<a class="cref cross" href="#ref-10">[10]</a>；③ 开源许可边界——MIT 许可仅约束代码著作权，不含对生成内容用途的任何担保与限制，滥用责任在法律上悬置于使用者；官方只能以 README 免责声明与账号简介口头设限（「声称官网/收费的均为诈骗」），技术性授权验证（如克隆对象同意书）缺位<a class="cref partial" href="#ref-3">[3]</a>。未检索到针对本项目本身的司法指控或平台下架记录。</td><td><a class="cref cross" href="#ref-10">[10]</a> <a class="cref cross" href="#ref-11">[11]</a> <a class="cref partial" href="#ref-3">[3]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 四处留白与两处口径风险（截至 2026-11-13 检索）</div>
+    ① <b>商业化程度：</b>未检索到官方商业 API、付费服务或任何营收口径——「一人公司」叙事下本案更接近「开源公共品 + 个人维护」，收入模式留白；② <b>社区项目与一人口径边界：</b>RVC 时代即「与很多大佬共同领创」<a class="cref partial" href="#ref-4">[4]</a>，GPT-SoVITS 为维护者主导 + 社区贡献（6,782 Fork / 911 开放 Issue 佐证）<a class="cref verified" href="#ref-1">[1]</a>，「一人公司」应理解为「一人核心 + 开源社区」，不宜表述为字面单干；③ <b>仿冒与信息污染：</b>官方账号警告「声称官网/收费的均为诈骗」<a class="cref partial" href="#ref-3">[3]</a>，第三方站 gpt-sovits.com / gpt-sovits.org 以类官网形态运营且数据滞后（标注 38.2K★，与实测 64,420★ 严重不符）<a class="cref partial" href="#ref-9">[9]</a>；④ <b>滥用外溢：</b>克隆语音被用于冒充身份诈骗（120 万元案例）<a class="cref cross" href="#ref-11">[11]</a>、少样本克隆可绕过商业声纹认证（学术证实）<a class="cref cross" href="#ref-10">[10]</a>——MIT 许可无使用担保，工具属性与社会成本之间的张力无解。
+  </div>
+  <div class="box note">
+    <div class="bt">📌 事实核查中的不确定点</div>
+    ① 发起人真名未公开，公司化情况未检索到公开信息；② 「中文语音克隆事实标准」为案例墙基于生态引用密度的多源印证口径，无权威机构认定；③ B 站空间简介为搜索快照口径（页面动态），官方发布视频的 b23.tv 短链核验未命中（404），发布时点改以 GitHub 创建时间戳 <a class="cref verified" href="#ref-1">[1]</a> 与 B 站合集时间 <a class="cref partial" href="#ref-3">[3]</a> 交叉定位；④ V2 发布确切日期未检索到原始公告，仅按技术社区文章时点口径记为「2024 年内」<a class="cref cross" href="#ref-5">[5]</a>；⑤ 用户量/下载量无公开统计，一律不写入正文。
+  </div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">GPT-SoVITS 证明 OPC 的另一种完成态：不上线付费墙、不融资、不注册公司，仅凭「UP 主身份 + 极限压缩的技术门槛 + 社区共建」，也能做出整个生态的地基性产品。它同时是最锋利的一面警示牌——当 5 秒克隆成为公共品，声纹盗用与语音诈骗的边际成本趋近于零，开源许可（MIT）的「无担保」属性把风险全部留给社会。对政策与行业而言，声音克隆的授权机制（同意书、水印、检测）已落后于克隆工具的普及速度<a class="cref cross" href="#ref-10">[10]</a><a class="cref cross" href="#ref-11">[11]</a>。</div><div class="cm">信源：<a class="cref cross" href="#ref-10">[10]</a> <a class="cref cross" href="#ref-11">[11]</a> <a class="cref verified" href="#ref-1">[1]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 11 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（一手可回溯或 ≥2 独立信源交叉），蓝 = 多源印证（可回溯的独立信源），黄 = 部分映证（快照/转述/单一 C 级信源）。评级口径：GitHub 一手 = A，媒体/学术 = B+，技术社区 = B，社区帖/工具站 = C+/C。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx verified">[1]</span><span class="rt">A</span><span class="st">GitHub API（一手实测）</span></div><div class="ti">RVC-Boss/GPT-SoVITS 仓库元数据</div><div class="mt"><b>来源：</b>GitHub REST API　<b>核验时点：</b>2026-11-13<br><a href="https://api.github.com/repos/RVC-Boss/GPT-SoVITS" target="_blank" rel="noopener">https://api.github.com/repos/RVC-Boss/GPT-SoVITS</a></div><div class="note">事实核查：Star 64,420、Fork 6,782、开放 Issue 911、MIT 许可、Python、创建时间 UTC 2024-01-14T18:05:21Z（北京时间 2024-01-15，与案例墙锚点 ✓ 一致）、最后提交 2026-10-31——全部为 API 结构化字段，一手实测。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx verified">[2]</span><span class="rt">A</span><span class="st">GitHub README（一手）</span></div><div class="ti">GPT-SoVITS-WebUI 官方 README（功能表与版本说明）</div><div class="mt"><b>来源：</b>GitHub 仓库　<b>核验时点：</b>2026-11-13<br><a href="https://github.com/RVC-Boss/GPT-SoVITS/blob/main/README.md" target="_blank" rel="noopener">https://github.com/RVC-Boss/GPT-SoVITS/blob/main/README.md</a></div><div class="note">事实核查：官方功能口径——Zero-shot TTS（5 秒样本）、Few-shot TTS（1 分钟微调）、跨语种（英/日/韩/粤/中）；版本链 v1→v2→v3→v4→v2Pro→v2ProPlus 及 RTF 实测数据（0.028 @4060Ti / 0.014 @4090 / 0.526 @M4 CPU）均出自原文；Windows 整合包文件名含日期 20250228（v3lora）。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx partial">[3]</span><span class="rt">B+</span><span class="st">B 站一手账号（快照口径）</span></div><div class="ti">花儿不哭的 B 站空间（含简介声明与 2024-1-15 合集节点）</div><div class="mt"><b>来源：</b>哔哩哔哩（空间页 + 搜索快照）　<b>核验时点：</b>2026-11-13<br><a href="https://space.bilibili.com/5760446" target="_blank" rel="noopener">https://space.bilibili.com/5760446</a></div><div class="note">事实核查：简介「RVC 变声器创始人，要让所有人都能免费享受到科技进步带来的成果。RVC 唯一官方账号，无任何合作，声称官网/收费的均为诈骗」与「AI 语音·音色克隆教程&amp;效果展示」合集（页面显示 2024-1-15）为搜索快照命中；B 站页面为动态内容，粉丝数等不稳定数据一律不采信。快照口径按 partial 处理。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx partial">[4]</span><span class="rt">C+</span><span class="st">社区存档帖</span></div><div class="ti">AI Hobbyist 交流社区：RVC 花佬版本教程（含 RVC 起源与套皮乱象叙述）</div><div class="mt"><b>来源：</b>ai-hobbyist.com（Discuz 存档）　<b>核验时点：</b>2026-11-13<br><a href="https://www.ai-hobbyist.com/archiver/?tid-421.html" target="_blank" rel="noopener">https://www.ai-hobbyist.com/archiver/?tid-421.html</a></div><div class="note">事实核查：「RVC……系 B 站 UP【花儿不哭】（Github id RVC-boss）与很多大佬共同领创的国内首个开源免费 AI 实时变声器，另有 w-okada 日版并立」及套皮收费乱象出自此帖；社区存档帖为 C+ 级，仅用于 RVC 历史背景，关键表述已与 [3][8] 交叉。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx cross">[5]</span><span class="rt">B</span><span class="st">技术社区专栏</span></div><div class="ti">掘金《GPT-SoVITS 声音克隆效果很逼真，请谨慎使用》</div><div class="mt"><b>来源：</b>掘金（juejin.cn）　<b>发布日期：</b>约 2024 年下半年<br><a href="https://juejin.cn/post/7400693289999794185" target="_blank" rel="noopener">https://juejin.cn/post/7400693289999794185</a></div><div class="note">事实核查：「B 站大佬『花儿不哭』开源的低成本 AI 音色克隆软件，MIT 协议」、推荐 1 分钟/最少 5 秒、V2 底膜 5k 小时、新增韩粤形成五语种、多音字优化、滥用提醒均出自此稿；与官方 README [2] 交叉一致。V2 确切发布日期无原始公告，按文章时点记「2024 年内」。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx verified">[6]</span><span class="rt">A</span><span class="st">下游项目官方文档（一手）</span></div><div class="ti">VideoLingo 官方文档：GPT-SoVITS-v2 集成教程与 TTS 后端</div><div class="mt"><b>来源：</b>docs.videolingo.io　<b>核验时点：</b>2026-11-13<br><a href="https://docs.videolingo.io/docs/start" target="_blank" rel="noopener">https://docs.videolingo.io/docs/start</a> ・ <a href="https://docs.videolingo.io/docs/tech" target="_blank" rel="noopener">https://docs.videolingo.io/docs/tech</a></div><div class="note">事实核查：官方文档将「GPT-SoVITS-v2」写为一键 Netflix 级本地化的克隆配音后端（核心特性列明「Dubbing alignment with GPT-SoVITS」，技术页含 gpt_sovits_tts.py 接口与配置教程）——生态集成的直接一手证据。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">B+</span><span class="st">学术预印本</span></div><div class="ti">arXiv《A Geometry-Limited Identification Floor and Its Consequences for Voice-Clone Attribution in Professional Voice Actors》</div><div class="mt"><b>来源：</b>arXiv:2607.15694　<b>发布日期：</b>2026（预印本编号口径）<br><a href="https://arxiv.org/pdf/2607.15694v1" target="_blank" rel="noopener">https://arxiv.org/pdf/2607.15694v1</a></div><div class="note">事实核查：论文将 GPT-SoVITS（v1–v4 与 v2ProPlus）作为基准零样本 TTS 系统之一用于专业声优的克隆归因实验（40 targets）——学术基准引用的一手证据；同时印证 v1–v4/v2ProPlus 版本谱系。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx partial">[8]</span><span class="rt">C</span><span class="st">工具导航站</span></div><div class="ti">AI 工具箱：GPT-SoVITS 项目介绍（花儿不哭身份口径）</div><div class="mt"><b>来源：</b>ai-kit.cn　<b>核验时点：</b>2026-11-13<br><a href="https://ai-kit.cn/121.html" target="_blank" rel="noopener">https://ai-kit.cn/121.html</a></div><div class="note">事实核查：「由知名 B 站 UP 主及 RVC 变声器创始人花儿不哭所推出」口径出处；工具站内容非一手，仅作身份口径旁证（与 [3][4] 交叉）。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx partial">[9]</span><span class="rt">C</span><span class="st">第三方生态站（风险证据）</span></div><div class="ti">gpt-sovits.com / gpt-sovits.org 第三方站点（数据滞后与类官网形态）</div><div class="mt"><b>来源：</b>gpt-sovits.com（页面标注「38.2K+ Community Stars、5.6K+ Repository Forks、MIT」）　<b>核验时点：</b>2026-11-13<br><a href="https://gpt-sovits.com/" target="_blank" rel="noopener">https://gpt-sovits.com/</a> ・ <a href="https://gpt-sovits.org/" target="_blank" rel="noopener">https://gpt-sovits.org/</a></div><div class="note">事实核查：两站均非官方域名（官方渠道为 GitHub 仓库与 B 站账号 [3]），页面星标数据与 API 实测值 [1] 严重不符（38.2K vs 64,420），仅作为「仿冒/滞后信息站」风险证据收录，其功能描述不作为事实依据。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx cross">[10]</span><span class="rt">B+</span><span class="st">学术预印本</span></div><div class="ti">arXiv《Vulnerabilities of Audio-Based Biometric Authentication Systems Against Deepfake Speech Synthesis》</div><div class="mt"><b>来源：</b>arXiv:2601.02914　<b>发布日期：</b>2026（预印本编号口径）<br><a href="https://arxiv.org/html/2601.02914" target="_blank" rel="noopener">https://arxiv.org/html/2601.02914</a></div><div class="note">事实核查：「小样本训练的现代语音克隆模型可轻易绕过商业说话人验证系统；反欺骗检测器跨合成方法泛化困难」为论文摘要原文——七维第 7 行声纹安全论断的学术依据（通用克隆风险背景，非针对本案的特定指控）。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx cross">[11]</span><span class="rt">B+</span><span class="st">安全行业门户</span></div><div class="ti">FreeBuf《AI 语音钓鱼，克隆你老板的声音骗走 120 万》</div><div class="mt"><b>来源：</b>FreeBuf　<b>发布日期：</b>约 2026<br><a href="https://www.freebuf.com/articles/ai-security/508008.html" target="_blank" rel="noopener">https://www.freebuf.com/articles/ai-security/508008.html</a></div><div class="note">事实核查：「AI 克隆语音冒充领导诈骗（样本来自公开演讲视频，骗走 120 万元）」案例出处，用于说明少样本克隆工具普及后的滥用外溢；报道为行业案例叙述口径，未指明作案工具，不构成对本项目的特定指控。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 11 条。核验标签分布：🟢 已核验（verified）3 条（[1] GitHub API、[2] 官方 README、[6] VideoLingo 官方文档——均为一手可回溯）、🔵 多源印证（cross）4 条（[5][7][10][11]）、🟡 部分映证（partial）4 条（[3][4][8][9]——快照/社区帖/工具站/第三方站，均已标注口径）。信源评级分布：A 级 3 条（GitHub 一手与下游官方文档）、B+ 级 3 条、B 级 1 条、C+/C 级 4 条。<b>核验失败 URL 及处理：</b>官方发布视频的 B 站短链 b23.tv/TDmEwgq 与作者空间短链 b23.tv/rne84K5 均返回 404——不作为事实依据，发布时点改以 GitHub API 创建时间戳（UTC 2024-01-14T18:05:21Z，北京时间 2024-01-15 ✓）与 B 站空间合集搜索快照（2024-1-15）双口径交叉定位；B 站动态数据（粉丝数等）一律不采信。未发现伪造链接；全部 URL 为检索过程实际命中页面。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据核验时点：2026-11-13 · GitHub 星标等均为时点值 · <b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

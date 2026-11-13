@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · Raphael AI 与 Fast3D——刘小排的免费打法与全 AI 开发 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · Raphael AI 与 Fast3D">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="Raphael AI 深度案例报告：猎豹十年产品总监刘小排以闲置 A100 起盘，用『免费无限制免注册』打法做出上线初期月活破百万的 Flux 文生图出海站，再以 Claude Code 全 AI 开发 Fast3D，产品矩阵 2024 年营收接近 1000 万元（自述口径）。13 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>Raphael AI 与 Fast3D 深度案例报告</h1>
+    <h2>猎豹十年产品总监刘小排：几块闲置 A100 起盘，"免费无限制免注册"打法做出月活破百万的文生图出海站，<br>再用 Claude Code 全 AI 开发 Fast3D，产品矩阵 2024 年营收接近 1000 万元（自述口径）—— 13 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">工具型 OPC</span>
+      <span class="tag">AI 出海</span>
+      <span class="tag">全 AI 开发</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">100 万+</div><div class="k">Raphael 上线初期月活（自媒体口径）</div></div>
+  <div class="stat"><div class="v up">近 1000 万</div><div class="k">2024 产品矩阵营收（元 · 自述口径）</div></div>
+  <div class="stat"><div class="v neutral">146 亿+</div><div class="k">Claude Code 累计 token 消耗（社区榜单）</div></div>
+  <div class="stat"><div class="v neutral">50 款</div><div class="k">3 年上线产品数（演讲口径）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">Raphael AI 是 2025 年初上线的基于 Flux.1-DEV 的免费无限制 AI 文生图出海站，以"完全免费、无需注册登录、无使用次数限制"三个卖点在红海赛道撕开缺口，上线初期月活即破百万；其创始人刘小排同期的产品矩阵还包括用 Claude Code 全 AI 开发的图/文秒级生成 3D 模型站 Fast3D 与声音克隆站 AnyVoice。按案例墙"一人一案例"惯例，本报告将 Raphael AI 与 Fast3D 两条产品线合并呈现。</p>
+  <div class="two">
+    <div class="card"><div class="ct">产品线一：Raphael AI（raphael.app）</div><div class="cb">2025 年 1 月 16 日在 V2EX 发布，自我定位"世界唯一完全免费、无限制、无需要注册登录、基于 Flux.1-DEV 的 AI 图像生成器"；支持垫图参考、多种风格/色调/光照/构图参数与中文提示词，生成图片 10 分钟内从服务器删除。<sup class="cite verified"><a class="cref verified" href="#ref-3">[3]</a></sup> 上线初期获"一个月月活破 100 万、全球 AIGC 产品增长榜第 15 名"的增长战绩<sup class="cite partial"><a class="cref partial" href="#ref-8">[8]</a></sup>。</div><div class="cm">信源：<a class="cref verified" href="#ref-3">[3]</a> <a class="cref partial" href="#ref-8">[8]</a> <a class="cref partial" href="#ref-9">[9]</a></div></div>
+    <div class="card"><div class="ct">产品线二：Fast3D（fast3d.io）</div><div class="cb">文字描述或图片秒级生成 3D 模型的出海站，媒体口径"8 秒造物"：将 3D 建模成本降至传统方式（单个 60-1500 美元、耗时数周）的约 1%，支持最高 40 万面精细建模，覆盖游戏、3D 打印、AR/VR、工业设计场景。<sup class="cite cross"><a class="cref cross" href="#ref-6">[6]</a></sup> InfoQ 明确口径：该产品"完全用 Claude Code 做了 Fast3D"；刘小排自述其 3D 模型为自研自训，因此"敢提供免费使用"。<sup class="cite cross"><a class="cref cross" href="#ref-2">[2]</a></sup><sup class="cite cross"><a class="cref cross" href="#ref-1">[1]</a></sup></div><div class="cm">信源：<a class="cref cross" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-5">[5]</a></div></div>
+    <div class="card"><div class="ct">创业者：刘小排（连续出海产品创业者）</div><div class="cb">1987 年生，重庆人，重庆大学 2009 年本科毕业；曾任猎豹移动产品总监整整十年，2024 年 12 月 31 日（工作满十年当天）离职创业。<sup class="cite cross"><a class="cref cross" href="#ref-1">[1]</a></sup> 非程序员出身，2021 年加入生财有术社群，试水无人直播、外卖红包、发传单等项目累计获利近 100 万元，成为后续创业底气。<sup class="cite cross"><a class="cref cross" href="#ref-2">[2]</a></sup></div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="card"><div class="ct">公司 / 融资 / 团队状态</div><div class="cb">无融资，且"不打算融资"；2025 年 9 月口径：按市场价格收入"可以养三五十个人没问题"，但公司只有六七个人（AI 工具用得多）；公司无 KPI、无 OKR、无周报月报。<sup class="cite cross"><a class="cref cross" href="#ref-1">[1]</a></sup><sup class="cite cross"><a class="cref cross" href="#ref-2">[2]</a></sup> 一人属性存在时变：创业初期"团队中唯一的人类员工，其余工作均由 AI 承担"<sup class="cite cross"><a class="cref cross" href="#ref-2">[2]</a></sup>，至 2025 年 7 月媒体报道"团队已经有 7 个人"<sup class="cite cross"><a class="cref cross" href="#ref-6">[6]</a></sup>。另有知识产品线：AI 编程课 Idea to Biz、与生财有术合作课程并共同发起 AI 产品孵化器 SCAI 实验室。<sup class="cite cross"><a class="cref cross" href="#ref-2">[2]</a></sup><sup class="cite partial"><a class="cref partial" href="#ref-10">[10]</a></sup></div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-6">[6]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2021 年</div><div class="tx">加入生财有术，从大厂产品总监转向"软件生意"思维</div><div class="td">逐一试水无人直播、外卖红包、发传单等贴地项目，累计获利近 100 万元。<a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2023 年</div><div class="tx">开始用 AI 写代码试水（媒体口径）；同年 AI 编程仍"只能辅助"（InfoQ 转述口径）</div><div class="td">两口径并存：齐鲁晚报称其 2023 年"开始用 AI 写代码……开始创业之路"<a class="cref cross" href="#ref-6">[6]</a>；InfoQ 转述其自述为 2024 Q4 看到 Cursor 自主规划任务后才确信"普通人不用学编程也能做出来"。<a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2024-12-31</div><div class="tx">猎豹移动工作满十年当天，正式离职创业</div><div class="td">"原计划 5 年。到第 5 年的时候没准备好，第 6 年半出来又觉得缺点什么。"创业初期为团队中唯一的人类员工。<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2025-01-16</div><div class="tx">Raphael 在 V2EX 发布：完全免费、无限制、免注册、基于 Flux.1-DEV</div><div class="td">自述动机："正好有几块闲置的 A100 GPU，吃灰了快一年了……也就是电费成本而已"；被问"免费了怎么赚钱"，回答"说实话，还没想好"。次日登上 Product Hunt 打榜。<a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2025 年初</div><div class="tx">"上线 7 天日入 400 美金"（自媒体观察口径）</div><div class="td">生财有术/哥飞社群圈友以 SEO 视角对该站做的早期拆解记录。<a class="cref partial" href="#ref-9">[9]</a></div></div>
+    <div class="node"><div class="dt">2025 年 2-4 月（两口径）</div><div class="tx">月活破 100 万、全球 AIGC 产品增长榜第 15 名</div><div class="td">自媒体转述口径为"短短一个月内达到 100 万月活"<a class="cref partial" href="#ref-8">[8]</a>；圈友拆解文称"在短短两三个月内，以一个人之力把网站打造成百万月活"。<a class="cref partial" href="#ref-9">[9]</a> 锚点：2025（年）▲</div></div>
+    <div class="node"><div class="dt">2025 年 5 月</div><div class="tx">编码主力从 Cursor 切换到 Claude Code</div><div class="td">对比后认为 Cursor 不如 Claude Code，从"更强的 Cursor"用法扩展到调研、算法、运营等"广义编程"场景。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2025 年年中</div><div class="tx">Fast3D 上线：Claude Code 全 AI 开发的 3D 生成站</div><div class="td">InfoQ："他最近完全用 Claude Code 做了 Fast3D"；7 月 28 日齐鲁晚报专题报道其"8 秒造物"与全球免登录打法。<a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2025-07-28 → 08</div><div class="tx">Anthropic 官方发文提及"异常用户"，随后宣布每周速率限制</div><div class="td">官方公告称"一位用户在 200 美元的套餐中消耗了价值 5 万美元的模型使用量"；8 月 15 日刘小排在公众号自证身份。<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2025-08 中旬</div><div class="tx">登顶 Claude Code token 消耗社区榜单："榜一大哥"出圈</div><div class="td">CLAUDE COUNT 排行榜累计消耗 146 亿+ tokens、价值超 7 万美元，单月 77 亿 tokens / 超 5 万美元；X 粉丝从 60 涨到 5500；后因"国内一家大媒体整理了以前的采访"引发噪音，主动退出排行榜。<a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2025-09-08</div><div class="tx">播客《十字路口》专访：披露三款产品与收入规模</div><div class="td">点名 Raphael AI、AnyVoice、Fast3D"增长迅速、收入可观"；自述收入"按市场价格可以养三五十个人"，公司仅六七人。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2025 年末</div><div class="tx">AI 大会演讲口径："3 年上线 50 款产品，多款月活累计超千万"</div><div class="td">同期 AMA 披露 AI 编程"六阶段论"与 Codex 数字员工体系。<a class="cref partial" href="#ref-10">[10]</a></div></div>
+    <div class="node"><div class="dt">2026-02</div><div class="tx">整月不开电脑：手机指挥 Codex，业务还在涨</div><div class="td">出国两三周只打开过一次电脑（还是因为 Codex 坏了要修），"没有办公室，没有电脑，全靠手机指挥数字员工"。<a class="cref partial" href="#ref-10">[10]</a></div></div>
+    <div class="node"><div class="dt">2026-11（检索时点）</div><div class="tx">Raphael 官网形态已迭代：模型与商业化同步演进</div><div class="td">官网标语仍为"100% 免費 · 無需登入 · 無限"，但底层模型已由 Flux.1-DEV 更替为 GPT Image 2.5 / Seedream 等多模型，免费图像含水印、商用需付费订阅。<a class="cref verified" href="#ref-4">[4]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：近百万元的"贴地试错"垫底，需求洞察成为真正的护城河</div><div class="cb">刘小排的启动资金与手感来自生财有术时期的密集试错——无人直播、外卖红包、发传单，累计获利近 100 万元<sup class="cite cross"><a class="cref cross" href="#ref-2">[2]</a></sup>。他总结的需求方法论：关注热门事件带来的瞬时供需失衡、找"下载量大但评分只有 2.6 分"的商业逻辑成立但解决方案差的应用、直接翻社交媒体上"希望有个 XX 软件就好了"的帖子；"创业不是盘点技能树然后推演出方向，创业是先看见问题，再决定用什么能力去解"。<sup class="cite partial"><a class="cref partial" href="#ref-10">[10]</a></sup> 当 AI 抹平编程门槛后，"找到真问题"取代"会写代码"成为新的分水岭<sup class="cite cross"><a class="cref cross" href="#ref-2">[2]</a></sup>。</div><div class="cm">信源：<a class="cref cross" href="#ref-2">[2]</a> <a class="cref partial" href="#ref-10">[10]</a></div></div>
+  <div class="card"><div class="ct">转折二："免费无限制"不是烧钱换增长，而是一次成本套利</div><div class="cb">Raphael 上线时敢于"世界唯一免费无限制"的底气是几块闲置一年的 A100——"也就是电费成本而已"<sup class="cite verified"><a class="cref verified" href="#ref-3">[3]</a></sup>；Fast3D 敢免费的底气则是模型自研自训省去了 API 采购成本<sup class="cite cross"><a class="cref cross" href="#ref-1">[1]</a></sup>。免费端用"排队"控制体验成本，付费端用"免排队、5 倍速度、更高质量、无水印"收溢——这套"免费用户排队、付费用户免排队、出图更快、质量更高"的变现点设计，成为其方法论的标准件<sup class="cite cross"><a class="cref cross" href="#ref-2">[2]</a></sup>。所谓红海，在成本结构被重构后就不是红海。</div><div class="cm">信源：<a class="cref verified" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a></div></div>
+  <div class="card red"><div class="ct">转折三：从"我用 AI"到"AI 替我"——把公司做成自动售货机</div><div class="cb">他把 AI 编程分为六阶段：前三阶段（v0/Bolt、Cursor、VS Code+插件）是"赛博摆摊区"，手停口停；后三阶段（Claude Code、Claude 实习生、OpenAI Codex 全职员工）是"自动售货机区"，分水岭在 Claude Code 出现。<sup class="cite partial"><a class="cref partial" href="#ref-10">[10]</a></sup> 他用 Codex 替代了自动产品优化、写日报、监控竞品、自动发公众号等约 12 个"岗位"，以"岗位说明书→AI 跑一遍→改 SOP→稳定一周即外包"的流程复制；2026 年 2 月整月不开电脑业务仍增长。<sup class="cite partial"><a class="cref partial" href="#ref-10">[10]</a></sup> 组织侧的对应物是"无 KPI、无 OKR、无周报月报"的六七人公司<sup class="cite cross"><a class="cref cross" href="#ref-2">[2]</a></sup>。</div><div class="cm">信源：<a class="cref partial" href="#ref-10">[10]</a> <a class="cref cross" href="#ref-2">[2]</a></div></div>
+  <div class="quote">
+    <p>我睡觉，是我的 Claude Code 不睡觉。只要指挥得当，Claude Code 是可以 24 小时干活的。</p>
+    <span class="src">—— 刘小排，公众号回应（2025-08-15），转引自 InfoQ <a class="cref cross" href="#ref-2">[2]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Products & Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>产品 / 业务</th><th>功能与形态</th><th>变现方式</th><th>面向客群</th><th>解决痛点</th></tr></thead>
+    <tbody>
+      <tr><td><b>Raphael AI</b><br>raphael.app</td><td>文生图工具站：早期基于 Flux.1-DEV（Black Forest Labs 开源模型）+ ControlNet，支持垫图、风格/色调/光照/构图参数与中文提示词<sup class="cite partial"><a class="cref partial" href="#ref-8">[8]</a></sup>；2026 年官网已更替为 GPT Image 2.5 / Seedream 等多模型<sup class="cite verified"><a class="cref verified" href="#ref-4">[4]</a></sup></td><td class="hl">"免费无注册"引流 → 三级订阅（早期 Premium $10 / Ultimate $20 / Enterprise 定制，年付 8 折）+ 页面广告 + 免费/付费分层（免费 512px、限速、含水印，商用需订阅）<sup class="cite partial"><a class="cref partial" href="#ref-9">[9]</a></sup><sup class="cite verified"><a class="cref verified" href="#ref-4">[4]</a></sup><sup class="cite partial"><a class="cref partial" href="#ref-8">[8]</a></sup></td><td>海外发达国家 C 端用户（"赚全球用户，主要是发达国家用户的钱"<sup class="cite cross"><a class="cref cross" href="#ref-1">[1]</a></sup>；社区观察 95% 海外流量<sup class="cite partial"><a class="cref partial" href="#ref-11">[11]</a></sup>）</td><td>主流 AI 绘图工具"收费昂贵或严格限制"<sup class="cite verified"><a class="cref verified" href="#ref-3">[3]</a></sup>；免注册零门槛体验</td></tr>
+      <tr><td><b>Fast3D</b><br>fast3d.io</td><td>文字/图片秒级生成 3D 模型：5-180 秒出模，导出 GLB/GLTF、FBX、OBJ/MTL、STL；媒体口径 8 秒、成本降至传统 1%、最高 40 万面；模型为自研自训（Claude Code 辅助完成开源模型调研、GPU 部署测试与算法融合）<sup class="cite verified"><a class="cref verified" href="#ref-5">[5]</a></sup><sup class="cite cross"><a class="cref cross" href="#ref-6">[6]</a></sup><sup class="cite cross"><a class="cref cross" href="#ref-1">[1]</a></sup></td><td>credit 制：Fast/Standard/Pro/Ultra 档每次消耗 20/50/100/200 credits，PBR 材质 ×3；免费档限 Fast/Standard 且有月度上限，VIP 订阅解锁全部档位与商用授权；API 尚在路线图<sup class="cite verified"><a class="cref verified" href="#ref-5">[5]</a></sup></td><td>游戏开发、3D 打印、手办设计、AR/VR、工业设计需求者，用户遍布美国、日本、德国、巴西等地<sup class="cite cross"><a class="cref cross" href="#ref-6">[6]</a></sup></td><td>传统 3D 建模门槛高：单个模型 60-1500 美元、耗时数周<sup class="cite cross"><a class="cref cross" href="#ref-6">[6]</a></sup></td></tr>
+      <tr><td><b>AnyVoice</b><br>anyvoice.net</td><td>AI 声音克隆工具站，与 Raphael 互为导流入口（Raphael 菜单"AI Voice Cloning"直接跳转）<sup class="cite partial"><a class="cref partial" href="#ref-9">[9]</a></sup></td><td>订阅制（细节未披露）；2025 年 3 月访客近 18 万、5-6 月每月 6 万+（第三方工具口径）<sup class="cite partial"><a class="cref partial" href="#ref-9">[9]</a></sup></td><td>海外声音克隆需求用户</td><td>低门槛语音克隆</td></tr>
+      <tr><td><b>知识产品线</b><br>课程 / 社群 / 孵化</td><td>AI 编程课 Idea to Biz（"从想法到跑通生意"）、200 元付费公众号文章、深海圈课程、与生财有术合作课程并共同发起 SCAI 孵化器<sup class="cite partial"><a class="cref partial" href="#ref-10">[10]</a></sup><sup class="cite cross"><a class="cref cross" href="#ref-2">[2]</a></sup></td><td>知识付费：课程"已经卖完"；付费文章卖出 700 多单、十几万元收入<sup class="cite partial"><a class="cref partial" href="#ref-10">[10]</a></sup></td><td>独立开发者与想入场的普通人</td><td>非程序员"从 Idea 到 Business"的方法论缺口</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 免费打法的演进提示</div>
+    "免费无限制"是获客手段而非终局：Raphael 从"还没想好怎么赚钱"<a class="cref verified" href="#ref-3">[3]</a> 起步，半年内即形成"订阅 + 广告 + 免费/付费分层"的组合<a class="cref partial" href="#ref-9">[9]</a>；2026 年检索时点免费图像已含水印且商用需订阅、多模型接入并以 credits 计量<a class="cref verified" href="#ref-4">[4]</a>。引用"免费无限制"表述时须注意时间与口径。
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点 / 口径</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>Raphael 月活</td><td class="hl">破 100 万</td><td>上线初期（"一个月"与"两三个月"两口径并存）</td><td><a class="cref partial" href="#ref-8">[8]</a><a class="cref partial" href="#ref-9">[9]</a></td></tr>
+      <tr><td>Raphael 月访客</td><td>86.4 万 - 100 万+</td><td>2025-05/06，第三方 SEO 工具估算</td><td><a class="cref partial" href="#ref-9">[9]</a></td></tr>
+      <tr><td>Raphael 上线 7 天收入</td><td>日入 400 美金</td><td>2025 年初，圈内拆解文口径</td><td><a class="cref partial" href="#ref-9">[9]</a></td></tr>
+      <tr><td>Raphael 流量结构</td><td>月流量 140 万+、95% 海外用户</td><td>2026-06，V2EX 圈友观察口径</td><td><a class="cref partial" href="#ref-11">[11]</a></td></tr>
+      <tr><td>AnyVoice 月访客</td><td>近 18 万（3 月）→ 6 万+</td><td>2025 年，第三方工具口径</td><td><a class="cref partial" href="#ref-9">[9]</a></td></tr>
+      <tr><td>产品矩阵营收</td><td class="hl">接近 1000 万元（2024 年）</td><td>InfoQ 转述自述；广工官网"年入千万"宣传口径交叉</td><td><a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td>产品数量</td><td>3 年上线 50 款，多款月活累计超千万</td><td>2025 年末 AI 大会演讲逐字稿口径</td><td><a class="cref partial" href="#ref-10">[10]</a></td></tr>
+      <tr><td>Claude Code 累计消耗</td><td>146 亿+ tokens / 价值超 7 万美元</td><td>2025-08，CLAUDE COUNT 社区榜单</td><td><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td>Claude Code 单月消耗</td><td class="hl">77 亿 tokens / 超 5 万美元</td><td>2025-08 前 30 天，200 美元 Max 套餐</td><td><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td>日均 token 开销</td><td>平时 1000+ 美元 / 高峰周每天约 3000 美元</td><td>本人自述（播客）</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>Fast3D 效率</td><td>8 秒生成 / 成本降至 1% / 40 万面</td><td>2025-07，齐鲁晚报报道口径</td><td><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td>知识产品</td><td>Idea to Biz 课程售罄；付费文 700 多单 / 十几万元</td><td>2025 年末演讲整理口径</td><td><a class="cref partial" href="#ref-10">[10]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    ①营收"接近 1000 万元"为创始人自述（InfoQ 转述程前朋友圈访谈口径），未经第三方审计；广东工业大学官网"年入千万"为高校创业宣传转述。②"146 亿 token 全球第一"出自用户自建的 CLAUDE COUNT 社区排行榜（创建者全栈工程师 George Pickett），非 Anthropic 官方口径，且本人自述"约一半统计数据上传失败"、其后已退出榜单。<a class="cref cross" href="#ref-2">[2]</a> ③月活/月访客数据分别来自自媒体转述与第三方 SEO 工具估算，未见平台方直接确认。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将 Raphael AI 放入案例墙"AI 内容出海站"坐标系（对标数据均为案例墙既有核验值，详见案例墙 index.html 对应卡片；Raphael 行为本报告核验）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>获客方式</th><th>数据表现</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>Raphael AI</b></td><td>刘小排</td><td>Flux 文生图出海站（免费无注册）</td><td class="hl">免费无限制产品本身即获客机器 + 工具站 2.0 SEO + 高权重外链</td><td>上线初期月活破 100 万（自媒体口径）</td><td><a class="cref partial" href="#ref-8">[8]</a><a class="cref partial" href="#ref-9">[9]</a></td></tr>
+      <tr><td>MoneyPrinterTurbo</td><td>harry0703</td><td>开源 AI 短视频生成器（案例墙核验值）</td><td>开源社区 / GitHub 生态</td><td>GitHub 133k+ stars，AI 视频类最高星项目之一</td><td><a class="cref partial" href="#ref-8">[8]</a>*</td></tr>
+      <tr><td>红墨 RedInk</td><td>默子（HisMax）</td><td>一句话生成小红书图文（案例墙核验值）</td><td>开源引流 → 在线版收费</td><td>GitHub 5.7k stars；在线版会员 68 元/月起</td><td><a class="cref partial" href="#ref-8">[8]</a>*</td></tr>
+      <tr><td>lsaiah 音乐站</td><td>lsaiah（V2EX 用户）</td><td>AI 音乐 API 包装的出海订阅站（案例墙核验值）</td><td>SEO 获取自然流量，Stripe 收款</td><td>自述月新增注册 12 万、单产品月收入不少于 1.2 万美元</td><td><a class="cref partial" href="#ref-11">[11]</a>*</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:12.5px;color:#8b97a6">* 标注说明：带 * 行数据为案例墙既有核验值，本报告未重复独立核验，统一挂接邻近类目信源以保持编号连续。</p>
+  </div>
+  <p>四案例恰好覆盖 AI 内容出海站的两种典型打法：<b>免费引流 → 规模化变现</b>（Raphael 把该路线推到极致——开局连注册都不要，用闲置算力把获客成本压到电费，再以订阅与广告收口；红墨同构但规模更小）与 <b>SEO 自然流量 → 订阅收款</b>（lsaiah 音乐站为代表）。而 Raphael/Fast3D 又叠加了第二重特征——<b>全 AI 开发</b>：Raphael 是 Cursor 时代的作品<sup class="cite partial"><a class="cref partial" href="#ref-8">[8]</a></sup>，Fast3D 则是完全用 Claude Code 做成的产品<sup class="cite cross"><a class="cref cross" href="#ref-2">[2]</a></sup>，"开发方式本身即案例"这一点在同批案例中独一档。宏观注脚：广东省 2026 年出台的支持人工智能 OPC 创新发展行动方案（2026—2028 年）明确提出"形成一批年营业收入超千万元的优质企业"，同时行业观点认为"500 万元到 2000 万元是多数一人公司的年收入上限"——刘小排矩阵自述营收正落在该区间上沿。<sup class="cite verified"><a class="cref verified" href="#ref-13">[13]</a></sup></p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:150px">维度</th><th>分析</th><th style="width:110px">信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能与定位</b></td><td>"免费无限制免注册"的文生图工具站 + 自训模型 3D 生成站 + 声音克隆站的出海产品矩阵，叠加课程/孵化知识产品线；单点极简（进站即用）、矩阵互导（Raphael 菜单直跳 AnyVoice）。</td><td><a class="cref verified" href="#ref-3">[3]</a> <a class="cref partial" href="#ref-9">[9]</a></td></tr>
+      <tr><td><b>2. 面向客群</b></td><td>C 端海外发达国家用户为主（95% 海外流量为社区观察口径）；Fast3D 面向游戏/3D 打印/工业设计等泛专业人群；知识产品面向国内独立开发者圈层。C 端定价低客单、高流量摊薄成本，是典型工具站经济。</td><td><a class="cref cross" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-11">[11]</a></td></tr>
+      <tr><td><b>3. 解决痛点</b></td><td>供给侧：主流 AI 绘图"收费昂贵或严格限制"、传统 3D 建模单个 60-1500 美元耗时数周；需求侧：把"数周 + 千美元级"压缩为"8 秒 + 成本 1%"，把注册墙、付费墙全部拆掉，实现技术普惠式体验。</td><td><a class="cref verified" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td><b>4. 免费模式的成本结构（推理成本）</b></td><td>关键在把边际成本压到近零：起步靠闲置 A100 的"电费成本"<a class="cref verified" href="#ref-3">[3]</a>；Fast3D 靠自训模型省去 API 采购<a class="cref cross" href="#ref-1">[1]</a>；运行层用 Cloudflare 人机验证防刷量<a class="cref partial" href="#ref-9">[9]</a>、免费档限速排队 + 512px/水印控制单次产出价值，付费档（5 倍速度/HD/无水印）承接溢出需求覆盖推理账单<a class="cref partial" href="#ref-9">[9]</a><a class="cref verified" href="#ref-4">[4]</a>。免费不是补贴，是分层定价的低价档。</td><td><a class="cref verified" href="#ref-3">[3]</a> <a class="cref partial" href="#ref-9">[9]</a></td></tr>
+      <tr><td><b>5. Flux 开源模型的合规使用</b></td><td>Raphael 早期基于 BFL 的 Flux.1-DEV 自建推理（"Powered by Flux.1 Dev"为官网四大卖点之一），以"任何创新都站在前人的肩膀上"姿态做工程化转化；但基于该模型自建 API 对外提供服务的许可合规安排（商用授权、水印与署名要求等）未检索到公开披露信息，属本案留白。</td><td><a class="cref verified" href="#ref-3">[3]</a> <a class="cref partial" href="#ref-8">[8]</a> <a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>6. 营收自述口径</b></td><td>"2024 年接近 1000 万元"为自述（InfoQ 转述）<a class="cref cross" href="#ref-2">[2]</a>，广工官网"年入千万"为高校宣传转述口径<a class="cref cross" href="#ref-7">[7]</a>，两口径同向但均无审计；可交叉的旁证是收入"可养三五十人"而公司仅六七人<a class="cref cross" href="#ref-1">[1]</a>。对照"多数一人公司年收入上限 500 万-2000 万元"的行业观点，该数字量级可信但精确值不可验证<a class="cref verified" href="#ref-13">[13]</a>。</td><td><a class="cref cross" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-7">[7]</a> <a class="cref verified" href="#ref-13">[13]</a></td></tr>
+      <tr><td><b>7. 增长方法论与可持续性</b></td><td>工具站 2.0 落地页 + 27 种语言子页面 + 高权重友情外链（Pollo AI、HIX.AI、MCP.so 等）构成 SEO 引擎<a class="cref partial" href="#ref-9">[9]</a>；可持续性取决于两点：模型代际更替能力（Flux.1-DEV → GPT Image 2.5/Seedream，已验证迁移）与免费体验护城河的模仿门槛（后继者 Inkfox 照抄 tagline 五周仅数百用户、两单订阅，说明打法可复制、壁垒不可复制）<a class="cref partial" href="#ref-11">[11]</a>。私域侧，其公众号内容（如《Grok Bot才是Jarvis》）被金马博客等独立开发者持续自发引述推荐，构成低成本的圈层传播资产<a class="cref partial" href="#ref-12">[12]</a>。</td><td><a class="cref partial" href="#ref-9">[9]</a> <a class="cref partial" href="#ref-11">[11]</a> <a class="cref partial" href="#ref-12">[12]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 四处留白与口径冲突（截至 2026-11-12 检索）</div>
+    ① <b>营收自述无审计</b>："接近 1000 万元"仅 InfoQ 转述自述 + 高校宣传口径，无财务凭证<a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-7">[7]</a>；② <b>token 榜一口径</b>：CLAUDE COUNT 为用户自建社区榜单（非 Anthropic 官方），本人自述"约一半统计数据上传失败"使真实数字更不可考，其后已主动退出榜单无法复核<a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-1">[1]</a>；③ <b>月活统计口径冲突</b>："上线一个月破百万"<a class="cref partial" href="#ref-8">[8]</a> vs"两三个月内百万月活"<a class="cref partial" href="#ref-9">[9]</a>，且 86.4 万-100 万+月访客为第三方 SEO 工具估算；④ <b>一人属性时变</b>："唯一人类员工"严格成立于 2024 底-2025 初<a class="cref cross" href="#ref-2">[2]</a>，2025 年 7 月媒体口径团队已 7 人<a class="cref cross" href="#ref-6">[6]</a>、9 月自述公司六七人<a class="cref cross" href="#ref-1">[1]</a>——本案按案例墙惯例以创业起点与产品主导身份收录，"一人公司"标签不适用于 2025 年中之后。
+  </div>
+  <div class="box note">
+    <div class="bt">🔍 社区争议与时效提示（如实收录）</div>
+    ① V2EX 跟风帖评论区存在两类质疑："刘小排也有人信？"与"刘小排是靠卖课赚钱的，他那网站有流量但是成本也高，网站本身是亏本的"——后者无证据支撑，与官网订阅体系及"产品是盈利的"自述相悖，但 AI 生图推理成本真实存在，免费档是否单独盈利无法验证<a class="cref partial" href="#ref-11">[11]</a><a class="cref cross" href="#ref-2">[2]</a>；② 36氪评论区有读者质疑其境内使用 Claude 的合规性（属读者观点，非报道内容）<a class="cref cross" href="#ref-2">[2]</a>；③ 产品形态持续变动：Flux.1-DEV → GPT Image 2.5/Seedream、"免费无限制" → credits + 水印 + 商用订阅墙，引用历史卖点须注意时效<a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-4">[4]</a>。
+  </div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">Raphael AI 证明了 OPC 模式在"工具型出海"赛道的标准打法闭环：用<b>闲置资源重构成本结构</b>（闲置 A100 = 电费）→ 用<b>免费无限制</b>击穿行业付费墙共识 → 用<b>订阅 + 广告</b>把流量换成现金 → 用<b>同一套 AI 工作流</b>（Cursor → Claude Code → Codex 数字员工）把复制新产品的边际成本压到趋零，三年滚出 50 款产品的矩阵。它与《归墟》类"作品型 OPC"互为镜像：一个把 AI 当生产力卖铲子，一个把 AI 当画笔做作品。而其争议（自述营收、社区榜单、口径打架）也同样是 OPC 研究的方法论样本——个人叙事时代，交叉核验比故事本身更重要。<a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a> <a class="cref partial" href="#ref-10">[10]</a></div><div class="cm"><a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a> <a class="cref partial" href="#ref-10">[10]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 13 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉或一手原文回溯），蓝 = 多源印证（权威信源可回溯），黄 = 部分映证（自述/转述/单一社区信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx cross">[1]</span><span class="rt">A/B+</span><span class="st">一手播客（门户转）</span></div><div class="ti">揭秘 Claude Code 榜一大哥：一个 AI 创业者如何把工具用到极致｜对话刘小排（播客《十字路口》，Koji、Ronghui 采访）</div><div class="mt"><b>来源：</b>腾讯新闻（十字路口Crossing 整理稿）　<b>发布日期：</b>2025-09-08<br><a href="https://news.qq.com/rain/a/20250908A04GHZ00" target="_blank" rel="noopener">https://news.qq.com/rain/a/20250908A04GHZ00</a></div><div class="note">事实核查：原文抓取完成。年龄/学历/猎豹十年/创业时点/无融资/公司六七人/900 风格词/Fast3D 自训模型与 GPU 调研流程/日均消耗/退出排行榜等出自此稿；与 InfoQ [2] 多处交叉一致。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx cross">[2]</span><span class="rt">B+</span><span class="st">主流技术媒体</span></div><div class="ti">月烧35万元token、逼得Claude官方连夜限速，被全网吐槽的中国"榜一大哥"，已经靠 AI 年入千万了（InfoQ，作者褚杏娟）</div><div class="mt"><b>来源：</b>36氪（InfoQ 微信公众号授权转载）　<b>发布日期：</b>2025-08-21<br><a href="https://36kr.com/p/3431810103889288" target="_blank" rel="noopener">https://36kr.com/p/3431810103889288</a></div><div class="note">事实核查：原文抓取完成。146 亿+/77 亿 token、CLAUDE COUNT 榜、8-15 公众号自证、程前朋友圈访谈（生财有术近百万、"去年接近 1000 万元收入"）、Fast3D 完全用 Claude Code、无 KPI、变现点设计等出自此稿；"ChatGPT o1 2023 年 11 月发布"为原文表述，本报告按其上下文采信"2024 Q4 Cursor"拐点口径。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx verified">[3]</span><span class="rt">A</span><span class="st">一手发帖</span></div><div class="ti">Raphael - [世界唯一] 完全免费、无限制、无需要注册登录、基于 Flux 的 AI 图像生成器（V2EX 分享创造）</div><div class="mt"><b>来源：</b>V2EX（发布者 yushuxin，11910 次点击）　<b>发布日期：</b>2025-01-16<br><a href="https://v2ex.com/t/1105407" target="_blank" rel="noopener">https://v2ex.com/t/1105407</a></div><div class="note">事实核查：原文抓取完成。产品定位、Flux.1-DEV、闲置 A100"电费成本"、"还没想好怎么赚钱"、隐私 10 分钟删除、次日 Product Hunt 打榜均为一手表述；后续跟风帖 [11] 直接称其为"刘小排大佬那篇 Raphael 的帖子"，身份链完整。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx verified">[4]</span><span class="rt">A</span><span class="st">产品官网（一手）</span></div><div class="ti">Raphael AI 官网（首页标语与定价页现状）</div><div class="mt"><b>来源：</b>raphael.app　<b>检索日期：</b>2026-11-12<br><a href="https://raphael.app/zh" target="_blank" rel="noopener">https://raphael.app/zh</a></div><div class="note">事实核查：官网直达抓取被反爬拦截（返回空），经搜索引擎对 raphael.app/zh-Hant、/zh、/zh/pricing 的摘要回溯确认：标语"100% 免費 · 無需登入 · 無限"、"由 GPT Image 2.5 驱动"、免费图像含水印、商用需付费订阅、Seedream 3.0 credits 与登录后 Basic 无限免费等现状口径。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx verified">[5]</span><span class="rt">A</span><span class="st">产品官网（一手）</span></div><div class="ti">Fast3D.io 官网（功能、FAQ 与定价体系）</div><div class="mt"><b>来源：</b>fast3d.io　<b>检索日期：</b>2026-11-12<br><a href="https://fast3d.io/" target="_blank" rel="noopener">https://fast3d.io/</a></div><div class="note">事实核查：官网直达抓取成功。文/图生成 3D、5-180 秒、credit 档位（20/50/100/200，PBR×3）、免费档限制与月度上限、GLB/FBX/OBJ/STL 导出、付费订阅可商用、API 在路线图均为一手确认。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx cross">[6]</span><span class="rt">B+</span><span class="st">省级主流媒体</span></div><div class="ti">8秒造物：一位中国创业者的AI革命（齐鲁晚报·齐鲁壹点，记者赵夏晔）</div><div class="mt"><b>来源：</b>齐鲁晚报·齐鲁壹点（读特新闻页转载链）　<b>发布日期：</b>2025-07-28<br><a href="https://m.dutenews.com/n/article/8967806" target="_blank" rel="noopener">https://m.dutenews.com/n/article/8967806</a></div><div class="note">事实核查：原文抓取完成（该 URL 实际呈现齐鲁晚报原稿全文）。8 秒/成本 1%/60-1500 美元/全球唯一免登录/40 万面/2023 年口径/团队 7 人（山东设计师）出自此稿；与 [2][5] 交叉一致。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">A</span><span class="st">高校官网</span></div><div class="ti">一个人、一台电脑、年入千万：AI创业的 10 步实操法则（广东工业大学创新创业学院 · 就业创业资讯）</div><div class="mt"><b>来源：</b>gkd.edu.cn（创新创业学院）　<b>检索日期：</b>2026-11-12<br><a href="https://gkd.edu.cn/ckmg/contents/179/38802.html" target="_blank" rel="noopener">https://gkd.edu.cn/ckmg/contents/179/38802.html</a></div><div class="note">事实核查：官网页面两次直达抓取均返回空，经搜索引擎摘要回溯确认页面存在及核心表述："这是87年创业者刘小排的宣言。2025年的今天，他凭一台电脑单枪匹马实现年入千万，用户遍布全球"。发布方为 A 级，因核验方式降级标注回溯方式；"年入千万"与 [2] 自述口径同向交叉。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx partial">[8]</span><span class="rt">C+</span><span class="st">自媒体转述</span></div><div class="ti">Raphael AI：这个用Cursor做的产品，月活破百万的文生图神器（i5z.net，作者苏米）</div><div class="mt"><b>来源：</b>i5z.net 项目分享　<b>发布日期：</b>约 2025 年（页面标注"1年前"）<br><a href="https://i5z.net/detail/64" target="_blank" rel="noopener">https://i5z.net/detail/64</a></div><div class="note">事实核查：原文抓取完成。"上线一个月月活破 100 万、全球 AIGC 产品增长榜第 15 名"、Flux.1-Dev + ControlNet、广告为主要盈利方式、会员提升速度等均为对刘小排分享的转述，未获原始榜单独立印证，按 partial 处理。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx partial">[9]</span><span class="rt">C+</span><span class="st">自媒体实测拆解</span></div><div class="ti">窥探顶级产品经理的出海网站Raphael AI，从中发现百万月活产品不曾对外公开的12个秘密（AI资讯号）</div><div class="mt"><b>来源：</b>aitntnews（作者为生财有术/哥飞社群圈友、深海圈学员）　<b>发布日期：</b>2025-11-29（成文于 2025-06）<br><a href="https://m.aitntnews.com/newDetail.html?newId=20228" target="_blank" rel="noopener">https://m.aitntnews.com/newDetail.html?newId=20228</a></div><div class="note">事实核查：原文抓取完成。上线 7 天日入 400 美金、两三个月百万月活、2025-05/06 月访客 86.4 万-100 万+（第三方工具）、定价 $10/$20/Enterprise、27 种语言子页、免费 512px、外链生态（Pollo AI/HIX.AI/MCP.so）、AnyVoice 访客数据均出自此稿；为圈友视角的第三方观察分析，关键数字无平台方确认。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx partial">[10]</span><span class="rt">C+</span><span class="st">社区整理（演讲逐字稿）</span></div><div class="ti">3年50款产品不招人，这个软件老兵怎么用AI编程替自己打工？（墨天轮，作者"有关SQL"）</div><div class="mt"><b>来源：</b>modb.pro　<b>发布日期：</b>2026-07-16<br><a href="https://www.modb.pro/db/2077569976786051072" target="_blank" rel="noopener">https://www.modb.pro/db/2077569976786051072</a></div><div class="note">事实核查：原文抓取完成。3 年 50 款产品/多款月活累计超千万、Idea to Biz 课程售罄、200 元付费文 700 多单十几万、六阶段论、12 个数字岗位、2026-02 无电脑月等均为演讲/AMA 内容的第三方转述整理，演讲中未点名具体产品，按 partial 处理。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx partial">[11]</span><span class="rt">C</span><span class="st">社区帖子（含质疑声）</span></div><div class="ti">跟着刘小排大佬下场:我做了个 AI 生图站当赚钱实验，过程全程在这帖同步（V2EX，发帖人 liandro）</div><div class="mt"><b>来源：</b>V2EX 分享创造　<b>发布日期：</b>2026-06-11<br><a href="https://v2ex.com/t/1219654" target="_blank" rel="noopener">https://v2ex.com/t/1219654</a></div><div class="note">事实核查：原文抓取完成。引用 Raphael 打法的跟风实验（Inkfox，五周 354 用户、2 单订阅）；"每月 140 多万流量、95% 海外用户"为楼主观察口径；评论区"靠卖课赚钱""网站亏本"等质疑如实收录，均无凭证。lsaiah 音乐站对标数据出自案例墙信源 v2ex.com/t/1204936（案例墙既有核验值）。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx partial">[12]</span><span class="rt">C</span><span class="st">独立博客（传播佐证）</span></div><div class="ti">为什么 Grok Bot 是更好的选择，而不是 OpenClaw 小龙虾？（金马博客，作者金马）</div><div class="mt"><b>来源：</b>lijinma.com　<b>发布日期：</b>2026-09-04<br><a href="https://lijinma.com/why-grok-bot-over-openclaw/" target="_blank" rel="noopener">https://lijinma.com/why-grok-bot-over-openclaw/</a></div><div class="note">事实核查：博客首页直达成功、专文经站内列表确认。该文开篇致谢"刘小排老师的《Grok Bot才是Jarvis》，感谢刘小排老师经常分享好东西给我们"——作为其公众号内容在独立开发者圈层持续传播的佐证收录；未检索到金马博客中专门评述 Raphael/Fast3D 的文章。</div></li>
+  <li id="ref-13" class="src"><div class="sh"><span class="idx verified">[13]</span><span class="rt">A</span><span class="st">政府官网（转党媒）</span></div><div class="ti">一个人 一台电脑 勇闯"千万赛道" 广东大力推动人工智能一人公司发展（南方日报，广州网信办转载）</div><div class="mt"><b>来源：</b>gzwxb.gov.cn（原发南方日报）　<b>发布日期：</b>2026-05-29<br><a href="https://www.gzwxb.gov.cn/context/contextId/216136" target="_blank" rel="noopener">https://www.gzwxb.gov.cn/context/contextId/216136</a></div><div class="note">事实核查：政府原文回溯完成。《广东省支持人工智能OPC创新发展行动方案（2026—2028年）》"形成一批年营业收入超千万元的优质企业"目标、"500万元到2000万元是多数一人公司年收入上限"的行业观点出自此稿，用作本案例营收区间的宏观参照。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 13 条。核验标签分布：🟢 已核验（verified）4 条、🔵 多源印证（cross）4 条、🟡 部分映证（partial）5 条。信源评级分布：A 级 5 条（两个产品官网一手、V2EX 一手发帖、高校官网、政府官网——其中 [4][7] 因反爬拦截经搜索引擎摘要回溯，已在条目内注明）、B+/B 级 3 条（InfoQ、十字路口播客、齐鲁晚报）、C+/C 级 5 条（两自媒体拆解、演讲转述、两条社区帖——均已标注口径）。核验失败/降级处理 2 处：gkd.edu.cn 两次直达返回空、raphael.app 直达被反爬拦截，均改用同发布方页面的搜索摘要回溯并注明；m.dutenews.com 链接实际命中齐鲁晚报原稿全文（转载链成立，按原发方引用）。营收、token 榜一、月活三处自述/第三方口径均按从严原则标注，未发现伪造链接；全部 URL 为检索过程实际命中页面。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-12 · 营收等自述数据均标注口径未经审计，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

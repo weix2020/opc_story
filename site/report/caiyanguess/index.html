@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · 猜盐/猜病——前阿里工程师张月的「大模型玩法工厂」 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · 猜盐/猜病">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="猜盐/猜病深度案例报告：前阿里工程师张月一人打造大模型信息游戏化矩阵（AI 模拟病人问诊推理、街景定位等几十种玩法），累计用户 160 万、最高日活 20 万，2025 年营收同比增 3 倍。12 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>猜盐 / 猜病深度案例报告</h1>
+    <h2>前阿里工程师张月：一个人、几十种玩法、零成本推广<br>把「大模型信息游戏化」做成累计 160 万用户的玩法工厂 —— 12 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">产品型 OPC</span>
+      <span class="tag">AI 原生</span>
+      <span class="tag">信息游戏化矩阵</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">160 万+</div><div class="k">累计用户（上线一年 · 创始人口径）</div></div>
+  <div class="stat"><div class="v up">20 万</div><div class="k">最高日活（常态化日活 2 万）</div></div>
+  <div class="stat"><div class="v up">同比 3 倍</div><div class="k">2025 年营收增速（中国经营报口径）</div></div>
+  <div class="stat"><div class="v neutral">300 万</div><div class="k">2026 年营收目标（元 · 规划值）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">「猜盐」是一个把大模型用作「信息游戏化引擎」的产品矩阵：玩家猜病、猜国、猜词、估算、连诗，每天一题、跨端对战。它由前阿里巴巴工程师张月于 2022 年独立开发运营，2025 年 4 月其分支玩法「猜病」（AI 模拟病人供玩家问诊推理）经小红书「整活」式自发传播出圈，成为 2026 年「OPC 元年」叙事中被主流财经媒体反复引用的标杆样本<span class="cite cross">[1]</span><span class="cite cross">[2]</span>。</p>
+  <div class="two">
+    <div class="card"><div class="ct">产品</div><div class="cb">「猜盐」——通过大模型实现信息游戏化、吸引用户持续互动的 AI 产品，下设「猜病」「猜国」「猜词」「猜农」「原神百科」「掐表」「估算」等几十个玩法<span class="cite cross">[1]</span>；官网实测另有估算、国景、城景、诗文连句、歌词、皇帝揭棋、百科找错、万物揭棋、猜旗、寻花令等 20 余个玩法入口，覆盖小程序、网页与 App 多端<span class="cite partial">[7]</span>。出圈分支「猜病」：玩家扮演医生，AI 模拟病人，通过对话推理其所患疾病，每天后台更新一个病症<span class="cite cross">[3]</span><span class="cite cross">[4]</span>。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-7">[7]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">张月，毕业于湖南工业大学计算机科学与技术专业，在校期间获两块 ACM 国际大学生程序设计竞赛亚洲区域赛铜牌、「蓝桥杯」B 组全国一等奖；独立创业前曾在阿里巴巴工作多年；2022 年起开发「猜盐」<span class="cite cross">[1]</span>。其前一款出圈产品为街景定位游戏「图寻」（tuxun.fun），积累 100 多万用户<span class="cite cross">[1]</span><span class="cite partial">[8]</span>。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="card blue"><div class="ct">组织方式</div><div class="cb">全职员工仅张月一人；在用户社群中招募来自北大、哈工大、悉尼大学的在校大学生兼职协作，「大家一起构思创意，或者利用 AI 辅助编程」，核心团队加上他共 3 人。最高频 AI 工具为写代码用的 Claude，日常兼用 ChatGPT 与豆包<span class="cite cross">[1]</span>。QQ 群沉淀近万名核心用户，每周与用户开语音沟通<span class="cite cross">[1]</span>。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="card blue"><div class="ct">公司 / 投资状态</div><div class="cb">融资进展：2026 年 3 月底参加成都首场 OPC 模式专场投资路演（红星AIGC 工作室、星阙智创、成都高新文创传媒、天府长岛数字文创园联合主办，今日资本、倍特基金、策源资本、华鲲科技等出席），已有机构初步沟通、持续洽谈，尚未形成明确投资方案<span class="cite cross">[1]</span>。公司注册主体信息未检索到公开信息。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a></div></div>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 案例墙锚点说明</div>
+    案例墙对本案例的收录锚点为「2025-04-15 ▲推算」——对应「猜病」2025 年 4 月中旬在小红书走红的时间窗（金羊网受访者自述「4 月中旬在社交平台看到网友分享」<span class="cite verified">[6]</span>；▲ 表示推算口径）。主流财经深度专访（中国经营报）发布于 2026-04-05，为本报告事实基线<span class="cite cross">[1]</span>。
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2022 年 6 月</div><div class="tx">前作「图寻」上线（tuxun.fun）</div><div class="td">街景定位玩法：用户通过地理特征、建筑风格、人文景观等信息，从一张街景图在地图上找到对应地点。学术论文口径该网站 2022 年 6 月上线<span class="cite partial">[9]</span>；官网现标注地图审图号 GS（2022）2885 号<span class="cite partial">[8]</span>。</div></div>
+    <div class="node"><div class="dt">2022 年 10–12 月</div><div class="tx">「猜盐」孵化，定位「信息游戏化」</div><div class="td">张月以「图寻验证过的『信息觉察』模式」为底座，将地理信息延伸至历史、生活、常识等多元领域，落地「猜盐」全域产品布局；产品名取「猜」之互动形式、「猜盐」谐音「测验」、「盐」喻优质信息如食盐为日常刚需三重巧思。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2023 年</div><div class="tx">上线当年即商业化，营收突破 10 万元</div><div class="td">初期营收规模有限，但经营业绩曲线自此呈上涨趋势。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2024-12-17</div><div class="tx">图寻数据成为学术数据集 GeoComp 的来源</div><div class="td">arXiv 论文《Geolocation with Real Human Gameplay Data》披露：其 GeoComp 数据集采集自一个地理定位游戏平台，涉及 74 万用户、两年时间，含 2500 万条元数据与 300 万个地理标注地点（数据截止 2024-12-17）<span class="cite partial">[9]</span>。</div></div>
+    <div class="node"><div class="dt">2025 年 4 月中旬</div><div class="tx">「猜病」在小红书以「整活」方式火出圈 ▲案例墙锚点</div><div class="td">玩家把严肃问诊变成充满网络热梗与黑色幽默的「整活现场」，自发分享的帖子收获成千上万点赞与评论；医学生亦将其当作「诊断练习题」使用，开发者回应「定位是娱乐和教育相结合」。<a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2025-05-19</div><div class="tx">科技自媒体集中报道：「猜病」沦为「AI 越狱大赛」</div><div class="td">差评（36氪授权转载）与 BB姬（腾讯新闻分发）同日发文：网友以「赛博拷问」、提示词越狱、root 命令、篡改 right 字段等方式套取 AI 病人答案，游戏机制漏洞与传播热度形成互文；同稿另见澎湃湃客分发。<a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2025 年</div><div class="tx">营收同比三倍增长</div><div class="td">中国经营报口径：「2025 年营收更是实现同比三倍增长」，绝对值未披露。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026 年 3 月底</div><div class="tx">参加成都首场 OPC 模式专场投资路演</div><div class="td">今日资本、倍特基金、策源资本、华鲲科技等一线机构出席；现场已有机构初步沟通、持续洽谈，尚未落地明确投资方案。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-04-05 → 04-20</div><div class="tx">中国经营报专访发布，数据纳入 OPC 元年叙事</div><div class="td">专访披露累计用户 160 万+、最高日活 20 万、常态化日活 2 万、次日留存率超 30%；半月后中经报「OPC 重构创业版图」专题再次引用同组数据，将张月列为「这一趋势的典型代表」。<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：先用「图寻」验证模式，再横向复制成矩阵</div><div class="cb">张月的路径不是先做爆款再做矩阵，而是先做一个单一信息域的验证品：图寻以「通过信息觉察来进行定位」积累 100 多万用户，证明了模式可行；但他同时判断「主要局限于地理信息，市场想象的空间有限」，于是把这套成熟模式横向延伸至历史、医疗、生活、常识等多元领域，落地「猜盐」几十个玩法。单个玩法是产品，玩法集合才是他的真正护城河——这也是本案例区别于「单点爆款」类 OPC 的关键结构。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a></div></div>
+  <div class="card"><div class="ct">转折二：把「用户表达」设计进产品，让玩法自己长出传播力</div><div class="cb">猜病的出圈并非投放驱动（零成本推广<span class="cite cross">[2]</span>），而是产品设计的结果：张月认为「用户展示自己与 AI『病人』的交流过程，其实是在表达自己对生活的理解」，因此刻意把产品做成让用户「输出自己的观点，表达幽默感、创造力和思考方式」的舞台。小红书上的「赛博庸医」二创、科技媒体口中的「AI 越狱大赛」<span class="cite cross">[3]</span><span class="cite cross">[4]</span>，本质都是用户把问诊过程当成了内容创作的素材——用户自发传播替代了买量，成为这款 OPC 产品唯一的增长引擎。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-3">[3]</a></div></div>
+  <div class="card red"><div class="ct">转折三：一人全职 + 高校兼职 + AI 工具链的「轻组织」</div><div class="cb">百万级用户体量的产品，全职仅张月一人；协作来自用户社群中招募的北大、哈工大、悉尼大学在校生兼职（核心团队 3 人），生产工具是 Claude（编程）+ ChatGPT + 豆包。他的方法论是「按月拆解目标、按周推进落地」，兼顾数据库维护、社群运营与兼职团队管理；OPC 的优势在「灵活机动、按需调配」，前期尽可能压低成本，只在「确非专长且学习成本太高」时寻找外援。代价与瓶颈同样清晰：投资人希望看到成熟团队与巨大市场，垂直小众赛道在一级市场天然受限。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a></div></div>
+  <div class="quote">
+    <p>我们更多的是基于『信息层』建立的『游戏模型』。用户首先要对信息本身感兴趣才会去玩……虽然从广义上讲也可以算作游戏，但与《消消乐》或《原神》这类游戏有着较大的区别。</p>
+    <span class="src">—— 张月，接受《中国经营报》专访（2026-04 发布），转引自 <a class="cref cross" href="#ref-1">[1]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <h4>玩法矩阵（以信源可查为准）</h4>
+  <div class="tw">
+  <table>
+    <thead><tr><th>玩法类别</th><th>代表玩法</th><th>机制要点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>医疗问诊推理</b></td><td class="hl">猜病</td><td>玩家扮医生、AI 模拟病人；AI 病人有完整「档案」（病史、症状、心理与生活状态、可与病症吻合的检查结果），每天后台更新一个病症，猜对次日再来</td><td><a class="cref verified" href="#ref-6">[6]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td>地理定位类</td><td>图寻（前作）、中国寻城、城景、国景、猜国、猜旗</td><td>以街景图/国旗等视觉信息推断地点；图寻官网标注地图审图号 GS（2022）2885 号</td><td><a class="cref partial" href="#ref-8">[8]</a><a class="cref partial" href="#ref-7">[7]</a></td></tr>
+      <tr><td>文字 / 歌词 / 诗词</td><td>猜词、歌词、一字联诗、诗文连句、年代排歌</td><td>如猜歌需输入正确歌词并配合节奏判断歌名（差评实测「猜了 50 多次没猜到」）</td><td><a class="cref cross" href="#ref-3">[3]</a><a class="cref partial" href="#ref-7">[7]</a></td></tr>
+      <tr><td>二次元 / 游戏 IP</td><td>猜原（原神百科）、猜PVZ植、猜萌、猜星</td><td>据说话特色猜二次元人物、按图片猜《植物大战僵尸》植物等</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td>棋类对战</td><td>揭棋（皇帝揭棋、万物揭棋）、排帝</td><td>信息与棋类规则结合，官网设多人派对与随机匹配对战入口（「近一个小时匹配 18 人」）</td><td><a class="cref partial" href="#ref-7">[7]</a></td></tr>
+      <tr><td>百科纠错 / 脑洞估算</td><td>百科找错、城市百科、估算、掐表、猜农、浪漫粉碎机、改字变影、寻花令等</td><td>信息娱乐化的长尾实验场；「猜盐是在 2022 年 10 月至 12 月孵化出来的」，此后持续扩展至几十个玩法</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-7">[7]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h4>大模型玩法设计方法论</h4>
+  <ul class="bl">
+    <li><b>两大业务板块拆分</b>：第一大板块基于现实世界信息（出圈的猜病即属此类）；第二大板块将信息以游戏化形式包装，即信息与游戏模式的结合<span class="cite cross">[1]</span>。</li>
+    <li><b>「信息层游戏模型」</b>：不做世界观驱动的重游戏，而做「用户对信息本身感兴趣才去玩」的轻竞技——以每日挑战制（「每天题目不变，0 点换题」<span class="cite partial">[7]</span>）制造回访节律。</li>
+    <li><b>把用户当「表达个体」而非「工具人」</b>：让问诊、竞猜过程本身成为可分享的内容，用户自发传播替代买量<span class="cite cross">[1]</span>。</li>
+    <li><b>AI 辅助生产的 OPC 工具链</b>：Claude 写代码为最高频，ChatGPT 处理日常，开车听豆包；创意由本人与高校兼职生共同构思，AI 辅助编程落地<span class="cite cross">[1]</span>。</li>
+  </ul>
+  <h4>变现、客群与痛点</h4>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>信源可查事实</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>变现模式</td><td>上线当年便实现商业化；2023 年营收突破 10 万元、2025 年同比三倍增长、2026 年目标 300 万元<span class="cite cross">[1]</span>。具体收入形式（广告 / 内购 / 会员）<b>未检索到公开披露</b>；官网存在商店、积分排行、成就与 App 下载入口<span class="cite partial">[7]</span>，暗示虚拟物品或积分方向的产品化基建，但未获证实</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-7">[7]</a></td></tr>
+      <tr><td>面向客群</td><td>年轻泛娱乐用户（张月的方法论：「做 To C 产品，核心要义就是扎根年轻群体、读懂他们的真实喜好」，从《原神》行为逻辑到抖音内容偏好找切口）＋医学生/医务圈层（将猜病用作「诊断练习题」，开发者称已收集医学生建议）</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-6">[6]</a></td></tr>
+      <tr><td>解决痛点</td><td>信息类内容的游戏化消费：把「知识/信息的获取」重构成每日轻娱乐——用张月的比喻，优质信息与知识如同食盐，是日常刚需，产品要解决的是「刚需信息的无聊」；对医学生则提供低成本、可重复的问诊推演练习场景（前医生评价其 AI 病人「较为完整、准确」，但与真实问诊仍有差距）</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-6">[6]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点 / 口径</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>累计用户</td><td class="hl">突破 160 万</td><td>上线一年（零成本推广）；2026-04 专访口径，创始人自述</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td>最高日活（DAU）</td><td class="hl">20 万</td><td>2026-04 专访口径；常态化日活 2 万</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>次日留存率</td><td class="pos">超 30%</td><td>2026-04 专访口径，创始人自述</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td>2023 年营收</td><td>突破 10 万元</td><td>上线当年即商业化后的首个公开锚点</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>2025 年营收</td><td class="hl">同比三倍增长（绝对值未披露）</td><td>中国经营报口径「实现同比三倍增长」；「增至 3 倍 / 增加 3 倍」存在中文表述歧义，见捌节</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>2026 年营收目标</td><td>300 万元</td><td>张月规划值，非实际营收</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>图寻（前作）累计用户</td><td>100 多万</td><td>张月专访口径；学术论文数据集口径为「74 万用户 / 两年」（统计口径与时点不同，未调和）</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-9">[9]</a></td></tr>
+      <tr><td>核心用户社群</td><td>QQ 群沉淀近万名核心用户</td><td>每周与用户开语音沟通</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    用户量、日活、留存、营收增速均为中国经营报转述的<b>创始人自述口径</b>，未见第三方监测平台或审计数据印证；中国经营报两组独立采写稿（2026-04-05 专访与 2026-04-20 专题）数字一致<span class="cite cross">[1]</span><span class="cite cross">[2]</span>。营收绝对值仅有 2023 年（10 万元）与 2026 年目标（300 万元）两个锚点，2024/2025 年绝对值未披露。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将猜盐放入案例墙「大模型玩法类」坐标系（对标数据均为<b>案例墙既有核验值</b>，本轮未重新核验，详见案例墙 index.html 对应卡片信源）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>数据表现</th><th>路径差异</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>猜盐 / 猜病</b></td><td>张月（前阿里工程师）</td><td>大模型信息游戏化矩阵（几十种玩法 · 每日挑战 + 多人对战）</td><td>累计用户 160 万、最高日活 20 万；2025 营收同比 3 倍</td><td><b>矩阵化玩法工厂</b>：单玩法可死、矩阵常青，用统一模式批量复制信息域</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>哄哄模拟器</td><td>王登科（DK）</td><td>AI 情景对话游戏（哄女友模拟）</td><td>24 小时 60 万用户、2000 万次对话（2024-01 上线期）</td><td><b>单点情绪爆款</b>：一个场景打透，靠话题性瞬时引爆，后续转向开源模型（6pen）等新方向</td><td><a class="cref partial" href="#ref-10">[10]</a></td></tr>
+      <tr><td>BibiGPT（AI 课代表）</td><td>吕立青（JimmyLv，前 ThoughtWorks/阿里）</td><td>AI 视频内容摘要工具（B站/YouTube/播客一键总结）</td><td>官网自述累计 100 万+ 用户</td><td><b>单点效率工具</b>：围绕「长内容变短」一个动作做深，玩法矩阵化程度低</td><td><a class="cref partial" href="#ref-11">[11]</a></td></tr>
+      <tr><td>Raphael AI</td><td>刘小排</td><td>基于 Flux.1 的免费无限制 AI 文生图网站</td><td>上线一个月月活破 100 万（全球 AIGC 增长榜第 15 名）</td><td><b>免费单功能站</b>：以「免费无注册」换规模，单功能 vs 多玩法</td><td><a class="cref partial" href="#ref-12">[12]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>三者对照出猜盐的位置：哄哄模拟器证明了「大模型 + 单一情景玩法」可以在 24 小时内引爆，但单点玩法的热度天然衰减；BibiGPT 与 Raphael AI 则以单一效率动作换规模。猜盐的差异化恰在于把「大模型玩法」从<b>一次性爆款</b>做成了<b>可持续量产的玩法工厂</b>——图寻验证模式、猜病引爆出圈、几十个玩法每日挑战承接流量与留存（次日留存 30%+），再以统一社群（QQ 群近万核心用户）沉淀跨玩法用户。这种「模式引擎 + 玩法矩阵 + 社群沉淀」的三层结构，是本案例对「大模型玩法类」OPC 最具复用价值的部分<span class="cite cross">[1]</span><span class="cite partial">[7]</span>。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:15%">维度</th><th>分析</th><th style="width:12%">信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>以大模型为引擎的「信息游戏化」矩阵：玩法层（猜病问诊推理 / 图寻街景定位 / 揭棋对战 / 歌词诗词等几十种）、节律层（每日一题、0 点换题）、对战层（派对匹配）、跨端层（小程序 + 网页 + App）。AI 在此是内容生成与角色扮演引擎——AI 病人的病史、症状、检查结果由模型按设定病症自动生成、「每次回复少量病情」<span class="cite verified">[6]</span>，而非传统游戏写死的剧本，这是其与 Web 小游戏时代的本质区别。</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>2. 面向客群</b></td><td>双圈层结构：主体为年轻泛娱乐用户（小红书「整活」人群、摸鱼场景的打工人<span class="cite cross">[3]</span>）；次圈层为医学生与医务工作者（把它当问诊练习题，前医生李女士连玩三四次并推荐在职同事使用<span class="cite verified">[6]</span>）。社群运营以 QQ 群近万核心用户为轴心，创始人坚持「每周和用户开语音」，并把「与用户直接沟通」列为即便不再亲自写代码也不放弃的通道。</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-6">[6]</a></td></tr>
+      <tr><td><b>3. 解决痛点</b></td><td>需求端：信息类内容的游戏化消费——知识问答与信息游戏化的结合，解决「刚需信息无聊、知识获取无反馈」的问题；对医学生则提供传统「标准化病人」（真人志愿者扮演）之外的低成本问诊练习替代品。供给端：大模型让一个人就能同时维护几十个玩法的题库、对话与判定逻辑，这是传统游戏团队做不到的边际成本结构。</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-6">[6]</a></td></tr>
+      <tr><td><b>4. 预估年化营收（推算，置信度 C）</b></td><td>可核验锚点仅三个：2023 年破 10 万元 → 2025 年同比三倍增长 → 2026 年目标 300 万元，2024/2025 绝对值与变现形式零披露。按保守读法（2025 = 2024 × 3，且 2024 不低于 2023 的 10 万量级），2025 年营收至少处于数十万元量级；按 2026 目标 300 万元反推（目标通常为上年实绩的 2–4 倍），2025 实绩亦可能落在 75 万–150 万元区间。<b>两口径只能给出「数十万至百余万元」的宽区间（C 级推算）</b>；官网商店/积分/App 入口暗示虚拟物品方向，未证实。</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>5. 融资进展</b></td><td>无公开融资落地。2026-03 参加成都首场 OPC 专场路演（今日资本、倍特基金、策源资本、华鲲科技等出席），仅初步沟通。张月自述结构性错配：投资人要求「成百上千倍甚至几万倍的收益」「成熟的团队」「能支撑巨大市场的需求」，而 OPC 赛道垂直小众——这既是本案痛点，也是案例墙多条 OPC 案例的共性。</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>6. 市场评价</b></td><td>正评价：小红书玩家自发分享破圈（帖子获成千上万点赞）；医学生与前医生给出「较为完整、准确」「或可助力医学生培养」的专业侧评价<span class="cite verified">[6]</span>；中经报语境称其为接触过的「运营得最为成熟」的 OPC 项目之一。娱乐侧解构：差评/BB姬以「电子庸医」「AI 越狱大赛」定性其出圈方式——热闹背后是提示词防御被系统性攻破（越狱指令、root 命令、篡改 right 字段直接判对）<span class="cite cross">[3]</span><span class="cite cross">[4]</span>，媒体呈现以戏谑为主、未作风险定性。</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td class="hl"><b>7. 投入成本与合规风险</b></td><td><b>① 医疗信息合规（重点）</b>：猜病让公网用户免费获得 AI 生成的病症、病史乃至「血常规等检查结果」<span class="cite verified">[6]</span>，虽定位「娱乐和教育相结合」、不构成诊疗建议，但 UGC「赛博庸医」内容（截肢切肺、黑色幽默误诊）以医疗语境大规模传播，存在医疗信息娱乐化的误导外溢；用户越狱与字段篡改则暴露内容安全机制的脆弱性<span class="cite cross">[3]</span><span class="cite cross">[4]</span>。行业对照：齐鲁医院（联合浪潮）、宣武医院、北大人民医院引入的「AI 标准化病人」均运行于院内考核教学场景<span class="cite verified">[6]</span>，与猜病的公网娱乐化使用形成场景边界——<b>未检索到针对猜病的监管动作或定性报道</b>。<b>② 街景数据使用合规</b>：图寻官网标注地图审图号 GS（2022）2885 号（正面合规证据）<span class="cite partial">[8]</span>；第三方开发者博客称其街景来自百度、腾讯、谷歌三家提供商<span class="cite partial">[9]</span>，谷歌街景在中国大陆的服务状态与其数据使用方式未见官方说明，属留白风险。<b>③ 游戏版号问题</b>：张月主动以「文娱产品」定位与《消消乐》《原神》类游戏划清界限（「游戏在国内的定义相对严谨」）<span class="cite cross">[1]</span>；但产品已具备每日挑战、多人匹配对战、积分商店等网络游戏形态<span class="cite partial">[7]</span>，<b>未检索到猜盐版号或备案信息的公开记录</b>——「信息游戏化」与「网络游戏」之间的定性地带，是本案最大的长期合规悬念。</td><td><a class="cref verified" href="#ref-6">[6]</a><a class="cref partial" href="#ref-8">[8]</a><a class="cref partial" href="#ref-9">[9]</a><a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-7">[7]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 五处留白与一处口径歧义（截至 2026-11-13 检索）</div>
+    ① 营收绝对值：2024、2025 年营收未披露，「同比三倍增长」存在「增至 3 倍 / 增加 3 倍」的中文表述歧义，仅 2023（10 万）与 2026 目标（300 万）两个锚点；② 变现形式（广告 / 内购 / 会员）未检索到公开披露；③ 用户量、日活、留存均为创始人自述、经中经报转述，无第三方监测印证；④ 公司注册主体、猜盐的版号 / 备案状态未检索到公开信息；⑤ 医疗内容娱乐化是否引发监管关注——未检索到任何监管表态或下架记录，属「暂无记录」而非「无风险」。口径差异：图寻用户「100 多万」（张月口径）与 arXiv 数据集「74 万用户 / 两年」（学术口径）并存，系统计口径与时点不同，未调和，按双口径存档<span class="cite cross">[1]</span><span class="cite partial">[9]</span>。
+  </div>
+  <div class="box note">
+    <div class="bt">📝 两处边界观察</div>
+    ① 组织边界：中经报口径为「全职员工仅张月一人」，但图寻官网设有「简历投递（成都 / 远程）」通道与商店、App 等产品化入口<span class="cite partial">[8]</span>，加上猜盐的北大 / 哈工大 / 悉尼大学兼职协作体系，其「一人」口径指全职雇佣状态，协作网络实为「1 全职 + 兼职 + AI」——引用时建议按「全职一人」精确表述。② 信源链路：中国经营报 App 原文深链（app.cb.com.cn/share/article/303419）抓取为空（需客户端渲染），本报告以同发布方的中经报电子报 PDF 版（2026-04-20）与新浪转载页双链互证替代。
+  </div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">猜盐验证了「玩法工厂」这条 OPC 路线：单玩法生命周期短、但「模式引擎 + 矩阵量产 + 社群沉淀」可以让一个人的产品体系持续产生新爆款——图寻到猜病间隔近三年，说明这套引擎的爆发可以复现。它同时提示了「大模型玩法类」OPC 的共同软肋：玩法机制越轻，被大模型能力迭代与同质化模仿覆盖的速度越快（张月自述的「创业三件套」焦虑<span class="cite cross">[1]</span>）；而把医疗、地理等严肃信息域做娱乐化，随规模放大必然撞上合规定性地带——这两点决定了本案的护城河在运营与社群，而非任何单个玩法。</div><div class="cm"><a class="cref cross" href="#ref-1">[1]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 12 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一信源或案例墙既有核验值）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx cross">[1]</span><span class="rt">A</span><span class="st">主流财经（门户转载）</span></div><div class="ti">探路「一人公司」｜对话「猜盐」创始人张月：OPC 的「生死线」在于快速落地与商业化验证</div><div class="mt"><b>来源：</b>新浪财经（原发中国经营网 / 贝果财经，记者尹丽梅、卢志坤，成都报道）　<b>发布日期：</b>2026-04-05<br><a href="https://finance.sina.com.cn/jjxw/2026-04-05/doc-inhtmhff7209077.shtml" target="_blank" rel="noopener">https://finance.sina.com.cn/jjxw/2026-04-05/doc-inhtmhff7209077.shtml</a><br><b>原文出处（App 深链）：</b><a href="http://app.cb.com.cn/share/article/303419" target="_blank" rel="noopener">http://app.cb.com.cn/share/article/303419</a></div><div class="note">事实核查：全文回溯完成。创业者背景、图寻 100 多万用户、猜盐孵化时间、玩法清单、160 万用户 / 最高日活 20 万 / 常态化日活 2 万 / 次日留存 30%+、2023 破 10 万 / 2025 同比 3 倍 / 2026 目标 300 万、路演与融资态、Claude/ChatGPT/豆包工具链、近万名核心用户 QQ 群、文娱产品定位引语均出自此稿；与 [2]（同报社独立采写稿）及 [6]（独立省级媒体）交叉。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx cross">[2]</span><span class="rt">B+</span><span class="st">主流财经报纸版面</span></div><div class="ti">OPC 重构创业版图 「一人独角兽」时代来临</div><div class="mt"><b>来源：</b>中国经营报电子报 PDF（记者吴清）　<b>发布日期：</b>2026-04-20<br><a href="http://dianzibao.cb.com.cn/images/2026-04/20/20/2648C08C.pdf" target="_blank" rel="noopener">http://dianzibao.cb.com.cn/images/2026-04/20/20/2648C08C.pdf</a></div><div class="note">事实核查：全文回溯完成。「前阿里巴巴员工独立开发和运营猜盐、零成本推广、上线一年累计用户突破 160 万、最高日活 20 万、次日留存率超 30%、北大/哈工大/悉尼大学在校生兼职协作」与 [1] 一致；另提供 OPC 元年语境（2025-11 苏州率先系统提出 OPC 概念、20+ 城市政策）。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx cross">[3]</span><span class="rt">B+</span><span class="st">科技自媒体（门户授权转载）</span></div><div class="ti">爆火的「猜病」游戏里，集齐了全中国的电子庸医</div><div class="mt"><b>来源：</b>36氪（授权转载差评X.PIN，作者刺猬）　<b>发布日期：</b>2025-05-19<br><a href="https://www.36kr.com/p/3298839250094342" target="_blank" rel="noopener">https://www.36kr.com/p/3298839250094342</a></div><div class="note">事实核查：全文回溯完成。猜病玩法（AI 生病说症状、玩家当庸医）、每天一个病人、猜歌（输入正确歌词配节奏）/猜星/猜城/猜萌等玩法、越狱提示词、root 命令、篡改 right 字段判对等出自此稿；与 [4][5] 同期同题材交叉。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx cross">[4]</span><span class="rt">B</span><span class="st">游戏自媒体（门户分发）</span></div><div class="ti">有多少变态，在爆火的猜病游戏里把AI病人调教成了「猫娘」?</div><div class="mt"><b>来源：</b>腾讯新闻（BB姬，作者小熊猫）　<b>发布日期：</b>2025-05-19<br><a href="https://view.inews.qq.com/a/20250519A09L9I00" target="_blank" rel="noopener">https://view.inews.qq.com/a/20250519A09L9I00</a></div><div class="note">事实核查：全文回溯完成。「猜病源自小程序猜盐的分支小测试、还有猜地铁/猜歌词等小游戏、每天后台更新一个病症、海龟汤式玩法、医学生当入门问诊辅助」等出自此稿；同稿另见观察者网风闻页（user.guancha.cn/wap/content?id=1445226）。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx cross">[5]</span><span class="rt">B+</span><span class="st">门户转载</span></div><div class="ti">爆火的「猜病」游戏里，集齐了全中国的电子庸医（澎湃湃客版）</div><div class="mt"><b>来源：</b>澎湃新闻·湃客　<b>发布日期：</b>2025-05<br><a href="https://m.thepaper.cn/newsDetail_forward_30833177" target="_blank" rel="noopener">https://m.thepaper.cn/newsDetail_forward_30833177</a></div><div class="note">事实核查：页面可达，为 [3] 差评稿的湃客分发版本，印证该稿传播链；不单独承载新事实。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx verified">[6]</span><span class="rt">B+</span><span class="st">省级媒体（独立采访）</span></div><div class="ti">AI扮演病人的「猜病」游戏走红，已有多家医院引用AI标准化病人助力考核教学</div><div class="mt"><b>来源：</b>金羊网（头条号分发，编辑李可欣）　<b>发布日期：</b>约 2025-04 下旬至 05 月（分发页未标注确切日期）<br><a href="http://m.toutiao.com/group/7504502160067969576/" target="_blank" rel="noopener">http://m.toutiao.com/group/7504502160067969576/</a></div><div class="note">事实核查：全文回溯完成，系独立于中经报链路的原创采访。前三甲医院前医生李女士（化姓）对 AI 病人档案完整性与准确性的评价、开发者回应「定位是娱乐和教育相结合、设置病症后让 AI 自动生成、每次回复少量病情、制造检查结果、已收集医学生建议」、齐鲁医院（联合浪潮）/宣武医院/北大人民医院引入 AI 标准化病人的行业事实均出自此稿；与 [1] 在「开发者本人受访 + 娱乐教育定位」上独立交叉。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx partial">[7]</span><span class="rt">A</span><span class="st">产品一手页面</span></div><div class="ti">猜盐官网（xiaoce.fun）—— 玩法矩阵与多人派对入口实测</div><div class="mt"><b>来源：</b>猜盐官方网站　<b>查询日期：</b>2026-11-13 实测<br><a href="https://xiaoce.fun/" target="_blank" rel="noopener">https://xiaoce.fun/</a></div><div class="note">事实核查：页面可达。slogan「把信息玩起来」「每天题目不变，0 点换题」、多人派对（「近一个小时匹配 18 人」）、估算/国景/城景/诗文连句/猜病/猜国/浪漫粉碎机/中国寻城/歌词/皇帝揭棋/改字变影/百科找错/万物揭棋/排帝/猜PVZ植/城市百科/万物对牌/一字联诗/猜原/猜旗/年代排歌/百科/寻花令等 20+ 玩法入口、公众号/小红书/小程序「猜盐」、QQ 群 594837569、图寻（tuxun.fun）友链均为一手实测；商店/积分/成就/App 入口存在但变现形式未证实，按 partial 处理。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx partial">[8]</span><span class="rt">A</span><span class="st">产品一手页面</span></div><div class="ti">图寻官网（tuxun.fun）—— 前作产品形态与地图审图号实测</div><div class="mt"><b>来源：</b>图寻官方网站　<b>查询日期：</b>2026-11-13 实测<br><a href="https://tuxun.fun/" target="_blank" rel="noopener">https://tuxun.fun/</a></div><div class="note">事实核查：页面可达。探索世界/每日挑战/匹配/派对/题库/网络迷踪等模块、地图审图号 GS（2022）2885 号、微信公众号「图寻」、开发者微博 @此间ZY、QQ 群 943507031、猜盐入口、「简历投递（成都/远程）：cijianzy@gmail.com」均为一手实测；审图号为街景/地图合规的正面证据，团队化程度未披露。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx partial">[9]</span><span class="rt">B+</span><span class="st">学术论文（预印本）</span></div><div class="ti">Geolocation with Real Human Gameplay Data: A Large-Scale Dataset and Human-Like Reasoning Framework（arXiv:2502.13759）</div><div class="mt"><b>来源：</b>arXiv（Zirui Song 等）　<b>发布日期：</b>2025-02-19 提交（v3 2026-01-06）<br><a href="https://arxiv.org/abs/2502.13759" target="_blank" rel="noopener">https://arxiv.org/abs/2502.13759</a></div><div class="note">事实核查：摘要页与 v1 HTML 回溯完成。v1 称其免费公益地理竞猜网站 2022 年 6 月上线（tuxun.fun）、图像来自 Google/Baidu/Gaode 地图；GeoComp 数据集涉及 74 万用户、两年、2500 万条元数据、300 万个地理标注地点（数据截止 2024-12-17）。与 [8] 官网互证图寻存在；第三方开发者博客（blog.zhaozilin.cn/posts/tuxun-plugin）另称街景来自百度、腾讯、谷歌三家。「74 万」与张月口径「100 多万」未调和，按双口径存档。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx partial">[10]</span><span class="rt">B+</span><span class="st">科技媒体（案例墙既有核验值）</span></div><div class="ti">哄哄模拟器（王登科 DK）—— AI 情景对话游戏对标数据</div><div class="mt"><b>来源：</b>品玩　<b>发布日期：</b>2024-01（产品上线期）<br><a href="https://www.pingwest.com/a/297389" target="_blank" rel="noopener">https://www.pingwest.com/a/297389</a></div><div class="note">事实核查：<b>本轮未重新核验</b>，数据（24 小时 60 万用户、2000 万次对话）引自案例墙 domestic-pool.md 第 45 条既有核验值，并按案例墙备注注明「后续产品独响已融资团队化，以个人项目时期为准」。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx partial">[11]</span><span class="rt">A</span><span class="st">产品官网自述（案例墙既有核验值）</span></div><div class="ti">BibiGPT（AI 课代表）—— AI 视频摘要工具对标数据</div><div class="mt"><b>来源：</b>BibiGPT 官网 About 页　<b>查询日期：</b>案例墙既有核验值<br><a href="https://bibigpt.co/about" target="_blank" rel="noopener">https://bibigpt.co/about</a></div><div class="note">事实核查：<b>本轮未重新核验</b>，累计 100 万+ 用户为官网自述口径，引自案例墙 domestic-pool.md 第 14 条既有核验值（吕立青 JimmyLv，前 ThoughtWorks/阿里）。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx partial">[12]</span><span class="rt">B</span><span class="st">社区 / 产品页（案例墙既有核验值）</span></div><div class="ti">Raphael AI —— 免费文生图站对标数据</div><div class="mt"><b>来源：</b>i5z.net / V2EX　<b>查询日期：</b>案例墙既有核验值<br><a href="https://i5z.net/detail/64" target="_blank" rel="noopener">https://i5z.net/detail/64</a></div><div class="note">事实核查：<b>本轮未重新核验</b>，上线一个月月活破 100 万、全球 AIGC 增长榜第 15 名引自案例墙 domestic-pool.md 第 46 条既有核验值（刘小排，基于 Flux.1）。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 12 条。核验标签分布：🟢 已核验（verified）1 条、🔵 多源印证（cross）6 条、🟡 部分映证（partial）5 条（其中 3 条为案例墙既有核验值，均已显式标注「本轮未重新核验」）。信源评级分布：A 级 3 条（主流财经专访、两个产品官网一手页）、B+/B 级 8 条、其余 1 条。核验链路：中经报专访（新浪转）全文回溯 + 同报社电子报 PDF 版独立采写稿互证 + 金羊网独立省级媒体采访交叉 + 猜盐/图寻两个官网一手实测 + arXiv 学术论文旁证；关键数字（160 万用户 / 日活 20 万 / 留存 30%+ / 营收曲线）均为创始人自述口径，已在正文与口径说明中显式标注。1 条核验失败：中国经营报 App 原文深链（app.cb.com.cn/share/article/303419）抓取为空（需客户端渲染），已按规则以同发布方电子报 PDF 原文与新浪转载页双链互证替代，未发现伪造链接；全部 URL 为检索过程实际命中页面。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-13 · 用户与营收数据为创始人自述口径并已标注推算置信度，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

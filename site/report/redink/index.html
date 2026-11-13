@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · 红墨 RedInk —— 默子的一个人内容工厂 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · 红墨 RedInk">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="红墨 RedInk 深度案例报告：00 后杭州开发者默子（HisMax）一人开发「一句话生成整套小红书图文」工具，开源仓库 5705★、在线版会员 68 元/月起，开源获客 + 订阅变现双引擎。11 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>红墨 RedInk 深度案例报告</h1>
+    <h2>00 后杭州开发者默子（HisMax）：一句话生成整套小红书图文笔记<br>开源仓库 5705★ · 在线版会员 68 元/月起 —— 11 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">工具型 OPC</span>
+      <span class="tag">开源获客 + 订阅变现</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">5705</div><div class="k">GitHub Stars（2026-11-11 API 实测）</div></div>
+  <div class="stat"><div class="v neutral">¥68 起</div><div class="k">在线版月付会员（创作者档）</div></div>
+  <div class="stat"><div class="v neutral">1055</div><div class="k">GitHub Forks（2026-11-11 实测）</div></div>
+  <div class="stat"><div class="v neutral">1 人</div><div class="k">代码贡献者（HelloGitHub 口径）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">红墨 RedInk 是一款「一句话生成整套小红书图文笔记」的 AI 工具：输入一个主题，自动产出爆款标题、正文文案与整套风格统一的 3:4 封面及内容配图，下载即可发布。它以「开源自部署 + 在线版订阅」双形态运营，是案例墙中少数已跑通「开源获客、托管变现」闭环的工具型 OPC 样本。</p>
+  <div class="two">
+    <div class="card"><div class="ct">产品</div><div class="cb">网页端在线使用、无需安装，也可 Docker 一键自部署（官方镜像 histonemax/redink，端口 12398）。核心流程三步：智能大纲生成（每页内容可编辑、可自定义描述）→ 封面页生成（文字准确、视觉统一）→ 内容页批量生成（默认最多 15 张并发，支持单张重绘且保持上下文风格一致）。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="card"><div class="ct">开发者</div><div class="cb">默子（网名 Histone / GitHub @HisMax），00 后杭州开发者（「00 后」口径出自工具站收录页与案例墙底稿；一手 README 仅自述「中国杭州 · AI 创业者 · 创业中」，未提年龄）。联系方式：histonemax@gmail.com，微信 Histone2024。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-3">[3]</a></div></div>
+    <div class="card"><div class="ct">开发与协作方式</div><div class="cb">个人项目：GitHub 仓库贡献者仅 1 人；技术栈为 Python 3.11+/Flask 后端 + Vue 3/TypeScript 前端，文案调用 Gemini 3、配图调用 Nano Banana Pro。v1.4.2 更新日志明确致谢 Claude Opus 4.5「智能代码辅助与开发支持」——一人 + AI 结对编程是本项目的工程底座。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-4">[4]</a></div></div>
+    <div class="card"><div class="ct">商业形态</div><div class="cb">双轨并行：开源版（CC BY-NC-SA 4.0 协议，自备 API Key，个人使用免费、商用需联系作者授权）；在线版（redink.top，积分订阅制，月付 68 元起、年卡 588 元起，支持微信/支付宝，不自动续费）。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-5">[5]</a></div></div>
+  </div>
+  <div class="two">
+    <div class="card blue"><div class="ct">社区位置</div><div class="cb">被 HelloGitHub 收录（标签：Web 应用 / LLM 应用 / Python / AIGC），过去 7 天仍获 17 颗星；第三方工具站评价「作者默子响应极快，用户反馈的 bug 常在一顿饭时间内修复」。未见主流科技媒体独立报道，热度集中于开发者社区与自媒体圈层。</div><div class="cm">信源：<a class="cref verified" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-3">[3]</a></div></div>
+    <div class="card blue"><div class="ct">公司 / 融资状态</div><div class="cb">是否注册公司、团队规模、融资情况均未检索到可交叉验证的公开信息；README 保留「用爱发电，请默子喝一杯咖啡」的赞赏码，无投资方迹象。在线版早期采取「注册需邀请码」的限流策略并赠送 50 体验积分。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2025-11-25</div><div class="tx">GitHub 仓库 HisMax/RedInk 创建</div><div class="td">GitHub API created_at 字段实测；锚点 2026（年）▲ 本报告以仓库开源为创业起点。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2025-11-26</div><div class="tx">创建次日连发 v1.2.0 / v1.3.0：Docker 一键部署上线</div><div class="td">新增 Web 可视化配置、单张重绘（重生成时传递完整上下文保持风格一致）；v1.3.0 发布官方镜像 histonemax/redink 至 Docker Hub——开源分发成本被压到「一行命令」。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2025-11-30</div><div class="tx">v1.4.0 架构重构</div><div class="td">后端拆分为模块化蓝图，新增 65 个后端单元测试；开源一周内完成工程化收尾。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2025-12-29</div><div class="tx">v1.4.1：自动生成标题、正文和标签</div><div class="td">产品从「配图工具」升级为「整套图文」：新增文案生成功能，补齐小红书笔记的文字侧；新增 macOS/Linux/Windows 一键启动脚本。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-03-15</div><div class="tx">v1.4.2：国际化与 AI 辅助开发显性化</div><div class="td">新增英文 README 并设为默认；致谢部分新增 Claude Opus 4.5（智能代码辅助与开发支持）；新增 Issue/PR 模板与 CONTRIBUTING.md。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-06-29</div><div class="tx">自媒体推荐小出圈</div><div class="td">网易号「星哥玩云」发布推荐文《做小红书图文太头秃？这款开源 AI 神器，一句话帮你搞定！》，评其「逻辑顺畅、审美在线」，给出 Docker 部署教程并确认 CC BY-NC-SA 4.0 协议。<a class="cref partial" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2026-06-30</div><div class="tx">v1.4.3 + 最后一次 push：开源仓库停更</div><div class="td">大纲默认页数改为 5 页、图片服务商链路模块化；此后截至 2026-11-11 仓库再无代码提交——开发重心明显转向在线版运营。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-08-26</div><div class="tx">官网指南页持续更新</div><div class="td">「小红书图文笔记完整流程」指南页标注更新于 2026-08-26：SEO 内容矩阵（图文教程 / 电商种草 / 对比页 / FAQ）成型，承接搜索流量。<a class="cref cross" href="#ref-7">[7]</a></div></div>
+    <div class="node"><div class="dt">2026-09-08</div><div class="tx">定价页价格快照更新：订阅体系成型</div><div class="td">三档月付会员（68/138/298 元）+ 三档年卡（588/1188/2588 元）+ 积分套餐与加量包，标注「页面价格卡为实时价格」。<a class="cref cross" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2026-10-16 → 11-11</div><div class="tx">星标持续爬坡：5632★ → 5705★</div><div class="td">第三方观测平台 2026-10-16 记录 5632★/1050 forks；本报告 2026-11-11 经 GitHub API 实测 5705★、1055 forks、20 个 open issues。<a class="cref partial" href="#ref-8">[8]</a><a class="cref verified" href="#ref-1">[1]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：把「生成结果可用」做成产品审美，在图片模型的痛点上差异化</div><div class="cb">AI 生图长期卡在「图中文字乱码」与「风格不统一」两个点上，而封面文字恰是小红书封面的命门。红墨把「文字准确无误、视觉统一协调」写进 README 的封面亮点，自媒体实测评价封面「文字准确无误」「告别土味封面」，并称整个项目「做得非常精致，不仅逻辑顺畅，而且审美在线」——在同类工具普遍粗糙的语境下，审美本身就是获客素材。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-6">[6]</a></div></div>
+  <div class="card"><div class="ct">转折二：Docker 一键部署 + AI 结对编程，把一人工程效率拉满</div><div class="cb">仓库创建次日即发布 Docker 官方镜像，自部署门槛压到一行 docker run；v1.4.2 致谢 Claude Opus 4.5「智能代码辅助与开发支持」，更新日志里连修五处后端 bug、清理五个前端内存泄漏——一名贡献者完成前后端双栈 + 测试 + 国际化的全部工程，AI 结对是隐形的第二双手。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a></div></div>
+  <div class="card red"><div class="ct">转折三：从「用爱发电」到「开源获客、托管变现」</div><div class="cb">README 顶部在保留咖啡赞赏码的同时挂出「红墨官方站点上线啦，注册即送 50 体验积分」的横幅，并以邀请码限流；2026-06-30 v1.4.3 之后开源仓库彻底停更，官网却以 SEO 指南矩阵 + 价格快照持续迭代——自部署版要求用户自备 API Key（对国内用户意味着额外门槛），在线版则一键即用。开源版的实际角色，是为托管版筛选并导流愿意付费的创作者与商家。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-6">[6]</a></div></div>
+  <div class="quote">
+    <p>让 AI 帮我们做更有创造力的事。</p>
+    <span class="src">—— 默子（Histone），GitHub README 作者签名栏，自述「AI 创业者 · 中国杭州 · 创业中」，引自 <a class="cref verified" href="#ref-1">[1]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <p class="lead">红墨的商业设计核心是「开源 + 商业化并行」：协议上用 CC BY-NC-SA 4.0 封死他人 SaaS 化的路，体验上用托管版的便利性对自部署版形成代差，再用积分制定价把算力成本转嫁为边际成本。</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>内容</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>双轨模式</b></td><td>开源自部署（Docker/本地，自备 Gemini 或 OpenAI 兼容 API Key，个人使用免费）+ 在线版（redink.top，网页端即开即用，积分订阅制）</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>开源协议</b></td><td>CC BY-NC-SA 4.0：署名-非商业性-相同方式共享；提供付费服务、集成商业产品、SaaS 运营均需联系作者获取商业授权（GitHub 因自定义协议文本识别为 Other）</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref partial" href="#ref-3">[3]</a></td></tr>
+      <tr><td><b>定价体系</b></td><td class="hl">月付：创作者 68 元/600 积分、进阶 138 元/1500 积分、专业 298 元/4000 积分；年卡 588/1188/2588 元（折合 49/99/216 元/月）；积分套餐 138/268/718 元（30 天有效）；加量包 158 元/1000 积分、468 元/3000 积分（永久有效）</td><td><a class="cref cross" href="#ref-5">[5]</a></td></tr>
+      <tr><td><b>积分消耗</b></td><td>一篇完整图文（大纲 + 标题正文 + 整套配图）约 65–100 积分：质量档单张 10 积分（GPT Image 2.5 · 2K，约 30 秒/张）、速度档单张 6 积分（Nano Banana 2 Lite · 1K，约 10 秒/张）、大纲 2 积分/次；折算每篇约 8–11 元</td><td><a class="cref cross" href="#ref-5">[5]</a><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>面向客群</b></td><td>① 个人创作者（周更 1–2 篇 → 创作者档）；② 接近日更的博主（→ 进阶档）；③ 电商商家与多账号矩阵运营（→ 专业档，官网设「电商种草批量产图」专页，企业批量建议先联系确认）</td><td><a class="cref cross" href="#ref-5">[5]</a><a class="cref cross" href="#ref-9">[9]</a></td></tr>
+      <tr><td><b>解决痛点</b></td><td>手工做一篇图文要跨文案/设计/素材多工具，一篇耗时一小时到数小时（官网口径），工具站口径称传统设计流程需 2–3 天；模板套版工具「热门模板大量用户共用」重复风险高——AI 原生方案按主题实时生成、整套风格统一、无需设计基础</td><td><a class="cref cross" href="#ref-7">[7]</a><a class="cref partial" href="#ref-3">[3]</a><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>付费机制设计</b></td><td>不自动续费（到期前 7/3/1 天提醒）、失败积分自动退回、会员积分按月发放且会员期内有效；支付走微信/支付宝（积分套餐仅微信）——全部针对个人付费者的信任顾虑设计</td><td><a class="cref cross" href="#ref-5">[5]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box insight">
+    <div class="bt">💡 商业模式一句话拆解</div>
+    开源版负责开发者社区口碑与 GitHub 星标（获客资产），在线版负责把「不愿折腾 API Key」的创作者和「要批量产图」的商家转化为订阅收入（变现资产）；CC BY-NC-SA 协议确保「开源」不会养出免费竞争者——这是国内个人开发者中少见的三件套齐整设计。
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>GitHub Stars</td><td class="hl">5705（案例墙底稿 2026-10/11 时点记 5.7k★）</td><td>2026-11-11 API 实测</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-4">[4]</a></td></tr>
+      <tr><td>GitHub Forks</td><td>1055</td><td>2026-11-11 实测</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-4">[4]</a></td></tr>
+      <tr><td>Watchers（Subscribers）</td><td>24</td><td>2026-11-11 实测</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>Open Issues</td><td>20</td><td>2026-11-11 实测</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>代码贡献者</td><td>1 人（个人仓库，非组织）</td><td>2026-11 查询</td><td><a class="cref verified" href="#ref-4">[4]</a></td></tr>
+      <tr><td>近 7 天新增星标</td><td>+17（仍在自然增长）</td><td>2026-11 中旬抓取</td><td><a class="cref verified" href="#ref-4">[4]</a></td></tr>
+      <tr><td>星标爬坡轨迹</td><td>4.5K+（2026 上半年口径）→ 5.1K（博客标题口径）→ 5632（第三方观测 2026-10-16）→ 5705（API 实测 2026-11-11）</td><td>2026 年内</td><td><a class="cref partial" href="#ref-6">[6]</a><a class="cref partial" href="#ref-10">[10]</a><a class="cref partial" href="#ref-8">[8]</a><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>在线版付费门槛</td><td class="pos">68 元/月起 · 注册送 50 积分 · 早期邀请码限流</td><td>2026-09 定价快照</td><td><a class="cref cross" href="#ref-5">[5]</a><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>营收 / 用户量</td><td>未披露（无任何公开数据）</td><td>—</td><td>见捌 · 争议与不确定性</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    GitHub 星标为时点值，随时间变动；5705★ 经本报告 GitHub API 直接回溯（一手），与 HelloGitHub 页面「5.7k」及第三方观测值相互印证。4.5K+/5.1K 为工具站与博客的历史标题口径，仅用于刻画爬坡轨迹、不作精确值引用。在线版订阅数、转化率、营收全部零披露——本报告不对营收给出点估计。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将红墨放入案例墙「开源 AI 内容工具」坐标系（对标数据均为案例墙既有核验值，口径为 GitHub 星标时点值，会随时间变动）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>开发者</th><th>形态</th><th>变现路径</th><th>GitHub 星标（时点值）</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>红墨 RedInk</b></td><td>默子（HisMax，00 后杭州）</td><td>一句话生成整套小红书图文</td><td class="hl">在线版订阅 68 元/月起 + 开源商业授权</td><td>5705★（2026-11-11 实测）</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-5">[5]</a></td></tr>
+      <tr><td>MoneyPrinterTurbo</td><td>harry0703</td><td>输入主题自动出文案/素材/字幕/配音的高清短视频生成器</td><td>变现未公开（星标最高）</td><td>133k+★（案例墙既有核验值）</td><td><a class="cref cross" href="#ref-11">[11]</a></td></tr>
+      <tr><td>HivisionIDPhotos</td><td>林泽毅（Zeyi-Lin，西电学生开发者）</td><td>轻量 AI 证件照工具，可离线自部署</td><td>开源生态为主</td><td>21.6k★（案例墙既有核验值）</td><td><a class="cref cross" href="#ref-11">[11]</a></td></tr>
+      <tr><td>VideoLingo</td><td>Huanshere</td><td>一键 Netflix 级视频本地化：字幕/翻译/克隆配音</td><td>开源生态为主</td><td>19k★（案例墙既有核验值）</td><td><a class="cref cross" href="#ref-11">[11]</a></td></tr>
+      <tr><td>MuMuAINovel</td><td>xiamuceer-j</td><td>可自部署 AI 长篇小说工作台（角色卡/伏笔追踪/批量挂机写章节）</td><td>自部署社区活跃，无在线托管收费</td><td>3.3k★（案例墙既有核验值）</td><td><a class="cref cross" href="#ref-11">[11]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>五者共享「开源获客」的起手式，但变现强度与星标规模并不正相关：MoneyPrinterTurbo 以 133k+★ 高居 AI 视频类榜首，变现路径未公开；MuMuAINovel（3.3k★）停留在自部署社区形态。红墨以约 5.7k★ 的中等星标，做出了五者中最显性的订阅闭环——关键在于两点：其一，锚定小红书这一<b>单平台、强模板、高频更新</b>的内容生态，付费场景（创作者日更 + 商家批量种草）足够具体；其二，把「部署麻烦 + API Key 门槛」留给开源版、把「即开即用」留给在线版，用体验代差而不是功能锁定驱动付费<a class="cref cross" href="#ref-11">[11]</a><a class="cref cross" href="#ref-5">[5]</a>。「开源获客 + 订阅变现」模式的本质，是让 GitHub 星标成为获客成本几乎为零的信任资产。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="card"><div class="ct">1. 产品功能</div><div class="cb">一句话生成整套小红书图文：智能大纲（每页可编辑、可自定义描述）→ 3:4 封面（文字准确、风格统一）→ 内页批量并发生成（默认最多 15 张，单张重绘保持上下文一致），同时产出标题、正文与话题标签；支持重新生成单页、大纲预览与编辑。自部署版支持 Gemini 与 OpenAI 兼容接口自由配置，在线版免配置即用。</div><div class="cm"><a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-4">[4]</a></div></div>
+  <div class="card"><div class="ct">2. 面向客群</div><div class="cb">直接客群三层：小红书个人创作者（周更 1–2 篇，68 元档够用）、接近日更的博主（进阶档）、电商商家与多账号运营（专业档，官网为「多 SKU 批量产图」设专页并建议企业批量先联系）。间接客群为想自部署二开的技术用户（CC BY-NC-SA 限定其不得商用）。未披露任何用户画像与规模数据。</div><div class="cm"><a class="cref cross" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-9">[9]</a> <a class="cref verified" href="#ref-1">[1]</a></div></div>
+  <div class="card"><div class="ct">3. 解决痛点</div><div class="cb">供给端：小红书图文的瓶颈不在写字而在「成套出图」——封面 + 3–9 张内容图、风格统一、3:4 规范，手工一篇耗时一小时到数小时（官网口径）乃至 2–3 天（工具站口径）；红墨把整条链路压缩成一步。需求端：模板套版工具的「热门模板大量用户共用」导致同质化，AI 原生按主题实时生成天然规避重复。</div><div class="cm"><a class="cref cross" href="#ref-7">[7]</a> <a class="cref partial" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-2">[2]</a></div></div>
+  <div class="card"><div class="ct">4. 预估年化营收（推算，置信度 C）</div><div class="cb">营收与订阅数<b>零披露</b>。可核验的边界事实：三档订阅 + 积分包的完整价目表、微信/支付宝支付链路、单价区间 0.110–0.158 元/积分。纯算术示意（不代表实际用户规模）：若平台有 1000 名创作者年卡订阅者，年营收约 58.8 万元；按专业档商家客户计则杠杆更高。但因无任何公开用户数据支撑，本报告<b>不给出营收点估计</b>，仅确认「订阅基础设施完备、收入模式已上线」。</div><div class="cm">推算依据：<a class="cref cross" href="#ref-5">[5]</a>，推算口径为 C 级</div></div>
+  <div class="card"><div class="ct">5. 融资进展</div><div class="cb">未检索到公开信息。无投资方迹象：README 以「用爱发电」赞赏码 + 商业授权询价作为收入补充姿态；在线版早期用邀请码限流，更像控制算力成本的运营策略而非扩张动作。</div><div class="cm"><a class="cref verified" href="#ref-1">[1]</a></div></div>
+  <div class="card"><div class="ct">6. 市场评价</div><div class="cb">社区正评价密集：被 HelloGitHub 收录并持续每周增星；工具站评价「作者默子响应极快，用户反馈的 bug 常在一顿饭时间内修复，社区活跃度高」；自媒体实测称「非常精致，逻辑顺畅，审美在线」「告别土味封面」。另一面如实记录：未见主流科技媒体（机器之心/量子位级别）独立报道，评价生态集中于开发者社区与自媒体圈层。</div><div class="cm"><a class="cref verified" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-3">[3]</a> <a class="cref partial" href="#ref-6">[6]</a></div></div>
+  <div class="card red"><div class="ct">7. 投入成本与合规风险</div><div class="cb">成本结构：人力=1 名贡献者 + AI 结对（v1.4.2 致谢 Claude Opus 4.5）；算力外部化——自部署用户自备 API Key，在线版按积分把第三方模型（Gemini 3 / Nano Banana Pro / GPT Image 2.5 / Nano Banana 2 Lite）用量转售，毛利取决于模型采购价。合规：开源协议为 CC BY-NC-SA 4.0（非商用，GitHub 识别为 Other），商业授权单通道由作者掌握；上游依赖第三方模型配额与政策；平台端风险见捌（小红书对 AI 内容的治理态度）。</div><div class="cm"><a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-5">[5]</a> <a class="cref verified" href="#ref-4">[4]</a></div></div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 四项主要风险（截至 2026-11-12 检索）</div>
+    ① <b>营收与用户量未公开</b>：在线版订阅数、付费转化率、月流水无任何公开数据，商业成败只能从「定价体系完备」间接推断；② <b>开源仓库停更</b>：2026-06-30（v1.4.3）后近五个月无代码提交（截至 2026-11-11 实测）<a class="cref verified" href="#ref-1">[1]</a>，在线版与开源版的功能差距持续拉大，「开源」作为社区承诺的长期性存疑；③ <b>平台规则风险</b>：产品价值完全锚定小红书分发，平台对 AI 生成图文的识别、限流、标识与商业化政策尚未定型，批量同质化产图尤其可能触发治理——平台规则一变，定价模型的分母直接坍缩；④ <b>上游依赖</b>：文案与图片能力绑定 Gemini 3、Nano Banana Pro、GPT Image 2.5 等第三方模型<a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-5">[5]</a>，任一模型调整价格或可及性，成本结构即刻重写。
+  </div>
+  <div class="box note">
+    <div class="bt">📌 留白与口径备注</div>
+    ① 「00 后」画像仅见于工具站收录页（C 级单源）与案例墙底稿<a class="cref partial" href="#ref-3">[3]</a>，一手 README 仅自述「中国杭州 · AI 创业者」<a class="cref verified" href="#ref-1">[1]</a>，年龄未获一手确认；② 公司注册信息未检索到可交叉验证的公开信息；③ README 挂出的「注册需邀请码」为历史公告<a class="cref verified" href="#ref-1">[1]</a>，当前在线版是否仍需邀请码未验证；④ 无主流媒体独立报道，项目热度指标全部来自 GitHub 生态内部（星标/fork/社区帖），存在圈层偏差——这是把「社区热度」当「商业成功」代理变量时必须打的折扣。
+  </div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">红墨证明了工具型 OPC 的「小星标大生意」路径：5.7k★ 不足 MoneyPrinterTurbo 的二十分之一，却因锚定单一平台（小红书）、单一格式（3:4 图文）、单一动作（发布）而拥有了最清晰的付费场景。对个人开发者的启示是双重的——垂直到「一句话进、整套图文出」的程度本身就是壁垒；而 CC BY-NC-SA 协议 + 托管代差的组合，让「开源」从成本变成获客渠道。风险同样典型：仓库停更意味着创作者正在从「开源作者」转型为「SaaS 运营者」，平台规则与上游模型的双重依赖，是这个转型能否持续的全部变量。</div><div class="cm"><a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-11">[11]</a> <a class="cref cross" href="#ref-5">[5]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 11 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 C 级信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx verified">[1]</span><span class="rt">A</span><span class="st">一手 · GitHub 仓库</span></div><div class="ti">HisMax/RedInk 仓库与 README（中文版）＋ GitHub API 实测</div><div class="mt"><b>来源：</b>GitHub　<b>仓库创建：</b>2025-11-25　<b>最后 push：</b>2026-06-30　<b>实测：</b>2026-11-11（5705★ / 1055 forks / 20 open issues / Python）<br><a href="https://github.com/HisMax/RedInk" target="_blank" rel="noopener">https://github.com/HisMax/RedInk</a>（README：<a href="https://raw.githubusercontent.com/HisMax/RedInk/main/README_zh.md" target="_blank" rel="noopener">README_zh.md</a>；API：<a href="https://api.github.com/repos/HisMax/RedInk" target="_blank" rel="noopener">api.github.com/repos/HisMax/RedInk</a>）</div><div class="note">事实核查：作者自述（默子/Histone、中国杭州、AI 创业者）、三步工作流、技术栈（Flask/Vue 3/Gemini 3/Nano Banana Pro）、v1.2.0–v1.4.3 全部版本日志、CC BY-NC-SA 4.0 协议与商业授权条款、Docker 镜像 histonemax/redink、官方站点横幅（注册送 50 积分/邀请码）、致谢 Claude Opus 4.5 均出自此一手信源；星标数与 HelloGitHub [3]、第三方观测 [8] 交叉一致。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx cross">[2]</span><span class="rt">A</span><span class="st">一手 · 官网主页</span></div><div class="ti">红墨 RedInk 官网：AI 一键生成小红书图文笔记｜封面配图+爆款文案一站式工具</div><div class="mt"><b>来源：</b>redink.top　<b>核验：</b>2026-11-12 可达<br><a href="https://redink.top/" target="_blank" rel="noopener">https://redink.top/</a></div><div class="note">事实核查：产品定位（输入主题自动生成笔记大纲、爆款标题、正文文案与整套 3:4 封面及内容配图，网页端在线使用无需安装）、「红墨是什么」官方口径出自此页；与 README [1] 一致。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx partial">[3]</span><span class="rt">C+</span><span class="st">工具站收录页</span></div><div class="ti">红墨 RedInk —— OpenI 收录页（00 后开发者、2025 年底开源、4.5K+ Stars）</div><div class="mt"><b>来源：</b>openi.cn　<b>核验：</b>2026-11-12 检索快照命中<br><a href="https://openi.cn/sites/318827.html" target="_blank" rel="noopener">https://openi.cn/sites/318827.html</a></div><div class="note">事实核查：「00 后开发者默子（@HisMax）」「2025 年底开源后迅速在 GitHub 获得 4.5K+ Stars」「基于 Gemini 3 生成文案、Nano Banana Pro 生成配图」「传统 2–3 天设计工作压缩」及「bug 常在一顿饭时间内修复」出自此页；开源时间与仓库创建 [1] 交叉一致，「00 后」与「2–3 天」为单一 C 级口径，按部分映证处理。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx verified">[4]</span><span class="rt">B+</span><span class="st">开源收录平台</span></div><div class="ti">HisMax/RedInk —— HelloGitHub 项目页（5.7k 星数、1 贡献者、1k Forks）</div><div class="mt"><b>来源：</b>hellogithub.com　<b>核验：</b>2026-11-12 抓取（近 7 天 +17 星）<br><a href="https://hellogithub.com/repository/HisMax/RedInk" target="_blank" rel="noopener">https://hellogithub.com/repository/HisMax/RedInk</a></div><div class="note">事实核查：星数 5.7k、Forks 1k、贡献者 1、Python 主语言、标签（Web 应用/LLM 应用/Python/AIGC）、官方介绍文案出自此页，与 GitHub API [1] 交叉一致。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx cross">[5]</span><span class="rt">A</span><span class="st">一手 · 官网定价页</span></div><div class="ti">红墨 RedInk 价格方案与积分规则（价格快照更新于 2026-09-08）</div><div class="mt"><b>来源：</b>redink.top/pricing　<b>核验：</b>2026-11-12 全文抓取<br><a href="https://redink.top/pricing" target="_blank" rel="noopener">https://redink.top/pricing</a></div><div class="note">事实核查：三档月付（68/138/298 元，600/1500/4000 积分）、三档年卡（588/1188/2588 元）、积分套餐（138/268/718 元）、加量包（158/468 元）、单篇消耗 65–100 积分、质量档/速度档模型与耗时、不自动续费与失败退分机制、「红墨会员 68 元/月起」官方 FAQ 口径均出自此页；与指南页 [7] 及案例墙底稿收费口径一致。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx partial">[6]</span><span class="rt">C</span><span class="st">自媒体实测</span></div><div class="ti">做小红书图文太头秃？这款开源 AI 神器，一句话帮你搞定！（星哥玩云）</div><div class="mt"><b>来源：</b>网易号「星哥玩云」　<b>发布日期：</b>2026-06-29<br><a href="https://m.163.com/news/article/L0KDTQVD05314EKW.html" target="_blank" rel="noopener">https://m.163.com/news/article/L0KDTQVD05314EKW.html</a></div><div class="note">事实核查：「作者默子是一位在杭州创业的 AI 开发者」「逻辑顺畅、审美在线」评价、三步玩法、Docker 部署命令（端口 12398）、CC BY-NC-SA 4.0 协议及商用需授权说法出自此稿；协议与部署细节均被一手 README [1] 交叉印证，作者身份为其自述/转述口径，按 C 级收录。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">A</span><span class="st">一手 · 官网指南页</span></div><div class="ti">小红书图文笔记怎么做？从主题到发布的完整流程（更新于 2026-08-26）</div><div class="mt"><b>来源：</b>redink.top/guide/xiaohongshu-post　<b>核验：</b>2026-11-12 全文抓取<br><a href="https://redink.top/guide/xiaohongshu-post" target="_blank" rel="noopener">https://redink.top/guide/xiaohongshu-post</a></div><div class="note">事实核查：传统做法一篇耗时「一小时到数小时」、四步生成流程、一篇 65–100 积分与每篇折算 8–11 元、68 元/月 600 积分口径、138 元档每月 15–23 篇产能出自此页；与定价页 [4] 同发布方互证。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx partial">[8]</span><span class="rt">C+</span><span class="st">第三方观测平台</span></div><div class="ti">HisMax/RedInk: Features, Use Cases &amp; Maintenance —— Ross 项目观测页</div><div class="mt"><b>来源：</b>ross.abutalabs.com　<b>核验：</b>2026-10-16 观测记录（5632 stars / 1050 forks，AI 抽取元数据，置信度未标注）<br><a href="https://ross.abutalabs.com/products/redink" target="_blank" rel="noopener">https://ross.abutalabs.com/products/redink</a></div><div class="note">事实核查：Python/Flask 后端 + Vue 3 前端、自托管 Web 应用定位与一手 [1] 一致；观测星标值仅用于刻画爬坡轨迹，不作精确值引用。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx cross">[9]</span><span class="rt">A</span><span class="st">一手 · 官网指南页</span></div><div class="ti">电商种草图文怎么做？小红书商家批量产图方法</div><div class="mt"><b>来源：</b>redink.top/guide/ecommerce-seeding　<b>核验：</b>2026-11-12 检索快照命中<br><a href="https://redink.top/guide/ecommerce-seeding" target="_blank" rel="noopener">https://redink.top/guide/ecommerce-seeding</a></div><div class="note">事实核查：商家客群定位（多 SKU 批量产图、按积分计费对商家友好、企业批量使用建议先联系确认）出自此页；与定价页 [4] 同发布方互证。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx partial">[10]</span><span class="rt">C+</span><span class="st">社区博客</span></div><div class="ti">开源狂揽 5.1K Star！基于 Nano Banana Pro 的小红书图文生成器太香了（芝麻小客服博客）</div><div class="mt"><b>来源：</b>xiaokefu.com.cn　<b>核验：</b>2026-11-12 检索快照命中<br><a href="https://xiaokefu.com.cn/blog/43586.html" target="_blank" rel="noopener">https://xiaokefu.com.cn/blog/43586.html</a></div><div class="note">事实核查：「5.1K Star」历史星标口径与「智能三步工作流」表述出自此稿；星标值仅用于爬坡轨迹，产品描述与一手 [1] 一致。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx cross">[11]</span><span class="rt">B+</span><span class="st">案例墙既有核验值</span></div><div class="ti">国内 AI 一人公司案例墙 · 开源 AI 内容工具对标数据（MoneyPrinterTurbo / HivisionIDPhotos / VideoLingo / MuMuAINovel）</div><div class="mt"><b>来源：</b>案例墙 data/domestic-pool.md 第 15/17/18/20 条及其信源（github.com/harry0703 等）<br><a href="../../index.html" target="_blank" rel="noopener">案例墙 index.html</a></div><div class="note">事实核查：对标表中四个同类项目的星标（133k+ / 21.6k / 19k / 3.3k）均为案例墙既有核验值（2026-10/11 时点），本报告不重复回溯，引用时已注明时点属性。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 11 条（底稿 3 条 + 补充检索 8 条），全部 URL 为检索过程实际命中页面，无核验失败链接。核验标签分布：🟢 已核验（verified）2 条（[1][4]，GitHub 一手与收录平台交叉）、🔵 多源印证（cross）5 条（[2][5][7][9] 官网一手四页 + [11] 案例墙既有值）、🟡 部分映证（partial）4 条（[6] 自媒体、[3][10] 工具站/博客、[8] 第三方观测——均单一发布方，已标注口径）。信源评级：A 级（GitHub API/README + 官网四页）5 条、B+ 级 2 条、C+/C 级 4 条。关键数字三重核验：星标 5705（API 一手）↔ HelloGitHub 5.7k ↔ Ross 观测 5632（10-16）；定价 68 元/月（定价页）↔ 指南页折算口径 ↔ 案例墙底稿。两处留白（营收零披露、公司注册未检索到）与一处口径限制（「00 后」仅 C 级单源）已在正文显式标注。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-12 · GitHub 星标为时点值会随时间变动 · <b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

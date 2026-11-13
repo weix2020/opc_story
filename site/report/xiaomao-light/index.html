@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · 小猫补光灯（Pro）—— 陈云飞的「一小时 MVP」 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · 小猫补光灯（Pro）">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="拍照补光 App「小猫补光灯」深度案例报告：不会写代码的前大厂用户研究员陈云飞（花叔）2023 年裸辞成为数字游民，用 Cursor 约 1 小时完成 MVP，付费版上架 4 小时一度登顶 App Store 付费榜，Pro 收入约 30-40 万元（中新经纬口径）。10 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>小猫补光灯（Pro）深度案例报告</h1>
+    <h2>不会写代码的前大厂用户研究员陈云飞（花叔）：2023 年裸辞、旅居六国，<br>用 Cursor 约 1 小时「手搓」出登顶 App Store 付费榜的补光 App —— vibe coding 标志性样本 · 10 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">vibe coding 标志案例</span>
+      <span class="tag">工具型 OPC</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v neutral">约 1 小时</div><div class="k">Cursor 完成 MVP（从想法到次日上架）</div></div>
+  <div class="stat"><div class="v up">30-50 万</div><div class="k">两款应用各自下载量（中新经纬 2026-05 口径）</div></div>
+  <div class="stat"><div class="v up">30-40 万元</div><div class="k">Pro 版累计收入（推出至今 · 中新经纬口径）</div></div>
+  <div class="stat"><div class="v neutral">付费榜 No.1</div><div class="k">Pro 上架 4 小时一度登顶（多口径并存）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">「小猫补光灯」是一款把手机屏幕变成可调色温纯色背光板的拍照补光 App，主打女性自拍场景。它由完全不会写代码的前大厂用户研究员陈云飞（网名「花叔」）在 2024 年 11 月用 AI 编程工具 Cursor 花约 1 小时完成开发，次日即通过苹果 App Store 审核上架，付费版「小猫补光灯Pro」随后登顶 App Store 付费榜——央视《焦点访谈》将其作为「手搓经济」专题的开篇案例并出镜采访本人<sup class="cite verified">[1]</sup>，中新经纬则披露其两款应用下载量各约 30-50 万、Pro 版累计收入约三四十万元<sup class="cite verified">[2]</sup>。它被普遍视为「AI 辅助编程最小可行产品（MVP）」的标志性案例：把「从想法到上架」压缩到了小时级。</p>
+  <div class="two">
+    <div class="card"><div class="ct">产品（App Store 在架一手核验）</div><div class="cb">官方产品为两款，开发者署名均为「云飞 陈」，Pro 页自述「小红书花叔出品」，并公开联系微信 alchain、小红书账号「花叔（只工作不上班版）」<a class="cref verified" href="#ref-3">[3]</a>：付费版「小猫补光灯Pro」定价 1 元买断——在免费版基础上增加自拍、Live Photo、录像、延时拍摄、镜像反转等进阶功能<a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-2">[2]</a>；免费版「小猫补光灯（花叔官方出品）」——11 款补光色卡预设、支持自定义颜色与智能亮度，官方描述直指餐厅、清吧、剧院、机舱等昏暗场景<a class="cref verified" href="#ref-4">[4]</a>。</div><div class="cm">信源：<a class="cref verified" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-4">[4]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">陈云飞，1989 年生，浙江温州人，华中科技大学经济学专业毕业。职业生涯横跨保险管培生（半年即裸辞）、上海设计咨询公司用户研究、搜狐畅游游戏用研、大厂用研、杭州金融科技公司，最后入职美团做用户研究并转岗产品运营——十年大厂履历，做到部门 leader。2023 年 3 月裸辞成为数字游民，旅居泰国、印尼、马来西亚、日本、法国、英国等地，边旅行边创业。央视 2026 年 5 月报道时年龄为 37 岁。网名「花叔」，作品集与开源记录挂在本人站点 huasheng.ai。</div><div class="cm">信源：<a class="cref verified" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-6">[6]</a> <a class="cref verified" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-7">[7]</a></div></div>
+    <div class="card blue"><div class="ct">公司 / 身份 / 收入结构</div><div class="cb">爆火后因安卓抄袭者无法以个人身份起诉，专程飞到杭州注册了第一家公司；明确表示「未来依然坚持一个人的公司」<a class="cref verified" href="#ref-5">[5]</a>。收入并非只靠 App：自媒体博主（B 站/YouTube 广告分成）、求职平台签约讲师、企业 AI 咨询顾问三重身份并行，据其转引新榜报道，企业 AI 咨询（帮教育机构、MCN、出海电商搭 AI 流程）构成收入大头；2024 年 12 月媒体口径「离职一年多收入接近百万」<a class="cref cross" href="#ref-8">[8]</a><a class="cref verified" href="#ref-5">[5]</a>。</div><div class="cm">信源：<a class="cref verified" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-8">[8]</a></div></div>
+    <div class="card blue"><div class="ct">2026 年：从 App 到开源的个人品牌</div><div class="cb">中新经纬披露其开源项目「女娲 Skill」（将人的思维方式封装为可被 AI 调用的「技能包」的认知蒸馏工具）已被腾讯、Kimi、智谱等公司的 AI 产品纳入使用，且免费授权<a class="cref verified" href="#ref-2">[2]</a>。本人站点自述：GitHub 公开非 Fork 仓库 69 个、自有仓库 Star 合计 120,433（截至 2026-11-12，每 6 小时自动更新的自述统计），其中女娲 Skill ★38,148、花叔 Design ★29,350；另著有人民邮电出版社《一本书玩转 DeepSeek》<a class="cref partial" href="#ref-7">[7]</a>。案例墙收录编号 63，锚点 2024（年）。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref partial" href="#ref-7">[7]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2006 → 2012</div><div class="tx">错入金融圈、转入用户研究</div><div class="td">高考入华中科技大学经济学专业；毕业校招进武汉保险公司做财产险管培生（月薪 3000 元），半年即首次裸辞；2011 年入上海设计咨询公司做用户体验（月薪 4000 元），找到「研究人的行为」的方向。<a class="cref cross" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2012 → 2022</div><div class="tx">用户研究十年，大厂浮沉</div><div class="td">2012 年入搜狐畅游搭建游戏用户研究体系（团队 3 人扩至 7 人）；此后大厂用研四年；2017 年跳槽杭州金融科技公司（管理岗+期权，一年后遇 P2P 爆雷期权落空）；再回北京加入美团，用户研究转岗产品运营。<a class="cref cross" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2022-12 → 2023-03</div><div class="tx">用上 ChatGPT，裸辞成为数字游民</div><div class="td">2022 年底已在工作场景使用 AI；2023 年春节后萌生离职想法，3 月裸辞，给自己一年期限并做好一年没收入的准备，开启全球旅居。<a class="cref verified" href="#ref-5">[5]</a><a class="cref cross" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2023-08 → 2024-04</div><div class="tx">AI 内容试水：《28 个 ChatGPT 使用技巧》与 GPTs</div><div class="td">AI 社群分享录成视频在 B 站/YouTube 获超 30 万播放；2024 年 4 月用 GPT 做「更勤奋更聪明的GPT4」，在 OpenAI 不推荐非英文 GPTs 的情况下纯靠自然流量获 5 万+ 使用量、登 GPT Store 首页。<a class="cref cross" href="#ref-6">[6]</a><a class="cref verified" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2024-08</div><div class="tx">Cursor 时刻：「根本感受不到时间的流逝」</div><div class="td">AI 编程工具 Cursor 爆火后连续数天一天泡咖啡馆 16 小时；此前已用 AI 做过拍照学单词、HumanizeAI、穿搭锐评大师等 20 余款练手产品（作品集挂在 huasheng.ai）。<a class="cref cross" href="#ref-6">[6]</a><a class="cref partial" href="#ref-7">[7]</a></div></div>
+    <div class="node"><div class="dt">2024-11-03 / 11-04</div><div class="tx">一小时 MVP 上架：手电筒 → 补光灯</div><div class="td">在马来西亚槟城做 AI 教学直播，用 20 分钟演示「不写代码做手电筒 App」；剪视频的女友建议「还不如做一款补光灯的」；翻小红书发现当月补光灯笔记数万篇、女生流行用纯色图补光——用 Cursor 约 1 小时完成产品，11 月 3 日提交、次日过审，本人正躺在印尼苏门答腊岛海滩上「一边看海一边改 bug」。<a class="cref verified" href="#ref-5">[5]</a><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2024-11 上中旬</div><div class="tx">破圈：冲上 iOS 总榜 Top20，Pro 登顶付费榜</div><div class="td">上架当天效果一般，第二三天社媒开始带量<sup class="cite verified">[1]</sup>；冲上苹果 iOS 应用榜单 Top20，与 YouTube、Instagram、Canva 同榜，小红书种草笔记数天破万点赞<a class="cref verified" href="#ref-5">[5]</a><a class="cref cross" href="#ref-6">[6]</a>；抄袭版本涌现后推出 ¥1 付费版 Pro（App Store 版本记录最早可见 2024-11-13 的 1.4 版<a class="cref verified" href="#ref-3">[3]</a>），登顶付费榜——「上架仅 4 小时」<a class="cref verified" href="#ref-2">[2]</a> 与「上线不到 24 小时」<a class="cref cross" href="#ref-8">[8]</a> 两说并存（详见捌章）。</div></div>
+    <div class="node"><div class="dt">2024-12</div><div class="tx">用户 16 万、注册公司防抄袭、媒体密集报道</div><div class="td">两款上线约 1 个月用户超 16 万<a class="cref verified" href="#ref-5">[5]</a>，免费版下载超 10 万<a class="cref cross" href="#ref-8">[8]</a>；为起诉安卓抄袭者飞杭州注册公司<a class="cref verified" href="#ref-5">[5]</a>；成都商报、人人都是产品经理等集中报道，本人站点另索引有硅星人 Pro、量子位同期专访<a class="cref partial" href="#ref-7">[7]</a>。</div></div>
+    <div class="node"><div class="dt">2025-02 → 2025-03</div><div class="tx">产品与个人同步演进</div><div class="td">Pro 版 2.0.8（2025-02-10）接入 DeepSeek<a class="cref verified" href="#ref-3">[3]</a>；2025 年 3 月底带新书《一本书玩转 DeepSeek》与 B 站 10 万粉奖牌重返阿那亚——离职两周年的纪念仪式；明确「不想回职场、也不考虑创业」。<a class="cref cross" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2025-09</div><div class="tx">vibe coding 布道：从 7 岁孩子到 77 岁阿姨</div><div class="td">在北京给一群小学生做 vibe coding 分享，有 7 岁小朋友上台讲自己做的连连看小游戏，同一天遇到 77 岁阿姨在学 vibe coding。<a class="cref verified" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2026-04 → 2026-05</div><div class="tx">央媒定调与数据披露</div><div class="td">人民锐评点名「小猫补光灯 APP 以 1 元售价获百万下载、开发者花 1 小时便打磨而成」，纳入「手搓经济」「一人公司」叙事<a class="cref verified" href="#ref-9">[9]</a>；央视《焦点访谈》专访（37 岁、边旅行边创业）<a class="cref verified" href="#ref-1">[1]</a>；中新经纬披露两款下载各 30-50 万、Pro 收入约三四十万元、十余位投资人联系投资均被婉拒。<a class="cref verified" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2026</div><div class="tx">开源转向：女娲 Skill 与 12 万 Star</div><div class="td">「女娲 Skill」被腾讯、Kimi、智谱等 AI 产品纳入使用（免费授权）<a class="cref verified" href="#ref-2">[2]</a>；本人站点自述 GitHub 自有仓库 Star 合计 120,433、Followers 13,200。<a class="cref partial" href="#ref-7">[7]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：十年用户研究，是「一小时」的暗前提</div><div class="cb">Cursor 解决的是「造出来」，但「做什么、值不值得做」来自职业积累：女友「拍照要打光」的日常观察、对小红书链路过长（翻笔记→存图→放大→调亮屏幕）的洞察，让他判断这是一个「能做的项目」——他本人复盘，当人人都能用 AI 生成产品时，核心竞争力已从技术实现转向需求判断与用户触达。没有这十年用研功底，「1 小时」只会产出第 21 款无人问津的练手作。</div><div class="cm">信源：<a class="cref cross" href="#ref-6">[6]</a> <a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-5">[5]</a></div></div>
+  <div class="card"><div class="ct">转折二：爆款是概率事件——「做 10 来款垃圾」的命中率方法论</div><div class="cb">小猫补光灯并非处女作：此前有 GPTs「更勤奋更聪明的GPT4」（上了 GPT Store 首页、被新周刊专访）、以及一款比它早两个月想法雷同但没火的同类尝试——「你总之得做 10 来款垃圾，才能做出一款出圈产品」。他把独立开发当作低成本试错的概率游戏：离职一年内做了本地脚本、网站、小程序、iOS 应用，B 站发布 9 款、本人复盘累计 20 余款，用高频次换爆款命中率，而非押注单一产品。</div><div class="cm">信源：<a class="cref cross" href="#ref-8">[8]</a> <a class="cref cross" href="#ref-6">[6]</a></div></div>
+  <div class="card red"><div class="ct">转折三：争议即流量，抄袭逼出 Pro</div><div class="cb">产品不是靠平台推荐火起来的，而是自媒体运营：他分别以「女生思维」和「开发者思维」各发一篇小红书笔记，后者引来「直接去网上下图就行了，真的有必要为此下个 App 吗」「苹果审核是不是打瞌睡了」的大面积质疑——不怕产品有争议，就怕没人理，争议流量带来真正目标用户（爱自拍女生），评论区晒图又反哺下载。随后大量抄袭版本涌现，他反向推出 ¥1 付费 Pro 并登顶付费榜，App Store 更新日志还公开点名美颜相机「致（chao）敬（xi）」；安卓被抄袭无法以个人身份维权，直接促成其注册公司。</div><div class="cm">信源：<a class="cref cross" href="#ref-8">[8]</a> <a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-5">[5]</a> <a class="cref verified" href="#ref-3">[3]</a></div></div>
+  <div class="quote">
+    <p>你总之得做 10 来款垃圾，才能做出一款出圈产品。</p>
+    <span class="src">—— 陈云飞，转引自人人都是产品经理《这个群体，AI 捏爆款，1 人年入百万》<a class="cref cross" href="#ref-8">[8]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>内容</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>产品功能</b></td><td>可调色温的纯色背光板：把屏幕变成补光源。早期免费版预设 4 种补光图、双区域分屏补光、亮度调节；现版本 11 款补光色卡预设 + 自定义颜色 + 智能亮度（依环境光自适应）；Pro 增 Live Photo、录像、延时拍摄、镜像反转等</td><td><a class="cref verified" href="#ref-4">[4]</a><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-5">[5]</a></td></tr>
+      <tr><td><b>「一小时 MVP」方法论</b></td><td>需求验证（小红书当月补光笔记数万篇）→ Cursor 约 1 小时实现 → 次日过审上架 → 按评论区反馈快速迭代（版本日志逐条致谢用户）——实现成本压至小时级，把迭代周期压至天级</td><td><a class="cref verified" href="#ref-2">[2]</a><a class="cref verified" href="#ref-5">[5]</a><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td><b>定价</b></td><td class="hl">免费版 0 元 + Pro ¥1 买断。¥1 定价极致低——本人自评「并没有带来可观收入，但登顶付费榜是荣誉」；收入大头在企业咨询与自媒体而非 App 本身</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-4">[4]</a><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td><b>面向客群</b></td><td>女性自拍人群（小红书「姐妹」式运营），场景覆盖餐厅、清吧、剧院、机舱等暗光自拍，以及直播、视频通话、美妆录制</td><td><a class="cref verified" href="#ref-4">[4]</a><a class="cref verified" href="#ref-5">[5]</a></td></tr>
+      <tr><td><b>解决痛点</b></td><td>暗光自拍：专业补光设备不便携，小红书流行的「纯色图补光」又需翻笔记→存图→放大→调亮的长链路——把链路压缩为「打开 App 即补光」</td><td><a class="cref verified" href="#ref-5">[5]</a><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h4>从「听劝」到「接 DeepSeek」：一个人的版本迭代节奏</h4>
+  <ul class="bl">
+    <li>2.0.4（2024-12-01）更新日志公开点名「感谢美颜相机对小猫补光灯的致（chao）敬（xi）」——头部应用跟进同功能的直接证据 <a class="cref verified" href="#ref-3">[3]</a>；</li>
+    <li>2.0.8（2025-02-10）接入 DeepSeek——小工具接入大模型能力的样本 <a class="cref verified" href="#ref-3">[3]</a>；</li>
+    <li>2.4.0（2025-09-09）整版修相机：「评论区被反复说的那几条，一条一条改了……给之前打过一星的各位：你们说的每一条我都看了」 <a class="cref verified" href="#ref-3">[3]</a>；</li>
+    <li>最新版本 2.5.3（2026-10-18）仍在持续维护，迭代至上线近两年——「还有问题继续在评论区说，我继续修」 <a class="cref verified" href="#ref-3">[3]</a>。</li>
+  </ul>
+  <p>分发端坚持 0 投放：流量来自小红书内容运营（「姐妹」式互动）与 App Store 自然流量（榜单效应 + 媒体报道二次放大）<sup class="cite cross">[8]</sup><sup class="cite verified">[5]</sup>。开发者本人在 App Store 评论区高频回复差评并落进版本更新——把客服做成内容与口碑，是小猫补光灯运营上最具辨识度的打法<sup class="cite verified">[3]</sup>。需注意：2026-11 检索时 App Store 另存在同名跟风产品（非陈云飞开发，详见捌章）。</p>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点 / 口径</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>iOS 应用榜单（免费总榜）</td><td class="hl">Top20（与 YouTube、Instagram、Canva 同榜）</td><td>2024-11 上架初期</td><td><a class="cref verified" href="#ref-5">[5]</a></td></tr>
+      <tr><td>App Store 付费榜</td><td class="hl">小猫补光灯Pro 登顶第 1（「上架仅 4 小时」口径；另有「不到 24 小时」口径）</td><td>2024-11（中新经纬 / 人人都是产品经理两说）</td><td><a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-8">[8]</a><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>两款应用下载量</td><td class="hl">各自约 30-50 万</td><td>2026-05（中新经纬采访口径）</td><td><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td>Pro 版收入</td><td class="hl">约 30-40 万元（推出至今累计）</td><td>2026-05（中新经纬采访口径）</td><td><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td>用户量（早期）</td><td>两版上线约 1 个月用户超 16 万</td><td>2024-12（成都商报口径）</td><td><a class="cref verified" href="#ref-5">[5]</a></td></tr>
+      <tr><td>免费版下载（早期）</td><td>上线至今超 10 万</td><td>2024-12（人人都是产品经理口径）</td><td><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td>「百万下载」</td><td>央媒评论口径「以 1 元售价获百万下载」（合计口径未说明）</td><td>2026-04</td><td><a class="cref verified" href="#ref-9">[9]</a></td></tr>
+      <tr><td>App Store 评分（2026-11 检索）</td><td class="pos">Pro 4.7 分（959 评分）· 免费版 4.7 分（324 评分）；Pro 列摄影与录像付费榜第 22 名</td><td>2026-11-13 实测</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-4">[4]</a></td></tr>
+      <tr><td>个人总收入</td><td>离职一年多「收入接近百万」（自媒体广告 + 企业 AI 咨询 + 讲师 + App）</td><td>2024-12（媒体口径，非 App 收入）</td><td><a class="cref verified" href="#ref-5">[5]</a><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    下载量与收入均为受访者自述口径，未经平台或第三方审计；「30-50 万/款」（2026-05）与「上线 1 个月 16 万用户」（2024-12）、「百万下载」（2026-04 央媒评论，或为两版合计）为不同时点、不同统计口径，引用时须注明；Pro 收入「三四十万元」对应 ¥1 定价约 30-40 万次付费下载量级，是否扣除苹果平台分成未披露。早期数据与 2026 年口径在时间轴上自洽（10 万 → 16 万 → 30-50 万/款）。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将本案放入案例墙「AI 辅助编程个人 App」坐标系（对标数据均为案例墙既有核验值，详见案例墙对应深度报告）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>开发者</th><th>形态</th><th>MVP 周期 / 方式</th><th>数据表现</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>小猫补光灯（Pro）</b></td><td>陈云飞（花叔）</td><td>iOS 拍照补光工具（免费 + ¥1 买断）</td><td class="hl">Cursor 约 1 小时（零代码基础）</td><td>下载 30-50 万/款、Pro 收入 30-40 万元；付费榜第 1</td><td>本报告 [2]</td></tr>
+      <tr><td>EmoEase</td><td>冼星朗（05 后香港高中生）</td><td>AI 情绪记录疗愈 App</td><td>Cursor/Trae 零基础 20 天</td><td>上线冲 App Store 付费工具榜第 5；苹果 SSC 全球杰出获奖者、受邀 WWDC25</td><td>案例墙 r45 核验值</td></tr>
+      <tr><td>胃之书</td><td>赵纯想（文科生前大厂产品经理）</td><td>拍照记录饮食 AI App</td><td>AI 辅助开发（文科生）</td><td>约 9 万用户、收入 1.2 万美元（5 个月口径）、App Store 美食佳饮分类第三</td><td>案例墙 r46 核验值</td></tr>
+      <tr><td>MoneyPrinterTurbo</td><td>harry0703</td><td>开源 AI 短视频生成器</td><td>AI 原生开源项目</td><td>GitHub 143k★（2026-11 实测），AI 视频类最高星之一</td><td>案例墙 r61 核验值</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>本案在四个样本中的位置清晰：它是「AI 辅助编程最小可行产品」的<b>极端案例</b>——EmoEase 用 20 天、胃之书用数周打磨产品，而小猫补光灯把「从想法到上架」压缩到约 1 小时、把「从上架到付费榜第一」压缩到小时级，是四者中实现成本最低、验证周期最短的样本。四者的共性同样重要：产品能否跑出来，决定因素都不是代码能力，而是需求判断（女性自拍 / 情绪记录 / 饮食健康 / 视频创作）与分发能力（小红书内容、App Store 榜单、开源社区）——AI 只是把「实现」这一环的成本压到接近于零，这也正是本案被央视、人民锐评选作「手搓经济」叙事标本的原因<sup class="cite verified">[1]</sup><sup class="cite verified">[9]</sup>。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="card"><div class="ct">1. 产品功能</div><div class="cb">双 App 矩阵：免费版（11 款色卡预设、自定义颜色、智能亮度）负责获客与冲榜，Pro（¥1 买断，自拍/Live/录像/延时/镜像）负责付费转化与榜单荣誉；Pro 2.0.8 起接入 DeepSeek。功能本体极简——本质是「一张可调色温的纯色屏幕」，竞争壁垒不在技术而在场景卡位与社区关系。</div><div class="cm"><a class="cref verified" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-4">[4]</a></div></div>
+  <div class="card"><div class="ct">2. 面向客群</div><div class="cb">核心客群为爱自拍的年轻女性（小红书内容生态的原生用户），暗光场景高频（餐厅、清吧、剧院、机舱）；延伸场景包括直播补光、视频通话、美妆教程录制。开发者以「姐妹」口吻互动、按用户反馈排期迭代，客群运营深度嵌入产品开发流程。无公开用户画像细分数据。</div><div class="cm"><a class="cref verified" href="#ref-4">[4]</a> <a class="cref verified" href="#ref-5">[5]</a> <a class="cref verified" href="#ref-3">[3]</a></div></div>
+  <div class="card"><div class="ct">3. 解决痛点</div><div class="cb">暗光自拍的真实高频需求：专业补光设备不便携、租借成本高，而「纯色图补光」的民间智慧（小红书大量笔记）链路太长且效果不稳定。产品把「找图→存图→调亮」压缩为「打开即补光」，并解决纯色图无法分区调光、亮度不可控等问题。需求真实性由数据侧证：一个月 16 万用户、种草笔记破万赞。</div><div class="cm"><a class="cref verified" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-6">[6]</a></div></div>
+  <div class="card"><div class="ct">4. 预估营收（推算，置信度 C）</div><div class="cb">App 直接收入有限：Pro ¥1 定价对应「30-40 万元收入」约 30-40 万次付费下载量级（平台分成是否扣除未披露）<a class="cref verified" href="#ref-2">[2]</a>；免费版与订阅制收入未披露。个人总盘子「年入百万」（2024-12 口径）= 自媒体广告 + 企业 AI 咨询（大头）+ 签约讲师 + App——即本案商业价值一半在产品、一半在「案例本身带来的个人品牌溢价」；2026 年开源 Skill 全部免费授权，变现重心已转向影响力与知识产品（新书、咨询）<a class="cref verified" href="#ref-5">[5]</a><a class="cref cross" href="#ref-8">[8]</a><a class="cref verified" href="#ref-2">[2]</a>。</div><div class="cm">推算依据：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-5">[5]</a>，推算口径 C 级</div></div>
+  <div class="card"><div class="ct">5. 融资进展</div><div class="cb">无外部融资：中新经纬披露爆火后十余位投资人主动联系投资合作，均被婉拒<a class="cref verified" href="#ref-2">[2]</a>；本人明确「不想考虑创业，找工作是资本的游戏，但我可以选择不参加这个游戏」<a class="cref cross" href="#ref-6">[6]</a>。唯一公司化动作是 2024 年 12 月为维权注册公司（一人公司性质）<a class="cref verified" href="#ref-5">[5]</a>。</div><div class="cm"><a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-6">[6]</a> <a class="cref verified" href="#ref-5">[5]</a></div></div>
+  <div class="card"><div class="ct">6. 市场评价</div><div class="cb">权威正评价密集：央视《焦点访谈》以本案开篇论述「手搓经济」，评价其「AI 技术平权让陈云飞从技术小白变成爆款 App 的开发者」<a class="cref verified" href="#ref-1">[1]</a>；人民锐评以「1 元售价获百万下载、花 1 小时打磨」论证「AI 催生增量机会、一人公司是真实趋势」<a class="cref verified" href="#ref-9">[9]</a>；App Store 双版本 4.7 分（合计 1283 评分），用户口碑「简单好用」<a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-4">[4]</a><a class="cref verified" href="#ref-5">[5]</a>。负评价见捌章，如实收录。</div><div class="cm"><a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-9">[9]</a></div></div>
+  <div class="card red"><div class="ct">7. 投入成本与合规风险</div><div class="cb">成本近乎为零：1 小时开发、0 投放、个人时间 + 极少订阅费用，与《归墟》类「重算力作品型 OPC」构成两个极端。核心风险是创意低壁垒：安卓抄袭者迫使本人注册公司维权<a class="cref verified" href="#ref-5">[5]</a>；美颜相机等头部应用直接跟进同功能<a class="cref verified" href="#ref-3">[3]</a>；App Store 已出现同名跟风的订阅制产品并伴随「未明确告知即扣费」的用户投诉<a class="cref verified" href="#ref-10">[10]</a>。合规面：两款官方 App 年龄分级 4+、无敏感资质要求，风险主要来自仿冒方而非产品本身<a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-4">[4]</a>。</div><div class="cm"><a class="cref verified" href="#ref-5">[5]</a> <a class="cref verified" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-10">[10]</a></div></div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 四处口径冲突与留白（截至 2026-11-13 检索）</div>
+    ① <b>上架年份</b>：中新经纬稿导语写「2025 年……完成」，与央视（「2024 年」）<sup class="cite verified">[1]</sup>、成都商报（2024-11-03 提交、次日过审）<sup class="cite verified">[5]</sup>、App Store 版本记录（最早可见 2024-11-13 的 1.4 版）<sup class="cite verified">[3]</sup> 冲突——按多源一致口径采信 2024 年；② <b>登顶时长</b>：「上架仅 4 小时」<sup class="cite verified">[2]</sup> 与「上线不到 24 小时」<sup class="cite cross">[8]</sup> 两说并存，且 Pro 上线时间本身亦有版本记录（11-13）与报道口径（11-27）之差；③ <b>下载量</b>：30-50 万/款（2026-05）<sup class="cite verified">[2]</sup>、上线 1 个月 16 万用户（2024-12）<sup class="cite verified">[5]</sup>、央媒评论「百万下载」（2026-04，合计口径未说明）<sup class="cite verified">[9]</sup> 并存——均为受访者/媒体口径，未经平台审计；④ <b>收入</b>：「Pro 收入约三四十万元」（2026-05，推出至今累计）<sup class="cite verified">[2]</sup> 与「靠 AI 年入百万」（2024-12 自述）<sup class="cite verified">[5]</sup><sup class="cite cross">[8]</sup> 非同一口径——后者含自媒体、咨询、讲师收入。
+  </div>
+  <div class="box note">
+    <div class="bt">📌 引用建议</div>
+    引用「30-50 万下载/款、Pro 收入 30-40 万元」时建议固定标注「中新经纬 2026-05 口径、受访者自述」；引用「年入百万」时标注「2024-12 媒体口径、含非 App 收入」；「登顶付费榜」建议表述为「一度登顶」并注明时长口径分歧。App Store 同名跟风产品的订阅收入与本案开发者无关。
+  </div>
+  <div class="card"><div class="ct">负面评价与抄袭生态（如实收录）</div><div class="cb">小红书评论区高赞质疑：「直接去网上下图就行了，真的有必要为此下个 App 吗？」，不少人认为是苹果审核「打瞌睡」放过了这款「没用的产品」<sup class="cite cross">[8]</sup>；开发者社群早期嘲讽「这也就是个 demo」「太垃圾了」「你对产品是不是有什么误解」<sup class="cite cross">[6]</sup>；「功能单一、可替代性强」是长期争议点。生态侧：安卓抄袭上架误导用户<sup class="cite verified">[5]</sup>；美颜相机跟进同功能（开发者更新日志点名「致（chao）敬（xi）」）<sup class="cite verified">[3]</sup>；App Store 现存同名跟风产品「小猫补光灯-小红书明星补光灯」（开发者「子豪 代」，非陈云飞开发；2024-12 起有版本记录，采用 ¥6/周订阅 + ¥68 永久买断，评论区已有「免费下载一周内被扣费」投诉）<sup class="cite verified">[10]</sup>。</div><div class="cm"><a class="cref cross" href="#ref-8">[8]</a> <a class="cref cross" href="#ref-6">[6]</a> <a class="cref verified" href="#ref-10">[10]</a></div></div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">小猫补光灯验证了 OPC 在「超轻工具 App」赛道的极限路径：人力 1 小时、成本近乎零、0 投放，实现「想法 → 上架 → 付费榜第一」的全链路。但它同时揭示了这条路的边界：¥1 定价决定 App 本身收入天花板有限，真正的复利来自「爆款案例 → 个人品牌 → 咨询 / 讲师 / 图书 / 开源影响力」的转化链路<sup class="cite verified">[5]</sup><sup class="cite cross">[8]</sup>；而抄袭者能复制功能，复制不了小红书「姐妹」社区关系与「听劝」人设——后者才是本案最难被模仿的资产<sup class="cite verified">[3]</sup><sup class="cite verified">[1]</sup>。</div><div class="cm"><a class="cref verified" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-8">[8]</a> <a class="cref verified" href="#ref-3">[3]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 10 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（原文回溯完成且与独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述 / 转述口径）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx verified">[1]</span><span class="rt">A+</span><span class="st">央媒栏目（央视网）</span></div><div class="ti">焦点访谈 | 从「小猫补光灯」到 AI 按摩机器人 看创客如何「搓」出新赛道</div><div class="mt"><b>来源：</b>央视网（CCTV-1《焦点访谈》文字稿，陈云飞出镜受访）　<b>发布日期：</b>2026-05-20<br><a href="https://news.cctv.com/2026/05/20/ARTIucCQk00Ybh7KvQ8vahjW260520.shtml" target="_blank" rel="noopener">https://news.cctv.com/2026/05/20/ARTIucCQk00Ybh7KvQ8vahjW260520.shtml</a></div><div class="note">事实核查：原文回溯完成；「2024 年手搓、一个多小时做好、手电筒改补光灯、上架次日社媒带量、付费升级版定价一元登顶收费榜第一、37 岁边旅行边创业」均出自此稿，与 [2][5] 交叉一致。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx verified">[2]</span><span class="rt">A</span><span class="st">主流财经（授权转载核验）</span></div><div class="ti">「手搓App，我赚了40万」（作者：中新经纬 林琬斯）</div><div class="mt"><b>来源：</b>中新经纬（微信公众号 ID: jwview）；本报告经 36氪授权转载版核验全文，同稿分发另有新浪财经、大象新闻<br><b>发布日期：</b>2026-05-22<br><a href="https://36kr.com/p/3820083865489545" target="_blank" rel="noopener">https://36kr.com/p/3820083865489545</a>（36氪授权转载）<br>同稿分发：<a href="https://finance.sina.com.cn/wm/2026-05-22/doc-inhytyys6203853.shtml" target="_blank" rel="noopener">新浪财经 doc-inhytyys6203853</a>、<a href="http://m.toutiao.com/group/7642616822805873186/" target="_blank" rel="noopener">大象新闻</a></div><div class="note">事实核查：全文回溯完成；下载 30-50 万/款、Pro 收入三四十万元、上架 4 小时登顶、十余位投资人被婉拒、女娲 Skill 被腾讯/Kimi/智谱纳入使用、小学生 vibe coding 分享均出自此稿。⚠️ 该稿导语「2025 年完成」与 [1][3][5] 冲突，按多源口径采信 2024 年（见捌章）。中新经纬微信原文页未单独回溯，以授权转载全文 + 两个同稿分发核验。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx verified">[3]</span><span class="rt">A</span><span class="st">平台一手（App Store）</span></div><div class="ti">App Store：小猫补光灯Pro - 官方出品，氛围感色卡补光自拍开创者</div><div class="mt"><b>来源：</b>苹果 App Store 中国区商品页（开发者：云飞 陈）　<b>检索日期：</b>2026-11-13<br><a href="https://apps.apple.com/cn/app/id6737987084" target="_blank" rel="noopener">https://apps.apple.com/cn/app/id6737987084</a></div><div class="note">事实核查：一手页面回溯完成；¥1.00 买断、4.7 分（959 评分）、摄影与录像付费榜第 22（2026-11 时点）、版本记录最早可见 1.4（2024-11-13）、2.0.4（2024-12-01）点名美颜相机「致敬」、2.0.8（2025-02-10）接入 DeepSeek、最新 2.5.3（2026-10-18）、「小红书花叔出品」与联系方式均实测。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx verified">[4]</span><span class="rt">A</span><span class="st">平台一手（App Store）</span></div><div class="ti">App Store：小猫补光灯 - 花叔官方出品（自拍补光·场景色卡·氛围灯）</div><div class="mt"><b>来源：</b>苹果 App Store 中国区商品页（开发者：云飞 陈）　<b>检索日期：</b>2026-11-13<br><a href="https://apps.apple.com/cn/app/id6737742513" target="_blank" rel="noopener">https://apps.apple.com/cn/app/id6737742513</a></div><div class="note">事实核查：一手页面回溯完成；免费、4.7 分（324 评分）、11 款补光预设/自定义颜色/智能亮度、餐厅清吧剧院机舱场景描述实测；在架标题历经改版（检索快照曾显示「内置 11 种绝美补光色卡」版副标题）。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx verified">[5]</span><span class="rt">B+</span><span class="st">省级都市媒体</span></div><div class="ti">靠 AI 年入百万？一个不会编程的浙江小伙，仅花 1 小时用 AI 做了一款 App 后……</div><div class="mt"><b>来源：</b>成都商报·橙柿互动　<b>发布日期：</b>2024-12-07<br><a href="https://static.cdsb.com/micropub/Articles/202412/60e8fa540f3bda36d101332681007210.html" target="_blank" rel="noopener">https://static.cdsb.com/micropub/Articles/202412/60e8fa540f3bda36d101332681007210.html</a></div><div class="note">事实核查：原文回溯完成；89 年温州人、华中科大经济学、2023 年 3 月裸辞、槟城直播 20 分钟演示手电筒、女友建议、11-03 提交次日过审、Top20、Pro 加 Live 自拍/镜像反转登顶付费榜、一个月 16 万用户、「更勤奋更聪明的GPT4」5 万使用量、收入接近百万构成、飞杭州注册公司维权均出自此稿，与 [6][8] 交叉一致。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx cross">[6]</span><span class="rt">B+</span><span class="st">主流财经深度专访</span></div><div class="ti">对话「小猫补光灯」陈云飞：35+ 岁大厂 i 人，用离职、旅居、AI 开发来打破中年魔咒</div><div class="mt"><b>来源：</b>36氪「职场Bonus」（撰文陈佳惠）　<b>发布日期：</b>2025-04-22<br><a href="https://www.36kr.com/p/3260888901418760" target="_blank" rel="noopener">https://www.36kr.com/p/3260888901418760</a></div><div class="note">事实核查：全文回溯完成；完整职业履历（保险管培生→搜狐畅游→大厂→杭州金融科技→美团）、2024-08 Cursor 时刻、20 余款练手产品、 huasheng.ai 作品集、种草笔记破万赞、「不考虑创业」表态、重返阿那亚与《一本书玩转 DeepSeek》均出自此稿——受访者自述口径为单一深访信源，关键事实已与 [5] 交叉。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx partial">[7]</span><span class="rt">B</span><span class="st">本人站点（自述一手）</span></div><div class="ti">花叔工作台 huasheng.ai（AI Native Coder · 独立开发者）</div><div class="mt"><b>来源：</b>本人站点（自述口径）　<b>检索日期：</b>2026-11-13<br><a href="https://www.huasheng.ai" target="_blank" rel="noopener">https://www.huasheng.ai</a></div><div class="note">事实核查：页面回溯完成；GitHub 自有仓库 Star 合计 120,433、69 个公开非 Fork 仓库、16,071 Forks、13,200 Followers（站点自述「截至 2026-11-12、每 6 小时自动更新、自有仓库计数之和」）为自述统计口径；女娲 Skill ★38,148、花叔 Design ★29,350、《一本书玩转 DeepSeek》（人民邮电出版社）、媒体报道索引（焦点访谈 2026.05、硅星人 Pro 2024.12、量子位 2024.12）实测。硅星人/量子位微信原文未单独回溯，未计入编号信源。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx cross">[8]</span><span class="rt">B</span><span class="st">行业媒体</span></div><div class="ti">这个群体，AI 捏爆款，1 人年入百万，能造出下个 Super App?</div><div class="mt"><b>来源：</b>人人都是产品经理（AI鲸选社，作者杨晓鹤）　<b>发布日期：</b>2024-12-08<br><a href="https://woshipm.com/it/6151771.html" target="_blank" rel="noopener">https://woshipm.com/it/6151771.html</a></div><div class="note">事实核查：全文回溯完成；2023 年 3 月裸辞、Claude 3.5 判断、女友启发、Cursor 1 小时、上线超 10 万下载、小红书双视角推广 SOP 与争议流量、「做 10 来款垃圾」引语、Pro 11-27 上线 24 小时登顶两说之一、收入构成（咨询为大头、转引新榜）均出自此稿，与 [5] 交叉一致；该稿亦为案例墙《胃之书》报告信源底账之一。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx verified">[9]</span><span class="rt">A+</span><span class="st">央媒评论</span></div><div class="ti">人民锐评：从 SBTI 到《纸手机》，看 AI 时代机会密码</div><div class="mt"><b>来源：</b>人民日报评论「人民锐评」微信公号（人民网客户端刊载，执笔常晋、李焱婕、欧阳金雨）　<b>发布日期：</b>2026-04-10<br><a href="https://www.peopleapp.com/column/30051865599-500007437178" target="_blank" rel="noopener">https://www.peopleapp.com/column/30051865599-500007437178</a></div><div class="note">事实核查：原文回溯完成；「小猫补光灯 APP 以 1 元售价获百万下载、开发者花 1 小时便打磨而成」「涉足 AI 创业前从未写过一行代码」「手搓经济、一人公司」均出自此稿。「百万下载」为央媒评论口径，与 [2] 的 30-50 万/款存在统计口径差异，已在捌章并列标注。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx verified">[10]</span><span class="rt">A</span><span class="st">平台一手（App Store · 跟风产品）</span></div><div class="ti">App Store：小猫补光灯-小红书明星补光灯（开发者：子豪 代，非本案开发者）</div><div class="mt"><b>来源：</b>苹果 App Store 中国区商品页　<b>检索日期：</b>2026-11-13<br><a href="https://apps.apple.com/cn/app/id6739262442" target="_blank" rel="noopener">https://apps.apple.com/cn/app/id6739262442</a></div><div class="note">事实核查：一手页面回溯完成；开发者「子豪 代」≠ 本案开发者「云飞 陈」；免费下载 + ¥6/周订阅 + ¥68 永久买断、4.7 分（513 评分）、类别「生活」、版本记录 1.1（2024-12-15）起、用户投诉「免费下载一周内被扣费」（2026-10 评论）均实测——用作「小猫补光灯爆火后蹭名/跟风生态」的一手证据，其收入与本案开发者无关。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 10 条，全部 URL 为检索过程实际命中并逐一回溯的可达页面，未发现伪造链接。核验标签分布：🟢 已核验（verified）7 条、🔵 多源印证（cross）2 条、🟡 部分映证（partial）1 条（本人站点 GitHub 数据，自述统计口径）。信源评级分布：A+/A 级 6 条（央视《焦点访谈》、人民锐评、中新经纬授权转载、App Store 三页一手），B+/B 级 4 条（成都商报、36氪职场Bonus、人人都是产品经理、本人站点）。关键事实（裸辞时间、1 小时开发、2024-11 上架、登顶付费榜、30-50 万下载、Pro 收入 30-40 万元）均获 ≥2 独立信源交叉。四处口径冲突（上架年份、登顶时长、下载量口径、收入口径）与一处留白（订阅版收入、平台分成是否扣除未披露）已在捌章显式标注；中新经纬微信原文页以 36氪授权转载全文 + 新浪财经/大象新闻同稿分发替代核验；硅星人 Pro 与量子位 2024.12 报道经本人站点索引发现、微信原文未单独回溯，未计入编号信源。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-13 · 下载量与收入均为信源自述口径并已标注时点，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

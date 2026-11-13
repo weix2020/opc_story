@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · 无事AI——法律博主佟晨的「按结果收费」小额纠纷解法 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · 无事AI">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="无事AI深度案例报告：法律博主佟晨用「AI智能体+人工指导师」按结果收费解决小额纠纷，从交通事故切入，上线两月 40 余单付费、营收约 6 万元、毛利率约 65%。13 条信源逐条核验，含非律师主体法律咨询监管边界重点分析。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>无事AI 深度案例报告</h1>
+    <h2>法律博主佟晨：AI 智能体 + 人工指导师，按结果收费解决小额纠纷<br>从交通事故切入，上线两月 40 余单付费、营收约 6 万元 —— 13 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">垂直应用型 OPC</span>
+      <span class="tag">AI + 人工交付</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">约 6 万</div><div class="k">上线两月营收（元 · 项目方自述口径）</div></div>
+  <div class="stat"><div class="v up">40 余单</div><div class="k">付费交付（两月 · 环比 +21%）</div></div>
+  <div class="stat"><div class="v neutral">65%</div><div class="k">毛利率（自述口径）</div></div>
+  <div class="stat"><div class="v down">约 10 元</div><div class="k">单均获客成本（行业投流参照 200-500 元）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">无事AI 是 2026 年「一人 + AI 垂直行业」样本中商业模式最特别的一个：它不卖工具、不卖订阅，而是<b>按结果收费、未获结果不收费</b>——用免费 AI 诊断接住小额纠纷当事人的咨询流量，复杂案情由人工指导师接续谈判直至赔款到账，再从赔偿结果中收取服务费。这个把交付风险揽到自己身上的定价结构，在个人 AI 服务案例中极为罕见，也使它成为合规讨论密度最高的样本之一。</p>
+  <div class="two">
+    <div class="card"><div class="ct">产品与主体</div><div class="cb">无事AI，运营主体为成都万端易解科技有限责任公司（2026-04-15 注册成立，注册资本 1000 万元，法定代表人佟晨，注册于中国（四川）自由贸易试验区成都高新区，登记行业为软件和信息技术服务业）。产品形态为微信小程序，定位「按结果收费的 AI+人工纠纷解决平台」，从交通事故理赔切入。</div><div class="cm">信源：<a class="cref partial" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-1">[1]</a></div></div>
+    <div class="card"><div class="ct">创始人</div><div class="cb">佟晨，法律博主：四年央国企风控法务合规经验、两年自媒体法律博主经验，帮助非诉处理纠纷 500+ 起，大学期间连续创业者；持有公司 89% 股权（认缴出资 890 万元）。成都市政府稿件表述其拥有「国央企法务风控经验，也曾运营法律自媒体」。</div><div class="cm">信源：<a class="cref partial" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-3">[3]</a></div></div>
+  </div>
+  <div class="two">
+    <div class="card blue"><div class="ct">园区与融资</div><div class="cb">2026 年 4 月入驻天府软件 π 立方 OPC 社区（成都高新区，2026 年 2 月启动的全国首个聚焦「AI+数字文创」的一人公司专属社区，已聚集 72 家 OPC 企业）；2026 年 5 月完成种子轮（金额未透露）；2026 年 8 月 24 日经 36 氪宣布启动天使轮融资，计划融资 300 万元、出让 10% 股权（截至检索时点仍在进行中）。</div><div class="cm">信源：<a class="cref verified" href="#ref-3">[3]</a> <a class="cref partial" href="#ref-2">[2]</a> <a class="cref partial" href="#ref-1">[1]</a></div></div>
+    <div class="card red"><div class="ct">「一人公司」口径说明</div><div class="cb">36 氪投稿与脉脉自述均为创始人单人叙事；36 氪创投平台项目页「团队成员」仅列佟晨（董事长），启信宝股东信息仅佟晨（89%）；但成都市政府稿件表述为「今年 4 月，佟晨<b>带领团队</b>入驻 π 立方」。本案例按案例墙口径（一人主导、轻量协作）收录，协作细节未见公开披露。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-4">[4]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2026-04-15</div><div class="tx">公司主体注册成立</div><div class="td">成都万端易解科技有限责任公司成立，注册资本 1000 万元，法定代表人佟晨。<a class="cref verified" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2026-04</div><div class="tx">入驻天府软件 π 立方 OPC 社区</div><div class="td">成都市政府稿件：「今年 4 月，佟晨带领团队入驻 π 立方，打造『无事AI』智能纠纷解决平台」；园区提供法务、税务、高企认定等配套培训。<a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2026-05</div><div class="tx">完成种子轮</div><div class="td">36 氪创投平台收录融资历史：2026 年 5 月种子轮，融资金额与投资方均未透露。<a class="cref partial" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2026-06-15 ✓</div><div class="tx">「无事AI」微信小程序正式上线</div><div class="td">成都市政府稿件明确记载上线日期；此后以交通事故理赔场景为切口冷启动。<a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2026-07（上线首月）</div><div class="tx">首月营收 2.9 万元</div><div class="td">政府稿件披露：上线首月实现营收 2.9 万元，单均获客成本约 10 元，沉淀 500 余个真实案例、15G 行业语料。<a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2026-08-24</div><div class="tx">36 氪投稿宣布启动天使轮，公布两月经营数据</div><div class="td">佟晨以「无事AI佟晨」账号在 36 氪发布《无事AI：按结果收费解小额纠纷，寻求天使轮融资》：累计 40 余单付费交付（环比增长 21%）、毛利率约 65%；计划融资 300 万元、出让 10% 股权；算法备案已完成、大模型登记申报中。<a class="cref partial" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-08-25</div><div class="tx">脉脉发文阐述「过程数据」方法论</div><div class="td">《判决书公开 20 年，为何没 AI 会谈判？》：实收 6 万+、40+ 付费单、CAC 约 10 元、毛利 65%，与 36 氪稿口径一致。<a class="cref partial" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2026-09-11</div><div class="tx">成都高新区 OPC 官方报道背书</div><div class="td">「成都高新」公众号（市政府官网转载）将万端易解列为法律服务赛道 OPC 代表团队：披露完成等保二级测评、推进算法备案等合规工作；佟晨坦言 OPC 主体资质在对接机构投资、公共项目招标时存在现实阻碍。<a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2026-09（计划）</div><div class="tx">APP 预计 9 月下旬上线 —— 未验证</div><div class="td">36 氪稿预告 APP 于 9 月下旬上线；截至 2026-11 检索，未检索到 APP 实际上线信息。<a class="cref partial" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-09（行业节点）</div><div class="tx">监管框架落子：最高法意见 + 三部门行动延续 + 律协刊文</div><div class="td">9 月 7 日最高法发布《关于依法审理涉人工智能纠纷案件的意见》<a class="cref cross" href="#ref-7">[7]</a>；9 月 18 日《中国律师》杂志刊文讨论 AI 法律服务准入边界<a class="cref cross" href="#ref-10">[10]</a>——叠加 2025 年三部门规范法律咨询服务机构专项行动<a class="cref verified" href="#ref-8">[8]</a>，构成本案合规分析的政策背景（详见柒/捌）。</div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card green"><div class="ct">转折一：法律博主的个人 IP，就是冷启动的获客基础设施</div><div class="cb">佟晨两年自媒体法律博主经验、500+ 起非诉纠纷处理记录，既构成了对小额纠纷真实场景的理解，也直接转化为项目的最初获客渠道——其自媒体账号即项目的冷启动流量池。结果是单均获客成本约 10 元，而行业投流参照价为 200-500 元，差出一个数量级<a class="cref partial" href="#ref-1">[1]</a><a class="cref verified" href="#ref-3">[3]</a>。这印证了案例墙的一个反复出现的规律：垂直行业 OPC 的第一道壁垒往往不是技术，而是创业者既有的行业信任资产——与《归墟》的美术功底、聪明钱监控的程序员投研背景同构。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-3">[3]</a></div></div>
+  <div class="card blue"><div class="ct">转折二：不卖工具、交付结果——把风险代理逻辑写进产品</div><div class="cb">佟晨对行业的判断是：市面上大多法律产品只是输出文书模板<a class="cref verified" href="#ref-3">[3]</a>。无事AI 的产品逻辑是「漏斗式交付」：用户通过免费 AI 诊断获得案情分析、法定赔偿区间测算与方案推演；案情复杂时，由经认证的专业指导师一对一介入，负责与对方及保险公司的边界谈判，直至赔款到账；赔偿款直达客户账户，平台仅收取约定服务费，「未获结果不收费」<a class="cref partial" href="#ref-1">[1]</a>。这一定价把交付风险从当事人转移到了平台方——获客端降低信任门槛，但要求平台对自己的谈判能力有足够置信，本质是把律师行业的风险代理结构搬进了 AI 服务。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-3">[3]</a></div></div>
+  <div class="card"><div class="ct">转折三：「人工即研发」——把交付过程变成数据资产飞轮</div><div class="cb">无事AI 将壁垒押注在「过程数据」：判决书只记录结果（棋谱最后一行的「黑胜」），而谈判过程数据（保险公司在第几轮松口、看到哪份证据后加价、什么话术促成签字）爬不到、买不到、也无法用合成数据替代<a class="cref partial" href="#ref-1">[1]</a><a class="cref partial" href="#ref-6">[6]</a>。据此它提出一套反直觉的成本观：一线人工被定义为研发支出而非服务成本——AI 当前只能独立解决约 30% 的常规案件，疑难案件由人工完成，人工解决的每一步话术、证据组织、谈判节奏被结构化记录并回流训练系统，「下一次同类案件即可由 AI 独立处理」；目标是 18-24 个月将 AI 独立解决率提升至 70%，毛利率自 65% 向 85% 的软件区间上行<a class="cref partial" href="#ref-1">[1]</a>。财务含义：客户为结果付费的同时，项目顺手完成了数据采集与模型训练。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-6">[6]</a></div></div>
+  <div class="quote">
+    <p>人工解决的不是这一个案子，是这一类案子的永久解决。</p>
+    <span class="src">—— 佟晨，36 氪投稿《无事AI：按结果收费解小额纠纷，寻求天使轮融资》（2026-08-24），<a class="cref partial" href="#ref-1">[1]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business Model</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>要素</th><th>内容</th><th>要点说明</th></tr></thead>
+    <tbody>
+      <tr><td><b>产品功能</b></td><td>案情诊断 / 赔偿测算 / 按结果收费</td><td>免费 AI 诊断输出案情分析、法定赔偿区间测算与方案推演；复杂案情由经认证的专业指导师一对一谈判直至赔款到账；「按结果收费、未获结果不收费」，赔偿款直达客户账户 <a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>获客方式</b></td><td>法律博主个人 IP</td><td>佟晨自媒体账号构成最初获客渠道，单均获客成本约 10 元（行业投流参照价 200-500 元）<a class="cref partial" href="#ref-1">[1]</a><a class="cref verified" href="#ref-3">[3]</a>；客单价 1000-5000 元 <a class="cref partial" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>面向客群</b></td><td>小额纠纷当事人</td><td>交通事故理赔切入，规划延伸至工伤、欠薪、租房纠纷；目标客户为「够不上法律援助门槛、又难以承担传统律师费用的普通个人」<a class="cref partial" href="#ref-1">[1]</a><a class="cref partial" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>解决痛点</b></td><td>小额纠纷「请律师不划算」</td><td>标的额小、诉讼周期长、律师费动辄数千元，大量交通事故、劳动欠薪、租房纠纷当事人最终只能选择「算了」；诉讼渠道装不下海量小额纠纷，律所按标的收费的模式天然看不上万元级案件 <a class="cref partial" href="#ref-1">[1]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 市场参照（转引口径）</div>
+    36 氪稿引用最高法数据称：2025 年全国法院受理民商事一审案件超 2000 万件（同比 +11%）；仅机动车交通事故纠纷一类，2025 年一季度受理量即达 33 万件（同比 +59.21%）；交强险年赔付池规模约 2262 亿元，大量伤者因缺乏专业协助接受保险公司低位报价<a class="cref partial" href="#ref-1">[1]</a>。上述统计为项目方转引，本报告未独立回溯原始统计口径，引用时请注明。
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>付费交付</td><td class="hl">40 余单（环比 +21%）</td><td>上线两月（2026-08 口径）</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref partial" href="#ref-6">[6]</a></td></tr>
+      <tr><td>营收</td><td class="hl">约 6 万元（脉脉口径「实收 6 万+」）</td><td>上线两月（2026-08 口径）</td><td><a class="cref partial" href="#ref-2">[2]</a><a class="cref partial" href="#ref-6">[6]</a></td></tr>
+      <tr><td>首月营收</td><td class="pos">2.9 万元（政府稿件口径）</td><td>2026-07</td><td><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td>毛利率</td><td>约 65%（目标 85%，随 AI 解决率上行）</td><td>2026-08</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref partial" href="#ref-2">[2]</a></td></tr>
+      <tr><td>客单价</td><td>1000-5000 元</td><td>2026-08 口径</td><td><a class="cref partial" href="#ref-2">[2]</a></td></tr>
+      <tr><td>单均获客成本</td><td>约 10 元（行业投流参照 200-500 元）</td><td>2026-08 口径</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref partial" href="#ref-2">[2]</a><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td>案件与语料沉淀</td><td>500 余个真实案件、约 15G 非诉博弈语料</td><td>2026-08/09 口径</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref partial" href="#ref-2">[2]</a><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td>AI 独立解决率</td><td>约 30% → 目标 70%（18-24 个月）</td><td>2026-08</td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td>天使轮</td><td>计划 300 万元 / 出让 10%（投前估值对应约 3000 万元，进行中）</td><td>2026-08 启动</td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td>种子轮</td><td>2026-05 完成，金额未透露</td><td>2026-05</td><td><a class="cref partial" href="#ref-2">[2]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明（重要）</div>
+    上述运营数据全部为<b>项目方自述口径</b>：核心稿（[1]）系佟晨以「36氪用户」身份投稿，36 氪页面明确标注「该文观点仅代表作者本人，36氪平台仅提供信息存储空间服务」——即底稿所称「36氪报道口径」经核验实为「36氪平台创始人投稿口径」；[2] 项目页为项目方提交信息；[6] 为创始人署名帖。交叉印证程度：成都市政府稿件（[3]）独立印证了首月营收 2.9 万元、单均获客成本约 10 元、500 余案例/15G 语料三项；毛利率 65%、客单价、环比增速仅见 36 氪系与脉脉自述，<b>无第三方审计</b>。引用时建议以「自述口径、政府稿部分印证」为事实基线。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将无事AI 放入案例墙「个人 AI 服务」坐标系（对标数据均为案例墙既有核验值，口径为公开报道值）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>垂直领域</th><th>定价模式</th><th>早期数据</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>无事AI</b></td><td>佟晨（法律博主）</td><td>小额纠纷解决（交通事故切入）</td><td class="hl">按结果收费（未获结果不收费，客单价 1000-5000 元）</td><td>两月 40 余单付费 / 营收约 6 万 / 毛利率 65%</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref partial" href="#ref-2">[2]</a></td></tr>
+      <tr><td>聪明钱监控</td><td>许洋（北京程序员）</td><td>AI 股市投研（资金流向/主力动向日报）</td><td>垂直订阅（200 元/年，一次性收取）</td><td>上线半月 90 个付费用户 / 收入超 1 万元</td><td><a class="cref cross" href="#ref-12">[12]</a>（案例墙既有核验值）</td></tr>
+      <tr><td>作文说</td><td>李雲帆（95 后，前 4 人团队创始人）</td><td>AI 作文批改（拍照上传生成批改报告）</td><td>免费批改 + 付费精批（付费率 13-14%，自述）</td><td>上线 4 个月用户 1.5 万 / 月入近 5 万（自述）</td><td><a class="cref cross" href="#ref-13">[13]</a>（案例墙既有核验值，人民日报海外版/新华网交叉）</td></tr>
+      <tr><td>海外同路径参照</td><td>EvenUp / DoNotPay</td><td>人身伤害理赔 / 消费者维权</td><td>AI+人工交付 / 纯 AI 路线</td><td>EvenUp 估值超 20 亿美元；DoNotPay 因虚假宣传被 FTC 处罚</td><td><a class="cref partial" href="#ref-1">[1]</a>（转引自 36 氪稿）</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>三者的差异核心在<b>定价结构</b>：订阅制（聪明钱监控）与按量/精批付费（作文说）卖的是「信息与工具」，收入与交付结果解耦；无事AI 的「按结果收费」卖的是「结果本身」——收入直接与赔偿款绑定，定价逻辑更接近律师行业的风险代理。这使得它在个人 AI 服务案例中独一档：<b>冷启动信任门槛最低（不成功不收费），但对交付能力与现金流的要求最高</b>（每单需先垫付人工谈判成本）。法律垂直本身也强化了这一选择的合理性——赔偿金额有法定区间可测算、结果可验证（赔款到账），天然适合结果定价；而资本市场对该路径的定价参照（EvenUp 超 20 亿美元估值）与反面教训（纯 AI 路线的 DoNotPay 被 FTC 处罚）在 36 氪稿中被并列引用<a class="cref partial" href="#ref-1">[1]</a>。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="card"><div class="ct">1. 产品功能</div><div class="cb">「漏斗式交付」三层结构：① 免费 AI 诊断（案情分析 + 法定赔偿区间测算 + 方案推演）承接流量并过滤案情复杂度；② 复杂案情由经认证的专业指导师一对一介入，负责与对方及保险公司的边界谈判；③ 直至赔款到账、赔偿款直达客户账户后，平台收取约定服务费。配套微信小程序（2026-06-15 上线）与规划中的 APP。壁垒设计在数据层：每单交付沉淀过程语料，反哺 AI 独立解决率。<a class="cref partial" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-3">[3]</a></div><div class="cm"><a class="cref partial" href="#ref-1">[1]</a></div></div>
+  <div class="card"><div class="ct">2. 面向客群</div><div class="cb">直接客群是「够不上法律援助门槛、又难以承担传统律师费用」的小额纠纷当事人——交通事故理赔为切口，规划延伸至工伤、欠薪、租房纠纷。按 36 氪稿引用的口径，2025 年全国法院受理民商事一审超 2000 万件、交强险年赔付池约 2262 亿元，其中大量当事人缺乏专业协助接受低位报价；间接客群为机构投资方（天使轮融资进行中）与园区/政府侧（OPC 社区对接、公益调解试点意向）。<a class="cref partial" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-3">[3]</a></div><div class="cm"><a class="cref partial" href="#ref-1">[1]</a></div></div>
+  <div class="card"><div class="ct">3. 解决痛点</div><div class="cb">佟晨将赛道定义为「结果层服务真空」：诉讼渠道装不下海量小额纠纷，律所按标的收费天然看不上万元级案件，通用 AI 工具能生成文书但无法交付结果，而灰色「维权」产业正以投诉轰炸、威胁施压等手段收割真空（36 氪稿引 2026 年 7 月武汉警方一次性刑拘 37 名「假维权真勒索」人员为例）<a class="cref partial" href="#ref-1">[1]</a>。央媒调查亦印证该真空的存在：网络「代理维权」套路广泛，而合规的辅助类服务恰可「填补法律服务下沉市场空白」<a class="cref cross" href="#ref-11">[11]</a>。</div><div class="cm"><a class="cref partial" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-11">[11]</a></div></div>
+  <div class="card"><div class="ct">4. 预估年化营收（推算，置信度 C）</div><div class="cb">可核验事实仅两月营收约 6 万元（自述）与首月 2.9 万元（政府稿）。线性外推：两月 6 万 ≈ 月均 3 万，年化约 36 万元；若「环比 +21%」延续，量级可上探至数十万元区间。但三个约束变量使该推算置信度仅为 C：① 样本期仅两个月，无留存与复购数据（小额纠纷为低频一次性需求）；② 毛利率 65% 依赖 AI 解决率爬坡（30% → 70%），爬坡不及预期则人工成本挤压毛利；③ 法律服务合规边界（详见捌）可能约束扩张节奏与品类扩展。年度真实营收存在高度不确定性，本推算仅示量级。<a class="cref partial" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-3">[3]</a></div><div class="cm">推算依据：<a class="cref partial" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-2">[2]</a>，口径为 C 级</div></div>
+  <div class="card"><div class="ct">5. 融资进展</div><div class="cb">2026 年 5 月种子轮（金额未透露）；2026 年 8 月 24 日启动天使轮，计划融资 300 万元、出让 10% 股权（对应投前估值约 3000 万元），资金用途为获客渠道矩阵复制、AI 解决率提升与品类扩展；截至 2026-11 检索未检索到交割信息。股权结构：佟晨持股 89%（认缴 890 万元）。创始人明确表示 OPC 主体资质「在对接机构投资、公共项目招标时存在现实阻碍」。<a class="cref partial" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-4">[4]</a></div><div class="cm"><a class="cref partial" href="#ref-2">[2]</a></div></div>
+  <div class="card"><div class="ct">6. 市场评价</div><div class="cb">政府背书明确：成都高新区 OPC 社区官方稿件将万端易解列为法律服务赛道三家代表团队之一，肯定其「在缝隙市场寻找机会」<a class="cref verified" href="#ref-3">[3]</a>；行业讨论层面，《中国律师》杂志 2026 年 9 月刊文系统讨论 AI 法律服务的准入边界与合规路径，说明该赛道已进入法律行业自律组织的监管议程（该文对无资质 AI 法律服务的风险认定对本案构成潜在约束，见捌）<a class="cref cross" href="#ref-10">[10]</a>；央媒调查（中国之声）在拆解「代理维权」乱象的同时，承认合规范围内的法律辅助服务可填补下沉市场空白<a class="cref cross" href="#ref-11">[11]</a>。海外资本对该路径定价积极（EvenUp 估值超 20 亿美元，转引口径）<a class="cref partial" href="#ref-1">[1]</a>。</div><div class="cm"><a class="cref verified" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-10">[10]</a> <a class="cref cross" href="#ref-11">[11]</a></div></div>
+  <div class="card red"><div class="ct">7. 投入成本与合规风险</div><div class="cb">合规投入：完成等保二级测评、算法备案已完成、大模型登记申报中<a class="cref partial" href="#ref-1">[1]</a><a class="cref verified" href="#ref-3">[3]</a>。核心风险为<b>非律师主体的法律执业合规边界</b>：公司登记行业为软件和信息技术服务业、未检索到法律服务类资质公示<a class="cref verified" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-5">[5]</a>；司法行政机关对法律咨询类主体「严禁代理诉讼、出庭、刑事辩护，仅能做普通法律咨询、文书草拟」的边界提示<a class="cref cross" href="#ref-11">[11]</a>，与《中国律师》刊文「无资质主体提供 AI 法律咨询意见、纠纷决策方案，无论有偿与否本质都属于无证从事法律服务」的论述<a class="cref cross" href="#ref-10">[10]</a>，均指向「人工指导师谈判至赔款到账」环节的解释空间（详见捌）。此外，AI 诊断准确性责任已有判例先例：杭州互联网法院全国首例 AI「幻觉」侵权案确立免责声明不能当然免责<a class="cref cross" href="#ref-10">[10]</a>；「测算赔偿区间」若误导用户错过诉讼时效或放弃合法权利，责任归属待明确。行业性风险背景：司法部、公安部、市场监管总局 2025 年 9-12 月全国专项行动打击法律咨询服务机构假借律师名义、虚假宣传、虚假承诺<a class="cref verified" href="#ref-8">[8]</a>。</div><div class="cm"><a class="cref partial" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-4">[4]</a> <a class="cref verified" href="#ref-8">[8]</a> <a class="cref cross" href="#ref-10">[10]</a> <a class="cref cross" href="#ref-11">[11]</a></div></div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 法律执业合规边界（本案例最核心的争议点）</div>
+    ① <b>主体资质</b>：公司登记行业为「软件和信息技术服务业」<a class="cref verified" href="#ref-4">[4]</a>，公司官网当前内容为软件定制开发/网站建设服务列表，未见法律服务相关资质或「无事AI」产品独立页面<a class="cref partial" href="#ref-5">[5]</a>。《中国律师》杂志刊文明确：「未取得执业资质、不具备法律服务许可的企业和个人开发者开发运营 AI 系统，向公众提供法律咨询意见、纠纷决策方案等无论有偿与否，本质都属于无证从事法律服务」，并称「仅持科技类营业执照不得开展实质性法律服务」应为资质底线<a class="cref cross" href="#ref-10">[10]</a>。
+    ② <b>业务边界</b>：多地司法部门提示，法律咨询公司属市场监管登记的商事主体，「严禁代理诉讼、出庭、刑事辩护，仅能做普通法律咨询、文书草拟」<a class="cref cross" href="#ref-11">[11]</a>。无事AI 的「人工指导师负责与对方及保险公司的边界谈判，直至赔款到账」<a class="cref partial" href="#ref-1">[1]</a>——谈判与「纠纷决策方案」是否构成实质性法律服务乃至非法代理，现行规则尚无明确定性与统一裁判尺度<a class="cref cross" href="#ref-10">[10]</a>。
+    ③ <b>整顿背景与承诺红线</b>：三部门 2025 年 9-12 月全国专项行动正打击法律咨询服务机构假借律师名义、虚假宣传、虚假承诺<a class="cref verified" href="#ref-8">[8]</a><a class="cref cross" href="#ref-9">[9]</a>；中国政法大学许身健提出三条违规边界（资质、超范围经营、违规营销承诺），其中「承诺胜诉、保障结案已突破法律服务推广红线」<a class="cref cross" href="#ref-11">[11]</a>——「未获结果不收费」的表述如何在营销中与「承诺结果」划清界限，是需要持续观察的合规细节。
+    ④ <b>AI 准确性责任</b>：全国首例 AI「幻觉」侵权案（杭州互联网法院）确立「AI 不具备民事主体资格，免责声明仅在尽到合理提示和审核义务时方可部分豁免」；南京法院在「AI 错误认定律师」名誉权案中未采纳「AI 幻觉不可控」抗辩<a class="cref cross" href="#ref-10">[10]</a>。「免费诊断案情、测算赔偿区间」若输出偏差导致用户错过诉讼时效或放弃合法权利，平台责任难以用免责声明隔离。
+    ⑤ <b>政策走向参照</b>：最高法 2026-09-07 发布《关于依法审理涉人工智能纠纷案件的意见》，涉 AI 纠纷的裁判规则正在成形<a class="cref cross" href="#ref-7">[7]</a>——「AI + 人工」模式中人工兜底部分的责任认定将直接影响本案模式的法律评价。
+  </div>
+  <div class="box note">
+    <div class="bt">🔍 口径留白与存疑（截至 2026-11-12 检索）</div>
+    ① 「营收约 6 万元 / 毛利率 65% / 客单价 1000-5000 元」均为项目方自述口径（36 氪投稿页明确标注观点仅代表作者本人），无第三方审计；成都市政府稿独立印证首月营收 2.9 万元、获客成本约 10 元、500 余案例/15G 语料。
+    ② 「一人公司」口径：36 氪投稿与脉脉帖为创始人单人叙事，但成都市政府稿表述「佟晨带领团队入驻 π 立方」——存在轻量协作，团队规模未见披露；启信宝股东仅佟晨（89%），其余股权结构未检索到公开信息。
+    ③ APP「预计 9 月下旬上线」<a class="cref partial" href="#ref-1">[1]</a>、AI 解决率 18-24 个月提升至 70%、毛利率上行至 85% 等目标均未验证；种子轮（2026-05）金额与投资方未披露；天使轮截至检索时点未见交割。
+    ④ 36 氪稿引用的最高法行业统计（2000 万件 / 33 万件 / 2262 亿元）与海外对标估值（EvenUp、Mercor、DoNotPay）均为转引，未独立回溯原始口径。
+    ⑤ 公司官网 fairugc.cn 当前为软件定制开发服务型页面（页脚联系方式与主体一致），与「AI 纠纷解决平台」产品定位存在落差——如实存档，不构成对项目真实性的否定。
+  </div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">无事AI 展示了 OPC 模式进入「强合规行业」的完整打法：用个人 IP 解决获客、用 AI 解决成本、用人工解决交付、用过程数据解决壁垒——并把监管最严的行业本身当作差异化壁垒（灰色「代理维权」被打击得越彻底，合规化承接的真空价值越大<a class="cref partial" href="#ref-1">[1]</a>）。它同时是案例墙中「合规天花板」问题的代表样本：OPC 主体资质在机构投资、公共项目招标时的现实阻碍<a class="cref verified" href="#ref-3">[3]</a>，与非律师主体法律服务边界的监管解释空间<a class="cref cross" href="#ref-10">[10]</a><a class="cref cross" href="#ref-11">[11]</a>，共同构成「个人 + AI」在专业服务行业扩张时必须回答的结构性问题——「按结果收费」这一最动人的定价创新，能否在监管解释中存活，是这个案例最大的看点。</div><div class="cm"><a class="cref partial" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-10">[10]</a> <a class="cref cross" href="#ref-11">[11]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 13 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx partial">[1]</span><span class="rt">B+</span><span class="st">行业平台创始人投稿（自述口径）</span></div><div class="ti">无事AI：按结果收费解小额纠纷，寻求天使轮融资</div><div class="mt"><b>来源：</b>36氪（用户「无事AI佟晨」投稿）　<b>发布日期：</b>2026-08-24<br><a href="https://36kr.com/p/3947471637216387" target="_blank" rel="noopener">https://36kr.com/p/3947471637216387</a></div><div class="note">事实核查：原文可达。页面明确标注「本文来自36氪用户无事AI佟晨，该文观点仅代表作者本人」——为创始人投稿而非 36 氪记者采写。产品漏斗逻辑、按结果收费、40 余单付费（环比 +21%）、毛利率 65%、获客成本 10 元、AI 解决率 30%→70%、过程数据方法论、天使轮 300 万/10%、APP 9 月下旬预告、算法备案完成均出自此稿；武汉 37 人「假维权真勒索」刑拘案与最高法行业统计、海外对标（EvenUp/Mercor/DoNotPay）为该稿转引口径。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx partial">[2]</span><span class="rt">B</span><span class="st">创投平台项目页（项目方提交）</span></div><div class="ti">无事AI | 项目信息 - 36氪创投平台（Pitchhub）</div><div class="mt"><b>来源：</b>36氪创投平台　<b>查询日期：</b>2026-11-12<br><a href="https://pitchhub.36kr.com/project/3945988988603523" target="_blank" rel="noopener">https://pitchhub.36kr.com/project/3945988988603523</a></div><div class="note">事实核查：原文可达。「两个月实现营收 6 万元、完成 40 余个真实付费案件、客单价 1000-5000 元、获客成本约 10 元、毛利率约 65%、500 余个真实案例/约 15G 语料」出自项目简介；种子轮 2026-05（金额未透露）、佟晨持股 89%、团队成员仅列佟晨（董事长，四年央国企风控法务合规 + 两年自媒体法律博主 + 非诉纠纷 500+ 起）；工商信息（成立 2026-04-15、注册资本 1000 万）与启信宝 [4] 交叉一致。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx verified">[3]</span><span class="rt">A</span><span class="st">政府官网（一手）</span></div><div class="ti">何以成就「一人公司」？OPC 在成都高新探索创业新可能</div><div class="mt"><b>来源：</b>成都市人民政府官网（原发「成都高新」微信公众号）　<b>发布日期：</b>2026-09-11（网页时间 2026-09-24）<br><a href="http://www.chengdu.gov.cn/cdsrmzf/c178898/2026-09/24/content_850ecc7a1b5b4552a01bcf79e1ee5444.shtml" target="_blank" rel="noopener">http://www.chengdu.gov.cn/cdsrmzf/c178898/2026-09/24/content_850ecc7a1b5b4552a01bcf79e1ee5444.shtml</a></div><div class="note">事实核查：政府原文回溯完成，为本案最独立的一手印证：2026-06-15 小程序正式上线、上线首月营收 2.9 万元、单均获客成本约 10 元、500 余个真实案例/15G 语料、等保二级测评与算法备案合规工作、「佟晨带领团队入驻 π 立方」、创始人对 OPC 资质阻碍的自述均出自此稿；与 [1][2] 交叉印证核心运营数字。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx verified">[4]</span><span class="rt">A</span><span class="st">工商信息（一手）</span></div><div class="ti">成都万端易解科技有限责任公司（工商档案）</div><div class="mt"><b>来源：</b>启信宝　<b>查询日期：</b>2026-11-12<br><a href="https://m.qixin.com/company/17ac9a05-38ac-11f1-9822-525400ab85e7" target="_blank" rel="noopener">https://m.qixin.com/company/17ac9a05-38ac-11f1-9822-525400ab85e7</a></div><div class="note">事实核查：法定代表人佟晨、注册资本 1000 万人民币、成立日期 2026-04-15、行业为软件和信息技术服务业、注册地址为四川自贸区成都高新区；与 [2][5] 交叉一致。佟晨持股 89% 出自 [2] 项目页工商信息栏。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx partial">[5]</span><span class="rt">A</span><span class="st">公司官网（一手）</span></div><div class="ti">成都万端易解科技有限责任公司官网（fairugc.cn）</div><div class="mt"><b>来源：</b>公司官网　<b>查询日期：</b>2026-11-12<br><a href="https://fairugc.cn/" target="_blank" rel="noopener">https://fairugc.cn/</a></div><div class="note">事实核查：页面可达，页脚主体名称、地址与 [4] 一致，举报邮箱 tongchen@fairugc.cn 佐证佟晨关联。当前页面内容为软件定制开发/网站建设服务列表，未见「无事AI」产品独立页面——与产品定位的落差如实存档（见捌）。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx partial">[6]</span><span class="rt">B</span><span class="st">创始人社群自述（一手）</span></div><div class="ti">判决书公开 20 年，为何没 AI 会谈判？</div><div class="mt"><b>来源：</b>脉脉（佟晨署名，身份认证「创始人 董事长」）　<b>发布日期：</b>2026-08-25<br><a href="https://maimai.cn/article/detail?efid=_hD7NnCm5X4QWGyDFo_xEA&amp;fid=1925465281" target="_blank" rel="noopener">https://maimai.cn/article/detail?efid=_hD7NnCm5X4QWGyDFo_xEA&amp;fid=1925465281</a></div><div class="note">事实核查：原文可达。「两个月验证 40+ 付费单、实收 6 万+、CAC 约 10 元、毛利 65%」与 [1] 口径一致，可互证自述数据稳定性；过程数据「爬不到、买不到、合成不了」论述出自此帖。自述口径，无第三方审计。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">A+</span><span class="st">最高司法文件</span></div><div class="ti">最高法发布《关于依法审理涉人工智能纠纷案件的意见》</div><div class="mt"><b>来源：</b>最高人民法院官网（新闻局）　<b>发布日期：</b>2026-09-07<br><a href="https://www.court.gov.cn/zixun/xiangqing/511101.html" target="_blank" rel="noopener">https://www.court.gov.cn/zixun/xiangqing/511101.html</a></div><div class="note">事实核查：政府原文回溯完成。涉 AI 纠纷裁判规则的框架性文件（含涉自动驾驶/辅助驾驶汽车交通事故赔偿责任条款），为柒/捌合规分析的政策背景。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx verified">[8]</span><span class="rt">A+</span><span class="st">政府部门联合发文</span></div><div class="ti">司法部 公安部 市场监管总局联合部署开展规范法律咨询服务机构专项行动</div><div class="mt"><b>来源：</b>司法部官网　<b>发布日期：</b>2025-09-29<br><a href="https://www.moj.gov.cn/pub/sfbgw/gwxw/xwyw/202509/t20250929_525688.html" target="_blank" rel="noopener">https://www.moj.gov.cn/pub/sfbgw/gwxw/xwyw/202509/t20250929_525688.html</a></div><div class="note">事实核查：政府原文回溯完成，与人民网报道 [9] 互证。2025 年 9-12 月全国专项行动，聚焦法律咨询服务机构假借律师名义诈骗、招摇撞骗、虚假宣传、虚假承诺——构成法律咨询类服务（含 AI 形态）的整顿背景。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx cross">[9]</span><span class="rt">A+</span><span class="st">央媒报道</span></div><div class="ti">三部门联合部署开展规范法律咨询服务机构专项行动</div><div class="mt"><b>来源：</b>人民网（转司法部）　<b>发布日期：</b>2025-10-03<br><a href="http://society.people.com.cn/n1/2025/1003/c1008-40576500.html" target="_blank" rel="noopener">http://society.people.com.cn/n1/2025/1003/c1008-40576500.html</a></div><div class="note">事实核查：与 [8] 互证；央媒口径补充专项行动的调研背景与查处方式。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx cross">[10]</span><span class="rt">A</span><span class="st">行业自律组织刊物</span></div><div class="ti">AI 生成服务触发法律服务准入边界的违规风险与合规路径</div><div class="mt"><b>来源：</b>《中国律师》杂志（全国律协官网「业务进阶」栏目，作者万志伟）　<b>发表时间：</b>2026-09-18<br><a href="http://www.acla.org.cn/info/db2d7cfa50e847bfaa714c6b2dd10d43" target="_blank" rel="noopener">http://www.acla.org.cn/info/db2d7cfa50e847bfaa714c6b2dd10d43</a></div><div class="note">事实核查：原文回溯完成。核心论述：无资质主体运营 AI 向公众提供法律咨询意见、纠纷决策方案「无论有偿与否本质都属于无证从事法律服务」；超辅助边界、对个案提供决策建议预判裁判结果「实质替代律师执业」；「仅持科技类营业执照不得开展实质性法律服务」；免责声明效力受限（杭州互联网法院全国首例 AI「幻觉」侵权案、南京「AI 错误认定律师」名誉权案）。注意：作者供职于江西中煤建设集团，文章为个人研究观点、非律协正式规则，按「行业监管讨论」收录。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx cross">[11]</span><span class="rt">A</span><span class="st">央媒调查报道</span></div><div class="ti">承诺短期追回欠款、多种话术抬升收费 拆解网络「代理维权」营销套路</div><div class="mt"><b>来源：</b>中央广播电视总台中国之声（光明网法治频道转载）　<b>发布日期：</b>2026-09-10（原发）/ 2026-09-11（转载）<br><a href="https://legal.gmw.cn/2026-09/11/content_38996729.htm" target="_blank" rel="noopener">https://legal.gmw.cn/2026-09/11/content_38996729.htm</a></div><div class="note">事实核查：原文回溯完成。多地司法部门提示「法律咨询公司属市场监管登记的商事主体，严禁代理诉讼、出庭、刑事辩护，仅能做普通法律咨询、文书草拟」；新修订《律师法》「没有取得律师执业证书的人员，不得以律师名义从事法律服务业务」；中国政法大学法律学院院长许身健「资质 / 超范围经营 / 违规营销承诺」三条边界；专家同时承认合规辅助类服务「可以填补法律服务下沉市场空白」。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx cross">[12]</span><span class="rt">B+</span><span class="st">财经媒体（对标数据）</span></div><div class="ti">「手搓龙虾」股票投研系统的一批人开始赚钱了（聪明钱监控案例）</div><div class="mt"><b>来源：</b>经济观察网　<b>发布日期：</b>2026-03-16<br><a href="http://www.eeo.com.cn/2026/0316/811691.shtml" target="_blank" rel="noopener">http://www.eeo.com.cn/2026/0316/811691.shtml</a></div><div class="note">事实核查：对标表「聪明钱监控」行数据出处（许洋、200 元/年、上线半月 90 个付费用户、收入超 1 万元）。原文经搜索引擎摘要确认存在且数据一致，本次直接抓取受限（爬虫返回空），故从案例墙既有核验值（cross）引用。</div></li>
+  <li id="ref-13" class="src"><div class="sh"><span class="idx cross">[13]</span><span class="rt">A+</span><span class="st">央媒报道（对标数据）</span></div><div class="ti">「超级个体」扎根数字沃土（人民日报海外版第 05 版，作文说案例）</div><div class="mt"><b>来源：</b>人民日报海外版　<b>发布日期：</b>2026-08-10<br><a href="https://paper.people.com.cn/rmrbhwb/pc/content/202608/10/content_30173858.html" target="_blank" rel="noopener">https://paper.people.com.cn/rmrbhwb/pc/content/202608/10/content_30173858.html</a></div><div class="note">事实核查：原文回溯完成。95 后李云帆、「作文说」AI 作文批改、OPC 全链路创业出自此稿；对标表「作文说」行数据（4 个月用户 1.5 万、月入近 5 万自述、付费率 13-14%）为案例墙既有核验值（案例墙标注 verified，另见新华网交叉），本报告从严标注 cross。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 13 条。核验标签分布：🟢 已核验（verified）3 条、🔵 多源印证（cross）6 条、🟡 部分映证（partial）4 条。信源评级分布：A+/A 级 9 条（政府/司法/央媒/工商一手，原文回溯全部完成）、B+/B 级 4 条。关键口径提示：① 底稿所称「36氪报道口径」经核验实为「36氪平台创始人投稿口径」（页面明确标注观点仅代表作者本人），核心运营数据（40 余单、6 万、65%）均系自述，仅获成都市政府稿部分印证（首月营收 2.9 万、获客成本 10 元、语料规模）；② 「营收约 6 万」未见于 36 氪投稿正文，出自 36 氪创投平台项目页与脉脉自述帖（「实收 6 万+」）；③ 「带领团队」（成都市政府稿）与创始人单人叙事（36氪/脉脉/项目页）并存，按轻量协作口径收录；④ 锚点 2026-06-15（小程序上线）获政府稿直接确认 ✓；⑤ 经济观察报对标原文经搜索引擎摘要确认可达、直接抓取受限，已注明。未发现伪造链接；全部 URL 为检索过程实际命中页面；未检索到的信息（APP 实际上线、天使轮交割、其余股权结构、团队规模）均在正文显式标注「未检索到公开信息」。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-12 · 营收与年化推算值均标注置信口径，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

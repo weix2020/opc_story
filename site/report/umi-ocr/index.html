@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · Umi-OCR——hiroi-sora 的免费离线 OCR 标杆 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · Umi-OCR 免费离线 OCR">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="Umi-OCR 深度案例报告：开发者 hiroi-sora（网名）一人维护的开源离线 OCR 软件，截图/批量图片/PDF 识别、解压即用、完全免费离线，GitHub 48,626★（2026-11-13 API 实测）。零商业化样本：16 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>Umi-OCR 深度案例报告</h1>
+    <h2>开发者 hiroi-sora（网名）一个人维护的开源离线 OCR：截图 / 批量图片 / PDF 识别<br>解压即用、完全免费离线，GitHub 48,626★ —— 16 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">工具型 OPC</span>
+      <span class="tag">完全免费离线（MIT）</span>
+      <span class="tag">零商业化样本</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">48,626</div><div class="k">GitHub 星标（2026-11-13 API 实测）</div></div>
+  <div class="stat"><div class="v neutral">¥0</div><div class="k">售价 · 完全免费无付费墙</div></div>
+  <div class="stat"><div class="v up">65.0 万+</div><div class="k">Releases 累计下载（GitHub assets 口径）</div></div>
+  <div class="stat"><div class="v neutral">31 个</div><div class="k">正式版本（v1.0.0 → v2.1.5）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">Umi-OCR 是一款「免费，开源，可批量的离线 OCR 软件」：截图识别、批量导入图片、PDF 文档识别、二维码扫描/生成、公式识别（测试），适用于 Windows 7 x64 与 Linux x64<sup class="cite verified">[2]</sup>。它由开发者 hiroi-sora（网名）一人主导开发维护，GitHub 实测 48,626 星、4,743 fork（2026-11-13 API）<sup class="cite verified">[1]</sup>，是中文社区公认的免费 OCR 标杆，也是案例墙中「零商业化开源工具」的最高水位样本。</p>
+  <div class="two">
+    <div class="card"><div class="ct">产品</div><div class="cb">离线 OCR 桌面软件：截图 OCR（快捷键即截即识）、批量 OCR（不限数量、导出 txt/md/jsonl 等）、PDF 文档识别（提取文本或转为双层可搜索 PDF）、二维码、公式识别（测试）；支持排版解析、忽略区域（排除水印/页眉页脚）、横竖排文字；提供命令行与 HTTP 接口等外部调用方式<sup class="cite verified">[2]</sup>。最新正式版 v2.1.5（2025-03-26 发布）<sup class="cite verified">[3]</sup>。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">hiroi-sora（网名，日文罗马字风格）。GitHub Users API 显示 name 字段为空（真名未公开）、无 bio、location 填写为「TORISHIRO JIMA」（真实性无法核验，按匿名网名处理）<sup class="cite verified">[4]</sup>。账号 2019-10-10 注册，25 个公开仓库、1,267 名关注者<sup class="cite verified">[4]</sup>。README 自述「Umi-OCR 项目主要由作者 hiroi-sora 用业余时间在开发和维护」<sup class="cite verified">[2]</sup>。</div><div class="cm">信源：<a class="cref verified" href="#ref-4">[4]</a> <a class="cref verified" href="#ref-2">[2]</a></div></div>
+    <div class="card blue"><div class="ct">分发与安装</div><div class="cb">官方下载渠道四路并行：蓝奏云（标注「国内推荐，免注册/无限速」）、GitHub Releases、SourceForge、Scoop（extras 桶提供 Rapid 引擎版与 Paddle 引擎版两个包）<sup class="cite verified">[2]</sup>；另维护 Gitee 官方镜像（2024-01 创建，32★，主要作为国内访问通道）<sup class="cite cross">[5]</sup>。解压即用、无需安装、无需注册。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-5">[5]</a></div></div>
+    <div class="card blue"><div class="ct">商业化状态</div><div class="cb">完全免费：README 第一条特性即「本项目所有代码开源，完全免费」，MIT 协议<sup class="cite verified">[2]</sup><sup class="cite verified">[1]</sup>。无付费版、无内购、无广告，唯一变现通道为爱发电赞助页，赞助金额与项目收入未检索到公开信息；无融资记录、无公司主体信息<sup class="cite verified">[2]</sup>。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-1">[1]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2022-03-28</div><div class="tx">GitHub 仓库 hiroi-sora/Umi-OCR 创建，当日发布 v1.0.0</div><div class="td">Repo API 实测 created_at 2022-03-28，CHANGE_LOG 记录 v1.0.0 发布于 2022.3.28、次日连发 v1.1.0/v1.1.1。<a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2022-03-29</div><div class="tx">同日开源引擎仓 PaddleOCR-json 创建：把百度 PaddleOCR 编译为独立命令行引擎</div><div class="td">仓库自述「OCR 离线图片文字识别命令行程序，以 JSON 字符串输出结果……由 PaddleOCR C++ 编译」，实测 1,557★——Umi-OCR 的引擎底座从第一天起就是自研封装的百度开源模型。<a class="cref verified" href="#ref-7">[7]</a></div></div>
+    <div class="node"><div class="dt">2022-04 → 2023-10</div><div class="tx">v1.x 高频迭代期（v1.2.0 → v1.3.7 共 13 个版本）</div><div class="td">案例墙锚点「2022-11-15 ▲约」即落在 v1.3.1（2022-11-04）与 v1.3.2（2022-12-01）之间的活跃期；README 功能清单（截图/批量/PDF/二维码/公式识别）在 v1.x 期间成型。<a class="cref verified" href="#ref-6">[6]</a><a class="cref verified" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2023-05-17</div><div class="tx">v2 重构启动：另开 Umi-OCR_v2 备份仓，自述「结束和新的开始」</div><div class="td">备份仓 API 实测创建于 2023-05-17，此后近 7 个月的重构开发在此进行。<a class="cref verified" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2023-11-19</div><div class="tx">v2.0.0 正式版发布，维护迁回主仓库</div><div class="td">README 写明「经过近 7 个月的开发，Umi-OCR 项目已完成 v2 版本的重构工作……所有 git commit 历史均已迁移到主仓库」，并承诺「Umi-OCR 将是一个长期的项目，我会持续维护和更新」。<a class="cref verified" href="#ref-6">[6]</a><a class="cref verified" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2024-08-31 → 2025-03-26</div><div class="tx">v2.1.x 稳定期：v2.1.5 成为下载量最大的单版本</div><div class="td">Releases API 实测 v2.1.5（2025-03-25 发布）单版本 assets 下载 343,767 次，占全部 releases 下载量的一半以上。<a class="cref verified" href="#ref-6">[6]</a><a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2025-05-31 → 2025-11-20</div><div class="tx">功能提交放缓：最后一次功能提交停在 2025-05-31，其后仅剩翻译更新</div><div class="td">Commits API 显示 2025-05-31 之后的两条提交均为 Hosted Weblate 翻译更新（2025-11-12、2025-11-20，最后一条即 main 分支最新提交）；最新 release 停在 2025-03。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-11-13</div><div class="tx">GitHub API 实测 48,626★、4,743 fork、370 个 open issue</div><div class="td">案例墙 2026-10/11 检索值为 48.4k★，两者吻合（星标仍在增长，代码维护已放缓近一年）。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：不做在线 SaaS，做「解压即用」的离线工具</div><div class="cb">在 OCR 服务普遍按页收费、按次收费的年代，Umi-OCR 反向选择「免费 + 离线 + 零依赖」：README 三条核心卖点——「解压即用，离线运行，无需网络」「内置多种语言识别库」「支持命令行、HTTP接口等外部调用方式」<sup class="cite verified">[2]</sup>。分发上为国内用户专设蓝奏云通道并标注「国内推荐，免注册/无限速」，规避了 GitHub 在国内的访问门槛<sup class="cite verified">[2]</sup><sup class="cite cross">[5]</sup>。「完全离线」既是产品定位，也是隐私承诺——所有识别在本地完成，图片不离开用户电脑<sup class="cite partial">[10]</sup>。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-5">[5]</a> <a class="cref partial" href="#ref-10">[10]</a></div></div>
+  <div class="card"><div class="ct">转折二：自编译引擎——把百度 PaddleOCR 变成单人可维护的命令行底座</div><div class="cb">Umi-OCR 没有自己训练模型，而是把业界最强的开源中文 OCR 模型库（百度 PaddleOCR）自己动手编译成 C++ 命令行程序 PaddleOCR-json，以 JSON 输出、提供多语言 API<sup class="cite verified">[7]</sup>，同时封装基于 RapidOcrOnnx 的 RapidOCR-json 作为低配机器的兼容引擎，两个引擎可在软件内一键切换<sup class="cite verified">[2]</sup><sup class="cite partial">[10]</sup>。围绕 OCR 结果还自研了 GapTree 排序算法做版面分析（按人类阅读顺序重排文本，175★）、独立开源了 Umi-CUT 等配套工具<sup class="cite verified">[9]</sup>。「不训模型、只做工程化封装」让一个人扛起了通常需要一个团队才维护得动的推理栈。</div><div class="cm">信源：<a class="cref verified" href="#ref-7">[7]</a> <a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-9">[9]</a></div></div>
+  <div class="card red"><div class="ct">转折三：v2 重构与「长期项目」承诺——以及承诺之后放缓的现实</div><div class="cb">2023 年作者用近 7 个月完成 v2 重构（备份仓自述「结束和新的开始」），发布 v2.0.0 后承诺「Umi-OCR 将是一个长期的项目，我会持续维护和更新」<sup class="cite verified">[8]</sup>。v2.1.x 期间兑现了稳定维护（一年 3-4 个版本），但 2025-05-31 之后功能提交基本停摆、最新版停在 2025-03-26<sup class="cite verified">[1]</sup><sup class="cite verified">[6]</sup>——零商业化模式下「长期承诺」的成本结构，在数据里清晰可见。</div><div class="cm">信源：<a class="cref verified" href="#ref-8">[8]</a> <a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-6">[6]</a></div></div>
+  <div class="quote">
+    <p>按计划，后续更新维护工作将转到主仓库中进行……Umi-OCR 将是一个长期的项目，我会持续维护和更新。感谢大家的支持！</p>
+    <span class="src">—— hiroi-sora，Umi-OCR_v2 备份仓库 README「仓库迁移说明」（2023-11），转引自 <a class="cref verified" href="#ref-8">[8]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>Umi-OCR 的做法</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>产品功能</td><td class="hl">截图 OCR / 批量 OCR / PDF 识别 / 二维码 / 公式识别</td><td>截图识别（SegmentFault 实测文记录默认快捷键 Win+Alt+C）、批量导入图片不限数量、PDF 扫描件提取文本或转双层可搜索 PDF；结果可导出 txt/md/jsonl/txt/Excel/CSV，支持排版解析与忽略区域（排除水印）<sup class="cite verified">[2]</sup><sup class="cite partial">[10]</sup></td></tr>
+      <tr><td>完全离线的隐私卖点</td><td class="hl">100% 本地运行，图片不上传任何服务器</td><td>README 明确「离线运行，无需网络」<sup class="cite verified">[2]</sup>；第三方实测普遍将「完全离线、隐私性好」列为核心优势——「所有识别都在本地电脑上完成，不需要把图片上传到任何服务器」<sup class="cite partial">[10]</sup><sup class="cite partial">[14]</sup>；主流媒体选型文亦以「无需联网」推荐之<sup class="cite cross">[11]</sup></td></tr>
+      <tr><td>PaddleOCR 模型集成</td><td class="hl">自编译 PaddleOCR-json C++ 引擎 + RapidOCR-json 双引擎可切换</td><td>引擎由作者将百度开源 PaddleOCR 用 C++ 编译为独立命令行程序（1,557★），默认 Paddle 引擎「速度稍快」，Scoop 包管理器按引擎分发包（umi-ocr-paddle / umi-ocr）<sup class="cite verified">[7]</sup><sup class="cite verified">[2]</sup>；实测文记录 Paddle 版性能高但 CPU 兼容性窄、Rapid 版内存占用低兼容性好，不兼容时换 Rapid 版解决报错<sup class="cite partial">[10]</sup></td></tr>
+      <tr><td>面向客群</td><td>Windows 个人用户 · 批量文档处理者 · 隐私敏感人群</td><td>适配 Windows 7 x64 起的广泛机型（Linux x64 为后续支持），解压即用、无需注册登录，天然覆盖不会配置环境的普通用户；命令行/HTTP 接口面向开发者与自动化集成场景<sup class="cite verified">[2]</sup><sup class="cite partial">[10]</sup></td></tr>
+      <tr><td>解决痛点</td><td class="hl">商业 OCR 按页收费 · 在线工具的隐私顾虑 · 广告弹窗</td><td>在线 OCR「免费额度用完后会提示升级」、高频使用不经济<sup class="cite cross">[11]</sup>；Umi-OCR 凭「开源免费、离线运行、无广告弹窗」在同类工具（天若 OCR、PandaOCR、QQ 截图 OCR 等）中形成差异化，被列为同类首选<sup class="cite partial">[10]</sup><sup class="cite partial">[13]</sup></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 零商业化说明</div>
+    Umi-OCR 无付费版本、无内购、无广告、无 Pro 版分层，README 唯一的「回报」入口是爱发电赞助页（afdian.com/a/hiroi-sora），并自述项目「主要由作者用业余时间开发和维护」<sup class="cite verified">[2]</sup>；赞助金额、月度收入、成本结构均未检索到公开信息。本案在案例墙中的「成功迹象」以社区关注度（GitHub 星标与下载量）为主而非营收指标——如实标注，不推算营收。
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>GitHub 星标</td><td class="hl">48,626</td><td>2026-11-13 API 实测</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>GitHub Fork / Open Issues / Watch</td><td>4,743 / 370 / 229</td><td>2026-11-13 实测</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>Releases 累计下载</td><td class="hl">650,104 次（31 个版本 assets 合计）</td><td>2026-11-13 实测</td><td><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td>单版本最高下载</td><td class="pos">v2.1.5 单版本 343,767 次（占总量 52.9%）</td><td>2025-03-25 发布</td><td><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td>版本时间线</td><td>v1.0.0（2022-03-28）→ v2.1.5（2025-03-26），共 31 个正式版本</td><td>CHANGE_LOG 全量核对</td><td><a class="cref verified" href="#ref-6">[6]</a></td></tr>
+      <tr><td>代码维护节奏</td><td>最后一次功能提交 2025-05-31；最后提交（翻译）2025-11-20</td><td>2026-11-13 Commits API 实测</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>Gitee 官方镜像</td><td>32★ / 13 fork（通道价值为主，非热度口径）</td><td>2026-11 查询</td><td><a class="cref cross" href="#ref-5">[5]</a></td></tr>
+      <tr><td>引擎生态仓</td><td>PaddleOCR-json 1,557★ · Umi-OCR_plugins 621★ · RapidOCR-json 362★</td><td>2026-11 查询</td><td><a class="cref verified" href="#ref-7">[7]</a><a class="cref verified" href="#ref-9">[9]</a></td></tr>
+      <tr><td>作者影响力</td><td>GitHub 1,267 关注者 · 25 个公开仓库</td><td>2026-11-13 实测</td><td><a class="cref verified" href="#ref-4">[4]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    ① 星标为时点值：案例墙 2026-10/11 检索值 48.4k★，本次 2026-11-13 API 实测 48,626★，互相吻合、仍在增长<sup class="cite verified">[1]</sup>。② <b>650,104 次下载仅统计 GitHub Releases assets</b>：README 将蓝奏云标注为「国内推荐」第一下载渠道，SourceForge 亦为官方渠道，两者均无公开下载统计——全量下载数应显著高于 GitHub 口径<sup class="cite verified">[2]</sup><sup class="cite verified">[3]</sup>。③ 用户总量、留存、地域分布均无官方口径。④ Gitee 镜像星标（32）远低于主仓，属国内访问通道价值，不可与 GitHub 热度混用<sup class="cite cross">[5]</sup>。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将 Umi-OCR 放入案例墙「翻译/OCR 工具类开源项目」坐标系。对标数据均为案例墙既有核验值（详见案例墙 index.html 各条目信源），本案星标为本次 API 实测值：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>商业模式</th><th>数据表现</th><th>数据口径</th></tr></thead>
+    <tbody>
+      <tr><td><b>Umi-OCR</b></td><td>hiroi-sora（网名）</td><td>开源离线 OCR（截图/批量/PDF，Windows/Linux）</td><td class="hl">完全免费离线（MIT），仅赞助</td><td>GitHub 48,626★（2026-11-13 实测）+ Releases 下载 65 万+</td><td>本案实测 <a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td>Bob</td><td>ripperhe（北京独立开发者）</td><td>macOS 划词翻译/截图 OCR</td><td>免费版 + Pro ¥58 买断持续销售</td><td>GitHub 9.7k★</td><td>案例墙既有核验值</td></tr>
+      <tr><td>Easydict</td><td>tisfeng</td><td>macOS 词典翻译应用（支持离线 OCR）</td><td>完全免费开源（GPL-3.0）+ 赞助</td><td>GitHub 15.2k★（2026-11）</td><td>案例墙既有核验值</td></tr>
+      <tr><td>PDFMathTranslate（pdf2zh）</td><td>Byaidu</td><td>保留排版的 PDF 学术文档 AI 全文双语翻译，CLI/GUI/Zotero 插件</td><td>开源 + 在线服务 pdf2zh.com</td><td>GitHub 38.3k★，入选 EMNLP 2025 Demo</td><td>案例墙既有核验值</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>这组对标的看点是「零商业化」的两种形态与一个极致：Bob（9.7k★）以「免费版引流 + ¥58 买断」实现了工具类 OPC 少见的持续现金流；Easydict（15.2k★）以 GPL 分叉 + 彻底免费换取社区声望；pdf2zh（38.3k★）在开源之上叠了在线服务这一轻商业化通道；而 Umi-OCR（48.6k★）四者中星标最高，却是唯一<b>连在线服务都不做</b>的——不接云、不收费、不融资，把「完全免费离线」推到产品定位的最极致，反而成为中文 OCR 场景口口相传的事实标准。它证明了在数据敏感（合同、病历、扫描件）与断网场景里，「不联网」本身就是最强的产品差异化和最强的自传播机制<sup class="cite verified">[2]</sup><sup class="cite partial">[10]</sup>。代价见柒-7：零商业化没有为持续维护购买任何燃料。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>分析</th></tr></thead>
+    <tbody>
+      <tr><td class="hl">1. 产品功能（含 OCR 离线隐私优势）</td><td>功能矩阵完整：截图 OCR（快捷键即截即识）、批量 OCR（不限量、多格式导出、忽略区域排除水印）、PDF 识别（提取文本/生成双层可搜索 PDF）、二维码扫描与生成、公式识别（测试）<sup class="cite verified">[2]</sup>。隐私是结构性优势而非营销话术：识别全程本地完成，图片不出电脑，实测文称「隐私性非常好」，云社区文章称「从源头上杜绝了数据泄露」<sup class="cite partial">[10]</sup><sup class="cite partial">[15]</sup>；对横排/竖排（含竖排繁体）的排版解析，有真实用户场景背书（「处理过一本扫描版的旧书，竖排繁体都识别出来了」）<sup class="cite cross">[11]</sup>。</td></tr>
+      <tr><td>2. 面向客群</td><td>直接客群为 Windows 个人用户中的高频文字提取者（学生提取课件/文献、办公族处理扫描件、研究者处理旧书 PDF）<sup class="cite partial">[10]</sup><sup class="cite cross">[11]</sup>；间接客群为开发者——命令行与 HTTP 接口使 Umi-OCR 可被集成进自动化工作流与第三方工具<sup class="cite verified">[2]</sup>；引擎仓 PaddleOCR-json 以「JSON 输出、多语言 API」独立服务其他程序调用者<sup class="cite verified">[7]</sup>。macOS 用户不在覆盖范围（产品仅 Windows/Linux）<sup class="cite verified">[2]</sup>。</td></tr>
+      <tr><td>3. 解决痛点</td><td>①价格痛点：商业 OCR 按页/按次收费、在线工具免费额度有限，Umi-OCR 完全免费且无数量限制<sup class="cite partial">[10]</sup><sup class="cite cross">[11]</sup>；②隐私痛点：敏感文件（合同、病历、内部文档）不敢上传在线 OCR——本地离线识别从根上消除该顾虑<sup class="cite partial">[10]</sup><sup class="cite partial">[15]</sup>；③环境痛点：解压即用、免安装免注册，中文用户还获得了免注册无限速的蓝奏云国内通道，绕开 GitHub 访问门槛<sup class="cite verified">[2]</sup>。</td></tr>
+      <tr><td>4. 预估年化营收（推算，置信度 C）</td><td class="hl">直接营收 ¥0，未检索到公开营收信息，不作推算</td><td>无付费版本、无内购、无广告、无在线服务收费，唯一收入通道为爱发电赞助，金额未公开<sup class="cite verified">[2]</sup>。其「回报结构」需换算为非货币资产：48.6k 星的行业声望、1,267 名 GitHub 关注者的个人品牌、以及引擎仓被外部程序调用的生态位<sup class="cite verified">[1]</sup><sup class="cite verified">[4]</sup><sup class="cite verified">[7]</sup>。本案是案例墙中「零商业化样本」的极端形态——不适用营收型 OPC 评价框架。</td></tr>
+      <tr><td>5. 融资进展</td><td>无融资记录、无公司主体信息公开<sup class="cite verified">[2]</sup>。非货币资源支持以开源社区协作形式出现：Weblate 平台上 16+ 名译者贡献了英语/繁中/日语/葡语/俄语/泰米尔语等界面翻译，Linux 运行环境、插件生态（Umi-OCR_plugins）由社区协作分摊<sup class="cite verified">[2]</sup><sup class="cite verified">[9]</sup>——开源项目的「融资」以人力与基础设施置换的形式完成。</td></tr>
+      <tr><td>6. 市场评价</td><td>技术社区正评价密集且具体：SegmentFault 实测文称其在天若 OCR、PandaOCR、QQ 截图 OCR 等同类中「凭借开源免费、离线运行、无广告弹窗的优势……非常受欢迎」<sup class="cite partial">[10]</sup>；新浪财经选型文实测「竖排繁体都识别出来了，准确度让人意外」<sup class="cite cross">[11]</sup>；掘金、阿里云、腾讯云开发者社区均以「本地离线可用」「保障隐私安全」为题收录推荐<sup class="cite partial">[13]</sup><sup class="cite partial">[14]</sup><sup class="cite partial">[15]</sup>；HelloGitHub 官方收录（OCR 标签页）文案「完全免费的 OCR 软件，支持离线使用、截屏识别文字、批量导入图片」<sup class="cite cross">[12]</sup>。48.4k→48,626 的星标增长表明热度延续<sup class="cite verified">[1]</sup>。需注意：未检索到主流财经/科技媒体对其作者或商业故事的深度报道——零商业化项目天然缺乏「商业叙事」的媒体可见性，其声望几乎全部沉淀在开发者社区内部。</td></tr>
+      <tr><td class="hl">7. 开源维护可持续性（零商业化模式的可持续维护问题）</td><td>本案最值得警示的维度。承诺与现实的落差：2023-11 作者承诺「Umi-OCR 将是一个长期的项目」<sup class="cite verified">[8]</sup>，2024-2025 上半年兑现稳定发版（v2.1.1→v2.1.5）；但 Commits API 显示 2025-05-31 后功能提交停摆，仅剩 Weblate 翻译自动更新（最后提交 2025-11-20），最新 release 停在 2025-03-26，370 个 open issue 未消化<sup class="cite verified">[1]</sup>。README 自述「主要由作者用业余时间开发和维护」<sup class="cite verified">[2]</sup>——零商业化意味着维护投入没有任何现金流补偿，可持续性完全押注个人热情。对冲机制有三：MIT 协议允许任何人分叉<sup class="cite verified">[1]</sup>；插件机制允许第三方引擎接入（作者名下即有 tesseractOCR/chineseocr 插件仓）<sup class="cite verified">[9]</sup>；存量资产自持——离线软件不依赖服务端，即使停止更新，已发布的 v2.1.5 仍可长期使用（单版本 34.4 万下载）<sup class="cite verified">[3]</sup>。这是离线软件与在线 SaaS 在「维护停摆风险」上的本质差异。</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 五处留白与风险（截至 2026-11-13 检索）</div>
+    ① <b>维护节奏放缓</b>：最后功能提交 2025-05-31、最新版 2025-03-26、370 个 open issue 未消化<sup class="cite verified">[1]</sup>，项目是否进入「事实维护冻结」状态无官方声明；② <b>单点维护 + 零商业化</b>：README 自述业余时间维护<sup class="cite verified">[2]</sup>，无现金流补偿机制，「长期项目」承诺（2023）与 2025 年后的放缓形成对照<sup class="cite verified">[8]</sup>；③ <b>非官方分发泛滥</b>：PyPI 上的「Umi-OCR」包系第三方（yanjlee）转打包，停留在 v1.2.1 旧版且非官方发布<sup class="cite partial">[16]</sup>，存在版本滞后与信任混淆风险——用户应以 GitHub Releases/蓝奏云/SourceForge 官方渠道为准<sup class="cite verified">[2]</sup>；④ <b>作者身份匿名</b>：真名、国籍、所在地、职业履历均未公开（Users API name 字段为空、location 无法核验）<sup class="cite verified">[4]</sup>，案例墙按网名收录，任何身份推断均不可信；⑤ <b>全量用户数据缺失</b>：蓝奏云/SourceForge 下载无公开统计，星标不能换算用户量，成功迹象只能以「GitHub 生态热度」为代理指标。
+  </div>
+  <div class="box note">
+    <div class="bt">📝 口径与归属说明</div>
+    ① <b>案例墙锚点</b>：墙锚点记为「2022-11-15 ▲约」，实测仓库创建于 2022-03-28、当日发布 v1.0.0<sup class="cite verified">[1]</sup><sup class="cite verified">[6]</sup>；2022-11 前后正值 v1.3.1（2022-11-04）→ v1.3.2（2022-12-01）的高频迭代期，锚点宜理解为「2022 年下半年进入爆发期」的约值，本报告沿用墙锚点并注明实测时点。② <b>星标时点</b>：案例墙底稿 48.4k★（2026-10/11 检索）与本次实测 48,626★（2026-11-13）均为时点值，引用须注时点<sup class="cite verified">[1]</sup>。③ <b>下载数据口径</b>：650,104 仅 GitHub Releases assets；蓝奏云为官方标注的「国内推荐」渠道但无公开统计<sup class="cite verified">[2]</sup><sup class="cite verified">[3]</sup>。④ <b>「Umi-OCR_v2」与主仓关系</b>：v2 重构期备份仓（2023-05-17 创建），v2.0.0 发布后转纪念/备份状态，commit 历史已迁主仓<sup class="cite verified">[8]</sup>，两仓不可重复计星。⑤ Umi-OCR 与百度 PaddleOCR 的关系为「对开源模型的工程化封装」而非官方合作：PaddleOCR-json 系作者自行编译的个人仓库，与百度官方无隶属关系<sup class="cite verified">[7]</sup>。
+  </div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">Umi-OCR 是案例墙「零商业化」象限的天花板样本：不融资、不注册公司、不接在线服务、不开付费墙，仅凭「完全免费离线 + 解压即用 + 引擎工程化」做到 48.6k 星、65 万+ GitHub 下载（不含国内主渠道），成为中文免费 OCR 的事实标准。它验证了两件事：其一，在隐私敏感与断网场景中，「不联网」可以成为比「更智能」更强的购买理由——而免费把这一优势放大到无摩擦传播；其二，开源模型的工程化封装（PaddleOCR-json、GapTree 排序算法）让单人团队扛得起通常属于团队规模的推理栈<sup class="cite verified">[7]</sup><sup class="cite verified">[9]</sup>。它同时是一面警示牌：2025 年下半年以来的维护放缓说明，零商业化模式没有为「长期」购买任何保险——作者的承诺是真实的，个人时间的稀缺也是真实的<sup class="cite verified">[1]</sup><sup class="cite verified">[8]</sup>。对 OPC 而言，本案的启示是：免费离线工具可以赢得最大的声望资产，但若追求「公司」的存续而非「作品」的存续，仍需为维护成本设计至少一条不伤定位的造血通道。</div><div class="cm"><a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-3">[3]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>捌·附 · 资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 16 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一社区信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx verified">[1]</span><span class="rt">A</span><span class="st">GitHub API（一手实测）</span></div><div class="ti">GitHub Repos API / Commits API：hiroi-sora/Umi-OCR</div><div class="mt"><b>来源：</b>api.github.com　<b>查询时点：</b>2026-11-13<br><a href="https://api.github.com/repos/hiroi-sora/Umi-OCR" target="_blank" rel="noopener">https://api.github.com/repos/hiroi-sora/Umi-OCR</a></div><div class="note">事实核查：星标 48,626、fork 4,743、open issue 370、watch 229、Python、MIT 协议、创建于 2022-03-28、最后推送 2025-11-20、仓库描述（截图/批量/PDF/二维码/内置多国语言库）均为 API 原始返回；Commits API 显示 2025-05-31（新增 click screenshot）后仅剩两条 Weblate 翻译更新（2025-11-12、2025-11-20）。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx verified">[2]</span><span class="rt">A</span><span class="st">GitHub README（一手）</span></div><div class="ti">Umi-OCR 官方 README（main 分支）</div><div class="mt"><b>来源：</b>github.com/hiroi-sora/Umi-OCR　<b>查询时点：</b>2026-11-13<br><a href="https://github.com/hiroi-sora/Umi-OCR" target="_blank" rel="noopener">https://github.com/hiroi-sora/Umi-OCR</a></div><div class="mt"><b>关键内容：</b>「免费，开源，可批量的离线OCR软件」适用于 Windows7 x64/Linux x64；特性五条（免费/方便/高效/灵活/功能）；截图OCR/批量OCR/PDF识别/二维码/公式识别；排版解析与忽略区域；下载渠道（蓝奏云「国内推荐，免注册/无限速」/GitHub/SourceForge/Scoop 双引擎包）；离线引擎清单（PaddleOCR-json、RapidOCR-json）与 PyStand 运行框架；Weblate 本地化译者表；赞助章节「主要由作者 hiroi-sora 用业余时间在开发和维护」+ 爱发电入口；MIT 徽章。</div><div class="note">事实核查：产品定位、功能清单、分发渠道、引擎架构、赞助通道均为官方一手自述；功能清单与引擎差异另经 SegmentFault 实测文 [10]、Scoop 包描述 [2 内嵌] 交叉。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx verified">[3]</span><span class="rt">A</span><span class="st">GitHub API（一手实测）</span></div><div class="ti">GitHub Releases API：hiroi-sora/Umi-OCR（31 个版本全量）</div><div class="mt"><b>来源：</b>api.github.com　<b>查询时点：</b>2026-11-13<br><a href="https://api.github.com/repos/hiroi-sora/Umi-OCR/releases" target="_blank" rel="noopener">https://api.github.com/repos/hiroi-sora/Umi-OCR/releases</a></div><div class="note">事实核查：releases 全量 31 个；assets 下载合计 650,104；最早 v1.0（published 2022-03-29）、最新 v2.1.5（published 2025-03-25）；单版本下载 TOP3：v2.1.5（343,767）、v2.1.4（66,959）、v1.3.5（32,907）。仅统计 GitHub assets，不含蓝奏云/SourceForge。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx verified">[4]</span><span class="rt">A</span><span class="st">GitHub API（一手实测）</span></div><div class="ti">GitHub Users API：hiroi-sora（开发者个人资料）</div><div class="mt"><b>来源：</b>api.github.com　<b>查询时点：</b>2026-11-13<br><a href="https://api.github.com/users/hiroi-sora" target="_blank" rel="noopener">https://api.github.com/users/hiroi-sora</a></div><div class="note">事实核查：name 字段为空（真名未公开）、无 bio、location「TORISHIRO JIMA」（无法核验真实性，按匿名处理）、2019-10-10 注册、25 个公开仓库、1,267 关注者，均为 API 原始返回；身份匿名结论据此成立，不作任何身份推断。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx cross">[5]</span><span class="rt">B+</span><span class="st">Gitee 官方镜像（API + 页面）</span></div><div class="ti">Gitee：hiroi-sora/Umi-OCR（官方镜像仓）</div><div class="mt"><b>来源：</b>gitee.com　<b>查询时点：</b>2026-11<br><a href="https://gitee.com/hiroi-sora/Umi-OCR" target="_blank" rel="noopener">https://gitee.com/hiroi-sora/Umi-OCR</a></div><div class="note">事实核查：Gitee API 返回 32★/13 fork、创建于 2024-01-12、MIT；描述自指「【github.com/hiroi-sora/Umi-OCR】在 Github 已获 20k+ Stars」为旧时点快照文案。镜像通道价值为主，星标不可与 GitHub 热度混用。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx verified">[6]</span><span class="rt">A</span><span class="st">CHANGE_LOG（官方一手）</span></div><div class="ti">Umi-OCR 更新日志 CHANGE_LOG.md（main 分支）</div><div class="mt"><b>来源：</b>github.com/hiroi-sora/Umi-OCR　<b>查询时点：</b>2026-11-13<br><a href="https://github.com/hiroi-sora/Umi-OCR/blob/main/CHANGE_LOG.md" target="_blank" rel="noopener">https://github.com/hiroi-sora/Umi-OCR/blob/main/CHANGE_LOG.md</a></div><div class="note">事实核查：版本时间线全量核对——v1.0.0（2022.3.28）、v1.1.0/v1.1.1（2022.3.30）、v1.3.1（2022.11.4）、v1.3.2（2022.12.1）、v1.3.7（2023.10.10）、v2.0.0（2023.11.19）、v2.1.1（2024.3.29）、v2.1.4（2024.8.31）、v2.1.5（2025.3.26）；v2.1.4 含 PaddleOCR 插件与 Docker 部署修复细节。与 Releases API [3] 发布时点互相吻合。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx verified">[7]</span><span class="rt">A</span><span class="st">GitHub API（一手实测）</span></div><div class="ti">GitHub API：hiroi-sora/PaddleOCR-json（Umi-OCR 引擎仓）</div><div class="mt"><b>来源：</b>api.github.com　<b>查询时点：</b>2026-11-13<br><a href="https://github.com/hiroi-sora/PaddleOCR-json" target="_blank" rel="noopener">https://github.com/hiroi-sora/PaddleOCR-json</a></div><div class="note">事实核查：1,557★、创建于 2022-03-29（与 Umi-OCR v1.0 同周）、最后推送 2025-04-07；描述原文「OCR离线图片文字识别命令行windows程序，以JSON字符串形式输出结果……由 PaddleOCR C++ 编译」——Umi-OCR 与百度 PaddleOCR 模型生态关系的一手证据，系作者个人封装而非百度官方合作。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx verified">[8]</span><span class="rt">A</span><span class="st">GitHub API + README（一手）</span></div><div class="ti">Umi-OCR_v2 备份仓库（v2 重构期仓，「结束和新的开始」）</div><div class="mt"><b>来源：</b>api.github.com / github.com　<b>查询时点：</b>2026-11-13<br><a href="https://github.com/hiroi-sora/Umi-OCR_v2" target="_blank" rel="noopener">https://github.com/hiroi-sora/Umi-OCR_v2</a></div><div class="note">事实核查：API 实测创建 2023-05-17、最后推送 2023-11-19、932★、描述「结束和新的开始」；README「仓库迁移说明」原文记录近 7 个月 v2 重构、commit 历史迁主仓、转纪念/备份状态、本仓 Issues 仍保持关注，以及作者承诺「Umi-OCR 将是一个长期的项目，我会持续维护和更新」。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx verified">[9]</span><span class="rt">A</span><span class="st">GitHub API（一手实测）</span></div><div class="ti">GitHub API：hiroi-sora 公开仓库列表（生态全景）</div><div class="mt"><b>来源：</b>api.github.com　<b>查询时点：</b>2026-11-13<br><a href="https://api.github.com/users/hiroi-sora/repos" target="_blank" rel="noopener">https://api.github.com/users/hiroi-sora/repos</a></div><div class="note">事实核查：生态仓实测——Umi-OCR_plugins 621★（插件库，支持切换不同 OCR 引擎）、RapidOCR-json 362★（基于 RapidOcrOnnx 的兼容引擎）、Umi-CUT 361★、Umi-OCR_runtime_linux 210★、GapTree_Sort_Algorithm 175★（自研版面分析/阅读顺序排序算法）、tesseractOCR/chineseocr 插件仓在列。单人生态矩阵证据。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx partial">[10]</span><span class="rt">B</span><span class="st">技术社区（SegmentFault 实测）</span></div><div class="ti">[实测好用] Umi-OCR 下载安装全攻略：免费离线 OCR 文字识别工具（附安装包）</div><div class="mt"><b>来源：</b>segmentfault.com（作者「玩手机的水煮鱼」，河北）　<b>发布日期：</b>2026-06-10<br><a href="https://segmentfault.com/a/1190000047837094" target="_blank" rel="noopener">https://segmentfault.com/a/1190000047837094</a></div><div class="note">事实核查：默认快捷键 Win+Alt+C、批量导出 TXT/Excel/CSV、GPU 加速（NVIDIA）、Paddle/Rapid 双引擎差异（Paddle 性能高 CPU 兼容窄、Rapid 内存低兼容好、0xc0000142 报错换 Rapid）、PDF 批量文档识别、同类工具对比（天若/PandaOCR/QQ 截图 OCR）均出自此实测文；单一社区信源，按 partial 标注。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx cross">[11]</span><span class="rt">B+</span><span class="st">主流门户（新浪财经）</span></div><div class="ti">把考研材料里的文字快速提取出来，图片转文字识别软件怎么挑</div><div class="mt"><b>来源：</b>finance.sina.com.cn　<b>发布日期：</b>2026-07-13<br><a href="https://finance.sina.com.cn/tjhz/2026-07-13/doc-inihsckz2161432.shtml" target="_blank" rel="noopener">https://finance.sina.com.cn/tjhz/2026-07-13/doc-inihsckz2161432.shtml</a></div><div class="note">事实核查：主流门户选型文将 Umi-OCR 列为电脑端离线 OCR 推荐——「开源免费的 Windows 端 OCR 工具，基于 PaddleOCR 引擎，无需联网」「处理过一本扫描版的旧书，竖排繁体都识别出来了，准确度让人意外」；该文同时记录在线工具（Smallpdf 等）「免费额度用完后会提示升级」的商业 OCR 收费痛点，与本案痛点定位互证。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx cross">[12]</span><span class="rt">B+</span><span class="st">开源聚合平台（HelloGitHub）</span></div><div class="ti">HelloGitHub OCR 标签页：Umi-OCR 收录条目</div><div class="mt"><b>来源：</b>hellogithub.com　<b>查询时点：</b>2026-11<br><a href="https://hellogithub.com/tags/AghsvMemaU" target="_blank" rel="noopener">https://hellogithub.com/tags/AghsvMemaU</a></div><div class="note">事实核查：收录文案「开源、免费的 OCR 图片转文字识别软件——完全免费的 OCR 软件，支持离线使用、截屏识别文字、批量导入图片、横/竖排文字，还可以忽略水印区域，适用于 Windows 操作系统」，署名 hiroi-sora · Python；标签页数据为历史快照（同页 tesseract 等条目显示「4 年前」），仅作收录背书不作时点数据。</div></li>
+  <li id="ref-13" class="src"><div class="sh"><span class="idx partial">[13]</span><span class="rt">C+</span><span class="st">技术社区（掘金）</span></div><div class="ti">本地离线可用！一款开源免费的 OCR 文字识别工具！Umi-OCR</div><div class="mt"><b>来源：</b>juejin.cn　<b>查询时点：</b>2026-11<br><a href="https://juejin.cn/post/7670476094258266148" target="_blank" rel="noopener">https://juejin.cn/post/7670476094258266148</a></div><div class="note">事实核查：「Windows 解压压缩包双击即可运行」「纯本地离线使用，无需上传服务端，断网环境也能正常使用」「内置 PaddleOCR、RapidOCR 双引擎，可一键切换」等描述与官方 README [2] 一致；社区推荐文，按 partial 标注。</div></li>
+  <li id="ref-14" class="src"><div class="sh"><span class="idx partial">[14]</span><span class="rt">C+</span><span class="st">云开发者社区（阿里云）</span></div><div class="ti">【2026】Umi-OCR 文字识别工具：截图/批量/PDF 识别全支持</div><div class="mt"><b>来源：</b>developer.aliyun.com　<b>查询时点：</b>2026-11<br><a href="https://developer.aliyun.com/article/1755308" target="_blank" rel="noopener">https://developer.aliyun.com/article/1755308</a></div><div class="note">事实核查：「免费开源的离线 OCR 软件……全程本地运行，保障隐私安全」「Paddle（高性能）和 Rapid（低配兼容）双引擎」与 [2][10] 一致；第三方社区稿，按 partial 标注。</div></li>
+  <li id="ref-15" class="src"><div class="sh"><span class="idx partial">[15]</span><span class="rt">C+</span><span class="st">云开发者社区（腾讯云）</span></div><div class="ti">Umi-OCR：开源可离线运行的高精度文字识别工具</div><div class="mt"><b>来源：</b>cloud.tencent.com　<b>查询时点：</b>2026-11<br><a href="https://cloud.tencent.com/developer/article/2585633" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/2585633</a></div><div class="note">事实核查：「基于 PaddleOCR-json C++ 识别引擎构建……完全离线运行……从源头上杜绝了数据泄露」与 [2][7] 一致；第三方社区稿，按 partial 标注。</div></li>
+  <li id="ref-16" class="src"><div class="sh"><span class="idx partial">[16]</span><span class="rt">C</span><span class="st">第三方包仓库（PyPI）</span></div><div class="ti">PyPI：Umi-OCR 包（第三方转打包，非官方）</div><div class="mt"><b>来源：</b>pypi.org　<b>查询时点：</b>2026-11-13<br><a href="https://pypi.org/project/Umi-OCR/" target="_blank" rel="noopener">https://pypi.org/project/Umi-OCR/</a></div><div class="note">事实核查：PyPI JSON 元数据显示 author「yanjlee」、Homepage github.com/yanjlee/Umi-OCR、仅 1 个版本 v1.2.1（v1.2.x 为 2022 年版本）——系第三方转打包而非 hiroi-sora 官方发布，描述文字复制自官方 README；作为「非官方分发风险」证据收录，不作为官方事实来源。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 16 条。核验标签分布：🟢 已核验（verified）9 条（GitHub Repos/Releases/Commits/Users/仓库列表 API、官方 README、CHANGE_LOG、PaddleOCR-json 与 Umi-OCR_v2 仓库——九路 GitHub 一手互证）、🔵 多源印证（cross）3 条（Gitee 官方镜像、新浪财经选型文、HelloGitHub 收录页）、🟡 部分映证（partial）4 条（SegmentFault 实测、掘金/阿里云/腾讯云社区稿、PyPI 第三方包）。信源评级分布：A 级 7 条（GitHub 一手，星标 48,626 由 API 直接返回）、B+/B 级 4 条、C+/C 级 5 条（均已标注口径）。关键数据三角验证：星标 48,626（2026-11-13 API 实测）↔ 案例墙底稿 48.4k（2026-10/11 检索）时序吻合；版本时间线由 CHANGE_LOG 与 Releases API 双源核对一致；「基于 PaddleOCR」由引擎仓描述、README、SegmentFault、新浪财经四源印证。三处留白（赞助金额、全量下载数、用户量）与两处口径注意（案例墙锚点 2022-11-15 ▲约 vs 实测创建 2022-03-28；下载量仅 GitHub assets 口径）已在正文显式标注。核验失败 URL：github.com/hiroi-sora/PaddleOCR-json 直接抓取超时 1 次，已改经 GitHub API（api.github.com）完成核验，不影响结论；其余 15 条 URL 均实际命中（HTTP 200）。未发现伪造链接。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-13 · 星标等时点数据随时间变动，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

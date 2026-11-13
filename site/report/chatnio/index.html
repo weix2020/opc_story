@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · ChatNio——15 岁初中生的开源七位数退出 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · ChatNio">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="ChatNio 深度案例报告：山东初中生 zmh（Kairo）2023 年发起多模型对话 + API 中转一站式开源平台，零推广做到近 10 万月活、月净利约 5 万元，2024 年被七位数收购改名 CoAI.Dev——国内 AI 一人公司案例墙中唯一走完并购退出闭环的案例。12 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>ChatNio 深度案例报告</h1>
+    <h2>15 岁初中生 zmh（Kairo）：一个人、不到两年、零推广投放<br>做出近 10 万月活的开源 AI 平台，以七位数完成并购退出 —— 12 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">开源产品型 OPC</span>
+      <span class="tag">未成年开发者</span>
+      <span class="tag">并购退出闭环</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">七位数</div><div class="k">收购对价（2024 · 人民币口径）</div></div>
+  <div class="stat"><div class="v up">近 10 万</div><div class="k">月活用户（截至 2024-11）</div></div>
+  <div class="stat"><div class="v neutral">~¥5 万</div><div class="k">月净利（一手自述口径）</div></div>
+  <div class="stat"><div class="v neutral">9,346</div><div class="k">GitHub Stars（2026-11 实测）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">ChatNio 是 2023 年初由一名山东七年级学生 zmh 发起的「多模型对话 + API 中转/计费管理」一站式开源平台：从让朋友免费用上 GPT-4 的公益项目起步，靠「高性价比 + 功能全面」零投放增长到近 10 万月活，2024 年被以七位数（人民币）收购并更名 CoAI.Dev——它是本案例墙中唯一走完「开源 → 商业化 → 并购退出」完整闭环的开源产品型 OPC 案例，创业者全程未成年。</p>
+  <div class="two">
+    <div class="card"><div class="ct">项目</div><div class="cb">ChatNio（收购后更名 CoAI / CoAI.Dev）：聚合多模型对话、AI 助手预设、文生图、联网搜索、文件解析与 OpenAI 兼容 API 网关、弹性计费后台。机器之心口径接入 OpenAI、Midjourney、Claude、讯飞星火、Stable Diffusion、DALL·E、ChatGLM、通义千问、腾讯混元、360 智脑、百川、火山方舟、Gemini、Moonshot 等 35 款模型；收购后仓库自述「200+ 模型、35+ 提供商」。GitHub 页面 slogan：Chat Nio &gt; Next Web + One API。</div><div class="cm">信源：<a class="cref cross" href="#ref-5">[5]</a> <a class="cref verified" href="#ref-4">[4]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">zmh，网名 zmh-program / ProgramZmh，现用名 Kairo；CSDN 报道称其 2009 年出生、英文名 Minghan Zhang（中文名未在公开信源确认）。山东重点高中在读（信息小组背景），个人站点自述 8 岁起编程（Minecraft Forge 模组）。发起 ChatNio 时为初中生（七年级下学期，约 13-14 岁），收购交接时 15 岁、刚上高一。</div><div class="cm">信源：<a class="cref cross" href="#ref-6">[6]</a> <a class="cref partial" href="#ref-3">[3]</a> <a class="cref partial" href="#ref-2">[2]</a></div></div>
+    <div class="card"><div class="ct">成功迹象</div><div class="cb">2024 年被七位数（人民币）收购——腾讯新闻·新榜口径「被百万元收购」，机器之心/CSDN 标题口径「数百万元」；截至 2024 年 11 月，累积近 10 万月活跃用户、每月 5 万元净利润（腾讯新闻引用其自述）；2024 年初自述口径为 100k+ MAU、¥20 万 MRR、~¥5 万月盈、团队 4 人。GitHub 现存 9,346 stars（2026-11-12 API 实测）。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-5">[5]</a> <a class="cref partial" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-4">[4]</a></div></div>
+    <div class="card"><div class="ct">公司 / 收购状态</div><div class="cb">未成年开发者身份成立：项目发起、开源、商业化全程在初中阶段完成。2024 年中考后完成收购交接（软著转移、权限分配），项目更名 CoAI.Dev，zmh 以创始人身份继续主导开发，媒体普遍称其出任 CTO；收购方主体未公开披露，是否注册公司主体未检索到公开信息。</div><div class="cm">信源：<a class="cref cross" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-7">[7]</a> <a class="cref partial" href="#ref-2">[2]</a></div></div>
+  </div>
+  <div class="two">
+    <div class="card blue"><div class="ct">荣誉与背书</div><div class="cb">GitHub Trending 2024「#1 Repo Of The Day」官方勋章（多次登 Trending）；个人站点自述入选极客公园「InnoForce 50」并获「年度超级开发者」类荣誉（站点头部标注 2024、成就区标注 2025，年份口径并存，官方榜单原文未直接命中其名，按自述待证处理）；自述为 Spark Lab 2024 第一季 Alumni &amp; S1 Champion（即刻热评有校友佐证）。</div><div class="cm">信源：<a class="cref partial" href="#ref-3">[3]</a> <a class="cref partial" href="#ref-2">[2]</a></div></div>
+    <div class="card blue"><div class="ct">一人属性边界</div><div class="cb">项目发起、核心研发与商业化决策为一人在读初中生；2024 年初团队扩至 4 人（自述），收购交接时「更多的人会参与进来」。按案例墙「一人主导起步」口径收录，团队化发生在被收购节点之后，属退出而非规模化的路径。</div><div class="cm">信源：<a class="cref partial" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-7">[7]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2014 前后 · 小学低年级</div><div class="tx">Minecraft 启蒙：编程兴趣的起点</div><div class="td">自述偷玩父亲 iPad 上的离线 MC，玩红石与命令方块；个人站点口径「8 岁开始开发 Minecraft Forge 模组」。两口径并存（接触游戏 vs 开发模组），均为一手自述。<a class="cref partial" href="#ref-2">[2]</a><a class="cref partial" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">小学中高年级</div><div class="tx">微机小组 → Turbo Pascal / C → Python 的自学曲线</div><div class="td">打字比赛全校第一；四五年级学 Turbo Pascal 与 C，写出的软件一度被老师质疑「这真的是你自己做的？」并获赠珍藏的 PASCAL 算法书；五年级转 Python。<a class="cref partial" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">六年级（山东五四制）</div><div class="tx">原生 TCP Socket IM 聊天室 + 接单「自费开源」</div><div class="td">因买不起云服务器，用家用电脑跑花生壳端口映射给同学演示自研 IM（原生 TCP 粘包/丢包处理、大文件传输、多对多对话）；网上接几千元小单，用收入支付服务器与 API 费用。<a class="cref partial" href="#ref-2">[2]</a><a class="cref cross" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">七年级（2022-2023）</div><div class="tx">省市级赛事冠军 + 深度学习试水</div><div class="td">自述在各大赛事拿过山东省、市级冠军；自学深度学习/强化学习（DQN/PPO 贪吃蛇 AI，Kaggle/Colab 跑模型，自称 Kaggle 比赛拿过几千美元奖金），练就 PyTorch/TensorFlow 基本功。<a class="cref partial" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2023 年初 · 七年级下学期 ▲ 锚点</div><div class="tx">发起 ChatNio：让朋友免费用上 $20/月的 GPT-4</div><div class="td">公益免费模式，零商业化构想；为此自述钻研 OpenAI API、虚拟卡、过 arkose、逆向、sess 等「供给手段」。<a class="cref partial" href="#ref-2">[2]</a><a class="cref cross" href="#ref-7">[7]</a><a class="cref cross" href="#ref-9">[9]</a></div></div>
+    <div class="node"><div class="dt">2023-07-17 · 升八年级暑假</div><div class="tx">开源并新建 GitHub 仓库「Chat Nio」（GitHub API 实测创建日期）</div><div class="td">用户增长后收入与捐赠无法覆盖成本，经社区投票从「公益全免费」转「非盈利」并开源共建；此后两次架构改版：V2 Node.js→Go（性能/内存）、V3 Vue→React + Shadcn UI。<a class="cref verified" href="#ref-4">[4]</a><a class="cref partial" href="#ref-2">[2]</a><a class="cref cross" href="#ref-7">[7]</a></div></div>
+    <div class="node"><div class="dt">2024-02</div><div class="tx">朋友代发 V2EX 分享贴：Stars 猛增 3k+、登顶 Trending</div><div class="td">这是项目唯一一次「推广」；多次登上 GitHub Trending，拿到 #1 Repo Of The Day 勋章；因临近中考，zmh 主动停止一切宣传。<a class="cref partial" href="#ref-2">[2]</a><a class="cref partial" href="#ref-3">[3]</a><a class="cref cross" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2024 年初 · 九年级</div><div class="tx">100k+ MAU / ¥20 万 MRR / ~¥5 万月盈 / 团队 4 人</div><div class="td">自述「没有任何宣传手段、没有推广分成，只是借助高性价比和功能，用户推用户」；同期上线 API Key 中转，自研渠道分配算法（优先级、权重、报错自动降级）。<a class="cref partial" href="#ref-2">[2]</a><a class="cref cross" href="#ref-7">[7]</a><a class="cref cross" href="#ref-9">[9]</a></div></div>
+    <div class="node"><div class="dt">2024 年中 · 中考后</div><div class="tx">历时数月的收购交接完成，项目更名 CoAI.Dev</div><div class="td">完成软著转移、权限分配等收购流程；zmh 继续主导项目未来，同时启动多个新项目；媒体口径称其出任 CTO、成为「15 岁的 CoAI.Dev 创始人」。<a class="cref partial" href="#ref-2">[2]</a><a class="cref cross" href="#ref-5">[5]</a><a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-7">[7]</a></div></div>
+    <div class="node"><div class="dt">2024-11-04 → 11-12</div><div class="tx">媒体集中报道：「15 岁初中生开源项目被数百万收购」刷屏</div><div class="td">机器之心、CSDN、快科技/新浪科技、开源中国于 11 月 4-6 日密集报道，电子工程专辑等公众号转载链继续扩散，事件完成破圈。<a class="cref cross" href="#ref-5">[5]</a><a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-7">[7]</a><a class="cref partial" href="#ref-8">[8]</a><a class="cref cross" href="#ref-9">[9]</a><a class="cref partial" href="#ref-10">[10]</a></div></div>
+    <div class="node"><div class="dt">2024-11</div><div class="tx">即刻发布一手长帖；linux.do 同步社区长文</div><div class="td">《我的项目 Chat Nio 被收购，初中生涯从 0 至百万第一桶金》完整复盘成长史与收购过程（linux.do 帖需登录，经媒体转载间接核验）。<a class="cref partial" href="#ref-2">[2]</a><a class="cref partial" href="#ref-11">[11]</a></div></div>
+    <div class="node"><div class="dt">2024-12-14</div><div class="tx">极客公园发布 2024 年度「InnoForce 50」</div><div class="td">榜单明确覆盖「个人开发者」；zmh 个人站点将 InnoForce 50 列为核心荣誉（年份口径 2024/2025 并存，官方榜单文未直接命中其名，按自述待证）。<a class="cref partial" href="#ref-3">[3]</a><a class="cref cross" href="#ref-12">[12]</a></div></div>
+    <div class="node"><div class="dt">2025-02-07</div><div class="tx">腾讯新闻·新榜引用：近 10 万月活、每月 5 万元净利润</div><div class="td">在《DeepSeek 带动 AI 搞钱热潮》盘点中，以「15 岁初中生靠 AI 当上 CTO」案例收录：「截至 2024 年 11 月，ChatNio 累积了近 10 万月活跃用户，实现了每月 5 万元的净利润」。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-03-12 → 2026-11-12</div><div class="tx">仓库最后提交与现状（GitHub API 实测）</div><div class="td">原仓库 zmh-program/chatnio 重定向至组织 coaidev/coai；最后代码提交 2026-03-12；Stars 累计 9,346、Fork 1,224，Apache-2.0 协议，主页 coai.dev。收购后经营数据无公开更新。<a class="cref verified" href="#ref-4">[4]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：从「自费开源」到四档商业化阶梯</div><div class="cb">资金链的演进路径清晰：接几千元小单养服务器（自费开源）→ 用户暴涨后公益免费撑不住 → 社区投票转「非盈利」并开源共建 → 免费 / 个人版 $5/月 / 公司版三档订阅 + 商业授权版源码（私有化部署）。每一次模式切换都不是拍脑袋，而是成本结构倒逼的结果——这台「一个人公司」的财务模型在初中生手里跑通了完整的阶梯。</div><div class="cm">信源：<a class="cref partial" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-5">[5]</a></div></div>
+  <div class="card"><div class="ct">转折二：不做 NextChat，也不做 One API——融合层的卡位</div><div class="cb">zmh 自述开发前系统分析了市场上两类玩家：偏前端轻量部署的项目（如 NextChat，UI 精美但私有化倾向、二开商业化受限）与偏 API 分发的项目（如 One API，分发强但缺界面、缺 C 端功能）。ChatNio 以「Chat Nio &gt; Next Web + One API」直接把对标写进 slogan，自研渠道分配算法（优先级、权重、报错自动降级）——而当时 One API 还只靠外部 HTTP 307 重定向降级。产品上的「两边都要」，正是它能同时收 C 端订阅与 B/D 端网关生意的原因。</div><div class="cm">信源：<a class="cref cross" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-5">[5]</a> <a class="cref partial" href="#ref-2">[2]</a></div></div>
+  <div class="card red"><div class="ct">转折三：零推广增长 + 「中考优先」的克制</div><div class="cb">从始至终零宣传、零推广分成，10 万月活全部来自「用户推用户」；唯一一次曝光是朋友 2024 年 2 月在 V2EX 代发分享贴。临近中考主动停更宣传，收购交接刻意安排在中考后完成——时间线高度「学期化」。这种克制既是未成年的现实约束，也客观上保护了产品口碑：增长全部来自产品力而非营销噪音。</div><div class="cm">信源：<a class="cref partial" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-9">[9]</a></div></div>
+  <div class="quote">
+    <p>当时 ChatGPT Plus 才能用 GPT4，要每个月订阅费 20 刀，对于大多数（非一线城市的）初中生来说每个月拿出来 140 多块是几乎不可能的，但是我当时有一定的收入来源，于是我开启了这个项目分享给我的朋友们一起使用。</p>
+    <span class="src">—— zmh（ProgramZmh），即刻长帖（2024-11），linux.do 同步，转引自 <a class="cref partial" href="#ref-2">[2]</a> <a class="cref partial" href="#ref-11">[11]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <h4>产品功能矩阵</h4>
+  <div class="tw">
+  <table>
+    <thead><tr><th>模块</th><th>功能要点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>多模型聚合</td><td>机器之心口径接入 35 款模型（OpenAI / Midjourney / Claude / 星火 / SD / DALL·E / ChatGLM / 通义 / 混元 / 360 智脑 / 百川 / 火山方舟 / 新必应 / Gemini / Moonshot 等）；收购后仓库自述「200+ 模型、35+ 提供商」</td><td><a class="cref cross" href="#ref-5">[5]</a><a class="cref verified" href="#ref-4">[4]</a></td></tr>
+      <tr><td>对话端体验</td><td>Zero Config 跨设备无感同步（对比 NextChat 依赖 WebDav、LobeChat 依赖 WebRTC）、对话分享、AI 助手/预设市场、PWA + Tauri 桌面端</td><td><a class="cref verified" href="#ref-4">[4]</a><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td>增值功能</td><td>联网搜索（自述「大概第一个支持」，早于 OpenAI/Anthropic 官方上线同类能力）、Blob Service 通用文件解析（PDF/PPT/Excel/Doc/音频/OCR，被其他软件复用）、模型缓存（命中不计费）</td><td><a class="cref partial" href="#ref-2">[2]</a><a class="cref verified" href="#ref-4">[4]</a></td></tr>
+      <tr><td class="hl">API 中转网关</td><td>OpenAI 兼容格式分发、多渠道管理、优先级/权重负载均衡、失败自动重试降级、上游隐藏、模型重定向——对标并超越当时 One API 的 307 重定向方案</td><td><a class="cref verified" href="#ref-4">[4]</a><a class="cref cross" href="#ref-5">[5]</a><a class="cref partial" href="#ref-2">[2]</a></td></tr>
+      <tr><td>计费与后台</td><td>订阅制 + 弹性计费（按次/按 token/最小请求点数/匿名调用）、礼品码与兑换码体系、仪表盘后台、用户/公告/SMTP/SEO 管理</td><td><a class="cref verified" href="#ref-4">[4]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h4>商业模式：四档收入 + 一次性退出</h4>
+  <div class="tw">
+  <table>
+    <thead><tr><th>层</th><th>形态</th><th>定价 / 对价</th><th>客群</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>社区版</td><td>开源（Apache-2.0）</td><td>免费</td><td>自部署站长 / 开发者</td><td><a class="cref verified" href="#ref-4">[4]</a></td></tr>
+      <tr><td>个人版</td><td>SaaS 会员</td><td>$5 / 月</td><td>C 端个人用户</td><td><a class="cref cross" href="#ref-5">[5]</a></td></tr>
+      <tr><td>公司版</td><td>SaaS</td><td>未披露</td><td>中小企业</td><td><a class="cref cross" href="#ref-5">[5]</a></td></tr>
+      <tr><td>商业授权版</td><td>私有化部署源码（Pro：RAG/支付/TTS&amp;STT/API 网关/监控告警/多租户令牌分发）</td><td>商业授权收费（金额未披露）</td><td>B 端企业 / API 经销商</td><td><a class="cref partial" href="#ref-2">[2]</a><a class="cref verified" href="#ref-4">[4]</a></td></tr>
+      <tr><td class="hl">并购退出</td><td>项目整体收购（更名 CoAI.Dev）</td><td>七位数人民币（2024）</td><td>收购方（未披露）</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-5">[5]</a><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>收入结构上，zmh 在即刻答问中确认：主要付费客户是「LLM API 的经销商/开发者用以监控下游 usage」以及「企业主用以监控和管理员工使用 LLM」的场景，ToB 侧还包括多机分布式推理均衡负载、容灾自动降级、渠道健康管理的 API Gateway 系统<a class="cref partial" href="#ref-2">[2]</a>。AI 创业者 tonyzhu1984 的对比评价流传较广：「类似 Dify 更往 build 和 workflow 的方向，ChatNio 更往分发、管理、避险的方向」<a class="cref partial" href="#ref-2">[2]</a>。</p>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>GitHub Stars</td><td>3.2k → 3.4k+ → <span class="pos">9,346</span></td><td>2024-11 → 2024-11 → 2026-11-12（API 实测）</td><td><a class="cref cross" href="#ref-5">[5]</a><a class="cref cross" href="#ref-6">[6]</a><a class="cref verified" href="#ref-4">[4]</a></td></tr>
+      <tr><td>月活用户（MAU）</td><td class="hl">100k+ → 近 10 万</td><td>2024 年初（自述）→ 截至 2024-11（腾讯新闻口径）</td><td><a class="cref partial" href="#ref-2">[2]</a><a class="cref cross" href="#ref-7">[7]</a><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>月收入（MRR）</td><td>¥20 万</td><td>2024 年初（自述口径）</td><td><a class="cref partial" href="#ref-2">[2]</a><a class="cref cross" href="#ref-7">[7]</a><a class="cref cross" href="#ref-9">[9]</a></td></tr>
+      <tr><td>月净利</td><td>~¥5 万</td><td>2024 年初（自述）；腾讯新闻口径「每月 5 万元」</td><td><a class="cref partial" href="#ref-2">[2]</a><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>团队规模</td><td>4 人</td><td>2024 年初</td><td><a class="cref partial" href="#ref-2">[2]</a><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td>收购对价</td><td class="hl">七位数（人民币）</td><td>2024 年中考后交接；「数百万」（机器之心/CSDN）与「百万」（新榜）口径并存</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-5">[5]</a><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td>媒体报道密度</td><td>机器之心、CSDN、快科技/新浪科技、开源中国、电子工程专辑等 ≥5 独立发布方</td><td>2024-11-04 → 11-12</td><td><a class="cref cross" href="#ref-5">[5]</a><a class="cref cross" href="#ref-6">[6]</a><a class="cref partial" href="#ref-8">[8]</a><a class="cref partial" href="#ref-10">[10]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    MAU / MRR / 月净利 / 团队规模均为 zmh 一手自述（即刻与 linux.do 长帖），经机器之心、CSDN、快科技、开源中国等多家媒体转载放大，未经第三方审计；「截至 2024 年 11 月」为腾讯新闻引用的时点口径，2024-11 之后无新的经营数据披露。GitHub Stars 为平台客观值（本报告经 GitHub API 直接回溯复验），会随时间变动。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将 ChatNio 放入「开源 AI 客户端 / 网关」坐标系。zmh 自述 ChatNio 与 NextChat、LobeChat 基本同期发起；对标三例数据均为案例墙既有核验值（2026-10/11 时点），非本次重新检索：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>GitHub Stars（时点）</th><th>商业化 / 退出</th><th>口径</th></tr></thead>
+    <tbody>
+      <tr><td><b>ChatNio</b></td><td>zmh（Kairo，13-14 岁发起）</td><td>多模型对话 + API 中转/计费一站式平台</td><td>3.4k（2024-11）→ 9.3k（2026-11 实测）</td><td class="hl">四档收入；2024 年七位数并购退出（完整闭环）</td><td>本报告 [1][4][5]</td></tr>
+      <tr><td>NextChat（ChatGPT-Next-Web）</td><td>Yidadaa（Yifei Zhang）</td><td>一键免费部署的跨平台 ChatGPT 客户端</td><td>约 88.8k</td><td>2023 年最早爆火的开源 ChatGPT 前端之一；未披露并购/退出</td><td>案例墙既有核验值</td></tr>
+      <tr><td>one-api</td><td>songquanpeng（justsong）</td><td>LLM API 网关：密钥管理与二次分发</td><td>约 37.3k</td><td>开源 + 捐赠模式；国内 AI 中转站生态事实标准</td><td>案例墙既有核验值</td></tr>
+      <tr><td>new-api</td><td>Calcium-Ion（后转 QuantumNous 组织）</td><td>LLM 网关与 AI 资产管理</td><td>约 51.3k</td><td>大量商用中转站底座；已组织化</td><td>案例墙既有核验值</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>ChatNio 的差异化在于「退出」：它的星标体量最小（现值约为 NextChat 的 1/9），却以「客户端体验 × 网关基建」融合层的定位与已验证的现金流（MRR ¥20 万、月净利 ~¥5 万），在创业者 15 岁时以七位数完成变现——在案例墙全部开源产品型案例中，这是唯一一笔可核验的并购退出。NextChat 证明了流量的天花板，one-api / new-api 证明了基建的长尾，ChatNio 则证明了「小而完整」的生意可以被收购：对一人公司而言，退出不必然等于融资上市。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:15%">维度</th><th>核心事实与分析</th><th style="width:12%">信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>「对话产品体验 × API 网关基建」双层结构覆盖 C/B/D 三端：多模型聚合、AI 助手市场、文生图、联网搜索、Blob 文件解析、模型缓存、弹性计费、渠道管理；社区版 Apache-2.0 与商业版源码双轨。单人完成 Vue3+Node.js → Go → React+Shadcn 两次架构改版，工程完成度在同类单人项目中居前。</td><td><a class="cref verified" href="#ref-4">[4]</a><a class="cref partial" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>2. 面向客群</b></td><td>C 端低价聚合用户（$5/月替代 35 款模型会员）、B 端私有化企业、D 端 API 经销商/站长。zmh 即刻答问确认主要付费场景为 API 经销商监控下游 usage 与企业管理员工 LLM 使用——即其现金流核心在 ToB/ToD，而非 C 端订阅。</td><td><a class="cref partial" href="#ref-2">[2]</a><a class="cref cross" href="#ref-5">[5]</a></td></tr>
+      <tr><td><b>3. 解决痛点</b></td><td>① $20/月 GPT-4 订阅对无收入学生群体过高；② 多模型会员分散、总价高；③ NextChat 与 One API 各缺一端的「融合空位」。三个痛点都来自创业者自身的真实处境（初中生 + 朋友群体），需求洞察的成本几乎为零——这是学生创业者的结构性优势。</td><td><a class="cref partial" href="#ref-2">[2]</a><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td><b>4. 营收与商业模型</b></td><td>2024 年初自述 MRR ¥20 万、月净利 ~¥5 万（年化营收约 240 万量级、净利率约 25%）；腾讯新闻口径截至 2024-11「每月 5 万元净利润」。叠加七位数并购对价一次性变现。置信度 C：全部为自述口径、未经第三方审计，且为收购前峰值而非持续值。</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-2">[2]</a><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>5. 融资与资本运作</b></td><td>无公开机构融资；自述曾接触真格基金、YC、奇绩创坛、绿洲资本、蓝驰创投等 VC（一起会议与 casual 交流）。最终未走融资路径，而以七位数并购退出——本案是案例墙中罕见的「未成年 + 并购退出」完整闭环，退出时点与中考同步。</td><td><a class="cref partial" href="#ref-2">[2]</a></td></tr>
+      <tr><td class="hl"><b>6. API 中转合规</b></td><td>三重灰色地带：① 公益期自述钻研「开虚拟卡、过 arkose、逆向、sess」等手段供给模型能力，处于平台服务条款的边缘；② 国内 API 中转/转售大模型服务长期缺乏针对个人站长的清晰监管指引（模型来源授权、内容安全责任、计费与实名），行业整体游走灰色；③ 开源版 Apache-2.0 与商业版的双轨授权边界依赖自觉。截至检索日未检索到针对 ChatNio 本身的监管处罚或诉讼记录。</td><td><a class="cref partial" href="#ref-2">[2]</a><a class="cref verified" href="#ref-4">[4]</a></td></tr>
+      <tr><td class="hl"><b>7. 未成年创业的学业平衡</b></td><td>时间线高度「学期化」：暑假开源建仓、九年级年初冲到数据高点、中考前主动停更宣传、中考后完成收购交接——学业节点反向定义了商业节奏。自述父母最初不支持学计算机，其策略是「两头抓」：用班级年级第一、市优秀学生的成绩换取空间，再用项目收入争取话语权；16 岁时站点仍以学生身份自居，是否全职、是否注册经营主体均未披露。</td><td><a class="cref partial" href="#ref-2">[2]</a><a class="cref partial" href="#ref-3">[3]</a><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box insight">
+    <div class="bt">🔎 维度间的因果链</div>
+    痛点（同学用不起 GPT-4）→ 产品（融合层 + 低价）→ 客群（D 端经销商复用同一套网关）→ 现金流（MRR ¥20 万）→ 退出（七位数）。每个环节都被「一个人」的约束形状塑造：没有融资所以必须自我造血，没有团队所以架构改版只做两次，没有时间所以零推广、中考优先。ChatNio 是「约束即战略」的教科书样本。
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 五处留白与两处口径冲突（截至 2026-11-13 检索）</div>
+    ① 收购方主体未公开披露，「更多的人会参与进来」具体是谁无从核验；② 收购对价精确值未披露，「百万」（腾讯新闻·新榜）与「数百万」（机器之心/CSDN 标题）口径并存，均为七数量级；③ MAU/MRR/净利全部为自述口径、未经第三方审计，2024-11 之后无更新；④ 收购后「继续主导开发」的兑现情况待观察——仓库最后提交停在 2026-03-12，CoAI 品牌近一年无公开动作；⑤ InnoForce 50 入选与「年度超级开发者」荣誉为个人站点自述，官方榜单原文未能直接命中其名字（榜单图文混排），按待证处理。口径冲突：案例墙底稿「创办时 15 岁」与核验结果冲突（见下）；月活时点「2024 年初（100k+）」与「截至 2024-11（近 10 万）」并存，本报告采信后者为腾讯新闻口径。
+  </div>
+  <div class="box note">
+    <div class="bt">📌 底稿勘误：年龄与身份的精确化</div>
+    案例墙底稿写「创办时 15 岁」。经本次核验：项目发起于 2023 年初七年级下学期（时约 13-14 岁），开源于 2023 年 7 月（升八年级暑假），被收购交接于 2024 年中考后（时 15 岁、刚上高一）——「15 岁」对应的媒体口径是「被收购/宣布收购时的年龄」，而非创办时年龄。另：CSDN 称其 2009 年出生、英文名 Minghan Zhang，与「8 岁起编程 + 7 年码龄（2024-11 时点 15 岁）」互洽；中文真名未在公开信源确认。未成年开发者身份本身经多源确证。
+  </div>
+  <div class="card"><div class="ct">负面评价与舆论质疑（如实收录）</div><div class="cb">36氪评论区高赞质疑集中在三类：① 家庭背景论——「我的富豪爸爸」「继星二代之后，软二代悄然而至了」「他是企业主，应该有雇工（比如，他父母）」；② 技术含金量论——「他应该是应用开发很 6……属于 pm➕dev」「用的是 llm 的 api 接口呀，又不用自己训练模型」；③ 叙事质疑——「现在都愿意报导这种『天才少年』的新闻，比如姜萍，因为有流量」。上述均为评论区观点、无实据；可对照的一手陈述是「父母没有给过任何零花钱」「父母最初不支持我学计算机」「翻电脑、破解密码、手表 mt 管理器写代码」。但「自述—转载」的放大链确实存在：所有经营数字的最终源头都是zmh本人。</div><div class="cm">信源：<a class="cref cross" href="#ref-5">[5]</a> <a class="cref partial" href="#ref-2">[2]</a></div></div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">对案例墙而言，ChatNio 补上了一块稀缺拼图：OPC 的终点不一定是融资或做大体量，一笔七位数的并购对 15 岁创业者已是完整闭环——「退出」这件事在个人开发者语境里第一次有了可核验的中国样本。它同时划出了核查边界：当所有数字出自一个聪明且自述能力极强的未成年人、再经 5+ 媒体转载放大时，「多源一致」不等于「已审计」。引用本案数据时应保留「自述口径」限定词。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-5">[5]</a> <a class="cref partial" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-4">[4]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">捌·附</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 12 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx cross">[1]</span><span class="rt">B+</span><span class="st">门户媒体（指定评级）</span></div><div class="ti">DeepSeek带动AI搞钱热潮，2025如何用AI做副业？（腾讯新闻发布页，原发新榜「AI新榜」）</div><div class="mt"><b>来源：</b>腾讯新闻 view.inews.qq.com（原发新榜，作者阿虎、编辑张洁）　<b>发布日期：</b>2025-02-07<br><a href="https://view.inews.qq.com/a/20250207A06N1M00" target="_blank" rel="noopener">https://view.inews.qq.com/a/20250207A06N1M00</a></div><div class="note">事实核查：原文命中「2024年，15岁初中生『zmh』靠AI当上了CTO，开源项目ChatNio被百万元收购」「截至2024年11月，ChatNio累积了近10万月活跃用户，实现了每月5万元的净利润」，并注明其自述出处为即刻分享——与 [2][5] 交叉一致。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx partial">[2]</span><span class="rt">A</span><span class="st">一手自述（社交平台）</span></div><div class="ti">【Experience Sharing】我的项目 Chat Nio 被收购，初中生涯从 0 至百万第一桶金（即刻 @ProgramZmh）</div><div class="mt"><b>来源：</b>即刻（ProgramZmh 置顶长帖）　<b>发布日期：</b>2024-11<br><a href="https://m.okjike.com/originalPosts/672733dadd10af52275889bc" target="_blank" rel="noopener">https://m.okjike.com/originalPosts/672733dadd10af52275889bc</a></div><div class="note">事实核查：全文回溯完成。成长史（Minecraft 启蒙、TCP IM、Kaggle、自费开源）、2023 年初发起、八年级暑假开源、架构改版、九年级「100k+ MAU / ￥20w MRR / ￥~5w 月盈、团队 4 人」、渠道分配算法、V2EX 分享贴、中考后收购交接、VC 接触名单等核心事实均出自此帖，为自述口径（未经审计）。热评含 Spark Lab 校友祝贺「以七位数被收购」及 ToB 付费场景答问。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx partial">[3]</span><span class="rt">A</span><span class="st">一手（个人官网）</span></div><div class="ti">Kairo (aka. ProgramZmh) 个人站点：CoAI.Dev 创始人（Acquired）</div><div class="mt"><b>来源：</b>zmh-program.github.io（zmh.me 同源镜像）　<b>发布日期：</b>2026-11 查询（站点现示「16 y.o.」）<br><a href="https://zmh-program.github.io/" target="_blank" rel="noopener">https://zmh-program.github.io/</a></div><div class="note">事实核查：直接可达。「8 岁开发 Minecraft Forge 模组」「CoAI.Dev (formerly Chat Nio) 2024 被收购」、时间线 '23 Chat Nio / '24 Acquired、GitHub Trending #1 Repo Of The Day、Spark Lab 2024 Alumni &amp; S1 Champion 为一手自述；「InnoForce 50」荣誉年份口径并存（头部 2024 / 成就区 2025），官方榜单文未直接命中其名，按自述待证。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx verified">[4]</span><span class="rt">A</span><span class="st">一手实测（GitHub API）</span></div><div class="ti">ChatNio / CoAI 仓库现状：coaidev/coai（原 zmh-program/chatnio）</div><div class="mt"><b>来源：</b>GitHub API（api.github.com/repos/zmh-program/chatnio，重定向解析至 coaidev/coai）　<b>查询日期：</b>2026-11-12<br><a href="https://github.com/coaidev/coai" target="_blank" rel="noopener">https://github.com/coaidev/coai</a></div><div class="note">事实核查：API 原始 JSON 回溯完成。仓库创建 2023-07-17（与「升八年级暑假开源」自述精确互证）、最后提交 2026-03-12、Stars 9,346 / Fork 1,224、TypeScript、Apache-2.0、主页 coai.dev、描述「200+ Models And 35+ Providers」；README 证实功能矩阵（渠道管理、弹性计费、Blob Service、商业版 Pro）与「Thus, CoAI.Dev was born」品牌沿革。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx cross">[5]</span><span class="rt">B+</span><span class="st">科技媒体</span></div><div class="ti">15岁山东初中生做CTO，开源项目刚刚被数百万元收购了（机器之心，36氪授权发布）</div><div class="mt"><b>来源：</b>36氪（原发机器之心公众号）　<b>发布日期：</b>2024-11-04<br><a href="https://m.36kr.com/p/3021812338042369" target="_blank" rel="noopener">https://m.36kr.com/p/3021812338042369</a></div><div class="note">事实核查：全文回溯完成。接入模型清单、3.2k star、三档付费（个人版 $5/月）、超 10 万月活/每月约 5 万净利润、GPT-4 订阅起源、linux.do 分享、渠道分配算法 vs One API 307 重定向、slogan「Chat Nio &gt; Next Web + One API」均出自此稿；参考链接含 zmh.me 与 linux.do 帖。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx cross">[6]</span><span class="rt">B+</span><span class="st">科技媒体</span></div><div class="ti">15 岁山东少年当 CTO：码龄 7 年，靠「玩」出来的开源项目已赚取数百万元（CSDN，36氪授权发布）</div><div class="mt"><b>来源：</b>36氪（原发 CSDN 公众号，作者郑丽媛）　<b>发布日期：</b>2024-11-06<br><a href="https://m.36kr.com/p/3024313571452416" target="_blank" rel="noopener">https://m.36kr.com/p/3024313571452416</a></div><div class="note">事实核查：全文回溯完成。2009 年出生、Zmh（Minghan Zhang）、3.4k+ Stars、月活 10w+/月盈利 5w+、收购后改名 CoAI.Dev、35+ 模型、ToC/ToD/ToB 定位、与 NextChat/LobeChat 同期发起及竞品分析、未来 Roadmap（RAG/数字人/API 网关等）均出自此稿，与 [2][5] 交叉一致。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">B+</span><span class="st">主流门户转载</span></div><div class="ti">7年开发经验全栈工程师！山东15岁初中生靠开源项目赚数百万（新浪科技转快科技）</div><div class="mt"><b>来源：</b>新浪科技（原发快科技，责任编辑黑白）　<b>发布日期：</b>2024-11-04<br><a href="https://finance.sina.com.cn/tech/discovery/2024-11-05/doc-incuxccs2989821.shtml" target="_blank" rel="noopener">https://finance.sina.com.cn/tech/discovery/2024-11-05/doc-incuxccs2989821.shtml</a></div><div class="note">事实核查：全文回溯完成。2023 年初（七年级下学期）发起、升八年级暑假开源、九年级年初「月活超 100k、月收入 20 万、月盈利 5 万、团队 4 人」、中考后收购交接并出任 CTO、山东重点高中等时间线事实出自此稿。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx partial">[8]</span><span class="rt">B</span><span class="st">科技媒体（原发）</span></div><div class="ti">7年开发经验全栈工程师！山东15岁初中生靠开源项目赚数百万（快科技原发稿）</div><div class="mt"><b>来源：</b>快科技 mydrivers　<b>发布日期：</b>2024-11-04<br><a href="https://news.mydrivers.com/1/1012/1012027.htm" target="_blank" rel="noopener">https://news.mydrivers.com/1/1012/1012027.htm</a></div><div class="note">事实核查：全文回溯完成，与 [7] 同文同源（新浪为转载）。按单一 B 级发布方从严标注为部分映证。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx cross">[9]</span><span class="rt">B+</span><span class="st">开源社区媒体</span></div><div class="ti">最强15岁初中生：用开源项目赚到了数百万、超7年开发经验的全栈工程师、出任CTO（开源中国，网易号分发）</div><div class="mt"><b>来源：</b>网易号（原发开源中国 OSCHINA）　<b>发布日期：</b>2024-11-04<br><a href="https://c.m.163.com/news/a/JG5OFPUF0511CUMI.html" target="_blank" rel="noopener">https://c.m.163.com/news/a/JG5OFPUF0511CUMI.html</a></div><div class="note">事实核查：全文回溯完成。「100k+ MAU、￥20w MRR、￥5w 月盈、团队扩展到 4 人」精确口径、七年级下学期发起、八年级暑假开源、中考后交接、自费开源均与此稿一致；文末列出 linux.do / zmh.me / 即刻帖 / GitHub 仓库四条一手来源。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx partial">[10]</span><span class="rt">C+</span><span class="st">转载链（公众号）</span></div><div class="ti">15岁初中生，开源项目被数百万收购，换来七位数的第一桶金（电子工程专辑·C语言与CPP编程号）</div><div class="mt"><b>来源：</b>电子工程专辑 mp 频道（全文转载机器之心稿）　<b>发布日期：</b>2024-11-12<br><a href="https://www.eet-china.com/mp/a361082.html" target="_blank" rel="noopener">https://www.eet-china.com/mp/a361082.html</a></div><div class="note">事实核查：全文回溯完成，内容与 [5] 机器之心原稿一致，系转载链。仅用于佐证 2024-11 报道扩散密度，不作为独立事实源。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx partial">[11]</span><span class="rt">A</span><span class="st">一手社区帖（登录墙）</span></div><div class="ti">zmh 在 LINUX DO 社区的收购官宣长帖（「好久不见，Chat Nio 回来了！」）</div><div class="mt"><b>来源：</b>linux.do　<b>发布日期：</b>2024-11<br><a href="https://linux.do/t/topic/249061" target="_blank" rel="noopener">https://linux.do/t/topic/249061</a></div><div class="note">事实核查：URL 真实存在（[5][6][9] 三家独立媒体一致引用），但页面需登录，本次抓取为空——未能直接回溯原文，经 [5][6][9] 转载内容间接核验。标注为部分映证。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx cross">[12]</span><span class="rt">B+</span><span class="st">行业榜单</span></div><div class="ti">看见创新力量！极客公园 2024 年度「InnoForce 50」发布（腾讯新闻发布页）／探索·向上！极客公园 2025 年度「InnoForce 50」</div><div class="mt"><b>来源：</b>腾讯新闻（极客公园官方账号）／极客公园官网　<b>发布日期：</b>2024-12-14／2025-12-06<br><a href="https://view.inews.qq.com/a/20241214A065GG00" target="_blank" rel="noopener">https://view.inews.qq.com/a/20241214A065GG00</a> ／ <a href="https://www.geekpark.net/news/357690" target="_blank" rel="noopener">https://www.geekpark.net/news/357690</a></div><div class="note">事实核查：两篇原文均回溯完成，证实 InnoForce 50 为极客公园年度榜单、明确覆盖「个人开发者」。zmh 本人是否入选未在两文文本中直接命中（榜单以图文混排呈现），其入选与「年度超级开发者」荣誉按 [3] 自述待证处理——本条仅用于榜单背景核验。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 12 条。核验标签分布：🟢 已核验（verified）1 条、🔵 多源印证（cross）6 条、🟡 部分映证（partial）5 条。信源评级分布：A 级一手 4 条（即刻长帖、个人官网、GitHub API 实测、linux.do 帖）、B+ 级 6 条（腾讯新闻·新榜、机器之心、CSDN、新浪转快科技、开源中国、极客公园）、B 级 1 条（快科技原发）、C+ 级 1 条（电子工程专辑转载链）。可达性：11/12 直接可达并完成全文回溯；linux.do（[11]）因登录墙抓取为空，经三家独立媒体转载间接核验并如实标注。关键事实交叉情况：发起时间（2023 年初七年级）、开源建仓（2023-07-17 GitHub API 实测与自述互证）、九年级经营数据（4 家媒体同口径）、收购事件与更名 CoAI.Dev（≥5 独立发布方）均已多源确证；MAU/MRR/净利/对价精确值均为一手自述、未审计，已在正文逐处标注。一处底稿勘误（「创办时 15 岁」→「发起于 13-14 岁、收购交接时 15 岁」）与五处留白已在捌章显式呈现。未发现伪造链接；全部 URL 为检索过程实际命中页面。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-13 · 经营数字均为当事人自述口径（正文已逐处标注），<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

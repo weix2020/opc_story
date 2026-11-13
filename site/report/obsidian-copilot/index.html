@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · Copilot for Obsidian——Logan Yang 的笔记库 AI 副驾 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · Copilot for Obsidian">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="Copilot for Obsidian 深度案例报告：海外华人开发者 Logan Yang（Brevilabs）从大厂裸辞、以 solo developer 起步，做出 Obsidian 生态下载量第一的 AI 副驾插件，下载破 100 万、GitHub 7.9k★，付费模式历经开源赞助→Believer Plan→订阅制的完整迭代。9 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>Copilot for Obsidian 深度案例报告</h1>
+    <h2>海外华人开发者 Logan Yang：大厂裸辞、让 GPT 替自己写插件，<br>一个人做出 Obsidian 生态下载量第一的 AI 副驾 —— 9 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">工具型 OPC</span>
+      <span class="tag">AI 周边工具</span>
+      <span class="tag">付费模式迭代样本</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">100 万+</div><div class="k">插件下载量（2026-02 官方自述口径）</div></div>
+  <div class="stat"><div class="v up">7,983★</div><div class="k">GitHub 星标（2026-11-13 API 实测）</div></div>
+  <div class="stat"><div class="v neutral">1 人</div><div class="k">solo developer 起步（专访自述）</div></div>
+  <div class="stat"><div class="v neutral">2023</div><div class="k">首发年份（仓库创建 2023-03-31）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">Copilot for Obsidian 是 Obsidian 笔记库生态下载量第一的 AI 集成插件：全库问答、语义检索、笔记改写、Agent 任务执行，完整支持本地模型。它由海外华人开发者 Logan Yang 于 2023 年裸辞后以 solo developer 起步创建，从"GPT 基本上替我写的插件"成长为下载破 100 万、GitHub 近 8 千星的开源商业样本，也是案例墙中最完整的「付费模式迭代」公开记录。</p>
+  <div class="two">
+    <div class="card"><div class="ct">产品</div><div class="cb">Obsidian 社区插件「Copilot」：vault 内 AI 问答（QA 模式 + 本地 RAG 索引）、全库语义/词法检索、Composer 改写（diff 预览后应用）、Agent 模式多步任务（搜索、读笔记、创建/编辑文件）、Projects 项目工作区、Self-Host 自托管模式。开源核心 AGPL-3.0，安装免费。</div><div class="cm">信源：<a class="cref cross" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-7">[7]</a> <a class="cref cross" href="#ref-5">[5]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">Logan Yang（杨，音译），海外华人开发者：本科读物理，来美后自学工程转型机器学习工程师；自述不适应大厂晋升体系与沟通密集型文化，2023 年初因 burnout 裸辞，当时"没有任何计划"。</div><div class="cm">信源：<a class="cref partial" href="#ref-6">[6]</a></div></div>
+    <div class="card blue"><div class="ct">公司与团队</div><div class="cb">以 Brevilabs 名义运营（Obsidian 社区插件页署名 "Brevilabs Team"，另有第二作者 Zero Liu 协作署名）；创始人在 2026 年前后的专访中自述"我仍是主要写代码的人，少数帮手都是 part-time"；公司注册与团队规模未检索到其他公开信息。</div><div class="cm">信源：<a class="cref cross" href="#ref-5">[5]</a> <a class="cref partial" href="#ref-6">[6]</a></div></div>
+    <div class="card blue"><div class="ct">商业模式</div><div class="cb">三层结构（2026-11 官方定价页实测）：Free 档 BYOK 免注册；Plus 档 $14.99/月（年付 $139.99），含内置模型、Agent、PDF/EPUB 等 50+ 文件类型；Self-Host Supporter 档 $349.99 一次性买断终身自托管权限（含 2 年 Plus）。Believer 老用户权益保留（grandfathered），14 天无理由退款。</div><div class="cm">信源：<a class="cref cross" href="#ref-4">[4]</a> <a class="cref cross" href="#ref-1">[1]</a></div></div>
+  </div>
+  <div class="two">
+    <div class="card"><div class="ct">成功迹象</div><div class="cb">下载量突破 100 万（2026-02 官方 newsletter 自述口径）；GitHub 星标 7.7k★（2026-09-12 第三方评测记录）→ 7,983★（2026-11-13 API 实测），771 forks；官网以「No. 1 Obsidian AI Integration by Downloads」自我定位；"100,000+ users" 官网宣传口径。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-7">[7]</a> <a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="card green"><div class="ct">定位与理念</div><div class="cb">「file-over-app, but for AI」：把 Obsidian 的本地文件主权哲学延伸到 AI 时代——用户应当端到端拥有自己的 AI 技术栈与数据。官网强调模型无关（OpenAI / Anthropic / Google / LM Studio / Ollama 或任意 OpenAI 兼容端点，零生态锁定）、一切皆为 Markdown 文件、无数据库锁定。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-3">[3]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2023 年初</div><div class="tx">大厂机器学习工程师因 burnout 裸辞</div><div class="td">自述"辞职时没有任何计划，只想休息"；本科物理出身、来美自学工程，自认在晋升体系里"不是合格的工程师"。<a class="cref partial" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2023 年（GPT-4 发布后）</div><div class="tx">想让 GPT「住进」Obsidian 侧边栏——插件基本由 GPT 写成</div><div class="td">笔记工具路径 Apple Notes → Roam → Notion → Obsidian；因受不了在 Obsidian 与 ChatGPT 之间来回切换，向 GPT 提需求生成了插件雏形，当时甚至不知道 Obsidian 有插件系统；提交社区插件商店过审，趁早占下「Copilot」这个名字。<a class="cref partial" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2023-03-31 ▲（锚点）</div><div class="tx">GitHub 仓库 logancyang/obsidian-copilot 创建</div><div class="td">平台元数据实测创建时间 2023-03-31；提交过审后下载量开始自然增长，GitHub issue 涌入，"意识到真有用户在用，决定继续做下去"。<a class="cref verified" href="#ref-2">[2]</a><a class="cref partial" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2023 → 2024（首年起步期）</div><div class="tx">零推广的自然增长：Obsidian 本身是条大河</div><div class="td">第一年几乎不做推广、极少发视频，流量来自插件商店分发与用户自发在 Medium/博客写评测；官网至今最大流量来源仍是 Obsidian 官方插件商店。<a class="cref partial" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">付费转型起点（具体日期未检索到公开信息）</div><div class="tx">「竞品首月赚 7 万美元」的信号触发商业化</div><div class="td">用户告知某竞品开源本地插件首月收入 $70k；调研后确立"多数功能免费 + web 搜索/YouTube 转写等需后端服务的功能收费"路径；付费上线当晚不发推不发视频直接睡觉，次日清晨已有多国付费用户，首单来自新加坡且买了最贵套餐。该 $70k 文章事后再也找不到，创始人自述"强烈怀疑那信号是假的，但它触发了行动"。<a class="cref partial" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">Believer Plan 时期</div><div class="tx">早期支持者计划资助开发</div><div class="td">官方newsletter 回溯："推出 Believer 是为了资助早期开发，它奏效了——因为社区在产品成熟之前就选择了相信"；同期从买断式支持计划逐步转向订阅制。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-02-13</div><div class="tx">里程碑三连发：百万下载 + Self-Host Mode + Believer Plan 退役</div><div class="td">官方 newsletter 宣布下载破 100 万；发布 Self-Host Mode（自有模型自托管）；Believer Plan 于 2026-02-16 起停售、老用户权益保留；同步开放 Partner Program（创作者/教育者/研究者合作计划），并预告全新桌面 App。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-09-12</div><div class="tx">第三方评测快照：7.7k★、版本 4.0.9</div><div class="td">PromptQuorum 独立评测记录 AGPL-3.0 许可、约 7,700 星，并梳理 Lite（约 $7.99/月）与 Plus（约 $14.99/月）双订阅档 + Self-Host Supporter（约 $349.99）结构。<a class="cref cross" href="#ref-7">[7]</a></div></div>
+    <div class="node"><div class="dt">2026-11-13</div><div class="tx">本报告实测：7,983★、版本 4.0.19、定价收敛为三档</div><div class="td">GitHub API 实测 7,983★ / 771 forks / 145 open issues，仓库持续活跃推送；社区插件页显示版本 4.0.19、前一天仍在更新；V4 已把 OpenCode、Claude Code、Codex 等 agent 引入 vault，描述演进为「在 Obsidian 里运行 agent」；官方定价页仅余三档。<a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-5">[5]</a><a class="cref cross" href="#ref-4">[4]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：非科班的逆势——「这个插件基本上是 GPT 写的」</div><div class="cb">创始人不懂前端、起初连 Obsidian 有插件系统都不知道，唯一会做的是把想法清楚地喂给 GPT-4。"从 2023 年到现在，我手写的代码非常少，我把手写代码视为一种很原始的行为。"当同行还在嘲笑 AI 生成代码"又怪又蠢"时，他已经靠它做出了下载量第一的生态插件——本案是「AI 造工具、人做产品」范式最早期的完整样本之一。</div><div class="cm">信源：<a class="cref partial" href="#ref-6">[6]</a></div></div>
+  <div class="card"><div class="ct">转折二：拒绝 VC 叙事，选择 bootstrap 的自我认知</div><div class="cb">专访中系统复盘了硅谷路线的取舍：VC 路线需要"二十岁的能量密度"，而他自我认知是"不想被外部力量推着走，想按自己的节奏移动"；"VC 的钱从来不是免费的钱——它带着百倍回报的预期，会不可避免地塑造你的路线图和日常决策"。结论是"除非到了证明没有 VC 就做不成的那一天，否则我几乎永远选 bootstrap"。代价与收益并存：没有爆发式增长，换来了对时间、产品与用户关系的完全所有权。</div><div class="cm">信源：<a class="cref partial" href="#ref-6">[6]</a></div></div>
+  <div class="card red"><div class="ct">转折三：从开源到付费——一条真假存疑的信号，一次真实的转型</div><div class="cb">纯开源阶段只有 GitHub Sponsors 的零星"零花钱"。触发付费的是用户转述的"竞品首月 $70 万"信号——事后连创始人自己都找不到那篇文章、怀疑是假的，但"我对信号敏感：宇宙在推你一把"。他发现了开源本地插件商业化的唯一合理路径：多数功能留在本地免费，web 搜索、YouTube 转写等需要后端服务的功能收费。付费功能上线当晚不做任何宣传直接睡觉，次日已有跨多国付费用户——生态自带信任的冷启动，胜过任何投放。</div><div class="cm">信源：<a class="cref partial" href="#ref-6">[6]</a></div></div>
+  <div class="quote">
+    <p>Our vision is simple: file-over-app, but for AI. … Tokens are becoming like running water. Models are increasingly interchangeable… The model is no longer the moat. Ownership is.（我们的愿景很简单：AI 时代的 file-over-app。Token 正变得像自来水，模型日益同质化……模型不再是护城河，所有权才是。）</p>
+    <span class="src">—— Logan Yang，官方 newsletter《Launching Self-Host Mode, Retiring the Believer Plan》（2026-02-13），转引自 <a class="cref cross" href="#ref-1">[1]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>内容</th><th>要点说明</th></tr></thead>
+    <tbody>
+      <tr><td><b>产品功能</b></td><td>全库问答 / 全库检索 / 笔记改写 / 本地模型支持</td><td>QA 模式对文件夹建本地 RAG 索引问答；语义 + 词法双检索、答案带内联引用；Composer 改写、diff 预览后应用；Ollama / LM Studio / 任意 OpenAI 兼容端点本地推理；Agent 模式多步搜索、读文档、直接建改文件 <a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>定价演进</b></td><td class="hl">开源免费 → 后端服务收费 → Believer Plan（买断式支持者计划）→ 订阅制 + 自托管买断并行</td><td>起步期技术上"无法收费"（插件全本地、代码必须公开），靠 GitHub Sponsors 零星赞助 <a class="cref partial" href="#ref-6">[6]</a>；2026-02 宣布 Believer 停售（2/16 截止）、转向"可预期的 credits + 自托管灵活性"，老用户 grandfathered <a class="cref cross" href="#ref-1">[1]</a>；2026-11 实测三档：Free（BYOK）/ Plus $14.99/月（年付 $139.99）/ Self-Host $349.99 终身 <a class="cref cross" href="#ref-4">[4]</a>；2026-09 第三方口径中的 Lite 约 $7.99/月档在官方页已不呈现，定价仍在迭代 <a class="cref cross" href="#ref-7">[7]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>面向客群</b></td><td>Obsidian 知识工作者</td><td>官网证言矩阵覆盖工程师、研究分析师、作家、课程创作者、CISO、交易所高管等"以思考为生的人"；免费 BYOK 层面向极客与隐私敏感用户，Plus 层面向需要内置模型与 PDF/EPUB 等 50+ 文件类型的研究写作场景 <a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>解决痛点</b></td><td>笔记与 AI 割裂、数据主权焦虑、模型锁定</td><td>起点即痛点：在 Obsidian 与 ChatGPT 两个窗口之间来回切换太烦，想让 GPT 住进侧边栏 <a class="cref partial" href="#ref-6">[6]</a>；产品化后直指"笔记库是最有价值的数字资产、默认交给平台不是明智交易"的隐私叙事，"模型无关、零锁定"成为差异化主线 <a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box insight">
+    <div class="bt">💡 商业模式要点：免费层即获客层</div>
+    免费层不是阉割版试用，而是完整可用的本地 BYOK 体验——"无需注册、无需 license key、无信用卡"。付费点全部建立在需要后端才能成立的功能（托管模型、web 搜索、YouTube/X 抓取）与主权敏感用户的自托管买断上。这是开源本地插件「免费核心 + 服务收费」的标准解法，也是本案从 $70k 信号推导出的技术可行结论。
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点 / 口径</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>插件累计下载量</td><td class="hl">突破 100 万</td><td>2026-02-13 · 官方 newsletter 自述口径</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>用户数（官网宣传口径）</td><td>100,000+ users trust Copilot</td><td>2026-11 查询 · 官网口径</td><td><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td>GitHub 星标</td><td class="pos">约 7,700★ → 7,983★</td><td>2026-09-12 第三方评测记录 → 2026-11-13 API 实测</td><td><a class="cref cross" href="#ref-7">[7]</a><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td>GitHub forks / open issues</td><td>771 / 145</td><td>2026-11-13 API 实测</td><td><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td>仓库创建时间</td><td>2023-03-31</td><td>GitHub 平台元数据</td><td><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td>插件版本维护</td><td>4.0.9 → 4.0.19</td><td>2026-09-12 → 2026-11-12（前一天仍在更新，持续活跃）</td><td><a class="cref cross" href="#ref-7">[7]</a><a class="cref cross" href="#ref-5">[5]</a></td></tr>
+      <tr><td>生态位</td><td>「No. 1 Obsidian AI Integration by Downloads」</td><td>官网自我定位口径</td><td><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td>定价转型</td><td>Believer Plan 停售 → Free / Plus $14.99/月 / Self-Host $349.99 终身</td><td>2026-02-13 宣布 → 2026-11-13 官方定价页实测</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td>营收金额</td><td>未披露</td><td>—</td><td>未检索到公开信息</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    ①「100 万下载」与「No.1 AI Integration」均为官方自述/宣传口径，Obsidian 官方未独立披露该插件的下载统计（Obsidian 插件市场页为动态渲染，无法直接抓取核验），引用时建议以"官方自述"表述；② GitHub 星标为平台一手实测，并有第三方评测的 9 月时点记录交叉，星标数为时点值、每日变动；③ 付费用户数、付费转化率、营收金额均未披露。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将本案放入案例墙「AI 周边工具」坐标系（对标数据均为案例墙既有核验值，2026-11 快照 <a class="cref cross" href="#ref-9">[9]</a>）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>商业模式</th><th>数据表现</th><th>数据出处</th></tr></thead>
+    <tbody>
+      <tr><td><b>Copilot for Obsidian</b></td><td>Logan Yang（Brevilabs）</td><td>Obsidian 笔记库 AI 副驾插件</td><td class="hl">免费 BYOK + 订阅 $14.99/月 + 自托管 $349.99 终身（历经开源赞助→Believer→订阅的完整迭代）</td><td>下载 100 万+（官方自述）、GitHub 7,983★（实测）</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td>《Chat Memo》</td><td>一泽 Eze</td><td>跨 AI 平台对话存档「记忆中枢」浏览器插件</td><td>插件工具</td><td>20,000+ 用户、Chrome 4.9 分 Google 精选（锚点 2025-06-30）</td><td>案例墙核验值 <a class="cref cross" href="#ref-9">[9]</a></td></tr>
+      <tr><td>《ChatWise》</td><td>egoist（知名华人开源开发者）</td><td>macOS/Windows 桌面 AI 聊天客户端，多模型 + MCP，BYOK</td><td>Pro $29 买断制持续销售；第三方评测明确「made by one developer」</td><td>持续付费销售中</td><td>案例墙核验值 <a class="cref cross" href="#ref-9">[9]</a></td></tr>
+      <tr><td>《Easydict》</td><td>tisfeng</td><td>macOS 词典翻译应用，开箱即用，支持 OpenAI/Gemini/DeepL 与离线 OCR</td><td>完全免费开源</td><td>GitHub 15.2k★（2026-11）</td><td>案例墙核验值 <a class="cref cross" href="#ref-9">[9]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>四者同属「给既有工具补 AI 能力」的周边工具型 OPC，但商业成熟度差异清晰：《Easydict》是纯免费开源的口碑资产型；《ChatWise》以一次买断完成轻商业闭环；《Chat Memo》以存档场景验证需求、尚未进入深度变现；<b>Copilot for Obsidian 是其中唯一公开走完「开源免费 → 零星赞助 → 买断式支持者计划 → 订阅制 + 自托管买断」四段式付费模式迭代的样本</b>——每一步转型的动因、触发信号与用户沟通（newsletter 原文可回溯）都留有公开记录，这也是本案在案例墙中的独特价值：它不是收入最高的案例，而是把「一个人如何给开源产品定价」这件事写得最完整、最诚实的案例。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:16%">维度</th><th>分析</th><th style="width:13%">信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>全库问答（QA 模式 + 本地 RAG 索引）、语义/词法双检索（答案内联引用）、Composer 改写（diff 预览）、Agent 模式多步任务、Projects 项目工作区（每项目独立模型/系统提示/历史）、50+ 文件类型解析；V4 后进一步把 OpenCode/Claude Code/Codex 等 agent 引入 vault——从「问答副驾」演进为「知识工作 agent 运行器」。</td><td><a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-5">[5]</a><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>2. 面向客群</b></td><td>核心是 Obsidian 知识工作者：工程师、研究分析师、作家、医生、高管、学生等官网证言矩阵所列人群；免费 BYOK 层覆盖隐私敏感的极客用户，Plus/自托管层覆盖需要托管便利与最强隐私的研究写作重度用户。未披露用户画像统计数据。</td><td><a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>3. 解决痛点</b></td><td>三重痛点：①笔记与 AI 割裂（双窗口切换）——产品起点即创始人的个人痒点；②数据主权焦虑——"vault 是我们最有价值的数字资产：多年的个人思考、敏感语境与私密细节，默认交出去不是明智的交易"；③模型锁定恐惧——大平台以 lock-in 为默认商业模式，模型可互换后用户需要的是可携带的上下文与 agent 工具链。</td><td><a class="cref partial" href="#ref-6">[6]</a><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>4. 笔记数据隐私（本地 vs 云端嵌入）</b></td><td>隐私是本案的结构性差异化而非营销话术：插件本体无后端、全部本地运行，本地数据存储做 Vault QA，嵌入模型可走用户自有 API key；Ollama/LM Studio 本地推理让数据完全不出设备；2026-02 更把隐私产品化为 Self-Host Mode 并以 $349.99 终身买断单独定价——「最大隐私、自有模型、不依赖我们后端」。对比依赖云端嵌入的多数 AI 笔记产品，本案用架构选择完成了隐私叙事的自证。</td><td><a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>5. Obsidian 生态依赖</b></td><td>增长几乎完全寄生于 Obsidian 生态："Obsidian 本身是一条大河，我不是从零挖一条小溪，而是从既有河流分出一条支流"，官网至今最大流量来源仍是 Obsidian 官方插件商店。收益是冷启动近乎零成本；风险是双向的——插件必须保持开源并遵守社区规范（商业功能只能建在后端服务上），且 Obsidian 平台政策与官方 AI 功能走向都可能改变分水岭。这是插件型 OPC 的典型结构：入口不属于自己。</td><td><a class="cref partial" href="#ref-6">[6]</a><a class="cref partial" href="#ref-8">[8]</a></td></tr>
+      <tr><td><b>6. 商业模式与营收</b></td><td>三层定价（Free BYOK / Plus $14.99 月订阅 / Self-Host $349.99 终身买断含 2 年 Plus）+ Partner Program 渠道计划；付费功能锚定后端成本（托管模型、web 搜索、YouTube/X 抓取），自托管档以"一次性买断 + 两年订阅"混合结构同时收割隐私极客与持续服务收入。营收金额、付费用户数、转化率均未披露，不做收入推算。</td><td><a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>7. 长期风险与演进</b></td><td>三重风险：①模型商品化反噬——"token 像自来水、模型日益同质化"既是卖点叙事，也意味着托管模型溢价空间持续被压缩，Lite 档在官方页消失或已感受到压力；②agent 化竞争——V4 转向「运行 Claude Code/Codex 等 agent」与通用 AI 工具正面竞争，预告中的桌面 App 是防守也是新战场；③一人产能上限——自述"我仍是主要写代码的人，其他人只是 part-time"，3-5 天冲刺 + 休一周的节奏可持续但天花板明显。</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-5">[5]</a><a class="cref partial" href="#ref-6">[6]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 四处留白与一处口径矛盾（截至 2026-11-13 检索）</div>
+    ① <b>下载量口径</b>：「破 100 万」为 2026-02 官方 newsletter 自述，Obsidian 官方未独立披露该插件下载统计，插件市场页为动态渲染无法直接抓取核验；官网「No.1 AI Integration by Downloads」「100,000+ users」同属自我宣传口径。② <b>团队规模矛盾</b>：社区插件页署名「Brevilabs Team」并有第二作者 Zero Liu 协作署名，而创始人专访自述"少数帮手都是 part-time、我仍是主要写代码的人"——「一人公司」口径以专访自述为准，Brevilabs 的注册实体信息未检索到公开资料。③ <b>营收金额</b>：付费用户数、转化率、收入均零披露。④ <b>付费转型确切时间</b>：专访未给出付费上线与 Believer Plan 创设的具体日期，仅有相对时序叙述，标注为"未检索到公开信息"。
+  </div>
+  <div class="box note">
+    <div class="bt">📌 两处需要如实交代的叙事细节</div>
+    ① 付费转型的触发信号——「竞品首月赚 $70k」——创始人自述事后再也找不到那篇文章、"强烈怀疑那信号是假的"：本报告将其作为动机叙事收录而非事实依据，转型的真实性由后续付费产品与定价页独立佐证。② 定价口径漂移：第三方评测（2026-09）记录 Lite 约 $7.99/月档，官方当前定价页（2026-11 实测）仅剩 Free/Plus/Self-Host 三档——不构成矛盾，恰是"付费模式仍在快速迭代"的旁证，但引用具体价格时应注明查询时点。
+  </div>
+  <div class="card"><div class="ct">社区评价（如实收录）</div><div class="cb">Obsidian 论坛有用户将 Copilot 与同类付费插件 SystemSculpt 对比：认为其 Commands 功能"显著简化了笔记创建"，数月使用中"注册与维护没出过问题，也没收到过推广骚扰"——社区口碑总体偏正面但样本量小；对免费层边界（不含 Agent、仅支持 Markdown 文件）的讨论散见论坛与 Discord，未见系统性负面指控。</div><div class="cm">信源：<a class="cref partial" href="#ref-8">[8]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 9 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级信源）。官网 newsletter 定级 A（一手）；社区讨论定级 C+/B-。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx cross">[1]</span><span class="rt">A</span><span class="st">官网一手 · newsletter 原文</span></div><div class="ti">Launching Self-Host Mode, Retiring the Believer Plan（Copilot for Obsidian 官方 newsletter，署名 Logan Yang）</div><div class="mt"><b>来源：</b>obsidiancopilot.com　<b>发布日期：</b>2026-02-13<br><a href="https://www.obsidiancopilot.com/en/newsletter/2026-02-launching-self-host-mode-retiring-believer-plan" target="_blank" rel="noopener">https://www.obsidiancopilot.com/en/newsletter/2026-02-launching-self-host-mode-retiring-believer-plan</a></div><div class="note">事实核查：原文回溯完成。「下载破 100 万」为官方自述口径；Self-Host Mode 发布、Believer Plan 停售（2026-02-16 截止、老用户保留权益）、Partner Program、桌面 App 预告、「file-over-app but for AI」「模型不再是护城河、所有权才是」等宣言均出自此稿；转型事实与定价页 [4] 互证。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx verified">[2]</span><span class="rt">A</span><span class="st">平台一手 · API 实测</span></div><div class="ti">GitHub 仓库 logancyang/obsidian-copilot（星标/forks/创建时间实测）</div><div class="mt"><b>来源：</b>GitHub API + 仓库页　<b>查询日期：</b>2026-11-13<br><a href="https://github.com/logancyang/obsidian-copilot" target="_blank" rel="noopener">https://github.com/logancyang/obsidian-copilot</a></div><div class="note">事实核查：stargazers_count 7,983、forks_count 771、created_at 2023-03-31、pushed_at 2026-11-13（持续活跃推送）、描述「Run agents in Obsidian - OpenCode, Codex, Claude Code etc.」均为 API 实测；星标数与第三方评测 [7] 的 7,700★（2026-09-12）构成时间序列交叉，标签 verified。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx cross">[3]</span><span class="rt">B+</span><span class="st">官网一手 · 产品页</span></div><div class="ti">Copilot for Obsidian 官网（功能矩阵与用户证言）</div><div class="mt"><b>来源：</b>obsidiancopilot.com　<b>查询日期：</b>2026-11-13<br><a href="https://www.obsidiancopilot.com/" target="_blank" rel="noopener">https://www.obsidiancopilot.com/</a></div><div class="note">事实核查：「No. 1 Obsidian AI Integration by Downloads」「100,000+ users trust Copilot」为官网自我宣传口径；功能矩阵（Context/Search/Commands/Projects/Composer/Relevance/Self-host）、模型无关列表（OpenAI/Anthropic/Google/LM Studio/Ollama）、「Everything Is a Markdown File」、知识工作者证言矩阵出自此稿。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx cross">[4]</span><span class="rt">A</span><span class="st">官网一手 · 定价页</span></div><div class="ti">Copilot for Obsidian 官方定价页（三档结构实测）</div><div class="mt"><b>来源：</b>obsidiancopilot.com/en/pricing　<b>查询日期：</b>2026-11-13<br><a href="https://www.obsidiancopilot.com/en/pricing" target="_blank" rel="noopener">https://www.obsidiancopilot.com/en/pricing</a></div><div class="note">事实核查：原文回溯完成。Free（BYOK 免注册）/ Plus $14.99/月（年付 $139.99）/ Self-Host Supporter $349.99 终身（含 2 年 Plus）三档结构、Believer 计划已 grandfathered、14 天无理由退款均为页面实测；与 newsletter [1] 的转型声明互证。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx cross">[5]</span><span class="rt">A</span><span class="st">平台一手 · 插件目录页</span></div><div class="ti">Copilot - Obsidian Community Plugins（官方社区插件目录）</div><div class="mt"><b>来源：</b>community.obsidian.md　<b>查询日期：</b>2026-11-13<br><a href="https://community.obsidian.md/plugins/copilot" target="_blank" rel="noopener">https://community.obsidian.md/plugins/copilot</a></div><div class="note">事实核查：作者署名 Logan Yang、Brevilabs Team（另有 Zero Liu 协作署名）、当前版本 4.0.19、Last updated 前一日（2026-11-12）、V4 引入 OpenCode/Claude Code/Codex agents、Discord 社区入口均出自此页；为 Obsidian 平台一手数据。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx partial">[6]</span><span class="rt">B</span><span class="st">一手访谈 · 自述口径</span></div><div class="ti">From Zero to One Million Downloads: Logan's Journey as a Solo Developer（Mother of Success 创始人专访，采访者 Xiao He）</div><div class="mt"><b>来源：</b>mother-of-success.com　<b>发布日期：</b>约 2026 年（百万下载节点前后）<br><a href="https://www.mother-of-success.com/blogs/from-zero-to-one-million-downloads-logans-journey-as-a-solo-developer" target="_blank" rel="noopener">https://www.mother-of-success.com/blogs/from-zero-to-one-million-downloads-logans-journey-as-a-solo-developer</a></div><div class="note">事实核查：物理本科、来美自学、大厂 ML 工程师、2023 年初 burnout 裸辞、「插件基本由 GPT 写成」、命名占位策略、首年零推广自然增长、$70k 信号（自述事后怀疑为假）、付费首单来自新加坡、bootstrap 取舍、3-5 天冲刺节奏、"我仍是主要写代码的人、帮手都是 part-time"等均出自受访者自述；为单人访谈口径，标签 partial。付费转型与 Believer 创设的确切日期未在此访谈披露。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">B</span><span class="st">第三方评测 · 可回溯</span></div><div class="ti">Copilot for Obsidian Review: Local-Model AI Agent for Your Vault（PromptQuorum，作者 Hans Kuepper）</div><div class="mt"><b>来源：</b>promptquorum.com　<b>发布日期：</b>2026-09-12（页面标注 Last updated）<br><a href="https://www.promptquorum.com/power-local-llm/copilot-for-obsidian-review" target="_blank" rel="noopener">https://www.promptquorum.com/power-local-llm/copilot-for-obsidian-review</a></div><div class="note">事实核查：AGPL-3.0 许可（引仓库 LICENSE 文件）、约 7,700 星（2026-09-12 时点）、版本 4.0.9、Lite 约 $7.99/月与 Plus 约 $14.99/月及 Self-Host Supporter 约 $349.99 的 9 月定价快照、Agent 模式仅桌面端、非官方 Obsidian 产品（与 GitHub Copilot 无关）出自此稿；与 [2][4] 交叉一致。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx partial">[8]</span><span class="rt">C+</span><span class="st">社区讨论 · 用户反馈</span></div><div class="ti">AI integration Copilot vs. SystemSculpt - my experience（Obsidian 论坛 Share &amp; showcase 版）</div><div class="mt"><b>来源：</b>forum.obsidian.md　<b>发布日期：</b>约 2026 年<br><a href="https://forum.obsidian.md/t/ai-integration-copilot-vs-systemsculpt-my-experience/100645" target="_blank" rel="noopener">https://forum.obsidian.md/t/ai-integration-copilot-vs-systemsculpt-my-experience/100645</a></div><div class="note">事实核查：付费插件用户对比反馈（Commands 功能简化笔记创建、注册维护无问题、无推广骚扰）出自此帖；另见论坛用户 workflow 讨论帖（Gemini API + Copilot 免费用法及敏感数据提醒）。为社区观点性内容，样本量小，按 C+ 级收录。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx cross">[9]</span><span class="rt">B+</span><span class="st">案例墙底稿 · 既有核验值</span></div><div class="ti">国内 AI 一人公司案例墙数据底账（Chat Memo / ChatWise / Easydict 对标数据；本案第 10 条底稿）</div><div class="mt"><b>来源：</b>案例墙 index.html 及 data/domestic-pool.md　<b>快照日期：</b>2026-11<br><a href="../../index.html" target="_blank" rel="noopener">案例墙「国内 AI 一人公司案例墙」</a></div><div class="note">事实核查：对标表中《Chat Memo》（一泽 Eze，20,000+ 用户、Chrome 4.9 分 Google 精选）、《ChatWise》（egoist，Pro $29 买断、第三方评测「made by one developer」）、《Easydict》（tisfeng，GitHub 15.2k★）均为案例墙既有核验值；本案底稿口径（下载破 100 万、GitHub 7.8k★、付费订阅、锚点 2023）与本报告实测值一致。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 9 条。核验标签分布：🟢 已核验（verified）1 条、🔵 多源印证（cross）6 条、🟡 部分映证（partial）2 条。信源评级分布：A 级 4 条（官方 newsletter、GitHub API 实测、官方定价页、Obsidian 平台插件目录，原文回溯全部完成）、B+/B 级 3 条（官网产品页、创始人专访、第三方评测）、B+/C+ 级 2 条（案例墙底账、社区讨论）。全部 URL 均于 2026-11-13 实际命中可读，无核验失败链接；Obsidian 插件市场页（obsidian.md/plugins?id=copilot）因动态渲染无法抓取正文，已改用同一发布方的 community.obsidian.md 插件目录页替代核验。三处口径留白（下载量官方自述、Brevilabs 团队署名 vs part-time 自述、付费转型确切日期）与一处叙事存疑信号（$70k 竞品收入）已在正文显式标注。营收数据零披露，未做收入推算。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-13 · 星标与下载量均为时点值，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

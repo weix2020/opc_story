@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · ChatWise——egoist 与他的 $29 买断桌面 AI 客户端 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · ChatWise 桌面 AI 客户端">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="ChatWise 深度案例报告：知名华人开源开发者 egoist 一个人开发 macOS/Windows 桌面 AI 聊天客户端，BYOK 自带 API Key + Pro $29 一次性买断（划线价 $49），不卖模型只卖客户端。16 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>ChatWise 深度案例报告</h1>
+    <h2>知名开源开发者 egoist：一个人、一款闭源桌面 AI 聊天客户端、$29 买断制<br>在订阅洪流中只卖「客户端」本身 —— 16 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">工具型 OPC</span>
+      <span class="tag">BYOK 买断制</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">$29</div><div class="k">Pro 一次性买断（划线价 $49）</div></div>
+  <div class="stat"><div class="v neutral">2024-11</div><div class="k">上线（案例墙锚点 2024-11-15）</div></div>
+  <div class="stat"><div class="v neutral">1 人</div><div class="k">独立开发（第三方评测口径）</div></div>
+  <div class="stat"><div class="v up">6,983</div><div class="k">egoist 最近一年 GitHub 提交</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">ChatWise 是开发者 egoist 独立开发的 macOS/Windows 桌面 AI 聊天客户端<a class="cref verified" href="#ref-1">[1]</a>，官网口号为「The fastest AI chatbot for ChatGPT, DeepSeek, Claude, Gemini and Llama」，2026-11 查询时版本号已行至 26.4.0（年份版本制）<a class="cref verified" href="#ref-1">[1]</a>。它不卖模型、不收订阅，而是把「客户端」本身作为商品：Pro 版一次性 $29 买断（划线价 $49）<a class="cref verified" href="#ref-2">[2]</a>，模型费用由用户自带 API Key（BYOK）自理——第三方评测据此将其明确描述为「closed source, made by a single developer」（闭源、由一位开发者制作）<a class="cref cross" href="#ref-3">[3]</a>。</p>
+  <div class="two">
+    <div class="card"><div class="ct">产品</div><div class="cb">支持接入 OpenAI、Anthropic、Google AI、Groq、Ollama 等主流模型服务<a class="cref cross" href="#ref-4">[4]</a>；多模态输入，并内置 OpenAI 与 ElevenLabs 驱动的文字转语音<a class="cref cross" href="#ref-4">[4]</a>；Pro 解锁聊天记录搜索、自定义助手、网页搜索、Artifacts 与「无限 MCP 工具」<a class="cref verified" href="#ref-2">[2]</a>；官方口径「所有数据本地存储，绝不离开你的设备」<a class="cref verified" href="#ref-1">[1]</a>。</div><div class="cm">信源：<a class="cref cross" href="#ref-4">[4]</a> <a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">egoist，开源社区别名（第三方评测引其定价 FAQ 署名「Kevin」<a class="cref cross" href="#ref-3">[3]</a>，未见官方一手全名披露）；GitHub 主页 pinned 仓库：tsup 11.3k★、poi 5.2k★、docute 3.8k★、cac 3.1k★、saber 2.1k★、sao 1k★<a class="cref verified" href="#ref-5">[5]</a>；Vue.js 官方团队页曾列名「Build Tool Simplificator」，项目 poi/ream/vue-play，坐标中国成都<a class="cref cross" href="#ref-6">[6]</a>；Vite 官方致谢页致谢其开发的 cac<a class="cref cross" href="#ref-7">[7]</a>；个人自述「Indie hacker working on my own products」<a class="cref cross" href="#ref-8">[8]</a>。</div><div class="cm">信源：<a class="cref cross" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-7">[7]</a> <a class="cref cross" href="#ref-8">[8]</a></div></div>
+    <div class="card"><div class="ct">公司 / 投资状态</div><div class="cb">未检索到公司注册、融资或雇员的公开信息。GitHub Sponsors 页「Currently working on」列 ChatWise 与 tsup、esbuild-register、rollup-plugin-esbuild、Dropcode<a class="cref cross" href="#ref-9">[9]</a>；个人官网产品矩阵另列 Downbit、MyGo（网易云音乐桌面客户端）、Screenflare、Kero、Lorca、Pulse 等产品<a class="cref cross" href="#ref-8">[8]</a>。</div><div class="cm">信源：<a class="cref cross" href="#ref-9">[9]</a> <a class="cref cross" href="#ref-8">[8]</a></div></div>
+    <div class="card"><div class="ct">成功迹象</div><div class="cb">Pro $29 买断持续销售——2026-09-19 第三方评测核读定价页为促销价 $29 / 标价 $49<a class="cref cross" href="#ref-3">[3]</a>，2026-11-13 本报告复查官网仍在售<a class="cref verified" href="#ref-2">[2]</a>；「单人开发」口径三方交叉：第三方评测原文「made by a single developer」<a class="cref cross" href="#ref-3">[3]</a>、本人自述「ChatWise 是我开发的」<a class="cref partial" href="#ref-10">[10]</a>、Sponsors 页「Currently working on: ChatWise」<a class="cref cross" href="#ref-9">[9]</a>。</div><div class="cm">信源：<a class="cref cross" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-2">[2]</a> <a class="cref partial" href="#ref-10">[10]</a> <a class="cref cross" href="#ref-9">[9]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2016-04 前后</div><div class="tx">开源工具链生涯起步</div><div class="td">零配置打包器 poi 项目创建，star-history 记录自 2016-04 起、累计 5.2k★。<a class="cref partial" href="#ref-11">[11]</a></div></div>
+    <div class="node"><div class="dt">2016–2020s</div><div class="tx">Vue 生态与前端构建工具群</div><div class="td">Vue 官方团队页列名（poi/ream/vue-play）<a class="cref cross" href="#ref-6">[6]</a>；docute、sao、saber、cac 相继开源<a class="cref verified" href="#ref-5">[5]</a>；其中 CLI 解析库 cac 被 Vite 官方致谢页列为依赖来源<a class="cref cross" href="#ref-7">[7]</a>；tsup 后成为 TypeScript 库打包的常用工具（11.3k★）<a class="cref verified" href="#ref-5">[5]</a>。</div></div>
+    <div class="node"><div class="dt">2024-11</div><div class="tx">ChatWise 上线</div><div class="td">第三方工具目录收录口径为 2024-11 上线、起价 $29<a class="cref partial" href="#ref-12">[12]</a>；案例墙锚点 2024-11-15（既有核验值）。</div></div>
+    <div class="node"><div class="dt">2025-03-26</div><div class="tx">发布《在 ChatWise 中使用 MCP 工具》</div><div class="td">本人在个人博客发布 MCP 教程，并自述「ChatWise 是我开发的大模型聊天应用，可以通过你自己的 API Key 接入 ChatGPT/Claude/DeepSeek/Gemini 等模型」。<a class="cref partial" href="#ref-10">[10]</a></div></div>
+    <div class="node"><div class="dt">2025-07-25</div><div class="tx">chatwise-releases 仓库 README 更新</div><div class="td">口径：完全离线可用、面向 macOS 与 Windows、「Mobile app soon(ish)」<a class="cref cross" href="#ref-4">[4]</a>；仓库仅发布安装构建、不含源码（闭源发布）<a class="cref cross" href="#ref-3">[3]</a>。</div></div>
+    <div class="node"><div class="dt">2026-03</div><div class="tx">版本体系切换 v26</div><div class="td">官方发布渠道出现「ChatWise v26 has been released」及手动迁移指引（v0.10.8 → v26，docs.chatwise.app/migrate-to-v26）。<a class="cref partial" href="#ref-13">[13]</a></div></div>
+    <div class="node"><div class="dt">2026-09</div><div class="tx">第三方评测集中核读</div><div class="td">Kunavo 对比稿核读定价页与官方文档：$29 促销价（标价 $49）、明示不退款、暂无移动端计划、Agent mode 无沙箱、Anthropic 兼容自定义服务商。<a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2026-11-13</div><div class="tx">本报告官网复查</div><div class="td">Pro $29 买断仍在售，促销徽章「Discounts ending soon!」无截止日期；首页版本 26.4.0。<a class="cref verified" href="#ref-2">[2]</a><a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">持续</div><div class="tx">活跃维护</div><div class="td">官方 changelog 持续滚动新增模型条目，产品处于高频迭代状态。<a class="cref partial" href="#ref-13">[13]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：十年开源声誉资产，是商业软件的冷启动本金</div><div class="cb">egoist 的开源履历——Vue 官方团队页列名<a class="cref cross" href="#ref-6">[6]</a>、Vite 官方致谢<a class="cref cross" href="#ref-7">[7]</a>、tsup/poi/cac/docute 等合计数万星的项目群<a class="cref verified" href="#ref-5">[5]</a>——在 2024 年转化为商业软件的信任背书：chatwise.app/github 直接指向其个人名下仓库<a class="cref cross" href="#ref-4">[4]</a>，「闭源 + 付费」的默认疑虑被「作者本人」的社区声誉对冲，这与匿名开发者卖闭源软件要支付的信任成本截然不同。其 Sponsors 页面上 rauchg（Vercel CEO）、DIYgod、t3dotgg、BoltAI 等公司或个人赞助者名单<a class="cref verified" href="#ref-5">[5]</a><a class="cref cross" href="#ref-9">[9]</a>，亦是这份社区网络的直接证据。</div><div class="cm">信源：<a class="cref verified" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-7">[7]</a> <a class="cref cross" href="#ref-4">[4]</a> <a class="cref cross" href="#ref-9">[9]</a></div></div>
+  <div class="card"><div class="ct">转折二：BYOK + 买断，站到订阅模式的对立面</div><div class="cb">ChatWise 不卖任何模型访问<a class="cref cross" href="#ref-3">[3]</a>，收入完全来自客户端本身：$29 一次性买断、附一年 Pro 功能更新，续费语义为按「上次支付价格」再购一年更新<a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-3">[3]</a>。第三方评测将其定位为 TypingMind/Msty 同类中「软件费用最低、协议覆盖最广」的选择——三者中唯一在文档中同时给出 OpenAI 兼容与 Anthropic 兼容自定义服务商的客户端<a class="cref partial" href="#ref-14">[14]</a><a class="cref cross" href="#ref-3">[3]</a>。在 2024–2026 年 AI 订阅疲劳的大背景下，这是一条站位清晰的差异化路线。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-3">[3]</a> <a class="cref partial" href="#ref-14">[14]</a></div></div>
+  <div class="card red"><div class="ct">转折三：闭源发布的取舍与自嘲式品牌</div><div class="cb">与多数开源明星的路线相反，ChatWise 闭源：chatwise.app/github 指向的 egoist/chatwise-releases 只发布安装构建、不含源码<a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-3">[3]</a>。品牌文案则采取自嘲姿态——「The second fastest AI chatbot™（第二快的 AI 聊天机器人™）」见于其 Sponsors 页与官网变体页面<a class="cref cross" href="#ref-9">[9]</a><a class="cref verified" href="#ref-1">[1]</a>。「开源作者卖闭源商业软件」在社区语境中天然伴随张力，版权保护与社区好感之间的取舍，是本案最值得后续追踪的长期变量之一。</div><div class="cm">信源：<a class="cref cross" href="#ref-4">[4]</a> <a class="cref cross" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-9">[9]</a> <a class="cref verified" href="#ref-1">[1]</a></div></div>
+  <div class="quote">
+    <p>类似 ChatGPT app，ChatWise 是我开发的大模型聊天应用，可以通过你自己的 API Key 接入 ChatGPT/Claude/DeepSeek/Gemini 等模型的 API 来使用。同时它是一个支持 MCP 服务的客户端。</p>
+    <span class="src">—— egoist，个人博客《在 ChatWise 中使用 MCP 工具》（2025-03-26），转引自 <a class="cref partial" href="#ref-10">[10]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>拆解</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>产品功能</b></td><td>多模型：OpenAI/Anthropic/Google AI/Groq/Ollama，外加任意 OpenAI 兼容或 Anthropic 兼容的自定义服务商<a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-3">[3]</a>；多模态：图像等多模态输入 + OpenAI/ElevenLabs 文字转语音<a class="cref cross" href="#ref-4">[4]</a>；MCP：Pro「无限工具」，支持 stdio/SSE（已标记弃用）/Streamable HTTP 传输<a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-3">[3]</a>；Agent mode 预览：Bash/Write/Read/Edit/AskUserQuestion 五个内置工具，可加载 Claude Code 式 skills<a class="cref cross" href="#ref-3">[3]</a>；隐私：数据本地存储<a class="cref verified" href="#ref-1">[1]</a>。</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>BYOK 买断模式分析</b></td><td>免费版 $0（仅限个人非商用）<a class="cref verified" href="#ref-2">[2]</a><a class="cref partial" href="#ref-15">[15]</a>；Pro $29 一次性买断（标价 $49，促销徽章无截止日）<a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-3">[3]</a>；7 天免卡试用，明示不退款、以试用作为决策窗口<a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-3">[3]</a>；不含任何模型额度——「自带 API Key、无需订阅」为官方 FAQ 口径<a class="cref cross" href="#ref-3">[3]</a>；续费语义是「再买一年 Pro 功能更新」而非强制年费<a class="cref cross" href="#ref-3">[3]</a>。</td><td><a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref partial" href="#ref-15">[15]</a></td></tr>
+      <tr><td><b>面向客群</b></td><td>桌面 AI 重度用户与自带 Key 的开发者/技术用户（多模型聚合 + MCP 工具链）；仅桌面端——定价 FAQ 口径暂无移动端计划<a class="cref cross" href="#ref-3">[3]</a>，适配「在一两台电脑上工作」的人群画像<a class="cref partial" href="#ref-14">[14]</a>；数据本地存储指向隐私敏感用户<a class="cref verified" href="#ref-1">[1]</a>。</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref partial" href="#ref-14">[14]</a></td></tr>
+      <tr><td><b>解决痛点</b></td><td>订阅疲劳：用一个 $29 买断替代「每个模型一份订阅」的持续支出，模型费用交由用户按用量自控<a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-3">[3]</a>；多模型切换成本：单客户端聚合多服务商与自定义协议端点<a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-3">[3]</a>；与 Chatbox「客户端免费 + 模型订阅」的同型方案对照，本案把付费点完全放在客户端、把模型成本完全还给用户<a class="cref cross" href="#ref-3">[3]</a>。</td><td><a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>Pro 定价</td><td class="hl">$29 一次性买断（划线价 $49；「Discounts ending soon!」促销徽章）</td><td>2026-11-13 官网复查；2026-09-19 评测独立核读</td><td><a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td>上线时间</td><td>2024-11（案例墙锚点 2024-11-15）</td><td>工具目录收录口径</td><td><a class="cref partial" href="#ref-12">[12]</a></td></tr>
+      <tr><td>当前版本</td><td>26.4.0（v26 年份版本制）</td><td>2026-11-13 官网首页</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>chatwise-releases 仓库</td><td>约 1.4k★（仅发布构建、不含源码）</td><td>2026-11 数据页时点</td><td><a class="cref partial" href="#ref-11">[11]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td>egoist GitHub 活跃度</td><td class="pos">最近一年 6,983 次贡献（2026-11 单月 522 commits / 14 仓库）</td><td>2026-11-13 实测</td><td><a class="cref verified" href="#ref-5">[5]</a></td></tr>
+      <tr><td>开源履历累计星标</td><td>tsup 11.3k★ / poi 5.2k★（2016-04 起）/ docute 3.8k★ / cac 3.1k★ / saber 2.1k★</td><td>2026-11 GitHub pinned / star-history</td><td><a class="cref verified" href="#ref-5">[5]</a><a class="cref partial" href="#ref-11">[11]</a></td></tr>
+      <tr><td>营收 / 用户量</td><td class="hl">未披露（零公开数据）</td><td>—</td><td>见捌·附</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    ChatWise 无公开营收、销量或用户数披露，本表全部为可回溯的产品与开发者侧数据；星标数为第三方数据页时点值，会随时间变动；$29 为官网促销口径、$49 为划线价，促销截止日未标注——引用时应注明「截至查询时点」。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将 ChatWise 放入案例墙「桌面客户端 / 插件」坐标系（对标行数据均为案例墙 index.html 既有核验值，2026-10/11 时点，本轮未重复核验；ChatWise 与 Cherry Studio 的许可口径差异另经本轮评测交叉<a class="cref partial" href="#ref-15">[15]</a>）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>商业模式</th><th>数据表现</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>ChatWise（本案）</b></td><td>egoist</td><td>闭源桌面客户端（macOS/Windows）</td><td class="hl">BYOK + $29 买断</td><td>Pro 持续在售；「单人开发」获第三方评测口径确认</td><td><a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td>Cherry Studio</td><td>亢奋猫（kangfenmao）</td><td>开源跨平台多模型桌面客户端</td><td>免费 + 社区（AGPL-3.0 社区版允许商用）</td><td>GitHub 32k+★、下载超 1000 万次；自述长期「两人兼职团队」</td><td>案例墙 <a class="cref partial" href="#ref-15">[15]</a></td></tr>
+      <tr><td>Chat Memo</td><td>一泽 Eze</td><td>跨 AI 平台对话存档插件</td><td>插件（免费/会员）</td><td>20000+ 用户、Chrome 4.9 分 Google 精选</td><td>案例墙</td></tr>
+      <tr><td>Copilot for Obsidian</td><td>Logan Yang（Brevilabs）</td><td>Obsidian AI 副驾插件</td><td>买断转订阅</td><td>下载破 100 万（2026-02）、GitHub 7.8k★</td><td>案例墙</td></tr>
+      <tr><td>Bob</td><td>ripperhe</td><td>macOS 划词翻译 / 截图 OCR</td><td class="hl">Bob Pro ¥58 买断</td><td>GitHub 9.7k★</td><td>案例墙</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>本案在坐标系中的位置十分特殊：案例墙内桌面客户端的主流路线是「开源 + 免费 + 社区/赞助」（Cherry Studio、Umi-OCR 等）或「插件 + 订阅」（Copilot for Obsidian 已由买断转向订阅），而 ChatWise 是其中少见的<b>「知名开源作者 + 个人闭源商业软件 + 买断制」三重组合</b>——与 Bob（¥58 买断）同为国人个人开发者买断制样本，但 ChatWise 卖的是 AI 聊天客户端本体，把产品直接暴露在模型层剧烈竞争与上游 API 政策的射程之内，风险结构与之不同。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>分析</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>1. 产品功能</td><td>桌面端多模型多模态聊天 + MCP 工具 + Agent 预览 + 本地隐私；协议覆盖（Anthropic 兼容自定义服务商）是同类中少有的文档化能力<a class="cref cross" href="#ref-3">[3]</a><a class="cref partial" href="#ref-14">[14]</a>。</td><td><a class="cref cross" href="#ref-3">[3]</a><a class="cref partial" href="#ref-14">[14]</a></td></tr>
+      <tr><td>2. 面向客群</td><td>桌面 AI 重度用户、自带 Key 的技术用户、隐私敏感人群；明确放弃移动端（FAQ 口径），以「一两台电脑」的窄画像换取单人维护半径的收敛<a class="cref cross" href="#ref-3">[3]</a><a class="cref partial" href="#ref-14">[14]</a>。</td><td><a class="cref cross" href="#ref-3">[3]</a><a class="cref partial" href="#ref-14">[14]</a></td></tr>
+      <tr><td>3. 解决痛点</td><td>订阅疲劳的对价方案：$29 买断替代持续订阅，模型费用按用量自理；同时解决多模型聚合与协议兼容问题<a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-3">[3]</a>。</td><td><a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td>4. 预估年化营收（推算，置信度 C）</td><td><b>零披露。</b>可核验事实仅：$29 买断自 2024-11 上线后持续在售（2026-09 与 2026-11 双时点确认）<a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref partial" href="#ref-12">[12]</a>；销量、用户量、退款率均无公开数据，任何收入数字推算均属臆测，本报告不做推算，仅维持「持续销售」这一弱证据。</td><td><a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref partial" href="#ref-12">[12]</a></td></tr>
+      <tr><td>5. 融资进展</td><td>未检索到公开信息。个人 indies 产品矩阵（官网列 Downbit/MyGo/Screenflare/Kero/Lorca/Pulse 等）<a class="cref cross" href="#ref-8">[8]</a> 与 GitHub Sponsors 个人赞助网络<a class="cref cross" href="#ref-9">[9]</a>构成非货币资源；无公司化或融资报道。</td><td><a class="cref cross" href="#ref-8">[8]</a><a class="cref cross" href="#ref-9">[9]</a></td></tr>
+      <tr><td>6. 市场评价</td><td>第三方评测正评价：同类对比中「软件费用最低、协议覆盖最广」<a class="cref partial" href="#ref-14">[14]</a>；「made by a single developer」本身成为评测叙事点<a class="cref cross" href="#ref-3">[3]</a>。风险点名：Agent mode 明示无沙箱（Bash 工具）且预览期禁用 MCP 与 Artifacts<a class="cref cross" href="#ref-3">[3]</a>；官网宣传复用 Claude Pro/Max 订阅与 Anthropic 政策相抵<a class="cref partial" href="#ref-16">[16]</a>。</td><td><a class="cref partial" href="#ref-14">[14]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref partial" href="#ref-16">[16]</a></td></tr>
+      <tr><td class="hl">7. 投入成本与结构性风险</td><td>① BYOK 模式的上游 API 依赖：不自营模型使收入与推理成本解耦（无算力负担），但产品价值高度绑定上游 API 的价格与政策——Anthropic 已声明不允许第三方开发者经 Free/Pro/Max 凭据为用户转路由请求，而官网宣传复用 Claude 订阅，存在被单方收紧的政策敞口<a class="cref partial" href="#ref-16">[16]</a>；② 单人维护 macOS/Windows（评测口径另含 Linux）多端 + 年份版本节奏，bus factor=1<a class="cref cross" href="#ref-3">[3]</a><a class="cref partial" href="#ref-16">[16]</a><a class="cref partial" href="#ref-13">[13]</a>；③ 买断制收入曲线天然前置，「一年 Pro 功能更新」之后的续费转化率是模式能否长期成立的关键假设<a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-3">[3]</a>。</td><td><a class="cref partial" href="#ref-16">[16]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref partial" href="#ref-13">[13]</a><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 六项结构性风险（截至 2026-11-13 检索）</div>
+    ① 营收、销量、用户量零披露，「成功迹象」只能锚定「Pro 持续在售」这一弱指标；② Agent mode 官方文档明示「当前无沙箱」（含 Bash 工具），且预览期与 MCP/Artifacts 互斥<a class="cref cross" href="#ref-3">[3]</a>；③ 官网宣传可复用 Claude Pro/Max 订阅，而 Anthropic Claude Code 法律页面称不允许第三方开发者经 Free/Pro/Max 凭据转路由请求且可能无预告强制执行——上游政策风险敞口<a class="cref partial" href="#ref-16">[16]</a>；④ $29 促销价挂「Discounts ending soon!」却无截止日期，促销长期化将侵蚀价格锚点的可信度<a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-3">[3]</a>；⑤ 付费版明示不退款、以 7 天免卡试用替代，消费者保护口径偏紧<a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-3">[3]</a>；⑥ 「一年 Pro 功能更新」到期后的权益边界依赖 FAQ 解释，单人维护之下长期承诺的可持续性存疑（bus factor=1）<a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-3">[3]</a>。
+  </div>
+  <div class="box note">
+    <div class="bt">📌 核验边界与口径冲突</div>
+    ① Product Hunt 页面两轮抓取均被反爬安全验证拦截（超时/验证页），本报告未引用任何 PH 数据；② 创业者真名：仅第三方评测转述定价 FAQ 署名「Kevin」<a class="cref cross" href="#ref-3">[3]</a>，无官方一手全名披露，本报告不采信任何具体全名；③ 平台口径冲突：仓库 README（2025-07-25）口径为「macOS and Windows」<a class="cref cross" href="#ref-4">[4]</a>，第三方评测（2026-09）称「macOS, Windows and Linux」<a class="cref partial" href="#ref-16">[16]</a>，双口径存档、以官网为准；④ 移动端口径冲突：README「Mobile app soon(ish)」（2025-07）<a class="cref cross" href="#ref-4">[4]</a> vs 定价 FAQ「暂无移动端计划」（2026-09 评测转述）<a class="cref cross" href="#ref-3">[3]</a>，按较新 FAQ 口径采信；⑤ 上线精确日 2024-11-15 为案例墙既有核验值，本轮独立检索仅印证到月份粒度（2024-11）<a class="cref partial" href="#ref-12">[12]</a>。
+  </div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">ChatWise 证明了一条与「流量打法」完全不同的 OPC 路径：不投广告、不追热点，以十余年开源积累的开发者声誉为唯一获客资产，在模型层白热化竞争时选择做「卖铲人旁边的卖碗人」——不碰模型、不碰推理成本，只把桌面端的工程体验与协议兼容做透，用 $29 买断制收割订阅疲劳情绪。它的天花板与地板同样清晰：收入完全依赖客户端销量的长尾，且单人、闭源、上游政策三重约束决定了这是一门「小而脆」的生意；但正因为不烧算力、不养团队，它的盈亏平衡点也远低于任何模型公司。<a class="cref verified" href="#ref-5">[5]</a><a class="cref partial" href="#ref-14">[14]</a><a class="cref partial" href="#ref-16">[16]</a></div><div class="cm">信源：<a class="cref verified" href="#ref-5">[5]</a> <a class="cref partial" href="#ref-14">[14]</a> <a class="cref partial" href="#ref-16">[16]</a> <a class="cref cross" href="#ref-3">[3]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 16 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级或目录类信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx verified">[1]</span><span class="rt">A+</span><span class="st">官网一手</span></div><div class="ti">ChatWise 官网首页（产品定位 / 核心特性 / 版本号）</div><div class="mt"><b>来源：</b>chatwise.app　<b>查询日期：</b>2026-11-13<br><a href="https://chatwise.app/" target="_blank" rel="noopener">https://chatwise.app/</a></div><div class="note">事实核查：口号「The fastest AI chatbot for ChatGPT, DeepSeek, Claude, Gemini and Llama」、核心特性 Any LLM/Performance/Privacy（数据本地存储）、版本 26.4.0 出自此页；与 [4] 特性清单、[2] 定价页交叉一致。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx verified">[2]</span><span class="rt">A+</span><span class="st">官网一手</span></div><div class="ti">Pricing - ChatWise（官网定价页）</div><div class="mt"><b>来源：</b>chatwise.app/pricing　<b>查询日期：</b>2026-11-13<br><a href="https://chatwise.app/pricing" target="_blank" rel="noopener">https://chatwise.app/pricing</a></div><div class="note">事实核查：Pro $29（划线价 $49）一次性支付、7 天免费试用、Pro 功能清单（聊天记录搜索/自定义助手/网页搜索/Artifacts/无限 MCP 工具/一年 Pro 功能更新/优先支持）、免费版 $0 个人非商用、FAQ（含「Who made this?」「退款政策」「移动端」条目）出自此页；与 Kunavo 2026-09-19 独立核读 [3] 交叉一致。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx cross">[3]</span><span class="rt">B</span><span class="st">第三方评测</span></div><div class="ti">ChatWise vs Chatbox: client fees, subscriptions and BYOK（Kunavo）</div><div class="mt"><b>来源：</b>kunavo.com　<b>发布日期：</b>2026-09-21（更新 2026-09-24，核读时点 2026-09-19）<br><a href="https://kunavo.com/guides/chatwise-vs-chatbox" target="_blank" rel="noopener">https://kunavo.com/guides/chatwise-vs-chatbox</a></div><div class="note">事实核查：关键表述「closed source, made by a single developer — its pricing FAQ credits 'Kevin'」出自此稿；$29/$49 双价、不退款政策、Agent mode 五内置工具且明示无沙箱、OpenAI/Anthropic 兼容自定义服务商、MCP 三种传输、续费语义（按上次支付价再购一年更新）均出自此稿并附官方文档链接；「单人开发」另有本人自述 [10] 与 Sponsors 页 [9] 交叉。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx cross">[4]</span><span class="rt">A</span><span class="st">GitHub 一手</span></div><div class="ti">egoist/chatwise-releases（chatwise.app/github 重定向目标）</div><div class="mt"><b>来源：</b>GitHub　<b>README 更新时点：</b>2025-07-25（2026-11-13 查询）<br><a href="https://github.com/egoist/chatwise-releases" target="_blank" rel="noopener">https://github.com/egoist/chatwise-releases</a></div><div class="note">事实核查：特性清单（完全离线可用/OpenAI/Anthropic/Google AI/Groq/Ollama/多模态/TTS 由 OpenAI 与 ElevenLabs 提供/macOS 与 Windows/Mobile app soon(ish)）出自 README；「仅发布构建、不含源码」的闭源口径与 [3] 一致。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx verified">[5]</span><span class="rt">A+</span><span class="st">GitHub 一手</span></div><div class="ti">GitHub @egoist 个人主页（pinned 仓库 / 贡献统计 / Sponsors 名单）</div><div class="mt"><b>来源：</b>github.com/egoist　<b>查询日期：</b>2026-11-13<br><a href="https://github.com/egoist" target="_blank" rel="noopener">https://github.com/egoist</a></div><div class="note">事实核查：pinned 仓库星标（tsup 11.3k★/saber 2.1k★/cac 3.1k★/poi 5.2k★/docute 3.8k★/sao 1k★）、最近一年 6,983 contributions、2026-11 单月 522 commits/14 仓库、赞助者名单（rauchg、DIYgod、t3dotgg、BoltAI 等）均为一手实测；开发者身份与 [6][8][9] 交叉印证。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx cross">[6]</span><span class="rt">A</span><span class="st">官方团队页</span></div><div class="ti">Vue 工作团队（Vue.js 官网）</div><div class="mt"><b>来源：</b>cn.vuejs.org　<b>查询日期：</b>2026-11-13<br><a href="https://cn.vuejs.org/about/team.html" target="_blank" rel="noopener">https://cn.vuejs.org/about/team.html</a></div><div class="note">事实核查：EGOIST 列名「Build Tool Simplificator」，项目 poi/ream/vue-play，坐标中国成都；列名起始时点页面未注明（按页面当前版本收录）。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">A</span><span class="st">官方致谢页</span></div><div class="ti">Acknowledgements | Vite（main 分支）</div><div class="mt"><b>来源：</b>vite.dev　<b>查询日期：</b>2026-11-13<br><a href="https://vite.dev/acknowledgements" target="_blank" rel="noopener">https://vite.dev/acknowledgements</a></div><div class="note">事实核查：致谢表「egoist | cac」条目印证 Vite 对其维护的 CLI 解析库 cac 的依赖，为「Vite 系生态工具」表述的直接官方依据。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx cross">[8]</span><span class="rt">A</span><span class="st">个人官网一手</span></div><div class="ti">EGOIST — egoist.dev（个人主页与产品矩阵）</div><div class="mt"><b>来源：</b>egoist.dev　<b>查询日期：</b>2026-11-13<br><a href="https://egoist.dev/" target="_blank" rel="noopener">https://egoist.dev/</a></div><div class="note">事实核查：「Indie hacker working on my own products」自述、产品矩阵（Downbit/MyGo/Screenflare/Kero/Lorca/Pulse 等）出自此页；与 GitHub pinned [5]、Sponsors [9] 交叉印证。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx cross">[9]</span><span class="rt">A+</span><span class="st">GitHub 一手</span></div><div class="ti">GitHub Sponsors @egoist（Sponsor 页「Currently working on」）</div><div class="mt"><b>来源：</b>github.com/sponsors/egoist　<b>查询日期：</b>2026-11-13<br><a href="https://github.com/sponsors/egoist" target="_blank" rel="noopener">https://github.com/sponsors/egoist</a></div><div class="note">事实核查：「Currently working on: ChatWise: The second fastest AI Chatbot」及 tsup/esbuild-register/rollup-plugin-esbuild/Dropcode 列表出自此页；「第二快」自嘲式品牌口径与官网 [1] 变体页面一致。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx partial">[10]</span><span class="rt">A</span><span class="st">一手自述博客</span></div><div class="ti">在 ChatWise 中使用 MCP 工具（EGOIST 博客）</div><div class="mt"><b>来源：</b>egoist.dev　<b>发布日期：</b>2025-03-26<br><a href="https://egoist.dev/chatwise-mcp" target="_blank" rel="noopener">https://egoist.dev/chatwise-mcp</a></div><div class="note">事实核查：「ChatWise 是我开发的……通过你自己的 API Key 接入 ChatGPT/Claude/DeepSeek/Gemini……支持 MCP 服务」为本人自述口径；BYOK 与 MCP 功能事实与 [2][3] 交叉印证；文中另演示 stdio 型 MCP 服务配置流程。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx partial">[11]</span><span class="rt">C+</span><span class="st">第三方数据页</span></div><div class="ti">开源数据页（goodfirstissue.org/egoist；star-history.com/egoist/poi）</div><div class="mt"><b>来源：</b>goodfirstissue.org、star-history.com　<b>查询日期：</b>2026-11-13<br><a href="https://www.goodfirstissue.org/egoist" target="_blank" rel="noopener">https://www.goodfirstissue.org/egoist</a>　<a href="https://www.star-history.com/egoist/poi" target="_blank" rel="noopener">https://www.star-history.com/egoist/poi</a></div><div class="note">事实核查：chatwise-releases 约 1.4k★（1,375★）、tsup 11.3k★、poi 5.2k★（项目自 2016-04 起）为数据页时点值，会随时间变动；星标数与 [5] GitHub 一手实测同数量级互证。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx partial">[12]</span><span class="rt">C+</span><span class="st">工具目录</span></div><div class="ti">Chatsonic vs ChatWise Comparison in 2026（Aitoolnet）</div><div class="mt"><b>来源：</b>aitoolnet.com　<b>查询日期：</b>2026-11-13<br><a href="https://www.aitoolnet.com/compare/chatsonic-vs-chatwise" target="_blank" rel="noopener">https://www.aitoolnet.com/compare/chatsonic-vs-chatwise</a></div><div class="note">事实核查：上线 2024-11、起价 $29、技术栈 Svelte(Kit)/Cloudflare CDN 出自此目录页；目录类信源仅作月份粒度印证，精确日 2024-11-15 依案例墙既有核验值。</div></li>
+  <li id="ref-13" class="src"><div class="sh"><span class="idx partial">[13]</span><span class="rt">A</span><span class="st">官方发布渠道</span></div><div class="ti">ChatWise Changelog / Releases feed（版本历史）</div><div class="mt"><b>来源：</b>chatwise.app/changelog、releases.chatwise.app　<b>查询日期：</b>2026-11-13<br><a href="https://chatwise.app/changelog" target="_blank" rel="noopener">https://chatwise.app/changelog</a>　<a href="https://releases.chatwise.app/releases" target="_blank" rel="noopener">https://releases.chatwise.app/releases</a></div><div class="note">事实核查：「ChatWise v26 has been released」及手动迁移指引（v0.10.8 → v26，2026-03 时点）、changelog 持续滚动新增模型条目出自发布渠道；JSON feed 为实时数据，引用以页面当时内容为准。</div></li>
+  <li id="ref-14" class="src"><div class="sh"><span class="idx partial">[14]</span><span class="rt">B</span><span class="st">第三方评测</span></div><div class="ti">TypingMind vs ChatWise vs Msty: Price &amp; BYOK（Kunavo）</div><div class="mt"><b>来源：</b>kunavo.com　<b>查询日期：</b>2026-11-13（多语言版本并存）<br><a href="https://kunavo.com/guides/typingmind-vs-chatwise-vs-msty" target="_blank" rel="noopener">https://kunavo.com/guides/typingmind-vs-chatwise-vs-msty</a></div><div class="note">事实核查：「适合在一两台电脑上工作、想要最低软件费用与最广协议覆盖的用户」「三者中唯一文档化 Anthropic 兼容自定义服务商选项」的定位出自此稿；对比结论为评测口径，本报告按单一 B 级信源收录。</div></li>
+  <li id="ref-15" class="src"><div class="sh"><span class="idx partial">[15]</span><span class="rt">B</span><span class="st">第三方评测</span></div><div class="ti">ChatWise vs Cherry Studio: MCP, Agent, Cost（Kunavo）</div><div class="mt"><b>来源：</b>kunavo.com　<b>查询日期：</b>2026-11-13<br><a href="https://kunavo.com/guides/chatwise-vs-cherry-studio" target="_blank" rel="noopener">https://kunavo.com/guides/chatwise-vs-cherry-studio</a></div><div class="note">事实核查：ChatWise 免费层 $0（仅个人非商用）与 Cherry Studio Community Edition AGPL-3.0（许可允许商用）的对照出自此稿；Cherry Studio 星标/下载数等对标数据以案例墙既有核验值为准，本稿仅作许可口径交叉。</div></li>
+  <li id="ref-16" class="src"><div class="sh"><span class="idx partial">[16]</span><span class="rt">B</span><span class="st">第三方评测</span></div><div class="ti">ChatWise Pricing: Licence vs API Cost（Kunavo）</div><div class="mt"><b>来源：</b>kunavo.com　<b>查询日期：</b>2026-11-13<br><a href="https://kunavo.com/guides/chatwise-api-cost" target="_blank" rel="noopener">https://kunavo.com/guides/chatwise-api-cost</a></div><div class="note">事实核查：「官网宣传复用 Claude Pro/Max 订阅，而 Anthropic Claude Code 法律页面称不允许第三方开发者经 Free/Pro/Max 凭据转路由请求、可能无预告强制执行」出自此稿；平台口径「macOS, Windows and Linux」亦出自此稿（与官网 README [4] 冲突，已双口径存档）；Anthropic 原文未直接回溯，按部分映证收录。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 16 条。核验标签分布：🟢 已核验（verified）3 条、🔵 多源印证（cross）6 条、🟡 部分映证（partial）7 条。信源评级分布：A+/A 级 10 条（官网、GitHub、Vue/Vite 官方页面等一手信源，原文回溯全部完成）、B 级 4 条（Kunavo 系列评测，均附官方文档核读时点）、C+ 级 2 条（数据页与工具目录，均已标注时点口径）。核验失败处理：Product Hunt 页面两轮抓取均被反爬安全验证拦截（超时/验证页），未引用任何 PH 数据，上线时间以 aitoolnet 月份粒度与案例墙锚点 2024-11-15 并列存档。三处口径冲突（平台是否含 Linux、移动端计划有无、$29 促销口径）与创业者真名留白（仅评测转述「Kevin」）已在正文显式标注。未发现伪造链接；全部 URL 为检索过程实际命中页面。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-13 · 营收与销量均未披露、本报告不做数字推算，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

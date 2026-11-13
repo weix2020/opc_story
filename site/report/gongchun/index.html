@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · 供春AI —— 张雨航的一个人非遗 AIGC 公司 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · 供春AI">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="供春AI 深度案例报告：90 后海归设计师张雨航回到宜兴丁蜀镇，开发国内首款陶瓷 AIGC 辅助设计软件，数十秒生成紫砂壶等工艺美术方案并对接 3D 打印，用户 3 万+、走进近 30 所高校、落地全国首个 AI+手工艺 OPC 创业基地。12 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>供春AI 深度案例报告</h1>
+    <h2>90 后海归设计师张雨航：把 AI 带回千年紫砂产业带<br>国内首款陶瓷 AIGC 辅助设计软件——12 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">垂直应用 OPC</span>
+      <span class="tag">非遗产业带 × AI</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">3 万+</div><div class="k">供春AI 用户数（截至 2025 年底）</div></div>
+  <div class="stat"><div class="v up">40 万+</div><div class="k">AI 生成工艺美术设计图（2024-11 口径）</div></div>
+  <div class="stat"><div class="v neutral">近 30 所</div><div class="k">合作高校（教学软件进课堂）</div></div>
+  <div class="stat"><div class="v neutral">全国首个</div><div class="k">「AI+手工艺」OPC 创业基地</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">供春AI 是「非遗产业带 × AI」赛道被政府与央媒双重确认的标杆样本：一位曾就职阿里云的宜兴丁蜀镇青年回到家乡，用 16 万份经典陶瓷器物数据训练出国内首款陶瓷 AIGC 辅助设计软件，让设计师输入描述、数十秒生成紫砂壶等工艺美术方案并对接 3D 打印，进而借政企协同把个人创业升维为「AI+手工艺」OPC 生态。<a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a></p>
+  <div class="two">
+    <div class="card"><div class="ct">产品</div><div class="cb">供春AI——国内首款陶瓷 AIGC 辅助设计软件：输入颜色、肌理、功能等关键词，短短几秒生成数十种设计方案；20 多秒生成「定制款」紫砂壶概念图，可转化线稿二次创作、生成 3D 模型，并对接陶泥 3D 打印直接实体成型。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">张雨航，「90 后」，宜兴丁蜀人，毕业于南京艺术学院和芝加哥艺术学院（研究方向为艺术与科技），美国海归硕士；曾任职阿里巴巴集团阿里云体验设计师，2023 年辞职回乡创业。</div><div class="cm">信源：<a class="cref verified" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-4">[4]</a></div></div>
+    <div class="card"><div class="ct">公司 / 注册信息</div><div class="cb">无锡供春人工智能科技有限公司：2023-05-16 注册成立，注册资本 300 万元，法定代表人张雨航、100% 持股，注册地宜兴市丁蜀镇，参保人数 3 人——创始人控股、极小团队协作的 OPC 结构。企查查简介自述业务为「AI 设计 + 3D 打印 + 知识产权保护 + 教育研学 + IP 孵化」全闭环。</div><div class="cm">信源：<a class="cref verified" href="#ref-10">[10]</a> <a class="cref partial" href="#ref-11">[11]</a></div></div>
+    <div class="card"><div class="ct">成功迹象（时点值）</div><div class="cb">用户突破 3 万（截至 2025 年底）；走进中国美术学院、南京艺术学院等近 30 所高校课堂；联动天猫校园落地全国首个「AI+手工艺」OPC 创业基地（2026-04，首批大学生 OPC 创业实践基地之一）；获全国首单陶瓷产业链 AI 场景应用企业创业综合保险（累计保额 538 万元）；工艺正随陶二厂驻留计划走向海外。</div><div class="cm">信源：<a class="cref verified" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-4">[4]</a> <a class="cref verified" href="#ref-2">[2]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <p class="lead">宜兴丁蜀镇是紫砂壶的原产地，紫砂陶制作技艺为国家级非物质文化遗产，纯手工创作是这门手艺最大的价值锚点——产业土壤、非遗资源与「AI 能否进入手工评价体系」的张力，共同构成了这个案例的底色。<a class="cref cross" href="#ref-9">[9]</a></p>
+  <div class="tl">
+    <div class="node"><div class="dt">2023 年</div><div class="tx">从阿里云回乡，跑了三个陶瓷产区调研</div><div class="td">张雨航先后赴景德镇、龙泉、德化等陶瓷产区，拜访非遗和工艺美术工作室（2024 年报道称 280 多家，2026 年报道称 400 多家，双口径见「捌」），确认从业者对 AI「大多愿意接受」。<a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2023-05-16</div><div class="tx">无锡供春人工智能科技有限公司注册成立</div><div class="td">注册资本 300 万元，张雨航 100% 持股，注册地丁蜀镇（工商一手，天眼查/企查查/水滴信用三源一致）。</div></div>
+    <div class="node"><div class="dt">2023–2024 年</div><div class="tx">搭数据库「地基」：16 万张器物数据 + 专业辞典</div><div class="td">与高校、科研机构和博物馆合作搜集 16 万张中国经典陶瓷器物数据，另搜集数百万张建筑、自然物像图片；紫砂器型库以周小东主编《中国宜兴陶瓷汉英简明辞典》（2576 条中英文辞目、960 余幅插图）为主要信息来源，专项训练「三弯嘴」「嵌盖」「压盖」等专业术语。<a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-8">[8]</a><a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2024-11-29 ▲（案例墙锚点）</div><div class="tx">宜兴市政府网报道：国内首款陶瓷 AIGC 辅助设计软件在宜开发应用</div><div class="td">时点数据：用户数已过万，涵盖全国 400 多个非遗工作室主理人，生成设计图超 40 万张，用户依设计制作工艺美术品 380 多件；市陶瓷行业协会会长史俊棠将其类比为「陈曼生与紫砂艺人合作」的当代续章。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2024-12-05</div><div class="tx">紫砂艺人「心生困惑」，党报定调「守正创新」</div><div class="td">宜兴日报刊发评论：软件「惊到了一众紫砂艺人」，纯手工价值评价体系受冲击，有人疾呼「狼来了」；文章结论认为 AI「能师古人、难师自然」，是传统手工艺「守正创新的时代之桥」。<a class="cref cross" href="#ref-9">[9]</a></div></div>
+    <div class="node"><div class="dt">2025 年</div><div class="tx">「苏超」文创出圈：紫砂足球杯与篮球奖杯</div><div class="td">供春AI 参与设计无锡文创《紫韵足梦》紫砂足球杯，与无锡工艺职业技术学院师生短期内共创 500 多个设计方案；此后又参与篮球「苏超」奖杯设计。<a class="cref cross" href="#ref-7">[7]</a><a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2026-01-05</div><div class="tx">全国首单陶瓷产业链 AI 场景应用企业创业综合保险落地</div><div class="td">宜兴市科技局联手平安产险无锡分公司为其定制保障，累计保额 538 万元，覆盖研发失败费用损失、知识产权侵权、AI 内容侵权等；此时供春AI 已服务 1.5 万余名工艺美术从业者及相关企业，辅助落地创新工艺品超 500 件。<a class="cref cross" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2026-04-23 → 04-27</div><div class="tx">天猫校园 × 丁蜀：全国首个「AI+手工艺」OPC 创业基地</div><div class="td">天猫校园「第二届校园产业生态大会」发布首批 2 个大学生 OPC 创业实践基地，丁蜀镇入选（业务进驻 800 余所高校、服务近 2000 万学生）；丁蜀镇以「AI+手工艺」为核心抓手打造全国产业带 OPC 标杆，张雨航现场做「AI 赋能工艺美术大众创新」主题分享。<a class="cref cross" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2026-06</div><div class="tx">OPC 社区成型：集训营、金融服务站与「3 万用户」</div><div class="td">大学生 AI+OPC 创业集训营在陶二厂举办，交行、工行宜兴支行入驻设 OPC 金融服务站；「人工智能+手工艺」OPC 社区以天猫校园、阿里云、供春AI 为核心技术与平台支撑。截至 2025 年底供春AI 用户数已突破 3 万。<a class="cref cross" href="#ref-6">[6]</a><a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2026-08-31</div><div class="tx">新华网《环球》杂志定调：中国式 OPC 的内核样本</div><div class="td">央媒将其列为「企业经验转化型」OPC 代表：用户突破 3 万人、走进全国近 30 所高校课堂、联动天猫校园落地全国首个「AI+手工艺」OPC 创业基地，「这项工艺正在走出国门」；并借本案总结「AI 不是取代人的匠心，而是放大个体的创造力」。<a class="cref verified" href="#ref-2">[2]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：大厂设计师的「产业带回家」——不做通用 AIGC，做最垂直的陶瓷</div><div class="cb">彼时现有陶瓷专业 AI 软件主要由海外研发，「更多关注西方艺术主题，不能完全契合中国传统陶瓷艺术的审美需求和文化特性」<a class="cref verified" href="#ref-1">[1]</a>。张雨航的选择是反向的：放弃通用赛道的规模想象，回到自己最熟悉的紫砂产业带，用「艺术与科技」的专业训练（南艺 + 芝加哥艺术学院）叠加阿里云的产品经验，做一款只服务陶瓷工艺 presonae 的垂直工具。这一「人地匹配」起点决定了后来所有政企资源的流向——宜兴陶瓷产业规模大、从业者多、应用场景丰富，「丰富的应用场景能让创新成果快速转化」<a class="cref verified" href="#ref-3">[3]</a>。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-3">[3]</a></div></div>
+  <div class="card"><div class="ct">转折二：先把「地基」做厚——16 万张器物数据 + 一本辞典，解决「AI 不懂三弯嘴」</div><div class="cb">供春AI 的核心壁垒不在生成模型本身，而在垂直语料与专业标注：与高校、科研机构和博物馆合作搜集 16 万张中国经典陶瓷器物数据，进行造型结构、艺术风格的专业性训练<a class="cref verified" href="#ref-3">[3]</a>；紫砂器型库直接以《中国宜兴陶瓷汉英简明辞典》的 2576 条辞目、960 余幅插图为主要信息来源，让 AI 准确理解「三弯嘴」「嵌盖」「压盖」这类「没有经过专门训练就很难配合创作」的行业术语<a class="cref verified" href="#ref-1">[1]</a>。对垂直行业 AIGC 而言，数据工程先于产品工程，这是本案最重要的方法论。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-3">[3]</a></div></div>
+  <div class="card red"><div class="ct">转折三：一个人的公司，靠政企协同补齐闭环——OPC 基地、首单保险与金融服务站</div><div class="cb">100% 持股、参保 3 人的极小团队无力自建渠道与风控，本案的破局点是把自己嵌入地方政企生态：宜兴市科技局为其量身定制全国首单陶瓷产业链 AI 场景应用企业创业综合保险（保额 538 万元，含 AI 内容侵权责任），破解「风险触点多、资金预算紧、抗风险能力弱、融资渠道窄」四道初创「拦路虎」<a class="cref cross" href="#ref-4">[4]</a>；天猫校园提供流量渠道、陶二厂提供文旅场景、供春AI 提供 AI 平台与 3D 打印教学，三方联动构成创业商业生态<a class="cref cross" href="#ref-5">[5]</a>。个人能力 + 制度供给的组合，正是新华网所总结的中国式 OPC 内核：「个体的聪明才智，叠加算力底座、产业场景、制度保障」<a class="cref verified" href="#ref-2">[2]</a>。</div><div class="cm">信源：<a class="cref cross" href="#ref-4">[4]</a> <a class="cref cross" href="#ref-5">[5]</a> <a class="cref verified" href="#ref-2">[2]</a></div></div>
+  <div class="quote">
+    <p>AI 不是取代匠心的工具，而是放大创意的桥梁。</p>
+    <span class="src">—— 张雨航，无锡日报《用AI玩转紫砂泥》（2026-06-02），转引自 <a class="cref verified" href="#ref-3">[3]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>内容</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>产品功能</b></td><td>输入颜色、肌理、功能等关键词，短短几秒生成数十种设计方案；20 多秒生成紫砂壶「定制款」概念图；可转化线稿二次创作、生成 3D 模型；自研陶泥 3D 打印设备（部分零件亦为 3D 打印），实现「AI 设计→3D 成型」贯通</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td><b>产业带结合逻辑</b></td><td>扎根宜兴丁蜀紫砂产业带：以本地千年非遗技艺为语料与场景，向上服务陶瓷艺人设计提效，向下连接陶二厂文旅体验（AI 造物工坊）、高校教学与「苏超」城市文创，形成「产业带 → 数据 → 工具 → 场景」的在地闭环</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-5">[5]</a><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>变现方式</b></td><td>公开信息未见软件定价与营收数字；可见的变现形态包括：文旅场景「AI 智能体 + 陶泥 3D 打印」一站式陶瓷定制（已在多个景区、博物馆落地）、3D 打印定制服务、高校教学软件合作、城市文创共创（苏超杯/奖杯）及企查查自述的「教育研学 + IP 孵化」闭环——营收金额未检索到公开信息</td><td><a class="cref cross" href="#ref-8">[8]</a><a class="cref partial" href="#ref-11">[11]</a></td></tr>
+      <tr><td><b>面向客群</b></td><td>核心客群为陶瓷从业者与工艺美术工作室（上线即覆盖全国 400 多个非遗工作室主理人）；第二客群为设计学生与高校（近 30 所高校将其作为教学软件开展数智工艺美术教学）；延伸客群为景区/博物馆的文旅消费者</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-3">[3]</a><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td><b>解决痛点</b></td><td>传统陶瓷设计从概念到成型需经历草图、试制、改进多个阶段，流程繁琐且耗时；AIGC 将方案产出压缩至数十秒，且通过中文专业术语训练补齐了海外软件「不懂中国陶瓷审美」的空白</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box insight">
+    <div class="bt">💡 商业模式的一个关键观察</div>
+    供春AI 的收入结构高度「政企化」——保险、OPC 基地、金融服务站、教学合作均为 B/G 端或生态型收入，而非典型的 C 端订阅。这与案例墙内 hupoCADNet（9.9 元起按次 + 月卡）的个人付费模式形成鲜明对照：同为垂直设计工具，「产业带 + 政企生态」路线牺牲了短期账面营收的可见性，换取了制度性壁垒与场景独占。
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点 / 口径</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>用户数</td><td class="hl">过万 → 1.5 万余 → 突破 3 万</td><td>2024-11-29 → 2026-01 → 截至 2025 年底</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-4">[4]</a><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td>AI 生成设计图</td><td class="hl">超 40 万张</td><td>2024-11-29</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>覆盖非遗工作室</td><td>400 多个（主理人）</td><td>2024-11-29</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>落地工艺美术品</td><td>380 多件 → 超 500 件</td><td>2024-11-29 → 2026-01</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td>合作高校</td><td class="pos">近 30 所（含中国美院、南艺等）</td><td>2026-06（教学软件）</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td>创业保险保额</td><td>538 万元（全国首单）</td><td>2026-01-05</td><td><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td>苏超文创共创方案</td><td>500 多个设计方案（紫砂足球杯）</td><td>2025 年</td><td><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td>公司规模</td><td>注册资本 300 万元、100% 持股、参保 3 人</td><td>工商登记（2026-10 更新）</td><td><a class="cref verified" href="#ref-10">[10]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    用户数、设计图与工艺品数量均为政府稿件/央媒引用的受访者口径，未见平台方或审计方独立确认；「400 多个非遗工作室」（2024-11 锚点稿的覆盖口径）与「拜访 280 多家/400 多家工作室」（前期调研口径）为两组不同统计，正文已分别标注；营收与融资金额零披露。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将供春AI 放入案例墙「垂直应用 OPC」坐标系。《易经图卦》《hupoCADNet》两行取自案例墙既有核验值（本报告未重新核验原文，引用时已注明）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>变现</th><th>数据表现</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>供春AI</b></td><td>张雨航</td><td>陶瓷 AIGC 辅助设计软件（紫砂等工艺美术方案生成 + 3D 打印对接）</td><td>未检索到公开定价（文旅定制/教学/文创共创）</td><td>用户 3 万+、走进近 30 所高校、落地全国首个 AI+手工艺 OPC 创业基地</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td>「易经图卦」系列（传统文化 AI 化）</td><td>刘健（1998 年生，杭州）</td><td>AI 转译易经卦象的情绪卡牌 + AI 生成小程序，一人包揽产品全流程</td><td>实物卡牌销售 + 小程序</td><td>年销售额破百万、单平台月营收稳定 6 万+、累计售出 1 万+ 套</td><td><a class="cref cross" href="#ref-12">[12]</a></td></tr>
+      <tr><td>hupoCADNet（垂直设计工具）</td><td>何思康（15 年室内设计经验）</td><td>AI 彩平图生成引擎：CAD 平面图 + 风格参考图约 3 分钟生成可商用彩色平面图</td><td>9.9 元起按次 + 月卡 18/36 元</td><td>上线半年 1740 位付费设计师、营收 5.1 万元、毛利率超 80%（自述口径）</td><td><a class="cref cross" href="#ref-12">[12]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>三个同为「垂直 × AI」的 OPC，走出了三条完全不同的路：易经图卦做<b>传统内容的 C 端情绪消费</b>，靠销售额直接验证；hupoCADNet 做<b>设计师个人的效率生意</b>，靠小额付费跑通毛利模型；供春AI 则是唯一的<b>「非遗产业带 + AI + 政企生态」</b>组合——它不追求单点付费，而是把软件嵌入产业带的政企网络（政府保险、天猫校园基地、高校教学、文旅场景），以生态位换取资源位。代价是商业闭环透明度最低（零营收披露），收益是新华网级背书与可复制的「产业带 OPC 样板」地位<a class="cref verified" href="#ref-2">[2]</a>。对后来者的启示：在大模型能力趋同的背景下，垂直数据资产（16 万张器物数据、专业辞典）与在地产业关系，比模型本身更难复制。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:130px">维度</th><th>分析</th><th style="width:70px">信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>「生成 + 成型」双环节覆盖：文本/手绘输入 → 数十秒生成工艺美术方案 → 线稿二次创作 → 3D 建模 → 自研陶泥 3D 打印设备实体成型，游客端可在 AI 造物工坊数分钟内拿到个性化紫砂作品；软件与硬件（3D 打印设备自研）双向咬合是区别于纯软件工具的关键。</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td><b>2. 面向客群</b></td><td>三层结构：B 端陶瓷从业者/工作室（数智搭档）、G/校端高校与政府项目（教学软件、文创共创）、C 端文旅消费者（景区现场定制）。C 端经由 3D 打印 + 非遗老师修坯上釉烧制的「半自动化产线」完成交付，客群重心明显偏向 B/G 端。</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td><b>3. 解决痛点</b></td><td>需求端：传统陶瓷设计流程繁琐耗时，且现有海外陶瓷 AI 软件不适配中国陶瓷审美与专业术语——供春AI 以中文专业术语库（三弯嘴、嵌盖、压盖）与本地器型数据直接命中「外国模型听不懂中国陶艺」的空白；供给端：为非遗手工艺提供了「数字化出海」的新叙事。</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>4. 预估营收（推算，置信度 C）</b></td><td><b>营收零披露</b>，未检索到任何公开金额。可见收入线索均为形态而非数字：景区/博物馆一站式定制、3D 打印定制服务、高校教学合作、城市文创共创、保险与基地等政府性资源。按参保 3 人的小微体量与「成立仅 2 年」的自述，收入大概率尚处早期验证阶段，任何具体金额推算均缺乏依据，此处不作猜测。</td><td><a class="cref cross" href="#ref-4">[4]</a><a class="cref verified" href="#ref-10">[10]</a></td></tr>
+      <tr><td><b>5. 融资进展</b></td><td>未检索到公开股权融资信息。非货币资源密集：全国首单产业链创业综合保险（保额 538 万元）、天猫校园基地流量扶持、交行/工行 OPC 金融服务站授信对接、陶二厂等载体配套。创始人自述初创期「融资渠道窄」是四道「拦路虎」之一——政企资源替代了部分早期风投职能。</td><td><a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td><b>6. 市场评价</b></td><td>权威正评价密集：宜兴市陶瓷行业协会会长史俊棠将其类比清代陈曼生与现当代张守智、韩美林等艺术家同紫砂艺人的合作，认为其「为数字时代下非遗跨界融合与可持续发展开辟了新路径」；新华网以本案定性「AI 不是取代人的匠心，而是放大个体的创造力」；宜兴市政府网多篇稿件持续背书。</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>7. 投入成本与合规风险</b></td><td><b>传统工艺知识产权：</b>器型库以《中国宜兴陶瓷汉英简明辞典》为主要信息来源，器型与纹样的著作权/数据授权链条未公开披露；行业本身对「AI 生成器型是否侵蚀手工价值体系」存在结构性争议（见「捌」）。<b>AIGC 设计的工艺落地差距：</b>40 万张设计图仅对应 380 余件落地工艺品（2024-11 口径，转化率约千分之一），AI 概念图到成品仍需手艺人二次创作与烧制环节兜底——「数十秒出图」与「数天成器」之间的工序鸿沟是本品类硬约束。合规动作前瞻：AI 内容侵权、知识产权侵权已纳入保险覆盖范围，说明风险被企业与合作方正式识别并定价。</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 手工价值之争：紫砂界「狼来了」之问（政府党报刊发，非自媒体噪音）</div>
+    供春AI 发布后，宜兴日报 2024-12-05 评论直言软件「惊到了一众紫砂艺人，不少人因此心生困惑」：宜兴紫砂以纯手工创作为最大亮点，纯手工、半手工、机器制作直接关系紫砂陶器身价，「人工智能以不可挡的势头融入传统手工艺，似乎伤害了这一评价体系的根本，这让一些手艺人很排斥」，更有悲观者疾呼「狼来了」。该评论同时给出行业级反驳：AI 能「师古人」却很难「师自然」，无法融入个人审美与思考，无法完成真正意义上的艺术创作。这是本案最真实的结构性张力：工具的渗透率与其对手工价值体系的冲击同步增长，未有任何一方宣布「终局」。<a class="cref cross" href="#ref-9">[9]</a>
+  </div>
+  <div class="box risk">
+    <div class="bt">⚠️ 口径冲突与数据留白（截至 2026-11-13 检索）</div>
+    ① 调研工作室数：2024-11 锚点稿写「拜访 280 多家非遗工作室」，2026-06 无锡日报写「拜访了 400 多家」——或为持续累计，无官方解释，双口径存档 <a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-3">[3]</a>；② 公司成立口径：工商登记为 2023-05-16，而 2026-01 科技局稿称「成立仅 2 年」（约数偏保守）<a class="cref verified" href="#ref-10">[10]</a><a class="cref cross" href="#ref-4">[4]</a>；③ 「国内首款陶瓷 AIGC 辅助设计软件」与「国内首个紫砂 AIGC 辅助设计软件」两种官方表述并存，均为政府稿口径，本报告采前者（锚点稿标题口径）；④ 营收、定价、融资、股权变动全部零披露；⑤ 「用户 3 万+」为受访者口径，无平台或第三方审计印证。
+  </div>
+  <div class="box note">
+    <div class="bt">📌 本案的样本价值与边界</div>
+    供春AI 的独特性在于证明了 OPC 在「最不数字化的行业」的可行性：紫砂是典型的经验型非遗手工艺，其数字化不是把线下流程搬到线上，而是先用垂直数据资产换取行业话语权，再借政企生态把个人公司升维为产业基础设施。样本边界同样清晰：它的成功高度依赖宜兴独有的产业密度与政府供给（首单保险、OPC 基地、金融服务站），在其他缺乏「单一品类产业带 + 强地方政府」的地区未必可复制；其商业闭环的财务验证仍属空白，不宜将其作为「AI+非遗必然成立」的证据，更准确的读法是——「AI+非遗 × 产业带政企生态」这一特定组合的一次已验证试点。
+  </div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 12 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx verified">[1]</span><span class="rt">A+</span><span class="st">政府官网 · 案例墙锚点</span></div><div class="ti">国内首款陶瓷AIGC辅助设计软件在宜开发应用（宜兴日报，宜兴市政府网发布）</div><div class="mt"><b>来源：</b>宜兴市政府网（原发宜兴日报）　<b>发布日期：</b>2024-11-29<br><a href="http://www.yixing.gov.cn/doc/2024/11/29/1272708.shtml" target="_blank" rel="noopener">http://www.yixing.gov.cn/doc/2024/11/29/1272708.shtml</a></div><div class="note">事实核查：原文回溯完成。锚点数据（用户过万、400 多个工作室主理人、40 万张设计图、380 多件工艺品）、调研 280 多家工作室、《中国宜兴陶瓷汉英简明辞典》训练细节、史俊棠评价均出自此稿；「国内首款」定位与新华网 [2]、无锡日报 [3] 多源交叉，核验状态为 verified。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx verified">[2]</span><span class="rt">A+</span><span class="st">央媒报道</span></div><div class="ti">中国：OPC潮起，AI重构创业生态（《环球》杂志，记者胡艳芬）</div><div class="mt"><b>来源：</b>新华网（原发《环球》杂志）　<b>发布日期：</b>2026-08-31<br><a href="https://www.xinhuanet.com/globe/20260831/89d03f0573a148f79943fc444cdaad2f/c.html" target="_blank" rel="noopener">https://www.xinhuanet.com/globe/20260831/89d03f0573a148f79943fc444cdaad2f/c.html</a></div><div class="note">事实核查：原文回溯完成。「曾就职阿里云」「16 万份经典陶瓷器物数据」「数十秒生成紫砂壶设计方案并对接 3D 打印」「用户突破 3 万人」「走进全国近 30 所高校课堂」「全国首个 AI+手工艺 OPC 创业基地」「工艺正在走出国门」及中国式 OPC 总结均出自此稿，与宜兴市政府网 [1][4][5] 交叉一致。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx verified">[3]</span><span class="rt">A+</span><span class="st">政府官网 · 市级党媒</span></div><div class="ti">用AI玩转紫砂泥（无锡日报，无锡市委宣传部官网发布，记者蒋梦蝶）</div><div class="mt"><b>来源：</b>无锡市委宣传部网 xcb.wuxi.gov.cn（原发无锡日报）　<b>发布日期：</b>2026-06-02<br><a href="https://xcb.wuxi.gov.cn/doc/2026/06/02/4789918.shtml" target="_blank" rel="noopener">https://xcb.wuxi.gov.cn/doc/2026/06/02/4789918.shtml</a></div><div class="note">事实核查：原文回溯完成。教育背景（南艺 + 芝加哥艺术学院）、2023 年调研 400 多家工作室、20 多秒生成概念图、苏超「紫韵足梦」500 多个方案与篮球奖杯、自研 3D 打印设备、截至 2025 年底用户破 3 万、近 30 所高校教学合作、「放大创意的桥梁」引语均出自此稿，与 [1][2] 交叉一致；「拜访 400 多家」与 [1] 的「280 多家」口径冲突已在「捌」标注。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx cross">[4]</span><span class="rt">A+</span><span class="st">政府官网</span></div><div class="ti">全国首单陶瓷产业链科技企业创业综合保险落地宜兴（宜兴市科技局，原发无锡日报）</div><div class="mt"><b>来源：</b>宜兴市政府网（宜兴市科学技术局）　<b>发布日期：</b>2026-01-05<br><a href="http://www.yixing.gov.cn/doc/2026/01/05/1374571.shtml" target="_blank" rel="noopener">http://www.yixing.gov.cn/doc/2026/01/05/1374571.shtml</a></div><div class="note">事实核查：原文回溯完成。保额 538 万元及保障范围（研发失败费用、知识产权侵权、AI 内容侵权）、用户 1.5 万余、工艺品超 500 件、「四道拦路虎」自述、「美国海归硕士」身份、「成立仅 2 年」口径均出自此稿；与 [3] 交叉印证（用户数递进关系一致）。另见同源稿 yixing.gov.cn/doc/2026/01/09/1375323.shtml（内容一致）。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx cross">[5]</span><span class="rt">A+</span><span class="st">政府官网</span></div><div class="ti">天猫校园×丁蜀，「AI+手工艺」OPC基地来了！（丁蜀镇）</div><div class="mt"><b>来源：</b>宜兴市政府网（丁蜀镇）　<b>发布日期：</b>2026-04-27<br><a href="http://www.yixing.gov.cn/doc/2026/04/27/1391462.shtml" target="_blank" rel="noopener">http://www.yixing.gov.cn/doc/2026/04/27/1391462.shtml</a></div><div class="note">事实核查：原文回溯完成。天猫校园首批 2 个大学生 OPC 创业实践基地、进驻 800 余所高校/服务近 2000 万学生、陶二厂手工市集 1200 余名青年摊主、「阿里云体验设计师」身份、AI 造物工坊 3D 打印定制、主题分享均出自此稿；「全国首个 AI+手工艺 OPC 创业基地」表述与新华网 [2] 一致（政府稿表述为「首批 2 个之一、打造全国标杆样板」，双口径已在正文如实并陈）。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx cross">[6]</span><span class="rt">A+</span><span class="st">政府官网</span></div><div class="ti">AI+紫砂，这届青年在丁蜀玩出了新「陶」路！（丁蜀镇）</div><div class="mt"><b>来源：</b>宜兴市政府网（丁蜀镇）　<b>发布日期：</b>2026-06-11<br><a href="http://www.yixing.gov.cn/doc/2026/06/11/1398715.shtml" target="_blank" rel="noopener">http://www.yixing.gov.cn/doc/2026/06/11/1398715.shtml</a></div><div class="note">事实核查：原文回溯完成。OPC 金融服务站（交行、工行宜兴支行）、「人工智能+手工艺」OPC 社区以天猫校园、阿里云、供春AI 为核心技术平台支撑、陶二厂孵化基地四大功能区、「从阿里辞职后回乡创业」口径出自此稿。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">A+</span><span class="st">政府官网</span></div><div class="ti">宜兴向全国传递数智「强音」（宜兴日报）</div><div class="mt"><b>来源：</b>宜兴市政府网（原发宜兴日报）　<b>发布日期：</b>2025-09-18<br><a href="http://www.yixing.gov.cn/doc/2025/09/18/1355605.shtml" target="_blank" rel="noopener">http://www.yixing.gov.cn/doc/2025/09/18/1355605.shtml</a></div><div class="note">事实核查：原文回溯完成。「苏超」无锡文创《紫韵足梦》紫砂足球杯由供春AI 参与设计出自此稿；与 [3] 交叉印证（师生共创 500 多个设计方案细节见 [3]）。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx cross">[8]</span><span class="rt">A+</span><span class="st">省委新闻网 · 省级党媒</span></div><div class="ti">「文化和自然遗产日」看科技浪潮下的江苏非遗传承发展（新华日报，中共江苏省委新闻网发布，记者王慧）</div><div class="mt"><b>来源：</b>中共江苏省委新闻网 zgjssw.gov.cn（原发新华日报）　<b>发布日期：</b>2026-06-13<br><a href="https://www.zgjssw.gov.cn/yaowen/202606/t20260613_8578077.shtml" target="_blank" rel="noopener">https://www.zgjssw.gov.cn/yaowen/202606/t20260613_8578077.shtml</a></div><div class="note">事实核查：原文回溯完成。「数百万张建筑、自然物像图片以及 16 万张中国经典器物资料」的训练语料口径、张雨航「AI 智能体 + 陶泥 3D 打印」一站式定制方案（已在多个景区、博物馆落地、非遗老师完成修坯上釉烧制）引语均出自此稿；16 万张数据与 [2][3] 交叉一致。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx cross">[9]</span><span class="rt">A+</span><span class="st">政府官网 · 党报评论</span></div><div class="ti">人工智能是守正创新的时代之桥（宜兴日报评论）</div><div class="mt"><b>来源：</b>宜兴市政府网（原发宜兴日报）　<b>发布日期：</b>2024-12-05<br><a href="http://www.yixing.gov.cn/doc/2024/12/05/1273878.shtml" target="_blank" rel="noopener">http://www.yixing.gov.cn/doc/2024/12/05/1273878.shtml</a></div><div class="note">事实核查：原文回溯完成。紫砂艺人「心生困惑」「狼来了」、纯手工/半手工/机器制作评价体系、「AI 能师古人难师自然」论述出自此稿；系单一党报评论信源，观点性内容按原文如实收录。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx verified">[10]</span><span class="rt">B+</span><span class="st">工商数据库（一手）</span></div><div class="ti">无锡供春人工智能科技有限公司 工商登记信息（天眼查 / 企查查 / 水滴信用）</div><div class="mt"><b>来源：</b>天眼查、企查查、水滴信用（三源交叉）　<b>更新日期：</b>2026-10-10（天眼查科创分页）<br><a href="https://www.tianyancha.com/company/6167323550" target="_blank" rel="noopener">https://www.tianyancha.com/company/6167323550</a>　<a href="https://m.qcc.com/firm/e1bd033a4050f2c387320148fe0602f7.html" target="_blank" rel="noopener">企查查</a></div><div class="note">事实核查：成立日期 2023-05-16、注册资本 300 万元、法定代表人张雨航 100% 持股、注册地宜兴市丁蜀镇、参保人数 3 人、统一社会信用代码 91320282MACGT6876M——三个独立数据库完全一致，核验状态 verified；商业数据库按惯例评 B+。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx partial">[11]</span><span class="rt">B+</span><span class="st">商业数据库 · 自述简介</span></div><div class="ti">无锡供春人工智能科技有限公司 企业简介（「AI 设计 + 3D 打印 + 知识产权保护 + 教育研学 + IP 孵化」全闭环）</div><div class="mt"><b>来源：</b>企查查企业简介（企业自述口径）<br><a href="https://m.qcc.com/firm/e1bd033a4050f2c387320148fe0602f7.html" target="_blank" rel="noopener">https://m.qcc.com/firm/e1bd033a4050f2c387320148fe0602f7.html</a></div><div class="note">事实核查：业务闭环描述为企业自述，未见独立信源逐一印证，按 partial 收录；其中「国内首款陶瓷AIGC辅助设计软件在宜开发应用（来源：宜兴市人民政府 2024-11-29）」舆情条目与 [1] 互证。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx cross">[12]</span><span class="rt">B</span><span class="st">案例墙既有核验值</span></div><div class="ti">对标数据转引：「易经图卦」「hupoCADNet」（案例墙 index.html 及对应深度报告）</div><div class="mt"><b>来源：</b>OPC Story 案例墙（易经图卦：锚点 2026-07-15 ▲、cross；hupoCADNet：锚点 2026-01-31 ✓、partial）<br><a href="../../index.html" style="color:#2980b9">案例墙 index.html</a>　<a href="../yijing-cards/index.html" style="color:#2980b9">易经图卦深度报告</a>　<a href="../hupocad/index.html" style="color:#2980b9">hupoCADNet 深度报告</a></div><div class="note">事实核查：「易经图卦」年销售额破百万/月营收 6 万+/售出 1 万+ 套、「hupoCADNet」半年 1740 位付费/营收 5.1 万元/毛利率 80%+ 均为案例墙既有核验值，本报告未重新核验原始信源，引用时按转引处理。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 12 条。核验标签分布：🟢 已核验（verified）4 条、🔵 多源印证（cross）7 条、🟡 部分映证（partial）1 条。信源评级分布：A+ 级 9 条（新华网 1 条 + 宜兴市政府网 6 条 + 无锡市委宣传部网 1 条 + 中共江苏省委新闻网 1 条，原文回溯全部完成）、B+ 级 2 条（工商数据库三源交叉、企业自述简介）、B 级 1 条（案例墙对标值转引）。三处口径事项已在正文显式标注（调研工作室 280/400 家双口径、「成立仅 2 年」约数与工商登记 2023-05-16 并陈、「首批 2 个基地之一」与「全国首个 AI+手工艺」表述差异）；营收、定价、融资、股权变动四处零披露，均写明「未检索到公开信息」，不作推算。未发现伪造链接；全部 URL 为检索过程实际命中页面。数据检索截止：2026-11-13。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-13 · 营收等未披露信息均标注「未检索到公开信息」，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

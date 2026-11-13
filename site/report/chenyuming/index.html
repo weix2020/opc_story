@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · AI 效率小程序矩阵 —— 码个蛋陈宇明的微信生态小生意 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · AI 效率小程序矩阵">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="AI 效率小程序矩阵深度案例报告：前 Android 知名开源库 BRVAH 作者陈宇明（码个蛋）在群工具矩阵 1100 万用户断崖后转向 AI 配音/写作微信小程序矩阵，自述 200 万+ 用户、连续 12 个月盈利。14 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>AI 效率小程序矩阵深度案例报告</h1>
+    <h2>前 Android 知名开源库作者陈宇明（网名「码个蛋」）：群工具矩阵 1100 万用户断崖后转向 AI 配音/写作小程序<br>自述 200 万+ 用户、连续 12 个月盈利（微信公开课 PRO 讲师口径，谨慎标注）—— 14 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">微信生态型 OPC</span>
+      <span class="tag">小程序矩阵</span>
+      <span class="tag">订阅 + 按量付费</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">200 万+</div><div class="k">AI 效率小程序矩阵累计用户（本人自述 · 2024-04）</div></div>
+  <div class="stat"><div class="v up">12 个月</div><div class="k">连续盈利（本人自述口径 · 无第三方审计）</div></div>
+  <div class="stat"><div class="v neutral">约 3 人</div><div class="k">小团队规模（组队口径 + 外部兼职，标注）</div></div>
+  <div class="stat"><div class="v neutral">24,560★</div><div class="k">BRVAH 开源库 GitHub Stars（2026-11-12 实测）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">本案是案例墙中少见的「微信生态原生」OPC 样本：创业者以 Android 技术博主与开源库作者身份完成第一桶金，在疫情红利产品崩盘后，围绕短视频创作者的配音/文案/字幕需求铺设 AI 小程序矩阵，变现从流量广告切换为「会员订阅 + 按量付费」。全部关键经营数据均为本人自述口径，本报告逐条标注。</p>
+  <div class="two">
+    <div class="card"><div class="ct">案例</div><div class="cb">AI 效率小程序矩阵：面向短视频创作者的 AI 配音、AI 写作微信小程序矩阵，会员订阅 + 按量付费混合变现（锚点 2025 年 ▲）。前身「群登记助手」曾入选 2020 年第二届小程序·云开发技术峰会官方案例。<a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">陈宇明，网名「码个蛋」，长沙（自称长沙创业 <a class="cref partial" href="#ref-1">[1]</a>，湖南媒体独立印证 <a class="cref cross" href="#ref-4">[4]</a>）；自述 11 年互联网产品/研发/管理经验；Android 知名开源库 BRVAH（BaseRecyclerViewAdapterHelper）作者——GitHub 实测 24,560★ <a class="cref cross" href="#ref-3">[3]</a>；微信开放社区官方讲稿简介：腾讯《小程序云开发挑战赛》职业组第一、公众号「码个蛋」主理人、云开发 10 多款小程序累计访问量超千万 <a class="cref cross" href="#ref-2">[2]</a>；自述受微信团队邀请任微信公开课 PRO 特邀讲师（分享 AI 小程序与云开发/Donut 最佳实践）<a class="cref partial" href="#ref-1">[1]</a>。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="card"><div class="ct">公司</div><div class="cb">湖南码上行动网络科技有限公司——独立媒体口径为 2021 年创立 <a class="cref cross" href="#ref-4">[4]</a>；本人复盘口径为 2022 年 6 月立项「班级收作业」后「成立公司组建团队」<a class="cref partial" href="#ref-1">[1]</a>，两口径可能对应不同注册主体或先后动作，已在捌并列存档。</div><div class="cm">信源：<a class="cref cross" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-1">[1]</a></div></div>
+    <div class="card"><div class="ct">团队与经营状态</div><div class="cb">约 3 人小团队（本人 + 两位技术开发合伙人；运营岗入职半月即离职、后开启外部兼职机制——自述口径，2024-04 时点）<a class="cref partial" href="#ref-1">[1]</a>；自述连续 12 个月盈利、账上留有半年以上发展资金储备、已从「私人账户转账发工资」过渡到公司账户支付 <a class="cref partial" href="#ref-1">[1]</a><a class="cref partial" href="#ref-5">[5]</a>。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-5">[5]</a></div></div>
+  </div>
+  <div class="box insight">
+    <div class="bt">🔎 一句话定位</div>
+    微信生态内「小而美」生意的典型：不融资、不追大平台，用一个矩阵吃透短视频创作者的细分工具需求，把「推广」而非「开发」当主业（自述精力分配 40% 产品 / 60% 推广 <a class="cref partial" href="#ref-1">[1]</a>）。
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2016-04</div><div class="tx">Android 开源库 BRVAH 在 GitHub 创建</div><div class="td">BaseRecyclerViewAdapterHelper，MIT 协议；2026-11-12 实测 24,560★ / 5,163 fork——「技术博主」影响力的起点。<a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2020-02 → 2020-12</div><div class="tx">疫情红利：一人 3 天做出「群登记助手」</div><div class="td">下班之余 3 天上线、9 个多月 40 余次迭代；官方讲稿口径：12 万收集者、近 600 万份登记数据、数千万次访问；入选第二届小程序·云开发技术峰会案例。<a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2022-06</div><div class="tx">群工具矩阵增长最高点，押注「班级收作业」</div><div class="td">立项收作业工具、预计 6 个月盈利；成立公司，叫来两位技术开发老伙计，加班 4 个月发布新产品。<a class="cref partial" href="#ref-1">[1]</a><a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2022 下半年</div><div class="tx">断崖：老产品腰斩、新产品停服</div><div class="td">新产品上线当天群工具流量即腰斩；疫情放开后收集需求消失，日活从最高 20 万跌至 5 千（约 40 倍），新产品停服下架。<a class="cref partial" href="#ref-1">[1]</a><a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2022 底</div><div class="tx">转向 AI 效率工具：首款 AI 配音小程序上线</div><div class="td">聚合多家厂商音色、做会员订阅；随后沿视频创作流程扩展配音前（文案）与配音后（字幕）工具。<a class="cref partial" href="#ref-1">[1]</a><a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2022 底 → 2023 初</div><div class="tx">至暗 10 个月：连续亏损、拒绝被收购、融资全拒</div><div class="td">自述 10 个月连续亏损、资金枯竭面临解散；朋友欲收购被团队成员拒绝（「大不了兼职搞」）；找钱（朋友+投资机构）均被拒。<a class="cref partial" href="#ref-1">[1]</a><a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2023-01</div><div class="tx">ChatGPT API 开放：一天上线 AI 写作小程序</div><div class="td">输入需求/字数/风格生成文案、按字数付费；上线首日即收到付费，借热度获第一批用户与达人推荐。<a class="cref partial" href="#ref-1">[1]</a><a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2023-04-01（愚人节）</div><div class="tx">AI 写作小程序被下架——平台合规生死线</div><div class="td">因 ChatGPT API 安全合规问题下架；数日内接入智谱 AI 重上架；支付账号因投诉被限制，更换支付主体、一个多月处理退款；补齐 AI 生成类资质后当月收支平衡。<a class="cref partial" href="#ref-1">[1]</a><a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2023</div><div class="tx">抖音获客：6 个月 200+ 作品，日付费 5 单 → 200 单</div><div class="td">运营岗半个月离职后亲自下场做内容，量变到质变（40 倍）。<a class="cref partial" href="#ref-1">[1]</a><a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2024-04-19</div><div class="tx">发布 18 个月复盘长文：200 万+ 用户、连续 12 个月盈利</div><div class="td">同时发于微信开放社区（13,864 浏览）与掘金；上一阶段总结为公众号《离职一年，收入10倍增长》<a class="cref partial" href="#ref-6">[6]</a>；文内宣布矩阵用户 200 万、公众号 30 万、账上半年储备与公开课讲师经历。<a class="cref partial" href="#ref-1">[1]</a><a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2024-05 → 2024-06</div><div class="tx">微信开放社区 AI 系列内容 + 新产品「小微智能体」</div><div class="td">云开发交流专区发布《教你 3 分钟搭建 AI 助手》《AI 智能体应用发布篇》<a class="cref cross" href="#ref-7">[7]</a>；团队将「Coze 智能体经 API 发布为微信小程序」方案打磨成新产品「小微智能体」<a class="cref partial" href="#ref-9">[9]</a>。</div></div>
+    <div class="node"><div class="dt">约 2024 末 ▲</div><div class="tx">「AI 智能体 + AI 小程序 = MVP 王炸组合」打法</div><div class="td">Coze 一小时搭建智能体一键部署到小程序，自述访问页面数据增长 1000%，定位为低成本试错的 MVP 组合。<a class="cref partial" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2025-02-21 ▲</div><div class="tx">湖南中人社传媒报道：公司累计 400 万用户（案例墙锚点）</div><div class="td">「大学生创业」报道印证：2021 年创立湖南码上行动网络科技有限公司，产品含 AI 写作与 AI 食记，「累计拥有 400 万用户」，规划拓展 AI 智能咨询与培训。<a class="cref cross" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2026-09 ▲</div><div class="tx">观察个人小程序变现新政：矩阵累计用户超 1600 万</div><div class="td">《微信又放大招！个人小程序能打赏了》披露全矩阵累计用户超 1600 万，并分析个人小程序虚拟支付、零手续费赞赏两项新政的意义。<a class="cref partial" href="#ref-10">[10]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：技术博主的流量红利，救不回一次「押注型」扩张</div><div class="cb">BRVAH 与「码个蛋」公众号积累的技术影响力，让群工具矩阵做到 1100 万用户量级（自述）<a class="cref partial" href="#ref-5">[5]</a>；但 2022 年的第二次扩张建立在疫情收集需求之上——新产品开发 4 个月上线当天，老产品流量即腰斩，疫情放开后日活从 20 万跌至 5 千、新产品停服 <a class="cref partial" href="#ref-1">[1]</a>。教训：建立在外部红利上的需求，红利消失时地基一起被抽走。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-5">[5]</a></div></div>
+  <div class="card"><div class="ct">转折二：从广告模式到订阅模式——「让每个用户都是核心用户」</div><div class="cb">群工具只有「发起者」是核心用户、同行普遍免费、只能吃广告；AI 配音工具让每个短视频创作者都成为潜在付费者。自述判断：「这种模式的好处就是不需要靠用户量赚钱，只要用户人群足够精准，就可以有稳定的收入来源」——盈利模式从「广告变现用户规模」切换为「订阅 + 按量收割精准人群」，是本案商业模式的根本分水岭 <a class="cref partial" href="#ref-1">[1]</a>。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a></div></div>
+  <div class="card red"><div class="ct">转折三：愚人节下架与合规补课——平台规则是微信生态创业的生死线</div><div class="cb">2023-04-01 AI 写作小程序因 ChatGPT API 安全合规问题被下架；接智谱 AI 重上架、支付账号遭投诉限制、补齐 AI 生成类资质，一个多月后当月收支平衡 <a class="cref partial" href="#ref-1">[1]</a>。此后他把合规能力变成经营的一部分（详见柒·平台规则风险）——在微信生态里，审核、支付、类目资质每一环都可能让产品一夜归零，挺过去的人反而少了竞争对手。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a></div></div>
+  <div class="quote">
+    <p>在同质化产品泛滥的时代，把产品推出去是活下来的唯一出路。……之前一个人的时候我精力分配是 20% 产品，80% 的开发。而现在我的分配是 40% 产品，60% 推广。</p>
+    <span class="src">—— 陈宇明（码个蛋），18 个月复盘长文（2024-04-19），转引自 <a class="cref partial" href="#ref-1">[1]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <p class="lead">矩阵逐项盘点（以信源可查为准，未检索到公开信息的项目如实标注「未披露」）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>产品 / 方向</th><th>功能定位</th><th>变现方式</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td class="hl">AI 配音小程序（矩阵首款）</td><td>聚合多家厂商 AI 音色，面向短视频创作者的配音工具</td><td>会员订阅</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref partial" href="#ref-5">[5]</a></td></tr>
+      <tr><td class="hl">AI 写作小程序（2023-01 一天上线）</td><td>输入写作需求/字数/风格生成文案（配音前置环节），后补写作模板降低门槛</td><td>按写作字数付费 + 会员</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref partial" href="#ref-5">[5]</a></td></tr>
+      <tr><td>视频字幕处理工具</td><td>配音后置环节的字幕处理（具体产品形态未披露）</td><td>未披露</td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td>「小微智能体」（约 2024）</td><td>把扣子 Coze 智能体经 API 一键发布为微信小程序：无需企业资质、支持多智能体、4 种分享形式、数据统计</td><td>未披露</td><td><a class="cref partial" href="#ref-9">[9]</a></td></tr>
+      <tr><td>AI 食记</td><td>面向减肥人群的饮食记录与营养成分分析</td><td>未披露</td><td><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td>群登记助手 / 群工具矩阵（前一曲线）</td><td>作业登记、报名接龙、出入登记等零接触收集工具</td><td>流量主广告（旧模式）</td><td><a class="cref cross" href="#ref-2">[2]</a><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h4>订阅 + 按量的混合变现</h4>
+  <p>两款核心工具分别跑通两种收费逻辑：AI 配音走<b>会员订阅</b>（「结合多家厂商的 AI 配音的音色……做会员订阅的盈利模式」），AI 写作走<b>按量付费</b>（「根据写作字数付费」），上线首日即收到付费 <a class="cref partial" href="#ref-1">[1]</a><a class="cref partial" href="#ref-5">[5]</a>。自述其优势：「不需要靠用户量赚钱，只要用户人群足够精准，就可以有稳定的收入来源」——与群工具「参与者多、付费者少、只能靠广告」的结构形成直接对照 <a class="cref partial" href="#ref-1">[1]</a>。</p>
+  <h4>微信生态获客 + 站外引流</h4>
+  <ul class="bl">
+    <li><b>公众号沉淀：</b>「码个蛋」关注用户 30 万（2024-04 自述）<a class="cref partial" href="#ref-1">[1]</a>，是矩阵的内容与流量中转；</li>
+    <li><b>抖音小程序挂载：</b>亲自下场做内容，6 个月 200+ 作品，日付费单量 5 → 200 单 <a class="cref partial" href="#ref-1">[1]</a>；</li>
+    <li><b>官方社区与平台内容：</b>在微信开放社区持续发布 AI 教程（2020 峰会讲稿、2024 AI 助手系列）<a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-7">[7]</a>，在掘金/人人都是产品经理双渠道输出复盘 <a class="cref partial" href="#ref-1">[1]</a><a class="cref partial" href="#ref-10">[10]</a>——内容即获客；</li>
+    <li><b>微信内分享裂变：</b>「小微智能体」内置 4 种分享形式（好友卡片/链接/公众号嵌入/VID）<a class="cref partial" href="#ref-9">[9]</a>。</li>
+  </ul>
+  <h4>面向客群与解决的痛点</h4>
+  <p>核心客群为<b>短视频创作者</b>：配音贵、文案产出慢、字幕处理繁琐，矩阵沿「文案（配音前）→ 配音 → 字幕（配音后）」的创作全流程横向铺开 <a class="cref partial" href="#ref-1">[1]</a>；独立媒体口径显示客群同时延伸至学习/办公人群（AI 写作）与减肥人群（AI 食记）<a class="cref cross" href="#ref-4">[4]</a>。矩阵策略的本质是<b>同一批微信用户、多场景复用获客成本</b>。</p>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>口径</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>AI 效率小程序矩阵累计用户</td><td class="hl">200 万+</td><td>2024-04</td><td class="hl">本人自述</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref partial" href="#ref-5">[5]</a></td></tr>
+      <tr><td>连续盈利时长</td><td class="pos">12 个月</td><td>2024-04</td><td class="hl">本人自述</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref partial" href="#ref-5">[5]</a></td></tr>
+      <tr><td>公司资金储备</td><td>半年以上发展资金</td><td>2024-04</td><td class="hl">本人自述</td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td>群工具小程序矩阵用户（前一曲线）</td><td>1100 万</td><td>2024-04</td><td class="hl">本人自述</td><td><a class="cref partial" href="#ref-5">[5]</a></td></tr>
+      <tr><td>群工具最高日活 → 疫情后</td><td>20 万 → 5 千（约 40 倍）</td><td>2022 → 2023</td><td class="hl">本人自述</td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td>群登记助手（峰值单品，官方讲稿）</td><td class="pos">12 万收集者 / 近 600 万份登记数据 / 数千万次访问</td><td>2020-12</td><td>云开发峰会官方讲稿</td><td><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td>公司累计用户</td><td>400 万</td><td>2025-02</td><td>独立第三方媒体</td><td><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td>小程序产品矩阵累计用户</td><td>1600 万+</td><td>2026-09 ▲</td><td class="hl">本人自述</td><td><a class="cref partial" href="#ref-10">[10]</a></td></tr>
+      <tr><td>公众号关注用户</td><td>30 万</td><td>2024-04</td><td class="hl">本人自述</td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td>抖音小程序日付费单量</td><td>5 单 → 200 单（6 个月，200+ 作品）</td><td>2023</td><td class="hl">本人自述</td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td>BRVAH GitHub Stars / Fork</td><td class="pos">24,560★ / 5,163 fork</td><td>2026-11-12 实测</td><td>GitHub API 平台一手</td><td><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td>掘金主页影响力</td><td>292 篇文章 / 618k 阅读 / 8.9k 关注</td><td>2026-11 查询</td><td>平台页一手</td><td><a class="cref cross" href="#ref-11">[11]</a></td></tr>
+      <tr><td>人人都是产品经理专栏</td><td>26 篇作品 / 118,303 总阅读</td><td>2026-11 查询</td><td>平台页一手</td><td><a class="cref cross" href="#ref-12">[12]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    「200 万+」（2024-04，AI 效率矩阵）<a class="cref partial" href="#ref-1">[1]</a> → 「400 万」（2025-02，公司累计，第三方媒体）<a class="cref cross" href="#ref-4">[4]</a> → 「1600 万+」（2026-09，含群工具的全产品矩阵）<a class="cref partial" href="#ref-10">[10]</a>：链路自洽但口径各不相同，引用须注明时点与口径。<b>营收金额与利润率自始至终未披露</b>，可核验的财务事实仅有「连续 12 个月盈利」「半年资金储备」「私人账户发工资 → 公司账户」三条自述 <a class="cref partial" href="#ref-1">[1]</a>。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将本案放入案例墙「一人多产品矩阵」坐标系。对标数据均为<b>案例墙既有核验值</b>（本报告未重新核验，详见案例墙 index.html 对应卡片）<a class="cref cross" href="#ref-13">[13]</a>：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>变现</th><th>主渠道</th><th>数据表现（案例墙既有核验值）</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>AI 效率小程序矩阵（本案）</b></td><td>陈宇明（码个蛋）</td><td>微信小程序矩阵：AI 配音/写作/字幕/智能体发布</td><td>会员订阅 + 按量付费</td><td>微信生态 + 抖音引流</td><td class="hl">自述 200 万+ 用户、连续 12 个月盈利</td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td>NuxtPro 等 AI 工具矩阵</td><td>IndieMakerKevin（PennyJoly）</td><td>6+ 产品线：SaaS 模板 + API 中转 + 工具站</td><td>买断 + 订阅 + 按量</td><td>即刻 + X + GitHub</td><td class="hl">自述月额外收入 ≥$10k</td><td><a class="cref cross" href="#ref-13">[13]</a></td></tr>
+      <tr><td>AI 音乐生成出海站</td><td>lsaiah（V2EX 用户）</td><td>单产品：AI 音乐 API 包装订阅站</td><td>订阅（Stripe）</td><td>V2EX / SEO 自然流量</td><td class="hl">自述月收入 ≥$12k（回帖有质疑）</td><td><a class="cref cross" href="#ref-13">[13]</a></td></tr>
+      <tr><td>PaywallPro</td><td>鱼总聊AI（AI_Jasonyu）</td><td>iOS 订阅付费墙与 Onboarding 数据分析 Agent</td><td>订阅工具</td><td>X 长文</td><td class="hl">自述单款累计营收 $200k+</td><td><a class="cref cross" href="#ref-13">[13]</a></td></tr>
+      <tr><td>chatgpt-on-wechat + LinkAI</td><td>zhayujie</td><td>微信生态 AI 机器人开源 + 零代码 Agent 平台</td><td>订阅计费（LinkAI）</td><td>GitHub 开源</td><td>GitHub 47.7k★（时点值），微信 AI 机器人事实标准</td><td><a class="cref cross" href="#ref-13">[13]</a></td></tr>
+      <tr><td>微信 AI 机器人（雨田，反面对照）</td><td>匿名（南宁，观察名单）</td><td>知识库客服机器人</td><td>项目制（单笔年单最高 8 万元）</td><td>微信生态</td><td>2024 年因微信封号潮关停——平台依赖风险典型</td><td><a class="cref cross" href="#ref-13">[13]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>本案的差异化路径在于「<b>微信生态内变现</b>」：NuxtPro、lsaiah、PaywallPro 代表出海派（Stripe/SEO/海外订阅闭环），而本案的收入、支付、获客全部跑在微信闭环内——小程序虚拟支付 + 微信支付 + 公众号沉淀 + 社区内容。优势是支付渗透率高、工具即用即走；代价是平台规则强约束（对比雨田案例的封号关停）。2026 年微信向个人开发者开放小程序虚拟支付与零手续费赞赏，正持续降低这条路径的变现门槛 <a class="cref partial" href="#ref-10">[10]</a>——本案的「订阅 + 按量」组合恰好踩在这一演进方向上。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:150px">维度</th><th>分析</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>微信小程序矩阵（AI 配音/写作/字幕/小微智能体发布工具），围绕短视频创作全流程布局；技术底座为云开发（serverless，曾把 CDN 月成本从 4699 元压到两百多元）<a class="cref cross" href="#ref-2">[2]</a>；2024 年起叠加 AI 智能体能力（Coze → 小程序一键发布）<a class="cref partial" href="#ref-8">[8]</a><a class="cref partial" href="#ref-9">[9]</a>。</td></tr>
+      <tr><td><b>2. 面向客群</b></td><td>核心：短视频创作者（AI 配音）<a class="cref partial" href="#ref-1">[1]</a>；延伸：学习/办公人群（AI 写作）、减肥人群（AI 食记）<a class="cref cross" href="#ref-4">[4]</a>、想把智能体快速上线微信的个体开发者（小微智能体）<a class="cref partial" href="#ref-9">[9]</a>。用户画像量化数据未披露。</td></tr>
+      <tr><td><b>3. 解决痛点</b></td><td>短视频配音成本高与音色单一（聚合多家厂商音色）、文案产出慢（AI 写作按字数付费+模板降门槛）、字幕处理繁琐（配音后工具）——矩阵沿同一用户工作流横向铺品，复用获客成本 <a class="cref partial" href="#ref-1">[1]</a>。</td></tr>
+      <tr><td><b>4. 预估年化营收（推算，置信度 C）</b></td><td><b>营收金额零披露，无法做数值推算。</b>可核验的财务事实仅三条自述：连续 12 个月盈利、账上半年以上储备、工资从私人账户过渡到公司账户 <a class="cref partial" href="#ref-1">[1]</a>。定性判断：以 200 万矩阵用户 +「订阅+按量」的精准付费模型，属典型「小而美」工具生意，盈利状态（自述）说明收入已稳定覆盖 3 人人力与 API/云成本，但量级远低于出海矩阵案例自述的美元月入 <a class="cref cross" href="#ref-13">[13]</a>。</td></tr>
+      <tr><td><b>5. 融资进展</b></td><td>无公开融资信息；2022 年底主动找钱被全部拒绝（朋友 + 多家投资机构），朋友欲收购团队亦未成行（成员拒绝）<a class="cref partial" href="#ref-1">[1]</a><a class="cref partial" href="#ref-5">[5]</a>。资金全部来自经营滚动——与案例墙中 lsaiah 自述「获个人投资 10 万+70 万」形成对照 <a class="cref cross" href="#ref-13">[13]</a>。</td></tr>
+      <tr><td><b>6. 市场评价</b></td><td>官方认可链完整：腾讯《小程序云开发挑战赛》职业组第一 → 云开发峰会官方案例（2020）<a class="cref cross" href="#ref-2">[2]</a> → 微信团队邀请任微信公开课 PRO 特邀讲师（自述）<a class="cref partial" href="#ref-1">[1]</a>；社区影响力：开放社区回答过上千个问题 <a class="cref cross" href="#ref-2">[2]</a>、掘金 8.9k 关注 <a class="cref cross" href="#ref-11">[11]</a>。独立媒体仅中人社传媒一稿（正面）<a class="cref cross" href="#ref-4">[4]</a>，主流科技媒体报道缺位。</td></tr>
+      <tr><td><b>7. 投入成本与合规风险</b></td><td><b>微信平台规则风险是本案最大变量：</b>① AI 类目审核——发布 AI 小程序需企业主体开通 AI 类目（自述）<a class="cref partial" href="#ref-9">[9]</a>，AI 问答/绘画/换脸均需补充「深度合成」类目方可过审（官方文档）<a class="cref cross" href="#ref-14">[14]</a>；② 已实际遭遇的合规事件——ChatGPT API 合规下架（2023-04-01）、支付账号被限制、AI 生成类资质补办 <a class="cref partial" href="#ref-1">[1]</a>；③ 平台依赖——对比雨田案例因封号潮关停 <a class="cref cross" href="#ref-13">[13]</a>；<b>矩阵精力分配</b>：自述 40% 产品 / 60% 推广，并明言「把产品推出去是活下来的唯一出路」<a class="cref partial" href="#ref-1">[1]</a>，微信 + 抖音双平台内容与多线产品对 3 人小团队的精力稀释是持续挑战。缓冲因素：微信 2025-12 推出「AI 应用及线上工具小程序成长计划」、2026 年开放个人小程序虚拟支付与赞赏，平台政策总体转向扶持 <a class="cref partial" href="#ref-10">[10]</a>。</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 核心数据的自述属性与六处留白（截至 2026-11-12 检索）</div>
+    ① <b>200 万+ 用户、连续 12 个月盈利、半年资金储备全部为本人自述</b>，无第三方审计、无平台方数据印证——微信公开课讲师身份亦为自述口径，公开课官方节目单未检索到对应场次，引用均须标注；② <b>营收金额与利润率零披露</b>，任何收入量级推断均为低置信；③ <b>团队规模口径模糊</b>：2022 年组队为「本人+两位技术开发合伙人」，2024 年自述提及运营岗离职、开启外部兼职，「现约 3 人小团队」为案例墙按自述推定的口径；④ <b>公司注册时间两说</b>：独立媒体称 2021 年创立湖南码上行动网络科技有限公司 <a class="cref cross" href="#ref-4">[4]</a>，本人复盘称 2022-06 立项后「成立公司组建团队」<a class="cref partial" href="#ref-1">[1]</a>——可能对应不同主体，无法调和，双口径存档；⑤ <b>微信公开课 PRO 分享的具体时间与场次</b>未检索到公开信息；⑥ <b>矩阵完整名单未系统披露</b>，可查产品仅 AI 配音、AI 写作、AI 食记、小微智能体、群登记助手及未具名的字幕工具。
+  </div>
+  <div class="box note">
+    <div class="bt">📌 口径冲突与校准记录</div>
+    用户量三口径（AI 矩阵 200 万 2024-04 / 公司累计 400 万 2025-02 / 全矩阵 1600 万+ 2026-09）按时间链路采信为递进关系而非矛盾；「大学生创业」报道（2025-02）称其「大学毕业后从事软件开发」，与 2024 年自述「11 年互联网经验」吻合 <a class="cref cross" href="#ref-4">[4]</a><a class="cref partial" href="#ref-1">[1]</a>。独立第三方报道目前仅中人社传媒一稿，其余信源均为本人长文或平台页一手数据——本案整体置信度为案例墙「中」档 <a class="cref cross" href="#ref-13">[13]</a>。
+  </div>
+  <div class="card"><div class="ct">挫折记录（如实收录）</div><div class="cb">首个付费产品遭遇 ChatGPT API 合规下架；用户大量投诉致微信支付账号被限制支付，被迫更换支付主体并处理一个多月退款；新产品上线即逢老产品断崖、最终停服；抖音运营入职半个月即辞职；找钱阶段被朋友与多家投资机构全部拒绝。<a class="cref partial" href="#ref-1">[1]</a><a class="cref partial" href="#ref-5">[5]</a></div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-5">[5]</a></div></div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">本案补上了案例墙的关键一格：<b>微信生态原生的小生意型 OPC</b>。三条可迁移经验——其一，盈利模式从「广告吃用户规模」切换为「订阅+按量吃精准人群」，小团队不必追求爆炸增长也能活 <a class="cref partial" href="#ref-1">[1]</a>；其二，平台合规能力（类目、支付、审核）本身就是微信生态创业的护城河；其三，「技术博主 → 开源库 → 官方案例 → 公开课讲师」的影响力飞轮，是零预算获客的完整路径 <a class="cref cross" href="#ref-2">[2]</a><a class="cref partial" href="#ref-1">[1]</a>。同时它也是警示牌：所有数字均为自述、平台规则随时改写游戏规则，与反面案例雨田的关停互为镜像 <a class="cref cross" href="#ref-13">[13]</a>。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-13">[13]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 14 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx partial">[1]</span><span class="rt">A</span><span class="st">微信开放社区·本人长文（一手）</span></div><div class="ti">用了 18 个月时间，做 AI 小程序从 0 到 200 万用户，从亏损到盈利（4000 字全面复盘）</div><div class="mt"><b>作者：</b>陈宇明（官方社区个人页实名）　<b>发布日期：</b>2024-04-19　<b>浏览：</b>13,864<br><a href="https://developers.weixin.qq.com/community/develop/article/doc/000a4aa7b582e05e6261e11f466c13" target="_blank" rel="noopener">https://developers.weixin.qq.com/community/develop/article/doc/000a4aa7b582e05e6261e11f466c13</a></div><div class="note">事实核查：本案一手底稿（案例墙所载「developers.weixin.qq.com/community 本人长文」即此文）。200 万用户、12 个月盈利、群工具断崖、AI 配音/写作产品逻辑、抖音单量、公开课讲师、精力分配等核心细节均出自此稿——注意全部为创作者自述口径，发布平台权威不改变内容属性，按 partial 引用。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx cross">[2]</span><span class="rt">A</span><span class="st">微信开放社区·官方讲稿（一手）</span></div><div class="ti">从想法到上线千万访问量的产品，1 个开发就搞定，如何做到？（编辑自第二届小程序·云开发技术峰会现场讲稿）</div><div class="mt"><b>发布方：</b>微信团队　<b>发布日期：</b>2020-12-09（最后编辑 2020-12-16）　<b>浏览：</b>60,037<br><a href="https://developers.weixin.qq.com/community/business/doc/0004285ede0ef074046b4c6fb5f40d" target="_blank" rel="noopener">https://developers.weixin.qq.com/community/business/doc/0004285ede0ef074046b4c6fb5f40d</a></div><div class="note">事实核查：群登记助手产品细节（12 万收集者、近 600 万份登记数据、数千万次访问、1 人 3 天开发、CDN 成本优化）与作者官方简介（挑战赛职业组第一、BRVAH 作者、「码个蛋」主理人、回答过上千个问题）出自此稿，为微信团队编辑的官方一手内容。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx cross">[3]</span><span class="rt">A</span><span class="st">GitHub API（平台一手数据）</span></div><div class="ti">CymChad/BaseRecyclerViewAdapterHelper（BRVAH）仓库数据</div><div class="mt"><b>来源：</b>GitHub API 实测　<b>查询日期：</b>2026-11-12<br><a href="https://github.com/CymChad/BaseRecyclerViewAdapterHelper" target="_blank" rel="noopener">https://github.com/CymChad/BaseRecyclerViewAdapterHelper</a></div><div class="note">事实核查：仓库创建于 2016-04-10，stars 24,560、forks 5,163、MIT 协议、Kotlin——印证「Android 知名开源库作者」身份，与 [2] 官方简介交叉一致。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx cross">[4]</span><span class="rt">B+</span><span class="st">省级人社行业媒体（独立第三方）</span></div><div class="ti">踏浪新时代 大学生创业如何行稳致远？（中人社传媒）</div><div class="mt"><b>来源：</b>湖南民生网·兴人社（中人社传媒，记者周纯、通讯员冯岩/何喜）　<b>发布日期：</b>2025-02-21<br><a href="https://m.hnmsw.com/show_articleapp.php?articleID=262428" target="_blank" rel="noopener">https://m.hnmsw.com/show_articleapp.php?articleID=262428</a></div><div class="note">事实核查：本案唯一独立第三方报道——2021 年创立湖南码上行动网络科技有限公司、AI 写作与 AI 食记产品、累计 400 万用户、拓展 AI 智能咨询与培训的规划；与 [1] 在公司时点上存在两说（见捌）。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx partial">[5]</span><span class="rt">B</span><span class="st">个人技术社区·本人长文（一手）</span></div><div class="ti">用了 18 个月时间，做 AI 应用从 0 到 200 万用户，从亏损到盈利（掘金版）</div><div class="mt"><b>作者：</b>码个蛋（掘金主页）　<b>发布日期：</b>2024-04-19<br><a href="https://juejin.cn/post/7359118550113763362" target="_blank" rel="noopener">https://juejin.cn/post/7359118550113763362</a></div><div class="note">事实核查：与 [1] 为同一长文的双渠道发布，全文逐段比对一致；文末自我介绍补充「11 年互联网经验、群工具矩阵 1100 万用户、AI 效率矩阵 200 万用户」等信息；掘金版数据（516 阅读）为平台一手。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx partial">[6]</span><span class="rt">C+</span><span class="st">微信公众号（未能直接核验全文）</span></div><div class="ti">离职一年，收入10倍增长（码个蛋公众号历史总结）</div><div class="mt"><b>链接：</b>经 [1][5] 文内引用回溯<br><a href="https://mp.weixin.qq.com/s/5UlMx9HDgEcvxJb4w5-gBA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/5UlMx9HDgEcvxJb4w5-gBA</a></div><div class="note">事实核查：微信公众号域页面未能直接抓取核验全文（微信域链接访问受限），仅确认其为 [1][5] 复盘文自我引用的上一篇总结；报告中仅作为时间线节点引用（约 2022 年中的上一阶段总结），未依赖其任何独立数字。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">A</span><span class="st">微信开放社区·官方专区（一手）</span></div><div class="ti">微信云开发交流专区：陈宇明《教你 3 分钟搭建 AI 助手（无需编码）》（2024-05-16）、《AI 智能体应用发布篇（公众号/小程序）》（2024-06-04）</div><div class="mt"><b>发布方：</b>微信开放社区云开发交流专区　<b>检索日期：</b>2026-11-12<br><a href="https://developers.weixin.qq.com/community/minihome/article/1286298401038155776" target="_blank" rel="noopener">https://developers.weixin.qq.com/community/minihome/article/1286298401038155776</a></div><div class="note">事实核查：专区列表页经检索命中确认两篇署名「陈宇明」文章及发布日期，印证其 2024 年在官方社区持续输出 AI + 小程序内容；与 [1] 「公开课/社区分享」脉络一致。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx partial">[8]</span><span class="rt">B</span><span class="st">个人技术社区·本人长文（一手）</span></div><div class="ti">1000%增长！我仅用一个小时搞定！AI 智能体 + AI 小程序 = MVP 王炸组合！</div><div class="mt"><b>作者：</b>码个蛋　<b>发布日期：</b>约 2024 末 ▲（掘金发布，页面未标注确切日期）<br><a href="https://juejin.cn/post/7436233316179787787" target="_blank" rel="noopener">https://juejin.cn/post/7436233316179787787</a></div><div class="note">事实核查：Coze 智能体一键部署小程序、访问页面数据增长 1000%、「省钱才是硬道理」的 MVP 方法论出自此稿，自述口径；时间按掘金文章序列与 [9] 的引用关系推断，已标 ▲。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx partial">[9]</span><span class="rt">B</span><span class="st">垂直社区·本人专栏（一手）</span></div><div class="ti">AI 智能体+小程序解决方案，扣子 Coze 智能体秒变小程序！（「小微智能体」发布文）</div><div class="mt"><b>作者：</b>陈宇明（人人都是产品经理专栏）　<b>发布日期：</b>约 2024 ▲（页面显示「2 年前」，2026-11 检索）<br><a href="https://www.woshipm.com/share/6158241.html" target="_blank" rel="noopener">https://www.woshipm.com/share/6158241.html</a></div><div class="note">事实核查：「小微智能体」产品（无需企业资质、多智能体、4 种分享形式、数据统计）与「微信发布 AI 小程序需要企业主体才能开通 AI 类目」的平台规则表述出自此稿，自述口径；其「企业主体开通 AI 类目」说法另经 [14] 官方文档部分印证。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx partial">[10]</span><span class="rt">B</span><span class="st">垂直社区·本人专栏（一手）</span></div><div class="ti">微信又放大招！个人小程序能打赏了，一人公司机会来了</div><div class="mt"><b>作者：</b>陈宇明（人人都是产品经理专栏）　<b>发布日期：</b>2026-09 ▲（作者页显示「2 月前」，2026-11 检索）<br><a href="https://www.woshipm.com/ai/6468799.html" target="_blank" rel="noopener">https://www.woshipm.com/ai/6468799.html</a></div><div class="note">事实核查：「小程序产品矩阵累计用户超过 1600 万」的最新自述、个人小程序虚拟支付与零手续费赞赏新政分析出自此稿；1600 万为含群工具的全矩阵口径，与 [1][4] 时点口径不同，按递进关系采信。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx cross">[11]</span><span class="rt">B</span><span class="st">平台主页（一手数据）</span></div><div class="ti">掘金「码个蛋」个人主页（文章 292 篇 / 阅读 618k / 关注者 8.9k）</div><div class="mt"><b>来源：</b>掘金　<b>检索日期：</b>2026-11-12<br><a href="https://juejin.cn/user/483440844348926" target="_blank" rel="noopener">https://juejin.cn/user/483440844348926</a></div><div class="note">事实核查：主页数据为平台一手；《从团队解散边缘到 200 万用户：我的 AI 创业实录》（即 [1] 的公众号标题版）与《1000%增长》等文章列表经检索命中确认。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx cross">[12]</span><span class="rt">B</span><span class="st">平台作者页（一手数据）</span></div><div class="ti">人人都是产品经理作者页：陈宇明（AI 应用创业者，公号【码个蛋】）</div><div class="mt"><b>来源：</b>人人都是产品经理　<b>检索日期：</b>2026-11-12<br><a href="https://www.woshipm.com/u/321166" target="_blank" rel="noopener">https://www.woshipm.com/u/321166</a></div><div class="note">事实核查：作者实名与简介「AI 应用创业者，公号【码个蛋】」、26 篇作品、118,303 总阅读量为平台页一手；印证 [9][10] 专栏文章署名。</div></li>
+  <li id="ref-13" class="src"><div class="sh"><span class="idx cross">[13]</span><span class="rt">B+</span><span class="st">案例墙既有核验值（本站底稿）</span></div><div class="ti">国内 AI 一人公司案例墙 index.html：NuxtPro / lsaiah 音乐站 / PaywallPro / chatgpt-on-wechat / 雨田（观察名单）等对标卡片</div><div class="mt"><b>来源：</b>OPC Story 案例墙　<b>底稿：</b>data/domestic-pool.md（检索截止 2026-11-09）<br><a href="../../index.html" target="_self" rel="noopener">../../index.html</a></div><div class="note">事实核查：陆·对标表全部数值引自案例墙既有核验值（本报告未重新核验）：NuxtPro 自述月额外收入 1 万美元+、lsaiah 自述月收入 1.2 万美元+（回帖有质疑）、PaywallPro 自述单款营收 $200k+、zhayujie GitHub 47.7k★（时点值）、雨田 2024 年因微信封号潮关停（观察名单口径）。</div></li>
+  <li id="ref-14" class="src"><div class="sh"><span class="idx cross">[14]</span><span class="rt">A</span><span class="st">微信开放社区·官方文档（一手）</span></div><div class="ti">小程序深度合成审核资质 就用微信云开发（云开发小助手 CloudBase）</div><div class="mt"><b>发布方：</b>微信云开发小助手（官方）　<b>发布日期：</b>2025-05-16　<b>浏览：</b>215,710<br><a href="https://developers.weixin.qq.com/community/minihome/article/doc/000c00504302d0319f336ab6a6b013" target="_blank" rel="noopener">https://developers.weixin.qq.com/community/minihome/article/doc/000c00504302d0319f336ab6a6b013</a></div><div class="note">事实核查：官方口径确认「AI 相关小程序没有深度合成类目提交审核都会被拒绝，涉及 AI 问答、AI 绘画、AI 换脸都需要补充类目」——与 [1] 自述的 2023 年资质补办经历、[9] 的企业主体说法共同构成微信平台 AI 内容规范证据链。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 14 条。核验标签分布：🔵 多源印证（cross）8 条、🟡 部分映证（partial）6 条、🟢 已核验（verified）0 条——因本案全部经营数据为本人自述、独立第三方仅一稿，按「标签从严」原则无任何事实达到「≥2 独立信源交叉确认」的绿色门槛。信源评级分布：A 级 5 条（微信开放社区官方讲稿/官方文档/官方专区/GitHub API，原文全部回溯完成）、B+/B 级 8 条、C+ 级 1 条（公众号《离职一年》未能直接抓取全文，仅作时间线节点引用，未依赖其数字）。<b>本案的关键限制：200 万+用户、12 个月盈利、400 万、1600 万等全部经营数字均为本人自述，无独立第三方财务交叉，无平台方数据印证</b>——独立第三方报道仅中人社传媒一稿。两处口径冲突（公司注册时间 2021/2022 两说；用户量三口径）与六处留白已在正文显式标注。未发现伪造链接；全部 URL 为检索过程实际命中页面。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-12 · 自述口径数据均已标注、营收未做数值推算，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

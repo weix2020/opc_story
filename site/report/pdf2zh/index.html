@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · PDFMathTranslate（pdf2zh）—— Byaidu 的保留排版学术 PDF 翻译 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · PDFMathTranslate（pdf2zh）">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="PDFMathTranslate（pdf2zh）深度案例报告：开发者 Byaidu 以一人维护者身份打造保留公式/图表/注释排版的学术 PDF 全文双语翻译开源工具，GitHub 38,398 星标（2026-11-13 API 实测），入选 EMNLP 2025 Demo。14 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>PDFMathTranslate（pdf2zh）深度案例报告</h1>
+    <h2>一个 GitHub ID（Byaidu）：把「保留排版的学术 PDF 双语翻译」做成 38.4k★ 的开源基础设施<br>入选 EMNLP 2025 Demo —— 14 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">开源产品型 OPC</span>
+      <span class="tag">AI 原生</span>
+      <span class="tag">学术垂直</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">38,398</div><div class="k">GitHub 星标（2026-11-13 API 实测）</div></div>
+  <div class="stat"><div class="v neutral">EMNLP 2025</div><div class="k">System Demo 收录（ACL Anthology）</div></div>
+  <div class="stat"><div class="v up">222k+</div><div class="k">下载量（论文自述时点 · 2025）</div></div>
+  <div class="stat"><div class="v neutral">44 位</div><div class="k">全球贡献开发者（论文口径）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">PDFMathTranslate（命令名 pdf2zh）是「世界首个保留排版的开源科学文档翻译软件」——出自其 EMNLP 2025 Demo 论文摘要：基于大语言模型与精确版面检测，在公式、图表、目录、注释原位不动的前提下完成全文双语翻译<a class="cref verified" href="#ref-1">[1]</a>。它以 GitHub ID「Byaidu」的个人项目起步，两年内长成 Python 生态最主流的学术 PDF 翻译基础设施之一<a class="cref verified" href="#ref-2">[2]</a>。</p>
+  <div class="two">
+    <div class="card"><div class="ct">项目</div><div class="cb">GitHub 仓库 PDFMathTranslate/PDFMathTranslate：Python，AGPL-3.0，2024-09-06 创建（API 实测）；输出单语译文 + 双语对照双 PDF，支持 194 种语言、23 种翻译服务（论文口径）；仓库描述标注「[EMNLP 2025 Demo]」，homepage 指向在线服务 pdf2zh.com。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">Byaidu——GitHub ID，真名未公开：资料 name/location/bio 均空（API 实测），2016-08 注册，博客指向博客园「algonote」。EMNLP Demo 论文署名 Rongxin Ouyang（新加坡国立大学）、Chang Chu（清华大学，通讯）、Zhikuang Xin（中国科学院大学）、Xiangyao Ma（Funstory.ai）四人；论文官方页与 README 均将仓库指向 byaidu 账号，署名团队与开源维护者高度关联，但 ID 与署名的逐一对应未获官方说明。</div><div class="cm">信源：<a class="cref cross" href="#ref-4">[4]</a> <a class="cref verified" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="card blue"><div class="ct">团队与协作口径</div><div class="cb">「维护者主导 + 社区贡献」：Byaidu 以 436 commits 居人类贡献者首位（CI 机器人不计），其后 awwaawwa（246）、reycn（172）、hellofinch（110）；论文自述 44 位全球开发者贡献数万行代码，HelloGitHub 页示 59 人。案例墙「一人」口径实为「一人发起并主导维护」。</div><div class="cm">信源：<a class="cref cross" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-7">[7]</a></div></div>
+    <div class="card blue"><div class="ct">公司 / 投资状态</div><div class="cb">公司注册、融资、投资方均未检索到公开信息。PyPI 包作者字段为个人邮箱；论文第六节将可持续模式表述为「社区-商业模型（community-commerce）」——激励来自开源声誉与商业产品收益两端，但未披露商业实体与营收数字。</div><div class="cm">信源：<a class="cref verified" href="#ref-8">[8]</a> <a class="cref cross" href="#ref-3">[3]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2024-09-06</div><div class="tx">GitHub 仓库创建，PyPI 包 pdf2zh 1.0.0 同日首发</div><div class="td">API 实测 created_at=2024-09-06T06:56Z，1.0.0 上传于同日 08:28Z——自第一行代码起即按「开箱即用的 pip 包」标准发布。<a class="cref verified" href="#ref-2">[2]</a><a class="cref verified" href="#ref-8">[8]</a> 案例墙底稿锚点 2024-09-15 与实测差 9 天，双口径并存。<a class="cref partial" href="#ref-9">[9]</a></div></div>
+    <div class="node"><div class="dt">2024-09-07 起</div><div class="tx">Byaidu 密集提交：公式排版细节打磨</div><div class="td">仓库最早可查提交（「fix file」「fix y comp」「fix y inc」等）均出自 Byaidu，围绕公式坐标与组件还原逐行修——保留排版的技术底座在前两周成形。<a class="cref cross" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2024-12</div><div class="tx">登上 GitHub Python 热榜：单周增长 3.8k★</div><div class="td">HelloGitHub「GitHub 热点速览」（2024-12-17）记录：当周星标 8k、周增 3.8k，与吴恩达 aisuite 同期上榜——公开爆发节点。<a class="cref cross" href="#ref-10">[10]</a></div></div>
+    <div class="node"><div class="dt">2025-01-14</div><div class="tx">社区开发者发布 Zotero 插件，生态化关键一步</div><div class="td">用户 guaguastandup 创建 zotero-pdf2zh 仓库（后达 8,296★，实测），把 pdf2zh 接入文献管理工作流；README 与论文均列为社区贡献接口。<a class="cref verified" href="#ref-11">[11]</a><a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2025-05-09</div><div class="tx">pdf2zh 2.0 Preview（issue #586）发布</div><div class="td">Windows ZIP 与 Docker 镜像先行；2.0 线随后迁至组织新仓库 PDFMathTranslate-next（2025-12-05 创建，现 814★），主打 web-ui 与跨栏/跨页语义一致性。<a class="cref cross" href="#ref-12">[12]</a><a class="cref verified" href="#ref-13">[13]</a></div></div>
+    <div class="node"><div class="dt">2025-07-02</div><div class="tx">论文上传 arXiv，PyPI 1.x 线收束</div><div class="td">论文经 v1→v4 四轮修订（终版 2025-09-22）；PyPI 旧包终止于 1.9.11（2025-07-11），主仓库 fast 模式仍持续维护。<a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2025-11</div><div class="tx">入选 EMNLP 2025 System Demonstrations 正式收录</div><div class="td">ACL Anthology 编号 2025.emnlp-demos.71（pp.918–924，苏州）——论文摘要即宣称「222k+ downloads」。<a class="cref verified" href="#ref-5">[5]</a><a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-03 → 10</div><div class="tx">主仓库持续演进：precise 内核 → 实验 OCR → ultrafast</div><div class="td">README 更新记录：2026-03 支持 v2.0 内核（--mode precise）与 MiniMax 接入；2026-09 实验性 OCR；2026-10 上线 --ultrafast——社区开发者 reycn 为近年主要功能推手。<a class="cref cross" href="#ref-12">[12]</a></div></div>
+    <div class="node"><div class="dt">2026-11-13</div><div class="tx">本报告实测：38,398★ / 3,441 forks / AGPL-3.0</div><div class="td">与案例墙底稿「38.3k stars」一致；仓库最后推送为实测当日——上线两年多仍高频活跃。<a class="cref verified" href="#ref-2">[2]</a><a class="cref partial" href="#ref-9">[9]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：从「翻译质量」跳到「排版保真」，选对了无人区</div><div class="cb">论文引言的痛点量化：全球 98% 科学论文以英文发表，英语母语者仅占 7.3%——语言壁垒是科学扩散的硬约束；既有机翻恰在「公式、表格、版面承载丰富语义」上系统性失灵<a class="cref cross" href="#ref-3">[3]</a>。pdf2zh 把产品钉在「保留排版的全文双语翻译」：版面检测→文本翻译→原位重渲染三段式管线，避开比速度、比价格的红海。</div><div class="cm">信源：<a class="cref cross" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-12">[12]</a></div></div>
+  <div class="card"><div class="ct">转折二：以「插件化中间件」换生态杠杆，让社区替项目长大</div><div class="cb">架构上把「版面流」与「翻译流」解耦：新增一个翻译服务不到 15 行代码——由此聚合 23 种服务、20 余个社区插件，任何 OpenAI 兼容 API 皆可接入<a class="cref cross" href="#ref-3">[3]</a>。Zotero 插件、Mac 桌面 GUI 等官方接口之外的形态全由社区交付，项目只做收录与推荐<a class="cref cross" href="#ref-12">[12]</a>——一人维护者用架构放大了社区人力杠杆。</div><div class="cm">信源：<a class="cref cross" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-12">[12]</a></div></div>
+  <div class="card"><div class="ct">转折三：用一篇 Demo 论文完成「学术信用」的复利</div><div class="cb">从 arXiv 预印本（2025-07）到 EMNLP Demo 正式收录（2025-11），项目完成开源工具最稀缺的一步——获得可被学术共同体引用的正式出处：BibTeX 已写进 README<a class="cref verified" href="#ref-5">[5]</a>。对面向科研人员的工具，「论文级背书」既是分发渠道也是信任状——这是本案与普通翻译插件最本质的分野。</div><div class="cm">信源：<a class="cref verified" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-12">[12]</a></div></div>
+  <div class="quote">
+    <p>为确保可持续发展，我们建立了「社区-商业模型」：开发者的激励来自两个源头——开源声望与商业产品的收益。……这一策略已成功激励 44 位全球开发者，累计贡献数万行代码。</p>
+    <span class="src">—— PDFMathTranslate 论文第 6 节「Sustainability」，EMNLP 2025 Demo（本报告据 arXiv v4 全文翻译），转引自 <a class="cref cross" href="#ref-3">[3]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>内容</th><th>关键细节</th></tr></thead>
+    <tbody>
+      <tr><td>产品功能</td><td class="hl">保留排版的学术 PDF 全文双语翻译</td><td>公式、图表、目录、注释原位保留；mono+dual 双输出；自定义 prompt（few-shot/CoT/角色扮演）提升术语质量 <a class="cref cross" href="#ref-12">[12]</a><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td>多端形态</td><td>CLI / GUI / Zotero 插件 / 在线服务</td><td>pip/uv 安装 CLI，<code>pdf2zh -i</code> 启动本地 GUI（Gradio）；Win/Mac 桌面应用；社区 Zotero 插件（8.3k★）；Docker + 五家云一键部署；MCP STDIO/SSE 模式 <a class="cref cross" href="#ref-12">[12]</a><a class="cref verified" href="#ref-11">[11]</a></td></tr>
+      <tr><td>开源模型服务化</td><td>版面检测模型 + 翻译服务聚合</td><td>DocLayout-YOLO ONNX 版面检测随包分发；聚合 Google/DeepL/OpenAI/Ollama/MiniMax 等 23 种服务；2.0 内核独立仓库演进 <a class="cref cross" href="#ref-3">[3]</a><a class="cref verified" href="#ref-13">[13]</a></td></tr>
+      <tr><td>面向客群</td><td>科研人员 / 研究生 / 文献重度用户</td><td>194 种语言；Zotero 插件直连文献管理器；流式管线支持千页级文档 <a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td>解决痛点</td><td>学术 PDF 翻译「排版破坏」</td><td>传统机翻公式乱码、图表错位、双栏失效；本案以精确版面检测保住原排版，完全免费、可自部署、支持 API <a class="cref cross" href="#ref-3">[3]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h4>商业模式：免费工具 + 生态位变现的「灰度」</h4>
+  <p>主软件<strong>完全免费</strong>——论文把「Free」列为相对 Doc2X、IMT 等付费方案的核心可及性优势<a class="cref cross" href="#ref-3">[3]</a>。在线入口 pdf2zh.com 提供公共免费服务，README 同时推荐沉浸式翻译旗下 BabelDOC 在线版（附免费额度）与 HF/ModelScope Demo，并提示「算力有限，请勿滥用」<a class="cref cross" href="#ref-12">[12]</a><a class="cref cross" href="#ref-14">[14]</a>。可持续性押注在「社区-商业模型」双激励上，但截至检索日，广告、订阅、API 计费、捐赠的收入数字均未公开——商业化处于「生态位合作已发生、货币化未显形」状态。</p>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>GitHub 星标 / Forks</td><td class="hl">38,398 / 3,441（底稿 38.3k 一致）</td><td>2026-11-13 API 实测</td><td><a class="cref verified" href="#ref-2">[2]</a><a class="cref partial" href="#ref-9">[9]</a></td></tr>
+      <tr><td>爆发期增速</td><td>单周 +3.8k★（总量 8k，Python 热榜）</td><td>2024-12-17 前一周</td><td><a class="cref cross" href="#ref-10">[10]</a></td></tr>
+      <tr><td>近期增速</td><td>周增 +151★（38,170 → 38,321）</td><td>2026-11 查询</td><td><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td>累计下载量</td><td class="hl">222k+（论文摘要口径）</td><td>2025（论文写作时点）</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>学术收录</td><td>EMNLP 2025 System Demo（77 篇中第 71 篇，pp.918–924）</td><td>2025-11 收录</td><td><a class="cref verified" href="#ref-5">[5]</a></td></tr>
+      <tr><td>Zotero 插件（社区）</td><td>8,296★</td><td>2026-11-13 API 实测</td><td><a class="cref verified" href="#ref-11">[11]</a></td></tr>
+      <tr><td>2.0 新仓库</td><td>814★</td><td>2026-11-13 API 实测</td><td><a class="cref verified" href="#ref-13">[13]</a></td></tr>
+      <tr><td>贡献者生态</td><td>44 位开发者/数万行代码（论文）；59 人（HelloGitHub）</td><td>2025 论文 / 2026-11</td><td><a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td>HelloGitHub 评分</td><td>10.0 / 10（8 人评分），平台收录</td><td>2026-11 查询</td><td><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    星标、forks、创建时间为 GitHub API 一手实测（2026-11-13）；222k+ 下载为论文自述的写作时点快照，未含其后增量，与 PyPI 全量口径不可直接互换；「44 位开发者」为论文口径、「59 人」为 HelloGitHub 口径，两口径并列供参照。营收类指标全数缺位（见柒·捌）。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将 pdf2zh 放入案例墙「AI 翻译/学术效率工具」坐标系（对标数据均为案例墙既有核验值，出自主清单 domestic-pool.md，时点见括注）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>数据表现（时点值）</th><th>置信度</th></tr></thead>
+    <tbody>
+      <tr><td><b>PDFMathTranslate（pdf2zh）</b></td><td>Byaidu</td><td>保留排版学术 PDF 双语翻译：CLI/GUI/Zotero/在线/Docker/MCP</td><td class="hl">GitHub 38.3k★（2026-10/11；实测 38,398）+ EMNLP 2025 Demo</td><td>中（本报告已升级核验）</td></tr>
+      <tr><td>沉浸式翻译 Immersive Translate</td><td>Owen Young（前腾讯前端）</td><td>AI 双语网页翻译插件，扩展 PDF/字幕/漫画，聚合 10+ 引擎</td><td>全球激活用户破 3000 万（2026-09 官方博客）；Chrome 2024 年度精选；起步期一人开发，后被收购</td><td>高</td></tr>
+      <tr><td>Easydict</td><td>tisfeng</td><td>macOS 开箱即用词典翻译应用，接 OpenAI/Gemini/DeepL 与离线 OCR</td><td>GitHub 15.2k★（2026-11）</td><td>中</td></tr>
+      <tr><td>GPT 学术优化（gpt_academic）</td><td>binary-husky（中科院博士）</td><td>学术场景 LLM 工具：论文润色/翻译/代码解析，插件化</td><td>GitHub 71.6k★（2026-11）；个人账号主导 1333+ commits</td><td>高</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>四者分化清晰：沉浸式翻译走大众普及（终局是被收购）；Easydict 卡位 macOS 系统级体验；gpt_academic 同属学术垂直但走「多功能插件平台」路线。pdf2zh 的独特性在两点：其一，四者中<b>唯一拥有顶会正式论文背书</b>——EMNLP Demo 使其进入学术引用链条，天然渗透目标客群；其二，AGPL-3.0 + 完全免费 + 自部署，在成本敏感的高校实验室形成近乎默认选项的分布密度<a class="cref partial" href="#ref-9">[9]</a>。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:16%">维度</th><th>分析</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>单点做到极致的「排版保真翻译」：版面检测（DocLayout-YOLO）→ 翻译服务聚合 → 原位重渲染，mono+dual 双输出；2026 年补齐 OCR 实验支持与 ultrafast 模式，场景从原生文本 PDF 扩向扫描件 <a class="cref cross" href="#ref-12">[12]</a><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td><b>2. 多端形态</b></td><td>「一个内核 × 七种触点」：CLI/GUI（本地+桌面）/Zotero/Docker/MCP/在线/Python &amp; HTTP API；Zotero 插件与 Mac 桌面端由社区交付，官方只做标准与收录 <a class="cref cross" href="#ref-12">[12]</a><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td><b>3. 开源模型服务化</b></td><td>开源的不止代码：版面检测模型随包分发（附 hf-mirror 镜像指引）；翻译层 15 行即插即拔；AGPL-3.0 保障生态回馈；2.0 内核独立仓库试错，稳定版不受影响 <a class="cref cross" href="#ref-3">[3]</a><a class="cref verified" href="#ref-13">[13]</a></td></tr>
+      <tr><td><b>4. 面向客群</b></td><td>核心客群是科研人员与研究生：98% 论文英文发表 vs 英语母语者 7.3% 的结构性缺口是需求底盘；Zotero 生态与 EMNLP 引用链形成精准分发；在线免费服务承接轻度用户 <a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td><b>5. 解决痛点</b></td><td>学术 PDF 翻译的「排版破坏」：公式乱码、表格错位、双栏失效令译文不可用；以免费+自部署+排版保真组合替代付费方案，效率优于同类保排版竞品（论文自述） <a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td><b>6. 商业化与营收（推算，置信度 C）</b></td><td><b>营收零披露</b>：软件完全免费、在线服务公共免费，无订阅/广告/API 计费数据；论文仅给出「社区-商业模型」定性框架，商业产品形态未披露。可核验的关联信号：论文作者之一署名 Funstory.ai（香港）、README 在线推荐沉浸式翻译-BabelDOC 版——生态协作位已发生，货币化路径未显形；常见终局（基金会/被收购/云托管计费）均缺事实支点，维持 C 级不下结论 <a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-12">[12]</a></td></tr>
+      <tr><td><b>7. 学术准确性责任 &amp;「一人」口径边界</b></td><td>① 准确性责任：论文把翻译质量交给用户所选服务与自定义提示词，未设正式的「学术翻译准确性保证/免责条款」，README 与文档亦未检索到质量承诺——科研场景误译风险实质由使用者承担，对文献引用场景是实质风险点。② 一人口径：本案是「一人发起 + 社区共建」——Byaidu 436 commits 居人类首位、核心架构由其主导，但 44 位开发者（论文）/59 人（HelloGitHub）的社区贡献是达到当前完成度的必要条件；案例墙按「维护者主导」口径如实标注，不宜表述为严格单人作品 <a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 四处留白与两处口径冲突（截至 2026-11-13 检索）</div>
+    ① 创业者 Byaidu 真名与背景未公开（GitHub 资料 name/location/bio 均空），论文署名四人与其 ID 对应关系未获官方说明；② 公司注册与融资信息未检索到公开信息；③ 营收/捐赠/订阅等货币化数据零披露，「community-commerce」表述无财务支点；④ 222k+ 下载为论文时点快照，最新全量下载量未检索到权威口径。口径冲突：案例墙锚点 2024-09-15 vs GitHub/PyPI API 实测创建与首发 2024-09-06（差 9 天，采 API 实测为基线、底稿口径存档）；「一人公司」口径 vs 44/59 位贡献者的社区共建事实（按「维护者主导」标注）。
+  </div>
+  <div class="box note">
+    <div class="bt">📌 双线演进的版本口径</div>
+    PyPI 旧包 pdf2zh 终止于 1.9.11（2025-07-11），但主仓库并非停更——README 显示 2026-10 仍有功能上线（ultrafast、CJK-Latin 间距）；2.0 在独立仓库 PDFMathTranslate-next 与文档站演进（两站均实测 HTTP 200 可达）。引用版本信息须区分「PyPI 包版本」与「仓库活跃度」两个口径。
+  </div>
+  <div class="card"><div class="ct">负面评价（如实收录）</div><div class="cb">HelloGitHub 用户评论区存在明确差评：「效果比较一般」「字都叠在一起了」（约两年前，对应早期版本）；有用户反馈公共 Demo 报错，社区回复确认「公共免费示例用的人多就会这样，建议本地跑」——与 README「算力资源有限，请勿滥用」提示互证。论文亦自陈局限：早期缺乏 OCR 支持（2026-09 已实验性补齐）、慢于纯文本翻译服务。</div><div class="cm">信源：<a class="cref cross" href="#ref-7">[7]</a> <a class="cref cross" href="#ref-12">[12]</a> <a class="cref cross" href="#ref-3">[3]</a></div></div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">pdf2zh 展示了开源产品型 OPC 的「信用复利」路径：一个个人 ID 从公式坐标修复的细碎提交起步，用单点极致（排版保真）立住产品定义，用插件化架构让社区替项目长大，最后用一篇 EMNLP Demo 论文把工具写进学术共同体的引用网络——星标只是外部刻度，真正难复制的资产是「论文级背书 + 文献工作流生态位」。它同时是一面清醒的镜子：截至检索日，声量与影响力尚未转化为任何公开财务数字，开源 OPC 的商业闭环依然是待解题。</div><div class="cm">信源：<a class="cref cross" href="#ref-6">[6]</a> <a class="cref verified" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-3">[3]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 14 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx verified">[1]</span><span class="rt">A</span><span class="st">arXiv 官方摘要页</span></div><div class="ti">arXiv:2507.03009（EMNLP 2025 System Demonstration 预印本）</div><div class="mt"><b>来源：</b>arXiv.org　<b>提交时间：</b>2025-07-02（v1）→ 2025-09-22（v4）<br><a href="https://arxiv.org/abs/2507.03009" target="_blank" rel="noopener">https://arxiv.org/abs/2507.03009</a></div><div class="note">事实核查：Comments 字段「EMNLP 2025 System Demonstration」、摘要「more than 222k downloads」「world's first open-source software … preserving layouts」；与 ACL 收录页 [5] 及论文全文页 [3] 交叉。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx verified">[2]</span><span class="rt">A</span><span class="st">GitHub API 一手实测</span></div><div class="ti">PDFMathTranslate/PDFMathTranslate 仓库元数据（星标/forks/许可/创建时间/homepage）</div><div class="mt"><b>来源：</b>GitHub REST API　<b>实测时点：</b>2026-11-13<br><a href="https://api.github.com/repos/PDFMathTranslate/PDFMathTranslate" target="_blank" rel="noopener">https://api.github.com/repos/PDFMathTranslate/PDFMathTranslate</a></div><div class="note">事实核查：stargazers_count=38,398、forks=3,441、AGPL-3.0、created_at=2024-09-06T06:56Z、homepage=pdf2zh.com、描述含「[EMNLP 2025 Demo]」；星标值与 HelloGitHub [7]、掘金 [10]、案例墙底稿 [9] 多源交叉。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx cross">[3]</span><span class="rt">A</span><span class="st">学术论文全文（arXiv HTML v4）</span></div><div class="ti">PDFMathTranslate 论文全文：架构/194 语言/23 服务/44 开发者/Sustainability</div><div class="mt"><b>来源：</b>arXiv HTML 版（CC BY 4.0）　<b>版本：</b>v4，2025-09-22<br><a href="https://arxiv.org/html/2507.03009v4" target="_blank" rel="noopener">https://arxiv.org/html/2507.03009v4</a></div><div class="note">事实核查：引言痛点数据（98% 英文发表/7.3% 母语者）、三段式架构、194 语言与 23 种服务（附录）、Zotero 系社区贡献（guaguastandup）、竞品对比（Free vs Doc2X/IMT 付费；OCR 局限自陈）、第 6 节 community-commerce model 与「44 位全球开发者」均为论文一手表述。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx cross">[4]</span><span class="rt">A</span><span class="st">GitHub 用户资料一手</span></div><div class="ti">Byaidu 用户资料（真名未公开的一手依据）</div><div class="mt"><b>来源：</b>GitHub REST API　<b>实测时点：</b>2026-11-13<br><a href="https://api.github.com/users/Byaidu" target="_blank" rel="noopener">https://api.github.com/users/Byaidu</a></div><div class="note">事实核查：name/location/bio 均为 null、2016-08-24 注册、525 followers、博客 cnblogs.com/algonote；「真名未公开」即以此为一手依据，未检索到可核实真名的公开信源。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx verified">[5]</span><span class="rt">A+</span><span class="st">学术会议官方收录页</span></div><div class="ti">PDFMathTranslate: Scientific Document Translation Preserving Layouts（EMNLP 2025 Demo 收录页，ACL Anthology）</div><div class="mt"><b>来源：</b>ACL Anthology（Association for Computational Linguistics）　<b>收录时间：</b>2025-11（苏州）<br><a href="https://aclanthology.org/2025.emnlp-demos.71/" target="_blank" rel="noopener">https://aclanthology.org/2025.emnlp-demos.71/</a></div><div class="note">事实核查：Anthology ID 2025.emnlp-demos.71、pp.918–924、DOI 10.18653/v1/2025.emnlp-demos.71、作者 Ouyang/Chu/Xin/Ma 四人；与 arXiv [1] 及 README 引用块 [12] 三源交叉；卷信息（77 篇、2025-11）见 demos 卷总页。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx cross">[6]</span><span class="rt">A</span><span class="st">GitHub API 一手实测</span></div><div class="ti">贡献者统计与早期提交记录（Byaidu 436 commits 居人类首位）</div><div class="mt"><b>来源：</b>GitHub REST API（contributors / commits 端点）　<b>实测时点：</b>2026-11-13<br><a href="https://api.github.com/repos/PDFMathTranslate/PDFMathTranslate/contributors" target="_blank" rel="noopener">https://api.github.com/repos/PDFMathTranslate/PDFMathTranslate/contributors</a></div><div class="note">事实核查：Byaidu 436、awwaawwa 246、reycn 172、hellofinch 110（github-actions[bot] 2402 为 CI 机器人不计）；最早可查提交（2024-09-07）作者均为 Byaidu；总人数 59 与 HelloGitHub [7] 页面口径一致。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">B+</span><span class="st">开源收录平台数据页</span></div><div class="ti">HelloGitHub 收录页（评分/周增趋势/贡献者数/用户评论）</div><div class="mt"><b>来源：</b>HelloGitHub　<b>查询时点：</b>2026-11-13<br><a href="https://hellogithub.com/repository/8ec2cfd3ef744762bf531232fa32bc47" target="_blank" rel="noopener">https://hellogithub.com/repository/8ec2cfd3ef744762bf531232fa32bc47</a></div><div class="note">事实核查：38.3k 星、59 贡献者、评分 10.0（8 人）、周增 +151、AGPL-3.0、演示链接 pdf2zh.com；星标与 [2] 交叉；「效果比较一般」「字都叠在一起了」等差评为平台用户评论原文（约两年前），如实收录。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx verified">[8]</span><span class="rt">A</span><span class="st">PyPI API 一手实测</span></div><div class="ti">pdf2zh 包发布历史与作者字段（1.0.0 首发 → 1.9.11 终版）</div><div class="mt"><b>来源：</b>PyPI JSON API　<b>实测时点：</b>2026-11-13<br><a href="https://pypi.org/pypi/pdf2zh/json" target="_blank" rel="noopener">https://pypi.org/pypi/pdf2zh/json</a></div><div class="note">事实核查：1.0.0 上传 2024-09-06T08:28Z（与仓库创建同日）、1.9.11 终版 2025-07-11、作者字段 Byaidu &lt;byaidux@gmail.com&gt;；包名与作者经 README [12] 交叉印证。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx partial">[9]</span><span class="rt">C+</span><span class="st">案例墙底稿</span></div><div class="ti">国内 AI 一人公司案例主清单 · 第 11 条（PDFMathTranslate/pdf2zh）</div><div class="mt"><b>来源：</b>案例墙数据底稿 domestic-pool.md　<b>检索截止：</b>2026-11-09<br><a href="https://github.com/PDFMathTranslate/PDFMathTranslate" target="_blank" rel="noopener">data/domestic-pool.md（本地底稿；关键信源 github.com/PDFMathTranslate/PDFMathTranslate）</a></div><div class="note">事实核查：38.3k★ 已被 API 实测 [2] 证实；「入选 EMNLP 2025 Demo」已被官方收录页 [5] 证实；锚点 2024-09-15 未获独立信源支持且与 API 实测 2024-09-06 差 9 天——双口径存档，正文以 API 实测为基线。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx cross">[10]</span><span class="rt">B</span><span class="st">技术社区专栏</span></div><div class="ti">双语对照的 PDF 翻译工具「GitHub 热点速览」（HelloGitHub 掘金专栏）</div><div class="mt"><b>来源：</b>掘金 · HelloGitHub 官方专栏　<b>发布日期：</b>2024-12-17<br><a href="https://juejin.cn/post/7448942381855178764" target="_blank" rel="noopener">https://juejin.cn/post/7448942381855178764</a></div><div class="note">事实核查：当周星标 8k、周增 3.8k、Python 热榜、与 aisuite 同期为 2024-12 爆发节点的直接记录；发布方与 HelloGitHub [7] 同源（同一运营方），增长曲线与星标总量自洽。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx verified">[11]</span><span class="rt">A</span><span class="st">GitHub API 一手实测</span></div><div class="ti">guaguastandup/zotero-pdf2zh 社区插件仓库</div><div class="mt"><b>来源：</b>GitHub REST API　<b>实测时点：</b>2026-11-13<br><a href="https://github.com/guaguastandup/zotero-pdf2zh" target="_blank" rel="noopener">https://github.com/guaguastandup/zotero-pdf2zh</a></div><div class="note">事实核查：8,296★、创建 2025-01-14、描述「PDF2zh for Zotero | Zotero PDF中文翻译插件」；README [12] 与论文脚注 [3] 均将其列为社区贡献接口——三源交叉。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx cross">[12]</span><span class="rt">A</span><span class="st">项目官方 README</span></div><div class="ti">PDFMathTranslate README（功能/在线服务/安装矩阵/更新日志/引用块）</div><div class="mt"><b>来源：</b>项目仓库 main 分支　<b>核验时点：</b>2026-11-13<br><a href="https://github.com/PDFMathTranslate/PDFMathTranslate/blob/main/README.md" target="_blank" rel="noopener">https://github.com/PDFMathTranslate/PDFMathTranslate/blob/main/README.md</a></div><div class="note">事实核查：保留公式/图表/目录/注释、pdf2zh.com 公共免费服务、BabelDOC/HF/ModelScope Demo、Zotero 插件指引、五家云一键部署、MCP 模式、2.0 Preview（2025-05-09 #586）与 2026 年更新记录、EMNLP 引用块均为一手自述口径。</div></li>
+  <li id="ref-13" class="src"><div class="sh"><span class="idx verified">[13]</span><span class="rt">A</span><span class="st">GitHub API 一手实测</span></div><div class="ti">PDFMathTranslate/PDFMathTranslate-next（2.0 独立仓库）</div><div class="mt"><b>来源：</b>GitHub REST API　<b>实测时点：</b>2026-11-13<br><a href="https://github.com/PDFMathTranslate/PDFMathTranslate-next" target="_blank" rel="noopener">https://github.com/PDFMathTranslate/PDFMathTranslate-next</a></div><div class="note">事实核查：814★、创建 2025-12-05；与 README 中「2.0 moved to a new repository under the organization」说明 [12] 交叉；配套文档站 pdf2zh-next.com 亦实测 HTTP 200 可达。</div></li>
+  <li id="ref-14" class="src"><div class="sh"><span class="idx cross">[14]</span><span class="rt">B+</span><span class="st">在线服务入口页</span></div><div class="ti">pdf2zh.com 在线服务入口（公共免费服务）</div><div class="mt"><b>来源：</b>项目官方在线服务　<b>核验时点：</b>2026-11-13<br><a href="https://pdf2zh.com/" target="_blank" rel="noopener">https://pdf2zh.com/</a></div><div class="note">事实核查：HTTP 200 可达（页面为 JS 渲染 SPA，静态抓取仅得加载态，功能界面以在线实测为准）；「公共免费服务」定位经 README [12] 与仓库 homepage 字段 [2] 双重印证。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 14 条。核验标签分布：🟢 已核验（verified）6 条、🔵 多源印证（cross）7 条、🟡 部分映证（partial）1 条。信源评级分布：A+/A 级 10 条（GitHub API×4、PyPI、ACL Anthology、arXiv×2、README 等一手/官方信源，全部实测或原文回溯完成）、B+ 级 2 条、B 级 1 条、C+ 级 1 条（案例墙底稿——其两项关键成功迹象已被一手实测证实，锚点差异已标注）。两处口径冲突（锚点 2024-09-15 vs 实测 2024-09-06；「一人」口径 vs 社区共建事实）与四处留白（真名、公司注册、营收、最新全量下载量）已在正文显式标注。核验失败说明：pdf2zh.com 为 JS 渲染单页应用，静态抓取仅能确认 HTTP 200 可达性，未能提取页面内文（已按可达性+双源印证处理）；其余 13 条信源全部核验成功，未发现伪造链接。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-13 · 星标等 GitHub 数据为时点实测值会随时间变动，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

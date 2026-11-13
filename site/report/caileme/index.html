@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · 采了么 × 聚身之家——祝鹤槐的「非技术者」AI 双品牌实验 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · 采了么 × 聚身之家">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="采了么 × 聚身之家深度案例报告：97 年「厂二代」祝鹤槐不会写代码，一人用 AI 运营机器人撮合与数据采集两个品牌，2 个月 3 笔订单、营收超 20 万，曾婉拒 5000 万投资。15 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>采了么 × 聚身之家深度案例报告</h1>
+    <h2>97 年「厂二代」祝鹤槐：不会写一行代码，一人 + AI 运营机器人撮合与数据采集双品牌<br>2 个月 3 笔订单、营收超 20 万元，曾婉拒 5000 万投资 —— 15 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">非技术者 OPC</span>
+      <span class="tag">厂二代转型</span>
+      <span class="tag">双品牌撮合平台</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">3 笔</div><div class="k">2 个月订单数（人民网实地印证）</div></div>
+  <div class="stat"><div class="v up">20 万+</div><div class="k">累计营收（元 · 澎湃单源口径）</div></div>
+  <div class="stat"><div class="v neutral">2 个</div><div class="k">AI 运营品牌（聚身之家 × 采了么）</div></div>
+  <div class="stat"><div class="v neutral">5000 万</div><div class="k">婉拒投资额（元 · 本人自述）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">采了么 × 聚身之家是 2026 年「非技术者 + AI」路径的代表性样本：创业者祝鹤槐一行代码不会写，却借助 AI 独立运营「机器人产销撮合」与「数据采集人力撮合」两个品牌，其工位——一台显示器加一台电脑主机——被人民网实地探访并作为「一人公司」报道的开篇案例<sup class="cite verified">[1]</sup>。本案也是案例墙中少数同时拥有央媒实地报道（A+）与双公司工商一手登记（A+）双重锚定的案例。</p>
+  <div class="two">
+    <div class="card"><div class="ct">双品牌业务</div><div class="cb">「聚身之家」定位机器人产销信息对接平台——此前企业想定制一台机器人，「根本不知道有哪些厂家可以提供对应服务」；「采了么」为利用 AI 开发的 APP，通过匹配人力帮助企业高效完成数据采集。在本人自述中，两个品牌分别是「机器人的『懂车帝』」与「数采员的『美团』」。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">祝鹤槐，1997 年生，杭州上城，「厂二代」：父亲在衢州老家做矿山机械制造，他「从小在车间里长大」；本科学影视动画专业，先后赶上微博、B 站、抖音的风口，经历短暂失败后回父亲工厂从一线工人做起。工商信息显示其同时担任浙江辰泰智能装备有限公司监事（实控人祝光云），与「自家矿山机械厂」家族背景吻合（间接佐证）。</div><div class="cm">信源：<a class="cref cross" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="card"><div class="ct">工作方式：一人 + AI</div><div class="cb">工位上只有一台显示器和一台电脑主机，是他创业的全部「家当」；除对接大客户和出差，「公司里所有事情都由 AI 完成」。他给 AI 下达了至少 5 个长期计划：每天自动从全网采集所需信息、解读并反馈，每周 AI 还会「自己开复盘会」校准信源与信息密度。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="card"><div class="ct">公司状态</div><div class="cb">两家经营主体均已注册且为祝鹤槐 100% 独资：杭州采了么科技有限公司（2026-03-11 成立，注册资本 100 万元，官网 caileme.top）、杭州聚身之家科技有限公司（2026-03-12 成立，注册资本 10 万元），登记机关均为杭州市上城区市场监督管理局，注册地同在「未来数智港」3 层相邻工位（K-71 / K-70）。另有衢州经营主体布局线索。</div><div class="cm">信源：<a class="cref verified" href="#ref-7">[7]</a> <a class="cref verified" href="#ref-8">[8]</a> <a class="cref verified" href="#ref-9">[9]</a> <a class="cref verified" href="#ref-10">[10]</a> <a class="cref cross" href="#ref-2">[2]</a></div></div>
+  </div>
+  <div class="two">
+    <div class="card blue"><div class="ct">变现与单体价值</div><div class="cb">撮合业务单体价值高：经其撮合的一台机器人卖价在十几万到二十万元之间，「利润都归他」；其公司经营 AI 机器人信息集成服务平台，具备参加招投标的资格——「以前个体户不可以招投标，但『一人公司』可以」。</div><div class="cm">信源：<a class="cref partial" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="card green"><div class="ct">所在生态位</div><div class="cb">入驻杭州上城区「中国数谷·未来数智港」（2025 年起），享受免费工位与水电、网费全免；上城区每季度发布能力场景清单帮助对接业务，「场地免费用，业务帮忙对接，让你先实践商业模式是否有人买单，有人买单再来注册公司」。截至 2026-03 人民网探访时，该园区已进驻十几家「一人公司」。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">约 2015-2016（大一，▲推算）</div><div class="tx">从大一就开始创业，赶上微博、B 站、抖音多轮风口</div><div class="td">本人自述「从大一的时候开始创业」；访谈补充其「先后赶上微博、B 站、抖音的风口，经历短暂的失败」。具体首个项目名称未检索到公开信息。<a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">毕业后（约 2019-2022，▲推算）</div><div class="tx">回到衢州父亲的矿山机械制造厂</div><div class="td">人民网口径为「短暂工作，由此接触机器人制造行业」；每日商报口径为「从一线工人做起，在工厂做智能化改革的几年里，AI 起来了」——回厂时长两稿口径不一（短暂 / 几年），按各自原文并列收录。<a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2023 年</div><div class="tx">ChatGPT 火爆，OPC 创业构想萌生</div><div class="td">祝鹤槐的「采了么 × 聚身之家」创业故事「开始于 2023 年」；他意识到「即便自己一行代码也不会写，依然可以借助 AI 搜集信息、搭建网站」，先萌生机器人产销信息对接平台想法，随后捕捉到机器人企业数据采集需求并利用 AI 开发出「采了么」APP。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2025 年</div><div class="tx">入驻杭州上城区「中国数谷·未来数智港」</div><div class="td">享受免费工位、水电网全免的「陪跑政策」；同年 9 月杭州余杭良渚「数栖湾」等 OPC 社区开园，杭州 OPC 生态进入政策密集期。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-02-26 → 02-27</div><div class="tx">接受杭州综合频道与中国蓝新闻采访：「5000 万，但是不想要」</div><div class="td">面对镜头婉拒 5000 万投资：「不是钱的问题。本来想开『一人公司』也就是为了自由」；同场采访披露其业务为「AI 机器人之家」、单台机器人十几万到二十万利润归他、「钱对我来说没什么意义」。<a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-4">[4]</a><a class="cref partial" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2026-03-11 / 03-12</div><div class="tx">两家公司主体连续注册落地</div><div class="td">杭州采了么科技有限公司（注册资本 100 万元）与杭州聚身之家科技有限公司（注册资本 10 万元）先后在同一路址成立，均由祝鹤槐 100% 持股——印证园区「有人买单再来注册公司」路径走通。<a class="cref verified" href="#ref-7">[7]</a><a class="cref verified" href="#ref-8">[8]</a><a class="cref verified" href="#ref-9">[9]</a><a class="cref verified" href="#ref-10">[10]</a></div></div>
+    <div class="node"><div class="dt">2026-03-23</div><div class="tx">人民网浙江实地探访：已接 3 笔订单</div><div class="td">记者王丽玮实探未来数智港，将其作为「一人公司」报道开篇案例：「目前已经接到三个订单，分别来自一家轴承公司、一家机器人公司和一家经纪人公司」；同稿提炼其方法论金句「工具是杠杆，想法才是支点」。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-05-22</div><div class="tx">澎湃锌刻度：成立 2 个月，营收超 20 万元</div><div class="td">该文将本案作为 OPC 热潮样本：一台显示器、一台主机是两家公司的全部家当，借助 AI 数据采集工具、智能匹配系统，一人完成需求对接、方案设计、数据整理、客户维护全流程。<a class="cref cross" href="#ref-12">[12]</a></div></div>
+    <div class="node"><div class="dt">2026-09 下旬</div><div class="tx">《每日商报·武林论今》访谈 + 商标布局启动</div><div class="td">自述「聚身之家是机器人的『懂车帝』，采了么类似数采员的『美团』」，并披露「布局杭州、衢州多个经营主体」；同期（09-30）聚身之家新增 3 件商标申请（42 类网站服务 / 38 类通讯服务 / 35 类广告销售）。<a class="cref cross" href="#ref-2">[2]</a><a class="cref verified" href="#ref-9">[9]</a></div></div>
+    <div class="node"><div class="dt">2026-11-03</div><div class="tx">亮相乌镇峰会首个「OPC 创想岛」</div><div class="td">2026 年世界互联网大会乌镇峰会首次开设「OPC 创想岛」，北京、杭州、泉州等五城 OPC 组团参展；「祝鹤槐的一人展台，人气不输互联网巨头」，其利用开源的机器人资源搭建匹配平台。<a class="cref cross" href="#ref-13">[13]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：厂二代的产业 Know-how，先于 AI 成为「第一桶金」的本钱</div><div class="cb">祝鹤槐的起点并非技术也不是流量，而是制造产业的线下认知：父亲在衢州做矿山机械制造，他从小在车间长大、回厂从一线工人做起，「厂二代的产业经验让他懂制造、懂供应链」<a class="cref cross" href="#ref-2">[2]</a>。正因在工厂接触机器人制造行业，他才看到「企业想定制机器人却不知道找谁」的信息断层<sup class="cite verified">[1]</sup>。对本案而言，AI 是放大器而非原点——这是「厂二代转型 OPC」区别于学生创业者（如肖天乐、王腾）的关键结构。</div></div>
+  <div class="card"><div class="ct">转折二：AI 抹平代码鸿沟，「不会写一行代码」也能做出双平台产品</div><div class="cb">2023 年 ChatGPT 火爆后，他确认了一条当时尚属少数派的路径：借助 AI 搜集信息、搭建网站，随后利用 AI 开发出「采了么」APP 完成数据采集人力撮合<sup class="cite verified">[1]</sup>；除对接大客户和出差，「公司里所有事情都由 AI 完成」<a class="cref cross" href="#ref-3">[3]</a>。AI 还承担了他的「参谋部」：至少 5 个长期计划每天自动全网采集信息，每周自动开复盘会校准信源与信息密度<sup class="cite verified">[1]</sup>。本案因此成为「非技术者 + AI」论断的实证：AI 补上的是工程执行，创业者的比较优势来自行业认知与需求嗅觉。</div></div>
+  <div class="card red"><div class="ct">转折三：婉拒 5000 万投资——用「自由」和「招投标资格」定价一人公司</div><div class="cb">2026 年 2 月，面对记者「最多开到多少钱」的追问，他答「5000 万，但是不想要，不是钱的问题。本来想开『一人公司』也就是为了自由」<a class="cref cross" href="#ref-3">[3]</a>——同一说法亦见于中国蓝新闻同期的独立采访（「曾婉拒别人 5000 万的投资邀约」），两处发布相互独立但均属受访者自述。<a class="cref cross" href="#ref-4">[4]</a>他给「一人公司」算的是另一笔账：有限责任公司形态获得招投标资格、单台撮合利润全部归己、决策链路最短——这与案例墙中《归墟》泫九「没有投资方」、炘扬贸易张乾超「当月回本」共同构成 2026 年 OPC 样本里「轻资产、不融资」的普遍取向。</div></div>
+  <div class="quote">
+    <p>个人只提供想法，通过 AI 工具可放大产生百倍效率。工具是杠杆，想法才是支点。</p>
+    <span class="src">—— 祝鹤槐，人民网浙江频道实地探访（2026-03-23），转引自 <a class="cref verified" href="#ref-1">[1]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>聚身之家</th><th>采了么</th></tr></thead>
+    <tbody>
+      <tr><td>品牌定位</td><td>机器人产销信息对接平台 / 「AI 机器人之家」，本人类比「机器人的『懂车帝』」<sup class="cite verified">[1]</sup><a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-2">[2]</a></td><td>数据采集人力撮合 APP，本人类比「数采员的『美团』」<sup class="cite verified">[1]</sup><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td>AI 工具链</td><td colspan="2">不会代码→用 AI 搜集信息、搭建网站与开发 APP<sup class="cite verified">[1]</sup>；5 个 AI 长期计划每日全网采集信息 + 每周自动复盘会<sup class="cite verified">[1]</sup>；除对接大客户与出差外全事务交由 AI<a class="cref cross" href="#ref-3">[3]</a>；乌镇自述「利用开源的机器人资源，搭建匹配平台」<a class="cref cross" href="#ref-13">[13]</a>；与 ANX 协议开发者徐铭泽合作，让 AI 更省算力地读取网页<sup class="cite verified">[1]</sup></td></tr>
+      <tr><td>变现方式</td><td>撮合成交：单台机器人卖价十几万至二十万元，「利润都归他」<a class="cref partial" href="#ref-6">[6]</a>；以公司形态承接招投标<a class="cref cross" href="#ref-3">[3]</a></td><td>撮合 + 服务：帮助机器人企业匹配人力完成数据采集<sup class="cite verified">[1]</sup>；累计营收超 20 万元（含两品牌，澎湃口径）<a class="cref partial" href="#ref-12">[12]</a></td></tr>
+      <tr><td>面向客群</td><td colspan="2">有机器人定制/采购需求的制造企业（首三单来自轴承公司、机器人公司、经纪人公司）<sup class="cite verified">[1]</sup>；需要数据采集服务的机器人企业<sup class="cite verified">[1]</sup>；上城区季度「能力场景清单」对接的区域需求方<sup class="cite verified">[1]</sup></td></tr>
+      <tr><td>解决痛点</td><td colspan="2">供给端信息断层：企业「想定制一台机器人，根本不知道有哪些厂家可以提供对应服务」<sup class="cite verified">[1]</sup>；数据采集环节的人力匹配低效<sup class="cite verified">[1]</sup>；个体户无招投标资格、传统创业需要团队的门槛<a class="cref cross" href="#ref-3">[3]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box insight">
+    <div class="bt">🔍 模式要点：双品牌共用一套「一人 + AI」后台</div>
+    澎湃锌刻度概括其全流程为「一人完成需求对接、方案设计、数据整理、客户维护」<a class="cref cross" href="#ref-12">[12]</a>——两个品牌共享同一套 AI 信息采集与匹配系统，边际成本近乎为零；工商经营范围亦互为犄角：聚身之家含「贸易经纪、国内贸易代理、智能机器人销售」，采了么含「互联网数据服务、大数据服务、智能机器人的研发」<a class="cref verified" href="#ref-9">[9]</a><a class="cref verified" href="#ref-7">[7]</a>。
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>订单数</td><td class="hl">3 笔（轴承 / 机器人 / 经纪人公司各一）</td><td>2026-03-23 实地探访时</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-12">[12]</a></td></tr>
+      <tr><td>累计营收</td><td class="hl">超 20 万元</td><td>约 2026-05（「成立 2 个月」口径）</td><td><a class="cref partial" href="#ref-12">[12]</a></td></tr>
+      <tr><td>拒投金额</td><td>5000 万元（婉拒，本人自述）</td><td>2026-02 采访</td><td><a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td>单台撮合价值</td><td>十几万至二十万元 / 台（利润归己）</td><td>2026-02 报道口径</td><td><a class="cref partial" href="#ref-6">[6]</a></td></tr>
+      <tr><td>公司主体</td><td class="pos">2 家（均祝鹤槐 100% 独资）</td><td>2026-03-11 / 03-12 成立</td><td><a class="cref verified" href="#ref-7">[7]</a><a class="cref verified" href="#ref-9">[9]</a></td></tr>
+      <tr><td>商标储备</td><td>3 件申请（42 类网站 / 38 类通讯 / 35 类广告）</td><td>2026-09-30</td><td><a class="cref verified" href="#ref-9">[9]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    「营收超 20 万元」目前仅见于澎湃锌刻度单一信源（正文表述为「成立 2 个月，已接到……3 个订单，营收超 20 万元」），未见人民网或本人财务口径独立确认，引用时应注明「澎湃锌刻度口径」。「3 笔订单」则由人民网实地探访（A+）与澎湃（B+）双源交叉，可作事实基线。「拒 5000 万投资」为杭州综合频道与中国蓝新闻两家媒体独立采访的同源自述——报告价值在于「有人想投」被两家记录，但金额与谈判细节无法独立核实。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将本案放入案例墙「AI 替代团队」型坐标系（对标数据均取自案例墙既有核验值，口径为各案例独立信源公开报道值）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>AI 用法</th><th>团队形态</th><th>营收 / 数据口径</th><th>核验</th></tr></thead>
+    <tbody>
+      <tr><td><b>采了么 × 聚身之家</b></td><td>祝鹤槐（97 年厂二代）</td><td>不会代码，AI 全托管：长期计划自动执行 + 每周 AI 复盘会，开发撮合网站与 APP</td><td>一人运营双品牌（杭州 + 衢州多主体）</td><td>2 个月 3 订单、营收超 20 万（澎湃单源）；拒 5000 万投资</td><td>人民网实地 A+ + 工商一手</td></tr>
+      <tr><td>江苏梧桐 AI（就业平台）</td><td>何汕杉（苏州工业园区，唯一全职员工）</td><td>AI 简历匹配 / 企业对接的就业服务平台</td><td>一人公司运营</td><td>月活近 60 万人次、48 万份简历、13 万家企业</td><td>新华网 / 园区管委会交叉（verified）</td></tr>
+      <tr><td>炘扬贸易（AI 棒球帽出海）</td><td>张乾超（95 后，丽水云和）</td><td>个人 + AI 智能体（阿里国际 Accio）跑通选品/设计/交付全链</td><td>一人 + 智能体矩阵（8 个 / 80 个两口径）</td><td>开业当月回本、首单 3600 美元</td><td>潮新闻 / 新华每日电讯（cross）</td></tr>
+      <tr><td>星织科技（数字员工）</td><td>Kevin Li</td><td>AI 智能体做「数字员工」</td><td>一人同时运营 8 个亚马逊品牌</td><td>亚马逊官方白皮书收录 OPC 典型</td><td>案例墙 cross</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>四者共同验证了 2026 年 OPC 的核心命题——「AI 替代团队」：祝鹤槐与何汕杉同为「平台撮合型」（对 B 端收撮合/服务价值），张乾超与 Kevin Li 为「贸易执行型」（AI 直接替代采购、运营团队）。本案的独特性在于<b>创业者本人完全不会代码</b>：梧桐 AI 与星织的创始人具备产品或技术背景，炘扬的智能体链路依托阿里官方工具，而本案的 AI 工具链是「通用大模型 + 自建长期计划」的拼装式组合——为「文科生 / 传统行业转型者」提供了可对标的最低技术门槛样本<sup class="cite verified">[1]</sup>。行业背景方面，《全国OPC发展观察报告（2026）》显示 2026 年上半年全国 OPC 社区从 95 个激增至 618 个，杭州已集聚「AI+OPC」企业超 2000 家<a class="cref cross" href="#ref-14">[14]</a><a class="cref cross" href="#ref-15">[15]</a>，本案正处于这一政策与生态密度最高的城市。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="card"><div class="ct">1. 产品功能</div><div class="cb">双平台矩阵：「聚身之家」做机器人产销信息集成与撮合（对标「懂车帝」的垂直信息平台逻辑），可承接招投标；「采了么」做数据采集人力与需求的智能匹配（对标「美团」的调度逻辑）。产品形态为网站 + APP，均由 AI 辅助搭建开发，一人完成需求对接、方案设计、数据整理、客户维护全链路。</div><div class="cm"><a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-12">[12]</a></div></div>
+  <div class="card"><div class="ct">2. 面向客群</div><div class="cb">B 端制造与科技企业：有机器人定制采购需求的传统制造企业（轴承公司）、机器人产业链公司、乃至经纪人公司等非典型客群；数据采集侧服务机器人企业的训练/采集需求。获客部分依托上城区每季度发布的「能力场景清单」与园区生态的官方对接，而非纯市场化投放。</div><div class="cm"><a class="cref verified" href="#ref-1">[1]</a></div></div>
+  <div class="card"><div class="ct">3. 解决痛点</div><div class="cb">① 信息断层：机器人定制市场缺乏「懂车帝」，买卖双方匹配成本高；② 人力错配：机器人企业的数据采集需求零散、波动大，缺乏平台化人力撮合；③ 组织成本：传统模式需要一个商务 + 技术 + 运营团队，本案以「一人 + AI」将其压缩为零雇员。痛点真实性由人民网实地报道背书，属「市场空白地带」型创业。</div><div class="cm"><a class="cref verified" href="#ref-1">[1]</a></div></div>
+  <div class="card"><div class="ct">4. 预估年化营收（推算，置信度 C）</div><div class="cb">唯一财务锚点是澎湃口径「成立 2 个月、3 笔订单、营收超 20 万元」<a class="cref partial" href="#ref-12">[12]</a>。若按前 2 个月节奏线性外推，年化名义值可达约 120 万元量级——但该外推置信度低：撮合业务为大单驱动（单台十几万至二十万<a class="cref partial" href="#ref-6">[6]</a>），订单节奏高度不均匀，「3 笔/2 个月」不代表稳态月产能；20 万元中两品牌占比、毛利结构均未披露。审慎结论：<b>起步年化在数十万至百余万元区间波动，属「跑通最小商业闭环」而非稳定盈利证明</b>。后续可跟踪的硬指标是招投标中标记录与商标/业务扩张（2026-09 已申请 3 件商标<a class="cref verified" href="#ref-9">[9]</a>）。</div><div class="cm">推算依据：<a class="cref partial" href="#ref-12">[12]</a> <a class="cref partial" href="#ref-6">[6]</a>，推算口径为 C 级</div></div>
+  <div class="card"><div class="ct">5. 融资进展</div><div class="cb">无外部融资，且有明确的「拒资」表态：「5000 万，但是不想要，不是钱的问题。本来想开『一人公司』也就是为了自由」（2026-02 自述，两家媒体独立采访记录）<a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-4">[4]</a>。非货币资源：未来数智港免费工位与水电网全免、园区 6 个月免租、上城区算力补贴新政（政府统一采购高阶 AI 模型账号，即开即用）与季度能力场景清单对接——政府「陪跑政策」替代了天使投资的功能位。</div><div class="cm"><a class="cref cross" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-1">[1]</a></div></div>
+  <div class="card"><div class="ct">6. 市场评价</div><div class="cb">权威正评价密集：人民网以本案开篇定义「一人公司」形态，并提炼其「工具是杠杆，想法才是支点」方法论；上城区科技经信局将其所在的未来数智港作为 OPC「种子土壤」典型<sup class="cite verified">[1]</sup>；2026-11 乌镇峰会首个「OPC 创想岛」上「一人展台，人气不输互联网巨头」，其「抓准一个细分赛道比较垂的领域，灵活程度远比大公司团队作战更灵活」的判断被中国蓝新闻作为 OPC 群体心声引用<a class="cref cross" href="#ref-13">[13]</a>；市监系统的《每日商报》访谈将其列为「厂二代转型 OPC 超级个体」的正面教学样本<a class="cref cross" href="#ref-2">[2]</a>。个人价值观层面另有「钱对我来说没什么意义」的传播点（中国蓝新闻）<a class="cref cross" href="#ref-4">[4]</a>。未检索到针对本案的公开负面评价或质疑报道。</div><div class="cm"><a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-13">[13]</a> <a class="cref cross" href="#ref-2">[2]</a></div></div>
+  <div class="card red"><div class="ct">7. 投入成本与合规风险</div><div class="cb">成本端近乎「零基建筑」：工位、水电、网费全免，获客有政府场景清单导流，AI 工具成本为订阅/API 级（园区另有算力补贴新政覆盖）<sup class="cite verified">[1]</sup>——显性现金成本几乎只有个人时间。风险端有三：① <b>撮合平台的数据合规</b>：采了么涉「互联网数据服务、大数据服务」，数据采集的人力撮合涉及个人信息保护与数据来源合法性，聚身之家已申领「第二类增值电信业务」许可项目资质要求；杭州市监局《风控法务手册》亦针对「AI+OPC」梳理出 AI 营销虚假宣传、生成内容标识等 12 个风险点<a class="cref cross" href="#ref-2">[2]</a>。② <b>双品牌精力分散</b>：一人横跨「机器人撮合」与「数采撮合」两个不同性质的市场，其中「聚身之家」自述已布局杭州、衢州多主体<a class="cref cross" href="#ref-2">[2]</a>——衢州聚身智能科技 2026-03-23 的股东变更（祝鹤槐退出 90% 持股、转为合伙企业持股）显示其主体结构仍在调整中<a class="cref partial" href="#ref-11">[11]</a>，多主体治理对单人决策带宽构成压力。③ <b>自述数据依赖</b>：营收与拒资等关键数字均为受访者口径，缺第三方审计或平台流水佐证。</div><div class="cm"><a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a> <a class="cref partial" href="#ref-11">[11]</a> <a class="cref verified" href="#ref-7">[7]</a></div></div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 单源与自述事项（截至 2026-11-12 检索）</div>
+    ① 「营收超 20 万元」仅澎湃锌刻度单一信源，无财务佐证；② 「拒 5000 万投资」为本人自述——杭州综合频道与中国蓝新闻两家独立采访均有记录，但金额、投资方身份无法核实；③ 「曾创办全国第二大设计师网站、开设工厂已产值 1 个亿」仅见于中国蓝新闻微博导语（检索快照核验，原页未直接回溯），且与人民网「本科毕业后短暂回厂」的时间线衔接存疑；④ 衢州聚身智能科技的股权变更（2026-03-23 祝鹤槐退出、胡怡退出）为企查查检索快照，其与「聚身之家」品牌的业务关系未获媒体印证；⑤ 浙江辰泰智能装备（实控人祝光云）与祝鹤槐「自家矿山机械厂」的对应关系为工商线索推断，未获直接信源确认；⑥ 乌镇峰会展台报道的精确演讲日期未检索到（新浪转载页日期为 2026-11-03）。
+  </div>
+  <div class="box note">
+    <div class="bt">📌 口径说明与命名厘清</div>
+    ① 品牌名与主体名：2026-02 采访中祝鹤槐称业务为「AI 机器人之家」，与工商主体「杭州聚身之家科技有限公司」的关系——结合乌镇报道以「杭州聚身之家科技有限公司负责人」指认其人、每日商报「聚身之家＝机器人的『懂车帝』」类比，可判断「AI 机器人之家 / 机器人之家网站」为聚身之家的业务名或站点名，报告统一以「聚身之家」指称该品牌<sup class="cite verified">[1]</sup><a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-13">[13]</a>。② 回厂时长口径：人民网「短暂工作」vs 每日商报「做智能化改革的几年里」，按原文并列、不作合并。③ 起步口径：采访称「从大一就开始创业」（个人创业史），人民网称创业故事「开始于 2023 年」（本案 OPC 业务起点），两者指涉不同、不构成冲突。④「成立 2 个月」（澎湃，2026-05）与公司注册时间（2026-03）吻合，指公司主体成立后的业务期。
+  </div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">捌·附</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 15 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/检索快照/单一 B 级信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx verified">[1]</span><span class="rt">A+</span><span class="st">央媒实地报道</span></div><div class="ti">探访杭州「一人公司」：「工具是杠杆，想法才是支点」（人民网浙江频道，记者王丽玮）</div><div class="mt"><b>来源：</b>人民网－浙江频道（原创）　<b>发布日期：</b>2026-03-23<br><a href="http://zj.people.com.cn/n2/2026/0323/c228592-41531254.html" target="_blank" rel="noopener">http://zj.people.com.cn/n2/2026/0323/c228592-41531254.html</a></div><div class="note">事实核查：实地一手报道，原文全文回溯完成。双品牌定位、一台显示器一台主机的工位实景、3 笔订单（轴承/机器人/经纪人公司）、2023 年起点、影视动画专业与回厂经历、「一行代码不会写」、5 个 AI 长期计划与每周复盘会、「工具是杠杆」金句、2025 年入驻未来数智港、陪跑政策、与徐铭泽 ANX 协议合作、「OPC 带 OPC」构想等均出自此稿。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx cross">[2]</span><span class="rt">B+</span><span class="st">党报集团访谈（政府渠道发布）</span></div><div class="ti">AI 赋能超级个体单人成军 在杭州 一个人能有多大的能量？（每日商报《武林论今》访谈）</div><div class="mt"><b>来源：</b>杭州市市场监督管理局官方发布（原发每日商报），搜狐号转载　<b>发布日期：</b>2026-09-28（转载页）<br><a href="https://m.sohu.com/a/1081966577_121106994/" target="_blank" rel="noopener">https://m.sohu.com/a/1081966577_121106994/</a>（同花顺财经版 field.10jqka.com.cn/20260922/c680143193.shtml 返回 403，以市监局官方发布转载版替代）</div><div class="note">事实核查：父亲衢州矿山机械制造、车间长大、微博/B站/抖音风口、回厂做一线工人、智能化改革、「机器人的『懂车帝』」与「数采员的『美团』」类比、布局杭州衢州多主体、场地登记为第一道难题等出自此稿；同稿含市监局工位注册与《风控法务手册》12 风险点等合规背景。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx cross">[3]</span><span class="rt">B+</span><span class="st">市级电视媒体（门户分发）</span></div><div class="ti">拒绝5000万投资，不后悔离开大厂······这些「厂二代、00后」决定独自上场！</div><div class="mt"><b>来源：</b>腾讯新闻（原发杭州电视台综合频道官方账号，记者林香柠、邵云轩）　<b>发布日期：</b>2026-02-27<br><a href="http://news.qq.com/rain/a/20260227A06XHV00" target="_blank" rel="noopener">http://news.qq.com/rain/a/20260227A06XHV00</a></div><div class="note">事实核查：原文全文回溯完成。「97 年厂二代」「从大一就开始创业」「业务是 AI 机器人之家」「5000 万，但是不想要，不是钱的问题」「开一人公司就是为了自由」「除对接大客户和出差所有事由 AI 完成」「AI 机器人信息集成服务平台可参加招投标」「个体户不能招投标」「园区 6 个月免租发帐篷」等出自此稿。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx cross">[4]</span><span class="rt">B+</span><span class="st">省级媒体官微</span></div><div class="ti">「厂二代开一人公司利润都归自己」「小伙开公司说钱对我没有意义」（中国蓝新闻官方微博）</div><div class="mt"><b>来源：</b>中国蓝新闻官方微博　<b>发布日期：</b>2026-02-26 前后<br><a href="https://m.weibo.cn/detail/5270878667149783" target="_blank" rel="noopener">https://m.weibo.cn/detail/5270878667149783</a>；另见 <a href="https://m.weibo.cn/detail/5270646540996980" target="_blank" rel="noopener">https://m.weibo.cn/detail/5270646540996980</a></div><div class="note">事实核查：经检索快照核验（微博页需登录，未直接回溯全文）。独立采访记录「婉拒 5000 万投资邀约」「钱对我来说没什么意义」；「曾创办全国第二大设计师网站、开设工厂已产值 1 个亿、还是视频创作者、目标未来全球最大具身机器人撮合平台」为该微博导语单源信息，按待证处理。注：微博将「祝鹤槐」误写作「祝鹤怀」。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx partial">[5]</span><span class="rt">A+</span><span class="st">工商一手（检索快照）</span></div><div class="ti">浙江辰泰智能装备有限公司——股权穿透与任职信息（启信宝）</div><div class="mt"><b>来源：</b>启信宝　<b>查询日期：</b>2026-11-12<br><a href="https://www.qixin.com/company/3eeb24c7-cec1-46a9-bbea-d7b6900b0158?tab=history" target="_blank" rel="noopener">https://www.qixin.com/company/3eeb24c7-cec1-46a9-bbea-d7b6900b0158?tab=history</a></div><div class="note">事实核查：检索快照显示实控人祝光云、监事祝鹤槐。仅作「厂二代家族矿山机械制造背景」的间接佐证，辰泰与本案品牌的业务关联、与人民网「自家矿山机械制造厂」的直接对应关系未获信源确认。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx cross">[6]</span><span class="rt">B+</span><span class="st">市级电视媒体官微</span></div><div class="ti">97 年小伙祝鹤槐：工位只有一台电脑，1 人 1 工位 1 电脑（杭州综合频道官方微博）</div><div class="mt"><b>来源：</b>杭州综合频道官方微博　<b>发布日期：</b>2026-02-26 前后<br><a href="https://m.weibo.cn/detail/5270677844398092" target="_blank" rel="noopener">https://m.weibo.cn/detail/5270677844398092</a></div><div class="note">事实核查：经检索快照核验。「ai 机器人之家」「机器人方案撮合」「单台机器人卖价十几万到二十万、利润都归他」「除出差所有事由 AI 完成」出自此条；与腾讯新闻分发版 [3] 同源互证。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx verified">[7]</span><span class="rt">A+</span><span class="st">工商一手（全文回溯）</span></div><div class="ti">杭州采了么科技有限公司——工商登记信息（水滴信用）</div><div class="mt"><b>来源：</b>水滴信用（源自国家企业信用信息公示系统）　<b>更新日期：</b>2026-11-01<br><a href="https://shuidi.cn/company-59756ae1655fd2d8216493aadf6efe01.html" target="_blank" rel="noopener">https://shuidi.cn/company-59756ae1655fd2d8216493aadf6efe01.html</a></div><div class="note">事实核查：页面全文回溯完成。统一社会信用代码 91330102MAK9D50B6W、法定代表人祝鹤槐、注册资本 100 万元、成立日期 2026-03-11、住所「上城区新风路260号未来数智港3层K-71室」、官网 www.caileme.top、国标行业应用软件开发、经营范围（人工智能基础/应用软件开发、互联网数据服务、大数据服务、智能机器人销售与研发等）、存续状态。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx verified">[8]</span><span class="rt">A+</span><span class="st">工商一手（检索快照）</span></div><div class="ti">杭州采了么科技有限公司——工商登记信息（启信宝）</div><div class="mt"><b>来源：</b>启信宝　<b>查询日期：</b>2026-11-12<br><a href="https://m.qixin.com/company/782270e1-1dea-11f1-9276-525400b04e3d" target="_blank" rel="noopener">https://m.qixin.com/company/782270e1-1dea-11f1-9276-525400b04e3d</a></div><div class="note">事实核查：检索快照与水滴信用 [7] 逐项互证（法定代表人、注册资本 100 万、2026-03-11 成立、自然人独资、应用软件开发），构成双平台交叉。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx verified">[9]</span><span class="rt">A+</span><span class="st">工商一手（全文回溯）</span></div><div class="ti">杭州聚身之家科技有限公司——工商登记信息（水滴信用）</div><div class="mt"><b>来源：</b>水滴信用（源自国家企业信用信息公示系统）　<b>更新日期：</b>2026-11 上旬<br><a href="https://shuidi.cn/company-d66435f9b20c6dd08144e75371ece401.html" target="_blank" rel="noopener">https://shuidi.cn/company-d66435f9b20c6dd08144e75371ece401.html</a></div><div class="note">事实核查：页面全文回溯完成。统一社会信用代码 91330102MAK90WD1X5、法定代表人祝鹤槐（经理、董事、财务负责人）、100% 持股、注册资本 10 万元、成立日期 2026-03-12、住所「彭埠街道新风路260号未来数智港3层K-70室」、经营范围含贸易经纪、国内贸易代理、智能机器人销售、机械设备销售租赁；2026-09-30 新增 3 件商标申请（42 类网站服务/38 类通讯服务/35 类广告销售）。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx verified">[10]</span><span class="rt">A+</span><span class="st">工商一手（检索快照）</span></div><div class="ti">杭州聚身之家科技有限公司——工商登记信息（启信宝）</div><div class="mt"><b>来源：</b>启信宝　<b>查询日期：</b>2026-11-12<br><a href="https://m.qixin.com/company/929f3b52-934e-4430-8e3d-b6e9ee81e09e" target="_blank" rel="noopener">https://m.qixin.com/company/929f3b52-934e-4430-8e3d-b6e9ee81e09e</a></div><div class="note">事实核查：检索快照与水滴信用 [9] 逐项互证（法定代表人、注册资本 10 万、2026-03-12 成立、存续、自然人独资），构成双平台交叉。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx partial">[11]</span><span class="rt">A+</span><span class="st">工商一手（检索快照）</span></div><div class="ti">衢州聚身智能科技有限公司——股东变更记录（企查查）</div><div class="mt"><b>来源：</b>企查查　<b>变更日期：</b>2026-03-23（快照查询 2026-11-12）<br><a href="https://m.qcc.com/firm/2a1e9d1b301af5b4e894085d784fd6dc.html" target="_blank" rel="noopener">https://m.qcc.com/firm/2a1e9d1b301af5b4e894085d784fd6dc.html</a></div><div class="note">事实核查：检索快照显示 2026-03-23 变更——祝鹤槐（原持股 90%）与胡怡（10%）退出，新进「衢州聚身共利企业管理合伙企业（有限合伙）」。佐证每日商报「布局杭州、衢州多个经营主体」；该主体与「聚身之家」品牌的具体业务关系未获媒体印证，按线索收录。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx cross">[12]</span><span class="rt">B+</span><span class="st">主流财经媒体</span></div><div class="ti">「一人公司」火了，谁靠 AI 员工挣到第一桶金？（澎湃新闻·锌刻度）</div><div class="mt"><b>来源：</b>澎湃新闻（锌刻度，撰文黎炫岐、编辑李季）　<b>发布日期：</b>2026-05-22<br><a href="https://m.thepaper.cn/newsDetail_forward_33205438" target="_blank" rel="noopener">https://m.thepaper.cn/newsDetail_forward_33205438</a></div><div class="note">事实核查：原文全文回溯完成。「成立 2 个月、3 个订单、营收超 20 万元」为本案财务关键口径（单源）；「一台显示器、一台主机是两家公司全部家当」「一人完成需求对接、方案设计、数据整理、客户维护全流程」及全国 700+ OPC 社区、WeOPC 45 万创业者等行业背景出自此稿。</div></li>
+  <li id="ref-13" class="src"><div class="sh"><span class="idx cross">[13]</span><span class="rt">B+</span><span class="st">省级媒体</span></div><div class="ti">中国蓝观察·开源「浙」视野丨共建共享 在乌镇看见「开源」的力量</div><div class="mt"><b>来源：</b>中国蓝新闻（浙江广电）；新浪新闻转载　<b>发布日期：</b>2026-11-03（新浪转载页日期）<br><a href="http://m.toutiao.com/group/7703560432884040255/" target="_blank" rel="noopener">http://m.toutiao.com/group/7703560432884040255/</a>；转载：<a href="https://news.sina.com.cn/zx/gj/2026-11-03/doc-inixnitv8632099.shtml" target="_blank" rel="noopener">https://news.sina.com.cn/zx/gj/2026-11-03/doc-inixnitv8632099.shtml</a></div><div class="note">事实核查：头条号原发页全文回溯完成。乌镇峰会首设「OPC 创想岛」、五城 OPC 组团参展、「祝鹤槐的一人展台，人气不输互联网巨头」「利用开源的机器人资源，搭建匹配平台」、其以「杭州聚身之家科技有限公司负责人」身份受访及引语均出自此稿。</div></li>
+  <li id="ref-14" class="src"><div class="sh"><span class="idx cross">[14]</span><span class="rt">A+</span><span class="st">央媒深度观察（行业背景）</span></div><div class="ti">AI 化身靠谱「合伙人」（深度观察）（人民日报科技版）</div><div class="mt"><b>来源：</b>人民日报　<b>发布日期：</b>2026-05-11<br><a href="http://paper.people.com.cn/rmrb/pc/content/202605/11/content_30156053.html" target="_blank" rel="noopener">http://paper.people.com.cn/rmrb/pc/content/202605/11/content_30156053.html</a></div><div class="note">事实核查：原文全文回溯完成。经全文检索确认<b>不含祝鹤槐个案</b>，仅作杭州 OPC 生态的行业背景引用；与海外版 [15]、人民网 [1] 的杭州 OPC 描述交叉一致。</div></li>
+  <li id="ref-15" class="src"><div class="sh"><span class="idx cross">[15]</span><span class="rt">A+</span><span class="st">央媒报道（行业背景）</span></div><div class="ti">「超级个体」扎根数字沃土（人民日报海外版社会经纬版）</div><div class="mt"><b>来源：</b>人民日报海外版　<b>发布日期：</b>2026-08-10<br><a href="http://paper.people.com.cn/rmrbhwb/pc/content/202608/10/content_30173858.html" target="_blank" rel="noopener">http://paper.people.com.cn/rmrbhwb/pc/content/202608/10/content_30173858.html</a></div><div class="note">事实核查：原文全文回溯完成。经全文检索确认<b>不含祝鹤槐个案</b>；《全国OPC发展观察报告（2026）》「上半年 OPC 社区 95→618 个、覆盖 24 省 75 城」「杭州 AI+OPC 企业超 2000 家、社区超 50 个」等行业基准出自此稿（光明网 m.gmw.cn/2026-08/10/content_1304545694.htm 同文互证）。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 15 条。核验标签分布：🟢 已核验（verified）5 条（人民网实地 + 四项工商登记，其中采了么/聚身之家均获水滴信用×启信宝双平台互证）、🔵 多源印证（cross）8 条、🟡 部分映证（partial）2 条（启信宝辰泰任职快照、企查查衢州股权变更快照——均按线索级收录）。信源评级分布：A+ 级 7 条（人民网、人民日报×2、水滴信用×2、启信宝×2）、B+ 级 8 条，无 C 级。10 条完成页面/原文直接回溯，5 条经检索快照核验（微博 2 条、启信宝 2 条、企查查 1 条，均已在条目内注明）。核验失败处理：同花顺财经版访谈页返回 403（Nginx forbidden），已按同发布方内容链以「杭州市市场监督管理局官方发布（每日商报原发）搜狐转载版」替代并保留原 URL 备注。相比案例墙底稿，本次核验有两处增量：「拒 5000 万投资」由中国蓝新闻微博获得第二独立采访源（自述性质不变）；「营收超 20 万」维持澎湃单源口径。四处留白（两品牌营收拆分、招投标中标记录、首三单金额构成、衢州主体与品牌关系）已在正文显式标注。未发现伪造链接；全部 URL 为检索过程实际命中页面。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-12 · 营收与年化推算值均标注置信口径，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · 求职精灵（Career Genie）—— 奕甫的 Agent 化 AI 求职全链路 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · 求职精灵（Career Genie）">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="求职精灵深度案例报告：技术产品型创业者奕甫以 Agent 化 AI 求职全链路（职业规划/简历逐字修改/全真语音模拟面试）切入 C 端求职市场，注册用户将破 100 万、年化收益千万级（自述口径）；背靠九年职前教育机构「有见」的机构孵化型 OPC。11 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>求职精灵（Career Genie）深度案例报告</h1>
+    <h2>技术产品型创业者奕甫：一个人、一套 Agent 化的 AI 求职全链路<br>注册用户将破 100 万、年化收益千万级（均为自述口径）—— 背靠九年职前教育机构「有见」的机构孵化型 OPC · 11 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">垂直应用型 OPC</span>
+      <span class="tag">Agent 原生</span>
+      <span class="tag">C 端求职工具</span>
+      <span class="tag">机构孵化</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">将破 100 万</div><div class="k">注册用户（2026-04 采访 · 自述）</div></div>
+  <div class="stat"><div class="v up">200 万+</div><div class="k">累计深度定制化简历优化（次 · 自述）</div></div>
+  <div class="stat"><div class="v up">50 万+ 小时</div><div class="k">AI 全真模拟面试与刷题辅导（自述）</div></div>
+  <div class="stat"><div class="v neutral">千万级</div><div class="k">年化收益（年化折算 · 自述口径）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">求职精灵（Career Genie / GenieLink）是一款高度 Agent 化的 C 端 AI 求职全链路工具：用户以自然对话驱动，产品在交互中自动调用后台工具（Skills），完成职业规划梳理、岗位精准推荐、结合具体 JD 的简历逐字修改、全真语音模拟面试与笔试准备。据《中国经营报》2026 年 4 月「探路『一人公司』」系列专访，其注册用户当时将破 100 万、年化收益触达千万级——本案全部核心数据均出自该一手采访，且均为创始人自述口径<sup class="cite partial">[1]</sup><sup class="cite cross">[2]</sup>。</p>
+  <div class="two">
+    <div class="card"><div class="ct">产品</div><div class="cb">双端形态：Web 端官网 finsight.work 以「GenieLink」对话界面为入口，设智能选岗、职业规划、简历测评、专项练习四大功能与规划模式（岗位匹配/职业规划/技能提升/智能课堂）；移动端为 iOS App「求职精灵-AI招聘求职找工作直聘央企国企」（工具类，免费下载 + 会员内购），产品描述覆盖「简历-网申-笔试-面试」求职全链条。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-4">[4]</a> <a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">奕甫——《中国经营报》报道以「奕甫」行世，定位为「技术和产品驱动的创始人」，自述 2025 年年中以 OPC（一人公司）形式起步，方向为「打造纯粹的 AI 原生应用」；真名、教育背景与此前履历均未检索到公开信息。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a></div></div>
+    <div class="card blue"><div class="ct">主体结构（机构孵化型 OPC）</div><div class="cb">App Store 开发者主体为<b>四川有见智汇科技有限公司</b>（统一社会信用代码 91120118MA05PMJP3U）；官网自述求职精灵为「有见求职旗下 AI 求职技术平台」；有见品牌 2017 年 6 月创立，深耕职前教育。本案并非白手起家的孤立个体，而是既有机构向 AI 平台化转型的「机构孵化型 OPC」。</div><div class="cm">信源：<a class="cref verified" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-5">[5]</a> <a class="cref partial" href="#ref-7">[7]</a></div></div>
+    <div class="card"><div class="ct">一人属性的真实边界</div><div class="cb">奕甫自述借助先进 AI 工具，「一个人就能完成过去需要一个小型团队才能做到的事情」——初步架构设计、PRD 撰写、部分前端原型验证；但同期亦披露计划引入前端技术负责人、大模型应用工程师与数据工程师，「逐步告别纯粹的一个人做公司的状态」。母体有见官网公示 3000+ 名内外部顾问与 6 人规模的师资团队。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-6">[6]</a></div></div>
+    <div class="card"><div class="ct">公司 / 投资状态</div><div class="cb">未检索到融资信息或「求职精灵」独立公司注册的公开报道。可见的直接商业化形态为 App 内购会员体系：求职精灵月卡 39 元 / 季卡 105 元 / 年卡 388 元，「超凡版」月度 69 元 / 季度 186 元 / 年度 688 元。</div><div class="cm">信源：<a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="card"><div class="ct">与《江苏梧桐 AI》的区分</div><div class="cb">同属案例墙「AI + 就业」主题，但生态位不同：梧桐 AI（何汕杉）是面向园区与用人企业的 <b>B 端就业服务平台</b>（简历匹配/企业对接）；求职精灵是面向求职者个人的 <b>C 端订阅工具</b>（规划/简历/面试辅导）。两者不可混同，横向对比详见「陆」。</div><div class="cm">信源：<a class="cref cross" href="#ref-11">[11]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2017-06（前史）</div><div class="tx">有见品牌创立，深耕大学生职前教育</div><div class="td">官网与第三方百科双源一致；此后陆续成立成都运营中心（2019-12）、成为四川省人力资源服务行业协会会员单位（2023-11）。<a class="cref verified" href="#ref-5">[5]</a><a class="cref partial" href="#ref-7">[7]</a></div></div>
+    <div class="node"><div class="dt">2023-05 → 2024</div><div class="tx">机构底座成型：出版行业书 + 行业身份积累</div><div class="td">与清华大学出版社联合出版《国企招聘考试全攻略》；2024 年被全国工商联人才中心选定为优秀人力资源服务业「代表性」民营企业（百科词条品牌传播口径）。<a class="cref partial" href="#ref-7">[7]</a></div></div>
+    <div class="node"><div class="dt">截至 2024-12（官网口径）</div><div class="tx">有见累计助力超 60,000 名学员获得心仪职位</div><div class="td">其中超 50,000 名学员进入央国企/500 强、央国企占比 37%；积累 3000+ 名内外部顾问、全网粉丝超 1000 万——这批案例与师资构成后续 AI 模型的定制化训练底料。<a class="cref verified" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2025 年年中（案例墙锚点 2025-06-15 ▲，推算）</div><div class="tx">奕甫以 OPC 形式启动创业：打造纯粹的 AI 原生应用</div><div class="td">自述动因：AI 技术爆发极大降低了早期研发与运营门槛；轻量化、极速迭代适合资源有限下的早期试错。案例墙锚点依「2025 年年中」自述推算。<a class="cref partial" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2025-10 中下旬</div><div class="tx">求职精灵 iOS App 上架：版本 1.0.1（2025-10-19 更新记录）</div><div class="td">App Store 最早用户评论见于 2025-10-16；首月连续发布 1.0.1–1.0.5 五个版本。<a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2026-04-10</div><div class="tx">《中国经营报》「探路『一人公司』」专访：核心数据披露</div><div class="td">注册用户「这个月差不多要突破 100 万」、年化收益「触达千万级别」、累计 200 万+ 次深度定制化简历优化、50 万+ 小时 AI 全真模拟面试与刷题辅导——全部为奕甫自述口径。<a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2026-06-05</div><div class="tx">App 版本 1.0.6：新增 AI 模拟面试与智能简历模块</div><div class="td">App 端功能补齐（此前模拟面试等能力的中经报采访口径为 Web/产品整体链路）；2026-07-22/23 的 1.0.7 版本再新增岗位小组件。<a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2026-09-03</div><div class="tx">自媒体转引：进入「AI 简历生意」行业叙事</div><div class="td">搜狐号自媒体《用 AI 帮人改简历，这门生意到底有多赚钱？》将本案作为「平台化产品」样本转引，与闲鱼接单、AI 简历机器人等副业形态并列。<a class="cref partial" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2026-11 上旬</div><div class="tx">App 版本 1.3.5：页面 UI 重新设计、功能按需求重新分类</div><div class="td">自 1.0.1 起 13 个月内持续高频迭代；官网对话界面（GenieLink）同步提供四大功能入口。<a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-4">[4]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：AI 技术爆发把「小型团队」压缩进一个人</div><div class="cb">奕甫选择 OPC 起步的直接理由是效率结构的变化：借助先进 AI 工具，初步架构设计、PRD 撰写甚至部分前端原型验证均可由一人完成，这种「轻量化、极速迭代」模式适合资源有限下的早期试错，保持极高灵活性。这与案例墙中艾逗笔、李雲帆等「技术产品型创始人 + AI 编程杠杆」的路径同构——AI 在此不是产品卖点，而是组织成本的替代变量。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a></div></div>
+  <div class="card"><div class="ct">转折二：九年职前教育积累，成为 AI 模型的训练底料与信任背书</div><div class="cb">求职精灵的核心壁垒不在模型本身，而在母体资产：有见「以累计超过 50,000 个央国企求职的成功案例作为基础，结合海量互联网信息训练定制化的人工智能模型」<a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-5">[5]</a>。这是典型的「机构孵化型 OPC」——奕甫一人承担的是产品与 AI 工程层的迭代，而数据、师资与品牌信任来自机构九年积累，冷启动成本远低于纯个人项目，也解释了为何一个「一人公司」能在 App 上架后约半年内宣称注册用户将破百万。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-5">[5]</a> <a class="cref partial" href="#ref-7">[7]</a></div></div>
+  <div class="card red"><div class="ct">转折三：一人公司的获客天花板，与「告别一人状态」的退出机制</div><div class="cb">奕甫坦承 OPC 在获客与收入上的最大痛点是「精力和资源极度受限」——无法铺设庞大的销售与运营团队，冷启动阶段难以快速触达大量 C 端用户，当前主要依靠口碑传播与「数据看板」类精准工具获客；同时大厂入局带来激烈同质化竞争、流量成本居高不下。其给出的解法有二：一是建议后来者「找到足够垂直且自己深耕的细分赛道，不要盲目做大而全」；二是自身计划引入前端技术负责人、大模型应用工程师与数据工程师，组建小型精英 AI 团队——即主动承认一人状态的阶段性边界。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a></div></div>
+  <div class="quote">
+    <p>求职精灵不仅是一个改简历的工具，它更像是一个 24 小时在线的职业导师。……从用户体验的闭环来看，求职精灵是高度 Agent 化的。用户只需要和求职精灵自然地聊天，在这个交互过程中，它会自动调用背后的各项工具（Skills）。</p>
+    <span class="src">—— 奕甫，《中国经营报》「探路『一人公司』」专访（2026-04-10），转引自 <a class="cref partial" href="#ref-1">[1]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>产品功能</th><th>Agent 化实现</th><th>定价</th><th>面向客群</th><th>解决痛点</th></tr></thead>
+    <tbody>
+      <tr><td><b>职业规划 + 智能选岗</b></td><td>自然对话中自动调用 Skills；向量数据库与语义解析实时追踪全网岗位，按简历与意向输出岗位匹配分析</td><td>免费下载 + 会员内购：月卡 ¥39 起（详见下）</td><td>C 端求职者（校招 + 社招）</td><td>「自我认知模糊」与「信息差」<sup class="cite partial">[1]</sup></td></tr>
+      <tr><td><b>简历逐字修改</b></td><td>结合具体 JD 以行业最佳实践逐字修改；多格式上传、STAR 法则润色、对话式交互、多维度竞争力评估</td><td>会员体系内（月卡 ¥39 / 季卡 ¥105 / 年卡 ¥388）</td><td>校招（大学生/留学生）+ 社招职场人</td><td>简历过筛率低、自我感动式改稿</td></tr>
+      <tr><td><b>全真语音模拟面试</b></td><td>RAG 技术模拟面试官，多种面试场景与风格，实时生成个性化反馈报告</td><td>会员体系内；「超凡版」月 ¥69 / 季 ¥186 / 年 ¥688</td><td>面试临近的校招 + 社招求职者</td><td>怯场、缺乏低成本一对一辅导</td></tr>
+      <tr><td><b>笔试训练 + 学习模块</b></td><td>名企真题与模拟试卷、智能错题本；上传行业材料自动整理学习笔记、一键生成播客音频</td><td>会员体系内</td><td>央国企/名企笔试备考者</td><td>刷题资料分散、行业认知不足</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="lead">定价与客群说明：以上定价取自 App Store 内购列表（2026-11 实测）<sup class="cite verified">[3]</sup>；客群按官网与 App 描述覆盖校招与社招，其中央国企求职为官网主打特色——产品描述明确「根植于近 10 年的职前教育经验，以累计超过 50,000 个央国企求职的成功案例作为基础」，官网亦列示央国企、留学生、社招、公职考试四类服务线<sup class="cite verified">[3]</sup><sup class="cite verified">[5]</sup><sup class="cite partial">[7]</sup>。商业模式的底层逻辑是把传统 HR 咨询的人力服务「AI 化」：奕甫以「完成 50 万小时一对一辅导需要招募多少导师」反衬 AI 的边际成本优势<sup class="cite partial">[1]</sup>；官网「技术赋能」栏自述系将 AI 大模型应用于既有职业咨询业务、以机构自身成功案例训练定制化模型<sup class="cite verified">[5]</sup>。</p>
+  <h4>用户侧实测口碑（UGC，需警惕营销投放）</h4>
+  <ul class="bl">
+    <li>牛客网用户「小徐的职场笔记」（2026-03-27）将求职精灵（finsight.work）列为其求职周期的「核心工具」：简历测评 / 智能选岗 / 面试题库 / 网申自动填写<sup class="cite partial">[9]</sup>；</li>
+    <li>另有牛客网用户帖描述央国企专属简历模板、AI 润色经历描述、投递前「全面终审」规避雷区等用法<sup class="cite partial">[10]</sup>；</li>
+    <li>App Store 现存 16 条评分为 4.8/5，评论集中于岗位信息直达官网、限时笔试模拟等功能点<sup class="cite verified">[3]</sup>——此类求职社区/应用商店内容存在第三方代运营投放的行业惯例，采信时按 C 级 UGC 处理。</li>
+  </ul>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>口径</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>注册用户</td><td class="hl">将破 100 万</td><td>2026-04-10</td><td>创始人自述（采访口径）</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td>年化收益</td><td class="hl">触达千万级（年化折算）</td><td>2026-04-10</td><td>创始人自述，非实收/审计数据</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td>深度定制化简历优化</td><td>累计超 200 万次</td><td>2026-04-10</td><td>创始人自述</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td>AI 全真模拟面试与刷题辅导</td><td>累计超 50 万小时</td><td>2026-04-10</td><td>创始人自述</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td>App Store 评分</td><td>4.8 / 5（16 个评分）</td><td>2026-11-12 实测</td><td>平台页一手数据（样本量极小）</td><td><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td>App 版本迭代</td><td>1.0.1 → 1.3.5（10+ 个版本）</td><td>2025-10-19 → 2026-11 上旬</td><td>版本历史一手数据</td><td><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td>母体有见（机构口径，非产品数据）</td><td>6 万+ 学员、5 万+ 央国企成功案例、3000+ 内外部顾问、全网粉丝 1000 万+</td><td>截至 2024-12（官网自述）</td><td>机构官网/品牌传播口径</td><td><a class="cref verified" href="#ref-5">[5]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    本案四个核心指标（100 万用户、千万级年化、200 万次优化、50 万小时面试）<b>全部来自创始人自述</b>，经《中国经营报》一手采访记录，但未见平台方、第三方机构或财务数据印证；「千万级」为年化折算口径而非实收金额。佐证侧信号：App 于 2025-10 上架、13 个月高频迭代 10+ 版本、2026-09 起被行业自媒体作为样本转引<sup class="cite partial">[8]</sup>；同时 iOS 端评分数仅 16 条——App 只是多端分发之一（官网 Web 端为主入口），该剪刀差不能直接推断用户量虚实，但如实呈现以供判断。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将求职精灵放入案例墙「AI + 就业 / 个人工具」坐标系。对标数据均为<b>案例墙既有核验值</b>（各自案例独立信源已核验，此处汇总引用案例库），本案突出定位为四者中唯一的「C 端求职全链路 Agent」：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态与模式</th><th>数据表现（案例墙既有核验值）</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>求职精灵</b></td><td>奕甫</td><td>C 端 AI 求职全链路 Agent 工具（规划/逐字改简历/语音模拟面试），会员订阅；机构孵化型 OPC</td><td>注册用户将破 100 万、年化收益千万级（均自述口径）</td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td>江苏梧桐 AI</td><td>何汕杉（苏州工业园区唯一全职员工）</td><td><b>B 端</b>大学生就业服务平台 +「OPC×AI」供需对接平台</td><td>月活近 60 万人次、累计 48 万份简历、13 万家企业（新华网/园区管委会交叉）</td><td><a class="cref cross" href="#ref-11">[11]</a></td></tr>
+      <tr><td>EmoEase（AI 情绪疗愈 App）</td><td>冼星朗（05 后香港高中生）</td><td>个人 AI 情绪记录疗愈 App（Cursor/Trae 约 20 天开发）</td><td>上线即冲 App Store 付费工具榜第 5（4 信源交叉）；苹果 SSC 全球杰出获奖者、受邀 WWDC25</td><td><a class="cref cross" href="#ref-11">[11]</a></td></tr>
+      <tr><td>作文说</td><td>李雲帆</td><td>AI 作文批改垂直工具：拍照上传生成批改报告，班级批量精批，工具订阅</td><td>上线 4 个月用户破 1.5 万（人民日报海外版/新华网）；付费率 13-14%、月入近 5 万（自述）</td><td><a class="cref cross" href="#ref-11">[11]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>四者的差异化清晰可辨：梧桐 AI 与求职精灵同处「AI + 就业」，但前者做 B 端平台（撮合园区/企业与求职者，数据获官方口径背书），后者做 C 端订阅工具（直接向求职者收费，数据为创始人自述）——同一需求的两端切口。与 EmoEase、作文说两个「个人 App/垂直工具」相比，求职精灵的特殊性在于<b>背靠机构的 Agent 化纵深</b>：它不是单点功能工具（修图、批改），而是把「规划→选岗→简历→笔试→面试」整条服务链 Agent 化，以九年机构案例为模型底料、以会员订阅变现，客单价（¥388–688/年）显著高于轻工具类订阅，也更接近传统求职咨询服务的 AI 替代品<sup class="cite partial">[1]</sup><sup class="cite cross" >[11]</sup>。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:16%">维度</th><th>分析</th><th style="width:12%">信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>求职全链路闭环：职业规划梳理 → 岗位精准推荐 → 结合 JD 逐字改简历 → 笔试准备 → 全真语音模拟面试，外加学习模块（资料上传 → 学习笔记 → 播客音频）；Web 对话端 + iOS App 双端分发，覆盖「简历-网申-笔试-面试」全链条。</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-4">[4]</a><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td><b>2. Agent 化实现</b></td><td>三层结构：交互层为「自然聊天 → 自动调用工具（Skills）」的意图编排；能力层为 RAG 技术模拟面试官（多场景多风格 + 实时个性化反馈）与向量数据库 + 语义解析的全网岗位追踪；模型层为以机构 5 万+ 成功案例为底料、结合公开信息训练的定制化模型——数据壁垒优先于模型能力。</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-5">[5]</a></td></tr>
+      <tr><td><b>3. 面向客群</b></td><td>C 端求职者，校招 + 社招双线：官网分设央国企、留学生、社招、公职考试四类服务线，App 标题直接锚定「央企国企」；定价（月卡 ¥39 至年卡 ¥688）锚定学生与职场新人可负担区间；获客依赖口碑传播与数据看板类工具，未铺设销售团队。</td><td><a class="cref partial" href="#ref-7">[7]</a><a class="cref verified" href="#ref-3">[3]</a><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>4. 解决痛点</b></td><td>创业动机直指求职者「自我认知模糊」和「信息差」两大痛点；供给侧把传统 HR 咨询的人力服务（50 万小时一对一辅导）转为 AI 标准化产品，边际成本趋零——「授人以鱼不如授人以渔」的学习模块设计意在从工具升级为成长陪伴。</td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>5. 预估年化营收（自述，置信度 C）</b></td><td>唯一口径为创始人自述「年化收益触达千万级」（2026-04）<sup class="cite partial">[1]</sup>。按 App 内购定价粗算：若以会员收入为主，千万级对应约 2.6 万名年卡用户（¥388）至 26 万名月卡用户（¥39）量级——与「将破 100 万注册用户」自述相容，但付费率、收入构成（会员/服务/其他）均未披露，推算置信度 C；对标的全球 AI 职业指导市场规模（2026 年约 37 亿美元）出自自媒体转引，仅作背景参考<sup class="cite partial">[8]</sup>。</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref verified" href="#ref-3">[3]</a><a class="cref partial" href="#ref-8">[8]</a></td></tr>
+      <tr><td><b>6. 求职数据隐私（简历个人信息）</b></td><td>简历属高敏感个人信息（教育、工作、薪酬乃至身份特征）。App Store 隐私规范披露：开发者会收集标识符、设备 ID、电话号码、购买历史等与身份关联的数据，用于<b>第三方广告追踪</b>与产品个性化，且 Apple 明确标注「此信息未经 Apple 验证」<sup class="cite verified">[3]</sup>；简历与 JD 上传至大模型后的处理、留存与训练用途，未见独立公开的数据安全文档——在一人公司形态下，隐私治理能力与「百万级简历数据」的规模之间存在结构性张力，未检索到相关监管处罚或公开投诉。</td><td><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td><b>7. AI 面试的公平性争议与营销合规</b></td><td>行业性争议：AI 模拟面试（RAG 还原面试官、预测面试问题、针对性训练）提升的是「应试表现」而非岗位能力，客观上加剧求职军备竞赛，对未使用 AI 工具的竞争者构成公平性争议——本案未卷入具体指控，属赛道共性议题<sup class="cite partial">[1]</sup>。营销侧：牛客网出现多篇结构雷同的工具推荐帖（含表格化「工具清单」、统一话术），UGC 软文嫌疑显著<sup class="cite partial">[9]</sup><sup class="cite partial">[10]</sup>；母体官网主动承诺「不存在任何保过承诺」以对冲职教行业合规风险<sup class="cite cross">[6]</sup>；未检索到针对本产品的监管处罚或诉讼记录。</td><td><a class="cref partial" href="#ref-9">[9]</a><a class="cref partial" href="#ref-10">[10]</a><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 五处核心不确定性（截至 2026-11-12 检索）</div>
+    ① <b>数据自述属性</b>：100 万用户、千万级年化、200 万次优化、50 万小时面试均无第三方验证，「千万级」系年化折算而非实收，引用时必须标注自述口径；② <b>用户量与评论量剪刀差</b>：iOS 端 16 条评分 vs 「将破 100 万注册用户」——App 仅为多端之一、剪刀差不可直接证伪，但独立佐证缺位；③ <b>「一人公司」属性打折</b>：产品隶属有见求职（2017 年创立的职前教育机构），母体拥有 3000+ 顾问与公示师资团队，奕甫亦自述将组建小型团队——本案是「机构孵化型 OPC」而非白手起家个体，一人属性为阶段性形态；④ <b>营收构成与付费率未披露</b>：会员/服务收入占比、付费转化均无数据；⑤ <b>获客结构存疑</b>：求职社区多篇推荐帖呈模板化特征，自然口碑与投放占比无法区分。
+  </div>
+  <div class="box note">
+    <div class="bt">📌 口径与留白说明</div>
+    ① 创始人「奕甫」真名未公开，未检索到其个人履历的公开信息；② 《中国经营报》官网原文页（cb.com.cn）在本次核验中抓取失败（爬虫返回空内容），已按规则以同发布方头条号官方分发版与新浪财经转载版替代核验，全文一致；③ 案例墙锚点 2025-06-15 ▲ 为依「2025 年年中创业」自述的推算锚点，非确切注册日期；④ 融资、公司股权结构、Web 端（小程序/安卓）分发数据均未检索到公开信息；⑤ 有见机构侧数据（6 万学员、3000 顾问等）为品牌官网与第三方百科的品牌传播口径，未经独立审计。
+  </div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">求职精灵为案例墙补上了关键一环：<b>传统人力密集型服务（求职咨询）的 AI Agent 化重构</b>。它的启示有二：其一，AI 原生不等于从零开始——九年机构积累的成功案例数据与师资信任，恰恰是大模型时代最难复制的资产，一人创始人真正做的是把机构资产「翻译」成 Agent 产品；其二，OPC 在 C 端付费赛道的瓶颈不是研发而是获客与信任，本案以机构背书 + 口碑传播绕开了投放依赖，但奕甫对「大厂同质化竞争」「流量成本居高不下」的担忧，以及主动引入团队的决定，共同勾勒出一人公司向小团队演化的典型路径。</div><div class="cm">分析基于：<a class="cref partial" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-5">[5]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">附</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 11 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/UGC）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx cross">[1]</span><span class="rt">A</span><span class="st">主流财经一手采访</span></div><div class="ti">探路「一人公司」｜对话 OPC 创业者奕甫：千万级年收益如何达成？（中国经营报，中经记者庄灵辉、赵毅）</div><div class="mt"><b>来源：</b>中国经营报（官网原文 https://cb.com.cn/index/show/special/cv/cv13474599519 抓取失败，此处为同发布方头条号官方分发版）　<b>发布日期：</b>约 2026-04<br><a href="http://m.toutiao.com/group/7627144479530648110/" target="_blank" rel="noopener">http://m.toutiao.com/group/7627144479530648110/</a></div><div class="note">事实核查：一手采访全文核验完成；创业起点（2025 年年中）、OPC 动因、100 万用户、千万级年化、200 万次简历优化、50 万小时模拟面试、Agent 化产品逻辑、获客困境与团队规划均出自此稿——其中经营数据为奕甫自述口径，正文引用一律标 partial。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx cross">[2]</span><span class="rt">B+</span><span class="st">主流门户转载</span></div><div class="ti">探路「一人公司」｜对话 OPC 创业者奕甫 千万级年收益如何达成？（新浪财经转载版）</div><div class="mt"><b>来源：</b>新浪财经（原发中国经营报，页面内链指向头条号同稿）　<b>发布日期：</b>2026-04-10 22:56<br><a href="https://finance.sina.com.cn/jjxw/2026-04-10/doc-inhtztir5025295.shtml" target="_blank" rel="noopener">https://finance.sina.com.cn/jjxw/2026-04-10/doc-inhtztir5025295.shtml</a></div><div class="note">事实核查：全文抓核验完成，与 [1] 逐句一致，确定报道发布时点为 2026-04-10；两版互证弥补中经报官网原文不可达的缺口。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx verified">[3]</span><span class="rt">A</span><span class="st">产品一手页（实测）</span></div><div class="ti">求职精灵-AI招聘求职找工作直聘央企国企（App Store 产品页，id6744636384）</div><div class="mt"><b>来源：</b>App Store（开发者：四川有见智汇科技有限公司，统一社会信用代码 91120118MA05PMJP3U）　<b>核验日期：</b>2026-11-12 实测<br><a href="https://apps.apple.com/cn/app/id6744636384" target="_blank" rel="noopener">https://apps.apple.com/cn/app/id6744636384</a></div><div class="note">事实核查：开发者主体与有见隶属关系经 [5][7] 交叉为 verified；4.8 分/16 评分、内购价格档（月卡 ¥39/季卡 ¥105/年卡 ¥388、超凡版 ¥69/¥186/¥688）、版本历史（1.0.1 于 2025-10-19 → 1.3.5 于 2026-11 上旬）、隐私规范披露（标识符/设备 ID/电话号码/购买历史用于第三方广告追踪，Apple 标注「未经 Apple 验证」）、产品描述（近 10 年职前教育、5 万+ 央国企成功案例、AI 智能选岗/简历优化/笔试训练/模拟面试）均为页面一手数据。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx cross">[4]</span><span class="rt">A</span><span class="st">产品一手页</span></div><div class="ti">求职精灵官网首页（GenieLink 对话界面）</div><div class="mt"><b>来源：</b>finsight.work　<b>核验日期：</b>2026-11-12<br><a href="https://finsight.work" target="_blank" rel="noopener">https://finsight.work</a></div><div class="note">事实核查：页面标题「GenieLink｜你好，我是求职精灵」，功能入口（智能选岗/职业规划/简历测评/专项练习）与规划模式（岗位匹配/职业规划/技能提升/智能课堂）为页面一手内容。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx verified">[5]</span><span class="rt">A</span><span class="st">产品一手页</span></div><div class="ti">关于求职精灵 Genielink 与有见求职（官网关于页）</div><div class="mt"><b>来源：</b>finsight.work/about　<b>核验日期：</b>2026-11-12<br><a href="https://finsight.work/about" target="_blank" rel="noopener">https://finsight.work/about</a></div><div class="note">事实核查：「有见求职旗下 AI 求职技术平台」定位、3000+ 内外部顾问、全网粉丝超 1000 万、截至 2024-12 助力超 60,000 名学员、超 50,000 名学员进入央国企/500 强（央国企占比 37%）、品牌理念「以父母之心做规划」均为官网自述；其中品牌隶属与出书事实与 [3][7] 交叉为 verified，机构规模数据为品牌传播口径。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx cross">[6]</span><span class="rt">A</span><span class="st">产品一手页</span></div><div class="ti">师资团队介绍（官网师资页）</div><div class="mt"><b>来源：</b>finsight.work/about/teacher　<b>核验日期：</b>2026-11-12<br><a href="https://finsight.work/about/teacher" target="_blank" rel="noopener">https://finsight.work/about/teacher</a></div><div class="note">事实核查：6 名师资公示（含联合创始人「豆豆」：MPAcc 硕士、《国企招聘考试全攻略》主编、全网粉丝超 300 万；合伙人吴尚蔚：清华会计硕士、前麦肯锡/毕马威/合益），印证「一人创始人 + 机构师资」的结构；师资头衔为官网自述口径。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx partial">[7]</span><span class="rt">B</span><span class="st">第三方百科（品牌传播口径）</span></div><div class="ti">有见［品牌］词条（字节百科）</div><div class="mt"><b>来源：</b>m.baike.com/wiki/有见/7434831648855080986　<b>核验日期：</b>2026-11-12<br><a href="https://m.baike.com/wiki/%E6%9C%89%E8%A7%81/7434831648855080986" target="_blank" rel="noopener">https://m.baike.com/wiki/有见/7434831648855080986</a></div><div class="note">事实核查：2017-06 品牌创立、求职精灵为有见求职旗下产品、2023-05 与清华大学出版社合出《国企招聘考试全攻略》、行业协会身份沿革等均与官网 [5] 一致；词条底层参考资料为新报网（2024-11-09）品牌稿，按 B 级品牌传播口径收录。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx partial">[8]</span><span class="rt">C</span><span class="st">自媒体（转引 + 行业背景）</span></div><div class="ti">用 AI 帮人改简历，这门生意到底有多赚钱？（搜狐号「破局先锋」）</div><div class="mt"><b>来源：</b>搜狐号　<b>发布日期：</b>2026-09-03<br><a href="https://m.sohu.com/a/1071495610_122603294/" target="_blank" rel="noopener">https://m.sohu.com/a/1071495610_122603294/</a></div><div class="note">事实核查：对中国经营报数据（100 万用户/千万级/200 万次/50 万小时）的转引与 [1] 一致，仅作传播路径佐证；其所引全球 AI 职业指导市场规模（2026 年 37 亿美元等）为自媒体二手数据，仅作背景参考不作事实引用。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx partial">[9]</span><span class="rt">C</span><span class="st">UGC 用户帖</span></div><div class="ti">投了 200 份简历只收到 3 个面试？我发现 80% 的人都在犯这 5 个错误（牛客网，用户「小徐的职场笔记」）</div><div class="mt"><b>来源：</b>牛客网（发布者 IP 属地四川，账号资料显示京东员工）　<b>发布日期：</b>2026-03-27<br><a href="https://www.nowcoder.com/discuss/867047727392116736" target="_blank" rel="noopener">https://www.nowcoder.com/discuss/867047727392116736</a></div><div class="note">事实核查：全文核验完成，将求职精灵（finsight.work）列为简历测评/智能选岗/面试题库/网申自动填写的「核心工具」——真实使用细节可佐证功能落地；求职社区此类推荐帖存在营销投放惯例，按 C 级 UGC 收录。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx partial">[10]</span><span class="rt">C</span><span class="st">UGC 用户帖（摘要核验）</span></div><div class="ti">从 0 offer 到拿下 3 个央国企 offer，秋招逆袭全靠这套 AI 工具（牛客网用户帖）</div><div class="mt"><b>来源：</b>牛客网　<b>发布日期：</b>约 2026 年<br><a href="https://www.nowcoder.com/discuss/867013799587368960" target="_blank" rel="noopener">https://www.nowcoder.com/discuss/867013799587368960</a></div><div class="note">事实核查：经搜索摘要核验（未全文抓取），描述央国企专属简历模板、AI 润色经历描述（量化成果）、投递前终审规避雷区等用法；与 [9] 同按 C 级 UGC 处理，营销嫌疑一并标注。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx cross">[11]</span><span class="rt">B+</span><span class="st">案例库既有核验值</span></div><div class="ti">案例墙及对标案例深度报告（江苏梧桐 AI / EmoEase / 作文说）</div><div class="mt"><b>来源：</b>OPC Story 案例墙 site/index.html（条目 #13 作文说、#32 求职精灵、#44 江苏梧桐 AI、#45 EmoEase）及对应报告 report/wutong-ai/、report/emoease/、report/zuowenshuo/　<b>核验日期：</b>2026-11-12 本地文件核验<br><a href="../../index.html" target="_self" style="color:#2980b9">../../index.html（← 返回案例墙）</a></div><div class="note">事实核查：梧桐 AI 月活近 60 万人次/48 万份简历/13 万家企业（新华网/园区管委会交叉，其报告 13 条信源）、EmoEase App Store 付费工具榜第 5（4 信源交叉）、作文说 4 个月 1.5 万用户（人民日报海外版/新华网）均为案例墙已核验值，本报告汇总引用并注明出处属性。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 11 条。核验标签分布：🟢 已核验（verified）2 条、🔵 多源印证（cross）5 条、🟡 部分映证（partial）4 条。信源评级分布：A 级 6 条（中经报一手采访及其官方分发/转载版 + 产品官网与 App Store 三条一手页）、B+/B 级 3 条（新浪转载 B+、案例库 B+、第三方百科 B）、C 级 2 条（搜狐自媒体、牛客 UGC——均已标注营销嫌疑与口径）。<b>核验失败 1 处</b>：《中国经营报》官网原文页（cb.com.cn/index/show/special/cv/cv13474599519）经 WebFetch 与备用抓取两次尝试均返回空内容，已按「换同发布方原文」规则以头条号官方分发版 [1] 与新浪财经转载版 [2] 替代核验，全文一致。本案最大口径风险为<b>全部经营数据均为创始人自述</b>（正文一律标 partial）与<b>「一人公司」属性为机构孵化背景下的阶段性形态</b>，均已在正文与「捌」章显式标注。未发现伪造链接；全部 URL 为检索过程实际命中页面。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-12 · 核心经营数据均为创始人自述口径，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

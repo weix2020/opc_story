@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · Cherry Studio——"两人兼职团队"起步的开源 AI 桌面客户端 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · Cherry Studio">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="Cherry Studio 深度案例报告：开源跨平台多模型 AI 桌面客户端，300+ 模型/知识库/智能体/MCP。GitHub 53.4k★（2026-11-13 API 实测）、417 名贡献者；自述'两人兼职团队'起步，一人属性如实降级呈现。13 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>Cherry Studio 深度案例报告</h1>
+    <h2>"两人兼职团队"起步的开源多模型 AI 桌面客户端：从 2024 年的个人副业项目<br>到 53k★ 社区共创与公司化融资 —— 一人属性如实降级呈现 · 13 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">开源产品型 OPC（边界案例）</span>
+      <span class="tag">社区共创</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">53.4k★</div><div class="k">GitHub 星标（2026-11-13 API 实测）</div></div>
+  <div class="stat"><div class="v up">417 人</div><div class="k">社区贡献者（GitHub API 实测）</div></div>
+  <div class="stat"><div class="v neutral">2024-05</div><div class="k">仓库创建（锚点 2024 年 ▲）</div></div>
+  <div class="stat"><div class="v neutral">2 → 9 人</div><div class="k">团队演进（兼职 → 全职 → 公司化）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">Cherry Studio 是一款开源跨平台多模型 AI 桌面客户端，支持 Windows、macOS 与 Linux，定位"一个入口、连接所有 AI"：聚合 300+ 主流模型、内置知识库、智能体（Agent）与 MCP 协议支持<a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a>。本案例是案例墙中"一人属性"最需要诚实降级的样本——项目长期以"两人兼职团队"口径自述起步，随后经开源社区共创走向公司化融资；案例墙收录的是其 2024 年（▲年锚点）个人/双人副业起步阶段的早期形态<a class="cref verified" href="#ref-3">[3]</a>。</p>
+  <div class="two">
+    <div class="card"><div class="ct">项目</div><div class="cb">Cherry Studio（CherryHQ/cherry-studio）：AI 工作站式桌面客户端——多模型对话、多模型同问对比、本地/云端知识库（含 OCR 与文档解析）、智能体与自动化（Skills、MCP、定时任务、Channels）、图像生成、翻译、语音、API Gateway，数据本地存储并支持 WebDAV 备份；已扩展 iOS/Android 移动版（独立仓库 cherry-studio-app）。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">GitHub 项目第一贡献者为 kangfenmao（网名"亢奋猫"，GitHub 主页自称"亢奋猫 / Software Engineer"，坐标上海，账号注册于 2014 年）。其网名与运营公司工商登记姓名的逐一对应未获直接公开信源确认，真名未公开——按"项目第一贡献者 kangfenmao / 工商登记创始人王新铭"双口径如实呈现（详见捌）。</div><div class="cm">信源：<a class="cref verified" href="#ref-4">[4]</a> <a class="cref cross" href="#ref-5">[5]</a> <a class="cref verified" href="#ref-6">[6]</a></div></div>
+    <div class="card"><div class="ct">公司主体</div><div class="cb">上海千彗科技有限公司：天眼查品牌页显示成立于 2025-01-09、所属地上海、当前融资轮次为种子轮，定位"跨平台多模型 AI 桌面客户端开发商"；工商登记核心人员为创始人王新铭、联合创始人王谦。王新铭，1990 年生于山东临沂，曾在喜马拉雅 FM、依图科技、字节跳动及 PPTV 等公司从事产品工作，曾在新能源创业公司担任产品合伙人。</div><div class="cm">信源：<a class="cref cross" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-7">[7]</a></div></div>
+    <div class="card"><div class="ct">团队口径（本案例关键）</div><div class="cb">案例墙底稿口径："自述长期'两人兼职团队'起步（一人属性打折）"。自媒体长文转述创始人自述："白天我们各有各的工作，晚上就全职扑在 Cherry Studio 上""每天只睡四五个小时"；2025 年 DeepSeek 爆火后于年中转型全职，团队从 2 人扩至 9 人（自媒体转述口径，2026 年初 42k★ 时点）；至招聘简介期已为公司化运作。</div><div class="cm">信源：<a class="cref partial" href="#ref-8">[8]</a> <a class="cref cross" href="#ref-9">[9]</a></div></div>
+    <div class="card blue"><div class="ct">开源社区</div><div class="cb">GitHub 实测 417 名贡献者（2026-11-13，API 分页计数）：第一贡献者 kangfenmao 累计 2444 次提交、第二 DeJeune 1247 次、第三 0xfullex 1014 次；社区生态含 Discord/Telegram/QQ 群、主题市场（cherrycss.com）、多语言翻译与文档共建。社区贡献是本案例从"两人副业"走向"53k★"的核心杠杆。</div><div class="cm">信源：<a class="cref verified" href="#ref-6">[6]</a> <a class="cref verified" href="#ref-2">[2]</a></div></div>
+    <div class="card blue"><div class="ct">融资状态</div><div class="cb">种子轮（天眼查口径）。公司招聘简介自述："已获得五源、光合等知名美元基金数百万美元投资"；五源资本官方播客"五源小酒馆"单集 20 对话 Cherry Studio 创始人（嘉宾署名 Yinsen）及五源投资人 Steven，与该自述互证。</div><div class="cm">信源：<a class="cref cross" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-9">[9]</a> <a class="cref partial" href="#ref-10">[10]</a></div></div>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 为什么收录进"一人公司"案例墙？</div>
+    案例墙收录标准强调个人开发者属性，而本案例底稿已明确标注"自述长期'两人兼职团队'（一人属性打折）"、置信度"中"，且案例墙检索说明中注明"Cherry Studio 按公司化口径曾排除"，最终以早期副业形态收录。本报告遵循该口径：将 Cherry Studio 定位为<b>"两人兼职起步 → 社区共创 → 公司化"的演进样本</b>，而非严格意义的"一人公司"；其价值在于展示开源 AI 客户端赛道从个人项目长成公司的完整路径，同时为"一人公司"概念划出真实边界。
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2024-05-24（API 实测）</div><div class="tx">GitHub 仓库 CherryHQ/cherry-studio 创建</div><div class="td">锚点 2024 年（▲年锚点）的一手锚定值；项目自此以开源方式起步。<a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2024 年（自媒体口径：7 月）</div><div class="tx">创始团队从大厂离职、项目进入认真开发期</div><div class="td">自媒体长文称王新铭 2024 年 7 月从字节跳动离职、合伙人王谦加入（大学同学、住同镇）；注意与仓库 5 月创建的时点存在先后交织，早期为业余开发形态。<a class="cref partial" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2024 年底</div><div class="tx">数千颗 Star、数千名社群活跃用户</div><div class="td">第一批用户中大量为非技术背景用户（老师、销售、自由职业者），奠定了"零门槛工具"而非"程序员玩具"的产品方向。<a class="cref partial" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2025-01-09</div><div class="tx">上海千彗科技有限公司注册成立（工商口径）</div><div class="td">天眼查品牌页：成立日期 2025-01-09、所属地上海、当前融资轮次种子轮。<a class="cref cross" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2025-01-20</div><div class="tx">DeepSeek R1 发布，引爆用户增长</div><div class="td">自媒体口径：发布当晚各社群涌入海量用户，"那个周末服务器访问量翻了二十倍"；随后 Issue 从几十个涨到几千个，"有些 Issue 挂了三个月都没人处理"——两人兼职维护达到极限。<a class="cref partial" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2025 年</div><div class="tx">官网自述"33k+ stars"，成为中国 AI 客户端代表性开源项目</div><div class="td">官网快照自述："2025 年的 Cherry Studio 已经成长为最全能的 AI 桌面客户端，GitHub 上已有 33k+ stars"；案例墙底稿收录口径为"GitHub 32k★"（时点未注明）。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2025 年中</div><div class="tx">从兼职转向全职项目，团队开始扩张</div><div class="td">自媒体口径：2025 年中正式转型全职；此后半年团队从 2 人增至 9 人。<a class="cref partial" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2026 年初</div><div class="tx">GitHub 星标突破 42,000</div><div class="td">自媒体长文以此为时点背景；英特尔官方新闻室亦称其"在过去一年中取得令人瞩目的成绩"。获五源、光合等美元基金数百万美元投资（公司招聘自述，45k+ Star 时点）。<a class="cref partial" href="#ref-8">[8]</a><a class="cref cross" href="#ref-11">[11]</a><a class="cref cross" href="#ref-9">[9]</a></div></div>
+    <div class="node"><div class="dt">2026 年中（播客"6 个月前"口径）</div><div class="tx">五源资本官方播客对话创始人</div><div class="td">五源小酒馆单集 20《Opus 4.5 以后，AI 正在催生"百人巨头公司"》，嘉宾署名 Yinsen（Cherry Studio 创始人）与五源投资人 Steven。<a class="cref partial" href="#ref-10">[10]</a></div></div>
+    <div class="node"><div class="dt">2026-11-13（本次实测）</div><div class="tx">GitHub 53,465★、5,216 forks、417 名贡献者</div><div class="td">仓库持续高频更新（pushed_at 同日）；官网渠道在售版本 v1.9.6；联想应用商店渠道 v2.2.0（40 万次下载）。<a class="cref verified" href="#ref-3">[3]</a><a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-12">[12]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：产品老兵的"聚合"执念——不造模型，造入口</div><div class="cb">创始人（王新铭，工商口径）的履历横跨喜马拉雅、依图科技、字节跳动与新能源创业公司——依图经历让他"第一次意识到 AI 真的要改变世界"，字节经历让他思考"AI 的 C 端产品应该长什么样"（自媒体转述其播客访谈口径）。创业切入点刻意避开模型层：不做"中国版 ChatGPT"，而做聚合所有模型的桌面入口，解决"在不同 AI 工具间切换、复制粘贴上下文"的碎片化痛点。这一"入口卡位"思路在其后的五源播客中被提炼为"被'套壳'二字掩盖的独立价值"。</div><div class="cm">信源：<a class="cref partial" href="#ref-8">[8]</a> <a class="cref cross" href="#ref-7">[7]</a> <a class="cref partial" href="#ref-10">[10]</a></div></div>
+  <div class="card"><div class="ct">转折二：DeepSeek R1 引爆——外部模型事件成为开源项目的"顺风"</div><div class="cb">2025 年 1 月 20 日 DeepSeek R1 发布，成为本案例的显性引爆点：用户量暴涨、服务器访问量周末翻 20 倍、Issue 与 PR 爆炸。对二人兼职团队而言，这既是增长红利也是运维危机——"有些 Issue 挂了三个月都没人处理""服务器账单每个月都在透支信用卡"（自媒体转述口径）。这段"红利即压力"的经历说明：开源客户端的命运与模型层事件高度联动，个人/小团队必须提前设计承接增长的社区机制。</div><div class="cm">信源：<a class="cref partial" href="#ref-8">[8]</a></div></div>
+  <div class="card red"><div class="ct">转折三：从"两人兼职"到公司化——一人属性的终点，开源社区的杠杆</div><div class="cb">与案例墙多数"一人到底"的样本不同，本案例的路径是主动升级组织形态：2025 年中转全职 → 团队 9 人（2026 年初口径）→ 千彗科技公司化（2025-01 注册）→ 获五源、光合数百万美元投资 → 2026 年以"AI Native 公司"身份招聘扩张。开源社区是这一升级的杠杆：417 名贡献者分担了代码、文档与翻译；自媒体转述的社区运营细节包括为核心贡献者报销 Cursor 订阅（每月约 70 美元）、以美团外卖犒劳深夜加班者、"核心贡献者一半以上是研究生"——用小成本把社区热情转化为可持续贡献。</div><div class="cm">信源：<a class="cref partial" href="#ref-8">[8]</a> <a class="cref verified" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-9">[9]</a></div></div>
+  <div class="quote">
+    <p>那段时间我和王谦每天只睡四五个小时。白天我们各有各的工作，晚上就全职扑在 Cherry Studio 上。吃饭在电脑前吃，洗澡都在想怎么解决问题。</p>
+    <span class="src">—— 王新铭（创始人，工商口径），自媒体长文转述其播客访谈（42k★ 时点），转引自 <a class="cref partial" href="#ref-8">[8]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product & Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>内容</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>产品功能矩阵</b></td><td>桌面端（Windows/macOS/Linux）+ 移动端（iOS/Android）：①多模型聚合对话——接入 OpenAI、Anthropic、Gemini 等云服务商与自定义兼容服务，支持 Ollama/LM Studio 本地模型，同一会话多模型并排对比；②智能体与自动化——自定义 Agent（指令/工作区/模型/工具权限）、文件与浏览器操作、Skills 与 MCP 服务器扩展、定时任务、消息平台 Channels；③知识库——本地文件/文件夹/网页构建，PDF/Office/图片解析与 OCR，用于对话与 Agent 工作流；④创作与效率——图像生成、翻译、联网搜索、Mini Apps、API Gateway；⑤语音与工作区——语音输入/TTS（含本地模型）、多标签与独立窗口、主题生态、本地数据与 WebDAV 备份。</td><td><a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>开源 + 商业服务模式</b></td><td>社区版完全免费开源（AGPL-3.0），个人使用免费，商业使用须遵守 AGPL 条款，需豁免者购买商业授权（官方预留 bd@cherry-ai.com 商务通道）；企业版（enterprise.cherryai.com）：集中模型管理、共享知识库、员工访问控制、私有化部署。官网另设"免费模型合作伙伴"导流（BigModel GLM-4.5-Air、SiliconFlow Qwen3-8B 等，免 API Key 体验），README 中的 API Gateway 用于将用户自配模型接入其他应用。<b>关于"API 服务"：未检索到官方对外售卖自有 API 服务的公开信源</b>，官网免费模型为合作伙伴提供；商业模式以"开源社区版 + 商业授权 + 企业版"为准（公司自述口径）。</td><td><a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>面向客群</b></td><td>三层客群：①大众用户——早期用户大量为非技术背景（老师、销售、自由职业者，自媒体转述口径），"下载安装、填 API Key 即用"的零门槛定位；②开发者与重度用户——多模型对比、MCP/Agent、本地模型与数据主权；③企业客户——企业版的集中管理与私有化部署（商业授权与商务通道）。融资方叙事进一步把定位提升为"AI Native 组织的入口级交互界面"（公司招聘自述口径）。</td><td><a class="cref partial" href="#ref-8">[8]</a><a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-9">[9]</a></td></tr>
+      <tr><td><b>解决痛点</b></td><td>①多 AI 服务割裂——"一个窗口聚合所有 AI"，免去多平台登录与上下文搬运（自媒体转述的创始动因）；②门槛——零配置起步，另有合作伙伴免费模型免除 API Key 环节；③隐私与数据主权——本地模型接入、对话与知识库本地存储、企业私有化部署；④"套壳"质疑下的工程整合价值——智能体、MCP、知识库等深水区能力构成模型层之上的独立价值（五源播客叙事）。</td><td><a class="cref partial" href="#ref-8">[8]</a><a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-10">[10]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box insight">
+    <div class="bt">💡 模式解读：AGPL 双刃剑</div>
+    AGPL-3.0 对个人与社区友好（永远免费），对企业则构成合规门槛——任何对 Cherry Studio 做商用分发的公司要么开源其修改，要么购买商业豁免授权。这把"开源 popularity"直接转化为企业版/授权收入的谈判筹码，也是开源客户端赛道中较罕见地把许可证本身用作商业杠杆的打法（对比案例墙中 ChatWise 的个人闭源买断、NextChat 的纯开源路线）。
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点 / 口径</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>GitHub 星标</td><td class="hl">53,465★（forks 5,216、open issues 2,686、watchers 204）</td><td>2026-11-13 API 实测</td><td><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td>星标增长轨迹</td><td>32k★（案例墙底稿收录口径，时点未注明）→ 33k+（官网自述，2025 年口径）→ 42k（自媒体，2026 年初）→ 45k+（公司招聘自述）→ 53.4k（实测）</td><td>2024-2026</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-8">[8]</a><a class="cref cross" href="#ref-9">[9]</a><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td>仓库创建时间</td><td>2024-05-24（created_at，一手锚定值）</td><td>API 实测</td><td><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td>社区贡献者</td><td class="pos">417 名；第一贡献者 kangfenmao 2,444 次提交、DeJeune 1,247 次、0xfullex 1,014 次</td><td>2026-11-13 API 实测</td><td><a class="cref verified" href="#ref-6">[6]</a></td></tr>
+      <tr><td>累计下载量</td><td>案例墙底稿口径"超 1000 万次"；<b>本次检索未回溯到可公开验证的累计下载信源</b>，仅获单渠道数据：联想应用商店 v2.2.0 40 万次下载（2026-11-11 更新）</td><td>底稿口径未注明时点</td><td><a class="cref partial" href="#ref-12">[12]</a></td></tr>
+      <tr><td>使用者规模</td><td>"服务超百万使用者"（公司招聘简介自述）</td><td>45k+ Star 时点（约 2026 下半年）</td><td><a class="cref cross" href="#ref-9">[9]</a></td></tr>
+      <tr><td>发版与活跃度</td><td>官网渠道版本 v1.9.6；仓库 2026-11-13 当日仍有推送（持续高频维护）</td><td>2026-11 实测</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    星标、贡献者、创建时间为 GitHub API 一手实测值，可复现（A 级）。"下载超 1000 万次"沿用案例墙底稿口径，但本次多轮检索（中英文）未能回溯到官方或媒体的原始出处，按"未检索到可公开验证信源"如实降级标注，引用时建议以"招聘自述'服务超百万使用者'+单渠道 40 万下载"为可核验基线。官网 v1.9.6 与联想商店 v2.2.0 的版本号差异未获官方说明，疑为渠道更新节奏不同，不影响数据结论。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将 Cherry Studio 放入案例墙"桌面 AI 客户端"坐标系。对标行数据均为<b>案例墙既有核验值</b>（各案例独立报告/卡片信源，本次未重新核验，仅作横向参照）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>开发者</th><th>形态与路线</th><th>锚点</th><th>数据表现</th><th>组织形态</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>Cherry Studio</b></td><td>kangfenmao 等两人起步</td><td>开源桌面客户端（AGPL-3.0）+ 商业授权 + 企业版</td><td>2024 年（▲；仓库 2024-05-24）</td><td>53.4k★（2026-11-13 实测）、417 名贡献者</td><td class="hl">2 人兼职 → 社区共创 → 公司化融资（种子轮）</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref cross" href="#ref-5">[5]</a></td></tr>
+      <tr><td>NextChat</td><td>Yidadaa（单人）</td><td>开源：一键免费部署的私人 ChatGPT 跨平台客户端</td><td>2023-03-15 ✓</td><td>GitHub 88.8k★</td><td>单人维护</td><td><a class="cref partial" href="#ref-13">[13]</a></td></tr>
+      <tr><td>ChatWise</td><td>egoist（单人）</td><td>闭源买断：多模态 + MCP，BYOK 买断制</td><td>2024-11-15 ✓</td><td>Pro $29 买断持续销售</td><td>单人 + 直接现金流</td><td><a class="cref partial" href="#ref-13">[13]</a></td></tr>
+      <tr><td>LobeChat</td><td>arvinxx 等（双人起步）</td><td>开源 AI 聊天/Agent 平台</td><td>—</td><td>8.4 万★</td><td class="hl">双人起步、已公司化融资（案例墙观察名单）</td><td><a class="cref partial" href="#ref-13">[13]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><b>"开源社区驱动 vs 单人维护"的差异是本组对标的核心变量。</b>NextChat 以单人之力做到 88.8k★，是"单人开源影响力"的天花板样本，但维护带宽受个人时间约束；ChatWise 走单人闭源买断，无社区贡献杠杆，换来的是直接的现金流而非星标；Cherry Studio 与 LobeChat 则代表另一条路径——用开源许可证与社区机制把维护成本外部化给数百名贡献者，再以商业授权/企业版回收价值，最终走向公司化。值得强调的是：LobeChat 因"双人起步、已公司化"被案例墙列入观察名单，而 Cherry Studio 以"两人兼职团队"口径收录主线——两者的边界处理逻辑一致：<b>开源 AI 客户端赛道中，"纯粹的一人公司"极其罕见</b>，星标与下载量的规模化几乎必然撬动社区协作或资本，这是个人开发者案例向"超级个体→小团队"演进的结构性信号。</p>
+  <p>对本案例的一人属性，报告如实降级讨论：Cherry Studio 的"成功"不能简单归因于"一个人"——它的第一贡献者 kangfenmao 个人提交量（2,444 次）虽居首位且远超第二名，但 417 名贡献者的社区合力、以及 2025 年后的公司化组织，共同构成了产品的持续交付能力<a class="cref verified" href="#ref-6">[6]</a><a class="cref partial" href="#ref-8">[8]</a>。案例墙收录其价值恰在于此：它示范了个人开发者把副业项目做成"社区级开源资产"后，可选的三条变现与组织路径（授权、企业版、融资）。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>分析</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>1. 产品功能</td><td>"工作站级"聚合客户端：多模型对话/对比 + 知识库 + 智能体/MCP + 图像/语音/翻译 + API Gateway，桌面三端并已延伸移动端；功能广度在同类开源客户端中处于第一梯队（README 功能清单实测 30+ 项能力点）。</td><td><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td>2. 面向客群</td><td>从非技术背景大众用户（早期口碑基本盘）到开发者/研究者（MCP、本地模型、数据主权），再到企业客户（企业版私有化）——客群三层递进，由"工具用户"向"组织入口"延伸（公司招聘叙事口径）。</td><td><a class="cref partial" href="#ref-8">[8]</a><a class="cref cross" href="#ref-9">[9]</a></td></tr>
+      <tr><td>3. 解决痛点</td><td>核心痛点是"AI 服务割裂"与"配置门槛"：聚合 300+ 模型、免 Key 免费模型、本地数据留存；隐私与数据主权是相对云端网页版的结构性差异点。</td><td><a class="cref partial" href="#ref-8">[8]</a><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>4. 商业模式与营收</td><td>"开源社区版（免费，AGPL-3.0）+ 商业授权豁免 + 企业版（集中管理/私有化）"。营收金额零披露；融资为种子轮（工商口径）+ 五源、光合数百万美元（公司自述口径）——收入结构未检索到公开数据，商业模式以官方授权/企业版信源为准。</td><td><a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-5">[5]</a><a class="cref cross" href="#ref-9">[9]</a></td></tr>
+      <tr><td>5. 融资进展</td><td>种子轮（天眼查）；五源小酒馆官方播客对谈创始人+五源投资人构成间接互证；投资规模"数百万美元"仅见于公司招聘自述，无工商/媒体独立确认。</td><td><a class="cref cross" href="#ref-5">[5]</a><a class="cref cross" href="#ref-9">[9]</a><a class="cref partial" href="#ref-10">[10]</a></td></tr>
+      <tr><td>6. 市场评价</td><td>英特尔中国官方新闻室以"堪比'瑞士军刀'的万能多合一 AI 助手""全球出色的第三方 AI 客户端"背书，并合作推出酷睿 Ultra 版（本地推理优化）；Product Hunt featured、HelloGitHub/Trendshift 徽章（README 实测）；五源播客以"全民 OS 级样本"叙事讨论其开源组织意义。负面侧："套壳"争议持续存在，官方以智能体/知识库等深水区能力回应（播客叙事口径）。</td><td><a class="cref cross" href="#ref-11">[11]</a><a class="cref verified" href="#ref-2">[2]</a><a class="cref partial" href="#ref-10">[10]</a></td></tr>
+      <tr><td>7. 投入成本与合规风险</td><td>成本侧：早期"服务器账单每月透支信用卡"（自媒体转述）——开源客户端的边际成本主要是发版、社群运维与 Issue 处理人力；转全职后为 9 人级团队薪资结构（口径未披露）。合规侧：AGPL-3.0 对商用分发构成强制开源或付费授权的双重约束；多层分销渠道下存在第三方仿冒官网（见捌）带来的品牌与安全风险；未检索到针对本项目的监管处罚或诉讼公开信息。</td><td><a class="cref partial" href="#ref-8">[8]</a><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 团队口径与"一人属性"边界（本案例最大不确定性）</div>
+    ① <b>"两人兼职团队"口径的适用期有限</b>：该口径指向 2024-2025 年上半年的业余开发期，2025 年中已转全职并扩至 9 人（自媒体转述），2026 年为公司化+融资运作——案例墙"一人公司"标签仅对早期阶段成立，引用本案例时应显式注明这一边界。② <b>身份链未闭合</b>：项目第一贡献者 kangfenmao（自称"亢奋猫"）与工商登记创始人王新铭、播客署名 Yinsen 三者的对应关系未获直接公开信源确认，真名披露状况不明；本报告按双口径呈现，不做等同断言。③ <b>"代码贡献第一名是 Claude"的社区叙事与一手数据冲突</b>：自媒体称仓库贡献榜第一为 AI（Claude），但 GitHub contributors API 实测第一名为 kangfenmao（2,444 次）——按一手实测为准，该说法仅作社区叙事收录。④ <b>团队细节（2 人→9 人、DeepSeek 引爆细节）均出自单一自媒体长文的访谈转述</b>，未获公司或主流媒体独立印证。
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据留白与渠道风险</div>
+    ① 累计下载量"超 1000 万次"未检索到可回溯信源（详见伍口径说明）；② 营收金额、付费企业客户数零披露；③ 融资"数百万美元"为公司自述，工商公示与融资新闻稿均未检索到；④ 官网 v1.9.6 与联想商店 v2.2.0 版本号差异未获官方说明；⑤ <b>仿冒官网风险</b>：检索中发现多个第三方站点（如 cherrystudiocn.com 等）以"Cherry Studio 官网"自居，其"发展历史/团队介绍"与官方信源明显冲突（如"诞生于 2023 年硅谷与北京团队""CSDN 华为大会亮相"等），本次已全部剔除，用户下载时应以 GitHub 仓库与 cherryai.com（官网快照实测跳转 cherryai.com.cn）为准。
+  </div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">Cherry Studio 是案例墙"开发者工具"类目中<b>社区杠杆最重</b>的样本：它展示了个人/双人副业项目的三级跳路径——先用零门槛产品吃准大众用户（而非程序员），再用开源社区把维护成本外部化（417 名贡献者），最后用 AGPL 许可证把社区影响力转化为商业授权与企业版收入，并以种子轮融资完成组织升级。对"一人公司"叙事而言，它既是一个延展案例，也是一面镜子：当产品规模超过个人带宽，一人公司的终局往往是"社区化"或"公司化"二选一——Cherry Studio 两条都选了。</div><div class="cm"><a class="cref verified" href="#ref-6">[6]</a> <a class="cref verified" href="#ref-2">[2]</a> <a class="cref partial" href="#ref-8">[8]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">附</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 13 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（一手 API 实测可复现 / ≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级信源）。检索与实测截止 2026-11-13。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx cross">[1]</span><span class="rt">A</span><span class="st">官方网站</span></div><div class="ti">Cherry Studio 官网（cherry-ai.com，中文站快照 cherryai.com.cn）</div><div class="mt"><b>来源：</b>官网检索快照与页面实测　<b>时点：</b>2026-11-13<br><a href="https://cherry-ai.com" target="_blank" rel="noopener">https://cherry-ai.com</a></div><div class="note">事实核查：跨平台支持（Windows/macOS/Linux）、"集成 300+ 主流 AI 模型（DeepSeek、Kimi、通义千问、智谱 GLM 等），也支持本地模型部署"、智能体能力（自主思考/规划/行动）、"社区版完全免费开源 AGPL-3.0，商业使用请遵守 AGPL 或联系企业授权"、免费模型合作伙伴（BigModel GLM-4.5-Air、SiliconFlow Qwen3-8B）、"2025 年已成长为最全能 AI 桌面客户端，GitHub 33k+ stars"自述、下载渠道版本 v1.9.6。与 README [2] 交叉一致。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx verified">[2]</span><span class="rt">A</span><span class="st">一手仓库文件</span></div><div class="ti">Cherry Studio README（main 分支）</div><div class="mt"><b>来源：</b>github.com/CherryHQ/cherry-studio　<b>读取时点：</b>2026-11-13<br><a href="https://github.com/CherryHQ/cherry-studio" target="_blank" rel="noopener">https://github.com/CherryHQ/cherry-studio</a></div><div class="note">事实核查：产品功能矩阵（Agents & Automation / Models & Conversations / Knowledge & Documents / Creative & Everyday Tools / Voice & Workspace）、移动版 cherry-studio-app、企业版（enterprise.cherryai.com，bd@cherry-ai.com）、License 条款（社区版 AGPL-3.0，商业用途合规使用，豁免需商业授权）、相关项目（new-api、one-api）、Discord/Telegram/QQ 群（575014769）均出自此文件；Product Hunt featured、HelloGitHub、Trendshift 徽章为页面实测。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx verified">[3]</span><span class="rt">A</span><span class="st">一手 API 实测</span></div><div class="ti">GitHub REST API：CherryHQ/cherry-studio 仓库元数据</div><div class="mt"><b>来源：</b>api.github.com/repos/CherryHQ/cherry-studio　<b>实测时点：</b>2026-11-13<br><a href="https://api.github.com/repos/CherryHQ/cherry-studio" target="_blank" rel="noopener">https://api.github.com/repos/CherryHQ/cherry-studio</a></div><div class="note">事实核查：stargazers_count 53,465、forks 5,216、open_issues 2,686、subscribers 204、created_at 2024-05-24、license AGPL-3.0、homepage cherryai.com、pushed_at 2026-11-13（当日仍活跃）。与第三方聚合站（AgentIndex 53.4k★/AGPL-3.0、aitools.coffee 53,203★）交叉一致。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx verified">[4]</span><span class="rt">A</span><span class="st">一手 API 实测</span></div><div class="ti">GitHub 用户主页：kangfenmao</div><div class="mt"><b>来源：</b>api.github.com/users/kangfenmao　<b>实测时点：</b>2026-11-13<br><a href="https://github.com/kangfenmao" target="_blank" rel="noopener">https://github.com/kangfenmao</a></div><div class="note">事实核查：name"亢奋猫"、blog kangfenmao.com、location"Shanghai - China"、bio"亢奋猫一只，爱好磨爪子..."、twitter kangfenmao、账号创建 2014-07-24。未披露真名；与工商登记姓名的对应关系未获直接信源。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx cross">[5]</span><span class="rt">B+</span><span class="st">工商信息数据库</span></div><div class="ti">天眼查 Cherry Studio 品牌页 / 企查查千彗科技条目</div><div class="mt"><b>来源：</b>天眼查、企查查　<b>查询时点：</b>2026-11-13<br><a href="https://www.tianyancha.com/brand/bb455868738" target="_blank" rel="noopener">https://www.tianyancha.com/brand/bb455868738</a></div><div class="note">事实核查：所属公司上海千彗科技有限公司、成立日期 2025-01-09、所属地上海、当前融资轮次种子轮、定位"跨平台多模型 AI 桌面客户端开发商"；核心人员王新铭（创始人）、王谦（联合创始人）。品牌页与企业信息两源同口径。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx verified">[6]</span><span class="rt">A</span><span class="st">一手 API 实测</span></div><div class="ti">GitHub REST API：cherry-studio 贡献者列表</div><div class="mt"><b>来源：</b>api.github.com/repos/CherryHQ/cherry-studio/contributors　<b>实测时点：</b>2026-11-13<br><a href="https://api.github.com/repos/CherryHQ/cherry-studio/contributors" target="_blank" rel="noopener">https://api.github.com/repos/CherryHQ/cherry-studio/contributors</a></div><div class="note">事实核查：贡献者总数 417 名（Link header 分页计数）；Top10：kangfenmao 2,444 / DeJeune 1,247 / 0xfullex 1,014 / EurFelux 838 / vaayne 299 / ousugo 291 / kovsu 290 / alephpiece 273 / eeee0717 265 / beyondkmp 232。为"社区共创"与"贡献第一归属"争议的裁决性数据。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">B+</span><span class="st">工商信息数据库</span></div><div class="ti">启信宝 / 水滴信用：王新铭（千彗科技）人物条目</div><div class="mt"><b>来源：</b>启信宝、水滴信用（水滴含"实际控制人"标注）　<b>查询时点：</b>2026-11-13<br><a href="https://www.qixin.com/" target="_blank" rel="noopener">https://www.qixin.com/</a></div><div class="note">事实核查：王新铭，Cherry Studio 创始人兼 CEO，1990 年生于山东临沂，曾在喜马拉雅 FM、依图科技、字节跳动及 PPTV 等公司从事产品工作，曾在新能源创业公司担任产品合伙人；另见上海灵彗企业管理合伙企业（有限合伙）王新铭 49.5%、王谦 49.5%（疑似持股平台）。与自媒体 [8] 的履历叙述交叉一致。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx partial">[8]</span><span class="rt">C</span><span class="st">自媒体长文（访谈转述）</span></div><div class="ti">《从 2 人业余项目到 42k 星：Cherry Studio 如何成为 AI 时代的全民 OS?》</div><div class="mt"><b>来源：</b>今日头条号"清凉游侠"　<b>时点：</b>2026 年（42k★ 时点）<br><a href="http://m.toutiao.com/group/7636654412240290367/" target="_blank" rel="noopener">http://m.toutiao.com/group/7636654412240290367/</a></div><div class="note">事实核查：创始人王新铭/合伙人王谦身份与履历、2024-07 离职字节、"白天各有各的工作晚上全职扑在项目上""每天只睡四五个小时"、Issue 挂三个月、服务器账单透支信用卡、2024 年底数千 Star、2025-01-20 DeepSeek R1 引爆（周末访问量翻 20 倍）、核心贡献者多为研究生/报销 Cursor 订阅约 70 美元/美团外卖激励、2025 年中转全职、团队 2→9 人、"贡献第一是 Claude"叙事等出自此稿。<b>性质为自媒体转述创始人播客访谈，C 级收录</b>；其中"贡献第一是 Claude"与 GitHub API 实测（kangfenmao 第一）冲突，按 [6] 为准；履历与工商 [7] 交叉一致。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx cross">[9]</span><span class="rt">B</span><span class="st">公司官方招聘简介（第三方转载）</span></div><div class="ti">千彗科技招聘页公司简介（上海电力大学就业信息网 / 职友集同文）</div><div class="mt"><b>来源：</b>career.shiep.edu.cn、jobui.com　<b>时点：</b>约 2026 下半年（45k+ Star 口径）<br><a href="https://career.shiep.edu.cn/largefairs/company/id/2366/stype/2/sid/9" target="_blank" rel="noopener">https://career.shiep.edu.cn/largefairs/company/id/2366/stype/2/sid/9</a></div><div class="note">事实核查："GitHub 45k+ Star、服务超百万使用者""已获得五源、光合等知名美元基金数百万美元投资""团队背景包括连续创业者、顶级名校和字节、腾讯、依图等一线大厂与 AI 初代公司""一个入口、连接所有 AI"。两处第三方页面同文，内容为公司自述口径，融资细节无独立印证。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx partial">[10]</span><span class="rt">B</span><span class="st">机构播客（创始人自述）</span></div><div class="ti">五源小酒馆 Ep.20《Opus 4.5 以后，AI 正在催生"百人巨头公司"｜对话 Cherry Studio 创始人》</div><div class="mt"><b>来源：</b>小宇宙·五源资本官方播客　<b>时点：</b>约 2026 年中（页面标注"6 个月前"，58 分钟，3586 播放）<br><a href="https://www.xiaoyuzhoufm.com/episode/6a153acbe683956abe770a72" target="_blank" rel="noopener">https://www.xiaoyuzhoufm.com/episode/6a153acbe683956abe770a72</a></div><div class="note">事实核查：嘉宾署名 Yinsen（Cherry Studio 创始人）、Steven（五源资本投资人）；议题含"开源在 AI 时代的新意义（生态契约→非对称迭代）""被'套壳'二字掩盖的独立价值""Sell Work 替代 SaaS"等。创始人自述口径，B 级；五源投资人参与间接印证投资关系，与 [9] 自述交叉。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx cross">[11]</span><span class="rt">B+</span><span class="st">大厂官方新闻室</span></div><div class="ti">英特尔中国新闻室《英特尔 AI PC 应用新突破，三大应用重磅上线》</div><div class="mt"><b>来源：</b>newsroom.intel.cn　<b>时点：</b>约 2025-2026（"过去一年"口径）<br><a href="https://newsroom.intel.cn/" target="_blank" rel="noopener">https://newsroom.intel.cn/</a></div><div class="note">事实核查：称 Cherry Studio"堪比'瑞士军刀'的万能多合一 AI 助手""全球出色的第三方 AI 客户端，在过去一年中取得令人瞩目的成绩"；双方合作推出酷睿 Ultra 版，实现"开箱即用"纯本地推理，保留对话增强、知识库管理与 MCP 协议调用。第三方大厂背书，B+ 级。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx partial">[12]</span><span class="rt">B-</span><span class="st">应用商店渠道页</span></div><div class="ti">联想应用商店：Cherry Studio（v2.2.0，40 万次下载）</div><div class="mt"><b>来源：</b>lestore.lenovo.com　<b>时点：</b>2026-11-11 更新、2026-11 查询<br><a href="https://lestore.lenovo.com/detail/L119012" target="_blank" rel="noopener">https://lestore.lenovo.com/detail/L119012</a></div><div class="note">事实核查：单渠道下载数据（40 万次）、版本 2.2.0、大小 293.52MB。渠道页实测值，仅代表单一分发渠道，不能推算全网累计下载。</div></li>
+  <li id="ref-13" class="src"><div class="sh"><span class="idx partial">[13]</span><span class="rt">B</span><span class="st">案例墙既有核验值</span></div><div class="ti">案例墙对标卡片：ChatWise（#56）/ NextChat（#74）/ LobeChat（观察名单）</div><div class="mt"><b>来源：</b>国内 AI 一人公司案例墙 site/index.html 及对应独立报告<br><a href="../../index.html" target="_self" style="color:#2980b9">../../index.html</a></div><div class="note">事实核查：ChatWise（egoist，锚点 2024-11-15，多模态+MCP，BYOK 买断制，Pro $29 买断持续销售，案例墙信源 29 条）；NextChat（Yidadaa，锚点 2023-03-15，GitHub 88.8k★，案例墙信源 44 条）；LobeChat（arvinxx，8.4 万★，双人起步、已公司化融资，列观察名单）。<b>本报告仅横向引用上述既有核验值，未重新核验。</b></div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 13 条。核验标签分布：🟢 已核验（verified）4 条（GitHub 仓库元数据/README/用户主页/贡献者列表四项一手实测）、🔵 多源印证（cross）5 条（官网、工商两源、招聘简介两源同文、英特尔官方）、🟡 部分映证（partial）4 条（自媒体访谈转述、机构播客自述、应用商店单渠道、案例墙既有值引用）。信源评级分布：A 级 5 条（GitHub 一手实测/官方，全部实测可复现）、B+/B 级 6 条、B-/C 级 2 条（渠道页与自媒体长文，均已显式降级标注）。三处关键冲突已裁决或并列：①"贡献第一是 Claude"（自媒体）vs kangfenmao 第一（API 实测）——按实测为准；②官网 v1.9.6 vs 联想商店 v2.2.0——渠道差异如实并列；③底稿"下载超 1000 万次"未检索到可回溯信源——按"未检索到可公开验证信源"降级处理。一处口径边界全程显式：本案例为"两人兼职起步 → 社区共创 → 公司化"演进样本，非严格一人公司。剔除 2 个仿冒官网站点（cherrystudiocn.com 等，信息与官方冲突）。未发现伪造链接；全部 URL 为检索过程实际命中页面。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索与实测截止：2026-11-13 · 星标/贡献者为 GitHub API 实测值可复现，团队演进与融资信息含自述口径均已标注，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

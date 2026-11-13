@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · chatGPTBox——josStorer 的浏览器 AI 深度集成插件 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · chatGPTBox">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="chatGPTBox 深度案例报告：独立开发者 josStorer 把 ChatGPT 深度集成进浏览器，一人维护三年半、五端覆盖、完全免费 BYOK，GitHub 10,774★（2026-11-13 实测）。12 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>chatGPTBox 深度案例报告</h1>
+    <h2>独立开发者 josStorer：把 ChatGPT「深度集成」进浏览器的开源插件<br>一人维护三年半、五端覆盖、完全免费 BYOK —— 12 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">工具型 OPC</span>
+      <span class="tag">浏览器插件</span>
+      <span class="tag">开源 BYOK</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">10,774</div><div class="k">GitHub 星标（2026-11-13 API 实测）</div></div>
+  <div class="stat"><div class="v neutral">5 端</div><div class="k">Chrome / Edge / Firefox / Safari / Android</div></div>
+  <div class="stat"><div class="v up">约 2 万</div><div class="k">Chrome 商店用户（第三方监控 2026-11 快照）</div></div>
+  <div class="stat"><div class="v neutral">¥0</div><div class="k">内置付费（完全免费 · BYOK 模式）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">chatGPTBox 是「浏览器即 AI 入口」路线的代表性开源作品：任意网页按 Ctrl+B 呼出对话浮窗，划词即可翻译、总结、解释代码，无需在 ChatGPT 网站与当前页面间来回切换。由独立开发者 josStorer 一人发起并维护至今，以 MIT 协议开源、完全免费、BYOK（用户自带 API Key 或账号会话）为基本姿态。</p>
+  <div class="two">
+    <div class="card"><div class="ct">产品</div><div class="cb">浏览器扩展 chatGPTBox（「Deep ChatGPT integrations in your browser, completely for free」）：任意页呼出对话框（Ctrl+B）、右键总结整页（Alt+B）、独立会话页、划词工具（翻译/总结/润色/情感分析/段落划分/代码解释）、搜索引擎与常用站点（Reddit、YouTube、GitHub、知乎、B 站等）集成、视频总结、多分支会话卡片、记录保存、代码高亮与公式渲染。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-2">[2]</a></div></div>
+    <div class="card"><div class="ct">开发者</div><div class="cb">josStorer（案例池底稿另记网名 josc146，未独立核验；真名未公开，Chrome 商店发布者公开联系邮箱为 josStorer@outlook.com）。GitHub 用户 ID 13366013，以个人账号开源并作为 Chrome 商店「独立发布者（Independent publisher）」上架插件；仓库后转入 ChatGPTBox-dev 组织名下，个人账号仍为主要维护者——2026-11-12（实测前一日）仍有代码推送。</div><div class="cm">信源：<a class="cref verified" href="#ref-3">[3]</a> <a class="cref partial" href="#ref-4">[4]</a></div></div>
+    <div class="card"><div class="ct">多端矩阵</div><div class="cb">README 提供五端安装入口：Chrome（2023-03-19 上架）、Edge、Firefox、Safari（macOS）、Android，另可从 GitHub Release 手动安装；支持移动设备使用。Edge 端 listing 名为「Fission Chatbox: Best…」，Firefox 端为「ChatGPTBox by josStorer」。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-4">[4]</a> <a class="cref cross" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-6">[6]</a></div></div>
+    <div class="card"><div class="ct">公司 / 投资状态</div><div class="cb">无公司主体信息、无融资记录可查；插件免费、无内置付费点（第三方检测「No paid features detected」，置信度 95%）；开发者也未在公开渠道披露任何赞助或变现入口——本项目在案例池中置信度为「中」，原因即在此（详见捌）。</div><div class="cm">信源：<a class="cref partial" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-7">[7]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2022-12-14</div><div class="tx">从前身项目分离，开始独立开发</div><div class="td">README「Credits」自述：chatGPTBox 基于作者自己的 chatGPT-search-engine-extension，后者 fork 自 wong2（ChatHub 作者）的 chat-gpt-google-extension，并自 2022 年 12 月 14 日起脱离上游独立演进。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2023-03-15</div><div class="tx">chatGPTBox 仓库创建（案例墙锚点 2023（年）▲ 的精确落点）</div><div class="td">GitHub API 实测 created_at 2023-03-15；主语言 JavaScript，MIT 协议。<a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2023-03-19</div><div class="tx">Chrome 商店首发，个人身份上架</div><div class="td">第三方监控记录商店发布时间为 2023 年 3 月 19 日，发布者 jos Storer（独立发布者）；Edge 端 listing 创建时间另有 2023-03-23 口径。<a class="cref partial" href="#ref-4">[4]</a><a class="cref cross" href="#ref-8">[8]</a><a class="cref partial" href="#ref-9">[9]</a></div></div>
+    <div class="node"><div class="dt">2023 年春</div><div class="tx">进入中文互联网工具盘点，多端快速铺开</div><div class="td">36 氪「普通人用得上的 GPT 免费工具」盘点收录，称其为「集合多种小工具的浏览器插件」，并提及适配 B 站、知乎等站点、右键直接总结视频；同年 README 已挂出 Chrome/Edge/Firefox/Safari/Android 五端入口与移动端支持截图，官方演示视频以「all platforms + MIT 开源」为题发布。<a class="cref partial" href="#ref-2">[2]</a><a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-10">[10]</a></div></div>
+    <div class="node"><div class="dt">2023 → 2025</div><div class="tx">模型适配持续扩张，从「ChatGPT Box」长成「多模型集成框」</div><div class="td">API 支持从 ChatGPT Web API、GPT-3.5/GPT-4 扩展至 Claude、New Bing、Moonshot、Azure、自部署端点；自定义 API 地址模式可与 one-api / litellm 网关及 Ollama、OpenRouter 配合。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-06</div><div class="tx">v2.5.9 时期：用户反馈 Cloudflare 人机验证冲突</div><div class="td">Chrome 商店多条评论指插件导致 Cloudflare 验证死循环、需停用插件才能通过——浏览器「深集成」路线的典型生态摩擦在评论区具象化。<a class="cref partial" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2026-09-11 → 11-01</div><div class="tx">Chrome 商店 listing 更新至 2.7.1；GitHub 发布 v2.7.2</div><div class="td">商店页面最后更新 2026-09-11；GitHub 最新 Release v2.7.2 由 CI（github-actions）于 2026-11-01 自动发布，Edge 端第三方统计同步记录 2.7.2 / 2026-11-01。<a class="cref partial" href="#ref-4">[4]</a><a class="cref cross" href="#ref-11">[11]</a><a class="cref partial" href="#ref-9">[9]</a></div></div>
+    <div class="node"><div class="dt">2026-11-12 / 11-13</div><div class="tx">实测收口：仍在活跃维护</div><div class="td">仓库最后推送 2026-11-12；2026-11-13 API 实测星标 10,774、fork 880、open issues 228、watchers 49——发布三年半后仍保持个人节奏的持续迭代。<a class="cref verified" href="#ref-3">[3]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：从「搜索框挂 AI」到「全浏览器挂 AI」的形态跃迁</div><div class="cb">前身 chatGPT-search-engine-extension 只做一件事——把 ChatGPT 回答挂到 Google 搜索结果旁。2022-12-14 分离独立后，josStorer 把集成面从「搜索引擎」推进到「任意网页」：浮动窗、划词气泡、右键菜单、站点适配、独立会话页层层叠加。这说明 chatGPTBox 不是灵光一现的 MVP，而是同一个作者对「AI 应该长在哪里」的第二次、也是更深一次的回答。<a class="cref cross" href="#ref-1">[1]</a></div>
+  <div class="card"><div class="ct">转折二：完全免费 + BYOK + 可自证的隐私承诺，构成产品哲学</div><div class="cb">商业插件普遍走「免费额度 + 订阅」路线时，chatGPTBox 选择彻底不碰钱：模型费用由用户自带（账号会话或 API Key），第三方检测确认无任何付费功能。配套一条少见的隐私声明——「本扩展不收集你的数据，你可以在代码里全局搜索 fetch( 与 XMLHttpRequest( 自行验证所有网络请求」，并默认手动激活、不主动上传页面内容。对个人开发者而言，「不收钱」反而是最低成本的信任构建方式。<a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-4">[4]</a></div>
+  <div class="card red"><div class="ct">转折三：一个人顶住三年半的五端维护</div><div class="cb">浏览器插件是「苦力活」：双引擎、Manifest V2→V3 迁移、Safari/Android 移植、AI 服务商接口漂移、目标网站改版致适配失效。chatGPTBox 的解法是工程化——CI 自动发 Release（v2.7.2 即由 github-actions 发布）、站点适配与划词工具模块化可开关、扩展接口文档化。但 228 个 open issues 与单周增长归零的商店曲线提示：个人维护已进入「稳态维生」而非「高速增长」阶段。<a class="cref verified" href="#ref-3">[3]</a><a class="cref cross" href="#ref-11">[11]</a><a class="cref partial" href="#ref-4">[4]</a></div>
+  <div class="quote">
+    <p>This extension does not collect your data. You can verify it by conducting a global search for `fetch(` and `XMLHttpRequest(` in the code to find all network request calls.</p>
+    <span class="src">—— chatGPTBox README「News」首条，作者 josStorer（2026-11-13 抓取），<a class="cref cross" href="#ref-1">[1]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product & Model</span></div>
+  <p class="lead">chatGPTBox 的产品逻辑一句话：把 AI 的调用成本压到「零切换」——AI 动作长在浏览器的每一个交互原语上（快捷键、右键、划词、搜索框、站点页面）。</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>内容</th><th>说明 / 信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>产品功能（集成形态）</b></td><td>① 对话：任意页 Ctrl+B 浮窗、独立会话页、多分支会话卡片；② 划词工具：翻译、总结、润色、情感分析、段落划分、代码解释、自定义提问；③ 页面/视频：右键总结整页、YouTube 视频总结、B 站/知乎等站点适配；④ 搜索：全主流搜索引擎结果页集成 + 自定义站点查询；⑤ 通用：聊天记录保存复制、代码高亮、公式渲染、模块化开关。</td><td>五类功能全部来自 README 一手功能清单，与 36 氪 2023 年盘点描述一致 <a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>多浏览器支持</b></td><td>Chrome、Edge、Firefox、Safari（macOS）、Android 五端 + GitHub 手动安装；Manifest V3。</td><td>README 安装入口 + 商店页快照；Safari 与 Android 走 wiki 安装指南而非应用商店 <a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>面向客群</b></td><td>第三方产品画像定位为：普通浏览器用户、学生与研究者、开发者、内容创作者；多语言 README（英/中/日/印尼/土耳其）显示全球分发取向。中文社区口碑以「Firefox 首选 AI 插件」类推荐出现。</td><td>ExtScope AI 定位分析 + 多语言 README + V2EX 用户推荐 <a class="cref partial" href="#ref-4">[4]</a><a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>解决痛点</b></td><td>多站点之间切换使用 AI 的摩擦：第三方导航描述其价值为「无需在标签页或应用间切换即可在任意页面呼出 AI」；36 氪称「可以在任意页面呼出悬浮窗口与 ChatGPT 对话」。代价面：深集成需要 cookies/tabs/webRequest/&lt;all_urls&gt; 等高敏权限，并偶发与 Cloudflare 人机验证的兼容冲突。</td><td>痛点表述 + 权限风险与兼容性问题均来自实测快照 <a class="cref partial" href="#ref-12">[12]</a><a class="cref partial" href="#ref-2">[2]</a><a class="cref partial" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>商业模式（BYOK）</b></td><td>完全免费、无内置付费/订阅/打赏入口（第三方检测置信 95%）。模型侧 BYOK：ChatGPT Web API（免费/Plus 账号会话）、GPT-3.5/4、Claude（会话 Key）、New Bing（Cookie）、Moonshot、Azure、自部署端点、自定义 API 地址——可与 one-api/litellm 等 OpenAI 兼容网关及 Ollama、OpenRouter 组合。</td><td>README 一手 + ExtScope 付费检测；BYOK 使插件成本近乎为零，但也封闭了收入通道 <a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-4">[4]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box insight">
+    <div class="bt">💡 与案例墙其他翻译/对话插件的形态差异</div>
+    同为浏览器 AI 插件，沉浸式翻译以「双语对照翻译」单点打穿，Chat Memo 以「对话存档记忆」切入；chatGPTBox 则是唯一把「对话、翻译、总结、视频、搜索、站点适配」六类动作全部塞进同一个浏览器原生交互层的开源项目——「广而全的全场景集成」既是其护城河（迁移成本高），也是其包袱（五端×多模型×多站点的维护面极大）。
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <p class="lead">以下全部为本次（2026-11-13）实测或快照时点值；星标等数据随时间变动。</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>GitHub 星标</td><td class="hl">10,774（案例池底稿口径「约 10.7k★」吻合）</td><td>2026-11-13 API 实测</td><td><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td>GitHub Forks / Watchers</td><td>880 / 49</td><td>2026-11-13 实测</td><td><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td>Open Issues</td><td>228（个人维护压力的直观指标）</td><td>2026-11-13 实测</td><td><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td>最后代码推送</td><td class="pos">2026-11-12（活跃维护中）</td><td>2026-11-13 实测</td><td><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td>最新版本</td><td>v2.7.2（CI 自动发布）</td><td>2026-11-01 发布</td><td><a class="cref cross" href="#ref-11">[11]</a></td></tr>
+      <tr><td>Chrome 商店用户</td><td class="hl">约 2 万（第三方监控口径；案例池底稿历史口径约 3 万，双口径并存、以实测为准）</td><td>2026-11 快照（7 日增长 0%，稳态）</td><td><a class="cref partial" href="#ref-4">[4]</a><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td>Chrome 商店评分</td><td>4.5 / 5（119 条公开评分，五星 81 条；带文字评论均值 4.6）</td><td>2026-11 快照</td><td><a class="cref partial" href="#ref-4">[4]</a></td></tr>
+      <tr><td>Edge 商店评分</td><td class="pos">4.9 / 5（官方搜索页）vs 4.90（第三方统计，口径互证）</td><td>2026-11 查询</td><td><a class="cref cross" href="#ref-6">[6]</a><a class="cref partial" href="#ref-9">[9]</a></td></tr>
+      <tr><td>Firefox 商店用户</td><td>未检索到公开口径（AMO 页面可达、API 抓取为空）</td><td>2026-11-13 查询</td><td><a class="cref cross" href="#ref-5">[5]</a></td></tr>
+      <tr><td>商店首发时间</td><td>Chrome 2023-03-19；Edge listing 2023-03-23（两端口径并列）</td><td>2023-03</td><td><a class="cref partial" href="#ref-4">[4]</a><a class="cref partial" href="#ref-9">[9]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    ① 星标与仓库指标为 GitHub API 一手实测，最可靠；② Chrome 商店页直抓被反爬拦截，用户数/评分经第三方监控（ExtScope）快照回溯，「20K」为千位取整口径，与案例池底稿「约 3 万」存在时点与统计方式差异，如实并列；③ Edge 评分为官方页与第三方统计双口径互证（4.9 ≈ 4.90）；④ chrome-stats 的「5,568 用户」疑为 Edge 端统计、口径不明未采信；⑤ 商店用户数不代表实际周活——BYOK 插件无遥测，真实使用量不可考。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将 chatGPTBox 放入案例墙「浏览器 / 客户端 AI 工具」坐标系（对标数据均为案例墙既有核验值，详见案例墙 index.html 各卡片信源；chatGPTBox 行为本报告实测）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>数据表现</th><th>变现</th></tr></thead>
+    <tbody>
+      <tr><td><b>chatGPTBox</b></td><td>josStorer</td><td>浏览器全场景 AI 深度集成插件（对话+划词+总结+视频+搜索），五端</td><td>GitHub 10,774★（2026-11-13 实测）；Chrome 商店约 2 万用户</td><td>无（完全免费 BYOK）</td></tr>
+      <tr><td>沉浸式翻译 Immersive Translate</td><td>Owen Young（前腾讯前端）</td><td>AI 双语对照网页翻译插件，支持 PDF/视频字幕/漫画，聚合 10+ 引擎</td><td>全球激活用户破 3000 万（2026-09 官方口径）；Chrome 2024 年度精选</td><td>Pro 订阅；起步期一人开发，后被收购</td></tr>
+      <tr><td>NextChat（ChatGPT-Next-Web）</td><td>Yidadaa</td><td>一键自部署的跨平台 ChatGPT 网页客户端</td><td>GitHub 约 88.8k★（2023 年最早爆火的开源 ChatGPT 前端之一）</td><td>开源 + 社区生态</td></tr>
+      <tr><td>Chat Memo</td><td>一泽 Eze</td><td>跨 AI 平台对话存档「记忆中枢」插件</td><td>20,000+ 用户、Chrome 4.9 分、Google 精选（2025-06 发布）</td><td>插件免费，定位产品矩阵入口</td></tr>
+      <tr><td>openai-translator / Bob</td><td>yetone / ripperhe</td><td>划词翻译插件 / macOS 划词翻译应用（接入多家 AI）</td><td>openai-translator 数万★；Bob 9.7k★、Pro ¥58 买断</td><td>开源；Bob Pro 买断制</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>对比可见其定位独特性：沉浸式翻译证明「浏览器单点 + 订阅」能长出三千万用户级的商业公司，NextChat 证明「自部署客户端」能收获十万星级开源声量，而 chatGPTBox 走第三条路——<b>不做单点工具，做浏览器内的 AI 操作系统</b>：对话、翻译、总结、视频、搜索五合一，五端同构。其星标体量（约 1.1 万）小于 NextChat（约 8.9 万），用户数（约 2 万）亦差一个量级以上，但在「深度集成浏览器全场景」这一形态上至今没有严格同构的开源对标者；代价则是本组案例中唯一「零变现」的一个。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:150px">维度</th><th>分析</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>五类集成形态（对话浮窗/划词工具/页面与视频总结/搜索引擎集成/站点适配）+ 记录管理与渲染基建，功能广度在本组浏览器 AI 插件中最高；880 fork、49 watchers 显示社区将其作二次开发底座。<a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td><b>2. 面向客群</b></td><td>全球浏览器用户（多语言 README 五语种），核心为「不想为 AI 再开一个标签页」的重度网页用户：学生研究者（论文/划词）、开发者（GitHub/StackOverflow 适配、代码解释）、内容消费者（YouTube/B 站总结）。中文社区以 Firefox 平台推荐语形式出现。<a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>3. 解决痛点</b></td><td>2023 年上半年 ChatGPT 官方无插件生态，用户在网页工作流与 ChatGPT 会话间高频切换；chatGPTBox 把 AI 调用下沉到快捷键/右键/划词等浏览器原语，实现「零切换」。这一痛点随官方侧边栏与竞品-sidebar 化而稀释，是增长曲线趋平（7 日增长 0%）的结构性原因之一。<a class="cref partial" href="#ref-12">[12]</a><a class="cref partial" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>4. 商业模式 / BYOK</b></td><td>零收入设计：无付费点（第三方检测置信 95%）、无赞助披露。BYOK 是双刃剑——模型成本转嫁给用户，插件近乎零边际成本运行，并借 one-api/Ollama/OpenRouter 等网关形成「任意模型」兼容层；但也意味着没有收入沉淀，项目只能以兴趣/声誉驱动维持。<a class="cref partial" href="#ref-4">[4]</a><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>5. 浏览器插件生态依赖</b></td><td>与扩展生态深度绑定，风险集中：① 权限面极大（cookies/tabs/webRequest/&lt;all_urls&gt;，第三方评级 HIGH），浏览器权限政策收紧（如 MV3 限制 webRequest）可能伤及核心功能；② 目标网站改版与反爬升级直接破坏适配——2026-06 用户集中反馈 Cloudflare 人机验证冲突即为例证；③ 商店审核与下架风险常在。这是所有「深度集成」型插件的结构性宿命。<a class="cref partial" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>6. 投入成本与维护节奏</b></td><td>无营收、无融资、无团队披露，成本主要为个人时间：2023-03 建仓至今 3 年半，最新代码推送距实测仅 1 天，CI 自动发版降低负担；但 228 个 open issues 与「一周增长归零」的商店曲线显示维护已入稳态。bus factor = 1，作者停止维护则五端全部失修——个人开源工具的典型生命周期风险。<a class="cref verified" href="#ref-3">[3]</a><a class="cref cross" href="#ref-11">[11]</a><a class="cref partial" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>7. 市场评价与合规</b></td><td>口碑正面为主：Chrome 4.5/119 评（五星占 68%）、Edge 4.9、社区评价「best extension so far and its foss too」；差评集中于 Cloudflare 兼容与更新节奏诉求。合规面：MIT 开源、插件自身无支付无账号体系，监管暴露面小；风险在隐私感知——高敏权限与「能读所有网页」的能力天然伴随信任成本，作者以「可全局搜索验证不联网上传」作回应。<a class="cref partial" href="#ref-4">[4]</a><a class="cref cross" href="#ref-6">[6]</a><a class="cref partial" href="#ref-7">[7]</a><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 五处留白与两处口径差异（截至 2026-11-13 检索）</div>
+    ① <b>商业化程度：</b>零变现证据——无付费、无订阅、无赞助披露，「一人公司」属性停留在「个人开源项目」层面而非营收实体，这是案例池将其置信度评为「中」的主因；其商业潜力（如沉浸式翻译式订阅）从未被激活。② <b>用户数口径：</b>案例池底稿「约 3 万」vs 第三方监控实测「约 2 万」（2026-11 快照），本报告以实测为准、双口径存档。③ <b>个人维护节奏：</b>bus factor=1，228 个 open issues 未清，2026-06 Cloudflare 兼容问题的修复确认情况不可考。④ <b>组织化过程：</b>仓库已由个人账号转入 ChatGPTBox-dev 组织，迁移时间、是否有协作成员未检索到公开信息，「一人属性」以 Chrome/Firefox 商店仍为 josStorer 个人发布者为准。⑤ <b>真实使用量：</b>BYOK 无遥测，商店用户数与实际活跃用户间的差距不可估。
+  </div>
+  <div class="box note">
+    <div class="bt">📌 身份与数据可考性说明</div>
+    ① 开发者真名未公开，本案以网名 josStorer 记录（Chrome 商店发布者公开邮箱 josStorer@outlook.com）；案例池底稿所记网名 josc146 未能独立核验，如实标注。② Firefox 商店用户数两次抓取（页面 + API）未获得，标注「未检索到」。③ 商店评分（4.5/4.9）与用户数均为平台侧公开值，未经开发者本人确认。④ 本报告不涉及任何营收推算——项目无可推算的收入基座。
+  </div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">chatGPTBox 是案例墙「AI 开发者工具 / 客户端」象限中的形态极值：在人人做「AI 侧边栏 + 订阅」的时代，它演示了一种不收钱的一人软件如何活下来——用 BYOK 把成本归零，用 MIT 开源换社区协作，用「可自证的隐私承诺」换信任，用工程化对抗五端维护的复杂度。它同时是「浏览器插件生态依赖」的活教材：星标三年半从 0 到 1.1 万，却始终被浏览器政策、网站反爬与 AI 服务商接口变动三座大山夹着。对 OPC 创业者的启示：免费开源个人项目可以是声誉资产与能力证明，但若要成为「公司」，还缺一次商业模式的点火。</div><div class="cm"><a class="cref verified" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-4">[4]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">捌·附</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 12 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（一手回溯完成），蓝 = 多源印证（可回溯、经独立侧面印证），黄 = 部分映证（第三方统计/转述/单一信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx cross">[1]</span><span class="rt">A</span><span class="st">一手项目仓库</span></div><div class="ti">GitHub · josStorer/chatGPTBox（现跳转 ChatGPTBox-dev/chatGPTBox）</div><div class="mt"><b>来源：</b>GitHub　<b>核验时间：</b>2026-11-13<br><a href="https://github.com/josStorer/chatGPTBox" target="_blank" rel="noopener">https://github.com/josStorer/chatGPTBox</a></div><div class="note">事实核查：README 原文回溯完成——五端安装入口（Chrome/Edge/Firefox/Safari/Android）、功能清单、多模型 API 支持、隐私声明、one-api/litellm/Ollama/OpenRouter 配合说明、Credits 谱系（前身 chatGPT-search-engine-extension，fork 自 wong2/chat-gpt-google-extension，2022-12-14 分离）均出自此页。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx partial">[2]</span><span class="rt">B</span><span class="st">行业媒体盘点</span></div><div class="ti">36 氪 ·《收藏：普通人用得上的 GPT 免费工具，跑步进入 AI 时代》</div><div class="mt"><b>来源：</b>36kr.com　<b>发布时间：</b>2023 年（页面未标注具体日期）<br><a href="https://m.36kr.com/p/2190922065887878" target="_blank" rel="noopener">https://m.36kr.com/p/2190922065887878</a></div><div class="note">事实核查：对 ChatGPT Box 的描述（任意页呼出悬浮窗、翻译/总结/润色/情感分析/段落划分/代码解释、适配 B 站知乎、右键总结视频）与 README 一致；文章为媒体转述且具体刊发日期未标注，按 partial 收录。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx verified">[3]</span><span class="rt">A</span><span class="st">一手数据接口（实测）</span></div><div class="ti">GitHub API · 仓库指标实测</div><div class="mt"><b>来源：</b>api.github.com　<b>实测时间：</b>2026-11-13<br><a href="https://api.github.com/repos/josStorer/chatGPTBox" target="_blank" rel="noopener">https://api.github.com/repos/josStorer/chatGPTBox</a></div><div class="note">事实核查：stargazers 10,774、forks 880、open issues 228、watchers 49、created 2023-03-15、pushed 2026-11-12、MIT、JavaScript、owner 为 Organization「ChatGPTBox-dev」、topics 含 chrome/edge/firefox/safari 扩展——全部为本次 API 直接实测值。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx partial">[4]</span><span class="rt">C+</span><span class="st">第三方监控快照</span></div><div class="ti">ExtScope · ChatGPTBox 插件监控页（Chrome 商店 ID eobbhoofkanlmddnplfhnmkfbnlhpbbo）</div><div class="mt"><b>来源：</b>extscope.org　<b>快照时点：</b>2026-11（Last crawled 2026-10-18）<br><a href="https://extscope.org/extension/eobbhoofkanlmddnplfhnmkfbnlhpbbo" target="_blank" rel="noopener">https://extscope.org/extension/eobbhoofkanlmddnplfhnmkfbnlhpbbo</a></div><div class="note">事实核查：Users 20K、评分 4.5（119 评、五星 81）、Published 2023-03-19、Store updated 2026-09-11、版本 2.7.1、MV3、发布者 jos Storer（独立发布者，邮箱 josStorer@outlook.com）、No paid features（置信 95%）、权限评级 HIGH、2026-06 Cloudflare 冲突评论、YouTube 频道 josStorer（58 订阅）——均为该监控站抓取的商店快照数据，属第三方转述。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx cross">[5]</span><span class="rt">A</span><span class="st">一手商店页</span></div><div class="ti">Firefox Add-ons（AMO）· ChatGPTBox by josStorer</div><div class="mt"><b>来源：</b>addons.mozilla.org　<b>核验时间：</b>2026-11-13<br><a href="https://addons.mozilla.org/firefox/addon/chatgptbox/" target="_blank" rel="noopener">https://addons.mozilla.org/firefox/addon/chatgptbox/</a></div><div class="note">事实核查：页面原文回溯完成——作者 josStorer、功能清单与 GitHub README 逐条一致、源码指向同一仓库、演示视频链接一致；AMO API v5 抓取返回空，用户数未检索到公开口径。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx cross">[6]</span><span class="rt">A</span><span class="st">一手商店页</span></div><div class="ti">Microsoft Edge Add-ons · ChatGPTBox（listing 名 Fission Chatbox: Best…）</div><div class="mt"><b>来源：</b>microsoftedge.microsoft.com　<b>核验时间：</b>2026-11-13<br><a href="https://microsoftedge.microsoft.com/addons/detail/fission-chatbox-best/enjmfilpkbbabhgeoadmdpjjpnahkogf" target="_blank" rel="noopener">https://microsoftedge.microsoft.com/addons/detail/fission-chatbox-best/enjmfilpkbbabhgeoadmdpjjpnahkogf</a></div><div class="note">事实核查：商店搜索结果页实测评分 4.9、描述与 README 一致；listing ID 与 README 官方 Edge 徽章链接一致；4.9 分另经 chrome-stats [9] 第三方口径（4.90）互证。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx partial">[7]</span><span class="rt">C+</span><span class="st">技术社区讨论</span></div><div class="ti">V2EX ·《ChatGPT 重度用户们，大家现在都是怎么用 ChatGPT 的？》</div><div class="mt"><b>来源：</b>v2ex.com（主题 t/988892）　<b>核验时间：</b>2026-11-13 检索<br><a href="https://origin.v2ex.com/t/988892" target="_blank" rel="noopener">https://origin.v2ex.com/t/988892</a></div><div class="note">事实核查：回帖中「Firefox 推荐用 chatgptbox」的用户口碑出自此帖，与同帖出现的沉浸式翻译、Monica 等并列；属个人观点性信源，按 partial 收录，仅用于社区口碑佐证。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx cross">[8]</span><span class="rt">A</span><span class="st">一手商店页（经快照核验）</span></div><div class="ti">Chrome Web Store · ChatGPTBox listing</div><div class="mt"><b>来源：</b>chromewebstore.google.com　<b>核验时间：</b>2026-11-13<br><a href="https://chromewebstore.google.com/detail/chatgptbox/eobbhoofkanlmddnplfhnmkfbnlhpbbo" target="_blank" rel="noopener">https://chromewebstore.google.com/detail/chatgptbox/eobbhoofkanlmddnplfhnmkfbnlhpbbo</a></div><div class="note">事实核查：直连抓取被商店反爬拦截（返回空），listing 内容经 ExtScope [4] 快照全文复现（商店描述、截图、评分分布逐字一致）并与搜索结果交叉；URL 经 README [1] 官方安装徽章确认，商店页可达性与存在性判定为已核验。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx partial">[9]</span><span class="rt">C+</span><span class="st">第三方统计</span></div><div class="ti">chrome-stats · Edge listing 统计（ID enjmfilpkbbabhgeoadmdpjjpnahkogf）</div><div class="mt"><b>来源：</b>chrome-stats.com　<b>快照时点：</b>2026-11 检索<br><a href="https://chrome-stats.com/d/enjmfilpkbbabhgeoadmdpjjpnahkogf" target="_blank" rel="noopener">https://chrome-stats.com/d/enjmfilpkbbabhgeoadmdpjjpnahkogf</a></div><div class="note">事实核查：By JosStorer、评分 4.90、版本 2.7.2 / 最后更新 2026-11-01（与 Releases [11] 互证）、listing 创建 2023-03-23（Edge 端口径，与 Chrome 端 2023-03-19 并列存档）；其「5,568 Users」疑为 Edge 端统计且口径不明，本报告未采信。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx partial">[10]</span><span class="rt">B</span><span class="st">开发者官方演示</span></div><div class="ti">YouTube · chatGPTBox 演示视频（josStorer 频道）</div><div class="mt"><b>来源：</b>youtube.com　<b>核验时间：</b>2026-11-13（经三处页面引用回溯）<br><a href="https://www.youtube.com/watch?v=E1smDxJvTRs" target="_blank" rel="noopener">https://www.youtube.com/watch?v=E1smDxJvTRs</a></div><div class="note">事实核查：视频 URL 在 GitHub README、Firefox AMO、ExtScope 商店快照三处一致出现；ExtScope 记录视频标题「chatGPTBox is now available on all platforms and open-sourced under the MIT License」、频道 josStorer（58 订阅）。视频页未直接抓取，按 partial 收录。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx cross">[11]</span><span class="rt">A</span><span class="st">一手发布记录</span></div><div class="ti">GitHub Releases · v2.7.2</div><div class="mt"><b>来源：</b>GitHub Releases API　<b>核验时间：</b>2026-11-13<br><a href="https://github.com/ChatGPTBox-dev/chatGPTBox/releases" target="_blank" rel="noopener">https://github.com/ChatGPTBox-dev/chatGPTBox/releases</a></div><div class="note">事实核查：最新 Release v2.7.2 发布于 2026-11-01（github-actions[bot] 自动发布、tag 于 2026-10-31 创建）——CI 自动发版工作流的直接证据；与 Edge 端第三方记录的「2.7.2 / 2026-11-01」互证。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx partial">[12]</span><span class="rt">C</span><span class="st">第三方导航页</span></div><div class="ti">Open Awesome · ChatGPT Box 项目介绍</div><div class="mt"><b>来源：</b>open-awesome.com　<b>核验时间：</b>2026-11-13<br><a href="https://open-awesome.com/projects/chatgptbox" target="_blank" rel="noopener">https://open-awesome.com/projects/chatgptbox</a></div><div class="note">事实核查：「无需在标签页或应用间切换即可在任意页面呼出 AI、划词翻译与总结」的痛点表述出自此页，与官方功能清单一致；为第三方转述，按 partial 收录。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 12 条。核验标签分布：🟢 已核验（verified）1 条（GitHub API 一手实测）、🔵 多源印证（cross）5 条（GitHub 仓库/Releases、Chrome/Edge/Firefox 三商店页、均完成原文或快照回溯）、🟡 部分映证（partial）6 条（ExtScope/chrome-stats 第三方统计、36 氪转述、YouTube 三处引用回溯、Open Awesome 导航页、V2EX 用户口碑——均已标注口径）。信源评级分布：A 级 6 条（GitHub 仓库/API/Releases + Chrome/Edge/Firefox 三大商店页，一手原文或快照回溯完成）、B 级 2 条（36 氪盘点、开发者官方演示视频）、C+/C 级 4 条（ExtScope/chrome-stats 第三方统计、Open Awesome 导航页、V2EX 用户口碑）。两处口径差异（Chrome 用户数「约 3 万 vs 约 2 万」、Chrome/Edge 首发日期 03-19 vs 03-23）与五处留白（变现缺失、bus factor、组织化时间、Firefox 用户数、真实活跃量）已在正文显式标注。两处核验失败及处理：① chromewebstore.google.com 直抓返回空（反爬）→ 改经 ExtScope 快照全文复现 + 搜索结果交叉，标签降为 cross；② AMO API v5 返回空 → Firefox 用户数标注「未检索到公开信息」。未发现伪造链接；全部 URL 为检索过程实际命中或经快照复现的页面。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-13 · 星标/用户数均为时点快照值，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

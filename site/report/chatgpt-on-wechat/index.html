@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · chatgpt-on-wechat（CowAgent）+ LinkAI —— 查雨捷的开源平台化之路 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · chatgpt-on-wechat（CowAgent）+ LinkAI">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="chatgpt-on-wechat（现名 CowAgent）+ LinkAI 深度案例报告：查雨捷（zhayujie）从微信 ChatGPT 机器人「事实标准」到开源 Agent 框架与零代码智能体平台的路径复盘，GitHub 47.8k★ API 实测，18 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>chatgpt-on-wechat 深度案例报告</h1>
+    <h2>查雨捷（zhayujie）：一个微信 ChatGPT 机器人，如何长成开源框架 CowAgent<br>与零代码智能体平台 LinkAI —— GitHub 47.8k★ API 实测 · 18 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">开源 → 平台化</span>
+      <span class="tag">微信生态</span>
+      <span class="tag">AI 原生</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">47,834★</div><div class="k">GitHub 星标（2026-11-13 API 实测）</div></div>
+  <div class="stat"><div class="v neutral">10,420</div><div class="k">Forks（同一 API 实测）</div></div>
+  <div class="stat"><div class="v neutral">12 渠道</div><div class="k">IM 接入（README 渠道表实测）</div></div>
+  <div class="stat"><div class="v neutral">0 融资</div><div class="k">企业订阅 / 算力 / 私有化支撑（报道口径）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">chatgpt-on-wechat（2026 年 4 月更名为 CowAgent）是国内微信生态最早、星标最高的大模型机器人开源项目之一：2022 年 12 月以「itchat + ChatGPT」的个人微信自动回复脚本起步，逐步扩展为覆盖公众号、企业微信、飞书、钉钉等 12 类渠道的 AI 助理框架，并延伸出零代码 Agent 平台 LinkAI——后者以四档订阅与积分计费构成商业化主体。GitHub API 实测星标 47,834、forks 10,420，仓库保持每周级迭代。<a class="cref verified" href="#ref-1">[1]</a></p>
+  <div class="two">
+    <div class="card"><div class="ct">项目</div><div class="cb">两块资产：① 开源框架 CowAgent（原名 chatgpt-on-wechat，2022-08-07 创建，Python / MIT），定位「开源超级 AI 助理 / Agent Harness 工程最佳实践」；② SaaS 平台 LinkAI（零代码搭建智能体、知识库、工作流，一键接入主流 IM）。案例墙口径：微信 AI 机器人「事实标准」。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">查雨捷，网名 zhayujie（GitHub ID 与个人博客一致），LinkAI 创始人；36氪《智能涌现》2026-10 报道确认为「从大厂出来创业」的工程型创业者，团队位于深圳。个人博客自 2022 年起持续输出操作系统、RAG、Agent 工程实践长文。</div><div class="cm">信源：<a class="cref cross" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="card"><div class="ct">公司 / 融资状态</div><div class="cb">商业化主体为深圳极简未来科技有限公司（Minimal Future，2023 年 4 月成立，创始团队来自腾讯、蚂蚁集团、字节跳动和阿里巴巴）；36氪口径：团队<b>尚未融资</b>，收入来自企业订阅、模型与算力服务及私有化项目。</div><div class="cm">信源：<a class="cref verified" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-4">[4]</a></div></div>
+    <div class="card blue"><div class="ct">开源生态矩阵</div><div class="cb">同一体系下另有 bot-on-anything（多平台消息接入，官网标示 4.2k★）、AgentMesh（开源多智能体框架，306★）、LinkAI CLI；官网称团队「多次登录 GitHub Trending 全球排行榜首页，是国内最早探索大语言模型基于 AI Agent、RAG 等技术落地应用的团队之一」。</div><div class="cm">信源：<a class="cref verified" href="#ref-6">[6]</a> <a class="cref partial" href="#ref-5">[5]</a></div></div>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 一人属性标注</div>
+    开源项目由查雨捷个人发起并长期主导（仓库挂个人账号、项目史以个人博客为第一记录），但商业化由公司主体承接，36氪报道口径为「团队」。案例墙将其一人属性置信度标为「中」——这是「开源 → 平台化」的必然演化，本报告如实并置两种口径。
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <p class="lead">本案的历时性弧线清晰：<b>开源项目起量 → 微信封号风险考验 → LinkAI 平台化合规落地</b>——平台风险既是最大威胁，也倒逼出商业化形态。</p>
+  <div class="tl">
+    <div class="node"><div class="dt">2022-08-07</div><div class="tx">仓库创建于 GitHub（Python，MIT 协议）</div><div class="td">GitHub API 实测 created_at 字段，最初为个人实验性质的消息机器人仓库。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2022-12-18</div><div class="tx">创始人发布《基于ChatGPT的微信聊天机器人》，项目公开冷启动</div><div class="td">起步方案：OpenAI 接口生成对话 + itchat 实现个人微信消息收发与自动回复。该博客累计阅读 154,678 次、评论 137 条，是项目最早的一手记录（页面历经更新，现版本另提及支持 LinkAI）。<a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2023-02（案例墙推断锚点 2023-02-15 ▲）</div><div class="tx">ChatGPT 出圈潮引爆微信机器人赛道，CoW 成为国内「事实标准」</div><div class="td">锚点为案例墙推断值（▲）：实测仓库创建于 2022-08-07、博客发布于 2022-12-18，爆火时点未见独立媒体报道，按案例墙口径保留并注明；官网称项目「多次登录 GitHub Trending 全球排行榜首页」。<a class="cref cross" href="#ref-3">[3]</a><a class="cref verified" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2023-04-05</div><div class="tx">版本史：支持微信公众号部署 + tool 插件体系</div><div class="td">从 itchat 协议层个人号转向公众号等官方合规通道的第一步，插件体系同期成型（Gitee 镜像版本史，转述口径）。<a class="cref partial" href="#ref-7">[7]</a></div></div>
+    <div class="node"><div class="dt">2023-04</div><div class="tx">深圳极简未来科技成立，LinkAI 平台随后上线</div><div class="td">官网自述创始团队来自腾讯、蚂蚁、字节、阿里；CoW 接入 LinkAI 智能体能力，「开源获客 + 平台变现」的双层结构成型。<a class="cref verified" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2023–2024</div><div class="tx">微信封号风险显性化：个人号机器人头悬「协议之剑」</div><div class="td">《微信个人账号使用规范》（2024-11-22 更新生效）对自动化外挂类违规的处理上限为「直至永久封号」；案例墙观察名单记录：同赛道个人开发者「雨田」（知识库客服机器人，单笔年单最高 8 万元）2024 年因微信封号潮关停业务——纯个人号路线脆弱性的对照警示。<a class="cref verified" href="#ref-8">[8]</a><a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2024-07-31</div><div class="tx">创始人发文复盘 LinkAI 知识库 RAG 优化，平台向企业级知识库客服深化</div><div class="td">《RAG最佳实践——AI Agent平台的知识库优化之路》：以 LinkAI 平台知识库演进为例的工程复盘。<a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2026-04-14</div><div class="tx">v2.0.6 官方更名 CowAgent：从「微信机器人」转型「超级 AI 助理」</div><div class="td">发布说明确认仓库正式由 chatgpt-on-wechat 更名 CowAgent（旧地址自动重定向）；同期落地本地知识库、Deep Dream 梦境记忆蒸馏、上下文智能压缩与 Web 控制台。<a class="cref verified" href="#ref-9">[9]</a></div></div>
+    <div class="node"><div class="dt">2026-04</div><div class="tx">微信平台 AI 风控再升级：规范「非真人 AI 创作」</div><div class="td">AI 批量写作公众号「年赚 200 万」夫妻账号被确认封禁，微信团队回应「公众号不得利用 AI 替代真人完成内容创作、发布等流程」——打击面从外挂扩展到内容侧。<a class="cref cross" href="#ref-10">[10]</a></div></div>
+    <div class="node"><div class="dt">2026-10 → 11</div><div class="tx">36氪《智能涌现》报道现状：未融资、企业业务支撑；项目持续高频迭代</div><div class="td">报道确认团队位于深圳、从 chatgpt-on-wechat 起步发展为 CowAgent，收入来自企业订阅、模型与算力服务、私有化项目。最新版本 v2.2.2（2026-10-30），仓库最近推送 2026-11-07，星标实测 47,834★。<a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-2">[2]</a><a class="cref verified" href="#ref-1">[1]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：「先跑起来」的工程直觉——itchat 个人微信起手，三个月补齐官方通道与插件生态</div><div class="cb">2022 年 12 月以 itchat + OpenAI 接口做出「能用的玩具」，靠极低部署门槛完成冷启动（项目博客 15.4 万阅读）；2023 年 4 月即补上微信公众号部署与 tool 插件，把「个人号玩具」升级为「多端接入 + 可扩展」的框架——在竞品普遍停留在演示阶段时，先成为开发者圈的默认答案。<a class="cref partial" href="#ref-5">[5]</a><a class="cref partial" href="#ref-7">[7]</a><a class="cref cross" href="#ref-2">[2]</a></div></div>
+  <div class="card red"><div class="ct">转折二：平台风险的两次倒逼——从「协议层侥幸」走向「合规通道 + SaaS 托管」</div><div class="cb">个人微信机器人自始与平台规范冲突（官方规范明令自动化外挂、上限永久封号），案例墙观察名单的「雨田」案例证明这条路线可以直接杀死业务。本案的答案是结构性避险：① 接入侧转向公众号、企业微信、微信客服等官方 API 通道；② 交付侧升级为 LinkAI 托管接入（在线配置即可接入，无需自建程序）；③ 主体侧完成 ISO 9001 / ISO 27001 认证与网信办深度合成算法备案。平台风险由此从生存威胁转化为付费产品的演进动力。<a class="cref verified" href="#ref-8">[8]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref verified" href="#ref-6">[6]</a></div></div>
+  <div class="card"><div class="ct">转折三：开源与商业的双层结构——「开源负责信任，平台负责收钱」，不融资、现金流优先</div><div class="cb">36氪口径：LinkAI「靠企业业务来支撑团队——开源和个人产品用来吸引用户，收入来自企业订阅、模型与算力服务，以及私有化项目。团队尚未融资」。开源框架承担获客与信任（47.8k★ 即信任的量化），LinkAI 承接企业付费；相比依赖 VC 输血的同期 AI 应用团队，这更接近「一人公司」的保守成本结构，只是主体已从个人演化为小团队。<a class="cref cross" href="#ref-4">[4]</a><a class="cref verified" href="#ref-1">[1]</a></div></div>
+  <div class="quote">
+    <p>其实 Personal Agent 不是一个特别新的品类或者技术，它更多是一种使用场景。……有差异，但这个差异维持的时间肯定会越来越短。</p>
+    <span class="src">—— 查雨捷（LinkAI 创始人），36氪《智能涌现》（2026-10-20），转引自 <a class="cref cross" href="#ref-4">[4]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <p class="lead">本案的独特性在于「一个创业者、两层产品」：开源框架解决「能不能用」，LinkAI 解决「怎么收钱」，两者共享同一套技术内核与品牌信任。</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:130px">模块</th><th>核心内容</th><th style="width:300px">细节与口径</th><th style="width:110px">信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>开源项目功能</b></td><td>多端接入 / 知识库 / 插件体系</td><td>README 渠道表实测 12 类渠道（个人微信、公众号、企微应用/机器人、微信客服、飞书、钉钉、QQ、Telegram、Slack、Discord、Web）；本地知识库（混合检索 + 知识图谱）、三层记忆、内置 10+ 工具、MCP 与 Skill Hub 技能市场</td><td><a class="cref cross" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-9">[9]</a></td></tr>
+      <tr><td><b>LinkAI 平台化</b></td><td>零代码 Agent / 订阅计费</td><td>官网：应用、工作流、知识库、数据库、插件、模型管理、渠道接入、对话管理、企业空间九大模块，「零代码快速开发各类对话式智能应用」；官方计费文档：基础版（免费）/ 标准版 / 专业版 / 企业版四档订阅，模型调用积分按量计费（1 积分 ≈ 0.0016–0.0019 元），插件按次收费</td><td><a class="cref verified" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-11">[11]</a></td></tr>
+      <tr><td><b>面向客群</b></td><td>企微运营者 / 开发者 / 中大型企业</td><td>开发者：自部署开源框架（MIT，一键安装 + Docker）；企微运营者与客服团队：LinkAI 托管接入公众号/企微，零代码上线智能客服与对话式营销；中大型企业：企业版支持 SaaS / 私有化，官网展示医疗健康、生产制造、智能硬件等场景；个人用户：基础版免费 + 任务送积分引流</td><td><a class="cref cross" href="#ref-12">[12]</a> <a class="cref verified" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-13">[13]</a></td></tr>
+      <tr><td><b>解决痛点</b></td><td>微信生态 AI 接入门槛</td><td>把「消息通道 + 模型服务 + 知识库」三件套打包：无需自建模型服务和消息链路即可获得大模型客服/助理；商业闭环为开源社区获客 → 企业订阅、算力与私有化变现（36氪口径），未融资、现金流自洽</td><td><a class="cref cross" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-4">[4]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 定价口径提示</div>
+    官方价格页的具体金额需登录 LinkAI 控制台查看，本报告未检索到可直接核验的公开标价；第三方聚合站口径为「标准版 298 元/月、专业版约 9980 元/年、免费版 2 应用 + 100MB 知识库」——未经官网核验，仅作参考。<a class="cref partial" href="#ref-14">[14]</a> 官方文档确认的硬事实是：四档订阅 + 积分按量计费 + 插件按次收费。<a class="cref cross" href="#ref-11">[11]</a>
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>GitHub 星标</td><td class="hl">47,834（API 实测）；案例墙底稿时点值 47.7k★；官网标示 46k★</td><td>2026-11-13</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td>GitHub Forks</td><td class="pos">10,420</td><td>2026-11-13</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>仓库创建 / 最近推送</td><td>2022-08-07 / 2026-11-07</td><td>2026-11-13 实测</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>最新版本</td><td>v2.2.2（访客页、内嵌聊天窗口、主题定制等）</td><td>2026-10-30 发布</td><td><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td>Watch / 订阅仓库人数</td><td>309</td><td>2026-11-13 实测</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>开源生态（官网标示）</td><td>bot-on-anything 4.2k★ / AgentMesh 306★</td><td>2026-11 查询</td><td><a class="cref verified" href="#ref-6">[6]</a></td></tr>
+      <tr><td>创始人项目博客热度</td><td>阅读 154,678 · 评论 137</td><td>2026-11 查询（2022-12-18 发布）</td><td><a class="cref partial" href="#ref-5">[5]</a></td></tr>
+      <tr><td>LinkAI 营收 / 客户数 / 续费率</td><td colspan="2"><b>未检索到公开信息</b>（官网设有客户案例页，覆盖医疗健康、智能客服、生产制造、数据分析、智能硬件等场景，未披露可量化数据）</td><td>— <a class="cref verified" href="#ref-6">[6]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    星标为更名后同一仓库累计值（GitHub 重定向不重置计数），46k / 47.7k / 47,834 为不同时点的三份快照；forks、watchers 与渠道数为本报告当日一手实测。LinkAI 侧无任何公开经营数据，请勿将「星标影响力」等同于「商业化成功」。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将本案放入案例墙「开发者工具 / 开源 AI 项目」坐标系，对标数据均为<b>案例墙既有核验值</b>（各案例独立信源已完成核验，此处不重复溯源）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>星标 / 成绩</th><th>商业化路径</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>CowAgent（原 chatgpt-on-wechat）+ LinkAI</b></td><td>查雨捷（zhayujie）</td><td>微信生态 AI 助理框架 + 零代码 Agent 平台</td><td class="hl">47,834★（2026-11-13 实测）</td><td><b>开源引流 → SaaS 订阅 / 算力 / 私有化</b>，未融资，创始人主导</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td>NextChat</td><td>Yidadaa</td><td>一键免费部署的私人 ChatGPT 跨平台客户端</td><td>88.8k★</td><td>开源 + 部署生态；后期公司化（案例墙口径）</td><td><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td>one-api</td><td>songquanpeng（justsong）</td><td>LLM API 网关：统一适配多模型、密钥管理与二次分发</td><td>37.3k★</td><td>开源 + 赞助；中转站生态事实标准</td><td><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td>new-api</td><td>Calcium-Ion（后转 QuantumNous 组织）</td><td>LLM 网关与 AI 资产管理</td><td>51.8k★（2026-11 实测）</td><td>开源 → 组织化运营</td><td><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td>ChatNio</td><td>zmh（Kairo）</td><td>多模型对话 + API 中转计费一站式开源平台</td><td>2024 年被七位数收购、月活近 10 万</td><td>被收购退出</td><td><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>五者同为 2023 年前后起量的高星开源 AI 项目，路径分化极具标本价值：<b>本案是其中唯一走完「开源 → 平台化 SaaS」全路径、且仍由创始人以未融资公司主导的项目</b>。one-api / new-api 停留在中立开发者工具层（不绑定分发平台，无平台依赖），NextChat 依赖各模型官方 API 的通道稳定性，ChatNio 以收购退出；而本案绑定微信生态分发渠道，换来精准企业客群与天然付费场景，代价则是全案例墙中最重的<b>平台协议风险敞口</b>——观察名单中「雨田」个人微信机器人 2024 年因封号潮关停（单笔年单最高 8 万元），即是同一生态里未完成合规跃迁的反面样本。<a class="cref cross" href="#ref-3">[3]</a></p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:150px">维度</th><th>分析</th><th style="width:110px">信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>开源框架（12 渠道、三层记忆、本地知识库、MCP 与 Skill 市场）+ LinkAI 平台（零代码应用/工作流/知识库/插件/模型管理/企业空间）双层产品；同一内核双轨交付，自部署与托管互为入口</td><td><a class="cref cross" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-6">[6]</a></td></tr>
+      <tr><td><b>2. 面向客群</b></td><td>三层：开发者（自部署，开源社区沉淀信任）；企微运营者与客服/营销团队（托管接入，零代码上线）；中大型企业（企业版、私有化与本地化）——个人免费版承担漏斗顶层</td><td><a class="cref cross" href="#ref-12">[12]</a> <a class="cref verified" href="#ref-6">[6]</a></td></tr>
+      <tr><td><b>3. 解决痛点</b></td><td>微信生态 AI 接入门槛：消息协议、模型服务、知识库 RAG 三件事打包开箱即用；对企业客户进一步解决智能客服 / 对话式营销 / 知识库问答的落地与合规部署</td><td><a class="cref cross" href="#ref-2">[2]</a> <a class="cref partial" href="#ref-5">[5]</a></td></tr>
+      <tr><td><b>4. 预估年化营收（推算，置信度 C）</b></td><td><b>营收零披露，不做数字推算。</b>仅可核验结构与价格锚：收入 = 企业订阅 + 模型与算力服务 + 私有化（36氪）；官方四档订阅 + 积分按量计费 + 插件按次收费；第三方口径「标准版 298 元/月起」（未经官方核验）。按开源体量与企业场景推断为中小规模 SaaS，量级无法估计</td><td><a class="cref cross" href="#ref-4">[4]</a> <a class="cref cross" href="#ref-11">[11]</a> <a class="cref partial" href="#ref-14">[14]</a></td></tr>
+      <tr><td><b>5. 融资进展</b></td><td>尚未融资（2026-10-20 报道口径），查雨捷称「当前的资金压力不大」——以企业现金流支撑团队，是案例墙开发者工具类中罕见的「不融资」样本</td><td><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>6. 市场评价</b></td><td>案例墙口径「微信 AI 机器人事实标准」；47.8k★ / 10.4k forks 为量化背书；36氪将其列为 Personal Agent 赛道代表团队并三次引用查雨捷观点；第三方部署教程持续产出（2024 年底仍有跟进 DeepSeek 接入公众号的教程），生态外溢明显</td><td><a class="cref cross" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-15">[15]</a></td></tr>
+      <tr><td><b>7. 投入成本与合规风险</b></td><td><b>核心变量即平台风险：微信机器人封号风险贯穿项目全程（详见下方两块专题）。</b>成本侧：开源以社区贡献 + 个人主导摊薄研发成本；LinkAI 以企业收入覆盖算力转售与研发，无融资烧钱压力。合规侧：公司主体完成 ISO 9001 / ISO 27001 与网信办深度合成算法备案，企业版支持完全本地化运行</td><td><a class="cref verified" href="#ref-8">[8]</a> <a class="cref verified" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-4">[4]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box insight">
+    <div class="bt">🔍 专题一：微信机器人封号风险——历史与现状</div>
+    <b>历史</b>：项目 2022-12 起步时以 itchat（Web 微信协议的非官方封装）实现个人号收发——该路径自始处于平台规范的灰色地带。<a class="cref partial" href="#ref-5">[5]</a> 《微信个人账号使用规范》（2024-11-22 生效）明确：违规账号可视情节「限制或禁止使用部分或全部功能<b>直至永久封号、回收账号</b>」；官方帮助中心将「非官方来源下载、安卓模拟器、未授权插件」列为封号原因；《微信智能对话平台服务协议》4.2.7 条对机器人无请求骚扰、营销轰炸作出专门限制。<a class="cref verified" href="#ref-8">[8]</a><a class="cref cross" href="#ref-16">[16]</a><a class="cref cross" href="#ref-17">[17]</a>
+    <b>现状</b>：平台风控从「外挂打击」扩展到「内容侧 AI 滥用」——2026-04 公众号规范非真人 AI 写作，处理手段包括流量限制、删除、能力限制、封禁，央媒确认有账号被封。<a class="cref cross" href="#ref-18">[18]</a><a class="cref cross" href="#ref-10">[10]</a> 跨 App 层面，豆包二代手机助手 SAEP 协议公示的 155 款拒绝 AI 代操作 App 名单中，微信、淘宝、支付宝、美团均在列。查雨捷的判断：「长期我觉得会开放，但可能要几年，短期肯定不会。」<a class="cref cross" href="#ref-4">[4]</a>
+  </div>
+  <div class="box insight">
+    <div class="bt">🔍 专题二：LinkAI 的合规化路径</div>
+    本案对「平台依赖风险」的解法是<b>四层结构性避险</b>：① <b>通道合规</b>——接入侧从 itchat 个人号转向公众号、企业微信、微信客服等官方 API 通道，并如实标注限制（如个人订阅号无主动发消息权限、须 15 秒内被动回复）；② <b>交付合规</b>——LinkAI 托管接入让企业无需自建协议层程序，企业版支持 SaaS / 私有化 / 完全本地化；③ <b>主体合规</b>——公司主体完成 ISO 9001 / ISO 27001 与网信办深度合成算法备案；④ <b>商业合规</b>——收入来自企业订阅、算力与私有化而非「外挂灰产」，不融资的现金流结构降低了游走灰色地带的动机。<a class="cref cross" href="#ref-12">[12]</a><a class="cref verified" href="#ref-6">[6]</a><a class="cref cross" href="#ref-4">[4]</a> 需如实指出：个人微信通道在 README 渠道表中仍然保留，风险并未在产品层完全消除，只是被多通道结构摊薄。<a class="cref cross" href="#ref-2">[2]</a>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 四项主要不确定性（截至 2026-11-13 检索）</div>
+    ① <b>LinkAI 经营数据零公开</b>：营收、客户数、续费率均未检索到公开信息，「订阅计费体系」有官方文档证实，但规模未知；② <b>定价绝对值未经官方核验</b>：第三方聚合口径与官方「需登录查看」的价格页存在口径差；③ <b>一人属性弱化</b>：商业化由公司主体承接、报道口径为「团队」，案例墙一人公司标签置信度仅「中」；④ <b>平台风险未根除</b>：个人微信通道仍在渠道表中，官方对自动化与 AI 滥用的打击持续加码，存量个人号部署用户始终暴露在封号风险下。
+  </div>
+  <div class="box note">
+    <div class="bt">📝 口径与命名说明</div>
+    ① <b>更名</b>：案例墙底稿使用项目名 chatgpt-on-wechat，仓库已于 2026-04-14 随 v2.0.6 更名 CowAgent（旧地址自动重定向，星标为同一仓库连续累计值）；② <b>锚点</b>：案例墙标注 2023-02-15 ▲ 为推断值——实测仓库创建于 2022-08-07、博客发布于 2022-12-18，「爆火时点」未见独立媒体报道，按案例墙口径保留并三处并置；③ <b>星标</b>：47.7k（底稿）/ 46k（官网）/ 47,834（本报告 API 实测）为不同时点快照；④ <b>创始真名</b>：以 36氪/投资界报道「查雨捷」为准，网名 zhayujie 与 GitHub ID、博客作者一致。
+  </div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">在案例墙的坐标系里，本案示范了个人开源项目的「惊险一跃」：星标只是入场券，真正的护城河是把<b>平台风险转化为合规产品力</b>（官方通道 + 托管 SaaS + 备案主体 + 本地化交付），再用开源信任为企业客群免费获客、以企业现金流替代融资输血。它的另一半价值是警示：同生态中未能完成这一跃的「雨田」案例说明，绑定性平台依赖是微信生态个人开发者最大的单点故障——同一规则，既是墙，也是本案的护城河。<a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-4">[4]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 18 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx verified">[1]</span><span class="rt">A</span><span class="st">GitHub API 实测</span></div><div class="ti">zhayujie/chatgpt-on-wechat（重定向至 zhayujie/CowAgent）仓库元数据</div><div class="mt"><b>来源：</b>GitHub REST API　<b>查询日期：</b>2026-11-13<br><a href="https://api.github.com/repos/zhayujie/chatgpt-on-wechat" target="_blank" rel="noopener">https://api.github.com/repos/zhayujie/chatgpt-on-wechat</a></div><div class="note">事实核查：实测 created_at=2022-08-07、stargazers_count=47,834、forks=10,420、subscribers=309、pushed_at=2026-11-07、MIT、Python；星标与官网标示（46k）及案例墙底稿（47.7k）三方互证 → verified。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx cross">[2]</span><span class="rt">A</span><span class="st">官方 README（一手）</span></div><div class="ti">CowAgent README：Agent Harness 定位、12 渠道表、模型矩阵与 Changelog</div><div class="mt"><b>来源：</b>GitHub 仓库 master 分支　<b>查询日期：</b>2026-11-13<br><a href="https://github.com/zhayujie/CowAgent" target="_blank" rel="noopener">https://github.com/zhayujie/CowAgent</a></div><div class="note">事实核查：渠道表实测 12 类（个人微信/公众号/企微应用/企微机器人/微信客服/飞书/钉钉/QQ/Telegram/Slack/Discord/Web）；知识库、三层记忆、MCP、Skill Hub；Changelog v2.2.2（2026-10-30）；个人微信通道保留事实亦出自此表。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx cross">[3]</span><span class="rt">B+</span><span class="st">案例墙核验库</span></div><div class="ti">国内 AI 一人公司案例墙：第 41 条底稿、推断锚点、对标核验值与观察名单</div><div class="mt"><b>来源：</b>本站案例墙 <a href="../../index.html" style="color:#2980b9">index.html</a> 与 data/domestic-pool.md　<b>时点：</b>2026-11 底稿<br><a href="../../index.html" target="_self">../../index.html</a></div><div class="note">事实核查：锚点 2023-02-15 ▲（推断值）、底稿 47.7k★ 与「微信 AI 机器人事实标准」口径、对标值（NextChat 88.8k★ / one-api 37.3k★ / new-api 51.8k★ / ChatNio 七位数收购+月活近 10 万）均为案例墙既有核验值；观察名单「雨田」条目（2024 年因微信封号潮关停）未入主线、仅作对照。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx cross">[4]</span><span class="rt">A</span><span class="st">主流财经媒体专访</span></div><div class="ti">新入口和旧城墙之下，「中国版Muse」有多远？（36氪《智能涌现》，投资界转载）</div><div class="mt"><b>来源：</b>36氪（记者李炤锋），投资界转载　<b>发布日期：</b>2026-10-20<br><a href="https://m.pedaily.cn/news/570555" target="_blank" rel="noopener">https://m.pedaily.cn/news/570555</a></div><div class="note">事实核查：确认「LinkAI 创始人查雨捷」「团队位于深圳」「从 chatgpt-on-wechat 起步发展为 CowAgent」「收入来自企业订阅、模型与算力服务、私有化项目」「尚未融资」及三段查雨捷引语、豆包 SAEP 155 款拒绝名单；单一权威信源可回溯 → cross。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx partial">[5]</span><span class="rt">B+</span><span class="st">创始人博客（自述一手）</span></div><div class="ti">《基于ChatGPT的微信聊天机器人》及博客全列表（zhayujie.com）</div><div class="mt"><b>来源：</b>zhayujie.com（作者 zyj）　<b>发布日期：</b>2022-12-18（RAG 复盘文 2024-07-31）<br><a href="https://zhayujie.com/chatgpt-on-wechat.html" target="_blank" rel="noopener">https://zhayujie.com/chatgpt-on-wechat.html</a></div><div class="note">事实核查：项目起源（OpenAI 接口 + itchat 收发自动回复）、博客阅读 154,678/评论 137、AgentMesh 与 RAG 实践出自此源；属创始人自述口径，页面历经更新（现版本提及 LinkAI）→ partial。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx verified">[6]</span><span class="rt">A</span><span class="st">官网（一手）</span></div><div class="ti">LinkAI 官网：一站式 AI 智能体平台 / 公司与开源生态信息</div><div class="mt"><b>来源：</b>link-ai.tech　<b>查询日期：</b>2026-11-13<br><a href="https://link-ai.tech/" target="_blank" rel="noopener">https://link-ai.tech/</a></div><div class="note">事实核查：确认深圳极简未来科技有限公司（2023-04 成立）、创始团队来源、九大产品模块与「零代码」表述、ISO 9001/27001 与网信办深度合成算法备案、开源生态星标（CowAgent 46k / bot-on-anything 4.2k / AgentMesh 306）、「多次登录 GitHub Trending」自述；与 36氪 [4] 交叉印证公司与创始人 → verified。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx partial">[7]</span><span class="rt">B</span><span class="st">镜像版本史（转述）</span></div><div class="ti">docs/version/old-version.md（Gitee 镜像）：2023-04-05 公众号部署与 tool 插件</div><div class="mt"><b>来源：</b>Gitee 镜像仓库　<b>查询日期：</b>2026-11-13<br><a href="https://gitee.com/windyzone/chatgpt-on-wechat/blob/master/docs/version/old-version.md" target="_blank" rel="noopener">https://gitee.com/windyzone/chatgpt-on-wechat/blob/master/docs/version/old-version.md</a></div><div class="note">事实核查：「2023.04.05 支持微信公众号部署，兼容插件，并支持语音图片交互」「增加能让ChatGPT使用工具的tool插件」为搜索摘要命中内容，主仓原文抓取未成功，按镜像转述收录 → partial。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx verified">[8]</span><span class="rt">A</span><span class="st">平台官方规范（一手）</span></div><div class="ti">《微信个人账号使用规范》（2024-11-22 更新生效）</div><div class="mt"><b>来源：</b>weixin.qq.com 官方协议页　<b>查询日期：</b>2026-11-13<br><a href="https://weixin.qq.com/agreement/personal_account" target="_blank" rel="noopener">https://weixin.qq.com/agreement/personal_account</a></div><div class="note">事实核查：「限制或禁止使用部分或全部功能直至永久封号、回收账号」条款与自动化/外挂相关禁止项命中原文；与官方帮助中心 [16] 及媒体封禁报道 [10] 多源互证 → verified。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx verified">[9]</span><span class="rt">A</span><span class="st">官方 Release（一手）</span></div><div class="ti">v2.0.6 发布说明：项目正式更名 CowAgent + 知识库/Deep Dream/Web 控制台</div><div class="mt"><b>来源：</b>GitHub Releases　<b>发布日期：</b>2026-04-14<br><a href="https://github.com/zhayujie/CowAgent/releases/tag/2.0.6" target="_blank" rel="noopener">https://github.com/zhayujie/CowAgent/releases/tag/2.0.6</a></div><div class="note">事实核查：Release 正文「项目仓库正式从 chatgpt-on-wechat 更名为 CowAgent」、发布日期 2026.04.14 均命中原文；与 docs.cowagent.ai release 页、Gitee「原名 chatgpt-on-wechat」标注三方一致 → verified。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx cross">[10]</span><span class="rt">A</span><span class="st">央媒报道</span></div><div class="ti">用AI写公众号「年赚200万」的夫妻，确认被封（光明网今日头条）</div><div class="mt"><b>来源：</b>光明网　<b>发布日期：</b>2026-04-12<br><a href="https://m.gmw.cn/toutiao/2026-04/12/content_1304415313.htm" target="_blank" rel="noopener">https://m.gmw.cn/toutiao/2026-04/12/content_1304415313.htm</a></div><div class="note">事实核查：微信团队回应「微信公众平台一贯鼓励真人创作，公众号不得利用 AI 替代真人完成内容创作、发布等流程」及封禁事实出自此稿 → cross。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx cross">[11]</span><span class="rt">A</span><span class="st">官方文档（一手）</span></div><div class="ti">LinkAI 计费规则：四档订阅 + 积分按量计费 + 插件按次收费</div><div class="mt"><b>来源：</b>docs.link-ai.tech　<b>查询日期：</b>2026-11-13<br><a href="https://docs.link-ai.tech/platform/funds/price" target="_blank" rel="noopener">https://docs.link-ai.tech/platform/funds/price</a></div><div class="note">事实核查：基础版（免费体验）/标准版/专业版/企业版四档、「1积分 = 0.0016～0.0019元」、插件按执行次数收费、知识库 embedding 检索免费均命中原文；具体档位金额需登录控制台查看。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx cross">[12]</span><span class="rt">A</span><span class="st">官方文档（一手）</span></div><div class="ti">LinkAI 文档：公众号（个人）托管接入与限制说明</div><div class="mt"><b>来源：</b>docs.link-ai.tech　<b>查询日期：</b>2026-11-13<br><a href="https://docs.link-ai.tech/platform/link-app/wechat-mp" target="_blank" rel="noopener">https://docs.link-ai.tech/platform/link-app/wechat-mp</a></div><div class="note">事实核查：「个人订阅号无法企业认证、无主动发消息权限、15 秒内无法回复需用户主动发送」及「托管接入标准版可用」「不提供自建接入技术支持」命中摘要 → cross。</div></li>
+  <li id="ref-13" class="src"><div class="sh"><span class="idx cross">[13]</span><span class="rt">A</span><span class="st">官方文档（一手）</span></div><div class="ti">LinkAI 收益规则：接入 IM 类任务送积分机制</div><div class="mt"><b>来源：</b>docs.link-ai.tech　<b>查询日期：</b>2026-11-13<br><a href="https://docs.link-ai.tech/platform/funds/income" target="_blank" rel="noopener">https://docs.link-ai.tech/platform/funds/income</a></div><div class="note">事实核查：「接入微信/企微/飞书/钉钉等常用软件并完成对话 +600 积分」等免费积分任务命中原文，佐证个人漏斗层运营设计 → cross。</div></li>
+  <li id="ref-14" class="src"><div class="sh"><span class="idx partial">[14]</span><span class="rt">C</span><span class="st">第三方聚合站</span></div><div class="ti">攻壳智能体：LinkAI 产品页（第三方价格口径）</div><div class="mt"><b>来源：</b>gongke.net　<b>查询日期：</b>2026-11-13<br><a href="https://gongke.net/tools/linkai" target="_blank" rel="noopener">https://gongke.net/tools/linkai</a></div><div class="note">事实核查：「免费版 0 元/2 应用/100MB 知识库」「标准版 298 元/月」「专业版 9980 元/年」为第三方聚合口径，未经官网价格页直接核验，仅作参考 → partial。</div></li>
+  <li id="ref-15" class="src"><div class="sh"><span class="idx partial">[15]</span><span class="rt">C+</span><span class="st">社区教程</span></div><div class="ti">我把deepseek等大模型接入了微信公众号，打造个人AI助手（博客园）</div><div class="mt"><b>来源：</b>博客园「程序员博博」　<b>查询日期：</b>2026-11-13<br><a href="https://www.cnblogs.com/wenbochang/p/18710407" target="_blank" rel="noopener">https://www.cnblogs.com/wenbochang/p/18710407</a></div><div class="note">事实核查：第三方开发者以 CoW 项目接入 DeepSeek 到公众号的部署教程，佐证项目社区生态持续活跃与「公众号/飞书/钉钉接入」定位；单一社区信源 → partial。</div></li>
+  <li id="ref-16" class="src"><div class="sh"><span class="idx cross">[16]</span><span class="rt">A</span><span class="st">官方帮助中心</span></div><div class="ti">Why Has My WeChat Account Been Blocked?（封号原因官方清单）</div><div class="mt"><b>来源：</b>WeChat Help Center　<b>查询日期：</b>2026-11-13<br><a href="https://cs.help.wechat.com/hc/en-us/articles/11916802064143-Why-Has-My-WeChat-Account-Been-Blocked" target="_blank" rel="noopener">https://cs.help.wechat.com/hc/en-us/articles/11916802064143-Why-Has-My-WeChat-Account-Been-Blocked</a></div><div class="note">事实核查：非官方来源下载、安卓模拟器、未授权插件运行等封号原因命中原文，与 [8] 互证平台对外挂/自动化的一贯立场 → cross。</div></li>
+  <li id="ref-17" class="src"><div class="sh"><span class="idx cross">[17]</span><span class="rt">A</span><span class="st">平台官方协议（一手）</span></div><div class="ti">《微信智能对话平台服务协议》4.2.7 机器人对话条款</div><div class="mt"><b>来源：</b>微信开放文档　<b>查询日期：</b>2026-11-13<br><a href="https://developers.weixin.qq.com/doc/aispeech/platform/agreement/ServiceAgreement.html" target="_blank" rel="noopener">https://developers.weixin.qq.com/doc/aispeech/platform/agreement/ServiceAgreement.html</a></div><div class="note">事实核查：机器人不得向最终用户发送与请求无关的营销消息、不得无请求频繁骚扰等条款命中原文 → cross。</div></li>
+  <li id="ref-18" class="src"><div class="sh"><span class="idx cross">[18]</span><span class="rt">B+</span><span class="st">党媒新媒体</span></div><div class="ti">自查！微信公众号开始规范非真人AI写作（京报网）</div><div class="mt"><b>来源：</b>京报网（转新浪科技、荆楚网）　<b>发布日期：</b>2026-04-09<br><a href="https://news.bjd.com.cn/2026/04/09/11679296.shtml" target="_blank" rel="noopener">https://news.bjd.com.cn/2026/04/09/11679296.shtml</a></div><div class="note">事实核查：「脚本、程序托管等自动化方式批量、连续发布」违规情形与「流量限制、删除、能力限制、封禁」处理规则出自此稿 → cross。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 18 条。核验标签分布：🟢 已核验（verified）4 条（GitHub API 星标三方互证、LinkAI 官网与 36氪 互证、微信规范多源互证、v2.0.6 更名三源互证）、🔵 多源印证（cross）10 条、🟡 部分映证（partial）4 条（创始人自述博客、Gitee 镜像版本史、第三方价格聚合、社区教程）。信源评级分布：A 级 12 条（GitHub API/README/Release、LinkAI 官网及三份官方文档、微信两份官方规范与帮助中心、央媒与主流财经专访，原文回溯全部完成）、B+/B 级 4 条、C+/C 级 2 条（均已标注口径）。主要留白：LinkAI 营收/客户数零公开、官方定价绝对值未直接核验、爆火时点无独立媒体报道（以案例墙推断锚点 ▲ 标注）；主要口径冲突：项目更名（chatgpt-on-wechat → CowAgent）与三个时点星标快照，均已在正文显式标注。全部 URL 为检索过程实际命中页面，未发现伪造链接。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-13 · 营收相关推断均标注置信口径，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

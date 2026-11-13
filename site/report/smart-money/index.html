@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · 聪明钱监控——许洋的一个人 AI 投研生意 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · 聪明钱监控">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="聪明钱监控深度案例报告：北京程序员许洋用开源智能体 OpenClaw 手搓 AI 股市投研系统，资金流向/主力动向日报订阅 200 元/年，上线半月 90 个付费用户、收入超 1 万元（经济观察报口径）。15 条信源逐条核验，含投研合规红线专题分析。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>聪明钱监控深度案例报告</h1>
+    <h2>北京程序员许洋：一个人、一台 Mac mini、约 2000 元年成本<br>用开源智能体 OpenClaw 手搓 AI 股市投研系统，上线半月 90 个付费用户 —— 15 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">投研工具型 OPC</span>
+      <span class="tag">订阅制 200 元/年</span>
+      <span class="tag">合规敏感赛道</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">90 人</div><div class="k">上线半月付费用户（经观口径）</div></div>
+  <div class="stat"><div class="v up">超 1 万元</div><div class="k">半月订阅收入（经观口径）</div></div>
+  <div class="stat"><div class="v neutral">200 元/年</div><div class="k">订阅定价（150 元起步上调）</div></div>
+  <div class="stat"><div class="v neutral">约 2000 元/年</div><div class="k">系统总成本（半月即覆盖）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">「聪明钱监控」是 2026 年开年「养龙虾」（配置开源智能体 OpenClaw）风潮中被主流财经媒体确认的首批个人变现样本：北京程序员许洋耗时一个月手搓出 AI 股市投研系统，以「数据分享群 + 订阅网页」形式向散户收费，上线半月获 90 个付费用户、收入超 1 万元——案例墙中首个「投研内容订阅」形态、也是合规敏感度最高的 OPC 案例。</p>
+  <div class="two">
+    <div class="card"><div class="ct">产品</div><div class="cb">「聪明钱监控」AI 股市投研系统：账户密码登录的订阅网页（成交额 Top30 个股格局、行业主力大单净流向热力图、机构潜伏强力抢筹个股榜、上市公司互动问答监控）+ 微信群每日早晚两次推送（主力净流入 TOP10、行业板块资金流向及 AI 解读）。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">许洋，北京程序员，人工智能应用的深度使用者（自述「工作与生活已离不开 AI」），拥有 6 年炒股经验。因觉得各类专业股市数据平台价格高昂，此前炒股只能查看零散数据、靠自己画图与记笔记总结。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="card"><div class="ct">技术底座</div><div class="cb">开源人工智能体 OpenClaw（俗称「龙虾」）本地部署：苹果 Mac mini 主机（24 小时开机、功耗低）+ 阿里云每月 40 元 Token 套餐 + 每年 1000 元服务器；数据源为同花顺 Level-2 会员与 Tushare API，每年合计约 500 元。硬件之外年成本约 2000 元。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="card"><div class="ct">商业模式</div><div class="cb">订阅制：定价 200 元/年、一次性收取（由 150 元/年上调）；通过社交媒体发帖获客，微信群交付日报。公司注册、融资、团队规模均未检索到公开信息，主流报道口径为个人独立运营。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-3">[3]</a></div></div>
+  </div>
+  <div class="two">
+    <div class="card blue"><div class="ct">行业位置</div><div class="cb">经观同稿指出「不止许洋」：多人开始通过自研 OpenClaw 投研系统收费，功能各有侧重（全天候自动交易、可自定义关注逻辑等），其中最贵收费达每月 200 美元；机构侧，国联民生证券海外首席分析师孔蓉将 OpenClaw 的火热定义为「庶民的胜利」。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="card red"><div class="ct">合规敏感度（本案特殊性）</div><div class="cb">产品输出包含「操作建议」的 AI 解读并收费分发，与证券投资咨询业务的持牌监管边界直接相邻；报道刊发同日前后，监管侧已连续就「龙虾」金融应用发布风险提示（详见柒、捌章）——本案是案例墙 50 余例中唯一触及「荐股资质」红线的订阅制样本。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-4">[4]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2026 年开年</div><div class="tx">OpenClaw（「龙虾」）突然走红，「养龙虾」成为全民风潮</div><div class="td">人们纷纷配置开源智能体，尝试用它完成各式任务——许洋案例的技术与舆论起点。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026 年 2 月起</div><div class="tx">许洋开始试用 OpenClaw，购置 Mac mini 搭建本地环境</div><div class="td">凡是脑力可完成的任务 OpenClaw 都能实现，还能用手机远程操控家中电脑；6 年炒股经验让他第一时间想到搭股市数据分析系统。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026 年 2 月 → 3 月初</div><div class="tx">耗时一个月手搓出「聪明钱监控」系统</div><div class="td">购置 Mac mini 与阿里云 40 元/月 Token 套餐；以「你是一名专业的 A 股资金流分析师」角色指令训练 OpenClaw，生成含主力动向、板块资金流、机构流入/撤离警示及操作建议的分析报告。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">上线前夕</div><div class="tx">社交媒体分享「养虾」炒股雏形 → 网友主动问价 → 转变思路</div><div class="td">「这个系统怎么收费」的询问让他意识到：困在数据里的人并非只有自己。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-03-01</div><div class="tx">开始收费：定价 150 元/年，随后上调至 200 元/年</div><div class="td">一次性收取；同时以每年 1000 元购置服务器，将分析图制成订阅网页，OpenClaw 可自动部署任务免去运维。<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2026-03-11</div><div class="tx">Wind 宣布上线 WindClaw 并开启公测（行业变量）</div><div class="td">专业平台入局；许洋判断暂不影响自己生意——WindClaw 与 Wind 终端绑定、内测范围小，且其用户付费意愿低。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-03-15</div><div class="tx">中国互联网金融协会发布 OpenClaw 金融应用安全风险提示</div><div class="td">锚点日：建议在网银/证券/支付终端上极其谨慎安装 OpenClaw，并关注高额 Token 费用。<a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2026-03-16</div><div class="tx">经济观察报报道：半月 90 个付费用户、收入超 1 万元</div><div class="td">记者牛钰稿确认从 3 月 1 日至发稿不到半个月，数据分享群用户达 90 人，粗算收入超 1 万元，已覆盖约 2000 元/年的搭建成本。<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2026-03-16 之后</div><div class="tx">增长瓶颈显现：用户增量几乎为零，数据储备不足成核心短板</div><div class="td">发帖关注度下降；他反思需要专业数据平台 API（年费动辄数万元）才能实现准确、实时与功能丰富。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：从「解放双手」到「一门生意」——需求被别人指出来的</div><div class="cb">许洋的最初动机纯属自用：专业股市数据平台价格高昂，他只能看零散数据、画图记笔记，渴望一套统计资金流向、定时推送、辅助复盘的系统。系统成型后发帖分享，是陌生网友的「怎么收费」提问让他意识到这是普遍需求——许多投资者都想从烦琐盯盘中解脱。OPC 的选题直觉（自身痛点）与市场验证（用户敲门）在本案完成两段接力。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a></div></div>
+  <div class="card"><div class="ct">转折二：成本结构压到极限——2000 元年成本对抗数万元级机构工具</div><div class="cb">全部投入：Mac mini（一次性硬件）＋阿里云 40 元/月 Token＋服务器 1000 元/年＋同花顺 Level-2 与 Tushare API 约 500 元/年，合计约 2000 元/年。这一成本结构直接定义了 200 元/年的定价空间，并让系统上线半个月即完成成本回收。开源智能体把「开发成本」变成「教 AI 的训练时间」，是本案 OPC 可行性的技术前提。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a></div></div>
+  <div class="card red"><div class="ct">转折三：数据天花板——一个月后增长归零的清醒</div><div class="cb">爆红故事的反面来得很快：用户增量几乎为零、发帖越来越少人关注。许洋自我诊断的答案是数据储备不足——同花顺 L2＋Tushare 每年 500 元的数据源占总成本四分之一却仍不够用，而专业机构 API 年费动辄数万元。这揭示了投研类 OPC 的结构性约束：<b>工具可以平权，数据不会平权</b>。Wind 等专业平台推出 WindClaw 后，「个人手搓」与「机构下场」的差距被进一步拉大。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a></div></div>
+  <div class="quote">
+    <p>凡是脑力可完成的任务，OpenClaw 都能实现。</p>
+    <span class="src">—— 许洋谈开源智能体能力边界，经济观察报（2026-03-16），转引自 <a class="cref cross" href="#ref-1">[1]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product & Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>内容</th><th>细节与口径</th></tr></thead>
+    <tbody>
+      <tr><td><b>产品功能</b></td><td class="hl">资金流向 / 主力动向日报</td><td>订阅网页：成交额 Top30 及涨跌幅（面积图呈现热股格局）、行业主力大单净流向热力图、机构潜伏强力抢筹个股榜、上市公司互动问答监控<span class="cite cross">[1]</span>；微信群每日早晚两次推送：主力净流入 TOP10、行业板块资金流向、AI 解读<span class="cite cross">[1]</span></td></tr>
+      <tr><td><b>开源智能体搭建方法论</b></td><td>OpenClaw 本地部署 + 角色指令训练</td><td>Mac mini（24 小时开机、功耗低、原生支持完善）→ 阿里云 40 元/月 Token → 导入资金流/涨跌幅数据做可视化训练 → 角色指令「你是一名专业的 A 股资金流分析师」→ 任务要求生成主力动向、概念板块资金流、机构流入激励、机构撤离警示及操作建议 → 网页化部署至 1000 元/年服务器，OpenClaw 自动部署免运维<span class="cite cross">[1]</span></td></tr>
+      <tr><td><b>定价</b></td><td class="hl">200 元/年（一次性收取）</td><td>起步价 150 元/年，随后上调至 200 元/年；对照组：专业机构数据 API 年费动辄数万元<span class="cite cross">[1]</span></td></tr>
+      <tr><td><b>面向客群</b></td><td>散户投资者（三类）</td><td>①想跟上聪明钱节奏的投资者；②对算法交易感兴趣的技术派；③不想天天盯盘的「打工人」<span class="cite cross">[1]</span></td></tr>
+      <tr><td><b>解决痛点</b></td><td>专业投研工具昂贵</td><td>散户此前只能查看零散数据、自己画图记笔记；Wind 等专业平台定价远超个人承受范围，200 元/年是「庶民的胜利」式价位<span class="cite cross">[1]</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h4>AI 解读的实际样貌（2026-03-12 输出示例）</h4>
+  <p>针对当日 A 股走势，OpenClaw 解读为「资金风格剧烈切换，从科技成长全面流向防御板块」，对应操作建议为「以防守反击为主，回避高位科技股追涨，侧重稳增长主线，控制仓位等待科技板块回调企稳，切勿盲目抄底」<a class="cref cross" href="#ref-1">[1]</a>。它已包含明确的仓位与操作建议而非纯数据罗列——是柒章合规分析的关键物证（详见柒第 6、7 行）。</p>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>付费用户（数据分享群）</td><td class="hl">90 人</td><td>2026-03-01 至 03-16 报道（不到半月）</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td>订阅收入</td><td class="hl">粗略计算超 1 万元</td><td>同上（经观口径）</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td>系统总成本</td><td>约 2000 元/年（服务器 1000 + 数据源 500 + Token 约 480）</td><td>上线时</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>成本回收周期</td><td class="pos">不足半个月</td><td>2026-03 中旬</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>定价轨迹</td><td>150 元/年 → 200 元/年</td><td>2026-03</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td>用户增量（报道后）</td><td class="hl">几乎为零（自述）</td><td>2026-03-16 之后</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>同业收费上探</td><td>最贵 200 美元/月（自研 OpenClaw 投研系统）</td><td>2026-03 经观行业口径</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    「90 个付费用户」「收入超 1 万元」为经济观察报独家采访口径（记者牛钰），截至本报告检索日（2026-11-12）未检索到第二家独立媒体对该两项数字的直接复核，引用时建议保留「经观口径」限定词。收入为「粗略计算」，未披露退款、税费与微信群以外渠道。经观原站、新浪转载与经观官方微博三个渠道文本一致，原文回溯完成。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将「聪明钱监控」放入案例墙已核验的个人订阅制坐标系（对标数据均为案例墙既有核验值，信源评级沿用案例墙结论，本报告按转引处理）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态与订阅模式</th><th>成功迹象</th><th>合规敏感度</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>聪明钱监控</b></td><td>许洋（北京程序员）</td><td>AI 投研日报订阅 200 元/年（微信群 + 网页）</td><td>上线半月 90 付费、收入超 1 万元（经观口径）</td><td class="hl">极高：输出含操作建议，毗邻投顾持牌红线</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>无事AI</td><td>佟晨（法律博主）</td><td>AI 小额纠纷解决：免费诊断案情/测算赔偿区间，按结果收费（交通事故切入）</td><td>上线两月 40 余单付费、营收约 6 万、毛利率约 65%</td><td>中：法律服务但按结果收费、不涉牌照化荐股场景</td><td><a class="cref partial" href="#ref-5">[5]</a></td></tr>
+      <tr><td>作文说</td><td>李雲帆（1998 年生）</td><td>AI 作文批改：拍照上传生成可打印批改报告，教育订阅</td><td>上线 4 个月用户破 1.5 万（央媒口径）；付费率 13-14%、月入近 5 万（自述）</td><td>低：教育工具类内容服务</td><td><a class="cref partial" href="#ref-6">[6]</a></td></tr>
+      <tr><td>声序智能</td><td>王钰博（前字节风控算法工程师）</td><td>五线谱↔简谱 1 分钟互转（OMR）订阅制，民乐垂类</td><td>上线半年多用户超 6000（新华每日电讯口径）；成立约 3 个月现金流回正（交叉）</td><td>低：工具类 SaaS，无金融属性</td><td><a class="cref partial" href="#ref-7">[7]</a></td></tr>
+      <tr><td>天之灵AI</td><td>张翼（37 岁起步）</td><td>AI 哀伤陪伴小程序：年费 99 元起的数字疗愈会员</td><td>注册用户 11.1 万、付费会员 2000-3000 人、已盈利（36氪）</td><td>中：情感陪伴涉心理边界但无投资属性</td><td><a class="cref partial" href="#ref-8">[8]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>横向看，「聪明钱监控」的<b>启动速度最快</b>（一个开发月 + 半个月变现）、客单价居中，但它是五个案例中唯一输出直接指向「买什么、怎么操作」的产品——其余交付物（纠纷诊断、作文批改、曲谱转换、情感陪伴）都不触碰《证券法》意义上的投资建议。<b>增长瓶颈来自数据供给，生死约束却来自合规定性</b>：作文说替代的是人工批改老师，聪明钱监控替代的是持牌投研——后者的合规成本无法靠个人技术能力消化。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>分析</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>资金流向/主力动向日报双端交付：订阅网页（热力图、抢筹榜、互动问答监控等，见壹章）+ 微信群每日早晚推送（主力净流入 TOP10、行业资金流、AI 解读）<span class="cite cross">[1]</span>。本质是「AI 批量生产、人不干预内容」的自动化订阅，每日 2 次的交付频率高于多数人工投研产品。</td></tr>
+      <tr><td><b>2. 面向客群</b></td><td>散户投资者三分类：想跟上聪明钱节奏的投资者、对算法交易感兴趣的技术派、不想盯盘的「打工人」<span class="cite cross">[1]</span>。客群与定价自洽——付费意愿较低、难以承担 Wind 类专业终端费用<span class="cite cross">[1]</span>，是机构投研覆盖不到的长尾人群。</td></tr>
+      <tr><td><b>3. 解决痛点</b></td><td>专业投研工具昂贵：散户此前只能查看零散数据、画图记笔记，专业机构 API 年费动辄数万元<span class="cite cross">[1]</span>。200 元/年约为机构 API 百分位成本，痛点真实且高频（每日复盘）。</td></tr>
+      <tr><td><b>4. 开源智能体搭建方法论（可复制性）</b></td><td>五步法：①硬件本地化（Mac mini 24 小时开机）；②Token 成本控制（阿里云 40 元/月套餐覆盖非复杂任务）；③数据供给（同花顺 L2 + Tushare 约 500 元/年）；④角色指令训练（「你是一名专业的 A 股资金流分析师」+ 明确报告要素）；⑤自动化部署（OpenClaw 自动部署网页任务免运维）<span class="cite cross">[1]</span>。经观同稿显示该方法论已被多人复制并收费；但国联民生首席吕伟指出，专业分析师的优势在独家数据源、成熟框架与交叉验证能力，可规避 AI「幻觉」<span class="cite cross">[1]</span>——可复制的是工程，不可复制的是数据与校验。</td></tr>
+      <tr><td><b>5. 投资建议监管红线（重点合规分析）</b></td><td>①持牌要求：证监会《证券基金投资咨询业务管理办法（征求意见稿）》明确从事证券投资顾问业务、发布证券研究报告业务应当依法经中国证监会核准（第六条持牌经营）<span class="cite cross">[9]</span>；②「AI 不能豁免资质」：证券时报受访专家指出，「AI 只是工具，不能豁免资质要求，必须明确持牌机构为最终责任主体」，并<b>严禁 AI 直接面向公众生成个股建议</b><span class="cite cross" >[10]</span>；③定性参照：上海投顾机构负责人（化名游鑫）认为「投顾龙虾」既非合规投资工具、也无法替代专业持牌投顾，风险系数显著高于正规投顾产品<span class="cite cross">[10]</span>；④本案暴露面：产品输出含「操作建议」且收费分发<span class="cite cross">[1]</span>，处于「数据分享」与「投资咨询」的定性灰色地带——截至检索日<b>未检索到针对本案的监管定性或处罚记录</b>，本报告仅呈现边界事实，不作合规结论。</td></tr>
+      <tr><td><b>6. AI 投研准确性责任</b></td><td>①准确性缺陷已被用户实测暴露：跟「龙虾」炒股的投资者吐槽 AI 推荐股票不靠谱，「轻则数据滞后，重则编纂数据骗人」<span class="cite cross">[1]</span>；②后果实例：有投资者用「龙虾」炒股三天亏损 7000 元、推荐三只股票全部亏损<span class="cite cross">[11]</span>；③责任界定难题：专家指出不少 AI 炒股工具已涉及投资建议甚至资产配置建议，但平台往往不具备投资顾问资质，「一旦出现投资亏损，责任主体往往难以界定」<span class="cite cross">[11]</span>；④解法参照：田利辉主张算法输出须经持牌投顾复核、坚持业务实质监管<span class="cite cross">[10]</span>——个人 OPC 无持牌复核环节，准确性责任实际由订阅用户自担，与「数据分享群」的免责定位存在结构性张力。</td></tr>
+      <tr><td><b>7. 数据表现与增长约束</b></td><td>财务面：半月 90 付费、收入超 1 万元、成本约 2000 元/年，半个月即回本<span class="cite cross">[1]</span><a class="cref cross" href="#ref-3">[3]</a>；增长面：报道后用户增量几乎为零，瓶颈为数据储备不足（需年费数万元的专业 API）<span class="cite cross">[1]</span>；竞争面：Wind 于 2026-03-11 上线 WindClaw 公测，专业平台下场压缩个人套利空间<span class="cite cross">[1]</span><a class="cref cross" href="#ref-12">[12]</a>。ROI 极高但天花板同样极高——本案更像「窗口期红利」而非可持续生意，与陆章对标案例（作文说 4 个月 1.5 万用户、天之灵AI 11.1 万注册）相比增长曲线明显更陡起陡落。</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box risk">
+    <div class="bt">⚠️ 本报告不构成投资建议（此案例为投研产品，特别声明）</div>
+    本案例涉及股市投研内容订阅。「聪明钱监控」及其同类产品的 AI 解读均含操作建议成分，其准确性未经任何持牌机构复核，监管侧已明确提示相关风险（中国互联网金融协会 2026-03-15 风险提示<span class="cite verified" >[4]</span>、证券时报合规边界讨论<span class="cite cross">[10]</span>），央媒亦以「既要敢为，也要慎为」定性此类工具的行业分寸<span class="cite verified">[13]</span>。本报告对许洋案例的全部梳理仅为公开资料研究，不构成对任何投资工具、订阅服务或证券的推荐、认可或风险评估。
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 监管环境持续收紧：本案成立的窗口期属性</div>
+    案例锚点前后，监管动作密集：3 月 10 日至 15 日，国家互联网应急中心、工信部网络安全平台、中国互联网金融协会接连提示「龙虾」风险<span class="cite verified" >[13]</span>；中互金协会明确建议在办理网银、证券交易、支付等业务的终端上<b>极其谨慎安装 OpenClaw</b>，不授予金融服务类系统操作权限、不输入身份证号与银行卡号等敏感信息，并关注高额 Token 费用<span class="cite cross">[1]</span><a class="cref verified" href="#ref-4">[4]</a>；上海证券报报道多家银行已收到监管提示<span class="cite cross">[14]</span>。证券时报专家访谈进一步指出 AI 投顾新场景「亟须加快出台专项监管规则」，并严禁无资质机构、个人及第三方 MCN、财经大 V 借合作名义变相开展投顾业务<span class="cite cross">[10]</span>。在此背景下，「个人收费分享 AI 投研数据」模式的合规容许空间存在收紧可能，本案的窗口期红利能否延续存疑。
+  </div>
+  <div class="box note">
+    <div class="bt">📌 四处留白与一处口径存疑（截至 2026-11-12 检索）</div>
+    ① 许洋的全名之外的个人信息（年龄、公司任职、所在企业）报道未披露，未检索到公开信息；② 「聪明钱监控」网站/订阅页的独立一手入口（官网 URL、公众号）未检索到公开可验证链接，产品细节均经经济观察报转述；③ 90 名付费用户之外的总注册/浏览量、续费率未披露；④ 是否注册公司主体、后续是否受监管问询，均未检索到公开信息。口径存疑：经观原文称同业「最贵的收费达到每个月 200 美元（合计人民币约 13767 元）」，按 2026 年汇率 200 美元约合 1400 余元人民币，原文换算数字疑为笔误——本报告仅引用「每月 200 美元」主数值并在此存档该矛盾。
+  </div>
+  <div class="card"><div class="ct">负面证据（如实收录）</div><div class="cb">产品有效性争议：经观同稿收录了投资者对 OpenClaw 投研的集中吐槽——成本高、效率不尽如人意、不靠谱，AI 推荐的股票「轻则数据滞后，重则编纂数据骗人」；有个人投资者直言普通人能想到的思路早被专业机构精细研究过，瓶颈在于人类的提问与使用能力<span class="cite cross">[1]</span>。中国经济网报道的「三天亏 7000 元、推荐三只股全亏」是媒体披露的最直接亏损案例<span class="cite cross">[11]</span>。机构端亦在观望：券商中国了解到多家基金公司正谨慎评估 OpenClaw 在基金投研上的应用，行业在重新审视 AI 对传统投研模式的冲击<span class="cite cross">[15]</span>。</div><div class="cm"><a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-11">[11]</a> <a class="cref cross" href="#ref-15">[15]</a></div></div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">「聪明钱监控」是案例墙中「AI 承担交付主体工作」（ai-native）的最纯粹样本之一：开发、内容生产、部署、推送全部由开源智能体完成，人的角色收缩为需求定义者与训练者。它验证了两件事——其一，开源智能体让「一人 + 约 2000 元/年成本」即可切入客单价数十倍的专业领域；其二，它同时是全案例墙<b>合规敏感度最高</b>的样本：当产品输出从「内容」滑向「投资建议」，个人开发者面对的不是市场竞争而是持牌门槛。数据平权了，资质没有平权——这是投研类 OPC 与教育、法律、民乐等其他垂类订阅案例的本质分野。</div><div class="cm"><a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-10">[10]</a> <a class="cref partial" href="#ref-6">[6]</a><a class="cref partial" href="#ref-7">[7]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 15 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（转引/案例墙既有核验值）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx cross">[1]</span><span class="rt">A</span><span class="st">主流财经原发</span></div><div class="ti">「手搓龙虾」股票投研系统的一批人开始赚钱了（经济观察网，记者牛钰）</div><div class="mt"><b>来源：</b>经济观察网（生意频道）　<b>发布日期：</b>2026-03-16 15:30<br><a href="http://www.eeo.com.cn/2026/0316/811691.shtml" target="_blank" rel="noopener">http://www.eeo.com.cn/2026/0316/811691.shtml</a></div><div class="note">事实核查：本案核心信源，原文全文回溯完成。许洋身份（北京程序员、6 年炒股经验）、搭建过程（Mac mini/Token/服务器/数据源成本）、定价（150→200 元/年）、90 付费用户、收入超 1 万元、网站功能、微信群推送、三类客群、3-12 解读示例、WindClaw、用户增长停滞与数据瓶颈、中互金 3-15 提示、孔蓉/吕伟引语均出自此稿。</div></li>
+    <li id="ref-2" class="src"><div class="sh"><span class="idx cross">[2]</span><span class="rt">B+</span><span class="st">门户转载</span></div><div class="ti">「手搓龙虾」股票投研系统的一批人开始赚钱了（新浪财经转载经济观察报）</div><div class="mt"><b>来源：</b>新浪财经（微博财经-财道工作室，来源：@经济观察报微博）　<b>发布日期：</b>2026-03-16 11:06<br><a href="https://finance.sina.com.cn/stock/wbstock/2026-03-16/doc-inhrcxwx8938811.shtml" target="_blank" rel="noopener">https://finance.sina.com.cn/stock/wbstock/2026-03-16/doc-inhrcxwx8938811.shtml</a></div><div class="note">事实核查：与 [1] 为同一稿件的门户分发版本，全文逐字比对一致（新浪版早于经观原站约 4.5 小时）；用于交叉确认定价、90 用户、1 万元收入、2000 元成本等关键数字。</div></li>
+    <li id="ref-3" class="src"><div class="sh"><span class="idx cross">[3]</span><span class="rt">B+</span><span class="st">一手发布方社交分发</span></div><div class="ti">经济观察报官方微博（同稿微博版）</div><div class="mt"><b>来源：</b>微博 @经济观察报　<b>发布日期：</b>2026-03-16<br><a href="https://m.weibo.cn/detail/5277053924148531" target="_blank" rel="noopener">https://m.weibo.cn/detail/5277053924148531</a></div><div class="note">事实核查：原发布方社交渠道，关键段落（6 年炒股经验、150→200 元定价、90 人、超 1 万元、覆盖 2000 元/年成本）与 [1][2] 一致，确认「数据分享群」表述。</div></li>
+    <li id="ref-4" class="src"><div class="sh"><span class="idx verified">[4]</span><span class="rt">A+</span><span class="st">央媒报道</span></div><div class="ti">中国互联网金融协会发布关于 OpenClaw 在互联网金融行业应用安全的风险提示（央视网）</div><div class="mt"><b>来源：</b>央视网新闻频道　<b>发布日期：</b>2026-03-15<br><a href="https://news.cctv.com/2026/03/15/ARTImcbDCld45EZBKEDQajfw260315.shtml" target="_blank" rel="noopener">https://news.cctv.com/2026/03/15/ARTImcbDCld45EZBKEDQajfw260315.shtml</a></div><div class="note">事实核查：与 [1]（经观 3-15 提示）、[14]（上证报）、[13]（中国经济周刊）多源交叉；OpenClaw「默认获取较高系统权限、可依据自然语言指令直接操控计算机等终端」及工信部侧背景出自此稿。</div></li>
+    <li id="ref-5" class="src"><div class="sh"><span class="idx partial">[5]</span><span class="rt">B</span><span class="st">财经媒体（案例墙转引）</span></div><div class="ti">无事AI：AI 小额纠纷解决，按结果收费（对标数据）</div><div class="mt"><b>来源：</b>36氪　<b>发布日期：</b>2026（案例墙既有核验值）<br><a href="https://36kr.com/p/3947471637216387" target="_blank" rel="noopener">https://36kr.com/p/3947471637216387</a></div><div class="note">事实核查：对标表中《无事AI》行数据（上线两月 40 余单付费、营收约 6 万、毛利率约 65%）转引自案例墙 domestic-pool.md 第 33 条，本报告未重新核验原文。</div></li>
+    <li id="ref-6" class="src"><div class="sh"><span class="idx partial">[6]</span><span class="rt">A+</span><span class="st">央媒（案例墙转引）</span></div><div class="ti">作文说：AI 作文批改 4 个月用户破 1.5 万（对标数据）</div><div class="mt"><b>来源：</b>人民日报海外版　<b>发布日期：</b>2026-08-10（案例墙既有核验值）<br><a href="https://paper.people.com.cn/rmrbhwb/pc/content/202608/10/content_30173858.html" target="_blank" rel="noopener">https://paper.people.com.cn/rmrbhwb/pc/content/202608/10/content_30173858.html</a></div><div class="note">事实核查：对标表中《作文说》行央媒口径数据转引自案例墙第 26 条；付费率 13-14%、月入近 5 万为自述口径，引用时已注明。</div></li>
+    <li id="ref-7" class="src"><div class="sh"><span class="idx partial">[7]</span><span class="rt">A+</span><span class="st">央媒（案例墙转引）</span></div><div class="ti">声序智能：五线谱↔简谱 OMR 订阅制（对标数据）</div><div class="mt"><b>来源：</b>新华每日电讯（案例墙既有核验值，案例墙另含新京报贝壳财经等 12 条信源）　<b>发布日期：</b>2026（锚点 2026-03 成立）<br><a href="../../index.html" target="_self">案例墙 index.html · 声序智能卡片</a></div><div class="note">事实核查：对标表中《声序智能》行数据（上线半年多用户超 6000、成立约 3 个月现金流回正）转引自案例墙增补批次 2 第 3 条，本报告未重新核验原文。</div></li>
+    <li id="ref-8" class="src"><div class="sh"><span class="idx partial">[8]</span><span class="rt">B</span><span class="st">财经媒体（案例墙转引）</span></div><div class="ti">天之灵AI：AI 哀伤陪伴小程序已盈利（对标数据）</div><div class="mt"><b>来源：</b>36氪　<b>发布日期：</b>2026（案例墙既有核验值）<br><a href="https://36kr.com/p/4052600729294468" target="_blank" rel="noopener">https://36kr.com/p/4052600729294468</a></div><div class="note">事实核查：对标表中《天之灵AI》行数据（注册用户 11.1 万、付费会员 2000-3000 人、年费 99 元起、已盈利）转引自案例墙第 28 条。</div></li>
+    <li id="ref-9" class="src"><div class="sh"><span class="idx cross">[9]</span><span class="rt">A+</span><span class="st">政府规章（征求意见稿）</span></div><div class="ti">证券基金投资咨询业务管理办法（征求意见稿）——第六条【持牌经营】</div><div class="mt"><b>来源：</b>中国证监会官网　<b>发布日期：</b>征求意见稿（现行监管框架下的持牌依据）<br><a href="https://www.csrc.gov.cn/csrc/c101838/c1021950/1021950/files/附件1：《证券基金投资咨询业务管理办法（征求意见稿）》.pdf" target="_blank" rel="noopener">csrc.gov.cn（官网 PDF 原文）</a></div><div class="note">事实核查：政府原文回溯，「从事证券投资顾问业务、发布证券研究报告业务，应当依法经中国证监会核准」「业务许可有效期为 3 年」等条款经原文快照核验。需注意其为征求意见稿，本报告仅以「现行监管方向」口径引用。</div></li>
+    <li id="ref-10" class="src"><div class="sh"><span class="idx cross">[10]</span><span class="rt">A+</span><span class="st">主流财经·行业自律组织转载</span></div><div class="ti">穿透「投顾龙虾」与直播荐股：行业合规边界应再厘清（证券时报原发，中国证券业协会官网转载）</div><div class="mt"><b>来源：</b>中国证券业协会官网（原发证券时报）　<b>发布日期：</b>2026-03-16<br><a href="https://www.sac.net.cn/sjb/tzzzj_799/zxsdwap/scyw/202603/t20260316_81432.html" target="_blank" rel="noopener">https://www.sac.net.cn/sjb/tzzzj_799/zxsdwap/scyw/202603/t20260316_81432.html</a></div><div class="note">事实核查：原文全文回溯完成。「投顾龙虾既非合规投资工具、也无法替代专业持牌投顾」（游鑫）、田利辉「算法输出须经持牌投顾复核」、洪尚「AI 只是工具不能豁免资质要求……严禁 AI 直接面向公众生成个股建议」、严禁无资质个人与财经大 V 变相开展投顾业务等合规论断均出自此稿。</div></li>
+    <li id="ref-11" class="src"><div class="sh"><span class="idx cross">[11]</span><span class="rt">B+</span><span class="st">国家经济门户</span></div><div class="ti">用「龙虾」炒股三天亏 7000 推荐三只股票全部亏损（中国经济网）</div><div class="mt"><b>来源：</b>中国经济网　<b>发布日期：</b>2026-03-19<br><a href="http://www.ce.cn/xwzx/gnsz/gdxw/202603/t20260319_2840200.shtml" target="_blank" rel="noopener">http://www.ce.cn/xwzx/gnsz/gdxw/202603/t20260319_2840200.shtml</a></div><div class="note">事实核查：「三天亏 7000、推荐三只股全亏」亏损案例及郑宏达「监管与合规风险是最大的灰色地带……不具备投资顾问资质，责任主体难以界定」论断经页面快照核验。</div></li>
+    <li id="ref-12" class="src"><div class="sh"><span class="idx cross">[12]</span><span class="rt">A</span><span class="st">主流财经</span></div><div class="ti">龙虾闯入金融圈：一场关于效率与安全的高压测试（中证网/中国证券报）</div><div class="mt"><b>来源：</b>中证网　<b>发布日期：</b>2026-03-17<br><a href="https://www.cs.com.cn/cj2020/202603/t20260317_6541500.html" target="_blank" rel="noopener">https://www.cs.com.cn/cj2020/202603/t20260317_6541500.html</a></div><div class="note">事实核查：金融圈对 OpenClaw 多持观望态度、中互金协会指导性建议（与 [4][14] 三源一致）出自此稿，用于印证监管提示的行业传导。</div></li>
+    <li id="ref-13" class="src"><div class="sh"><span class="idx verified">[13]</span><span class="rt">A+</span><span class="st">央媒评论</span></div><div class="ti">既要敢为，也要慎为（中国经济周刊，人民日报社）</div><div class="mt"><b>来源：</b>中国经济周刊　<b>发布日期：</b>2026-03-30<br><a href="http://paper.people.com.cn/zgjjzk/pc/content/202603/30/content_30153988.html" target="_blank" rel="noopener">http://paper.people.com.cn/zgjjzk/pc/content/202603/30/content_30153988.html</a></div><div class="note">事实核查：「从 3 月 10 日到 15 日，国家互联网应急中心、工业和信息化部网络安全威胁和漏洞信息共享平台、中国互联网金融协会，接连提示『龙虾』风险」与 [4] 交叉，构成「监管定红线、企业出方案、用户强防护」的行业判断。</div></li>
+    <li id="ref-14" class="src"><div class="sh"><span class="idx cross">[14]</span><span class="rt">A</span><span class="st">主流财经</span></div><div class="ti">审慎使用「龙虾」智能体 多家银行收到监管提示（上海证券报）</div><div class="mt"><b>来源：</b>上海证券报　<b>发布日期：</b>2026-03-16<br><a href="http://paper.cnstock.com/html/2026-03/16/content_2188848.htm" target="_blank" rel="noopener">http://paper.cnstock.com/html/2026-03/16/content_2188848.htm</a></div><div class="note">事实核查：「多家银行收到监管提示」、中互金协会建议全文（极其谨慎安装、不授予金融服务权限、不输入敏感信息、从业机构不接入客户金融信息处理链路）经页面快照核验，与 [4] 交叉一致。</div></li>
+    <li id="ref-15" class="src"><div class="sh"><span class="idx cross">[15]</span><span class="rt">B+</span><span class="st">主流财经垂直媒体</span></div><div class="ti">「养龙虾」热到基金圈！拥抱效率更需警惕数据风险（券商中国/证券时报）</div><div class="mt"><b>来源：</b>券商中国（证券时报社）　<b>发布日期：</b>2026-03<br><a href="https://stcn.com/article/detail/3680815.html" target="_blank" rel="noopener">https://stcn.com/article/detail/3680815.html</a></div><div class="note">事实核查：全文抓取受限，按页面快照核验——「多家基金公司正在谨慎评估该工具在基金投研上的应用，部分量化基金经理已尝试运用 OpenClaw 进行策略研发」出自此稿快照。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 15 条。核验标签分布：🟢 已核验（verified）2 条、🔵 多源印证（cross）9 条、🟡 部分映证（partial）4 条（均为案例墙既有核验值的转引，已逐条注明）。信源评级分布：A+/A 级 8 条（经观原发、央媒、政府原文、协会转载——经观原站与新浪/微博三渠道全文比对、证券时报合规稿与证监会条款原文回溯完成）、B+/B 级 7 条。本案核心数字（90 付费用户、收入超 1 万元、200 元/年、约 2000 元/年成本）为经济观察报独家口径，已用原站/新浪/官微三渠道交叉确认文本一致，但无第二家独立媒体直接复核，正文一律保留「经观口径」限定。一处原文换算存疑（同业「每月 200 美元≈13767 元」）、四处信息留白（创业者背景细节、产品一手入口、续费与总量数据、公司主体）已在捌章显式标注。券商中国全文抓取受限、按快照核验并注明；未发现伪造链接，全部 URL 为检索过程实际命中页面。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  <span style="display:inline-block;background:#fdf1f0;color:#c0392b;border:1px solid #c0392b;border-radius:4px;padding:6px 14px;font-weight:700;font-size:13px;margin:6px 0">本报告不构成投资建议 · 案例产品涉及证券投研内容，其输出未经持牌机构复核，请勿据此操作</span><br>
+  数据检索截止：2026-11-12 · 营收数据均为媒体采访口径（经观），引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

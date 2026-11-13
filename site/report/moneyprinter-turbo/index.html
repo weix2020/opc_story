@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · MoneyPrinterTurbo —— harry0703 的一个人开源视频工厂 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · MoneyPrinterTurbo">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="MoneyPrinterTurbo 深度案例报告：独立开发者 harry0703 一人开源的「主题进、成片出」AI 短视频流水线，GitHub 14.3 万星（2026-11-13 API 实测），AI 视频类最高星项目之一。15 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>MoneyPrinterTurbo 深度案例报告</h1>
+    <h2>独立开发者 harry0703：把「视频生产线」压缩成一个输入框<br>主题进、成片出 —— GitHub 14.3 万星，AI 视频类最高星项目之一（15 条信源逐条核验）</h2>
+    <div class="tags">
+      <span class="tag">工具型 OPC</span>
+      <span class="tag">开源（MIT）</span>
+      <span class="tag">锚点 2024（年）▲</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">142,973</div><div class="k">GitHub 星标（2026-11-13 API 实测）</div></div>
+  <div class="stat"><div class="v neutral">4 种</div><div class="k">使用入口（Agent / WebUI / API / CLI）</div></div>
+  <div class="stat"><div class="v neutral">14 家</div><div class="k">README 赞助墙赞助商位</div></div>
+  <div class="stat"><div class="v up">≈0.5 元</div><div class="k">单支成片实测成本（新台币，第三方实测）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">MoneyPrinterTurbo 是「输入一个主题或关键词，就自动生成视频文案、匹配素材、生成字幕和背景音乐，并合成高清短视频」的开源工具——一人发起、一人主导维护，两年半时间成为中文开源圈 AI 视频赛道的星标天花板。它不是「一人用 AI 做作品」的案例，而是「一人把 AI 生产能力做成基础设施」的案例。</p>
+  <div class="two">
+    <div class="card"><div class="ct">项目</div><div class="cb">开源 AI 短视频生成器（Python / MIT 协议）。核心承诺：主题或关键词进，文案、素材、字幕、配音、配乐、合成一条龙出片；提供 AI Agent、WebUI、API、CLI 四种入口，既可单人使用也可接入自动化流程，支持批量生成多条成片。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-2">[2]</a></div></div>
+    <div class="card"><div class="ct">核心数据快照（2026-11-13 实测）</div><div class="cb">GitHub 星标 142,973、fork 22,883、watchers 842、open issues 85；仓库创建于 2024-03-11，最后推送 2026-11-12（本报告检索前一日仍在维护）；累计 23 个 release，release 资产下载 178,081 次。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="card"><div class="ct">开发者 harry0703</div><div class="cb">GitHub 资料仅显示「Harry」，真名未公开。2013 年 7 月注册的十余年老账号，粉丝 4,507、公开仓库 21 个。个人官网同置三个开源项目：MoneyPrinterTurbo（官网显示 139.9k★）、MangoDisk（磁盘清理，5.4k★）、AudioNotes（音视频转笔记，2.6k★），并持续撰写独立开发随笔。</div><div class="cm">信源：<a class="cref verified" href="#ref-4">[4]</a> <a class="cref verified" href="#ref-5">[5]</a></div></div>
+    <div class="card"><div class="ct">公司与商业化状态</div><div class="cb">是否注册公司、团队规模均未检索到公开信息。商业化路径不是卖软件：MIT 协议零授权费，收入想象空间来自 README 赞助墙（Kimi、火山引擎、秘塔、APIMart 等 14 家模型 API 平台的推广位）与个人产品矩阵的协同。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a></div></div>
+  </div>
+  <div class="box insight">
+    <div class="bt">📌 开源健康度（一人属性核查）</div>
+    贡献者榜首位 harry0703（413 commits），第二位为海外贡献者 rudycelekli（209 次），其后 c020627（37）、yyhhyyyyyy（22）、tanishqbaweja（19）——属于「单人主导 + 社区协作」的典型结构：方向、架构与主要实现由一人掌握，本地化与边缘功能由社区补充。案例墙按「一人主导」口径收录，本报告确认该属性成立但非「零协作」。<a class="cref verified" href="#ref-1">[1]</a>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2024-03-11 → 03-18</div><div class="tx">仓库创建，一人立项</div><div class="td">GitHub 仓库创建于 2024-03-11；现存最早提交为 2024-03-18 的「tts fallback」。立项即按「全流程自动化」架构设计（文案/配音/素材/合成模块分层）。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2024-04-11</div><div class="tx">首个正式版 v1.1.0 发布</div><div class="td">发布后第 31 天即出正式版；同期（2024 年）被中文开发者刊物《HelloGitHub》收录于第 99 期，完成第一波中文社区曝光。<a class="cref verified" href="#ref-3">[3]</a><a class="cref cross" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2024 年（▲ 案例墙锚点）</div><div class="tx">进入 GitHub Trending 周期，星标飞轮启动</div><div class="td">第三方榜单 Trendshift 为其建档（仓库编号 #8731），并长期展示 Star History 星标曲线——这是案例墙将其锚点定为「2024（年）▲」的依据：项目在这一年完成从新仓库到现象级的跃迁。<a class="cref partial" href="#ref-7">[7]</a><a class="cref cross" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2025 年</div><div class="tx">教程化传播，生态外溢</div><div class="td">火山引擎开发者社区出现部署教程类文章（页面时间戳 2025-05/2025-08），口径为「短视频创作者、社交媒体经理、营销人员都能用」——项目从开发者圈层向泛创作者人群外溢。<a class="cref partial" href="#ref-9">[9]</a></div></div>
+    <div class="node"><div class="dt">2026-09-02</div><div class="tx">第三方实测定价：一支片子约台币 0.5 元</div><div class="td">台湾博客「LEO里欧」Windows 实机全流程实测：星标 11.2 万（该文时点值），用免费 Edge TTS + 免费 Pexels 素材 + 低价 LLM API，单支成片成本约台币 0.5 元、十支约台币 5 元。<a class="cref partial" href="#ref-10">[10]</a></div></div>
+    <div class="node"><div class="dt">2026-10/11</div><div class="tx">案例墙核验口径 133k★</div><div class="td">案例墙主清单（第 15 条）以「GitHub 133k+ stars，AI 视频类最高星项目之一」收录，标注为 2026-10/11 时点值。<a class="cref cross" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2026-11-07</div><div class="tx">最新版 v1.3.10 发布</div><div class="td">两年半累计 23 个 release，保持月度级迭代节奏；2026-11-12 仍有代码推送——热度与维护强度同步在线。<a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-11-13</div><div class="tx">本报告 API 实测：142,973★</div><div class="td">较案例墙口径（约两个月前）净增约 1 万星，热度仍在爬升；同期作者精力已部分投向新品 MangoDisk（官网 2026-10 前后连续发布产品思考随笔），MPT 进入「高水位维持期」。<a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-4">[4]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：把「视频生产线」压缩成一个输入框</div><div class="cb">2024 年初，短视频内容的矛盾是「产能」：一个人会写文案未必会找素材、会剪辑未必会配音。harry0703 的产品决策是把全部环节串成一条自动化流水线——用户唯一要做的事是「给一个主题」。这个「入口极简、流程全自动」的架构选择，使它在同类工具中以最低使用门槛胜出，也是星标飞轮的起点。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a></div></div>
+  <div class="card"><div class="ct">转折二：免费 + 极致降门槛，把部署成本压到趋近于零</div><div class="cb">MIT 协议零授权费只是第一步：配音默认接免费无需 Key 的 Edge TTS，素材默认接免费可商用的 Pexels/Pixabay/Coverr，部署提供 Docker 预构建镜像（ghcr.io 官方多架构镜像）乃至「在线版」（录咖基于本项目提供的免费在线 AI 视频生成器）。第三方实测确认：软件本身 0 元，一支成片的边际成本约台币 0.5 元——「大量试错」因此成立，星标与口碑形成正循环。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-11">[11]</a> <a class="cref partial" href="#ref-10">[10]</a></div></div>
+  <div class="card red"><div class="ct">转折三：用「赞助位」而非「授权费」变现，同时保持多产品线</div><div class="cb">README 赞助墙集中了 14 家模型 API 平台的推广位（Kimi 置顶赞助、火山引擎、秘塔、APIMart、Infistar、OfoxAI、胜算云、星图 AstraFlow、RunningHub、Jalapeno Cloud、APINEBULA、APIXO、录咖、佐糖）——把「开源流量」卖给模型服务商，是这类流量型开源项目的典型货币化路径。但赞助金额全部未公开；同期作者将部分精力投入新品 MangoDisk（官网 2026-10 前后密集发文），显示其策略是「开源引流 + 多产品承接」而非单品深挖。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-4">[4]</a></div></div>
+  <div class="quote">
+    <p>写代码，做产品，顺便开源一些有用的东西。</p>
+    <span class="src">—— harry0703 个人官网首页标语（一手口径），见 <a class="cref verified" href="#ref-4">[4]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>核验结果</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>产品功能</b></td><td>输入主题 → AI 文案（可自定义）→ 素材匹配（Pexels/Pixabay/Coverr 免费库、本地上传、多家 AI 文生视频）→ 配音（Edge TTS 免费默认 + Azure/SiliconFlow/ElevenLabs 等 10 家可选）→ 字幕自动生成 → 背景音乐 → 合成高清成片；支持批量生成、任务历史、设置与 API Key 导入导出。</td><td><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>大模型集成<br>（底稿「MVP.gl」核查）</b></td><td><span class="hl">未检索到公开信息。</span>案例底稿标注「MVP.gl 大模型驱动」，经 README 现行版与历史版本（含 2024-03 首个提交版本）、配置文件及全网检索均未命中该表述，按未证实处理。可核验的现状是：多 LLM 架构，支持 Moonshot(Kimi)/OpenAI/Claude/Gemini/DeepSeek/通义千问/Azure/火山方舟/Grok/MiniMax/小米 MiMo 等，并兼容 OneAPI/LiteLLM/Ollama 等网关。</td><td><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>部署形态</b></td><td>Windows/macOS/Linux 源码部署；Docker 一键部署（官方预构建镜像 ghcr.io/harry0703/moneyprinterturbo:latest，多架构 manifest 实测可匿名拉取）；CLI/API 供自动化集成；另有第三方在线版（录咖）零部署使用。</td><td><a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-11">[11]</a></td></tr>
+      <tr><td><b>面向客群</b></td><td>短视频创作者与矩阵运营者（批量生成多条成片、任务历史等功能直接服务「量」的需求）；教程口径进一步外延至社交媒体经理与营销人员；开发者则通过 API/CLI 将其嵌入自动化内容管线。</td><td><a class="cref verified" href="#ref-2">[2]</a> <a class="cref partial" href="#ref-9">[9]</a> <a class="cref partial" href="#ref-10">[10]</a></td></tr>
+      <tr><td><b>解决痛点</b></td><td>视频制作门槛：不会剪辑、没时间拍摄、请团队太贵——实测者将其定位为「从零到成片」的零基础方案；成本侧实测单支约台币 0.5 元（免费 TTS + 免费素材 + 低价 LLM），把试错成本压缩两个数量级。</td><td><a class="cref partial" href="#ref-10">[10]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">💰 商业模式小结</div>
+    商业模式 = 「MIT 免费 + 赞助位广告 + 个人产品矩阵」。软件收入为零是主动选择：项目角色是流量入口与信任背书，变现发生在模型 API 分销（赞助墙）与其余收费产品上。赞助金额、赞助合同、GitHub Sponsors 收入均未公开，<b>营收不可核验</b>——这是本案例与「有营收自述」案例的最大差异。
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>GitHub 星标（实测）</td><td class="hl">142,973</td><td>2026-11-13</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>星标时点曲线</td><td>11.2 万 → 13.3 万+ → 14.3 万</td><td>2026-09-02 → 2026-10/11 → 2026-11-13</td><td><a class="cref partial" href="#ref-10">[10]</a><a class="cref cross" href="#ref-8">[8]</a><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>近两月星标净增（推算）</td><td class="pos">约 +3.1 万（月均约 1.5 万）</td><td>2026-09 → 11</td><td>本报告依据 [1][10][8] 推算</td></tr>
+      <tr><td>Fork / Watchers</td><td>22,883 / 842</td><td>2026-11-13</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>Open Issues</td><td>85（热度与维护响应的相对平衡值）</td><td>2026-11-13</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>官网显示星标（缓存值）</td><td>139.9k★ / 22.3k fork</td><td>2026-11 抓取（略滞后于 API 实测）</td><td><a class="cref verified" href="#ref-4">[4]</a></td></tr>
+      <tr><td>Releases / 资产下载</td><td>23 个；累计 178,081 次；首版 v1.1.0（2024-04-11）→ 最新 v1.3.10（2026-11-07）</td><td>2026-11-13 实测</td><td><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td>贡献者 Commits（前二）</td><td>harry0703 413 / rudycelekli 209</td><td>2026-11-13 实测</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>单支成片实测成本</td><td>约台币 0.5 元（十支约台币 5 元）</td><td>2026-09-02 实测</td><td><a class="cref partial" href="#ref-10">[10]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    ① 星标为动态时点值，引用必须带日期；官网显示值（139.9k）与 API 实测值（142,973）并存系官网缓存滞后，取 API 为准。② 「133k★→143k★」的差额与自然增长速率吻合，两口径不冲突。③ 营收、用户量、下载安装量均无公开数据——本案例的全部「成功迹象」集中在 GitHub 关注度与生态外溢（镜像/教程/衍生应用），需在解读时避免把星标直接等同于商业成功。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将 MoneyPrinterTurbo 放入案例墙「开源内容工具」组（对标星标为案例墙既有核验值，本报告以 GitHub API 于 2026-11-13 补测，两者吻合）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>开发者</th><th>形态与范式</th><th>星标（案例墙核验值 → API 补测）</th><th>商业模式</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>MoneyPrinterTurbo</b></td><td>harry0703</td><td>主题→成片全自动流水线（<b>批量生产范式</b>）</td><td class="hl">133k+ → 142,973（2026-11-13）</td><td>MIT + 赞助位 + 产品矩阵</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td>VideoLingo</td><td>Huanshere</td><td>Netflix 级视频本地化精修：字幕切割/上下文翻译/克隆配音（<b>单条精修范式</b>）</td><td>19k → 19,224（2026-11-13）</td><td>开源 + 文档站</td><td><a class="cref cross" href="#ref-8">[8]</a><a class="cref verified" href="#ref-12">[12]</a></td></tr>
+      <tr><td>红墨 RedInk</td><td>默子（HisMax）</td><td>一句话生成整套小红书图文（垂直品类批量）</td><td>5.7k → 5,710（2026-11-13）</td><td>开源 + 在线版会员 68 元/月起</td><td><a class="cref cross" href="#ref-8">[8]</a><a class="cref verified" href="#ref-12">[12]</a></td></tr>
+      <tr><td>MuMuAINovel</td><td>xiamuceer-j</td><td>自部署 AI 长篇小说工作台（长文本连载）</td><td>3.3k → 3,315（2026-11-13）</td><td>开源自部署社区</td><td><a class="cref cross" href="#ref-8">[8]</a><a class="cref verified" href="#ref-12">[12]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>两组对比结论：<b>其一，星标量级存在断层。</b>14.3 万对 1.9 万 / 5.7 千 / 3.3 千，MoneyPrinterTurbo 是案例墙开源内容工具组中量级最高者，与案例墙「AI 视频类最高星项目之一」的定位一致——注意是「之一」而非唯一，且不排除存在其他高星同赛道项目未入墙。<b>其二，范式分野决定伦理位置。</b>VideoLingo/红墨/MuMuAINovel 都在「把一条内容做好/做垂直」，MoneyPrinterTurbo 的批量成片范式则直接对准「量产」，天然站在「内容供给通胀—平台治理—素材与版权边界」这条张力线的中心（详见柒 6/7 与捌）——这正是本案例最具行业样本价值、也最具争议性的地方。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>分析</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>全流程自动化 + 四种入口（Agent/WebUI/API/CLI）+ 批量生成与任务历史；每个环节均可替换为自定义内容——「全自动」与「可干预」并存，是它区别于一键生成玩具类工具的工程深度所在。</td><td><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>2. 面向客群</b></td><td>核心客群为短视频创作者与矩阵运营者；教程口径延伸至社媒经理/营销人员；API/CLI 客群则是做自动化内容管线的开发者。无官方用户画像数据，客群判断来自功能设计与教程传播口径。</td><td><a class="cref verified" href="#ref-2">[2]</a> <a class="cref partial" href="#ref-9">[9]</a></td></tr>
+      <tr><td><b>3. 解决痛点</b></td><td>视频制作门槛（不会剪辑/没时间拍/预算低）；实测确认零基础可从安装走到成片，且边际成本约台币 0.5 元/支——把「做视频」从技能问题降维成「API 调用 + 人工把关」问题。</td><td><a class="cref partial" href="#ref-10">[10]</a></td></tr>
+      <tr><td><b>4. 开源商业化程度（捐赠/赞助）</b></td><td>MIT 零授权费；变现依赖 README 赞助墙 14 家模型 API 平台推广位（Kimi 置顶）。赞助金额、合同条款、GitHub Sponsors 等捐赠数据均未公开——商业化程度「可确认存在、规模不可知」，属于典型的「流量货币化」而非「软件收费」。</td><td><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>5. 一人属性与维护强度</b></td><td>单人主导成立（413 commits 居首、官网/仓库均以个人署名），但有实质社区协作（第二贡献者 209 次）。维护强度高：两年半 23 个 release、月度级迭代、检索前一日仍有推送。单人 + 开源社区是本案例区别于「闭源一人公司」的组织形态。</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>6. 批量 AI 视频的平台治理</b></td><td>本报告分析：批量成片范式与平台「低质内容识别、同质化去重、AI 内容标识」的治理方向直接相撞——供给通胀下平台必然收紧分发。实测者立场可作佐证：「不適合無腦量產——當作快速產草稿的輔助」「發布前一定要人工把關」。未检索到针对 MoneyPrinterTurbo 生成内容本身的平台处罚公开信息，但该风险属于使用侧而非项目侧。</td><td><a class="cref partial" href="#ref-10">[10]</a>（治理判断为本报告分析）</td></tr>
+      <tr><td><b>7. 素材版权</b></td><td>项目内置两条合规路径：默认接入免费素材库（Pexels/Pixabay/Coverr，README 明示）与用户本地上传；AI 文生视频素材的版权归属仍属行业灰区。实测者明确提醒「發布前確認你用的素材庫授權範圍」。未检索到涉及本项目的版权纠纷、诉讼或平台指控。</td><td><a class="cref verified" href="#ref-2">[2]</a> <a class="cref partial" href="#ref-10">[10]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 五处留白与一项口径存疑（截至 2026-11-13 检索）</div>
+    ① <b>「MVP.gl 大模型驱动」未获证实</b>：案例底稿有此表述，经 README 现行版/历史版（含首个提交）、配置文件与全网检索均未命中，按「未检索到公开信息」处理。<a class="cref verified" href="#ref-2">[2]</a> ② <b>PyPI 同名包非官方</b>：PyPI 上的 MoneyPrinterTurbo 包（v1.4.5）作者为 yanjlee、指向 yanjlee/MoneyPrinterTurbo 仓库，与官方仓库无归属关联——pip 安装存在供应链混淆风险，安装务必以官方 GitHub 仓库为准。<a class="cref cross" href="#ref-13">[13]</a> ③ <b>App Store 同名应用为第三方</b>：「Money Printer Turbo」应用（免费 + 内购）开发者是 Sergey FONOV，官方 README 未提及任何移动端应用——开源项目名称被第三方商用封装是流量型开源的常见代价。<a class="cref cross" href="#ref-14">[14]</a> ④ <b>商业化收入零披露</b>：赞助金额、捐赠、产品矩阵营收均不可核验。⑤ <b>无主流媒体报道</b>：机器之心/量子位/央媒级报道未检索到，热度集中于 GitHub 与技术社区，出圈层级有限；Gitee 等第三方镜像质量参差亦未逐一核验。<a class="cref partial" href="#ref-15">[15]</a>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 口径与时效声明</div>
+    「AI 视频类最高星项目之一」为相对表述，依据案例墙核验口径与本报告对标表，不构成全行业绝对排名；星标数据全部为时点值，随时间自然变动；本报告不采信任何未标注时点的星标数字。实测成本（台币 0.5 元/支）依赖用户自有 LLM API 与免费 TTS 组合，模型选择不同则成本结构不同。
+  </div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">MoneyPrinterTurbo 证明了 OPC 的另一种极限：不是「一个人做出爆款作品」，而是「一个人造出爆款的生产资料」——当 14.3 万开发者把一条视频流水线搬回自己电脑时，这位独立开发者实际上成了庞大内容供给层的上游基础设施提供者。它的启示同样锋利：开源星标可以量化影响力，却不直接等于收入；而把「量产」能力交到所有人手里的同时，也把内容治理、版权边界这些系统性问题交给了整个生态。</div><div class="cm"><a class="cref verified" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-10">[10]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 15 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（一手实测/≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级及以下信源）。GitHub API 实测均为 2026-11-13 无鉴权调用，数据可复现。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx verified">[1]</span><span class="rt">A</span><span class="st">一手 · GitHub API/仓库页</span></div><div class="ti">harry0703/MoneyPrinterTurbo 仓库（REST API 实测）</div><div class="mt"><b>来源：</b>GitHub API + 仓库页　<b>实测日期：</b>2026-11-13<br><a href="https://github.com/harry0703/MoneyPrinterTurbo" target="_blank" rel="noopener">https://github.com/harry0703/MoneyPrinterTurbo</a>（API：<a href="https://api.github.com/repos/harry0703/MoneyPrinterTurbo" target="_blank" rel="noopener">api.github.com/repos/harry0703/MoneyPrinterTurbo</a>）</div><div class="note">事实核查：星标 142,973、fork 22,883、watchers 842、open issues 85、MIT、Python、created 2024-03-11、pushed 2026-11-12、贡献者 commits 分布（harry0703 413 / rudycelekli 209 / c020627 37）与最早提交（2024-03-18）均出自本条实测。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx verified">[2]</span><span class="rt">A</span><span class="st">一手 · 项目文档</span></div><div class="ti">README.md（main 分支全文抓取）</div><div class="mt"><b>来源：</b>GitHub Raw　<b>抓取日期：</b>2026-11-13<br><a href="https://raw.githubusercontent.com/harry0703/MoneyPrinterTurbo/main/README.md" target="_blank" rel="noopener">https://raw.githubusercontent.com/harry0703/MoneyPrinterTurbo/main/README.md</a></div><div class="note">事实核查：功能特性（文案/素材/字幕/配音/配乐/合成、四入口、批量生成）、LLM 支持清单、素材源（Pexels/Pixabay/Coverr）、Edge TTS 免费、Docker ghcr 镜像名、14 家赞助墙（Kimi 置顶）均出自此稿；「MVP.gl」全文检索 0 命中。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx verified">[3]</span><span class="rt">A</span><span class="st">一手 · GitHub Releases API</span></div><div class="ti">Releases 数据（版本时间线与下载量）</div><div class="mt"><b>来源：</b>GitHub Releases API　<b>实测日期：</b>2026-11-13<br><a href="https://api.github.com/repos/harry0703/MoneyPrinterTurbo/releases" target="_blank" rel="noopener">api.github.com/repos/harry0703/MoneyPrinterTurbo/releases</a></div><div class="note">事实核查：23 个 release；首版 v1.1.0（2024-04-11）；最新 v1.3.10（2026-11-07）；release 资产下载累计 178,081 次。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx verified">[4]</span><span class="rt">A</span><span class="st">一手 · 个人官网</span></div><div class="ti">harry0703.com（个人官网首页）</div><div class="mt"><b>来源：</b>个人官网　<b>抓取日期：</b>2026-11-13<br><a href="https://harry0703.com" target="_blank" rel="noopener">https://harry0703.com</a></div><div class="note">事实核查：标语「写代码，做产品，顺便开源一些有用的东西」；项目列表 MPT 139.9k★（缓存显示值）/MangoDisk 5.4k★/AudioNotes 2.6k★；2026-09/10 独立开发随笔（AI 机会与客户、MangoDisk 系列）佐证多产品线并行。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx verified">[5]</span><span class="rt">A</span><span class="st">一手 · GitHub 用户 API</span></div><div class="ti">harry0703 用户资料（身份信息）</div><div class="mt"><b>来源：</b>GitHub Users API　<b>实测日期：</b>2026-11-13<br><a href="https://api.github.com/users/harry0703" target="_blank" rel="noopener">api.github.com/users/harry0703</a></div><div class="note">事实核查：显示名「Harry」、真名/公司/位置字段均为空（真名未公开）、followers 4,507、public repos 21、注册 2013-07-03。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx cross">[6]</span><span class="rt">B+</span><span class="st">技术社区 · 收录页</span></div><div class="ti">HelloGitHub 收录页（第 99 期）</div><div class="mt"><b>来源：</b>hellogithub.com　<b>查询日期：</b>2026-11-13<br><a href="https://hellogithub.com/repository/52cc89716e5446aa8304b24990c27b37" target="_blank" rel="noopener">https://hellogithub.com/repository/52cc89716e5446aa8304b24990c27b37</a></div><div class="note">事实核查：页面标注「收录于：第 99 期」（2024 年），佐证早期中文社区曝光；具体收录月份页面未展示，不作断言。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx partial">[7]</span><span class="rt">C+</span><span class="st">第三方榜单</span></div><div class="ti">Trendshift 仓库页 #8731（含 Star History 星标曲线徽章）</div><div class="mt"><b>来源：</b>trendshift.io　<b>查询日期：</b>2026-11-13<br><a href="https://trendshift.io/repositories/8731" target="_blank" rel="noopener">https://trendshift.io/repositories/8731</a></div><div class="note">事实核查：Trending 历史建档与星标曲线展示；作为第三方统计站点，数据仅作佐证不作精确引用。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx cross">[8]</span><span class="rt">B+</span><span class="st">案例墙底稿</span></div><div class="ti">案例墙主清单第 15 条与数据卡（domestic-pool.md / index.html）</div><div class="mt"><b>来源：</b>OPC Story 案例墙（2026-10/11 核验口径）　<b>引用日期：</b>2026-11-13<br><a href="../../index.html" target="_self">site/index.html（案例墙）</a> · data/domestic-pool.md 第 15 条</div><div class="note">事实核查：「GitHub 133k+ stars，AI 视频类最高星项目之一」「锚点 2024（年）▲」及对标三案例（VideoLingo 19k / 红墨 5.7k / MuMuAINovel 3.3k）的墙内既有核验值均出自此条；本报告已用 API 补测复核（见 [12]）。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx partial">[9]</span><span class="rt">C+</span><span class="st">技术社区 · 教程文</span></div><div class="ti">《你只需输入一句话，MoneyPrinterTurbo 直接给你输出一个视频》（火山引擎开发者社区）</div><div class="mt"><b>来源：</b>developer.volcengine.com　<b>页面时间戳：</b>2025-05/2025-08（发布日期未精确核验）<br><a href="https://developer.volcengine.com/articles/7537597200721772554" target="_blank" rel="noopener">https://developer.volcengine.com/articles/7537597200721772554</a></div><div class="note">事实核查：客群口径（短视频创作者/社交媒体经理/营销人员）与「一句话出片」流程描述出自此稿；2025 年生态外溢时点据此推断。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx partial">[10]</span><span class="rt">B</span><span class="st">第三方实测评测</span></div><div class="ti">《AI 一鍵生成短影音實測：MoneyPrinterTurbo 從零到成片要花多少錢？》（LEO里歐）</div><div class="mt"><b>来源：</b>leo-laboratory.com　<b>发布日期：</b>2026-09-02<br><a href="https://leo-laboratory.com/ai-resources/moneyprinter-turbo-review/" target="_blank" rel="noopener">https://leo-laboratory.com/ai-resources/moneyprinter-turbo-review/</a></div><div class="note">事实核查：星标 11.2 万（2026-09 时点）、单支成本约台币 0.5 元/十支约 5 元、「不適合無腦量產」「發布前人工把關」「確認素材庫授權範圍」等实测结论出自此稿；单一第三方评测，按部分映证收录。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx verified">[11]</span><span class="rt">A-</span><span class="st">一手 · 容器镜像仓库</span></div><div class="ti">ghcr.io/harry0703/moneyprinterturbo 镜像 manifest 实测</div><div class="mt"><b>来源：</b>GitHub Container Registry（token + manifest 匿名校验）　<b>实测日期：</b>2026-11-13<br><a href="https://ghcr.io/v2/harry0703/moneyprinterturbo/manifests/latest" target="_blank" rel="noopener">ghcr.io/v2/harry0703/moneyprinterturbo/manifests/latest</a></div><div class="note">事实核查：latest 标签返回多架构 OCI image index（amd64/linux 等），镜像仓库真实存在且可匿名拉取——官方 Docker 部署路径可复现。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx verified">[12]</span><span class="rt">A</span><span class="st">一手 · GitHub API 补测</span></div><div class="ti">对标仓库星标补测（VideoLingo / RedInk / MuMuAINovel）</div><div class="mt"><b>来源：</b>GitHub Repos API　<b>实测日期：</b>2026-11-13<br><a href="https://api.github.com/repos/Huanshere/VideoLingo" target="_blank" rel="noopener">api.github.com/repos/Huanshere/VideoLingo</a> · <a href="https://api.github.com/repos/HisMax/RedInk" target="_blank" rel="noopener">api.github.com/repos/HisMax/RedInk</a> · <a href="https://api.github.com/repos/xiamuceer-j/MuMuAINovel" target="_blank" rel="noopener">api.github.com/repos/xiamuceer-j/MuMuAINovel</a></div><div class="note">事实核查：实测 19,224 / 5,710 / 3,315 星，与案例墙既有核验值（19k / 5.7k / 3.3k）吻合，对标表采用「墙值 → 补测值」双口径呈现。</div></li>
+  <li id="ref-13" class="src"><div class="sh"><span class="idx cross">[13]</span><span class="rt">B+</span><span class="st">一手 · PyPI 元数据</span></div><div class="ti">PyPI「MoneyPrinterTurbo」包元数据（第三方同名包）</div><div class="mt"><b>来源：</b>pypi.org JSON API　<b>查询日期：</b>2026-11-13<br><a href="https://pypi.org/pypi/MoneyPrinterTurbo/json" target="_blank" rel="noopener">https://pypi.org/pypi/MoneyPrinterTurbo/json</a></div><div class="note">事实核查：v1.4.5，作者 yanjlee（yanjlee@163.com），Homepage 指向 github.com/yanjlee/MoneyPrinterTurbo——非官方仓库出品，pip 安装存在供应链混淆风险（已写入捌风险项）。</div></li>
+  <li id="ref-14" class="src"><div class="sh"><span class="idx cross">[14]</span><span class="rt">B+</span><span class="st">一手 · 应用商店页</span></div><div class="ti">App Store《Money Printer Turbo》应用页（第三方同名应用）</div><div class="mt"><b>来源：</b>apps.apple.com　<b>查询日期：</b>2026-11-13<br><a href="https://apps.apple.com/me/app/money-printer-turbo/id6804072257" target="_blank" rel="noopener">https://apps.apple.com/me/app/money-printer-turbo/id6804072257</a></div><div class="note">事实核查：开发者署名 Sergey FONOV（非 harry0703），免费 + 内购、面向 TikTok/Reels/Shorts——据此判定为第三方同名商用应用，官方 README 无对应移动端表述。</div></li>
+  <li id="ref-15" class="src"><div class="sh"><span class="idx partial">[15]</span><span class="rt">C</span><span class="st">第三方镜像</span></div><div class="ti">Gitee 镜像仓库 pandaxmut/moneyprinterturbo（生态外溢佐证）</div><div class="mt"><b>来源：</b>gitee.com　<b>查询日期：</b>2026-11-13<br><a href="https://gitee.com/pandaxmut/moneyprinterturbo" target="_blank" rel="noopener">https://gitee.com/pandaxmut/moneyprinterturbo</a></div><div class="note">事实核查：第三方镜像可达（HTTP 200），作为生态外溢佐证收录；镜像内容与官方仓库的同步程度未逐字核验，不作数据引用。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 15 条。核验标签分布：🟢 已核验（verified）7 条（GitHub 仓库/README/Releases/用户 API/官网/ghcr manifest/对标补测，全部为一手 API 或原文回溯）、🔵 多源印证（cross）4 条（HelloGitHub 收录页、案例墙底稿、App Store 页、PyPI 元数据——均为可回溯权威页）、🟡 部分映证（partial）4 条（Trendshift、火山引擎社区教程、LEO 实测、Gitee 镜像——单一 B/C 级信源，已标注口径）。信源评级分布：A/A- 级 7 条、B+/B 级 5 条、C+/C 级 3 条。全部 15 条 URL 实测可达（HTTP 200）。核验过程中的重要发现与处理：① 底稿「MVP.gl 大模型驱动」经 README 全版本（含 2024-03 首个提交）、配置文件与全网检索均未命中，按「未检索到公开信息」显式标注；② PyPI 与 App Store 各发现一个第三方同名产品（yanjlee / Sergey FONOV），已作为供应链与生态风险单独披露；③ 检索中未采纳的信源：微博博主「搞机兔」星标 10 万帖（正文抓取超时、发布日期无法核验）、CSDN 部署教程（未逐字核验）、阮一峰科技爱好者周刊收录线索（检索超时未确认）——均不进入引用链。未发现伪造链接；星标类数据全部标注时点。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-13 · 星标等数据为时点实测值会随时间变动，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

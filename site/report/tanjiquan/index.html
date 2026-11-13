@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · AI 社交平台「碳基圈」—— 杨平的一个人社交平台 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · AI 社交平台「碳基圈」">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="AI 社交平台「碳基圈」深度案例报告：28 岁成都程序员杨平（Yapie程序员哥）用 Claude Code 独立开发「仅 AI 可见」匿名树洞 + AI 歌曲生成平台，前史为爆款 AI 歌曲《七天爱人》（网易云播放 200 万+、版权 5 万元+30% 分成）。14 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>AI 社交平台「碳基圈」深度案例报告</h1>
+    <h2>「AI 音乐教父」杨平：先写出一首网易云播放 200 万的爆款歌，<br>再用 27 小时做出一个「仅 AI 可见」的社交平台 —— 14 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">平台型 OPC</span>
+      <span class="tag">爆款冷启动</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">4 万+</div><div class="k">碳基圈注册用户（创始人自述口径）</div></div>
+  <div class="stat"><div class="v up">100 万+</div><div class="k">日页面访问量（创始人自述口径）</div></div>
+  <div class="stat"><div class="v neutral">3000 万</div><div class="k">投前估值（元 · 投资意向，未落地）</div></div>
+  <div class="stat"><div class="v up">200 万+</div><div class="k">《七天爱人》网易云音乐播放量</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">「碳基圈」是 2026 年「一人公司」（OPC）报道潮中最具戏剧性的样本之一：一个「仅 AI 可见」的匿名树洞社交平台，叠加 AI 歌曲生成模块，由 28 岁的成都程序员杨平（网名「Yapie程序员哥」）用 Claude Code 独立开发，上线半个月即获投前估值 3000 万元的投资意向<a class="cref cross" href="#ref-1">[1]</a>。其前史更为完整——杨平先以 DeepSeek 创作的爆款 AI 歌曲《七天爱人》完成流量与个人品牌的原始积累，再导入平台创业<a class="cref verified" href="#ref-2">[2]</a><a class="cref verified" href="#ref-3">[3]</a>，走出罕见的「爆款歌曲冷启动 → 平台化」路径。</p>
+  <div class="two">
+    <div class="card"><div class="ct">产品：碳基圈</div><div class="cb">域名 ai6666.com，3 月 21 日以「AI 雇佣人类」上线（AI 发布 100—500 元任务、人类领「工资」）；3 月 23 日起连续 27 小时开发出「碳基圈」社交功能并同步多端。发帖可选「仅 AI 可见」、由 7 个「AI 员工」回应，「好硅蜜」模式记住用户全部历史帖子；杨平称之为「弱连接的三端交互平台」，提出「Web5.0」概念。</div><div class="cm">信源：<a class="cref cross" href="#ref-4">[4]</a> <a class="cref cross" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="card"><div class="ct">创业者：杨平</div><div class="cb">甘肃人，主流口径 1997 年出生（封面新闻一稿作 1998 年，口径冲突）、2020 年毕业于电子科技大学信息安全专业，2026 年报道口径 28 岁。大三做后端开发、一年升项目管理，公司倒闭后放弃华为录用通知选择创业；六年历经卖服务器、「热气球」低空经济、赛车等项目几乎次次亏钱。2024—2025 年炒股一年亏 130 万元登上热搜，反而涨粉数万。</div><div class="cm">信源：<a class="cref cross" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="card blue"><div class="ct">重要前史：《七天爱人》</div><div class="cb">2025 年 2 月（情人节前夕），毫无乐理基础的杨平用 DeepSeek 生成歌词、MakeBestMusic 完成编曲演唱，模仿周杰伦曲风：网易云播放破 200 万、评论超 4600 条，登飙升榜、赏音榜并与毛不易、陈奕迅同框；版权卖出 5 万元、保留 30% 后续分成（央广网口径「5 位数收益」）。教程完全开源，单轮涨粉 30 万、全网粉丝近 40 万，被称「中国 AI 音乐教父」；歌曲「原版」至今可在网易云查证（一手核验）。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-7">[7]</a> <a class="cref verified" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-8">[8]</a></div></div>
+    <div class="card"><div class="ct">公司与投资状态</div><div class="cb">主体为成都觅核科技有限公司，仅杨平一名全职人类，刚招 2 人管多端同步、妻子人工审核。投资停留于意向：杭州一家 500 亿元规模基金投前估值 3000 万元、拟投 300 万元，川观/红星获见洽谈区间 3000 万—5000 万元；截至检索日未见工商变更或资金到账。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-6">[6]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2016 → 2022</div><div class="tx">从甘肃到成都：电子科大的六年失败创业</div><div class="td">2016 年就读电子科大信息安全专业；大三做后端开发一年升项目管理，公司倒闭后拒绝华为 offer；六年卖服务器、做热气球低空经济、搞赛车，几乎次次亏钱。<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2024—2025</div><div class="tx">炒股一年亏 130 万元，登上热搜</div><div class="td">「4 天亏了 32 万元，大家看热闹」；因祸得福涨粉数万——个人 IP 的第一次冷启动。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2025-02</div><div class="tx">《七天爱人》诞生：约 2 小时完成全流程</div><div class="td">情人节前夕，DeepSeek 生成歌词＋MakeBestMusic 编曲演唱，模仿周杰伦曲风，「AI 含量」百分之百，登网易云飙升榜、赏音榜。<a class="cref verified" href="#ref-2">[2]</a><a class="cref verified" href="#ref-3">[3]</a><a class="cref partial" href="#ref-9">[9]</a></div></div>
+    <div class="node"><div class="dt">2025-02-24 → 03-04</div><div class="tx">21 天：从卖出版权到播放破百万</div><div class="td">2 月 24 日宣称版权售出五位数，3 月 4 日宣称播放破百万；此前网易云收藏上千、日入约 150 元。<a class="cref partial" href="#ref-9">[9]</a></div></div>
+    <div class="node"><div class="dt">2025-03/04</div><div class="tx">「中国 AI 音乐教父」与第一轮版权争议</div><div class="td">教程完全开源，单轮涨粉 30 万<a class="cref cross" href="#ref-1">[1]</a>；同期遭传统音乐人举报「不正当竞争」，腾讯音乐拒签纯 AI 歌曲、网易云拉长审核期。<a class="cref cross" href="#ref-10">[10]</a></div></div>
+    <div class="node"><div class="dt">2025 年内</div><div class="tx">放弃财经自媒体赛道，热点创业持续练兵</div><div class="td">「短期看炒股是一个负和博弈。」春节元宝红包教程视频号 900 万播放、商单近 4 万元；此后又做「安全龙虾」等项目。<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2026-03-21</div><div class="tx">Ai6666.com 上线「AI 雇佣人类」</div><div class="td">AI 发布任务、设定赏金、审核成果、支付报酬，用户接单领「工资」——「谁都可以是雇主，谁都可以是打工人」。<a class="cref cross" href="#ref-5">[5]</a><a class="cref cross" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2026-03-23</div><div class="tx">连续 27 小时做出「碳基圈」</div><div class="td">早上 7 点起连续工作 27 小时，同步上线小程序与安卓 App；发帖由多个 AI 回复，可选「仅 AI 可见」。<a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2026-04-02 → 04-09</div><div class="tx">数据与资本双双爆发</div><div class="td">红星：注册超 3 万、日活超 20 万、天使轮估值 3000 万—5000 万元<a class="cref cross" href="#ref-6">[6]</a>；川观后台实拍 3.7 万注册<a class="cref cross" href="#ref-5">[5]</a>；央广网、封面新闻相继报道，融资协议商洽中。<a class="cref verified" href="#ref-3">[3]</a><a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-11">[11]</a></div></div>
+    <div class="node"><div class="dt">2026-04-16</div><div class="tx">中国经营报「探路一人公司」锚点报道</div><div class="td">用户 4 万+、日访问 100 多万、AI 音乐上线 2 天产生收入、投前估值 3000 万元；官微同步发起 #如何看待OPC创业新浪潮# 话题。<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-12">[12]</a></div></div>
+    <div class="node"><div class="dt">2026-06-13</div><div class="tx">人民网四川频道：以「AI 碳基圈」为《骑遇成都》配乐</div><div class="td">用自己开发的小程序「AI 碳基圈」为成都公益视频创作音乐——央媒正向背书。<a class="cref verified" href="#ref-13">[13]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：六年「什么热做什么」，攒下的是对热点与算法的元能力</div><div class="cb">他的方法论：「政策支持什么就做什么，什么热就做什么」；央广网记下「凭借对网络热点的敏锐感知，结合对网络平台的算法分析」开始 AI 音乐创作。炒股亏 130 万的热搜、元宝教程商单近 4 万元、「安全龙虾」都是练兵——他自认近期三个项目「大部分都失败了」。《七天爱人》是这套元能力而非音乐能力的第一次大规模兑现。</div><div class="cm">信源：<a class="cref cross" href="#ref-5">[5]</a> <a class="cref verified" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-6">[6]</a></div></div>
+  <div class="card"><div class="ct">转折二：爆款即冷启动——把教程做成「公共品」，把粉丝变成平台第一口流量池</div><div class="cb">教程完全开源的「授人以渔」操作让他单轮涨粉 30 万；教程传播量存在「全网话题播放量过亿」「近 5000 万」「数亿」三个口径。碳基圈的第一波用户与媒体报道都建立在这份注意力存量之上；他把写歌经验「蒸馏」成音乐智能体内置平台，先给 4 万用户每人免费赠一首歌——「先补贴用户，你觉得好再付费」。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-7">[7]</a></div></div>
+  <div class="card red"><div class="ct">转折三：流量来得太快，护城河几乎没有——「资本可以保护我」</div><div class="cb">川观新闻直言：「AI 赋能可以快速有产品，不过这些产品并没有特别强的护城河，一旦有了流量，模仿者很快跟上。」杨平的应对是弹药式融资＋极限工作：每天睡三四个小时、熬夜到两三点修漏洞，网站火了「偶尔遭遇木马攻击」；坚持不向用户收费、项目仍亏损——「用户才是我的壁垒」。一个人的速度是优势，也是天花板。</div><div class="cm">信源：<a class="cref cross" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-4">[4]</a></div></div>
+  <div class="quote">
+    <p>写代码不重要了，最重要的是发现需求。……赚钱就要做小东西、简单的东西。苹果手机不能截长图，为什么不做个软件？有 AI 了，几分钟就做出来了。</p>
+    <span class="src">—— 杨平，中国经营报「探路一人公司」（2026-04-16），转引自 <a class="cref cross" href="#ref-1">[1]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:110px">维度</th><th>内容</th><th style="width:100px">信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>产品功能</b></td><td>「仅 AI 可见」匿名树洞（7 个「AI 员工」回应）＋「好硅蜜」上下文记忆＋AI 歌曲生成（写歌经验「蒸馏」为智能体，主打消除「电流声」、贴近人声）＋「AI 雇佣人类」任务市场（100—500 元薪酬任务）</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>开发方式</b></td><td>一人＋Claude Code 写代码、多款 AI 大模型搭建底层服务；核心功能 27 小时上线；2 名雇员管五端同步、妻子人工审核；平台在工信部备案</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>变现</b></td><td>AI 音乐「先免费后付费」：给 4 万用户每人免费赠一首歌，好用再付费；上线 2 天产生收入、日进账几千元；前史收入为《七天爱人》版权 5 万元＋30% 分成与热点教程商单近 4 万元</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-7">[7]</a><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td><b>面向客群</b></td><td>不敢在熟人朋友圈表达的普通用户（情绪倾诉）、AI 音乐模仿创作者、接 AI 任务的用户；未披露用户画像与付费转化数据</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>解决痛点</b></td><td>表达欲与社交压力的错配（「在朋友圈发，我害怕被熟人看到」）；AI 音乐门槛高、「电流声很重」；普通人缺少低门槛变现抓手</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <h4>产品一：《七天爱人》（AI 音乐作品 · 2025-02）</h4>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值（口径并列）</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>网易云播放量</td><td class="hl">突破 200 万（多源一致）</td><td>2025-03/04</td><td><a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-5">[5]</a><a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-14">[14]</a></td></tr>
+      <tr><td>过程值</td><td>3 月 4 日自述「破百万」；收藏上千、日入约 150 元</td><td>2025-03-04 前</td><td><a class="cref partial" href="#ref-9">[9]</a></td></tr>
+      <tr><td>网易云评论</td><td>超 4600 条（锦观/红星）；「4000 多条评论、1 万多赞赏」（潮新闻）</td><td>2025-04</td><td><a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-10">[10]</a></td></tr>
+      <tr><td>版权收入</td><td class="hl">5 万元＋保留 30% 后续分成（钱江晚报单源具体值）；「五位数」（央广网/锦观/红星）；「上万元」（川观）；「数万元」（法治网）</td><td>2025-02-24</td><td><a class="cref cross" href="#ref-7">[7]</a><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-5">[5]</a><a class="cref cross" href="#ref-14">[14]</a></td></tr>
+      <tr><td>教程传播</td><td>「全网话题播放量过亿」（中经）／「近 5000 万」（锦观）／「数亿」（钱江晚报）——三口径并列</td><td>2025-2026</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td>粉丝增量</td><td class="pos">单轮涨粉 30 万，全网粉丝接近 40 万</td><td>2025-2026</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>一手核验</td><td>网易云《七天爱人（原版）》歌曲页：999+ 赞、136 条评论，词/曲/编曲署名 Yapie</td><td>2026-11 查询</td><td><a class="cref partial" href="#ref-8">[8]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h4>产品二：「碳基圈」（平台 · 2026-03）</h4>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值（时点演进）</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>注册用户</td><td>超 3 万（04-02）→ 3.7 万（04-07 后台实拍）→ <span class="hl">4 万+</span>（04-09/04-16）</td><td>2026-04</td><td><a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-5">[5]</a><a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>日访问/日活</td><td class="hl">日页面访问量 100 多万（中经）；网页端最高日活超 20 万（川观/红星）——两个不同口径</td><td>2026-04</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-5">[5]</a><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td>网页端累计浏览量</td><td>上线后快速突破 100 万</td><td>2026-03 底</td><td><a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-5">[5]</a></td></tr>
+      <tr><td>AI 音乐收入</td><td class="pos">上线 2 天开始产生收入，每天进账几千元</td><td>2026-04</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>成本与盈亏</td><td>项目投入仅几万元；仍亏损、不向用户收费</td><td>2026-04</td><td><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">数据口径说明</div>
+    全部运营数据均为创始人自述或记者所见后台截图，无第三方审计；「日访问 100 万+」与「最高日活 20 万」为两个不同口径（页面访问量不等于去重日活）；「5 万元＋30% 分成」仅钱江晚报单一信源给出具体值；碳基圈 2026-04-16 后未检索到新披露。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将碳基圈放入案例墙坐标系（对标数据均为案例墙既有核验值，口径为公开报道值）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>冷启动路径</th><th>数据表现</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>碳基圈</b></td><td>杨平（Yapie）</td><td>AI 社交平台＋AI 歌曲生成（平台型）</td><td class="hl">爆款歌曲冷启动 → 平台化</td><td>用户 4 万+、日访问 100 万+、AI 音乐 2 天产生收入</td><td>本报告 <a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>《供春AI》</td><td>张雨航</td><td>国内首款陶瓷 AIGC 辅助设计软件（垂直文化 AIGC）</td><td>垂直行业深耕＋政企共创</td><td>用户 3 万+、走进近 30 所高校、落地全国首个 AI+手工艺 OPC 创业基地</td><td>案例墙核验值（2024-11 锚点）</td></tr>
+      <tr><td>Raphael AI</td><td>刘小排</td><td>基于 Flux.1 的免费无限制 AI 文生图出海站</td><td>免费无注册获客</td><td>上线一个月月活破 100 万（2025）</td><td>案例墙核验值</td></tr>
+      <tr><td>《栖光》</td><td>陈爱军</td><td>AI 中式天庭短视频出海（内容创作）</td><td>文化题材内容出海</td><td>海外播放 500 万+（4 信源交叉）、获外交部发言人毛宁转发、抖音粉丝 50 万+</td><td>案例墙核验值（2026-08）</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>四条路径中，碳基圈的独特性在于「产品之前的爆款」：《七天爱人》让杨平先于产品获得 30—40 万粉丝与央媒级曝光，平台上线即自带舆论场——不同于供春AI 的垂直深耕、Raphael AI 的免费获客、栖光的内容出海。「爆款内容 → 个人 IP → 平台产品」的三级跳是最大方法论启示；另一面：内容保鲜期有限，平台护城河尚未证明（详见「捌」）。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:140px">维度</th><th>分析</th><th style="width:110px">信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>四模块平台：仅 AI 可见树洞＋好硅蜜记忆＋AI 歌曲生成＋AI 雇佣人类任务市场；从「工具」到「社区」再到「交易市场」的连续迭代，共享同一批用户与同一套 AI 底层</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-5">[5]</a></td></tr>
+      <tr><td><b>2. 面向客群</b></td><td>C 端情绪倾诉用户＋AI 音乐模仿创作者（免费赠歌引流）＋接任务用户；未披露画像、留存与付费转化数据</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>3. 解决痛点</b></td><td>表达欲与熟人社交压力的错配（树洞需求）；AI 音乐创作门槛与音质缺陷（电流声）；普通人缺少低门槛创作与变现抓手（「提需求」式全民编程愿景）</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>4. 预估年化营收（推算，置信度 C）</b></td><td>零披露。可核验财务事实：AI 音乐上线 2 天日入几千元、版权 5 万元＋30% 分成、前史商单近 4 万元、项目仍亏损。按峰值自述推算年化仅百万元量级；订阅、抽成等规模化营收模型均未建立，「不向用户收费」意味着收入端短期难覆盖运营</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-7">[7]</a><a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td><b>5. 融资进展</b></td><td>投资意向而非落地融资：投前估值 3000 万元、拟投 300 万元（中经）；洽谈区间 3000 万—5000 万元（川观/红星）；未见工商变更或资金到账。非货币资源：OPC 报道潮媒体势能与「AI 音乐教父」个人 IP</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-5">[5]</a><a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-12">[12]</a></td></tr>
+      <tr><td><b>6. 市场评价</b></td><td>正面：央媒党媒密集报道（央广网、人民网四川、川观、中经）；为《骑遇成都》配乐获人民网正向报道。负面：刺猬公社分析《七天爱人》爆火「并不是因为词曲的质量，而是因为它成了爆款短视频的核心要素」，抖音创作视频推算播放（3000 万+）远超歌曲本身；音著协副理事长周亚平：「AI 创作生成不了爆款作品」</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-13">[13]</a><a class="cref cross" href="#ref-5">[5]</a><a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-9">[9]</a><a class="cref cross" href="#ref-10">[10]</a></td></tr>
+      <tr><td><b>7. 投入成本与合规风险</b></td><td>成本：投入仅几万元＋2 名雇员＋极限工时。<b>AI 音乐版权争议全貌</b>：遭传统音乐人举报「不正当竞争」、质疑「挤压原创音乐人生存空间」；律师谢执胜认为其仅输入简单提示词、未经多轮迭代，「不属于著作权法意义上的作品」——版权交易的法律根基存疑；律师欧阳文芊则认为该指控法律上不充分。平台面：腾讯音乐拒签纯 AI 歌曲、网易云拉长审核；行业面：AI「洗歌」泛滥、平台不能以「仅提供工具」免责。<b>「第七人版权方举报事件」：未检索到公开信息，无法核实。</b>「仅 AI 可见」的合规与伦理：已工信部备案、AI＋人工双审核；但「好硅蜜」全量记忆与「赛博永生」规划涉及数据沉淀与情感依赖，伦理边界尚无公开制度讨论——此为本报告分析性判断</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-10">[10]</a><a class="cref cross" href="#ref-14">[14]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">六处留白与三处口径冲突（截至 2026-11-12 检索）</div>
+    ① 投资意向不等于落地融资：中经口径「拟投 300 万元」，封面新闻写「计划投资 3000 万元」，截至检索日未见资金到账或工商变更；② 用户数、日访问、日收入均为创始人自述，无第三方审计；③ 版权费「5 万元＋30% 分成」仅钱江晚报单源具体值；④ 出生年份 1997（中经/川观/人民网）与 1998（封面新闻）冲突，取主流 1997；⑤ 「第七人版权方举报事件」未检索到公开信息，无法核实；⑥ 碳基圈 2026-04-16 后无新披露，存续状态待证。
+  </div>
+  <div class="card"><div class="ct">负面评价（如实收录）</div><div class="cb">刺猬公社：爆火「并不是因为词曲的质量，而是因为它成了爆款短视频的核心要素」，且「至今并没有第二首《七天爱人》出现」；音乐人阿朵朵公开呼吁抵制、建议以「不正当竞争」起诉，称 AI 作品「剥夺音乐人性温度」；音著协副理事长周亚平：「AI 创作生成不了爆款作品，充其量算一个技术型的、中等水平的创作者」；网友评价「人类一败涂地」与「方文山看了都要避让三舍」并存。</div><div class="cm">信源：<a class="cref partial" href="#ref-9">[9]</a> <a class="cref cross" href="#ref-10">[10]</a> <a class="cref verified" href="#ref-2">[2]</a></div></div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">碳基圈把 OPC 的「个人能力栈」展示得极为完整：编程（Claude Code）＋内容（爆款歌）＋运营（教程涨粉）＋叙事（Web5.0）全部由一人输出，获客成本几乎为零。「爆款歌曲冷启动 → 平台化」是对「先产品后流量」传统路径的反演；它同时是警示牌——爆款可以复制流量，复制不了组织；当 27 小时的开发速度成为唯一壁垒时，一人公司的天花板与地板同时到来。</div><div class="cm">信源：<a class="cref cross" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-9">[9]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 14 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（央媒原文回溯＋多源交叉），蓝 = 多源印证（权威信源原文可回溯），黄 = 部分映证（自述/转述/平台页/单一 B 级信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx cross">[1]</span><span class="rt">A</span><span class="st">主流财经（门户转载）</span></div><div class="ti">探路「一人公司」｜程序员「Yapie」炒股亏130万后 搭建出估值3000万AI社交+音乐平台（中国经营报，记者陈雪波、卢志坤）</div><div class="mt"><b>来源：</b>新浪财经（原发中国经营报）　<b>发布日期：</b>2026-04-16<br><a href="https://finance.sina.com.cn/jjxw/2026-04-16/doc-inhuskuk4050239.shtml" target="_blank" rel="noopener">https://finance.sina.com.cn/jjxw/2026-04-16/doc-inhuskuk4050239.shtml</a></div><div class="note">事实核查：本案例锚点报道，全文回溯完成。电子科大学生史、六年创业失败、炒股亏 130 万、4 万用户、日访问 100 多万、投前估值 3000 万/拟投 300 万、27 小时开发、好硅蜜、AI 音乐 2 天产生收入、Claude Code、招 2 人、妻子审核、Web5.0 等核心事实均出自此稿；与封面 [4]、川观 [5] 多源交叉一致。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx verified">[2]</span><span class="rt">A+</span><span class="st">央媒转载地方党媒</span></div><div class="ti">版权卖出五位数，28岁小伙在成都用AI模仿周杰伦跨界写出爆款歌曲（成都日报锦观·锦观实验室，记者李自强）</div><div class="mt"><b>来源：</b>光明网（原发成都日报锦观）　<b>发布日期：</b>2025-04-16<br><a href="https://m.gmw.cn/2025-04/16/content_1304016322.htm" target="_blank" rel="noopener">https://m.gmw.cn/2025-04/16/content_1304016322.htm</a></div><div class="note">事实核查：央媒页面原文回溯完成。网易云播放破 200 万、评论超 4600 条、情人节前夕创作、MakeBestMusic、飙升榜/赏音榜与毛不易陈奕迅同框、音乐人举报「不正当竞争」、DeepSeek 版权归属提示词设计者、教程播放近 5000 万、欧阳文芊律师观点等出自此稿。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx verified">[3]</span><span class="rt">A+</span><span class="st">央媒报道</span></div><div class="ti">用AI写歌单曲版权已卖出5位数 「创作者」回应争议（央广网，记者唐诗敏、昌思荣、王颖）</div><div class="mt"><b>来源：</b>央广网四川　<b>发布日期：</b>2026-04-08<br><a href="http://sc.cnr.cn/scpd/jdt/20260408/t20260408_527577675.shtml" target="_blank" rel="noopener">http://sc.cnr.cn/scpd/jdt/20260408/t20260408_527577675.shtml</a></div><div class="note">事实核查：央媒原文回溯完成。电子科大毕业、一人公司、提示词全文、平台版权规则、10 年商业授权、谢执胜律师「不属于著作权法意义上的作品」、被举报「挤压原创音乐人生存空间」等出自此稿；另经中安在线转载页 [11] 交叉印证。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx cross">[4]</span><span class="rt">B+</span><span class="st">省级媒体</span></div><div class="ti">让AI给人类发工资 28岁小伙用AI创业拿下3000万元投资协议（封面新闻，记者谢杰、马嘉豪）</div><div class="mt"><b>来源：</b>封面新闻（川观新闻客户端分发）　<b>发布日期：</b>2026-04-09<br><a href="https://cbgc.scol.com.cn/news/7473905" target="_blank" rel="noopener">https://cbgc.scol.com.cn/news/7473905</a></div><div class="note">事实核查：全文回溯完成。7 个 AI 员工、AI Hire Humans 100—500 元任务、「人类的遗憾到底是什么」2000+ 人参与、注册用户超 4 万、最高单日访问 100 多万、投入仅几万元、亏损不收费、工信部备案、「计划投资 3000 万元」口径（与中经「拟投 300 万」冲突，已并列标注）出自此稿。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx cross">[5]</span><span class="rt">B+</span><span class="st">省级党媒</span></div><div class="ti">「95后」程序员27小时开发一款App，日活超20万丨一人公司迎风口⑥（川观新闻，记者罗韬）</div><div class="mt"><b>来源：</b>川观新闻　<b>发布日期：</b>2026-04-09<br><a href="https://cbgc.scol.com.cn/news/7471477" target="_blank" rel="noopener">https://cbgc.scol.com.cn/news/7471477</a></div><div class="note">事实核查：全文回溯完成。1997 年出生、3 月 21 日上线 Ai6666、3 月 23 日 27 小时开发碳基圈、后台 3.7 万注册、网页端最高日活超 20 万、《七天爱人》播放 200 万/版权上万元、元宝红包教程、安全龙虾、估值洽谈 3000 万—5000 万、「护城河」结构性分析等出自此稿。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx cross">[6]</span><span class="rt">B+</span><span class="st">都市媒体财经组（微博分发）</span></div><div class="ti">男子用AI写歌仅版权赚了5位数／男子辞职追逐AI创业估值已超3000万（红星新闻·红星资本局，成都商报旗下）</div><div class="mt"><b>来源：</b>红星新闻官方微博（原文页链接 static.cdsb.com）　<b>发布日期：</b>2026-04-02<br><a href="https://m.weibo.cn/detail/5284315455292071" target="_blank" rel="noopener">https://m.weibo.cn/detail/5284315455292071</a></div><div class="note">事实核查：微博详情页核验完成，原文页链接指向成都商报官网。2020 年电子科大毕业、2023 年离职创业、元宝教程视频号 900 万播放/商单近 4 万元、注册超 3 万/日活超 20 万、木马攻击与每天睡三四小时、天使轮估值 3000 万—5000 万、《七天爱人》评论超 4600 条等出自此稿。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">B+</span><span class="st">省级媒体</span></div><div class="ti">网络博主用AI写歌单首版权卖出5万元（钱江晚报·潮新闻深度，记者吴馥梅）</div><div class="mt"><b>来源：</b>钱江晚报数字报（a0008 版）　<b>发布日期：</b>2026-04-13<br><a href="https://qjwb.tidenews.com.cn/html/2026-04/13/content_4477763.htm" target="_blank" rel="noopener">https://qjwb.tidenews.com.cn/html/2026-04/13/content_4477763.htm</a></div><div class="note">事实核查：全文回溯完成。「播放量突破 200 万、版权卖出 5 万元、保留 30% 后续收入分成」为本报告该组数据唯一具体值来源；教程系列视频全网播放数亿、MakeBestMusic 免费版/订阅版权差异、张爱武律师观点出自此稿。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx partial">[8]</span><span class="rt">B</span><span class="st">平台页（一手）</span></div><div class="ti">《七天爱人（原版）》歌曲页（Yapie，词/曲/编曲署名 Yapie）</div><div class="mt"><b>来源：</b>网易云音乐　<b>发布日期：</b>2026-11 查询<br><a href="https://y.music.163.com/m/song?id=2679974679" target="_blank" rel="noopener">https://y.music.163.com/m/song?id=2679974679</a></div><div class="note">事实核查：一手平台页核验完成。歌曲存续、署名、「999+」赞与 136 条评论（原版）、Yapie 本人评论区留言「七天爱人原版本。包括男声部分」为一手数据；媒体报道的 200 万播放/4600 条评论口径对应歌曲热版，原版页数据为另一分层。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx partial">[9]</span><span class="rt">B</span><span class="st">行业媒体</span></div><div class="ti">百万播放只需3个关键词，揭秘AI神曲流水线（刺猬公社，作者陈首丞）</div><div class="mt"><b>来源：</b>澎湃新闻·湃客　<b>发布日期：</b>2025-03-17<br><a href="https://www.thepaper.cn/newsDetail_forward_30413699" target="_blank" rel="noopener">https://www.thepaper.cn/newsDetail_forward_30413699</a></div><div class="note">事实核查：全文回溯完成。2 小时全流程、2 月 24 日卖版权五位数、3 月 4 日宣称破百万、收藏上千/日入 150 元、抖音两条视频点赞超 15 万、「噱头而非音乐性」的批判性分析与阿朵朵抵制呼吁（早期节点）出自此稿，为转述/分析口径。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx cross">[10]</span><span class="rt">B+</span><span class="st">省级媒体（门户分发）</span></div><div class="ti">敲键盘就能量产「神曲」，AI写歌靠谱吗？（潮新闻，记者林婧）</div><div class="mt"><b>来源：</b>腾讯新闻（原发潮新闻客户端）　<b>发布日期：</b>2025-04-14<br><a href="https://view.inews.qq.com/a/20250414A08TDE00" target="_blank" rel="noopener">https://view.inews.qq.com/a/20250414A08TDE00</a></div><div class="note">事实核查：全文回溯完成。案例底稿原标注「新京报」，经核验该 URL 实为潮新闻稿件（浙江省级媒体），已按实际发布方修正标注。2 小时创作、1 万多赞赏/4000 多条评论、阿朵朵「不正当竞争」起诉建议、腾讯音乐拒签纯 AI 歌曲、网易云拉长审核要求 DAW 工程文件、周亚平评论出自此稿。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx cross">[11]</span><span class="rt">B</span><span class="st">省级媒体（转载页）</span></div><div class="ti">用AI写歌单曲版权已卖出5位数 「创作者」回应争议（载央广网稿）</div><div class="mt"><b>来源：</b>中安在线（安徽）　<b>发布日期：</b>2026-04-09<br><a href="http://api.app.anhuinews.com/content/9205651.html" target="_blank" rel="noopener">http://api.app.anhuinews.com/content/9205651.html</a></div><div class="note">事实核查：页面回溯完成，内容为央广网 2026-04-08 稿件的转载（标注「央广网成都4月8日消息」），与 [3] 同稿异源，用作交叉印证；案例底稿将其列为独立信源，本报告按实际内容关系处理。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx cross">[12]</span><span class="rt">B</span><span class="st">平台页（媒体官微）</span></div><div class="ti">#如何看待OPC创业新浪潮# 程序员「Yapie」炒股亏130万元后，搭建出估值3000万元AI社交+音乐平台（中国经营报官方微博，配第1眼视频）</div><div class="mt"><b>来源：</b>微博　<b>发布日期：</b>2026-04（锚点报道同周期）<br><a href="https://m.weibo.cn/detail/5289164133635220" target="_blank" rel="noopener">https://m.weibo.cn/detail/5289164133635220</a></div><div class="note">事实核查：微博详情页核验完成。觅核科技创始人身份、3000 万元估值、OPC 创业新浪潮话题语境与 [1] 正文互证。</div></li>
+  <li id="ref-13" class="src"><div class="sh"><span class="idx verified">[13]</span><span class="rt">A+</span><span class="st">央媒地方频道</span></div><div class="ti">创意公益视频《骑遇成都》上线！跟着杜甫、苏轼来一场文明接力（人民网四川频道，赵祖乐、肖强）</div><div class="mt"><b>来源：</b>人民网－四川频道　<b>发布日期：</b>2026-06-13<br><a href="http://sc.people.com.cn/n2/2026/0613/c345167-41609633.html" target="_blank" rel="noopener">http://sc.people.com.cn/n2/2026/0613/c345167-41609633.html</a></div><div class="note">事实核查：央媒原文回溯完成。杨平 1997 年出生、觅核科技创始人、「估值超 3000 万的商业价值」、爆款单曲网易云播放突破 200 万次、以小程序「AI 碳基圈」为公益视频配乐等出自此稿，为案例最新时间节点与央媒背书。</div></li>
+  <li id="ref-14" class="src"><div class="sh"><span class="idx cross">[14]</span><span class="rt">A</span><span class="st">央媒行业报</span></div><div class="ti">AI音乐「过载」 版权争议瞩目（北京日报，记者袁璐）</div><div class="mt"><b>来源：</b>法治网－知识产权频道（原发北京日报）　<b>发布日期：</b>2026-05-22<br><a href="http://www.legaldaily.com.cn/intellectual_property/content/2026-05/22/content_9393449.html" target="_blank" rel="noopener">http://www.legaldaily.com.cn/intellectual_property/content/2026-05/22/content_9393449.html</a></div><div class="note">事实核查：全文回溯完成。以杨平（Yapie）为 AI 音乐标志性案例复述（「卖出数万元版权费」，又一口径）；Deezer 日均 7.5 万首 AI 投稿占 44% 但播放仅占 1%—3%、Suno 日生成 700 万首、肖飒「洗歌」与平台责任分析、周深版权声明等行业基准出自此稿。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 14 条。核验标签分布：🟢 已核验（verified）3 条、🔵 多源印证（cross）9 条、🟡 部分映证（partial）2 条。信源评级分布：A+/A 级 5 条（央媒/主流财经/央媒行业报，原文回溯全部完成）、B+/B 级 9 条（省级党媒/都市媒体/行业媒体/平台页）。全部 14 条 URL 均经页面实际抓取核验，未发现伪造链接或死链。三处口径冲突已显式并列：出生年份（1997/1998）、拟投金额（300 万/「计划投资 3000 万」）、教程传播量（过亿/近 5000 万/数亿）；两处单源具体值已标注（版权费 5 万元＋30% 分成仅钱江晚报、原版歌曲页数据仅网易云一手页）；一处信源归属修正（底稿标注「新京报」的腾讯转载页实为潮新闻稿件）；一处任务给定的传闻事件（「第七人版权方举报事件」）经检索未获任何公开信源，按「未检索到公开信息」处理。运营数据均为创始人自述口径，已在正文显著提示。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-12 · 营收推算值均标注置信口径，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

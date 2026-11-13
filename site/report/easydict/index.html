@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · Easydict——tisfeng 的免费开源 macOS 词典翻译 App · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · Easydict 免费开源词典翻译">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="Easydict 深度案例报告：国内开发者 tisfeng 一人维护的 macOS 词典翻译应用，开箱即用、离线 OCR、20+ 翻译引擎，GitHub 15.2k★（2026-11 实测 15,296）。免费开源 GPL-3.0 正面卡位付费买断市场。14 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>Easydict 深度案例报告</h1>
+    <h2>国内开发者 tisfeng 一个人维护的 macOS 词典翻译应用：开箱即用、离线 OCR、20+ 翻译引擎<br>以「免费开源」正面卡位付费买断市场，GitHub 15.2k★ —— 14 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">工具型 OPC</span>
+      <span class="tag">开源免费（GPL-3.0）</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">15,296</div><div class="k">GitHub 星标（2026-11-13 API 实测）</div></div>
+  <div class="stat"><div class="v neutral">¥0</div><div class="k">售价 · 免费开源无付费墙</div></div>
+  <div class="stat"><div class="v neutral">20+</div><div class="k">翻译服务（含本地 Ollama）</div></div>
+  <div class="stat"><div class="v neutral">10,277</div><div class="k">Homebrew 年安装量（365 天）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">Easydict 是一款「简洁优雅」的 macOS 词典翻译应用：开箱即用、自动识别输入语言，支持输入翻译、划词翻译与 OCR 截图翻译，可同时并列查询 20+ 个词典、翻译、AI 与本地模型服务<sup class="cite verified">[1]</sup><sup class="cite verified">[2]</sup>。它由国内开发者 tisfeng 一人主导开发维护，以 GPL-3.0 协议完全免费开源，是案例墙中「免费开源工具对标付费产品」的典型样本。</p>
+  <div class="two">
+    <div class="card"><div class="ct">产品</div><div class="cb">macOS 菜单栏词典翻译 App：默认快捷键 ⌥+A 输入翻译、⌥+D 划词翻译、⌥+S 截图翻译、⌥+⇧+S 静默截图 OCR（识别结果直接进剪贴板）；支持有道词典、苹果系统词典、苹果系统翻译、OpenAI、Gemini、DeepL、Google、Bing、腾讯、百度、阿里、小牛、彩云、火山等 20+ 服务，52 种可选翻译语言，多 TTS 发音<sup class="cite verified">[1]</sup><sup class="cite verified">[2]</sup>。当前版本要求 macOS 13.0+，旧系统可使用 2.7.2 版<sup class="cite verified">[2]</sup>。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-2">[2]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">tisfeng（真名未公开，GitHub 显示名与 V2EX 账号 isfeng 同源），GitHub 资料显示位于中国，2017 年 1 月注册，57 个公开仓库、403 名关注者，bio 为「null &amp; void」<sup class="cite verified">[3]</sup>。README 自述项目「currently mainly developed and maintained by the author」（主要由作者本人开发维护）<sup class="cite verified">[2]</sup>。</div><div class="cm">信源：<a class="cref verified" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-2">[2]</a></div></div>
+    <div class="card blue"><div class="ct">分发与安装</div><div class="cb">Homebrew 官方 cask 一行安装（<code>brew install --cask easydict</code>，当前收录版本 2.25.0）<sup class="cite cross">[4]</sup>，或从 GitHub Releases 下载 DMG<sup class="cite verified">[2]</sup>；另有社区开发的 Raycast 扩展版「Easy Dictionary」（41,844 次安装）<sup class="cite cross">[5]</sup>。</div><div class="cm">信源：<a class="cref cross" href="#ref-4">[4]</a> <a class="cref cross" href="#ref-5">[5]</a></div></div>
+    <div class="card blue"><div class="ct">商业化状态</div><div class="cb">完全免费，无付费版本、无内购、无功能墙（第三方评测口径「Free — no tiers, no trial, no paywalled features」）<sup class="cite cross">[6]</sup>。README 声明「任何人都可以免费获取本产品与源代码」，赞助渠道为爱发电页面<sup class="cite verified">[2]</sup>；赞助金额与项目收入未检索到公开信息。无融资记录。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-6">[6]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2022-11-15</div><div class="tx">GitHub 仓库 tisfeng/Easydict 创建</div><div class="td">语言为 Swift，协议 GPL-3.0。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2023 年初</div><div class="tx">1.x 版本迭代，README 使用演示截图录制于 2023-01-20</div><div class="td">项目灵感来自 saladict 与 Bob，初始版本即基于 Bob（GPL-3.0）的一个分支开发，大量功能与 UI 参考 Bob。<a class="cref verified" href="#ref-2">[2]</a> 案例墙将首发锚点记为 2023 年 ▲，与 1.x 版本 2023 年初对外传播的口径一致（V2EX 帖内引用过 1.3.0 版更新）<a class="cref partial" href="#ref-7">[7]</a>。</div></div>
+    <div class="node"><div class="dt">2023-04-16</div><div class="tx">V2EX「类似 Bob 翻译软件」一帖引爆发火</div><div class="td">楼主求 Bob 平替，跟帖推荐 Easydict，单帖 16,430 次点击、84 条回复；用户评价「卧槽这个软件调用出来反应更快……都是免费的」「巨好用」，多名已购 Bob Pro 用户感叹「下手下早了」。<a class="cref partial" href="#ref-7">[7]</a></div></div>
+    <div class="node"><div class="dt">2023-04-17</div><div class="tx">作者以 V2EX 账号 isfeng 现身：「从昨晚到现在已经涨了 300 多颗星星✨」</div><div class="td">「还很纳闷，不知道被哪个大佬翻牌子了……邮件通知快炸了 🤯，原来是这里啊」——24 小时涨星 300+，是该项目 GitHub 热度起飞的显性节点。<a class="cref partial" href="#ref-7">[7]</a></div></div>
+    <div class="node"><div class="dt">2023 年内</div><div class="tx">社区化解签名难题</div><div class="td">开发者 CanglongCl 提供 Apple 开发者账号解决应用签名问题（issue #2），「让更多人可以方便地使用 Easydict」；此前有用户反馈「如果安装包能加上 Mac 签名就好了」。<a class="cref verified" href="#ref-2">[2]</a><a class="cref partial" href="#ref-7">[7]</a></div></div>
+    <div class="node"><div class="dt">2024-01</div><div class="tx">Raycast 扩展版迭代至 v2.9，生态延伸至启动器</div><div class="td">Raycast Easydict 由 tisfeng 开发（现由 maxchang3 维护），支持 48+ 语言、Raycast AI 与 OpenAI 兼容端点。<a class="cref cross" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2024 年</div><div class="tx">用户工作流沉淀与口碑分歧并存</div><div class="td">有用户将 Bob/Easydict 查词 + 欧路 API 生词本 + Anki 记忆卡串成学习工作流（当时 Easydict 尚未支持欧路 API）<a class="cref partial" href="#ref-8">[8]</a>；也有用户批评其「不支持自定义 prompt，占用是 Bob 的三倍多」<a class="cref partial" href="#ref-9">[9]</a>。</div></div>
+    <div class="node"><div class="dt">2025-11 → 2026-11</div><div class="tx">一年发布 12 个版本：2.16.2 → 2.27.0</div><div class="td">2.22.0（2026-08）、2.24.0（2026-09）、2.25.0（2026-10-19）、2.26.0（2026-10-27）、2.27.0（2026-11-09，预发布），发版节奏密集、维护高度活跃。<a class="cref verified" href="#ref-10">[10]</a></div></div>
+    <div class="node"><div class="dt">2026-08</div><div class="tx">独立评测给出 8.2/10：「免费工具在能力而非价格上超越付费竞品」</div><div class="td">英文独立评测站 Spineye 称其为 macOS 上能力最强的免费翻译工具，时点记录 14.2k 星、4,058 次 commits。<a class="cref cross" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2026-11-13</div><div class="tx">GitHub API 实测 15,296 星、812 fork、198 个 open issue</div><div class="td">最近一次代码推送为 2026-11-11，四年后仍处于高频维护状态。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：站在 Bob 的肩膀上——GPL 分叉起步</div><div class="cb">Easydict 并非从零造轮子。README 致谢部分明确写道：项目灵感来自 saladict（沙拉查词）与 Bob，「初始版本基于 Bob（GPL-3.0）开发，Easydict 在原项目基础上做了大量改进与优化，许多功能和 UI 参考 Bob」；截图功能基于 isee15 的开源项目优化，划词参考 PopClip<sup class="cite verified">[2]</sup>。正因为 Bob 同为 GPL 开源，这次「分叉再出发」在协议上完全合规——开源社区的开源协议，为一个更激进的免费产品提供了合法起点。2023 年 4 月 V2EX 帖中已有用户一语道破「怪不得感觉跟 Bob 这么像」<sup class="cite partial">[7]</sup>。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref partial" href="#ref-7">[7]</a></div></div>
+  <div class="card"><div class="ct">转折二：把 LLM 翻译塞进传统词典壳——AI 契合点的准确押注</div><div class="cb">ChatGPT 出圈后，划词翻译工具的最大变量是「大模型翻译质量超过传统引擎」。Easydict 的服务列表从最初的有道/苹果/DeepL/Google/Bing 等传统引擎，逐步扩展到 OpenAI、Gemini、Claude、DeepSeek、智谱、Groq，再到 Ollama 本地模型乃至 Claude Code、Codex CLI 等命令行智能体<sup class="cite verified">[2]</sup><sup class="cite cross">[11]</sup>。掘金转载的 DeepSeek 官方「实用集成」文档亦将其收录为大模型 API 翻译的接入端<sup class="cite cross">[11]</sup>。工具的壳是 2022 年的，服务的芯始终跟随 2023-2026 年的模型浪潮——这是其四年后仍有 15k+ 星的关键。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-11">[11]</a></div></div>
+  <div class="card green"><div class="ct">转折三：免费开源作为「进攻性定价」——正面卡位 ¥58 买断市场</div><div class="cb">Bob 的商业化路径是免费版 + Pro 买断（¥58，案例墙既有核验值），而 Easydict 选择完全免费：无版本分层、无试用、无付费功能墙<sup class="cite cross">[6]</sup>，用户自带各家 API 密钥（BYOK），工具本身零抽成。2023 年 4 月 V2EX 帖子里最真实的情绪是——多名刚花 ¥58 买断 Bob Pro 的用户发现「免费的这个更好用」<sup class="cite partial">[7]</sup>。免费不是没有代价：项目收入只剩爱发电赞助<sup class="cite verified">[2]</sup>，规模未公开。这是一条以社区声誉为资产、以个人时间投入为成本的路径。</div><div class="cm">信源：<a class="cref cross" href="#ref-6">[6]</a> <a class="cref partial" href="#ref-7">[7]</a> <a class="cref verified" href="#ref-2">[2]</a></div></div>
+  <div class="quote">
+    <p>还很纳闷，不知道被哪个大佬翻牌子了，从昨晚到现在已经涨了 300 多颗星星✨，邮件通知快炸了 🤯，原来是这里啊。</p>
+    <span class="src">—— Easydict 作者以 V2EX 账号 isfeng 在「类似 Bob 翻译软件」帖中回复（2023-04-17），转引自 <a class="cref partial" href="#ref-7">[7]</a>；该账号标识与 GitHub tisfeng / Raycast isfeng 对应</span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>Easydict 的做法</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>产品功能</td><td class="hl">开箱即用 · 多引擎并查 · 离线 OCR</td><td>开箱即用、自动识别语言，输入/划词/截图三种触发方式，可同时查询多个服务并列对比结果；静默 OCR 直出剪贴板；多 TTS 发音；52 种可选语言<sup class="cite verified">[2]</sup></td></tr>
+      <tr><td>与 Bob 的差异化定位</td><td class="hl">免费开源（GPL-3.0） vs 付费买断（Bob Pro ¥58）</td><td>初始版本即基于 Bob（GPL-3.0）分支开发，功能与 UI 大量参考 Bob；分叉后以「完全免费 + BYOK 零抽成」形成对位竞争——Bob 靠 Pro 版持续销售，Easydict 靠免费换社区声望<sup class="cite verified">[2]</sup>（Bob 定价为案例墙既有核验值）</td></tr>
+      <tr><td>面向客群</td><td>macOS 用户 · 开发者/研究者 · 隐私敏感者</td><td>日常阅读外文文档的 macOS 用户；需要并排比较多个引擎的翻译者；不愿为付费 OCR 工具买单的用户；希望翻译数据不出本机的隐私敏感人群（Ollama 本地模型路线）<sup class="cite cross">[6]</sup><sup class="cite partial">[12]</sup></td></tr>
+      <tr><td>解决痛点</td><td>付费门槛 · 引擎切换成本 · 图片取词 · 数据外发顾虑</td><td>把付费 OCR 工具的收费功能（截图提取文字）与翻译合三为一且免费；一个快捷键同时问多个引擎，免除逐家配置与切换；离线 OCR 本机完成、可经本地模型实现全离线翻译<sup class="cite cross">[6]</sup><sup class="cite verified">[2]</sup></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 商业模式留白说明</div>
+    Easydict 无付费版本与内购，README 明确「免费开源项目，主要由作者本人开发维护」，赞助入口为爱发电<sup class="cite verified">[2]</sup>；赞助金额、月度收入、成本结构均未检索到公开信息。本项目在案例墙中的「成功迹象」以社区关注度（GitHub 星标、安装量）为主，而非营收指标——如实标注，不推算营收。
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>GitHub 星标</td><td class="hl">15,296</td><td>2026-11-13 API 实测</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-13">[13]</a></td></tr>
+      <tr><td>GitHub Fork / Open Issues / Watch</td><td>812 / 198 / 47</td><td>2026-11-13 实测</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>贡献者规模</td><td>79 人</td><td>2026-11 查询</td><td><a class="cref cross" href="#ref-13">[13]</a></td></tr>
+      <tr><td>Homebrew 安装量</td><td class="hl">30 天 1,192 · 90 天 2,715 · 365 天 10,277</td><td>2026-11-13 实测</td><td><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td>Raycast 扩展安装量</td><td>41,844</td><td>2026-11-13 实测</td><td><a class="cref cross" href="#ref-5">[5]</a></td></tr>
+      <tr><td>发版节奏</td><td class="pos">一年 12 个版本（2.16.2 → 2.27.0）</td><td>2025-11-16 → 2026-11-09</td><td><a class="cref verified" href="#ref-10">[10]</a></td></tr>
+      <tr><td>Commit 总量</td><td>4,058 次</td><td>2026-08 查询</td><td><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td>第三方评测评分</td><td>8.2 / 10（Spineye，研究型评测）</td><td>2026-08-07 发布 / 09-29 更新</td><td><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    ① 星标为时点值，随时间变动：Spineye 2026 年 8 月记录 14.2k<sup class="cite cross">[6]</sup>，HelloGitHub 2026 年 11 月显示 15.3k<sup class="cite cross">[13]</sup>，本次 2026-11-13 API 实测 15,296<sup class="cite verified">[1]</sup>，三者互相吻合。② Homebrew Analytics 为该渠道安装量的官方统计，不含 GitHub Releases 与官网直接下载，全量用户数无官方口径。③ Raycast 安装量属 Easydict 生态衍生扩展，不等同于主应用用户。④ 用户总量、留存等运营数据未检索到公开信息。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将 Easydict 放入案例墙「翻译/OCR 工具」坐标系。对标数据均为案例墙既有核验值（详见案例墙 index.html 各条目信源），本案星标为本次 API 实测值：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>商业模式</th><th>数据表现</th><th>数据口径</th></tr></thead>
+    <tbody>
+      <tr><td><b>Easydict</b></td><td>tisfeng</td><td>macOS 词典翻译 App</td><td class="hl">完全免费开源（GPL-3.0）+ 赞助</td><td>GitHub 15,296★（2026-11-13 实测）</td><td>本案实测 <a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>Bob</td><td>ripperhe（北京独立开发者）</td><td>macOS 划词翻译/截图 OCR</td><td>免费版 + Pro ¥58 买断持续销售</td><td>GitHub 9.7k★</td><td>案例墙既有核验值</td></tr>
+      <tr><td>沉浸式翻译</td><td>Owen Young（前腾讯前端工程师）</td><td>AI 双语对照网页/PDF/字幕/漫画翻译插件</td><td>免费 + Pro 订阅</td><td>全球激活用户破 3000 万，Chrome 2024 年度精选</td><td>案例墙既有核验值</td></tr>
+      <tr><td>PDFMathTranslate（pdf2zh）</td><td>Byaidu</td><td>保留排版的 PDF 学术文档 AI 全文双语翻译</td><td>开源 + 在线服务 pdf2zh.com</td><td>GitHub 38.3k★，入选 EMNLP 2025 Demo</td><td>案例墙既有核验值</td></tr>
+      <tr><td>Umi-OCR</td><td>hiroi-sora（网名）</td><td>开源离线 OCR（截图/批量/PDF）</td><td>完全免费开源，解压即用</td><td>GitHub 48.4k★</td><td>案例墙既有核验值</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>这组对标的看点在于「免费开源对标付费产品」的两种结局：同为 macOS 划词翻译，Bob 走「免费版引流 + ¥58 买断变现」的商业化路线（9.7k★），Easydict 走「GPL 分叉 + 彻底免费」的社区路线（15.3k★）——后者星标反超前者约 5,600 颗，说明在个人开发者工具市场，「免费开源」本身可以成为一种进攻性产品策略，其回报形式是社区声望与长期影响力，而非直接现金<sup class="cite verified">[1]</sup>。而在更晚起步、体量更大的 pdf2zh（38.3k★）与 Umi-OCR（48.4k★）身上，可以看到同一路径的天花板更高：开源翻译/OCR 工具不带商业包袱，天然适合口口相传。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>分析</th></tr></thead>
+    <tbody>
+      <tr><td class="hl">1. 产品功能（含 OCR 离线隐私优势）</td><td>开箱即用 + 自动语言识别 + 三种触发方式 + 多引擎并列结果，构成「输入翻译/划词/截图 OCR」一体化的菜单栏工具<sup class="cite verified">[2]</sup>。隐私是结构性优势：截图 OCR 在本机完成，不上传图片；翻译环节可接入 Ollama 本地模型实现「文本不出机」，独立评测认为这对翻译合同、病历等敏感文本是「与粘贴进网页输入框完全不同的命题」<sup class="cite cross">[6]</sup>；中文第三方指南同时提醒：OCR 离线 ≠ 整条工作流离线，在线引擎仍会将文本发往对应服务器，需按启用的服务自行判断<sup class="cite partial">[12]</sup>。</td></tr>
+      <tr><td>2. 面向客群</td><td>直接客群为 macOS 13+ 用户中的高频跨语言阅读者（研究者、开发者、多语言职场人）、翻译质量敏感者（需要多引擎对照）与隐私敏感者<sup class="cite cross">[6]</sup>；间接客群是自带 API 密钥的重度 AI 用户——OpenAI/Gemini/DeepSeek/Ollama 等服务清单实质上面向「已经拥有大模型 API」的人群<sup class="cite verified">[2]</sup>。Windows 用户是持续外溢的需求方（社区最高频抱怨之一）<sup class="cite cross">[6]</sup>。</td></tr>
+      <tr><td>3. 解决痛点</td><td>①价格门槛：把付费 OCR 应用收费的「图片取文字」功能与翻译合并且免费，r/macapps 社区的经典场景是「每当付费 OCR 促销，评论区总有人甩出 Easydict 并附上 free 一词」<sup class="cite cross">[6]</sup>；②引擎切换成本：一个快捷键同时问 DeepL、Google 和大模型，并排对比分歧<sup class="cite verified">[2]</sup>；③信任成本：GPL-3.0 源码可审计，规避闭源翻译工具的权限黑箱顾虑<sup class="cite cross">[6]</sup>。</td></tr>
+      <tr><td>4. 预估年化营收（推算，置信度 C）</td><td class="hl">直接营收 ¥0</td><td>无付费版本、无内购、无广告，唯一收入通道为爱发电赞助，金额未公开——<b>未检索到公开营收信息，不作推算</b><sup class="cite verified">[2]</sup>。其「回报结构」需换算为非货币资产：15.3k 星的行业声望、79 名贡献者的社区网络、以及作者在开发者社区的个人品牌（403 名 GitHub 关注者）<sup class="cite verified">[3]</sup><sup class="cite cross">[13]</sup>。</td></tr>
+      <tr><td>5. 融资进展</td><td>无融资记录、无公司主体信息公开。非货币资源支持：社区开发者 CanglongCl 提供 Apple 开发者账号解决签名难题（issue #2），使普通用户绕过手动信任开发者证书的门槛<sup class="cite verified">[2]</sup>——开源项目的「融资」往往以这种资源置换形式出现。</td></tr>
+      <tr><td>6. 市场评价</td><td>社区正评价密集且具体：2023-04 V2EX 帖 1.6 万次点击下，「调用出来反应更快」「巨好用」「神器」层出，多名 Bob Pro 付费用户自嘲「买早了」<sup class="cite partial">[7]</sup>；r/macapps 高赞推荐帖（334 赞）称「Love easydict」<sup class="cite cross">[6]</sup>；独立评测 8.2/10，评语「罕见的在能力而非价格上超越付费竞品的免费工具」<sup class="cite cross">[6]</sup>。负评价同样真实：有 V2EX 用户批评其（当时）不支持自定义 prompt、内存占用「是 Bob 的三倍多」（单一用户观点，未见实测复核）<sup class="cite partial">[9]</sup>；评测列出的短板还有 BYOK 配置门槛、文档中文优先英文滞后、快捷键冲突、设置项繁多<sup class="cite cross">[6]</sup>。</td></tr>
+      <tr><td>7. 开源维护可持续性与合规</td><td>单人维护的可持续性有真实证据也有真实信号：正面是一年 12 个版本的发版节奏与四年间歇不断的代码推送<sup class="cite verified">[10]</sup><sup class="cite verified">[1]</sup>；风险是作者在 README 明言「最近很忙，通常只能在周末处理 issue」，PR（尤其修 bug 类）优先<sup class="cite verified">[2]</sup>——单点维护瓶颈显性存在。对冲机制有二：其一，生态分摊——Raycast 扩展已转交 maxchang3 维护<sup class="cite cross">[5]</sup>，Windows 端出现社区移植版「Easydict for Windows」（18+ 服务，上架 Microsoft 应用商店）<sup class="cite partial">[14]</sup>；其二，贡献者达 79 人<sup class="cite cross">[13]</sup>，README 还明确欢迎 Codex/Claude 等 AI 编程助手辅助贡献<sup class="cite verified">[2]</sup>。合规面：GPL-3.0 协议，README 特殊声明「仅供学习交流使用」，并附「若认为权益受侵可联系作者」条款<sup class="cite verified">[2]</sup>；其本身就是从 Bob（GPL-3.0）合规分叉而来，协议链条清晰。</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 五处留白与风险（截至 2026-11-13 检索）</div>
+    ① <b>商业化程度</b>：完全免费无变现通道（赞助除外），赞助/捐赠收入未公开，无法评估项目「自我造血」能力——本案不适用营收型 OPC 评价框架；② <b>成功迹象口径</b>：以社区关注度（星标/安装量/评测）为主，全量用户数、留存、地域分布均无公开数据；③ <b>单点维护风险</b>：作者自述工作繁忙、周末才能处理 issue<sup class="cite verified">[2]</sup>，198 个 open issue 的消化能力存疑；④ <b>负面口碑记录</b>：「内存占用是 Bob 三倍多」「不支持自定义 prompt」为单一 V2EX 用户观点<sup class="cite partial">[9]</sup>，无独立实测复核，且部分指控可能随版本迭代过时；⑤ <b>星标时点波动</b>：15.3k 为 2026-11-13 实测值，引用时须注时点。
+  </div>
+  <div class="box note">
+    <div class="bt">📝 口径与归属说明</div>
+    ① 首发时间锚点：仓库创建于 2022-11-15<sup class="cite verified">[1]</sup>，1.x 版本于 2023 年初对外传播（README 演示截图录制于 2023-01-20<sup class="cite verified">[2]</sup>，V2EX 帖内引用 1.3.0 版<sup class="cite partial">[7]</sup>），案例墙锚点记为「2023（年）▲ 首发」，本报告沿用；② 「语言数量」存在两种口径：主应用 README 为「52 种可选翻译语言」<sup class="cite verified">[2]</sup>、Raycast 扩展为「48+ 语言」<sup class="cite cross">[5]</sup>，属两个产品各自口径，本报告正文以主应用 README 为准；③ V2EX 作者现身回复基于账号标识（isfeng）与 Raycast/GitHub 标识对应、且回复内容（星标暴涨通知）与维护者身份吻合作出归属判断，按单一社区信源（partial）标注<sup class="cite partial">[7]</sup>；④ 作者真名、年龄、职业履历均未公开，未检索到公开信息，不作推测。
+  </div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">Easydict 证明了 OPC 模式的另一极：不追求营收、不融资、不注册公司主体，以「GPL 分叉 + 彻底免费 + 跟随模型浪潮」在巨头与付费产品夹缝中建立事实标准级的个人作品。它的资产表上没有现金流，只有 15.3k 星、79 名贡献者与四年的发版记录——对一人公司而言，社区声望本身即是可以长期复利的资产负债。它同时提醒：这条路径的可持续性完全押注在单点维护者的时间与热情上，README 里那句「通常只能在周末处理 issue」，就是免费开源模式成本结构的真实注脚。</div><div class="cm"><a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-13">[13]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 14 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一社区信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx verified">[1]</span><span class="rt">A</span><span class="st">GitHub API（一手实测）</span></div><div class="ti">GitHub Repos API：tisfeng/Easydict</div><div class="mt"><b>来源：</b>api.github.com　<b>查询时点：</b>2026-11-13<br><a href="https://api.github.com/repos/tisfeng/Easydict" target="_blank" rel="noopener">https://api.github.com/repos/tisfeng/Easydict</a></div><div class="note">事实核查：星标 15,296、fork 812、open issue 198、watch 47、Swift、GPL-3.0、创建于 2022-11-15、推送于 2026-11-11、中文功能描述（有道/苹果/OpenAI/Gemini/DeepL 等）均为 API 原始返回；星标数与 HelloGitHub [13]（15.3k）、Spineye [6]（14.2k，2026-08 时点）交叉吻合。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx verified">[3]</span><span class="rt">A</span><span class="st">GitHub API（一手实测）</span></div><div class="ti">GitHub Users API：tisfeng（开发者个人资料）</div><div class="mt"><b>来源：</b>api.github.com　<b>查询时点：</b>2026-11-13<br><a href="https://api.github.com/users/tisfeng" target="_blank" rel="noopener">https://api.github.com/users/tisfeng</a></div><div class="note">事实核查：真名未公开（name 字段即显示名 tisfeng）、location 中国、2017-01-18 注册、57 个公开仓库、403 关注者，为 API 原始返回；与 Raycast 商店页 [5] 的作者标识 isfeng 相互印证。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx verified">[2]</span><span class="rt">A</span><span class="st">GitHub README（一手）</span></div><div class="ti">Easydict 官方 README（dev 分支）</div><div class="mt"><b>来源：</b>github.com/tisfeng/Easydict　<b>查询时点：</b>2026-11-13<br><a href="https://github.com/tisfeng/Easydict" target="_blank" rel="noopener">https://github.com/tisfeng/Easydict</a></div><div class="mt"><b>关键内容：</b>开箱即用/三种翻译方式/静默 OCR、20+ 服务（含 Claude、DeepSeek、Ollama、Codex CLI）、52 种语言、默认快捷键、macOS 13+（旧系统 2.7.2）、灵感来自 saladict 与 Bob 且初始版本基于 Bob（GPL-3.0）开发、GPL-3.0「仅供学习交流」声明、爱发电赞助、CanglongCl 提供签名支持（issue #2）、欢迎 AI 编程辅助贡献、维护者周末处理 issue。</div><div class="note">事实核查：项目定位与致谢信息为官方一手自述；「初始版本基于 Bob」另经 V2EX 帖 [7] 用户引述交叉；功能清单与 Homebrew cask 页 [4]（词典翻译 App、macOS≥13）交叉。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx cross">[4]</span><span class="rt">B+</span><span class="st">Homebrew 官方数据页</span></div><div class="ti">Homebrew Cask：easydict（含 Analytics 安装统计）</div><div class="mt"><b>来源：</b>formulae.brew.sh　<b>查询时点：</b>2026-11-13<br><a href="https://formulae.brew.sh/cask/easydict" target="_blank" rel="noopener">https://formulae.brew.sh/cask/easydict</a></div><div class="note">事实核查：收录版本 2.25.0、要求 macOS≥13、安装命令 <code>brew install --cask easydict</code>、365 天安装 10,277 / 90 天 2,715 / 30 天 1,192，均为官方页一手数据；与 README [2] 推荐安装方式一致。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx verified">[10]</span><span class="rt">A</span><span class="st">GitHub API（一手实测）</span></div><div class="ti">GitHub Releases API：tisfeng/Easydict（版本时间线）</div><div class="mt"><b>来源：</b>api.github.com　<b>查询时点：</b>2026-11-13<br><a href="https://api.github.com/repos/tisfeng/Easydict/releases" target="_blank" rel="noopener">https://api.github.com/repos/tisfeng/Easydict/releases</a></div><div class="note">事实核查：近 30 个 release 覆盖 2025-11-16（2.16.2）至 2026-11-09（2.27.0，预发布），一年 12 个正式版本；发布者均为 tisfeng 或其协作者，为 API 原始返回。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx partial">[7]</span><span class="rt">C+</span><span class="st">技术社区（V2EX）</span></div><div class="ti">「类似 Bob 翻译软件」（V2EX macOS 节点，2023-04-16 发帖）</div><div class="mt"><b>来源：</b>v2ex.com/t/932954　<b>发帖日期：</b>2023-04-16（16,430 次点击、84 条回复）<br><a href="https://v2ex.com/t/932954" target="_blank" rel="noopener">https://v2ex.com/t/932954</a></div><div class="note">事实核查：爆火节点一手社区记录——用户口碑（「反应更快」「都是免费的」「巨好用」）、Bob Pro 用户「买早了」情绪、「star 在刷刷涨」目击、以及作者账号 isfeng 的现身回复（「从昨晚到现在已经涨了 300 多颗星星」）；帖内还引述了项目「灵感来自 saladict 和 Bob、初始版本以 Bob 为基础开发」与 1.3.0 版更新。单一社区帖，按 partial 标注。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx cross">[5]</span><span class="rt">B+</span><span class="st">Raycast Store（官方商店页）</span></div><div class="ti">Raycast Store：Easy Dictionary（扩展版）</div><div class="mt"><b>来源：</b>raycast.com　<b>查询时点：</b>2026-11-13<br><a href="https://www.raycast.com/isfeng/easydict" target="_blank" rel="noopener">https://www.raycast.com/isfeng/easydict</a></div><div class="note">事实核查：41,844 次安装、 Originally developed by tisfeng, currently maintained by maxchang3、支持 48+ 语言、Raycast AI 与 OpenAI 兼容端点、Anki 导出；版本历史页显示 2024-01-08 已迭代至 v2.9。生态衍生数据，不计入主应用用户量。</div></li>
+  <li id="ref-13" class="src"><div class="sh"><span class="idx cross">[13]</span><span class="rt">B+</span><span class="st">开源聚合平台</span></div><div class="ti">HelloGitHub 收录页：tisfeng/Easydict</div><div class="mt"><b>来源：</b>hellogithub.com　<b>查询时点：</b>2026-11<br><a href="https://hellogithub.com/repository/b31e644406564929856c7a3529e873f2" target="_blank" rel="noopener">https://hellogithub.com/repository/b31e644406564929856c7a3529e873f2</a></div><div class="note">事实核查：15.3k 星、79 贡献者、195 issues、810 forks、活跃标记、GPL-3.0；与 GitHub API [1] 实测值（15,296 / 812）交叉吻合，贡献者 79 人为该页独立数据。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx cross">[6]</span><span class="rt">B</span><span class="st">独立评测（英文）</span></div><div class="ti">Easydict Review: The Free Mac Translator That Beats Paid OCR Apps（Spineye，8.2/10）</div><div class="mt"><b>来源：</b>spineye.com（作者 Ben-G，研究型评测，无返利）　<b>发布日期：</b>2026-08-07（2026-09-29 更新）<br><a href="https://spineye.com/easydict-review/" target="_blank" rel="noopener">https://spineye.com/easydict-review/</a></div><div class="note">事实核查：评分 8.2/10、「Free — no tiers, no trial, no paywalled features」、时点数据 14.2k 星 / 715 fork / 4,058 commits、Ollama 本地隐私论证、r/macapps 用户引用（334 赞推荐帖）、缺点清单（BYOK、中文优先文档、快捷键冲突、仅 macOS）；其数据可回溯至 GitHub 仓库一手文档 [1][2]。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx partial">[12]</span><span class="rt">C+</span><span class="st">第三方博客指南</span></div><div class="ti">Easydict：查词、划词翻译与识别图片文字（Mac 入门指南）</div><div class="mt"><b>来源：</b>macos.einverne.info　<b>最后更新：</b>2026-09-24<br><a href="https://macos.einverne.info/apps/productivity/easydict" target="_blank" rel="noopener">https://macos.einverne.info/apps/productivity/easydict</a></div><div class="note">事实核查：「免费开源、可自愿支持开发」「接入的翻译或 AI 服务可能需要账户、API 密钥与独立付费」「OCR 可以在本机完成，但之后的在线翻译是另一个处理过程」等提醒出自此页；为个人博客观点性指南，按 partial 标注。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx partial">[8]</span><span class="rt">C+</span><span class="st">技术社区（V2EX）</span></div><div class="ti">「我发现了: Bob 和 easydict 其实是真爱」（用户工作流讨论）</div><div class="mt"><b>来源：</b>v2ex.com/t/1018475　<b>发帖日期：</b>2024-02（页面口径）<br><a href="https://v2ex.com/t/1018475" target="_blank" rel="noopener">https://v2ex.com/t/1018475</a></div><div class="note">事实核查：Bob/Easydict 查词 + 欧路 API 生词本 + Anki 的用户工作流出自此帖；发帖时点 Easydict 尚未支持欧路 API、Bob 支持，为用户自述口径。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx partial">[9]</span><span class="rt">C</span><span class="st">技术社区（V2EX）</span></div><div class="ti">「Bob 严重被低估，应该 mac 上最好用的 AI 助手」（含对 Easydict 的负评价）</div><div class="mt"><b>来源：</b>v2ex.com/t/1019994　<b>发帖日期：</b>2024 年（页面口径）<br><a href="https://v2ex.com/t/1019994" target="_blank" rel="noopener">https://v2ex.com/t/1019994</a></div><div class="note">事实核查：「免费的 easydict，不仅不支持自定义 prompt，占用是 bob 的三倍多」为单一用户观点性陈述，无实测复核，按 C 级收录并如实标注为观点；可能与后续版本迭代情况不符。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx cross">[11]</span><span class="rt">B</span><span class="st">技术社区（掘金，官方文档转载）</span></div><div class="ti">DeepSeek 实用集成——将 DeepSeek 大模型能力轻松接入各类软件</div><div class="mt"><b>来源：</b>juejin.cn（DeepSeek 官方「实用集成」文档转载）　<b>查询时点：</b>2026-11<br><a href="https://juejin.cn/post/7471552631855022131" target="_blank" rel="noopener">https://juejin.cn/post/7471552631855022131</a></div><div class="note">事实核查：官方集成清单将 Easydict 描述为「简洁易用的词典翻译 macOS App，能够轻松优雅地查找单词或翻译文本，支持调用大语言模型 API 翻译」；与 README [2] 服务列表交叉印证大模型接入能力。</div></li>
+  <li id="ref-14" class="src"><div class="sh"><span class="idx partial">[14]</span><span class="rt">C+</span><span class="st">社区移植项目页</span></div><div class="ti">Easydict for Windows（社区移植版，xiaocang）</div><div class="mt"><b>来源：</b>xiaocang.github.io（另见 Microsoft Apps 商店页）　<b>查询时点：</b>2026-11<br><a href="https://xiaocang.github.io/easydict_win32/" target="_blank" rel="noopener">https://xiaocang.github.io/easydict_win32/</a></div><div class="note">事实核查：Windows 移植版自述「Inspired by Easydict for macOS」「移植自流行的 macOS 应用」，支持 18+ 翻译服务、全局快捷键与划词翻译，并上架 Microsoft 应用商店；非官方项目，仅作为「跨平台需求外溢」的生态佐证。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 14 条。核验标签分布：🟢 已核验（verified）4 条（GitHub Repo/Users/Releases API 与 README，四路一手互证）、🔵 多源印证（cross）5 条（Homebrew、Raycast、HelloGitHub、Spineye 评测、掘金官方文档转载）、🟡 部分映证（partial）5 条（V2EX 三帖、个人博客指南、社区移植页）。信源评级分布：A 级 4 条（GitHub 一手 API/README，星标经 HelloGitHub 与 Spineye 双重交叉）、B+/B 级 5 条、C+/C 级 5 条（社区与观点性内容，均已标注口径）。关键数据三角验证：星标 15,296（2026-11-13 API 实测）↔ HelloGitHub 15.3k ↔ Spineye 2026-08 记录 14.2k，三者时序吻合；「初始版本基于 Bob（GPL-3.0）开发」由官方 README 与 V2EX 帖双源印证。商业化信息（赞助金额、营收）与作者真实身份信息确未公开，正文均以「未检索到公开信息」如实标注。未发现伪造链接；全部 URL 为检索过程实际命中页面，核验失败 URL 0 条。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-13 · 星标等时点数据随时间变动，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

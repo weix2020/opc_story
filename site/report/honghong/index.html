@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · 哄哄模拟器 / 6pen——王登科（DK）的爆款流水线 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · 哄哄模拟器 / 6pen">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="哄哄模拟器 / 6pen 深度案例报告：连续创业者王登科（DK）以个人项目时期作品收录——哄哄模拟器上线 24 小时 60 万用户、2000 万次对话，6pen 一个月 10 万注册。15 条信源逐条核验，显式说明与后继产品「独响」团队化口径的切割。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>哄哄模拟器 / 6pen 深度案例报告</h1>
+    <h2>连续创业者王登科（DK）：一个月 10 万注册的 AI 绘画平台，<br>与上线 24 小时 60 万用户、2000 万次对话的现象级爆款 —— 15 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">产品型 OPC · 个人项目时期</span>
+      <span class="tag">大模型应用</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">60 万</div><div class="k">哄哄模拟器上线 24 小时用户（当天涌入 68 万）</div></div>
+  <div class="stat"><div class="v up">2000 万</div><div class="k">24 小时内对话次数（十几亿 token）</div></div>
+  <div class="stat"><div class="v neutral">10 万</div><div class="k">6pen 上线 1 个月注册用户</div></div>
+  <div class="stat"><div class="v neutral">5 万日活</div><div class="k">后继产品「独响」（已团队化融资 · 口径切割）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">本案例收录王登科（网名 DK）的两个「个人项目时期」代表作品：AI 绘画平台「6pen」与哄女友情景对话游戏「哄哄模拟器」。前者在 Midjourney 与 Stable Diffusion 尚未大火的 2022 年做到上线一个月 10 万注册，后者于 2024 年 1 月以零买量、零推广的姿态在 24 小时内涌入 60 万用户——是大模型应用时代中国个人开发者「短期爆款」的最高水位样本之一。<a class="cref verified" href="#ref-1">[1]</a></p>
+  <div class="two">
+    <div class="card"><div class="ct">作品一：哄哄模拟器（2024-01）</div><div class="cb">哄女友情景对话 AI 游戏：玩家进入「你吃了对象爱吃的丸子，她生气了」等吵架场景，需在限定聊天次数内把 AI 扮演的生气对象哄好，是否成功由随对话变动的「原谅值」数值系统判定。先有 iOS App（用户仅数百人），后以「自学 react 的练手作」名义上线网页版（hong.greatdk.com）并意外爆火；后台先调 GPT-3.5，爆火后全量切换月之暗面 Moonshot。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-11">[11]</a></div></div>
+    <div class="card"><div class="ct">作品二：6pen（2022）</div><div class="cb">开源模型 AI 绘画平台：以 Disco Diffusion 起步（模型「西瓜」），后基于 Stable Diffusion 自研「南瓜」系列模型，提供数百款开源及独家模型、参考图精准控制、自定义模型训练，逐步打造 AIGC 社区。上线一个月注册用户 10 万、生成图片 50 万张；累计口径超百万用户、生成过亿张图片。2026 年官网已发布告别页，用户点数可迁移至 6pen Pro。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-7">[7]</a> <a class="cref partial" href="#ref-15">[15]</a> <a class="cref cross" href="#ref-6">[6]</a></div></div>
+    <div class="card"><div class="ct">创业者：王登科（DK）</div><div class="cb">连续创业者，无名校背景，自称从 0 开始自学神经网络与建模；工作方式「非典型」——晚上 10 点半就睡、下午三四点散步钓鱼，刻意保留大量空余时间以产出灵感。2016-10-10 即注册北京毛线球科技有限公司（法定代表人王登科，注册资本 130.777 万元），公司化主体早于 6pen 存在；截至品玩 2024 年 8 月访谈已做了十几个 AI 产品。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-9">[9]</a></div></div>
+    <div class="card blue"><div class="ct">⚠️ 收录口径说明（重要）</div><div class="cb">案例墙按<b>「个人项目时期」</b>收录本案：哄哄模拟器为 DK 本人明确的个人业余项目（「除了团队的，我个人也做了一些，像哄哄模拟器」<a class="cref verified" href="#ref-1">[1]</a>）；6pen 出品方为 DK 创办的毛线球科技（小团队作战），但属于其个人主导、尚未融资团队化时期的作品，故按个人项目时期一并收录。其后继产品「独响」（北京暴裂果实科技开发）已于 2025 年完成锦秋基金百万美元种子轮并配置产品合伙人、探索 AI 硬件，<b>已团队化，不计入本案个人项目口径</b>。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-8">[8]</a> <a class="cref cross" href="#ref-9">[9]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2016-10-10</div><div class="tx">北京毛线球科技有限公司注册</div><div class="td">法定代表人王登科，注册资本 130.777 万元——DK 的公司化主体早于其 AI 产品线六年即已存在。<a class="cref cross" href="#ref-9">[9]</a></div></div>
+    <div class="node"><div class="dt">2022 年上半年</div><div class="tx">文生图产品「6pen」立项上线（上线时间存在三口径）</div><div class="td">起因是觉得 Disco Diffusion 有趣且市场无同类产品；DK 自学神经网络自己建模。公司口径为 2022 年 4 月成立、7 月产品正式上线，第三方收录口径为 6 月上线。<a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-7">[7]</a><a class="cref partial" href="#ref-15">[15]</a></div></div>
+    <div class="node"><div class="dt">2022 年底 → 2023 年中</div><div class="tx">Stable Diffusion 突然开源，年底冒出 300 个同质化应用</div><div class="td">文生图模型效果受限、赛道同质化，DK 团队转向文本大模型做泛娱乐应用；DK 个人同期做出 AI 记录食物热量的 FoodCa 等。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2024-01 中旬（锚点 2024-01-15 ✓）</div><div class="tx">哄哄模拟器网页版上线，24 小时爆火</div><div class="td">起源是与女朋友的一次吵架：把生气的对方想象成头上有「原谅值」进度条的机器人。网页版为学 react 的练手作，上线首日用户仅几百；次日晚流量「像从黑洞来」，睡前即时在线 2000，次日早上在线 5000、日活近 10 万。24 小时涌入 60 万用户、消耗十几亿 token、发生 2000 万次对话。<a class="cref verified" href="#ref-2">[2]</a><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2024-01 爆火当日</div><div class="tx">成本黑洞与「救命」切换：GPT → 奇绩校友账号池 → Moonshot 全量</div><div class="td">GPT-3.5 一晚跑 1 亿 token 花费 150 美元，午间账单逼近 1000 美元；TPM 打满致 1/3 用户无法使用。奇绩创坛校友尹伯昊（猴子无限）提供高限额账号池（消耗 340 美元，未收钱），月之暗面 Moonshot 免费供模型、页面展示品牌，当晚八点半全量切换。晚九点腾讯屏蔽网页，当天涌入最终定格 68 万。<a class="cref verified" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2024-01-22 → 02-08</div><div class="tx">DK 发布复盘长文；产品被更多媒体收录</div><div class="td">复盘文确认微信/QQ 反复「晚屏蔽、晨解封」折腾三四次，流量折腾中迅速回落；TechWeb 收录时产品已使用月之暗面 Kimi Chat 驱动。<a class="cref verified" href="#ref-2">[2]</a><a class="cref partial" href="#ref-12">[12]</a><a class="cref cross" href="#ref-11">[11]</a></div></div>
+    <div class="node"><div class="dt">2024-06</div><div class="tx">新华网复盘式报道：AI 聊天产品的「一波流」现象</div><div class="td">新华网将其与《决战拜年之巅》并列讨论，口径：最高峰即时在线近 6 万、日活曾达 10 万、超 60 万用户体验。<a class="cref cross" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2024-08-13</div><div class="tx">品玩专访：「一波流」与「所以没人投我」</div><div class="td">哄哄模拟器之后的 OC 测试超 30 万人访问、带来数万 App 下载转化，「名家嘴替」在小红书走红，但多数产品沦为「一波流」；DK 称「不同产品的预期一开始就不同……所以没人投我」。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2025-05-13</div><div class="tx">「独响」归来：日活 5 万 + 锦秋基金百万美元种子轮（团队化起点）</div><div class="td">未做投放宣传、约 10 个月积累 5 万日活；产品合伙人加入、开始 AI 硬件探索——DK 从「不适合资本路线」转向拥抱资本。该节点已超出本案个人项目口径，仅作后继脉络记录。<a class="cref cross" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2026 年</div><div class="tx">6pen 官网告别；独响主体获评国家级科技型中小企业；咪墨机单词机推出</div><div class="td">6pen 官网发布告别页并导流 6pen Pro / 独响 / 哄哄模拟器（在线版仍运营，称「数百万人体验」）；暴裂果实获评 2026 年国家级科技型中小企业；2026-09 新浪报道王登科团队推出 AI 单词机咪墨机。<a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-9">[9]</a><a class="cref partial" href="#ref-10">[10]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：6pen 的「起大早、赶晚集」——先发者被开源洪流抹平</div><div class="cb">6pen 立项时 Disco Diffusion「市场上还没有类似的产品」<a class="cref verified" href="#ref-1">[1]</a>，一个月 10 万注册验证了需求；但 Stable Diffusion 突然开源后「年底冒出来 300 个同质化的应用」，文生图模型效果本身受限，团队于 2023 年中整体转向文本大模型泛娱乐。这次「被开源冲垮」的经历沉淀为方法论：技术相通，之后的模型切换与产品开发更容易——也埋下了「做应用不追壁垒、追手感」的产品观。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a></div></div>
+  <div class="card"><div class="ct">转折二：一次吵架 + 自学 react 的练手作，踩中大模型游戏化的空白点</div><div class="cb">哄哄模拟器的创意来自把生气对象想象成头上有进度条的机器人；工程上，DK 在大模型输入之前与输出之后做了大量工程化——模型先输出「原谅值」数值，数值再引导生成回复并承担游戏规则判定，「在大模型出现之前，数值系统都是按照既定规则写死的，不可能做到」<a class="cref verified" href="#ref-2">[2]</a>。它不是又一个 AI 聊天皮肤，而是把大模型第一次塞进了「游戏化数值体验」的空位——这是 24 小时 60 万用户的根本原因，也是同期 AI 情感赛道（Character.ai、星野、GLOW 等）同质化产品里长出的黑马。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-1">[1]</a></div></div>
+  <div class="card red"><div class="ct">转折三：爆款即成本黑洞——「一波流」的宿命与团队化的出走</div><div class="cb">哄哄模拟器是 DK「最亏钱的项目，但也最火」：一晚上烧掉几千美元，无注册登录系统、加广告也无法平衡成本，「运行成本可能是传统爆火产品的上千倍」<a class="cref verified" href="#ref-2">[2]</a>；腾讯反复屏蔽又解封折腾三四次，流量迅速回落<a class="cref verified" href="#ref-2">[2]</a>。OC 测试、名家嘴替等后续尝试也均成「一波流」——「不存在绝对的技术壁垒……能破圈就破，破不了就算了」<a class="cref verified" href="#ref-1">[1]</a>。个人试错的终点在 2025 年出现分野：面向长期情感链接的「独响」以团队形态拿下种子轮，个人项目时期就此收官。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-8">[8]</a></div></div>
+  <div class="quote">
+    <p>其实没有什么方法论，如果「能火」这件事可以被方法论，那字节应该做一个成一个才对。……产品不一定要做大，但一定要好。不可能每个人都奔着超级 APP 的目标去，事实也证明了没有那么多超级 APP。</p>
+    <span class="src">—— 王登科（DK），品玩·硅星人专访（2024-08-13），转引自 <a class="cref verified" href="#ref-1">[1]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>哄哄模拟器</th><th>6pen</th></tr></thead>
+    <tbody>
+      <tr><td><b>产品形态 / 玩法</b></td><td>哄女友情景对话 AI 游戏：内置常见情侣吵架场景，限定聊天次数内哄好 AI，成败由「原谅值」数值系统判定；模型输出数值引导回复、数值承担规则判定 <a class="cref verified" href="#ref-2">[2]</a></td><td>开源模型 AI 绘画平台：Disco Diffusion 起步（「西瓜」模型），后自研「南瓜」系列（第三代美学效果接近 Midjourney），数百款开源及独家模型、ControlNet 参考图控制、上传图片训练定制模型、社区故事共创 <a class="cref cross" href="#ref-7">[7]</a><a class="cref partial" href="#ref-15">[15]</a></td></tr>
+      <tr><td><b>爆火 / 增长机制</b></td><td>QQ 空间帖子获数千次转发 → 无数 QQ 群私域裂变；传播节点分散、无 KOL、0 买量，流量「像从黑洞来」无法归因 <a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-3">[3]</a></td><td>卡位先发（Disco Diffusion 无同类产品）+ 开源模型聚合降低使用门槛；Stable Diffusion 开源后陷入 300 个同质化应用的围剿 <a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>商业模式 / 开源策略</b></td><td>无注册登录、无广告、无付费——纯实验品；爆火后靠 Moonshot 免费供给 + 品牌曝光对冲成本；官方源码开源情况未检索到一手确认，社区出现多个第三方开源仿制版（如基于 Gemini 的 HongHongAI）<a class="cref verified" href="#ref-2">[2]</a><a class="cref partial" href="#ref-14">[14]</a></td><td>点数制（官网告别页确认点数可迁移 6pen Pro）；官方未见开源平台源码的公开信息，但其模型生态建立在开源模型之上 <a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td><b>面向客群</b></td><td>QQ 空间原生代：大学生、高中生为主，最大年龄区间 16-20 岁——与 DK 既往产品的 30-40 岁用户完全不同 <a class="cref verified" href="#ref-2">[2]</a></td><td>AI 绘画爱好者与 AIGC 创作者（2022 年先于主流绘画浪潮入场）<a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>解决痛点</b></td><td>恋爱冲突的「演练场」：把吵架、道歉、哄人的沟通练习变成低风险游戏；同时验证「大模型 + 数值化」的游戏体验可行性 <a class="cref verified" href="#ref-2">[2]</a></td><td>开源绘画模型部署/调参门槛高，6pen 提供开箱即用的云端生成与模型广场 <a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>结局 / 去向</b></td><td>流量被腾讯反复屏蔽后迅速回落，未做商业化收尾；在线版至今仍运营（6pen 官网导流口称「数百万人体验」）<a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-6">[6]</a></td><td>2026 年官网发布告别页，用户迁移至 6pen Pro；团队重心转向独响与 AI 硬件 <a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box insight">
+    <div class="bt">💡 商业模式的一个关键细节</div>
+    DK 在 2024 年访谈中复盘：「大多数大模型的 2C 产品都没有建立好的商业模式。所以我们会尽可能在产品的更早期就把商业模式放进去，我们现在的产品能实现略有盈利」<a class="cref verified" href="#ref-1">[1]</a>——哄哄模拟器是刻意的例外（不赚钱的实验），而这份实验的数据后来以「游戏化数值化概念」的形式融入了其团队产品的设计并「效果很好」<a class="cref verified" href="#ref-1">[1]</a>。
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>哄哄模拟器上线 24 小时用户</td><td class="hl">60 万（当天涌入最终定格 68 万；36氪标题口径 70 万）</td><td>2024-01 爆火当日</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref partial" href="#ref-5">[5]</a></td></tr>
+      <tr><td>24 小时对话次数</td><td class="hl">2000 万次</td><td>2024-01 爆火当日</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td>token 消耗</td><td>十几亿 token（24h 口径）；「10 亿 token 一天烧完」（36氪/北青报口径）</td><td>2024-01</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref partial" href="#ref-5">[5]</a><a class="cref partial" href="#ref-12">[12]</a></td></tr>
+      <tr><td>日活</td><td>接近 10 万（爆火次日晨）；新华网口径「日活跃用户曾达 10 万」</td><td>2024-01 / 2024-06 回溯</td><td><a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td>峰值即时在线</td><td>近 6 万（新华网口径）；DK 复盘时间线：睡前 2000 → 晨 5000 → 午 2 万 → 3 万 → 4 万</td><td>2024-01</td><td><a class="cref cross" href="#ref-4">[4]</a><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td>爆火期算力成本</td><td class="hl">一晚烧掉几千美元（品玩；自媒体转述口径「一晚亏两千刀」）；GPT-3.5 一晚 1 亿 token 计 150 美元起步，午间账单逼近 1000 美元；校友账号池消耗 340 美元</td><td>2024-01 爆火当日</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a><a class="cref partial" href="#ref-13">[13]</a></td></tr>
+      <tr><td>6pen 注册用户</td><td>上线 1 个月 10 万；生成图片 50 万张</td><td>2022 年</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>6pen 累计（后续口径）</td><td>超百万用户、生成过亿张图片（第三方收录页）</td><td>截至收录时点</td><td><a class="cref partial" href="#ref-15">[15]</a></td></tr>
+      <tr><td>OC测试（后续个人/团队试水）</td><td>超 30 万人访问，带来数万 App 下载转化</td><td>2024-08 访谈披露</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>独响（后继产品 · 已团队化）</td><td>5 万日活（零投放、约 10 个月）；锦秋基金百万美元种子轮</td><td>2025-05 报道</td><td><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    核心数据（60 万用户 / 2000 万次对话 / 十几亿 token）为品玩与 DK 本人复盘的<b>当时媒体与自述口径</b>，经腾讯新闻、新华网在独立报道中回溯印证；36氪「70 万」与 DK「68 万」的差异源于统计时点与传播范围（DK 明言若无腾讯屏蔽「可能会过百万」）<a class="cref verified" href="#ref-2">[2]</a>。营收数据零披露：哄哄模拟器无商业化设计，6pen 收入结构未见公开信息。独响数据属团队化时期，不计入本案口径。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将哄哄模拟器放入案例墙「大模型情感/游戏化应用」坐标系（对标数据均为案例墙既有核验值，口径为各案例独立信源的公开报道值）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>核心数据</th><th>生命周期特征</th></tr></thead>
+    <tbody>
+      <tr><td><b>哄哄模拟器 / 6pen</b></td><td>王登科（DK）</td><td>情景对话 AI 游戏 / 开源模型绘画平台</td><td>24h 60 万用户、2000 万次对话；6pen 一个月 10 万注册</td><td class="hl">短期爆款：24 小时登顶 → 屏蔽回落 → 未商业化，经验反哺团队产品</td></tr>
+      <tr><td>猜盐 / 猜病</td><td>张月（前阿里工程师）</td><td>大模型信息游戏化矩阵（AI 病人问诊推理、街景定位等几十种玩法）</td><td>累计用户 160 万、最高日活 20 万；2025 营收同比增 3 倍</td><td class="pos">长线矩阵：多玩法矩阵续命，持续运营三年仍在增长</td></tr>
+      <tr><td>EmoEase</td><td>冼星朗（05 后学生开发者）</td><td>AI 情绪记录疗愈 App（Cursor/Trae 零基础 20 天开发）</td><td>上线即冲 App Store 付费工具榜第 5（4 发布方交叉）</td><td>工具型：情绪记录刚需 + 榜单冷启动，走细水长流路线</td></tr>
+      <tr><td>胃之书</td><td>赵纯想（前大厂产品经理）</td><td>拍照记录饮食的 AI App</td><td>约 9 万用户、5 个月收入 1.2 万美元</td><td>垂类工具：单点需求深耕；DK 的 FoodCa 早其 7 个月上线但未投入运营 <a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>沉浸式翻译</td><td>Owen Young</td><td>AI 双语翻译插件</td><td>全球激活用户破 3000 万</td><td class="pos">效率长跑：高频刚需 + 持续迭代，个人起步最终被收购</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>对标揭示的最大分野是<b>「短期爆款」的生命周期问题</b>：哄哄模拟器以私域裂变创造了本组最高的瞬时增速（24 小时 60 万用户），但增长引擎（QQ 空间/QQ 群）不可控、平台屏蔽不可抗、变现设计为零，爆发后迅速回落；而同在游戏化赛道的「猜盐/猜病」以几十种玩法的矩阵摊薄单款衰退风险、用订阅与增值将流量转为收入，走出了完全不同的曲线。<a class="cref verified" href="#ref-2">[2]</a> DK 本人对「一波流」的清醒——「即便一瞬间涌来千万用户，最终也会归零……重要的是建立好的商业模式和构建好的留存」<a class="cref verified" href="#ref-1">[1]</a>——恰是这条分界线的最好注脚。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:150px">维度</th><th>分析</th><th style="width:170px">信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>「数值先行」的对话游戏架构：大模型先输出原谅值，数值引导回复生成并承担游戏规则判定——把大模型从「聊天器」改造成「游戏引擎」；6pen 则是开源模型的聚合与产品化（模型广场/参考图控制/定制训练）。</td><td><a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>2. 面向客群</b></td><td>哄哄模拟器意外命中 QQ 空间原生代（16-20 岁为主），与开发者本人所在龄层完全错位——「没有预期反而是一种更有可能性的心态」；6pen 面向 2022 年率先尝鲜 AIGC 的绘画创作者。独响时期客群延续为高中生/大学生、以女性为主。</td><td><a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td><b>3. 解决痛点</b></td><td>情感侧：为「吵架不会哄」提供零风险的练习场与娱乐体验；供给侧：验证了大模型做游戏化体验的工程可行性。6pen 痛点则是开源绘画模型的部署与调参门槛。两者均为「给人带来快乐」而非「提高效率」的产品路线。</td><td><a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>4. 商业模式</b></td><td>哄哄模拟器零变现（无注册、无广告、无付费），爆火期完全靠 Moonshot 免费额度与品牌置换对冲成本；6pen 点数制收费。DK 复盘的核心教训：变现与留存必须在产品更早期放入，否则「一瞬间涌来千万用户，最终也会归零」。</td><td><a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-6">[6]</a> <a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td class="hl"><b>5. 爆款产品的留存与变现难题（重点复盘）</b></td><td class="hl">24 小时爆火后的持续性问题三层夹击：① 成本侧——无用户系统则广告无法归因变现，大模型边际成本是传统爆款的千倍，TPM 打满直接造成 1/3 用户不可用；② 流量侧——QQ 空间/QQ 群私域裂变无 KOL、无归因、不可复购，腾讯「晚屏蔽、晨解封」反复三四次腰斩主传播链路；③ 产品侧——哄好即通关，缺乏长期留存钩子。DK 的应对是价值取舍：不为变现「恶心用户」，把 68 万流量当作模型能力的实验数据，其游戏化数值概念后来融入团队产品「效果很好」——即「个人小产品试错 → 团队化产品收口」的路径。</td><td><a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td><b>6. 融资与资本路径</b></td><td>个人项目时期明确拒绝资本叙事：「所以没人投我」「假如不去拿 VC 的钱，可能会活得更好」；2024 年 8 月透露「看到了能做得很大的机会」并开始与 VC 交流——2025 年 5 月独响落地锦秋基金百万美元种子轮。个人试错验证需求 → 数据说服资本 → 团队化放大，是一条完整的 OPC 进化链。</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td><b>7. 情感对话类内容合规</b></td><td>哄哄模拟器是国内最早撞上内容安全机制的大模型情感产品之一：腾讯对网页「晚屏蔽、晨解封」折腾三四次，DK 推测系流量激增触发机制或用户诱导出格内容后举报——这为后来的独响提供了反面教材（「一旦用户心智进入擦边模式，就很难建立深度、长期的情感链接」）；独响明确以「没有擦边」验证商业模式为卖点。个人开发者面对平台内容管控几乎无议价能力，是情感对话赛道的结构性风险。</td><td><a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-8">[8]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 五处口径冲突与留白（截至 2026-11-13 检索）</div>
+    ① 用户数三口径并存：60 万（品玩/腾讯/新华网主流口径）、68 万（DK 复盘：当天涌入最终定格值）、70 万（36氪标题口径）——正文以 60 万为基线、68 万并列存档；② token 口径：十几亿（品玩/DK）vs「10 亿一天」（36氪/北青报）——量级一致、统计窗口表述不同；③ 6pen 上线时间三口径：2022 上半年（品玩访谈）/2022-04 成立、7 月正式上线（腾讯全景图）/2022-06 上线（第三方收录页）；④「DK 开源哄哄模拟器源码」之说未检索到一手确认——已核实的开源仓库均为社区第三方仿制版（如 johanazhu/honghongai），官方开源情况按「未检索到公开信息」处理；⑤ 哄哄模拟器与 6pen 的营收/利润数据零披露，无法评估个人项目时期的真实商业回报。
+  </div>
+  <div class="box note">
+    <div class="bt">📌 「个人项目时期」与后续团队化的切割说明</div>
+    本案在案例墙中按个人项目时期收录，需与 DK 后续的团队化主体明确切割：① 哄哄模拟器为 DK 自述的个人业余项目（「除了团队的，我个人也做了一些」）；② 6pen 出品主体为毛线球科技（DK 创办的小团队，尚未外部融资），属其个人主导时期作品；③ 后继产品「独响」由北京暴裂果实科技开发，2025 年完成锦秋基金百万美元种子轮、配置产品合伙人并探索 AI 硬件，2026 年获评国家级科技型中小企业——该阶段数据（5 万日活等）<b>不计入</b>本案个人项目口径，仅作后继脉络记录；④ 2026-09 报道的 AI 单词机「咪墨机」亦为团队产品。引用本案数据时，请一律注明「以个人项目时期为准」。
+  </div>
+  <div class="card"><div class="ct">本案的样本价值</div><div class="cb">哄哄模拟器证明了个人开发者在「瞬时爆发力」上的极限：零预算、零买量、练手级代码，24 小时打穿 60 万用户——这是大模型平权时代个体创造力的最高水位之一。但它同时是「短期爆款」的完整标本：成本黑洞、平台屏蔽、无留存钩子、零变现设计，爆发即巅峰。DK 用四年时间把两次爆款经验（6pen 的先发被冲垮、哄哄模拟器的爆火难变现）逐步转化为方法论，最终以团队化的独响完成从「一波流」到「长期链接」的进化——这条「个人试错 → 团队收口」的路径本身，比任何单一产品的数据都更有案例价值。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-8">[8]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 15 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx verified">[1]</span><span class="rt">B+</span><span class="st">主流科技媒体专访</span></div><div class="ti">对话王登科：「哄哄模拟器」半年后，非典型创业者乱拳打死老师傅？（硅星人·品玩，作者黄小艺）</div><div class="mt"><b>来源：</b>品玩 pingwest.com　<b>发布日期：</b>2024-08-13<br><a href="https://www.pingwest.com/a/297389" target="_blank" rel="noopener">https://www.pingwest.com/a/297389</a></div><div class="note">事实核查：原文回溯完成。24h 60 万用户/十几亿 token/2000 万次对话、一晚烧几千美元、6pen 一个月 10 万注册/50 万张图片、OC测试 30 万访问、「所以没人投我」、FoodCa 等均出自此稿；与 [2][3][4][5] 多源交叉一致。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx verified">[2]</span><span class="rt">A</span><span class="st">创作者一手复盘</span></div><div class="ti">哄哄模拟器的完整复盘，火了，但一度让我很发愁（王登科-DK博客）</div><div class="mt"><b>来源：</b>greatdk.com（DK 本人博客，一手）　<b>发布日期：</b>2024-01-22<br><a href="https://greatdk.com/1962.html" target="_blank" rel="noopener">https://greatdk.com/1962.html</a></div><div class="note">事实核查：原文回溯完成。吵架起源、iOS 版先行（数百用户）、网页版为学 react 练手作、GPT-3.5 计费与 TPM 打满、QQ 空间帖子数千转发+QQ 群传播、腾讯反复屏蔽、当天涌入 68 万、Moonshot 全量切换、尹伯昊 340 美元、16-20 岁用户画像等关键细节均为一手；核心数据与 [1][3][4] 交叉一致。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx cross">[3]</span><span class="rt">B+</span><span class="st">门户媒体报道</span></div><div class="ti">AI原生应用哄哄模拟器爆火，24小时吸引60万用户</div><div class="mt"><b>来源：</b>腾讯新闻　<b>发布日期：</b>2024-01-25<br><a href="https://view.inews.qq.com/k/20240125A06RNC00" target="_blank" rel="noopener">https://view.inews.qq.com/k/20240125A06RNC00</a></div><div class="note">事实核查：QQ 空间帖子+QQ 群传播、一夜之间用户量过万、日活接近 10 万、超 60 万用户体验，与 [2] 一手复盘交叉印证；确认网页版 hong.greatdk.com 为最早火起来的版本。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx cross">[4]</span><span class="rt">A</span><span class="st">央媒报道</span></div><div class="ti">和AI聊天，真的很无聊？（新华网）</div><div class="mt"><b>来源：</b>新华网　<b>发布日期：</b>2024-06-07<br><a href="https://www.news.cn/tech/20240607/bdc59b9024b345ffb632862ca7fb1055/c.html" target="_blank" rel="noopener">https://www.news.cn/tech/20240607/bdc59b9024b345ffb632862ca7fb1055/c.html</a></div><div class="note">事实核查：央媒独立回溯口径——最高峰即时在线人数近 6 万、日活跃用户曾达 10 万、超 60 万用户体验；与 [2][3] 一致，并补充峰值在线数据点。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx partial">[5]</span><span class="rt">B+</span><span class="st">财经科技媒体</span></div><div class="ti">「哄哄模拟器」24小时爆火，70万网友在线哄赛博女友，10亿token一天烧完</div><div class="mt"><b>来源：</b>36氪　<b>发布日期：</b>2024-01（爆火期内）<br><a href="https://www.36kr.com/p/2616770651347073" target="_blank" rel="noopener">https://www.36kr.com/p/2616770651347073</a></div><div class="note">事实核查：「70 万用户/10 亿 token 一天」为 36氪口径，与主流 60 万/十几亿 token 口径存在统计时点差异，按并存口径收录；爆火时间节点与 [2] 一致。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx cross">[6]</span><span class="rt">A</span><span class="st">产品官网（一手）</span></div><div class="ti">6pen 官网告别页（导流 6pen Pro / 独响 APP / 哄哄模拟器）</div><div class="mt"><b>来源：</b>6pen.art（产品官方页面，一手）　<b>发布日期：</b>2026 年查询（告别页上线时间未标注）<br><a href="https://6pen.art" target="_blank" rel="noopener">https://6pen.art</a></div><div class="note">事实核查：确认 6pen 已发告别页、点数可迁移 6pen Pro、独响下载入口（duxiangai.com）、哄哄模拟器在线版仍运营（口径「数百万人体验」）；告别页上线具体日期页面未标注，为留白项。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">B+</span><span class="st">门户深度稿</span></div><div class="ti">12家创业公司+4家大厂全景图：谁会成为中国版Sora?</div><div class="mt"><b>来源：</b>腾讯新闻　<b>发布日期：</b>2024-03-01<br><a href="https://view.inews.qq.com/a/20240301A06Q6W00" target="_blank" rel="noopener">https://view.inews.qq.com/a/20240301A06Q6W00</a></div><div class="note">事实核查：毛线球科技（6PenArt）成立于 2022 年 4 月、产品正式上线于 7 月、基于 Disco Diffusion 的「西瓜」模型等出自此稿；与品玩访谈 [1] 的「2022 年上半年」口径存在月份级差异，双口径存档。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx cross">[8]</span><span class="rt">B+</span><span class="st">主流科技媒体独家</span></div><div class="ti">对话独响王登科：日活5万后拿到种子轮融资，AI社交的未来更清晰了吗？（硅星人·品玩）</div><div class="mt"><b>来源：</b>品玩 pingwest.com　<b>发布日期：</b>2025-05-13<br><a href="https://www.pingwest.com/a/304652" target="_blank" rel="noopener">https://www.pingwest.com/a/304652</a></div><div class="note">事实核查：原文回溯完成。独响 5 万日活（零投放、约 10 个月）、锦秋基金百万美元种子轮（硅星人独家）、产品合伙人加入、AI 硬件探索、「没有擦边验证商业模式」等出自此稿；属团队化时期口径，仅作后继脉络引用。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx cross">[9]</span><span class="rt">B</span><span class="st">工商信息（一手）</span></div><div class="ti">北京毛线球科技有限公司 / 北京暴裂果实科技有限公司（企查查工商档案）</div><div class="mt"><b>来源：</b>企查查　<b>发布日期：</b>2026-11 查询<br><a href="https://www.qcc.com/cmainmember/d47837b7161c596331974ab7675b6014" target="_blank" rel="noopener">企查查 · 毛线球科技主要人员页</a></div><div class="note">事实核查：毛线球科技成立 2016-10-10、法定代表人王登科、注册资本 130.777 万元、旗下产品独响；暴裂果实为独响开发主体、获评 2026 年国家级科技型中小企业——为口径切割提供工商证据。企业简介字段随时间可能更新，引用时以查询时点为准。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx partial">[10]</span><span class="rt">B+</span><span class="st">财经媒体报道</span></div><div class="ti">「非典型创业者」王登科，做了一款AI单词机（咪墨机 memoink）</div><div class="mt"><b>来源：</b>新浪财经（多知网）　<b>发布日期：</b>2026-09-26<br><a href="https://finance.sina.com.cn/roll/2026-09-26/doc-initcuta8579705.shtml" target="_blank" rel="noopener">https://finance.sina.com.cn/roll/2026-09-26/doc-initcuta8579705.shtml</a></div><div class="note">事实核查：咪墨机由王登科团队研发、认证主体与持股比例（46.2395%）出自此稿，为单一发布方口径（该稿自述「综合多个公开信息判断」），按部分映证收录；仅作后续动态记录。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx cross">[11]</span><span class="rt">B</span><span class="st">科技媒体报道</span></div><div class="ti">AI「神器」推荐：高情商应对亲戚提问（哄哄模拟器词条）</div><div class="mt"><b>来源：</b>TechWeb　<b>发布日期：</b>2024-02-08<br><a href="https://m.techweb.com.cn/article/2024-02-08/2940801.shtml" target="_blank" rel="noopener">https://m.techweb.com.cn/article/2024-02-08/2940801.shtml</a></div><div class="note">事实核查：「文本大模型使用了月之暗面的 Kimi Chat」与 [2] 一手复盘「全量切到 Moonshot（月之暗面）」交叉一致；「原谅值」玩法描述与 [2] 一致。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx partial">[12]</span><span class="rt">B</span><span class="st">市级党媒电子报</span></div><div class="ti">AI当红娘 破冰概率大提升（北京青年报）</div><div class="mt"><b>来源：</b>北京青年报电子报（PDF 版面 A08）　<b>发布日期：</b>2025-03-19<br><a href="http://epaper.ynet.com/images/2025-03/19/A08/bjbqb20250319A08.pdf" target="_blank" rel="noopener">http://epaper.ynet.com/images/2025-03/19/A08/bjbqb20250319A08.pdf</a></div><div class="note">事实核查：「一天内消耗了10亿token」「春节前走红」出自此稿 PDF 版面，为版面级回溯（非全文网页），按部分映证收录；token 口径与 [5] 一致、与 [1]「十几亿」并存。</div></li>
+  <li id="ref-13" class="src"><div class="sh"><span class="idx partial">[13]</span><span class="rt">C+</span><span class="st">自媒体转载</span></div><div class="ti">现在流行哄赛博女友，谈电子恋爱了？一夜爆火涌入60万用户，开发者却一晚亏了两千刀（7.GAME，搜狐号）</div><div class="mt"><b>来源：</b>搜狐号（7.GAME）　<b>发布日期：</b>2024-01<br><a href="https://m.sohu.com/a/754168956_121119410/" target="_blank" rel="noopener">https://m.sohu.com/a/754168956_121119410/</a></div><div class="note">事实核查：吵架起源、「一晚亏两千刀」口径出自此稿；与 [1] 品玩「一晚上烧掉几千美元」量级一致但表述更模糊，仅作传播广度佐证，关键数据不单独引用。</div></li>
+  <li id="ref-14" class="src"><div class="sh"><span class="idx partial">[14]</span><span class="rt">C+</span><span class="st">社区开源仿制</span></div><div class="ti">HongHongAI——模仿 DK 哄哄模拟器的第三方开源版（V2EX 发布帖 + GitHub 仓库）</div><div class="mt"><b>来源：</b>V2EX / GitHub（johanazhu/honghongai）　<b>发布日期：</b>2024-01-25<br><a href="https://v2ex.com/t/1011519" target="_blank" rel="noopener">V2EX 发布帖</a> · <a href="https://github.com/johanazhu/honghongai" target="_blank" rel="noopener">github.com/johanazhu/honghongai</a></div><div class="note">事实核查：证明哄哄模拟器爆火后社区出现多个第三方开源仿制版（基于 Gemini API）；<b>注意</b>：该仓库为社区仿制而非 DK 官方开源，「DK 开源官方源码」未检索到一手确认，正文已按「未检索到公开信息」处理。</div></li>
+  <li id="ref-15" class="src"><div class="sh"><span class="idx partial">[15]</span><span class="rt">C+</span><span class="st">第三方收录页</span></div><div class="ti">6pen 产品介绍页（累计超百万用户、生成过亿张图片）</div><div class="mt"><b>来源：</b>Mergeek 产品收录　<b>发布日期：</b>查询时点未标注<br><a href="https://www.mergeek.com/latest/JYrRwWpJ6VGnDNVQ" target="_blank" rel="noopener">https://www.mergeek.com/latest/JYrRwWpJ6VGnDNVQ</a></div><div class="note">事实核查：「6pen 自 2022 年 6 月上线」「超百万用户生成过亿张图片」「数百款开源及独家模型」「第三代南瓜模型美学接近 Midjourney」出自此收录页，为第三方转述口径、时点未标注，按部分映证收录；「2022 年 6 月上线」与 [1][7] 口径差异已在正文存档。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 15 条。核验标签分布：🟢 已核验（verified）2 条、🔵 多源印证（cross）7 条、🟡 部分映证（partial）6 条。信源评级分布：A 级 3 条（DK 一手博客、新华网、6pen 官网，原文回溯全部完成）、B+/B 级 8 条（品玩×2、腾讯新闻×2、36氪、企查查、新浪财经、TechWeb、北青报）、C+ 级 3 条（自媒体转载、社区仿制、第三方收录——均已标注口径与用途限制）。两处关键口径冲突（用户数 60/68/70 万、token 十几亿/10 亿）与 6pen 上线时间三口径均已双口径存档；「DK 开源官方源码」未获一手确认，按未检索到公开信息处理。全部 15 条 URL 为检索过程实际命中或搜索快照可见页面，未发现伪造链接。检索截止：2026-11-13。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-13 · 本案按「个人项目时期」口径收录，后继团队化数据已显式切割，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · GPT 学术优化（GPT Academic）—— 中科院博士的一个人学术工具 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · GPT 学术优化（GPT Academic）">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="GPT 学术优化（gpt_academic）深度案例报告：中科院博士 binary-husky 一人主导的学术 LLM 工具，论文润色/翻译/代码解析与插件化扩展，GitHub 71,656★（2026-11-13 API 实测），12 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>GPT 学术优化（GPT Academic）深度案例报告</h1>
+    <h2>中科院博士 binary-husky：一个人、一个插件化架构<br>把「论文润色 / 翻译 / 代码解析」做成 7.1 万星学术基建 —— 12 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">工具型 OPC</span>
+      <span class="tag">学术垂直</span>
+      <span class="tag">开源插件化</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">71,656</div><div class="k">GitHub 星标（2026-11-13 API 实测）</div></div>
+  <div class="stat"><div class="v up">1,832</div><div class="k">总 Commits（主账号占 61.3%）</div></div>
+  <div class="stat"><div class="v neutral">8,320</div><div class="k">Forks（2026-11-13 实测）</div></div>
+  <div class="stat"><div class="v neutral">2023-03-20</div><div class="k">GitHub 建仓（案例墙锚点 2023-03-15）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">GPT 学术优化（gpt_academic / GPT Academic）是 2023 年 3 月 ChatGPT 爆发窗口期诞生的学术垂直开源工具：为 GPT/GLM 等大语言模型提供面向科研场景的实用化交互界面，围绕论文阅读/润色/写作深度优化，以模块化函数插件为核心扩展机制。<sup class="cite verified">[3]</sup> 它由 GitHub 账号 binary-husky 一人主导开发至今，是「学术垂直 + 插件化」路线在国内一人开源项目中的最高星标样本之一。</p>
+  <div class="two">
+    <div class="card"><div class="ct">产品</div><div class="cb">面向学术场景的 LLM 图形界面工具：一键论文润色 / 翻译 / 语法纠错、代码工程解析与「自译解」、PDF/LaTeX/Arxiv 论文全文翻译与摘要、Latex 校对（仿 Grammarly）、谷歌学术统合等；所有功能以函数插件形式组织，支持热更新与自定义插件。<sup class="cite verified">[3]</sup> GPL-3.0 开源协议。<sup class="cite verified">[1]</sup></div><div class="cm">信源：<a class="cref verified" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">GitHub 账号 binary-husky（真名未公开，其 GitHub 用户 name 字段为空<sup class="cite verified">[2]</sup>）。身份的最直接一手证据是其 GitHub 个人简介原文「505030475@qq.com CAS PhD」——CAS 即中国科学院（Chinese Academy of Sciences）缩写；Gitee 镜像仓库描述亦写作「中科院，学术版 chatGPT」。<sup class="cite verified">[2]</sup><sup class="cite partial">[8]</sup> 账号创建于 2021-12-15，拥有 1,621 名关注者。<sup class="cite verified">[2]</sup></div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref partial" href="#ref-8">[8]</a></div></div>
+    <div class="card blue"><div class="ct">一人属性</div><div class="cb">主账号 binary-husky 累计提交 1,123 次 commits、占全项目 61.3%，为绝对主导者（2026-11-13 stats API 实测）；另存在账号 binary-sky 贡献 423 次（22.9%），两者关系未见公开说明，按从严口径单独标注。<sup class="cite verified">[2]</sup> 无公司化、无融资的公开信息；案例墙按「个人账号主导」口径收录。<sup class="cite cross">[12]</sup></div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-12">[12]</a></div></div>
+    <div class="card blue"><div class="ct">成功迹象</div><div class="cb">GitHub 星标 71,656、Fork 8,320、Watch 297、Open Issues 332（2026-11-13 API 实测<sup class="cite verified">[1]</sup>）；媒体报道链显示其开源数日即获 3.3k 星、专栏转述口径「上线几天狂揽上万 Star」。<sup class="cite partial">[5]</sup><sup class="cite partial">[9]</sup> 2024 年 8 月社区文章记录时点值约 60k 星。<sup class="cite partial">[11]</sup></div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-5">[5]</a> <a class="cref partial" href="#ref-11">[11]</a></div></div>
+  </div>
+  <div class="two">
+    <div class="card green"><div class="ct">商业化与部署生态</div><div class="cb">项目本体完全开源免费；官方 Wiki 的在线服务页提供 Huggingface Space 镜像与学术合作部署站点 academic.chatwithpaper.org（「合作关系」），测试服务器声明「受益于硅云（Silicon Cloud）的赞助」；旧版 README 曾表述「完全开源免费，您可通过订阅在线服务的方式鼓励本项目的发展」。未见股权融资、付费墙或团队扩张的公开信息。</div><div class="cm">信源：<a class="cref verified" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-8">[8]</a></div></div>
+    <div class="card green"><div class="ct">维护状态</div><div class="cb">仍处活跃维护但节奏放缓：README 记录 master 分支最新动态为 2026-01-25（新 GUI 前端测试中），与 GitHub API 最近一次推送时间 2026-01-25 精确吻合；2024-2025 年间仍持续迭代（Dockerfile 优化、qwen2.5-max 接入、自定义字体等）。<sup class="cite verified">[3]</sup><sup class="cite verified">[1]</sup></div><div class="cm">信源：<a class="cref verified" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-1">[1]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2023-03-15</div><div class="tx">项目发布（案例墙核验锚点）</div><div class="td">案例墙底稿将本项目锚点定为 2023-03-15 ✓；GitHub API 实测仓库 created_at 为 2023-03-20T09:05:13Z，两口径相差 5 天，均列存档（详见捌）。<a class="cref cross" href="#ref-12">[12]</a><a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2023-03-20 → 03-29</div><div class="tx">GitHub 建仓，数日冲上 3.3k 星</div><div class="td">建仓时项目名尚为 chatgpt_academic；新智元 3 月 29 日报道「周末刚开源，GitHub 斩获 3k+ 星」，功能清单覆盖论文润色/纠错、代码工程分析、LaTeX 阅读理解。<a class="cref verified" href="#ref-1">[1]</a><a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2023-04-13</div><div class="tx">现存最早 commit：Markdown 全文翻译插件</div><div class="td">contributor 统计中现存最早提交为「添加Markdown全文翻译插件，并用此插件翻译了本项目的README」——README 五语种版本即由该项目自身插件翻译生成，成为「自译解」能力的活广告。<a class="cref verified" href="#ref-2">[2]</a><a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2023 年上半年</div><div class="tx">版本快速迭代至 3.x，插件生态成型</div><div class="td">版本史记录：2.0 引入模块化函数插件 → 2.4 新增 PDF 全文翻译 → 3.0 支持 ChatGLM 等本地模型 → 3.1 支持多模型同时问询与多 API-Key 负载均衡 → 3.4 加入 arxiv 论文翻译与 LaTeX 批改。<a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2023-08-05 → 09-06</div><div class="tx">技术社区持续科普传播</div><div class="td">掘金专栏长文系统介绍「一键润色/中英互译/代码解释/Chat 分析报告/PDF 全文翻译」等功能；腾讯云开发者社区专栏转述其「上线几天就在 GitHub 上狂揽上万 Star」。<a class="cref partial" href="#ref-10">[10]</a><a class="cref partial" href="#ref-9">[9]</a></div></div>
+    <div class="node"><div class="dt">2023-09-12</div><div class="tx">同期背景：AIGC 学术诚信争议首次集中爆发</div><div class="td">量子位报道物理期刊 Physica Scripta 撤回一篇混入 ChatGPT 痕迹文本（「Regenerate response」）的论文；Nature 新闻称此类案例「只是冰山一角」，Elsevier 与 Springer Nature 的口径为「可以用，声明即可」——AIGC 润色工具自此被置于学术出版政策的显性讨论区。<a class="cref cross" href="#ref-6">[6]</a><a class="cref verified" href="#ref-7">[7]</a></div></div>
+    <div class="node"><div class="dt">2024-08</div><div class="tx">社区记录星标约 60k，进入稳态运营</div><div class="td">CSDN 社区文章以「GitHub 上标星 60K 的读论文和写论文的 AI 开源工具」为题推荐；同年 5 月接入 Doc2x PDF 翻译、3 月「全力支持 Qwen、GLM、DeepseekCoder 等中文大语言模型」。<a class="cref partial" href="#ref-11">[11]</a><a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2025-02 → 2026-01</div><div class="tx">持续迭代但节奏放缓</div><div class="td">2025-02 三分钟接入 qwen2.5-max、支持自定义字体；2025-08 Dockerfile 构建效率大幅优化；2026-01-25 master 分支最新动态「新 GUI 前端测试中」——与 API 最近推送时间完全吻合。<a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-11-13</div><div class="tx">本报告实测：71,656★ / 1,832 commits</div><div class="td">GitHub API 一手实测：stargazers_count 71,656、forks_count 8,320、总提交 1,832 次、100 名贡献者，与案例墙底稿 71.6k★（2026-11 时点）口径一致。<a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-12">[12]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：科研「内部人」为自己造工具——需求来自日常工位</div><div class="cb">binary-husky 的 GitHub 简介直接写明 CAS PhD（中科院博士）身份<sup class="cite verified">[2]</sup>，而项目的全部核心功能——论文润色、语法纠错、中英互译、LaTeX/PDF 全文翻译、代码工程解析——正是博士生与科研人员的日常工作流。这不是「创业者寻找用户」，而是「重度用户顺手做成产品」：作者的邮箱直接挂在简介里供协作联系，社区沟通依赖开发者 QQ 群，都是典型的个人项目形态。<sup class="cite verified" >[3]</sup> 精准的自我需求画像，让它在 ChatGPT 发布后的「科研工作流」改造浪潮中第一个踩中了学术场景。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-3">[3]</a> <a class="cref partial" href="#ref-5">[5]</a></div></div>
+  <div class="card"><div class="ct">转折二：插件化架构把「工具」升级为「平台」</div><div class="cb">2023 年 4 月版本 2.0 引入模块化函数插件后，项目演进逻辑发生质变：所有按钮由 functional.py 动态生成、插件支持热重载/热更新、用户可仿照模板低成本开发自己的插件；3.50 版本又引入「虚空终端」，用自然语言直接调度项目内全部插件。<sup class="cite verified">[3]</sup> 由此，润色/翻译之外的长尾需求（Arxiv 精细翻译、语音对话、mermaid 绘图、Doc2x）均以插件形式挂载，作者一个人不必亲自实现每个功能——架构本身替他抵消了单人产能上限，这是本项目区别于「单功能脚本」的同类项目的关键。</div><div class="cm">信源：<a class="cref verified" href="#ref-3">[3]</a></div></div>
+  <div class="card red"><div class="ct">转折三：吃准 ChatGPT 窗口期的媒体传播飞轮</div><div class="cb">上线数日即被新智元以「周末刚开源，GitHub 斩获 3k+ 星」报道<sup class="cite partial" >[5]</sup>，随后腾讯云社区、掘金、CSDN 等中文技术社区接力科普<sup class="cite partial" >[9]</sup><sup class="cite partial" >[10]</sup><sup class="cite partial" >[11]</sup>；项目自身也在为传播做设计——README 五语种版本由项目插件自动翻译生成、「项目自译解报告」可一键重生成，每次功能演示都自带传播素材。但需要如实指出：本项目的商业模式始终是「开源声誉型」而非「收入型」，官方口径为「完全开源免费，可通过订阅在线服务的方式鼓励本项目发展」，硅云赞助仅覆盖测试服务器成本，未见把 7 万星直接变现为营收的动作。<sup class="cite verified" >[4]</sup><sup class="cite partial" >[8]</sup></div><div class="cm">信源：<a class="cref partial" href="#ref-5">[5]</a> <a class="cref partial" href="#ref-9">[9]</a> <a class="cref partial" href="#ref-11">[11]</a> <a class="cref verified" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-8">[8]</a></div></div>
+  <div class="quote">
+    <p>如果喜欢这个项目，请给它一个 Star；如果您发明了好用的快捷键或插件，欢迎发 pull requests！</p>
+    <span class="src">—— gpt_academic 项目 README 原文（2026-11-13 一手回溯），见 <a class="cref verified" href="#ref-3">[3]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>内容</th><th>信源核验</th></tr></thead>
+    <tbody>
+      <tr><td><b>论文润色</b></td><td>一键润色、查找论文语法错误、Latex 一键校对（仿 Grammarly 的语法/拼写纠错并输出对照 PDF）；输出含公式时同时显示 tex 与渲染两种形式</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref partial" href="#ref-5">[5]</a></td></tr>
+      <tr><td><b>论文翻译</b></td><td>PDF 论文全文翻译（多线程）、LaTeX 全文翻译/润色、Arxiv 论文精细翻译（自称「目前最好的论文翻译工具」，一键高质量翻译）、Arxiv 小助手（URL 一键翻译摘要+下载 PDF）；2024-05 接入 Doc2x 翻译 PDF 论文</td><td><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td><b>代码解析</b></td><td>一键剖析 Python/C/C++/Java/Lua 等项目树、支持「自译解」（让 GPT 解析项目自身并生成分析报告）、批量生成函数注释</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref partial" href="#ref-5">[5]</a></td></tr>
+      <tr><td><b>插件化扩展</b></td><td>模块化函数插件体系：插件支持热更新、按钮由 functional.py 动态生成、用户可自定义插件与快捷键；「虚空终端」以自然语言调度全部插件；另有 mermaid 绘图、实时语音对话、谷歌学术统合等插件</td><td><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td><b>多模型接入</b></td><td>并行问询多种 LLM：GPT 系列、清华 ChatGLM 系列、复旦 MOSS、通义千问、文心一言、讯飞星火、DeepseekCoder、LLaMA/RWKV 等，支持多 API-Key 负载均衡与本地模型部署</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>插件生态</b></td><td>核心插件位于 crazy_functions 目录由官方维护，社区插件经 pull requests 汇入；Wiki 提供函数插件指南；README 明确欢迎用户发明插件与快捷键</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>面向客群</b></td><td>科研人员与高校师生（论文阅读/润色/翻译场景）、需要快速理解代码工程与生成技术文档的开发者；部署形态覆盖本机运行（Windows/Linux/macOS）、Docker、Huggingface Space 与合作站点</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>解决痛点</b></td><td>学术英语润色长期依赖人工编辑服务，成本高、周期长且公式/LaTeX 格式难处理；本项目把润色/纠错/翻译做成一键操作并保留公式渲染，将「读论文—改论文—读代码」的重复劳动压入同一个对话界面</td><td><a class="cref partial" href="#ref-5">[5]</a><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h4>商业模式：开源声誉型，而非收入型</h4>
+  <ul class="bl">
+    <li>项目本体完全开源免费（GPL-3.0<sup class="cite verified" >[1]</sup>），README 无付费功能、无定价页、无融资信息模块<sup class="cite verified" >[3]</sup>；</li>
+    <li>旧版 README（Gitee 镜像快照）表述「本项目完全开源免费，您可通过订阅在线服务的方式鼓励本项目的发展」，所指向的正是官方 Wiki 在线服务页<sup class="cite partial" >[8]</sup>；</li>
+    <li>官方在线服务页提供：Huggingface Space（需用户自带 API KEY，版本迟滞于 master）、合作部署站点 academic.chatwithpaper.org（明确标注「合作关系」）、面向贡献者的免费测试服务器——后者声明「本服务受益于硅云（Silicon Cloud）的赞助」<sup class="cite verified" >[4]</sup>；</li>
+    <li>未检索到捐赠码、爱发电、付费会员等直接变现渠道的公开信息（2026-11-13 检索）；收入侧事实为零披露，属于典型的「声誉为收入」的 OPC 形态。</li>
+  </ul>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>GitHub 星标</td><td class="hl">71,656</td><td>2026-11-13 API 实测</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>Forks / Watch</td><td>8,320 / 297</td><td>2026-11-13 API 实测</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>Open Issues</td><td>332</td><td>2026-11-13 API 实测</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>总 Commits（一手）</td><td class="hl">1,832 次（100 名贡献者）</td><td>2026-11-13 stats API 实测</td><td><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td>主账号 commits</td><td>binary-husky 1,123 次（占 61.3%）</td><td>2026-11-13 API 实测</td><td><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td>第二贡献者</td><td>binary-sky 423 次（占 22.9%，关系未公开说明）</td><td>2026-11-13 API 实测</td><td><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td>媒体报道时点</td><td>开源数日 3.3k★（新智元）→「上万 Star」（腾讯云专栏转述）→ 约 60k★（CSDN 社区）</td><td>2023-03-29 / 2023-09 / 2024-08</td><td><a class="cref partial" href="#ref-5">[5]</a><a class="cref partial" href="#ref-9">[9]</a><a class="cref partial" href="#ref-11">[11]</a></td></tr>
+      <tr><td>案例墙底稿口径</td><td>71.6k★（2026-11）；「1333+ commits」（底稿时点）</td><td>2026-10/11</td><td><a class="cref cross" href="#ref-12">[12]</a></td></tr>
+      <tr><td>最近一次代码推送</td><td>2026-01-25（README 动态互证）</td><td>2026-01-25</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    ① 星标 71,656 为 GitHub API 一手实测（2026-11-13），与案例墙底稿 71.6k★（2026-11 时点）互证一致；② commits 数据有两个口径：案例墙底稿「1333+」为底稿制作时点值，本次 stats/contributors API 实测总 1,832 次、主账号 binary-husky 1,123 次——两者差异原因未检索到公开说明（或与统计口径/时点有关），正文以 API 实测为准；③ Gitee 镜像页显示「2344 次提交」，为镜像仓库自身口径，未采信。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将本项目放入案例墙「科研 / 开源工具」坐标系（对标数据均为案例墙既有核验值<sup class="cite cross">[12]</sup>）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>锚点</th><th>数据表现</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>GPT 学术优化</b></td><td>binary-husky（中科院博士）</td><td>学术 LLM 交互界面 + 函数插件生态</td><td>2023-03-15 ✓</td><td class="hl">71,656★（2026-11-13 实测）、1,832 commits</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-12">[12]</a></td></tr>
+      <tr><td>NextChat（ChatGPT-Next-Web）</td><td>Yidadaa</td><td>一键免费部署的私人 ChatGPT 跨平台客户端（通用对话）</td><td>2023-03-15 ✓</td><td>GitHub 约 88.8k★</td><td><a class="cref cross" href="#ref-12">[12]</a></td></tr>
+      <tr><td>PDFMathTranslate（pdf2zh）</td><td>Byaidu</td><td>保留排版的 PDF 学术文档 AI 全文双语翻译（单功能垂直）</td><td>2024-09-15 ✓</td><td>GitHub 38.3k★，入选 EMNLP 2025 Demo</td><td><a class="cref cross" href="#ref-12">[12]</a></td></tr>
+      <tr><td>new-api</td><td>Calcium-Ion（个人发起，后组织化）</td><td>开源 LLM 网关，GPT/Claude/Midjourney 等统一封装为 OpenAI 格式并计费</td><td>2024-07-24 ✓</td><td>GitHub 51.8k★（2026-11 实测），大量商用中转站底座</td><td><a class="cref cross" href="#ref-12">[12]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>四个案例的差异化定位清晰：<b>NextChat</b> 走「通用客户端 + 部署即服务」的大众路线，锚点与本项目同为 2023-03-15，共享 ChatGPT 窗口期红利但未做学术纵深；<b>pdf2zh</b> 与本项目同属学术垂直，却以「单一功能做到极致」（保留排版的 PDF 翻译）换取后发爆发力，并借助 EMNLP 2025 Demo 获得学术圈正式背书；<b>new-api</b> 则把开源热度导向基础设施化（商用中转站底座）。gpt_academic 的独特性在于——它是四者中唯一以<b>「插件化架构」承接长尾需求</b>的项目：不与 pdf2zh 拼单点翻译质量，而是把润色、翻译、代码解析、绘图、语音全部装进同一插件平台，用 1,832 次 commits 的长周期投入换取跨功能的生态位。<sup class="cite verified">[2]</sup><sup class="cite verified">[3]</sup></p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:130px">维度</th><th>分析</th><th style="width:90px">信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>以「学术对话界面」为核心：润色/翻译/代码解析三大主功能 + Arxiv/LaTeX/PDF 深度集成 + mermaid 绘图、语音对话等插件化长尾功能；公式 tex 与渲染双形式显示是学术场景的差异化细节。功能清单与版本史经 README 一手回溯，无虚标。</td><td><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td><b>2. 插件生态</b></td><td>函数插件为第一扩展机制：热更新、动态按钮、自定义插件模板、虚空终端自然语言调度；五语种 README 即由自身插件翻译——「吃自己的狗粮」成为最有效的功能演示。生态边界：核心插件集中于 crazy_functions 官方目录，第三方插件规模未见统计。</td><td><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td><b>3. 面向客群</b></td><td>核心客群为科研人员与高校师生（论文场景），次级客群为需要工程解析与文档生成的开发者；部署形态（本机/Docker/HF Space/合作站点）同时覆盖个人与机构场景。无公开用户画像或用户量统计——星标是唯一规模代理指标。</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>4. 解决痛点</b></td><td>学术英语润色是科研刚需且长期昂贵：人工润色服务周期以周计、费用高，LaTeX 公式与代码格式更是人工服务盲区。本项目把「润色/纠错/翻译/摘要」压入一键操作，显著降低非英语母语研究者的发表门槛——这正是它能在中文科研社区形成自发传播的根本原因。</td><td><a class="cref partial" href="#ref-5">[5]</a><a class="cref partial" href="#ref-10">[10]</a></td></tr>
+      <tr><td><b>5. 商业化程度</b></td><td><b>近乎零商业化，属捐赠/赞助驱动</b>：GPL-3.0 开源免费，README 无付费模块与融资信息；官方 Wiki 声明测试服务器受益于硅云（Silicon Cloud）赞助；合作站点 ChatWithPaper 为「合作关系」部署；旧版 README 以「订阅在线服务鼓励项目发展」作为支持通道。未检索到捐赠收入、营收、融资的任何公开数字——商业化是该案例最弱的一维。</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-4">[4]</a><a class="cref partial" href="#ref-8">[8]</a></td></tr>
+      <tr><td><b>6. 学术诚信边界</b></td><td>AIGC 润色与期刊政策的边界是本项目所处的长期争议区：2023-09 起多篇混入 ChatGPT 生成文本的论文被撤稿（Physica Scripta 案例），Nature 称其为「冰山一角」；主流出版商政策为「可以用，但必须声明」——Elsevier 与 Springer Nature 均要求披露生成式 AI 的使用。润色工具本身合规，合规责任在使用者声明义务；项目未内嵌「使用声明提醒」机制，边界留给用户自律。</td><td><a class="cref cross" href="#ref-6">[6]</a><a class="cref verified" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>7. 投入成本与合规风险</b></td><td>成本侧：无融资、无团队薪酬，主要投入为个人开发时间与服务器（部分由硅云赞助覆盖）；用户侧成本为自备各家 LLM API KEY。合规风险：① API 使用需遵守对应模型服务商条款，国内访问境外模型存在合规灰色地带（项目 Wiki 专设代理配置说明）；② GPL-3.0 的传染性协议对二次分发者构成义务；③ 论文内容上传第三方 API 的数据外发风险由用户自担；④ GPT 系输出可能存在虚假文献——这正是同类「AI 幻觉」撤稿事故的成因之一。</td><td><a class="cref verified" href="#ref-4">[4]</a><a class="cref verified" href="#ref-3">[3]</a><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 六处留白与三处口径差异（截至 2026-11-13 检索）</div>
+    ① <b>真名未公开</b>：GitHub 用户 name 字段为空，「中科院博士」依据为本人简介自述「CAS PhD」与 Gitee 镜像描述，未见权威媒体实名报道；② <b>binary-sky 身份未公开说明</b>：423 次 commits（22.9%）的第二贡献者与主账号关系未检索到公开信息，「一人属性」按主账号 61.3% 主导口径从严认定；③ <b>commits 口径差异</b>：底稿「1333+」vs 实测主账号 1,123/总计 1,832，差异原因未检索到公开说明；④ <b>发布时点口径</b>：案例墙锚点 2023-03-15 vs GitHub API 建仓 2023-03-20 vs 现存最早 commit 2023-04-13（中间或经历历史重写），三口径并列存档；⑤ <b>营收零披露</b>：无任何收入数字，商业化程度只能以赞助/合作部署定性；⑥ <b>用户量零披露</b>：无下载量/活跃用户统计，星标为唯一规模代理指标。另：最后推送 2026-01-25，距检索日约 10 个月，迭代节奏明显放缓。
+  </div>
+  <div class="card"><div class="ct">负面评价与风险讨论（如实收录）</div><div class="cb">未检索到针对 gpt_academic 项目本身的媒体负面报道或抄袭指控；相关争议集中在使用层面：AIGC 润色的学术诚信边界（撤稿案例见柒-6<sup class="cite cross" >[6]</sup>）；大模型幻觉导致的虚假文献风险；论文内容经第三方 API 外发的隐私顾虑。GitHub 上 332 个 Open Issues<sup class="cite verified" >[1]</sup> 反映多模型兼容与部署环境问题持续存在（Gradio 兼容性问题 README 亦自认）<sup class="cite verified" >[3]</sup>。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-6">[6]</a></div></div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">gpt_academic 证明了 OPC 模式在「开源工具」赛道的另一种赢法：不融资、不收费、不扩张，用一个人的 61.3% 提交占比长期托起一个 7 万星的学术基建，以 GitHub 声誉、硅云等厂商赞助与学术社区影响力作为「收入」的替代品。它与 pdf2zh、new-api 等案例共同勾勒出国内个人开发者的开源路径图：垂直需求 → 一键化体验 → 插件化/生态化 → 声誉资本化。对「一人公司」而言，它的启示是——当商业化条件不成熟时，<b>极致的单一场景 + 可扩展架构本身就是最强的护城河</b>。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-4">[4]</a> <a class="cref cross" href="#ref-12">[12]</a></div></div>
+  <div class="box note">
+    <div class="bt">📌 与 AIGC 内容类 OPC 的对照</div>
+    与案例墙《归墟》等内容型 OPC（算力是唯一成本、播放量是唯一产出）不同，gpt_academic 的产出是可复用的「生产资料」——其星标增长与学术 AIGC 工具需求的长期化绑定；但其短板也恰好相反：内容型案例有清晰的变现链（平台分成），而开源工具型案例的变现始终悬置。两类案例并置，恰构成国内一人公司光谱的两端。
+  </div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 12 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx verified">[1]</span><span class="rt">A</span><span class="st">GitHub API 一手实测</span></div><div class="ti">GitHub REST API · binary-husky/gpt_academic 仓库元数据</div><div class="mt"><b>来源：</b>api.github.com　<b>实测时点：</b>2026-11-13<br><a href="https://api.github.com/repos/binary-husky/gpt_academic" target="_blank" rel="noopener">https://api.github.com/repos/binary-husky/gpt_academic</a></div><div class="note">事实核查：stars 71,656、forks 8,320、watch 297、open issues 332、created_at 2023-03-20T09:05:13Z、pushed_at 2026-01-25、license GPL-3.0、homepage 指向 wiki/online；与 README [3] 的「2026.1.25 动态」精确互证。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx verified">[2]</span><span class="rt">A</span><span class="st">GitHub API 一手实测</span></div><div class="ti">GitHub REST API · 贡献者统计与作者档案（stats/contributors + users）</div><div class="mt"><b>来源：</b>api.github.com　<b>实测时点：</b>2026-11-13<br><a href="https://api.github.com/repos/binary-husky/gpt_academic/stats/contributors" target="_blank" rel="noopener">https://api.github.com/repos/binary-husky/gpt_academic/stats/contributors</a></div><div class="note">事实核查：总 commits 1,832、贡献者 100 名；binary-husky 1,123（61.3%）、binary-sky 423（22.9%）、其余 287；现存最早 commit 2023-04-13（Markdown 全文翻译插件）；binary-husky 用户简介原文「505030475@qq.com CAS PhD」，name 字段为空（真名未公开），followers 1,621，账号创建 2021-12-15。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx verified">[3]</span><span class="rt">A</span><span class="st">一手文件回溯</span></div><div class="ti">gpt_academic 项目 README（master 分支）</div><div class="mt"><b>来源：</b>GitHub 官方仓库　<b>回溯时点：</b>2026-11-13<br><a href="https://github.com/binary-husky/gpt_academic/blob/master/README.md" target="_blank" rel="noopener">https://github.com/binary-husky/gpt_academic/blob/master/README.md</a></div><div class="note">事实核查：功能表（润色/翻译/代码解释、Arxiv/LaTeX/PDF 翻译、Latex 校对、虚空终端、程序剖析与自译解等）、版本史 1.0→3.80、五语种 README 为项目插件自译、开发者 QQ 群 610599535、master 分支最新动态 2026.1.25；README 无赞助/融资/付费模块（商业化维度的否定性证据）。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx verified">[4]</span><span class="rt">A</span><span class="st">官方 Wiki 一手</span></div><div class="ti">gpt_academic Wiki · 在线服务页（GPT-Academic Online Services）</div><div class="mt"><b>来源：</b>GitHub Wiki　<b>回溯时点：</b>2026-11-13<br><a href="https://github.com/binary-husky/gpt_academic/wiki/online" target="_blank" rel="noopener">https://github.com/binary-husky/gpt_academic/wiki/online</a></div><div class="note">事实核查：Huggingface Space 部署（需用户自带 API KEY，版本迟滞 master）、学术合作站点 academic.chatwithpaper.org（原文标注「合作关系」）、贡献者免费测试服务器（QQ 群获取）、原文「☁️本服务受益于硅云的赞助。This service benefits from Silicon Cloud's sponsorship.」——商业化程度（赞助）维度的直接证据；与 [1] 的 homepage 字段、[8] 的旧版 README 链接三方互证。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx partial">[5]</span><span class="rt">B+</span><span class="st">行业媒体（转载）</span></div><div class="ti">学术科研专用 ChatGPT 来了，周末刚开源，GitHub 斩获 3k+ 星（新智元，IT之家转载）</div><div class="mt"><b>来源：</b>IT之家（原发新智元微信公众号 ID：AI_era）　<b>发布日期：</b>2023-03-29 18:43<br><a href="https://m.ithome.com/html/683161.htm" target="_blank" rel="noopener">https://m.ithome.com/html/683161.htm</a></div><div class="note">事实核查：开源没几天冲上 3.3k 星、功能演示（润色/纠错、公式 tex+渲染双形式、代码工程分析、LaTeX 阅读、模块化设计）、安装方式；当时项目名仍为 chatgpt_academic。单一 B 级科技媒体转述，按 partial 收录。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx cross">[6]</span><span class="rt">B+</span><span class="st">头部科技媒体（主流平台转载）</span></div><div class="ti">尴尬了，用ChatGPT写论文忘删生成按钮，出版商：撤稿（量子位，澎湃号·湃客转载）</div><div class="mt"><b>来源：</b>澎湃新闻·澎湃号·湃客（原发量子位公众号 QbitAI，作者白交）　<b>发布日期：</b>2023-09-12<br><a href="https://www.thepaper.cn/newsDetail_forward_24564441" target="_blank" rel="noopener">https://www.thepaper.cn/newsDetail_forward_24564441</a></div><div class="note">事实核查：Physica Scripta 撤稿案（论文混入「Regenerate response」）、打假人 Guillaume Cabanac、pubpeer 不完全统计、「Elsevier 和 Springer Nature 在内的许多出版商：可以用，声明即可」、Som Biswas 案例；与 Nature 原文 [7] 互证，学术诚信边界维度主信源。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx verified">[7]</span><span class="rt">A</span><span class="st">学术出版权威原文</span></div><div class="ti">Nature 新闻报道（d41586-023-02477-w，量子位 [6] 所引原文链接）</div><div class="mt"><b>来源：</b>nature.com　<b>回溯时点：</b>2026-11-13（HTTP 200 可达实测）<br><a href="https://www.nature.com/articles/d41586-023-02477-w" target="_blank" rel="noopener">https://www.nature.com/articles/d41586-023-02477-w</a></div><div class="note">事实核查：URL 经 HEAD 实测可达（303→302→200）；[6] 明确以该链接为「Nature 最新报道称并非个案、只是冰山一角」的参考原文，两者互证构成 verified。页面具体标题未在本报告重新展开核读，引用以 [6] 转述口径为准。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx partial">[8]</span><span class="rt">B-</span><span class="st">镜像仓库快照</span></div><div class="ti">Gitee 镜像仓库 TF-boy/gpt_academic（旧版 README 快照）</div><div class="mt"><b>来源：</b>Gitee　<b>回溯时点：</b>2026-11-13<br><a href="https://gitee.com/TF-boy/gpt_academic" target="_blank" rel="noopener">https://gitee.com/TF-boy/gpt_academic</a></div><div class="note">事实核查：仓库描述「中科院，学术版chatGPT」；README 旧版含「本项目完全开源免费，您可通过订阅在线服务的方式鼓励本项目的发展」，链接指向 GitHub wiki/online（与 [1][4] 互证）；Gitee 页面显示「2344 次提交」为镜像口径，未采信。身份描述与订阅表述均为转述快照，按 partial 收录。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx partial">[9]</span><span class="rt">B-</span><span class="st">技术社区专栏（转载）</span></div><div class="ti">学术专用版 ChatGPT，开源了！（腾讯云开发者社区·张俊红专栏）</div><div class="mt"><b>来源：</b>cloud.tencent.com 开发者社区　<b>发布日期：</b>2023-09-06<br><a href="https://cloud.tencent.com/developer/article/2325078" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/2325078</a></div><div class="note">事实核查：「上线几天就在 GitHub 上狂揽上万 Star」、功能截图演示（一键润色、LaTeX 阅读理解、项目自剖析、公式双形式显示）；作者为数据分析师专栏，转载性质，按 partial 收录。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx partial">[10]</span><span class="rt">C+</span><span class="st">技术社区科普</span></div><div class="ti">GPT学术优化 (GPT Academic)：支持一键润色、一键中英互译、一键代码解释……（掘金）</div><div class="mt"><b>来源：</b>juejin.cn（作者：汀丶人工智能）　<b>发布日期：</b>2023-08-05<br><a href="https://juejin.cn/post/7263690178145714233" target="_blank" rel="noopener">https://juejin.cn/post/7263690178145714233</a></div><div class="note">事实核查：功能清单与 [3] README 一致，为社区传播链佐证；HTTP 200 可达实测（2026-11-13）。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx partial">[11]</span><span class="rt">C+</span><span class="st">技术社区博客</span></div><div class="ti">gpt_academic，一个读/写论文的利器（CSDN 博客）</div><div class="mt"><b>来源：</b>blog.csdn.net　<b>发布日期：</b>约 2024-08<br><a href="https://blog.csdn.net/weixin_36396470/article/details/141467522" target="_blank" rel="noopener">https://blog.csdn.net/weixin_36396470/article/details/141467522</a></div><div class="note">事实核查：「GitHub 上标星 60K 的读论文和写论文的 AI 开源工具」——60k 星时点值（约 2024-08），与 [1] 的 2026 年 71.6k+ 形成增长曲线锚点；HTTP 200 可达实测。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx cross">[12]</span><span class="rt">A-</span><span class="st">案例墙底稿（本站）</span></div><div class="ti">国内 AI 一人公司案例墙 index.html + 候选池 domestic-pool.md（第 5 条 GPT 学术优化）</div><div class="mt"><b>来源：</b>本站内部底稿　<b>时点：</b>2026-10/11 制作，2026-11-13 本报告复验<br><a href="../../index.html" target="_self" style="color:#2980b9">site/index.html</a></div><div class="note">事实核查：底稿口径 71.6k★（2026-11）、1333+ commits、锚点 2023-03-15 ✓；对标数据均为案例墙既有核验值：NextChat 88.8k★（锚点同日 2023-03-15）、pdf2zh 38.3k★ + EMNLP 2025 Demo（锚点 2024-09-15）、new-api 51.8k★（2026-11 实测，锚点 2024-07-24）。底稿「1333+ commits」与本次 API 实测（1,123/1,832）存在口径差异，已在伍·数据与捌 显式标注。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 12 条。核验标签分布：🟢 已核验（verified）5 条（GitHub API×2、README、Wiki online、Nature 原文）、🔵 多源印证（cross）2 条（量子位×澎湃、案例墙底稿）、🟡 部分映证（partial）5 条（新智元转载、Gitee 快照、腾讯云专栏、掘金、CSDN）。信源评级分布：A 级 5 条（GitHub 官方一手 4 条 + Nature 学术权威 1 条，全部 API/HTTP 实测回溯）、B 级 3 条、C 级 2 条（技术社区科普，仅作传播链与增长曲线锚点）。GitHub 数据全部为 2026-11-13 API 一手实测（71,656★ / 1,832 commits / 主账号占 61.3%）；三处口径差异（发布时点 2023-03-15 vs 建仓 2023-03-20 vs 最早现存 commit 2023-04-13、底稿 1333+ vs 实测 1,123、真名与 binary-sky 身份未公开）与两处零披露（营收、用户量）已在正文显式标注。未发现伪造链接；全部 URL 为检索过程实际命中页面（Nature、zetatecks 文档、CSDN、掘金、腾讯云均经 HTTP 200 实测）。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  GitHub 数据实测时点：2026-11-13 · 星标与 commits 为时点值会随时间变动，营收类信息零披露，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

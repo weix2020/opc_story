@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · Chat Memo——一泽 Eze 的跨 AI 平台「记忆中枢」 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · Chat Memo">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="Chat Memo 深度案例报告：AI 提示词工程作者一泽 Eze 一人开发跨 AI 平台对话存档「记忆中枢」浏览器插件，20000+ 用户、Chrome 商店 4.9 分获 Google 精选认证，核心功能永久免费、100% 本地存储。11 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>Chat Memo 深度案例报告</h1>
+    <h2>AI 提示词工程作者一泽 Eze：一个人、一款跨 AI 平台的「记忆中枢」插件<br>20000+ 用户、Chrome 商店 4.9 分获 Google 精选认证 —— 11 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">工具型 OPC</span>
+      <span class="tag">个人 IP + 垂直插件</span>
+      <span class="tag">AI 原生开发</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">20000+</div><div class="k">用户数（官网口径 · 2026-11 查询）</div></div>
+  <div class="stat"><div class="v neutral">4.9/5.0</div><div class="k">Chrome 商店评分（官网口径 · Google 精选认证）</div></div>
+  <div class="stat"><div class="v neutral">100%</div><div class="k">本地存储（IndexedDB · 数据主权）</div></div>
+  <div class="stat"><div class="v down">¥0</div><div class="k">核心功能永久免费（Pro 增值规划中）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">Chat Memo 是一款把散落在 ChatGPT、Claude、Gemini、DeepSeek、豆包、腾讯元宝等平台上的 AI 对话「自动存档为个人记忆资产」的浏览器插件：后台静默增量保存、侧边栏全库检索、一键导出，全部数据 100% 存储在用户本地设备。它由 AI 领域知名作者一泽 Eze 一人开发并运营，2025 年 6 月 30 日经即刻与公众号正式发布，是国产「AI 对话资产管理」赛道最早跑出规模声量的个人作品之一。</p>
+  <div class="two">
+    <div class="card"><div class="ct">产品</div><div class="cb">浏览器插件，Chrome 与 Edge 双商店上架（开发者署名一泽Eze / Eze）。核心能力三层：① 自动存档——后台静默增量保存，连重新编辑、重新生成后的消息也同步收录；② 全库检索——按标题与消息全文搜索，含 AI 思考（Think）过程，可跳回原对话；③ 记忆中枢——卡片式管理、批量导出、一键复制到其他 AI 续聊，官网另附「AI 互动周报 / 主题回顾 / 自我洞察」三套玩法配方。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-4">[4]</a> <a class="cref verified" href="#ref-5">[5]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">一泽 Eze，行业知名提示词工程作者（单条 Prompt 全网浏览量 10w+）、WaytoAGI 社区专栏作者、LangGPT 开源社区共建者，曾参与制定多项行业标准与白皮书。WaytoAGI 官方介绍页口径为「现任某 B 端独角兽公司产品总监、前大厂运营负责人」；其自述以 AI 博主身份年评测数十款模型与产品，每天与 AI 对话 8 小时以上。<b>注：</b>案例底稿所载「前阿里工程师」未获直接信源印证，正文按可核验口径呈现（详见捌节④）。</div><div class="cm">信源：<a class="cref cross" href="#ref-4">[4]</a> <a class="cref cross" href="#ref-7">[7]</a> <a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="card blue"><div class="ct">开发方式</div><div class="cb">自称「完全用 AI 的 AI 做的 AI 产品」：产品开发、官网设计、发布计划历经 6 个版本、几度重构，均由其与 AI 协作完成，全程无需外部团队；插件自身完整记录了自立项以来的全部 AI 共创过程——产品哲学与开发方法互为证明，是「AI Coding 自举」的典型样本。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-4">[4]</a></div></div>
+    <div class="card"><div class="ct">公司 / 融资状态</div><div class="cb">未检索到公司注册与融资的公开信息；产品以个人名义在两商店上架，隐私政策公开托管于其个人 GitHub 仓库，第三方工具目录收录条目显示「运营中」。截至核验时点（2026-11-12），核心本地功能永久免费，付费增值服务（Pro）处于规划征集阶段。</div><div class="cm">信源：<a class="cref verified" href="#ref-5">[5]</a> <a class="cref verified" href="#ref-6">[6]</a> <a class="cref verified" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-10">[10]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2025 上半年</div><div class="tx">DeepSeek 火爆带动 AI 对话日常化，「数字记忆」成为核心命题</div><div class="td">一泽自述曾尝试手动导出对话到 Notion、以 Flomo 摘录灵感，均因「依赖使用者的自觉」而放弃；与认知心理专业朋友的交流让他确认：AI 聊天记录是承载认知迭代的「原始手稿」。<a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2025-06-30</div><div class="tx">即刻宣布 Chat Memo 正式发布，公众号长文同步上线</div><div class="td">发布宣言：「全部产品开发、官网设计、发布计划，均由我与 AI 独立完成，由 Chat Memo 记录全过程」；首发支持 ChatGPT、Gemini、DeepSeek、腾讯元宝四平台；评论区获良渚 Demo Day 分享邀约与「Google AI Studio 支持请求」等首批用户反馈。<a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">发布初期（v1.0.x）</div><div class="tx">新增全库关键词搜索，正式定名「Chat Memo」</div><div class="td">GitHub 更新日志显示 v1.0.5 完成三件事：上线跨对话关键词搜索（可自动定位消息位置）、修复 Gemini 平台刷新后丢消息问题、由原名正式更名为「Chat Memo」并上线官网。<a class="cref verified" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2025-12-30（不早于）</div><div class="tx">「Chrome 商店 4.9 分」获独立时间戳佐证</div><div class="td">Edge 商店一位用户评价写道「Chrome 商店那都 4.9 分了」——与官网宣称的 4.9/5.0 口径互证，说明高分与口碑在发布半年内已经形成。<a class="cref verified" href="#ref-5">[5]</a><a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-02</div><div class="tx">用户反馈揭示刚需场景：Gemini 超长对话崩溃丢记录</div><div class="td">Edge 商店评价称 Gemini 超长对话崩溃后「所有历史记录直接消失」，自动备份插件成为刚需——印证产品切中的痛点真实存在。<a class="cref verified" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2026-10-19</div><div class="tx">Edge 端更新至 v1.5.3：适配 ChatGPT 改版、新增 Claude Cowork 支持</div><div class="td">一次更新同时完成：恢复 ChatGPT 网站改版后的保存能力、新增 Claude Cowork 与 ChatGPT dot 支持、修复部分浏览器自动保存启动失败与 Claude 含搜索/工具/思考回复丢失问题——持续维护近一年半未断。<a class="cref verified" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2026-11-12（核验时点）</div><div class="tx">官网口径：20000+ 用户、4.9 分、Google 精选认证</div><div class="td">官网展示「Join 20000+ pioneers」与「4.9/5.0 · Featured Extension · Officially Certified」；Edge 商店实测 5198 用户、5.0 分（5 条评价）、支持 4 种语言。<a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-5">[5]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：从「评测别人」到「被审视」——个人 IP 的第一次产品化变现</div><div class="cb">发布 Chat Memo 前，一泽以 AI 博主身份评测过数十款模型与产品，靠 10w+ 阅读的提示词文章与 WaytoAGI 专栏积累了精准的 AI 重度用户读者盘，且在 Prompt → Context Engineering 议题上保持持续输出。产品上线即有冷启动：即刻发布帖评论区出现 Demo Day 邀约与平台需求投票，「为包括自己在内的重度用户做工具」让需求洞察与分发渠道天然重合——这是「个人 IP + 垂直插件」路径的起点：先用内容锁定人群，再为人群做产品。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-4">[4]</a> <a class="cref cross" href="#ref-7">[7]</a> <a class="cref partial" href="#ref-11">[11]</a></div></div>
+  <div class="card"><div class="ct">转折二：AI Coding 的「自举」——用自己的方法论做出自己的产品</div><div class="cb">6 个版本、几度重构，开发、官网、发布全部与 AI 协作完成；自动保存功能「打磨了数十轮代码才终于有了市面上体验最丝滑的版本」。更有意味的是产品与方法的闭环：Chat Memo 自己记录了它从混沌构想 to 发布方案的孵化全程，作者在写发布文章时直接翻阅插件里的时间轴对话卡片取材——提示词/Agent 工程经验直接转化为产品工程能力，且产品本身成为方法论的展品。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-4">[4]</a></div></div>
+  <div class="card green"><div class="ct">转折三：隐私优先的架构选择——把「数据主权」做成产品本身</div><div class="cb">面对即刻评论区「聚合数据存在哪」的第一质疑，作者的回答是架构级的：IndexedDB 100% 本地存储、无限制导出、「绝不不经用户允许做其他处理」，隐私政策公开托管在 GitHub 供审计。「你的数据只属于你」既是获客卖点（区别于一切云端记录类产品），也是信任壁垒——但同时构成商业化的隐性天花板：未来任何云端增值服务都要用户把数据重新交出来。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-6">[6]</a> <a class="cref verified" href="#ref-5">[5]</a></div></div>
+  <div class="quote">
+    <p>Chat Memo 不仅是为 AI 而生的产品，更是完全用 AI 的 AI 做的 AI 产品。</p>
+    <span class="src">—— 一泽Eze，公众号《Chat Memo：构建 AI 时代最重要的个人资产》（2025-06），转引自 <a class="cref cross" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-4">[4]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>内容</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>产品功能</b></td><td><span class="hl">跨平台自动存档</span>：后台静默增量保存，同步重新编辑/重新生成的消息，浮动标签实时显示保存状态；<span class="hl">全库检索</span>：标题+全文搜索（含 AI Think 过程），自动跳转原对话；<span class="hl">记忆中枢定位</span>：卡片式管理、使用统计、批量导出、一键复制到其他 AI 续聊，官网「灵感」区提供周报/回顾/自我洞察三套配方</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-5">[5]</a> <a class="cref verified" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>技术实现</b></td><td>浏览器扩展（Chrome / Edge 双端）：内容脚本监听网页对话 + IndexedDB 本地存储 + 增量更新去重；支持中英双语、可暂停单平台/全局自动保存；隐私政策公开托管 GitHub 供审计。开发者自述核心保存体验打磨数十轮代码</td><td><a class="cref verified" href="#ref-6">[6]</a> <a class="cref verified" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>变现模式</b></td><td>核心本地功能<span class="pos">永久免费</span>；官网 FAQ 明确未来提供付费增值——加密云同步与 AI insights（Pro 功能已开放意向征集表单）；截至核验时点未见收费上线，无营收披露</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>支持平台</b></td><td>首发四平台（ChatGPT / Gemini / DeepSeek / 腾讯元宝）→ 现官网列示 ChatGPT、Claude、Gemini、DeepSeek、豆包、元宝等；v1.5.3 已覆盖 Claude Cowork、ChatGPT dot；Perplexity、Manus 列入开发计划，按社区投票排期</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-6">[6]</a> <a class="cref verified" href="#ref-5">[5]</a></td></tr>
+      <tr><td><b>面向客群</b></td><td>「AI 时代的新工作者」——每天与 AI 对话数小时的重度用户：用 AI 写报告、Vibe Coding、梳理方案、倾诉心事的知识工作者；分发基本盘为作者公众号/即刻/WaytoAGI 社区的 AI 爱好者读者</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>解决痛点</b></td><td>对话资产分散在各平台云端、跨平台即隔绝、检索困难（各平台原生搜索孱弱），个别平台（Gemini、AI Studio）还会丢失聊天记录；手动导出依赖自觉、只留结果不留思考过程——「高价值垃圾」需要被存成「个人智慧资产」</td><td><a class="cref cross" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-4">[4]</a> <a class="cref verified" href="#ref-5">[5]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 口径说明</div>
+    变现栏「永久免费 + Pro 规划中」为官网 FAQ 原文口径；「AI 重度用户」客群定义为官网文案与开发者信的自述定位；支持平台清单以官网首页 + 商店更新日志为准（官网 FAQ 中「Claude 在开发计划」一说与商店页实际支持记录冲突，以商店页一手更新日志为准，详见捌节②）。
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>用户数（官网口径）</td><td class="hl">20000+</td><td>2026-11-12 查询</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>用户数（Chrome 商店第三方镜像）</td><td>10000+（快照时点不明）</td><td>2026-11 检索</td><td><a class="cref partial" href="#ref-8">[8]</a> <a class="cref partial" href="#ref-9">[9]</a></td></tr>
+      <tr><td>用户数（Edge 商店实测）</td><td>5198</td><td>2026-11-12 查询</td><td><a class="cref verified" href="#ref-5">[5]</a></td></tr>
+      <tr><td>Chrome 商店评分</td><td class="hl">4.9/5.0（官网口径）</td><td>2026-11 查询；2025-12-30 已有用户评价佐证</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-5">[5]</a></td></tr>
+      <tr><td>Chrome 商店评分（第三方口径）</td><td>4.6（镜像）/ 4.7（竞品站）</td><td>快照时点不明</td><td><a class="cref partial" href="#ref-8">[8]</a> <a class="cref partial" href="#ref-9">[9]</a></td></tr>
+      <tr><td>Edge 商店评分</td><td class="pos">5.0（5 条评价）</td><td>2026-11-12 查询</td><td><a class="cref verified" href="#ref-5">[5]</a></td></tr>
+      <tr><td>Google 精选认证</td><td>Featured Extension · Officially Certified（官网自述，竞品对比页称 featured on the Chrome Web Store）</td><td>2026-11 查询</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-9">[9]</a></td></tr>
+      <tr><td>版本维护</td><td>v1.0.5（更名+搜索）→ v1.5.3，持续迭代近一年半</td><td>2025 → 2026-10-19</td><td><a class="cref verified" href="#ref-6">[6]</a> <a class="cref verified" href="#ref-5">[5]</a></td></tr>
+      <tr><td>语言覆盖</td><td>4 种语言（含中英）</td><td>2026-11-12 查询</td><td><a class="cref verified" href="#ref-5">[5]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    「20000+ 用户 / 4.9 分 / Google 精选」为官网一手自述口径；Chrome 商店页因反爬未能直接抓取核验，评分与精选认证经 Edge 商店用户评价（2025-12-30「Chrome 商店那都 4.9 分了」）、竞品对比页、第三方镜像三路间接印证，但镜像 4.6 分/10000 用户与官网口径存在差异（疑为较早快照），引用时建议标注「官网口径」并注明时点。即刻发布帖页面计数（6925/35）含义未标明，本报告不予引用。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将 Chat Memo 放入案例墙「AI 周边工具」坐标系（对标数据均为案例墙既有核验值，详见案例墙各卡片信源；本案数据为 2026-11-12 官网口径）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>分发 / 变现</th><th>规模（核验值）</th><th>路径共性</th></tr></thead>
+    <tbody>
+      <tr><td><b>Chat Memo</b>（本案）</td><td>一泽 Eze</td><td>跨 AI 平台对话存档「记忆中枢」插件</td><td>Chrome + Edge 免费，Pro 增值规划中</td><td>20000+ 用户、Chrome 4.9 分、Google 精选</td><td><b>个人 IP + 垂直插件</b></td></tr>
+      <tr><td>Copilot for Obsidian</td><td>Logan Yang（Brevilabs）</td><td>Obsidian 笔记 AI 副驾插件</td><td>付费订阅</td><td>下载破 100 万（2026-02）、GitHub 7.8k★</td><td>个人 IP + 垂直插件，solo developer 起步</td></tr>
+      <tr><td>ChatWise</td><td>egoist</td><td>macOS/Windows 桌面 AI 聊天客户端</td><td>Pro $29 买断（BYOK）</td><td>持续销售，第三方评测明确 made by one developer</td><td>开源知名度变现，工具买断制</td></tr>
+      <tr><td>chatGPTBox</td><td>josStorer</td><td>把 AI 深度集成进浏览器的插件</td><td>开源免费</td><td>GitHub 约 10.7k★，Chrome 商店个人发布者</td><td>纯开源声誉路线</td></tr>
+      <tr><td>沉浸式翻译</td><td>Owen Young</td><td>AI 双语网页翻译插件（PDF/字幕/漫画）</td><td>免费 + Pro，后被收购</td><td>全球激活破 3000 万（2026-09）、Chrome 2024 年度精选</td><td>插件 OPC 的天花板样本</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>五案并置可见「个人 IP + 垂直插件」路径的完整光谱：<b>chatGPTBox</b>（纯开源声誉）→ <b>ChatWise</b>（买断制直接变现）→ <b>Copilot for Obsidian</b>（订阅制规模变现）→ <b>沉浸式翻译</b>（亿级用户 + 收购退出）。Chat Memo 目前处于光谱左端向中段移动的位置——它选择了一条更克制也更缓慢的路线：先免费把「本地记忆资产」的心智做透，再用云同步/AI 洞察做增值。与前四案相比，它最独特的是<b>分发的起点</b>：不靠开源星标、不靠 SEO，而是靠创作者在 AI 社区经年积累的读者信任——这与其提示词工程作者的身份互为因果。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>分析</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>三层递进：自动增量存档（无感，同步重编辑/重生成消息）→ 全库检索（含 AI Think 过程，跳回原对话）→ 记忆中枢（周报/主题回顾/自我洞察配方，向「理解你的意图并主动回忆」演进）。功能边界清晰：不做 AI 对话本身，只做对话的资产管理层。<a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>2. 技术实现</b></td><td>浏览器扩展架构：内容脚本监听各平台网页对话流 + IndexedDB 本地存储 + 增量更新；中英双语；Chrome/Edge 双端。难点不在算法而在适配：每个平台网页结构各异且频繁改版，保存体验靠数十轮打磨。开发过程本身由 AI Coding 主导（6 个版本几度重构），是一人公司以方法论换工程能力的实例。<a class="cref verified" href="#ref-6">[6]</a> <a class="cref verified" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>3. 变现模式</b></td><td>当前为零收入免费产品：核心本地功能永久免费，付费增值（加密云同步、AI insights）停留在官网 FAQ 的规划口径，Pro 意向表单已开放但未见上线。变现前提是用户愿意把「坚决留在本地」的数据重新交到云端——与隐私承诺存在内在张力，转化逻辑尚待验证。<a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>4. 面向客群</b></td><td>AI 重度用户（每天与 AI 对话数小时的知识工作者），与创作者的公众号/即刻/WaytoAGI 读者盘高度重叠——获客不靠投放靠信任溢出。Edge 商店评价显示客群横跨中国、日本、美国、法国等多地区，产品天然面向全球 AI 用户。<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-7">[7]</a> <a class="cref verified" href="#ref-5">[5]</a></td></tr>
+      <tr><td><b>5. 解决痛点</b></td><td>「对话资产分散」四重痛：跨平台隔绝、检索困难、个别平台丢记录、手动导出依赖自觉。Edge 用户评价提供了痛点真实性的实锤——Gemini 超长对话崩溃后历史全失，「一直想找能自动备份聊天记录的插件」。<a class="cref cross" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-4">[4]</a> <a class="cref verified" href="#ref-5">[5]</a></td></tr>
+      <tr><td><b>6. 对话数据隐私</b><br>（本地存储 vs 云端）</td><td>全本地（IndexedDB）是本案最锋利的差异化：对话内容含工作机密与情感倾诉，「绝不不经用户允许做其他处理」直击聚合类记录产品的信任死穴；隐私政策公开托管 GitHub 可审计。但隐私是双向刀刃：即刻评论区「公司电脑敢不敢装」「要不要加密码」的讨论说明本地聚合同样制造新的暴露面；而未来云同步增值必然要求用户推翻「数据不出本地」的心理预设——隐私卖点越成功，云端变现越困难。<a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-6">[6]</a></td></tr>
+      <tr><td><b>7. 浏览器插件生态依赖</b></td><td>存档能力寄生在各大 AI 平台的网页 DOM 之上，平台任何改版都是断供风险——v1.5.3 一次更新即同时修复 ChatGPT 改版导致的全线保存失效、部分浏览器启动失败、Claude 特定回复丢失三类问题，维护成本随支持平台数线性增长。更深一层：若各平台原生记忆/搜索能力持续增强（或官方推出导出聚合），第三方存档层的价值将被结构性挤压；同赛道已有 LLMnesia、AI Memory、Chat Lens 等竞品以「更强搜索」「记忆注入」等差异点进攻。<a class="cref verified" href="#ref-5">[5]</a> <a class="cref partial" href="#ref-9">[9]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 四处留白与两处口径差异（截至 2026-11-12 检索）</div>
+    ① <b>商业闭环未验证</b>：核心功能永久免费，Pro 增值（加密云同步、AI insights）截至核验仍为官网规划口径，无任何营收披露，付费转化率无从评估；② <b>用户数与评分多口径</b>：官网 20000+ 用户/4.9 分 vs 第三方镜像 10000 用户/4.6 分 vs 竞品站 4.7 分——镜像快照时点不明，差异疑为增长时间差，引用时以官网口径并注明时点为宜；③ <b>Chrome 商店页未能直接核验</b>：商店页与 Wayback 快照抓取均返回空（反爬），评分/精选认证经 Edge 商店用户评价、竞品对比页、第三方镜像三路间接印证；④ <b>创业者背景口径差异</b>：案例底稿所载「前阿里工程师」未获直接信源印证，可核验的官方介绍（WaytoAGI 介绍页）为「现任某 B 端独角兽公司产品总监、前大厂运营负责人、行业知名提示词工程师」，正文按后者呈现，特此存档。
+  </div>
+  <div class="box note">
+    <div class="bt">🔍 需要持续观察的三个信号</div>
+    ① <b>平台改版是常态而非意外</b>：ChatGPT 改版曾导致保存全线失效（Edge v1.5.3 更新日志实证），支持平台越多、维护负担越重，单人维护的可持续性待观察；② <b>赛道竞争升温</b>：AI 对话存档/记忆插件已有多个竞品入局，且大模型平台原生记忆功能持续增强，「存档层」的独立价值窗口可能收窄；③ <b>第三方信息质量参差</b>：某竞品站将 Chat Memo 误标为「仅支持 ChatGPT」（与商店页一手记录不符），提示二手对标信息必须回溯源站核验。
+  </div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">Chat Memo 验证了 OPC 模式中「内容资产 → 工具产品」的转化路径：一个不写代码为生的提示词工程作者，用 AI Coding 把自己日常工作的真实痛点做成产品，靠读者信任完成冷启动，靠隐私架构和持续维护赢得商店高分与 Google 精选。它同时是一面镜子——免费、本地化、单人的组合让产品获得了信任与口碑，却也让商业化悬置：20000+ 用户与 ¥0 收入并存，正是「个人 IP + 垂直插件」路径在变现环节的真实中间态。下一阶段（Pro 上线与否、云端增值能否突破隐私心智）将决定它滑向 chatGPTBox 式的开源口碑样本，还是 Copilot for Obsidian 式的订阅变现样本。</div><div class="cm">综合：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-5">[5]</a> <a class="cref partial" href="#ref-9">[9]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">捌·附</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 11 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（直抓成功且多源交叉），蓝 = 多源印证（单一权威信源可回溯或经全文转载核验），黄 = 部分映证（第三方镜像/竞品站/目录，口径需谨慎）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx verified">[1]</span><span class="rt">A</span><span class="st">产品官网（一手）</span></div><div class="ti">Chat Memo 官网（chatmemo.ai，中英文首页）</div><div class="mt"><b>来源：</b>chatmemo.ai　<b>核验日期：</b>2026-11-12<br><a href="https://chatmemo.ai" target="_blank" rel="noopener">https://chatmemo.ai</a> ｜ 中文版 <a href="https://chatmemo.ai/zh-CN/" target="_blank" rel="noopener">https://chatmemo.ai/zh-CN/</a></div><div class="note">事实核查：直抓成功。20000+ 用户、4.9/5.0、Featured Extension、Officially Certified、隐私 100% 本地、核心功能永久免费与 Pro 增值规划（加密云同步/AI insights）、开发者信（Eze，日聊 8 小时+）、支持平台清单与「灵感」三配方、双商店链接均出自此源；中文版 slogan「换个 AI 也能继续聊」。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx verified">[2]</span><span class="rt">A</span><span class="st">即刻原帖（一手）</span></div><div class="ti">一泽Eze：Chat Memo 正式发布（2025-06-30）</div><div class="mt"><b>来源：</b>即刻　<b>发布日期：</b>2025-06-30（页面显示「1 年前」，与案例锚点一致）<br><a href="https://m.okjike.com/originalPosts/6861e8137669c1bbaf51a98d" target="_blank" rel="noopener">https://m.okjike.com/originalPosts/6861e8137669c1bbaf51a98d</a></div><div class="note">事实核查：直抓成功。「全部产品开发、官网设计、发布计划，均由我与 AI 独立完成，由 Chat Memo 记录全过程」、默认本地存储/无限制导出、公众号原文链接均出自此帖；评论区含良渚 Demo Day 邀约、隐私问答（「默认 100% 本地」）、Google AI Studio 平台请求等首批用户互动。页面计数（6925/35）含义未标明，未引用。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx cross">[3]</span><span class="rt">A</span><span class="st">公众号原文（一手 · 经转载核验）</span></div><div class="ti">《Chat Memo：构建 AI 时代最重要的个人资产》（微信公众号：一泽Eze）</div><div class="mt"><b>来源：</b>mp.weixin.qq.com（由即刻「阅读原文」链接给出）　<b>发布日期：</b>2025-06（与即刻发布同步）<br><a href="https://mp.weixin.qq.com/s/VpiMuxFzVuDt9iJUip1_Rw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/VpiMuxFzVuDt9iJUip1_Rw</a></div><div class="note">事实核查：直抓受限（微信反爬返回空），URL 可达性由即刻原帖 [2] 的原文链接背书，正文全文经人人都是产品经理转载页 [4] 逐段核验一致。动机叙事（Notion/Flomo 方案放弃、「高价值垃圾」论）、首发四平台、「6 个版本、几度重构」、「完全用 AI 的 AI 做的 AI 产品」、三套灵感配方等出自此文。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx cross">[4]</span><span class="rt">B+</span><span class="st">行业社区转载</span></div><div class="ti">Chat Memo：构建 AI 时代最重要的个人资产（人人都是产品经理转载全文）＋ 一泽Eze 作者主页</div><div class="mt"><b>来源：</b>人人都是产品经理　<b>核验日期：</b>2026-11-12<br><a href="https://www.woshipm.com/share/6237232.html" target="_blank" rel="noopener">https://www.woshipm.com/share/6237232.html</a> ｜ 作者页 <a href="https://www.woshipm.com/u/659457" target="_blank" rel="noopener">https://www.woshipm.com/u/659457</a></div><div class="note">事实核查：转载页直抓成功，正文与公众号原文一致（原创/授权发布声明署名一泽Eze）；作者主页简介「知名AI提示工程师，单条prompt全网10w+阅读量」、27 篇文章为作者资产佐证。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx verified">[5]</span><span class="rt">A</span><span class="st">Edge 商店页（一手）</span></div><div class="ti">Chat Memo | Auto-save AI Conversations（Microsoft Edge Add-ons）</div><div class="mt"><b>来源：</b>Microsoft Edge Add-ons　<b>核验日期：</b>2026-11-12（版本 v1.5.3）<br><a href="https://microsoftedge.microsoft.com/addons/detail/cfmmkmfimmmfikomegalpmgookideojo" target="_blank" rel="noopener">https://microsoftedge.microsoft.com/addons/detail/cfmmkmfimmmfikomegalpmgookideojo</a></div><div class="note">事实核查：直抓成功。5198 用户、5.0 分（5 评价）、4 语言、开发者署名一泽Eze（链接指向官网）；v1.5.3 更新日志（2026-10-19）：ChatGPT 改版恢复保存、Claude Cowork/ChatGPT dot 支持、启动失败与 Claude 回复丢失修复；隐私政策链接指向 GitHub 仓库 [6]；2025-12-30 用户评价「Chrome 商店那都 4.9 分了」为官网评分口径提供独立时间戳；2026-02-24 评价佐证 Gemini 崩溃丢记录刚需。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx verified">[6]</span><span class="rt">A</span><span class="st">GitHub 仓库（一手）</span></div><div class="ti">eze-is/Chat-Memo（官方仓库 · README 与隐私政策）</div><div class="mt"><b>来源：</b>GitHub　<b>核验日期：</b>2026-11-12<br><a href="https://github.com/eze-is/Chat-Memo" target="_blank" rel="noopener">https://github.com/eze-is/Chat-Memo</a></div><div class="note">事实核查：直抓成功。v1.0.5 版本记录（关键词搜索上线、Gemini 刷新丢消息修复、正式更名「Chat Memo」）、首发平台清单（ChatGPT/DeepSeek/Gemini/腾讯元宝）、IndexedDB 本地存储、批量导出、中英双语、作者署名 Eze（Creator &amp; Maintainer）均出自 README；隐私政策文件（PRIVACY_POLICY.md）同仓库托管，与 Edge 商店页互指。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">B+</span><span class="st">社区官方介绍页</span></div><div class="ti">一泽 Eze — Agent/Prompt（WaytoAGI 社区专栏作者介绍页）</div><div class="mt"><b>来源：</b>WaytoAGI（飞书云文档）　<b>核验日期：</b>2026-11-12<br><a href="https://waytoagi.feishu.cn/wiki/RL5AwtPrcieK1ZkcIKUcCkjFnNe" target="_blank" rel="noopener">https://waytoagi.feishu.cn/wiki/RL5AwtPrcieK1ZkcIKUcCkjFnNe</a></div><div class="note">事实核查：直抓成功。创业者背景六条：「现任某 B 端独角兽公司产品总监；前大厂运营负责人」「行业知名提示词工程师，写过浏览量 10w+ 的 Prompt」「LangGPT 开源社区共建者；WaytoAGI 社区专栏作者」「参与制定多项行业标准、白皮书」「多次负责 0-1 产品孵化与验证」等。底稿「前阿里工程师」未获此页及独立检索印证，见捌节④。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx partial">[8]</span><span class="rt">C+</span><span class="st">Chrome 商店第三方镜像</span></div><div class="ti">Chat Memo｜自动保存 ChatGPT、Gemini、Claude 等 AI 平台聊天记录（Crx搜搜镜像）</div><div class="mt"><b>来源：</b>Crx搜搜（crxsosso.com）　<b>核验日期：</b>2026-11 检索<br><a href="https://www.crxsoso.com/webstore/detail/memnnheiikbfdcobfkghhfihnegkfici" target="_blank" rel="noopener">https://www.crxsoso.com/webstore/detail/memnnheiikbfdcobfkghhfihnegkfici</a></div><div class="note">事实核查：搜索结果命中。镜像快照显示 Chrome 端 4.6 分、10000 位用户、版本 2.0.0、开发者一泽Eze——与官网 20000+/4.9 口径存在差异（疑为较早快照或统计口径不同），仅作旁证并标注快照时点不明。Chrome 商店页本体（chromewebstore.google.com/detail/memnnheiikbfdcobfkghhfihnegkfici）直抓与 Wayback 均返回空，未能直接核验。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx partial">[9]</span><span class="rt">C</span><span class="st">第三方竞品对比站</span></div><div class="ti">LLMnesia vs Chat Memo: AI Chat Auto-Save Extension Comparison</div><div class="mt"><b>来源：</b>LLMnesia（竞品官网对比页）　<b>核验日期：</b>2026-11 检索<br><a href="https://www.llmnesia.com/compare/llmnesia-vs-chat-memo" target="_blank" rel="noopener">https://www.llmnesia.com/compare/llmnesia-vs-chat-memo</a></div><div class="note">事实核查：搜索结果命中。该页称 Chat Memo「10,000+ users, 4.7 stars, featured on the Chrome Web Store」，支持 ChatGPT/Gemini/Claude/DeepSeek/Qwen 等——为「Google 精选」提供独立旁证；但发布方为竞品（利益相关），数字口径与官网不一致，仅按 C 级旁证收录。同站另一对比文将 Chat Memo 误标为「仅支持 ChatGPT」（与商店页一手记录冲突），已弃用并作为第三方信息质量警示收录捌节③。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx partial">[10]</span><span class="rt">C</span><span class="st">第三方工具目录</span></div><div class="ti">Chat Memo（星火集工具目录条目）</div><div class="mt"><b>来源：</b>星火集（sparkx.zone）　<b>核验日期：</b>2026-11 检索<br><a href="https://sparkx.zone/tools/117" target="_blank" rel="noopener">https://sparkx.zone/tools/117</a></div><div class="note">事实核查：搜索结果命中。目录条目标注「运营中」、开发者一泽Eze、功能描述「自动保存跨平台 AI 对话记录，支持搜索、导出与本地备份」——与官网/商店一手信息一致，佐证产品持续运营状态。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx partial">[11]</span><span class="rt">C+</span><span class="st">转载站（内容影响力旁证）</span></div><div class="ti">有效的 Context 工程（精读、万字梳理）——转自微信公众号「一泽Eze」</div><div class="mt"><b>来源：</b>火龙果软件（uml.org.cn）　<b>发布日期：</b>2025-10-28 转载<br><a href="http://www.uml.org.cn/ai/202510284.asp" target="_blank" rel="noopener">http://www.uml.org.cn/ai/202510284.asp</a></div><div class="note">事实核查：搜索结果命中。该转载稿印证一泽公众号在 Prompt→Context Engineering 议题上的持续输出（「2025 年 6 月以来，原名为 Prompt Engineering 的提示词工程……」），作为创作者内容影响力与专业身份的旁证，非产品事实直接信源。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 11 条。核验标签分布：🟢 已核验（verified）4 条（官网、即刻原帖、Edge 商店页、GitHub 仓库——全部直抓成功且多源互指）、🔵 多源印证（cross）3 条（公众号原文经转载页逐段核验、WaytoAGI 官方介绍页）、🟡 部分映证（partial）4 条（Chrome 商店镜像、竞品对比站、工具目录、转载站——均已标注口径与利益相关）。信源评级分布：A 级 5 条（一手官网/原帖/商店/仓库）、B+ 级 2 条、C+/C 级 4 条。核验失败 URL 及处理：① Chrome 商店页（chromewebstore.google.com/detail/memnnheiikbfdcobfkghhfihnegkfici）直抓与 Wayback 均返回空（反爬）——改用官网一手声明 + Edge 用户评价时间戳 + 竞品页 + 第三方镜像四路间接印证，并在伍/捌节显式标注；② 公众号原文（mp.weixin.qq.com/s/VpiMuxFzVuDt9iJUip1_Rw）直抓受限（微信反爬）——URL 由即刻原帖「阅读原文」链接背书，正文经人人都是产品经理转载页逐段核验一致；③ 「前阿里工程师」底稿口径未获直接信源印证——按 WaytoAGI 官方介绍页「前大厂运营负责人、现任 B 端独角兽产品总监」呈现并存档差异。未发现伪造链接；全部 URL 为检索过程实际命中页面。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-12 · 用户数与评分均为各信源时点值，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

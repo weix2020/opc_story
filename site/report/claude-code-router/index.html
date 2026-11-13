@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · claude-code-router—— musistudio 的开源路由网关 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · claude-code-router">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="claude-code-router 深度案例报告：杭州开发者 musistudio 在 Claude Code 发布次日逆向工程，做出把 Claude Code 路由到任意大模型的开源网关，GitHub 星标 38,127（2026-11-13 API 实测），Kimi 阶段性具名赞助。13 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>claude-code-router 深度案例报告</h1>
+    <h2>杭州开发者 musistudio：在 Claude Code 发布次日完成逆向工程<br>做出把 Claude Code 路由到任意大模型的开源网关 —— GitHub 38,127★ · 13 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">开源工具型 OPC</span>
+      <span class="tag">厂商赞助模式</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">38,127</div><div class="k">GitHub 星标（2026-11-13 API 实测）</div></div>
+  <div class="stat"><div class="v up">3,206</div><div class="k">GitHub Fork（同日实测）</div></div>
+  <div class="stat"><div class="v neutral">2025-02-26</div><div class="k">首条可回溯提交（实测）</div></div>
+  <div class="stat"><div class="v neutral">1 人</div><div class="k">个人账号主导（musistudio）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">claude-code-router（社区简称 CCR）是一个把 Claude Code 的请求劫持并转发到任意大模型供应商的本地开源网关：开发者无需 Anthropic 官方账号，即可用 DeepSeek、Kimi、通义、Gemini 等模型驱动 Claude Code 的完整体验。它是国内「AI 开发者工具」赛道「厂商赞助型开源 OPC」的代表样本——项目免费开源（MIT），收入来自厂商赞助与生态位本身。</p>
+  <div class="two">
+    <div class="card"><div class="ct">项目</div><div class="cb">本地模型网关与控制平面：为 Claude Code 及 Codex、Grok CLI、Kimi CLI、OpenCode 等十余种编程 Agent 提供「一个稳定的本地端点」，在其后统一管理供应商、模型、账号、路由规则与工具；TypeScript 编写，MIT 许可，支持桌面 App、npm CLI 与 Docker 三种形态。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">musistudio（GitHub 昵称显示为「musi」，坐标杭州，个人简介 Focusing on AI，2016 年注册 GitHub，个人主页公开仓库 194 个、粉丝 642）<a class="cref cross" href="#ref-1">[1]</a>；<b>真名未公开</b>，未检索到公开实名报道。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="card"><div class="ct">项目起点</div><div class="cb">GitHub 仓库创建于 2025-02-25——即 Anthropic 官方 Claude Code 发布次日；作者自述当天即完成对 Claude Code 的逆向工程，找到 ANTHROPIC_BASE_URL 环境变量劫持点，次日产出首条可回溯提交（2025-02-26，Bypass auth）。</div><div class="cm">信源：<a class="cref cross" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="card"><div class="ct">公司 / 投资状态</div><div class="cb">未检索到公司注册与融资公开信息；变现路径为开源赞助生态：Ko-fi / PayPal / 支付宝 / 微信收款码 + README「Our Sponsors」厂商位（Z智谱、AIHubmix、302.AI 等 12 家，部分链接带返佣参数），另有 Kimi 阶段性具名赞助（详见捌·不确定性）。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref partial" href="#ref-8">[8]</a></div></div>
+  </div>
+  <div class="two">
+    <div class="card blue"><div class="ct">成功迹象（时点值）</div><div class="cb">GitHub 星标 38,127、Fork 3,206（2026-11-13 API 实测）<a class="cref cross" href="#ref-1">[1]</a>；第三方目录 MeshKore 2026-10-10 索引值 37,985★、EveryDev.ai 记录 36,000+★，量级互证<a class="cref partial" href="#ref-8">[8]</a><a class="cref partial" href="#ref-9">[9]</a>；Kimi（Moonshot AI）曾以具名赞助方身份出现并作为内置 provider 预设<a class="cref partial" href="#ref-8">[8]</a><a class="cref partial" href="#ref-9">[9]</a>。</div></div>
+    <div class="card blue"><div class="ct">生态位</div><div class="cb">火山引擎开发者社区与 InfoQ 写作社区均以 CCR 为标准组件发布「Claude Code + 国产模型」对接教程<a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-5">[5]</a>；V2EX 等社区将其列为大陆使用 Claude Code 的实际方案之一<a class="cref partial" href="#ref-13">[13]</a>。案例墙底稿置信度：高。</div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2025-02-24 → 02-25</div><div class="tx">Claude Code 发布次日，musistudio 完成逆向工程</div><div class="td">作者自述：因 Anthropic 封锁中国大陆用户无法正常注册，遂判断 Claude Code 为 Node.js 应用，用 WebStorm 反格式化混淆代码 + Chrome DevTools 调试，定位到 ANTHROPIC_BASE_URL / apiKey 可被环境变量覆盖；仓库同日创建。<a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2025-02-26</div><div class="tx">首条可回溯提交「Bypass auth」</div><div class="td">GitHub commits API 实测最早提交；2025-02-28 提交「Enable deepseek using the router mode」——DeepSeek 路由模式随即上线。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2025 年 2-5 月</div><div class="tx">初版 Router 模式试错：qwen-max → 轻量模型调度</div><div class="td">初版用 qwen-max 兜底（彼时 DeepSeek 系列 Function Calling 支持差），后尝试「router/tool/think/coder」四角色架构，由免费轻量模型调度任务——因轻量模型路由能力不足而搁浅。<a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2025-05-28 前后</div><div class="tx">DeepSeek-R1 支持 Function Call，重构为四角色任务路由</div><div class="td">定型的 default（默认兜底）/ background（后台轻任务，路由至本地 ollama）/ think（推理规划，接 DeepSeek-R1）/ longContext（tiktoken 实时计长、超 32K 自动切换）四角色机制成型；作者称 DeepSeek-V3 成本不足 Claude 3.5 Sonnet 的十分之一。<a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2025-07 起</div><div class="tx">成为大陆开发者社区的「实际方案」</div><div class="td">V2EX「大陆用 cc 的最佳实践」帖（11725 次点击）中，用户以「claude-code-router + openrouter」作为现行搭配出现；同期社区普遍反映 Claude 代理折腾、5 小时限额与封号焦虑——CCR 恰好卡住该痛点。<a class="cref partial" href="#ref-13">[13]</a></div></div>
+    <div class="node"><div class="dt">2026-06-02</div><div class="tx">火山引擎开发者社区发布 CCR 对接教程</div><div class="td">明确表述「Claude Code Router 是一个开源的代理路由工具，由 musistudio 开发」，列出模型路由（后台任务/思考/长上下文）、多供应商、动态切换、插件系统等核心功能；InfoQ 写作社区同主题文章以 CCR 为火山方舟「搬家」方案的标准组件。<a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2026 年间</div><div class="tx">Kimi 成为具名赞助方与内置 provider 预设</div><div class="td">第三方索引快照显示 README 曾载「Thanks to Kimi for sponsoring this project!」——Kimi K3 作为内置 provider 预设，一键导入 Kimi Code 订阅并路由；该声明见于 MeshKore（2026-10-10 索引）与 EveryDev.ai 两处快照。<a class="cref partial" href="#ref-8">[8]</a><a class="cref partial" href="#ref-9">[9]</a></div></div>
+    <div class="node"><div class="dt">2026-09 → 10</div><div class="tx">生态左右互搏：厂商官方通道上线 vs CCR 升级「控制平面」</div><div class="td">Kimi 开放平台官方文档给出 Claude Code 直连 Kimi 的 Anthropic 兼容端点配置<a class="cref cross" href="#ref-6">[6]</a>；极客公园梳理终端 Agent 替代方案时亦以「Claude Code 国内使用局限」为背景命题<a class="cref cross" href="#ref-7">[7]</a>。CCR 则在 2026-10 大改版：从 Claude Code 专用网关升级为支持 10+ Agent 的「本地控制平面」，赞助商名单同步换血。<a class="cref verified" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2026-11-13</div><div class="tx">本报告实测：38,127★ / 3,206 Fork / 1,200 open issues</div><div class="td">GitHub API 一手实测值；项目持续维护（最近推送 2026-10-10），主页指向桌面版站点 ccrdesk.top。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：把「用不上」变成「随便用」——速度即生态位</div><div class="cb">Claude Code 2025-02-24 发布，musistudio 次日即完成逆向并建仓。这个「时差」决定了项目卡位：在官方区域封锁、注册排队、支付门槛三重限制下，第一批想用 Claude Code 的大陆开发者几乎必然经过 CCR 的路径——用环境变量把请求重定向到本地网关，再用国产模型顶上。作者博客完整披露了逆向过程（npm 包定位 → 反混淆 → DevTools 断点 → 搜 api.anthropic.com 关键词），本身就是一份「一人逆向工程方法论」。</div><div class="cm">信源：<a class="cref cross" href="#ref-3">[3]</a></div></div>
+  <div class="card"><div class="ct">转折二：跟着模型能力演进重构，而非固守首版架构</div><div class="cb">初版四角色（router/tool/think/coder）因轻量模型调度不准而失败，作者没有硬扛，而是在 2025-05-28 DeepSeek-R1 支持 Function Call 后整体重构为 default/background/think/longContext 的「按任务类型分流」机制——后台杂事给本地小模型、推理给 R1、长上下文用 tiktoken 实时测算后自动切换。这套机制后来被火山引擎教程原文转述为「根据需求将请求路由到不同的模型（如后台任务、思考、长上下文）」，成为项目的技术名片。</div><div class="cm">信源：<a class="cref cross" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-4">[4]</a></div></div>
+  <div class="card blue"><div class="ct">转折三：从单点网关到「厂商赞助生态」——开源 OPC 的变现样本</div><div class="cb">CCR 的商业闭环不靠卖 License，而是靠生态位收租：README 收款位覆盖 Ko-fi、PayPal、支付宝、微信；「Our Sponsors」厂商位现有 Z智谱、AIHubmix、BurnCloud、302.AI、RunAPI、TeamoRouter、code0.ai、claudeapi、七牛云 AI、Fenno.ai、Unity2.Ai、无限星河等 12 家，其中多家链接带 aff 返佣参数或 utm 合作标记——模型供应商向「流量入口」付费。Kimi 更曾以具名赞助方身份写入 README 快照并成为内置预设。2026-10 改版后，CCR 从「Claude Code 专用」扩张为「所有编程 Agent 的本地控制平面」，把生态位从单一工具面抬升为基础设施面。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref partial" href="#ref-8">[8]</a></div></div>
+  <div class="quote">
+    <p>这个项目提供了一种在 Anthropic 区域限制下运行 Claude Code 的务实路径，在成本、性能与可定制性之间取得平衡。话虽如此，如果条件允许，官方 Max Plan 仍是最佳体验。</p>
+    <span class="src">—— musistudio，项目自述博客《Project Motivation and Principles》（意译），原文见 <a class="cref cross" href="#ref-3">[3]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>机制与事实</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>路由原理</b></td><td>利用 Claude Code 尊重 <span class="hl">ANTHROPIC_BASE_URL</span> 环境变量的特性，由 Express.js 在本地实现 /v1/messages 端点；中间件（transformer）完成 Anthropic Messages 格式与各家 API 格式的双向转换，支持按模型改写请求（prompt 调优）。不改动 Claude Code 源码，可随官方更新受益。</td><td><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td><b>供应商分流机制</b></td><td>v1 定型四角色路由：<b>default</b>（通用兜底）/ <b>background</b>（后台轻任务，作者路由至本地 ollama）/ <b>think</b>（推理规划，接 DeepSeek-R1）/ <b>longContext</b>（tiktoken 实时计长，超 32K 自动切换）。v3 改版后扩展为条件路由、有序故障转移（fallback）、请求重写、重试与凭证池。</td><td><a class="cref cross" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>内置 provider 与赞助生态</b></td><td>内置预设覆盖 OpenAI Chat/Responses、Anthropic Messages、Gemini、OpenRouter、DeepSeek、SiliconFlow、<b>Moonshot / Kimi Code</b>、Mistral、Z.AI、百炼等，并支持自定义兼容端点；赞助位 12 家厂商 + 社区赞助者名单，Ko-fi/PayPal/支付宝/微信四通道收款。</td><td><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>面向客群</b></td><td>核心客群为 <span class="hl">Claude Code 用户</span>（尤其受区域限制与订阅成本约束的大陆开发者）；v3 之后扩展至 Codex、Grok CLI、Kimi CLI、Kilo Code、OpenCode、Pi、ZCode、WorkBuddy 等全部主流编程 Agent 用户——「一个稳定的本地端点」。</td><td><a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>解决痛点</b></td><td>三重痛点叠加：① 官方订阅贵且有 5 小时限额（社区原声「max 还是有点贵」）；② Anthropic 封锁中国大陆，注册/支付/连通全链路受阻；③ 国产模型强且便宜——作者实测 DeepSeek-V3 成本不足 Claude 3.5 Sonnet 十分之一。CCR 让「Claude Code 的壳 + 国产模型的芯」成为可能。</td><td><a class="cref cross" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-7">[7]</a> <a class="cref partial" href="#ref-13">[13]</a></td></tr>
+      <tr><td><b>商业模式</b></td><td>软件本身 MIT 免费开源；收入 = 厂商赞助位（部分含返佣参数）+ 社区打赏 + 桌面版分发（ccrdesk.top）。<b>未检索到公开营收数据。</b></td><td><a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-1">[1]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box insight">
+    <div class="bt">💡 商业模式要点：开源工具的「厂商赞助」曲线</div>
+    与 one-api / new-api 的「中转站底座」不同，CCR 的赞助方不只是 API 二道贩子，还包括智谱、Moonshot（Kimi）等<b>模型原厂</b>——它们赞助的不是代码，而是「Claude Code 存量用户的模型选择权」。当一个开源工具成为用户换模型的默认入口，原厂就有动机付费上车。这是 2026 年国内开源 OPC 中少见的「上游厂商付费」结构。
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>GitHub 星标</td><td class="hl">38,127（API 实测）</td><td>2026-11-13</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>GitHub 星标（第三方索引互证）</td><td>37,985（MeshKore）／36,000+（EveryDev.ai）</td><td>2026-10-10 索引／2026 查询</td><td><a class="cref partial" href="#ref-8">[8]</a><a class="cref partial" href="#ref-9">[9]</a></td></tr>
+      <tr><td>GitHub Fork</td><td>3,206</td><td>2026-11-13</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>Open issues</td><td>1,200（单人维护压力信号，见柒-7）</td><td>2026-11-13</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>Watchers / 主语言 / 许可</td><td>133 / TypeScript / MIT</td><td>2026-11-13</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>首条可回溯提交</td><td>2025-02-26「Bypass auth」</td><td>API 实测</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>仓库创建</td><td>2025-02-25（Claude Code 发布次日）</td><td>API 实测</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td>赞助方</td><td>厂商位 12 家（Z智谱、AIHubmix、302.AI、RunAPI、七牛云 AI 等）+ Kimi 阶段性具名赞助（历史快照）</td><td>2026-11 README／2026 快照</td><td><a class="cref verified" href="#ref-2">[2]</a><a class="cref partial" href="#ref-8">[8]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    星标为动态值：本报告以 2026-11-13 GitHub API 实测值 38,127 为基线，与案例墙底稿「约 38k★（2026-10/11 时点）」一致；MeshKore 与 EveryDev.ai 为第三方索引快照，仅作量级互证。赞助与营收金额零披露——「厂商赞助模式」的收入规模无法量化，属于本案例最大留白。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将 CCR 放入案例墙「网关类项目」坐标系（对标数据均引自案例墙既有核验值，时点以案例墙底稿标注为准）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>网关类型</th><th>星标（时点值）</th><th>模式差异</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>claude-code-router</b></td><td>musistudio</td><td>细分场景网关：Claude Code（及编程 Agent）专用</td><td class="hl">38,127★（2026-11-13 实测）</td><td>厂商赞助 + 返佣生态；上游模型原厂付费上车</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>new-api</td><td>Calcium-Ion（个人发起，后转 QuantumNous 组织）</td><td>通用 LLM 网关与 AI 资产管理</td><td>51.3k★（2026-11-10 案例墙底稿）</td><td>大量商用中转站底座；已组织化（一人属性中）</td><td>案例墙增补批次（2026-11-10）既有核验值</td></tr>
+      <tr><td>one-api</td><td>songquanpeng（justsong）</td><td>通用 LLM API 网关（事实标准前身）</td><td>37.3k★（案例墙底稿）</td><td>密钥管理与二次分发，国内中转站生态起点</td><td>案例墙 #10 既有核验值</td></tr>
+      <tr><td>AIClient-2-API</td><td>justlovemaki</td><td>协议反代网关：把 Gemini CLI/Codex/Grok 等客户端协议转为本地 OpenAI 兼容 API</td><td>约 8.9k★（案例墙底稿）</td><td>与 CCR 同属「把客户端协议反向开放」路线，无赞助生态披露</td><td>案例墙 #13 既有核验值</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>四者的分化揭示了网关赛道的两条路线：one-api / new-api 是<b>通用 API 池</b>路线（服务中转站生意，星标更高但已组织化）；CCR 与 AIClient-2-API 是<b>细分场景网关</b>路线——前者锚定「Claude Code 生态」这一最高频刚需场景，后者锚定「客户端协议反代」。CCR 的独特性在于其<b>厂商赞助模式</b>：原厂（Kimi）与供应商（智谱、302.AI 等）主动付费上车，使其成为案例墙中少见的「不卖 License、不接融资、靠生态位收租」的开源 OPC 样本；代价是赞助关系随版本更迭（Kimi 已从当前 README 赞助位淡出），稳定性弱于订阅制收入。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>分析</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>本地模型网关 + 控制平面：格式转换（Anthropic ↔ 各家 API）、按任务类型分流（默认/后台/思考/长上下文）、条件路由与故障转移、凭证池、动态切换（/model）、GitHub Actions 集成、插件系统；v3 后扩展至 10+ 编程 Agent 并提供桌面 App。</td><td><a class="cref cross" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>2. 面向客群</b></td><td>直接客群：受区域限制/成本约束的 Claude Code 大陆开发者（V2EX 实证用户以「ccr + openrouter」为现行方案）；扩展客群：全部编程 Agent 用户；间接客群：模型供应商与原厂（赞助位买家）。</td><td><a class="cref partial" href="#ref-13">[13]</a> <a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>3. 解决痛点</b></td><td>官方模型贵 + 区域封锁 + 国产模型强三重痛点（DeepSeek-V3 成本不足 Claude 3.5 Sonnet 十分之一）；第三方指南称「把后台与简单任务路由到小模型，可为 Claude Code 会话节省一半以上 token 开支」。</td><td><a class="cref cross" href="#ref-3">[3]</a> <a class="cref partial" href="#ref-10">[10]</a></td></tr>
+      <tr><td><b>4. 预估年化营收（推算，置信度 C）</b></td><td><b>零披露，无任何公开营收数据。</b>可核验的收入通道仅为：厂商赞助位（部分含返佣）、Ko-fi/PayPal/支付宝/微信打赏。参照开源工具类项目惯例，赞助收入量级通常不足以替代工资——本案价值更多体现为生态位、影响力与个人品牌（@musistudio2026），而非直接现金流。不作任何数字推算。</td><td><a class="cref verified" href="#ref-2">[2]</a> <a class="cref partial" href="#ref-8">[8]</a></td></tr>
+      <tr><td><b>5. 融资进展</b></td><td>未检索到公开融资信息。非货币资源：模型原厂与供应商的赞助合作（Kimi 阶段性具名赞助、智谱等 12 家厂商位）、火山引擎/InfoQ 官方社区教程的渠道背书。</td><td><a class="cref partial" href="#ref-8">[8]</a> <a class="cref cross" href="#ref-4">[4]</a> <a class="cref cross" href="#ref-5">[5]</a></td></tr>
+      <tr><td><b>6. 市场评价</b></td><td>正面信号密集：火山引擎开发者社区与 InfoQ 写作社区将其列为对接国产模型的标准组件<a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-5">[5]</a>；第三方目录给予工具级推荐位<a class="cref partial" href="#ref-9">[9]</a><a class="cref partial" href="#ref-10">[10]</a>；中文社区教程（掘金、X-CMD）持续产出<a class="cref partial" href="#ref-11">[11]</a><a class="cref partial" href="#ref-12">[12]</a>。负面信号：open issues 高达 1,200，社区对维护响应与配置复杂度存在抱怨（详见捌）。</td><td>见左列</td></tr>
+      <tr><td class="hl"><b>7. 投入成本与合规风险</b></td><td>① <b>Anthropic 服务条款风险（核心风险）</b>：项目的技术前提是逆向官方闭源工具并劫持其请求端点，用于绕过区域限制——作者博客对此完全公开<a class="cref cross" href="#ref-3">[3]</a>；极客公园与 V2EX 社区均记录了 Claude 侧封号/风控压力的环境背景<a class="cref cross" href="#ref-7">[7]</a><a class="cref partial" href="#ref-13">[13]</a>。未检索到 Anthropic 对本项目或 musistudio 本人的公开法律行动。② <b>开源维护可持续性</b>：单人账号主导、1,200 open issues、2026-10 大改版（v3 桌面化）后维护面从单一 CLI 扩大到多 Agent 控制平面——巴士系数（bus factor）为 1 是此类项目最大结构性风险。③ 商用合规：企业若借 CCR 绕过官方区域限制接入生产环境，需自行评估 ToS 与数据出境风险。</td><td><a class="cref cross" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-2">[2]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 五处留白与一处底稿勘误（截至 2026-11-13 检索）</div>
+    ① <b>营收零披露</b>：赞助金额、返佣收入、打赏总额均无公开数据；② <b>Kimi 赞助现状不确定</b>：「Thanks to Kimi for sponsoring this project!」见于 MeshKore（2026-10-10 索引）与 EveryDev.ai 两处第三方快照，但当前最新 README 的赞助商名单已换为智谱/302.AI 等且无 Kimi——赞助关系应为阶段性，本报告按「历史快照双源、当前版本已淡出」口径收录；③ <b>真名未公开</b>：musistudio 仅以网名活动（GitHub 显示名 musi），未检索到实名报道；④ <b>团队构成未证实</b>：仓库以个人账号主导，未检索到雇佣或协作者规模的公开信息；⑤ <b>底稿锚点勘误</b>：案例墙底稿记锚点「2025-02-15（首提交）」，本次 GitHub API 实测仓库创建于 2025-02-25、首条可回溯提交为 2025-02-26，且作者自述 2025-02-25 才开始逆向——<b>按一手实测修正为 2025-02-25/26</b>，底稿 02-15 口径无法回溯，疑为笔误。
+  </div>
+  <div class="card"><div class="ct">依赖风险：建立在对手地基上的房子</div><div class="cb">CCR 的全部价值依附于 Claude Code 的持续存在与其环境变量机制的开放性。2026 年起风向已变：Kimi 官方文档直接给出「在 Claude Code 中使用 Kimi」的 Anthropic 兼容端点配置<a class="cref cross" href="#ref-6">[6]</a>——当原厂自己提供官方通道，民间网关的转换价值被部分吸收。CCR 的应对是横向扩张（支持 10+ Agent 成为通用控制平面），但这条路上它要面对 new-api 等组织化对手的正面竞争。</div><div class="cm">信源：<a class="cref cross" href="#ref-6">[6]</a> <a class="cref verified" href="#ref-2">[2]</a></div></div>
+  <div class="card"><div class="ct">核验过程受限说明</div><div class="cb">EveryDev.ai 页面本次直连返回 429（限流），内容经搜索快照核验；V2EX 直连超时，经抓取服务核验成功——两条均如实标注于信源页。其余 11 条信源直连可达（HTTP 200）。GitHub 星标历史版本中未直接定位到 Kimi 赞助原文的提交记录（README 历史提交较多未全量遍历），赞助表述以第三方快照双源为准并降级为 partial 处理。</div></div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">CCR 证明了 OPC 在「基础设施层」的另一种可能：不需要融资、不需要卖订阅，只要在巨头封锁的缝隙里做出一个足够刚需的入口，上游厂商会自己走过来付钱。它同时是「单人开源项目天花板与天花板之下的脆弱性」的合体样本——38k 星标与 1,200 未处理 issue、阶段性赞助与随时可能被官方通道替代的生态位并存。对想复制此路的一人开发者，本案给出的公式是：<b>速度（发布次日逆向）× 真实痛点（区域封锁+成本）× 生态位经营（让供应商有理由赞助）</b>，以及一条底线——把逆向过程与技术理由全部公开写下来，让项目在灰色地带获得社区共识护航。</div><div class="cm">信源：<a class="cref cross" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-8">[8]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 13 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/第三方快照）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx cross">[1]</span><span class="rt">A</span><span class="st">GitHub API 一手实测</span></div><div class="ti">musistudio/claude-code-router 仓库元数据（星标 38,127、Fork 3,206、创建 2025-02-25、首提交 2025-02-26）</div><div class="mt"><b>来源：</b>GitHub REST API（api.github.com/repos/musistudio/claude-code-router 及 commits/users 端点）　<b>实测时点：</b>2026-11-13<br><a href="https://api.github.com/repos/musistudio/claude-code-router" target="_blank" rel="noopener">https://api.github.com/repos/musistudio/claude-code-router</a></div><div class="note">事实核查：星标/Fork/issues/许可/语言/创建时间均为 API 一手实测；首提交经 commits?until 参数回溯（2025-02-26 Bypass auth、2025-02-28 Enable deepseek using the router mode）；用户资料（musi、杭州、2016 注册）经 users 端点实测。与案例墙底稿「约 38k★」一致。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx verified">[2]</span><span class="rt">A</span><span class="st">GitHub README（一手）</span></div><div class="ti">claude-code-router README（main 分支）：产品定位、provider/Agent 清单、赞助商名单</div><div class="mt"><b>来源：</b>GitHub raw（musistudio/claude-code-router main）　<b>核验时点：</b>2026-11-13<br><a href="https://github.com/musistudio/claude-code-router" target="_blank" rel="noopener">https://github.com/musistudio/claude-code-router</a></div><div class="note">事实核查：README 原文确认——「本地模型网关与控制平面」定位、10 类支持 Agent、12 类内置 provider（含 Moonshot/Kimi Code）、Our Sponsors 12 家厂商（部分链接带 aff/utm 返佣参数）、Ko-fi/PayPal/支付宝/微信收款通道。与 [4][9] 描述交叉一致。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx cross">[3]</span><span class="rt">A</span><span class="st">作者自述博客（一手）</span></div><div class="ti">Project Motivation and Principles（仓库 blog/en/ 目录）</div><div class="mt"><b>来源：</b>musistudio 本人撰写，存于项目仓库　<b>核验时点：</b>2026-11-13<br><a href="https://raw.githubusercontent.com/musistudio/claude-code-router/main/blog/en/project-motivation-and-how-it-works.md" target="_blank" rel="noopener">raw.githubusercontent.com/.../blog/en/project-motivation-and-how-it-works.md</a></div><div class="note">事实核查：一级自述信源——发布次日（2025-02-25）逆向、ANTHROPIC_BASE_URL 劫持原理、qwen-max→DeepSeek-R1 演进、default/background/think/longContext 四角色机制、DeepSeek-V3 成本不足 Claude 3.5 Sonnet 十分之一、「区域限制下的务实路径」结语均出自此稿；与 [4] 的功能转述交叉一致。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx cross">[4]</span><span class="rt">B+</span><span class="st">大厂开发者社区</span></div><div class="ti">Claude Code 对接火山引擎协作者计划（作者 Numb，2026-06-02）</div><div class="mt"><b>来源：</b>火山引擎开发者社区　<b>发布日期：</b>2026-06-02<br><a href="https://developer.volcengine.com/articles/7646444084118159370" target="_blank" rel="noopener">https://developer.volcengine.com/articles/7646444084118159370</a></div><div class="note">事实核查：原文明确「由 musistudio 开发」「根据需求将请求路由到不同的模型（如后台任务、思考、长上下文）」、多供应商清单与 /model 动态切换——与 [3][5] 交叉印证。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx cross">[5]</span><span class="rt">B+</span><span class="st">行业技术社区</span></div><div class="ti">Claude 用不了？火山引擎为开发者上线「搬家」方案（InfoQ 写作社区）</div><div class="mt"><b>来源：</b>InfoQ 写作社区（xie.infoq.cn）　<b>发布日期：</b>2026（页面未标注确切日期）<br><a href="https://xie.infoq.cn/article/07198b180d6e58314ddf42ae1" target="_blank" rel="noopener">https://xie.infoq.cn/article/07198b180d6e58314ddf42ae1</a></div><div class="note">事实核查：以 CCR（npm install -g @musistudio/claude-code-router）为火山方舟接入 Claude Code 的标准步骤；印证其作为「国产模型搬家方案」组件的生态地位。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx cross">[6]</span><span class="rt">A</span><span class="st">厂商官方文档</span></div><div class="ti">在 Claude Code 中使用 Kimi（Kimi API 开放平台 / Kimi Code 文档）</div><div class="mt"><b>来源：</b>Moonshot AI 官方（platform.kimi.com、kimi.com/code/docs）　<b>核验时点：</b>2026-11-13<br><a href="https://platform.kimi.com/docs/guide/claude-code-kimi" target="_blank" rel="noopener">https://platform.kimi.com/docs/guide/claude-code-kimi</a></div><div class="note">事实核查：厂商一手——官方提供 ANTHROPIC_BASE_URL 指向 api.moonshot.cn/anthropic 的直连配置；证明「民间网关的格式转换价值正被原厂官方通道部分吸收」这一论断。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">B</span><span class="st">科技媒体</span></div><div class="ti">Claude Code 国内用不了？终端 Agent 直连替代方案梳理（2026）</div><div class="mt"><b>来源：</b>极客公园　<b>发布日期：</b>2026-09-04<br><a href="https://www.geekpark.net/news/369856" target="_blank" rel="noopener">https://www.geekpark.net/news/369856</a></div><div class="note">事实核查：背景信源——详述 Claude Code 在国内的网络连通/账号注册/支付/身份核验四重局限与终端 Agent 年趋势（Cursor Agent 用户 2:1 等）。该文未直接点名 CCR，故仅用于痛点与环境背景论证。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx partial">[8]</span><span class="rt">C</span><span class="st">第三方目录快照</span></div><div class="ti">claude-code-router — musistudio agent（MeshKore 目录页，索引 GitHub）</div><div class="mt"><b>来源：</b>MeshKore.com　<b>索引时点：</b>2026-10-10<br><a href="https://meshkore.com/agent/musistudio-claude-code-router" target="_blank" rel="noopener">https://meshkore.com/agent/musistudio-claude-code-router</a></div><div class="note">事实核查：完整镜像「Thanks to Kimi for sponsoring this project!」段落（Kimi K3 内置 provider 预设、一键导入 Kimi Code 订阅）；星标索引 37,985（2026-10-10）；作者 X 账号 @musistudio2026。Kimi 赞助为第三方快照口径，与 [9] 互证但非独立权威，按 partial 处理。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx partial">[9]</span><span class="rt">C</span><span class="st">第三方工具目录</span></div><div class="ti">Claude Code Router - Local AI Coding Agent Gateway（EveryDev.ai）</div><div class="mt"><b>来源：</b>EveryDev.ai　<b>核验方式：</b>搜索快照（直连 429 限流）<br><a href="https://www.everydev.ai/tools/claude-code-router" target="_blank" rel="noopener">https://www.everydev.ai/tools/claude-code-router</a></div><div class="note">事实核查：记录「创建于 2025 年 2 月、36,000+ stars、3,000 forks、Kimi（Moonshot K3）listed as a named sponsor and built-in provider preset」——与 [1][8] 量级互证；页面本次直连受限，标注核验方式。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx partial">[10]</span><span class="rt">C</span><span class="st">第三方指南站</span></div><div class="ti">Claude Code Router: Route Claude Code to Any Model (2026 Guide)（morphllm）</div><div class="mt"><b>来源：</b>morphllm.com　<b>发布日期：</b>2026<br><a href="https://www.morphllm.com/claude-code-router" target="_blank" rel="noopener">https://www.morphllm.com/claude-code-router</a></div><div class="note">事实核查：MIT 免费开源、「路由简单任务到小模型可省一半以上 token 开支」的成本论证出自此稿（第三方评测口径）。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx partial">[11]</span><span class="rt">C+</span><span class="st">中文社区教程</span></div><div class="ti">Claude Code Router：一键接入多种 AI 模型的智能路由器（掘金）</div><div class="mt"><b>来源：</b>掘金（juejin.cn）　<b>发布日期：</b>2025-2026<br><a href="https://juejin.cn/post/7540899924075610164" target="_blank" rel="noopener">https://juejin.cn/post/7540899924075610164</a></div><div class="note">事实核查：中文社区普及度佐证——「解决 AI 模型平台锁定」「无需 Anthropic 官方 API 即可享受 Claude Code 体验」等表述与 [3][4] 一致。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx partial">[12]</span><span class="rt">C+</span><span class="st">中文工具站</span></div><div class="ti">Claude Code 只能用单一模型？ccr 实现多模型灵活切换（X-CMD 一键安装）</div><div class="mt"><b>来源：</b>X-CMD（cn.x-cmd.com）　<b>核验时点：</b>2026-11-13<br><a href="https://cn.x-cmd.com/install/claude-code-router/" target="_blank" rel="noopener">https://cn.x-cmd.com/install/claude-code-router/</a></div><div class="note">事实核查：中文介绍「为 Claude Code 提供多模型支持的路由器，可将请求分配到不同的模型后端」；被中文工具链收录本身即普及度信号。</div></li>
+  <li id="ref-13" class="src"><div class="sh"><span class="idx partial">[13]</span><span class="rt">C+</span><span class="st">技术社区讨论（一手用户）</span></div><div class="ti">大陆用 cc 的最佳实践是啥呢？（V2EX Claude 分区，11725 次点击 / 49 回复）</div><div class="mt"><b>来源：</b>V2EX（v2ex.com/t/1146768，发帖人 Dlad）　<b>发布日期：</b>2025-07-22（回复持续至 2026-04）<br><a href="https://v2ex.com/t/1146768" target="_blank" rel="noopener">https://v2ex.com/t/1146768</a></div><div class="note">事实核查：真实用户原声——「目前我是配合 claude-code-router + openrouter 使用」、Claude 订阅限额（每 5 小时刷新）与封号焦虑、代理折腾成本；本次直连超时、经抓取服务核验成功，已标注。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 13 条。核验标签分布：🟢 已核验（verified）2 条、🔵 多源印证（cross）5 条、🟡 部分映证（partial）6 条。信源评级分布：A 级 4 条（GitHub API 实测、README、作者自述博客、Kimi 官方文档——原文回溯全部完成）、B+/B 级 3 条（火山引擎社区、InfoQ 社区、极客公园）、C+/C 级 6 条（第三方目录、指南与社区讨论——均已标注口径）。一处底稿勘误（锚点 2025-02-15 → 实测 2025-02-25/26）与五处留白（营收、Kimi 赞助现状、真名、团队规模、Anthropic 是否采取行动）已在正文显式标注。两条信源核验受限（EveryDev.ai 429 限流改用搜索快照、V2EX 直连超时改用抓取服务），其余 11 条直连可达（HTTP 200）。未发现伪造链接；全部 URL 为检索过程实际命中页面。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-13 · 星标等 GitHub 数据为实测时点值会随时间变动，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

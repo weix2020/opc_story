@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · 胃之书（Bellybook）—— 文科生赵纯想的 AI 饮食记录 App · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · 胃之书（Bellybook）">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="胃之书（Bellybook）深度案例报告：文科生、前大厂产品经理赵纯想，靠「总结能力而非生成能力」的拍照记饮食 AI App，上线 5 个月收入 1.2 万美元、冲上苹果美食佳饮分类第三，获小红书独立开发大赛最佳 AI 项目。12 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>胃之书（Bellybook）深度案例报告</h1>
+    <h2>文科生、前大厂产品经理赵纯想：不靠科班代码，靠「总结能力而非生成能力」的拍照记饮食 AI App，<br>上线 5 个月收入 1.2 万美元、冲上苹果美食佳饮分类第三 —— 12 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">垂直应用型 OPC</span>
+      <span class="tag">文科生 + AI</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">约 9 万</div><div class="k">用户（2024-12 · 自述口径）</div></div>
+  <div class="stat"><div class="v up">1.2 万美元</div><div class="k">上线 5 个月收入（自述口径）</div></div>
+  <div class="stat"><div class="v neutral">第 3 名</div><div class="k">App Store 美食佳饮分类（第一名下厨房）</div></div>
+  <div class="stat"><div class="v neutral">0 元</div><div class="k">投放与营销费（自述）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">胃之书（Bellybook）是一款「拍照记录饮食」的 AI App：拍一张照片，大模型识别菜品并生成热量与代谢分析，辅助健康管理——案例墙口径为「大模型生成热量与代谢分析」<a class="cref partial" href="#ref-1">[1]</a>。它上线 5 个月收获约 9 万用户、收入 1.2 万美元，冲上苹果美食佳饮分类第三，并获小红书首届独立开发大赛「最佳 AI 项目」<a class="cref partial" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a><a class="cref verified" href="#ref-3">[3]</a>，是「文科生 + AI」在健康垂直赛道的代表性样本。</p>
+  <div class="two">
+    <div class="card"><div class="ct">产品</div><div class="cb">App Store 现名「Bellybook 胃之书 - AI美食日记」：拍照或一句话记一餐，AI 饮食助理识别菜品、估算热量与三大营养素、标注菜系并附产地历史；配套美食护照、每日营养球、营养趋势与吃货社区；水墨黑白 UI 以衬托食物色彩；免费下载 + 内购订阅。</div><div class="cm">信源：<a class="cref cross" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">赵纯想，案例墙口径为「文科生、前大厂产品经理」<a class="cref partial" href="#ref-1">[1]</a>；36氪专访还原轨迹：化学专业出身，大二成为韩寒《一个》签约作者，出版《坏一坏》《人生灿灿》，毕业后全职编剧，2019 年转行产品经理，同年创业 Space Chat（获 100 万元投资、6 个月烧完），此后研究中国哲学、开班授课并自学代码。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-7">[7]</a></div></div>
+    <div class="card"><div class="ct">一人属性与主体形态</div><div class="cb">「从编码到运营一人全做、0 投放」为自述口径<a class="cref partial" href="#ref-1">[1]</a>；虎嗅称「开发者只有他和另一个程序员」<a class="cref cross" href="#ref-7">[7]</a>；2025 年自述有「影子开发者」负责安卓版<a class="cref cross" href="#ref-8">[8]</a>；智东西行文称「赵纯想团队」<a class="cref partial" href="#ref-9">[9]</a>；App Store 开发者主体为「上海低语网络科技有限公司」（版权 © 赵纯想）<a class="cref cross" href="#ref-4">[4]</a>。按「一人主导 + 少量协作」口径收录。</div></div>
+    <div class="card blue"><div class="ct">荣誉与生态位</div><div class="cb">2025-04-15 小红书首届「独立开发大赛」，胃之书与 AI 二维码 QRBTF、AI 知识应用 nooka 同获「最佳 AI 项目」（双独立发布方交叉）<a class="cref verified" href="#ref-2">[2]</a><a class="cref verified" href="#ref-3">[3]</a>；曾获投资人 TS（后无后续）；系跃问「繁星计划」开发者，产品部署于跃问生态<a class="cref partial" href="#ref-1">[1]</a>。</div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2012 年起 · 文学十年</div><div class="tx">韩寒《一个》签约作者 → 全职编剧</div><div class="td">出版两本小说集；「3 年前还一行代码都不会写」。<a class="cref cross" href="#ref-10">[10]</a><a class="cref cross" href="#ref-7">[7]</a></div></div>
+    <div class="node"><div class="dt">2019 年</div><div class="tx">转行产品经理；创业 Space Chat 烧完 100 万</div><div class="td">获 100 万元投资、6 个月失败；此后在 B 站开讲中国哲学与 iOS 开发课程。<a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-7">[7]</a><a class="cref partial" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2023 年</div><div class="tx">辞掉乙方程序员工作，全职独立开发</div><div class="td">累计开发二十多款应用、上架十几个、仅 5 个盈利（含「转山」「那朵」）。<a class="cref cross" href="#ref-7">[7]</a></div></div>
+    <div class="node"><div class="dt">2024-04 / 05</div><div class="tx">胃之书上线，第一天即收费，当月冲榜第三</div><div class="td">App Store 最早评论见于 2024-04-24，虎嗅口径「今年 5 月上线」；上线当月冲上美食佳饮类畅销榜第三（付费榜前三）；名字最初带「AI」二字，后刻意去掉。<a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-7">[7]</a><a class="cref partial" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2024-06</div><div class="tx">「纯想三不做」路演出圈</div><div class="td">错过 150 万、200 万两笔投资意向，「天天不写代码，都不知道下一个版本怎么做」。<a class="cref cross" href="#ref-7">[7]</a></div></div>
+    <div class="node"><div class="dt">2024-09</div><div class="tx">上线 100 天：6 万用户、21 个版本</div><div class="td">周均 1.47 个版本；虎嗅口径「每月营收平稳约 1.2 万美金」（与「5 个月 1.2 万美元」冲突，见捌）。<a class="cref cross" href="#ref-7">[7]</a></div></div>
+    <div class="node"><div class="dt">2024-12-08</div><div class="tx">商业化确认：9 万用户、5 个月收入 1.2 万美元</div><div class="td">美食佳饮分类第三（第一名下厨房）、获投资人 TS；同期推广第二款产品「陌生人闹钟」（AI 审核叫醒语音）。<a class="cref partial" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2024-12-30</div><div class="tx">极客公园 IF2025 演讲披露运营颗粒度</div><div class="td">「美食佳饮营收一度第二，仅次于下厨房」；日停留 9 分钟、日打开约 3.3 次；70% 以上女性用户来自小红书。<a class="cref cross" href="#ref-10">[10]</a></div></div>
+    <div class="node"><div class="dt">2025-04-15 → 04-16 ▲</div><div class="tx">小红书首届独立开发大赛获「最佳 AI 项目」</div><div class="td">羊晚花城FM 与南都双独立报道；爱范儿列明赛道分层：金奖 QRBTF、银奖 Nooka、铜奖「胃之书 2.0」。<a class="cref verified" href="#ref-2">[2]</a><a class="cref verified" href="#ref-3">[3]</a><a class="cref partial" href="#ref-11">[11]</a></div></div>
+    <div class="node"><div class="dt">2025-08-22</div><div class="tx">36氪 NEXTA 对话</div><div class="td">Claude 4.0 后代码手写率降至 1%-3%；「AI 推算馒头热量，我自己都不信」。<a class="cref cross" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2025-12-24</div><div class="tx">被智东西列入「凉了」名单</div><div class="td">5 个月未更新、QQ 群被禁言；「终身会员 198 元」与 App Store「永久会员 ¥198」买断口径不一致，按一手页面为准。<a class="cref partial" href="#ref-9">[9]</a><a class="cref cross" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2026-09</div><div class="tx">外滩大会「超级个体日」：央媒级背书</div><div class="td">环球网：赵纯想「凭一己之力借助 AI 打造《胃之书》，冲上苹果付费榜前三」。<a class="cref cross" href="#ref-12">[12]</a></div></div>
+    <div class="node"><div class="dt">2026-11-12 · 本报告实测</div><div class="tx">App Store 版本 2.6.0（11 月 4 日更新），仍在迭代</div><div class="td">4.7 分 / 1878 评分、20 种语言；与「凉了」定性并存（见捌）。<a class="cref cross" href="#ref-4">[4]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：文科生「三级跳」，代码手写率从 100% 降到 1%</div><div class="cb">学代码的最初动机，是第一次创业时「看不懂程序员给的排期，怀疑被骗又看不出来」<a class="cref cross" href="#ref-6">[6]</a>。路径为编剧 → 产品经理 → 自学 Swift 与数据结构打底 → AI 辅助编程：2025 年初手写率约 30%，Claude 4.0 后降至 1%-3%<a class="cref cross" href="#ref-8">[8]</a>。他的公式是「你只需向技术走一步，AI 会向你走 99 步」，但「AI 可以做到从 1 到 99，不可能让你从 0 到 1」<a class="cref cross" href="#ref-10">[10]</a>——文科生的产品感与文学审美，正是那个「1」。</div></div>
+  <div class="card"><div class="ct">转折二：「总结能力而非生成能力」——反共识的产品哲学</div><div class="cb">在同行扎堆做 ChatBot 时，胃之书刻意「不用大模型的生成能力，而是总结能力」以减少幻觉；「三不做」：不做高度依赖用户提示词水平的应用、不做泛功能只做垂直、不让应用与「AI」强绑定（连名字里的 AI 都去掉）<a class="cref cross" href="#ref-7">[7]</a><a class="cref cross" href="#ref-8">[8]</a>。加上「上线第一天就收费」「尽量做给女生」两条铁律，构成完整的反流量叙事打法<a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-6">[6]</a>。</div></div>
+  <div class="card red"><div class="ct">转折三：0 投放的自然流量，与「天花板太低」的清醒</div><div class="cb">一年多只发十几篇小红书，靠社媒裂变自然增长，小红书贡献 70% 以上女性用户<a class="cref cross" href="#ref-10">[10]</a>；但开发者自曝「很多用户是同行，纯粹用户可能只占一半」<a class="cref partial" href="#ref-1">[1]</a>。融资端更冷静：TS「后来又下头了」，他自认「美食佳饮头部下厨房月收入 12 万美金，只是胃之书的 12 倍，VC 不愿投增长倍数这样低的项目」<a class="cref cross" href="#ref-6">[6]</a>，两笔投资被主动搁置<a class="cref cross" href="#ref-7">[7]</a>。</div></div>
+  <div class="quote">
+    <p>比如 AI 算食物卡路里，光凭图片就能推算馒头的热量，我自己都不信，所以我不会去做。</p>
+    <span class="src">—— 赵纯想，36氪「NEXTA 创新夜谈」对话实录（2025-08-22），<a class="cref cross" href="#ref-8">[8]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>事实与分析</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>产品功能</b><br>（拍照 → 热量与代谢分析）</td><td>拍照或一句话记一餐，AI 识别菜品、<span class="hl">估算热量与三大营养素</span>、标注菜系并讲产地历史；媒体口径为「AI 辅助生成饮食的热量和代谢路径，并分析每日饮食情况」；配套美食护照、每日营养球、营养趋势与社区排行榜</td><td><a class="cref cross" href="#ref-4">[4]</a><a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td><b>文科技能栈如何用 AI 弥补</b><br>（无代码能力）</td><td>文学/编剧出身、无科班基础：先自学 Swift「看懂 AI 给的代码」，再以 AI 辅助编程把手写率压到 1%-3%；UI 与插画审美由十年写作积累补足；早期部署于跃问繁星计划生态，2025 年起用 Claude Code（100 美元/月）</td><td><a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-8">[8]</a><a class="cref cross" href="#ref-7">[7]</a><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>定价</b></td><td>免费下载 + 内购订阅，<span class="hl">上线第一天就收费</span>；在售档位：月 ¥12-18、年 ¥128-198、永久 ¥198-669；Bellybook Pro 为每天分析 5 餐（免费 2 餐）、每餐 6 图、解锁全部菜系与完整营养报告；0 投放</td><td><a class="cref cross" href="#ref-4">[4]</a><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>面向客群</b><br>（健康管理者/减脂人群）</td><td>健康管理与减脂人群（营养球、热量与营养素追踪）+「吃货/收藏癖」人群（菜系收集、美食地图）；70% 以上女性用户来自小红书；产品原则之一即「尽量做给女生」</td><td><a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-10">[10]</a><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td><b>解决痛点</b><br>（手动记录饮食麻烦）</td><td>「记录一顿饭，薄荷健康要 15 步，胃之书只需要三步」「从前要点 10 次屏幕，现在拍张照」；灵感源自小红书「一人食」记录风潮；定位「不焦虑的饮食洞察」，不做卡路里焦虑贩卖</td><td><a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-8">[8]</a><a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点 / 口径</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>累计用户</td><td class="hl">6 万（上线 100 天）→ 约 9 万</td><td>2024-09 → 2024-12（自述口径）</td><td><a class="cref cross" href="#ref-7">[7]</a><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td>活跃用户（官网自述）</td><td>70K+</td><td>2026-11 实测，口径为 Active Users，与注册用户不可直接比较</td><td><a class="cref partial" href="#ref-5">[5]</a></td></tr>
+      <tr><td>饮食记录数据</td><td>1M+ 条（官网自述）；用户修正 AI 结果累计 170 万条（2025-04）</td><td>自述口径</td><td><a class="cref partial" href="#ref-5">[5]</a><a class="cref partial" href="#ref-11">[11]</a></td></tr>
+      <tr><td>收入</td><td class="hl">上线 5 个月收入 1.2 万美元</td><td>自述口径；虎嗅另有「每月营收平稳约 1.2 万美金」口径，冲突并列</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-8">[8]</a><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td>榜单</td><td>美食佳饮分类第三（第一名下厨房）；自述「营收一度第二」；环球网「付费榜前三」</td><td>2024-05 起多个时点</td><td><a class="cref cross" href="#ref-7">[7]</a><a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-10">[10]</a><a class="cref cross" href="#ref-12">[12]</a></td></tr>
+      <tr><td>App Store 评分</td><td class="pos">4.7 分 / 1878 个评分</td><td>2026-11-12 中国区一手实测</td><td><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td>用户运营</td><td>日停留 9 分钟、日打开约 3.3 次；上线 100 天发布 21 个版本</td><td>2024-09 / 2024-12 口径</td><td><a class="cref cross" href="#ref-10">[10]</a><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td>版本与语言</td><td>版本 2.6.0（2026-11-04 更新）；20 种语言</td><td>2026-11-12 一手实测</td><td><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    用户数与收入均为开发者自述经媒体转述，未见七麦等第三方监测或平台方确认；官网「70K+ 活跃」与 2024 年「9 万用户」分属不同指标，不可据此推论用户下滑；「1.2 万美元」存在「上线 5 个月累计」与「每月营收」两种表述，正文以案例墙底稿口径「5 个月收入 1.2 万美元」为基线；榜单为媒体转述 + 开发者晒图口径。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将胃之书放入案例墙「个人 AI App / 垂直应用」坐标系（对标数据均为案例墙既有核验值，详见 <a href="../../index.html" style="color:#2980b9">案例墙 index.html</a> 及对应深度报告）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>数据表现（既有核验值）</th><th>锚点</th></tr></thead>
+    <tbody>
+      <tr><td><b>胃之书</b>（本案）</td><td>赵纯想（文科生、前大厂产品经理）</td><td>健康饮食 AI App：拍照 → 大模型热量与代谢分析</td><td>约 9 万用户、5 个月收入 1.2 万美元、美食佳饮分类第三（自述属性口径已标注）；小红书独立开发大赛最佳 AI 项目</td><td>2025-04-16 ▲</td></tr>
+      <tr><td>EmoEase（AI 疗愈 App）</td><td>冼星朗（05 后香港高中生）</td><td>AI 情绪疗愈 App，Cursor/Trae 零基础 20 天开发</td><td>上线即冲 App Store 付费工具榜第 5（4 信源交叉）；月入过万为自述口径</td><td>2025-04-17 首发报道</td></tr>
+      <tr><td>天之灵AI（AI 陪伴）</td><td>张翼（37 岁失业送外卖期间起步）</td><td>AI 哀伤陪伴小程序：上传亲人照片生成数字形象陪对话</td><td>注册用户 11.1 万、付费会员 2000-3000 人（年费 99 元起）、已盈利（自述口径）</td><td>2026-11 报道</td></tr>
+      <tr><td>小猫补光灯（AI App）</td><td>陈云飞（2023 年裸辞数字游民）</td><td>拍照补光 App：可调色温背光板，Cursor 约 1 小时完成 MVP</td><td>下载量各 30-50 万、Pro 收入约 30-40 万元（中新经纬）；上架 4 小时登顶 App Store 付费榜</td><td>2024-12 报道</td></tr>
+      <tr><td>Cal AI（海外同类，参照系）</td><td>海外 17 岁高中生</td><td>拍照识别卡路里 AI 饮食 App，与胃之书思路相同且更早</td><td>四个月销售额 100 万美元，获扎克伯格公开称赞</td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>胃之书的坐标清晰：它是四者中<b>唯一的「文科生零代码起步」</b>案例，也是<b>唯一的健康垂直赛道样本</b>——EmoEase（情绪疗愈）与天之灵AI（哀伤陪伴）同属心理侧，胃之书切入饮食营养的生理侧，且是唯一拿下官方大赛「最佳 AI 项目」认证的产品<a class="cref verified" href="#ref-2">[2]</a>。但对照海外同类 Cal AI（4 个月 100 万美元销售额），货币化能力相差一个数量级，开发者将差距归因于定价策略与出海缺位（本地化缺人手，「开发者只有他和另一个程序员」）<a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-7">[7]</a>。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>分析</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品与定位</b></td><td>「由多模态大语言模型驱动的食物洞察与记录应用」：刻意用 LLM 的总结能力而非生成能力以减少幻觉；名字去掉「AI」二字、以水墨黑白 UI 淡化 AI 味；验证的是「AI 让手机页面第一次拥有『会生长』的内容动效」这一交互范式转移</td><td><a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-7">[7]</a><a class="cref cross" href="#ref-10">[10]</a></td></tr>
+      <tr><td><b>2. 商业模式与营收</b></td><td>免费 + 订阅内购，第一天即收费；上线 5 个月 1.2 万美元（自述）；参照系：赛道头部下厨房月收入 12 万美金；「细水长流型」收入一人「能活到地老天荒」，但天花板被开发者本人与投资人共同确认为「太低」</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>3. 融资与主体形态</b></td><td>有 TS 但「后来又下头了」，主动错过 150 万/200 万两笔意向（「想做的事太大，胃之书撑不起来」）；开发者主体为公司（上海低语网络科技），是「个人品牌 + 公司壳」的典型 OPC 变体；他并预言 2025 年起「一人公司或两人公司」会批量出现</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-10">[10]</a></td></tr>
+      <tr><td><b>4. 健康数据隐私</b></td><td>App Store 隐私标签显示仅收集「使用数据」且不与身份关联；官网宣称「Privacy First——数据留在你的设备上」；饮食数据带健康属性（在个人信息保护框架下具有敏感信息特征），截至检索日未见第三方安全审计、认证或隐私事件公开信息，隐私承诺均为自述</td><td><a class="cref cross" href="#ref-4">[4]</a><a class="cref partial" href="#ref-5">[5]</a></td></tr>
+      <tr><td><b>5. AI 热量分析的准确性责任</b></td><td>三个事实的叠加是本案最值得记录的张力：官网自标识别准确率 79.9%；App Store 用户差评指「AI 对食物的历史和描述很大概率是瞎写的，非常不准确」；开发者自述「光凭图片推算馒头热量，我自己都不信」。产品的应对是定位退守——从「代谢分析」转向「不焦虑的饮食洞察」，App 页无医疗/诊疗宣称（类目为美食佳饮而非健康健美），准确性责任事实上由用户自担</td><td><a class="cref partial" href="#ref-5">[5]</a><a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td><b>6. 健康类目合规</b></td><td>以「美食佳饮」类目上架并维持 13+ 分级（含用户生成内容/社交），回避健康类目更严的宣称边界与审核；未检索到监管处罚、下架或投诉纠纷公开信息；早期模型调用依托跃问（阶跃星辰）繁星计划生态，大模型服务侧合规部分由生态方承载</td><td><a class="cref cross" href="#ref-4">[4]</a><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>7. 可持续性与「一人」属性</b></td><td>智东西 2025-12 以「5 个月未更新、社群失联」将其列入「凉了」名单；2026-11 App Store 实测 2.6.0 版本于 11 月 4 日更新、仍在迭代，两种状态并存；开发者自认「不擅长长期迭代，更喜欢 0 到 1」且已转向即时通讯等新产品——一人 + AI 的产品存续高度绑定创始人个人状态，是 OPC 的结构性风险</td><td><a class="cref partial" href="#ref-9">[9]</a><a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 四组口径冲突与一处状态反转（截至 2026-11-12 检索）</div>
+    ① <b>收入口径冲突</b>：「上线 5 个月收入 1.2 万美元」（人人都是产品经理、36氪两链条，源头为自述）vs 虎嗅「每月营收平稳约 1.2 万美金」，相差 5 倍，正文以前者为基线；② <b>榜单口径冲突</b>：分类第三（多源一致）vs 自述「营收一度第二」vs 环球网「付费榜前三」，时点不同无法互证；③ <b>获奖层级表述</b>：南都/羊晚写「最佳 AI 项目」，爱范儿列明该赛道铜奖，按「最佳 AI 项目奖（该赛道铜奖层级）」合并表述；④ <b>用户数</b>：9 万（自述）vs 官网 70K+ 活跃，指标不同不可比较。⑤ <b>状态反转</b>：智东西「5 个月未更新、QQ 群禁言」的「凉了」定性，与 2026-11 实测「2.6.0、11 月 4 日更新」并存——产品在报道后恢复迭代，但社群失联状况无后续公开信息证实或证伪。
+  </div>
+  <div class="card"><div class="ct">负面评价与客观记录（如实收录）</div><div class="cb">App Store 现存早期差评：「AI 对食物的历史和描述很大概率是 AI 瞎写的，非常不准确」「内置相机默认广角且不可调整」<a class="cref cross" href="#ref-4">[4]</a>；智东西指其「定价并不低」并记录社群反馈失效的用户反馈<a class="cref partial" href="#ref-9">[9]</a>；开发者自曝用户结构水分——「纯粹用户可能只占一半」<a class="cref partial" href="#ref-1">[1]</a>；海外同类 Cal AI 已跑出 10 倍于本案的销售额，存在被更高货币化效率者反超的可能<a class="cref partial" href="#ref-1">[1]</a>。</div></div>
+  <div class="box note">
+    <div class="bt">📌 「一人公司」属性与留白说明</div>
+    一人属性按「一人主导 + 少量协作」从严收录：虎嗅称「他和另一个程序员」、自述有「影子开发者」写安卓版、智东西称「团队」、开发者账号为公司主体，均已在壹/柒标注。留白（未检索到公开信息）：团队全貌与股权结构、模型调用成本、第三方下载量数据（七麦等）、当前大模型供应商、「凉了」风波后的官方回应。另注：赵纯想对 AI 产业持公开悲观论（「先进模型无法创造商业壁垒」），自述观点已见于多份专访，引用时注意与事实区分。
+  </div>
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">捌·附</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 12 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx partial">[1]</span><span class="rt">B</span><span class="st">行业媒体</span></div><div class="ti">这个群体，AI 捏爆款，1人年入百万，能造出下个Super App?（胃之书核心数据出处）</div><div class="mt"><b>来源：</b>人人都是产品经理 · AI鲸选社（作者杨晓鹤）　<b>发布日期：</b>2024-12-08<br><a href="https://www.woshipm.com/it/6151771.html" target="_blank" rel="noopener">https://www.woshipm.com/it/6151771.html</a></div><div class="note">事实核查：9 万用户、5 个月收入 1.2 万美元、分类第三、第一天即收费、0 投放、文科生前大厂产品经理、烧 100 万、Cal AI 对标、TS、同行用户占一半、跃问繁星计划均出自此稿；关键数字为自述链条，按部分映证处理。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx verified">[2]</span><span class="rt">B+</span><span class="st">省级主流媒体</span></div><div class="ti">AI 大幅降低开发成本与门槛 小红书上独立开发者超 5 万</div><div class="mt"><b>来源：</b>羊城晚报 · 花城FM（羊城派）　<b>发布日期：</b>2025-04-16 14:15<br><a href="https://huacheng.gz-cmc.com/pages/2025/04/16/6cc7c7d8b045415ab435a976324bf184.html" target="_blank" rel="noopener">https://huacheng.gz-cmc.com/pages/2025/04/16/6cc7c7d8b045415ab435a976324bf184.html</a></div><div class="note">事实核查：2025-04-15 大赛揭晓、QRBTF/nooka/胃之书获最佳 AI 项目、小红书超 5 万独立开发者等出自此稿；与 [3] 构成两条独立发布方交叉（verified 判定依据）；本报告锚点 2025-04-16 即此稿。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx verified">[3]</span><span class="rt">B+</span><span class="st">主流都市媒体（头条号分发）</span></div><div class="ti">用 AI 重做一遍！应用开发者聚在小红书挖掘生活「长尾」需求</div><div class="mt"><b>来源：</b>南方都市报（采写：南都记者赵唯佳，发自上海）　<b>发布日期：</b>2025-04-16（大赛 4 月 15 日揭晓）<br><a href="http://m.toutiao.com/group/7493558614951576127/" target="_blank" rel="noopener">http://m.toutiao.com/group/7493558614951576127/</a></div><div class="note">事实核查：与 [2] 同日独立报道同一奖项名单；全场大奖 Action&amp;Link 获 50 万元奖金、「听劝式开发」出自此稿；南都站内原文页未单独回溯，以头条号官方分发页为准。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx cross">[4]</span><span class="rt">A</span><span class="st">一手产品页</span></div><div class="ti">Bellybook 胃之书 - AI美食日记（App Store 中国区产品页）</div><div class="mt"><b>来源：</b>Apple App Store　<b>发布日期：</b>2026-11-12 实测<br><a href="https://apps.apple.com/cn/app/id6479637639" target="_blank" rel="noopener">https://apps.apple.com/cn/app/id6479637639</a></div><div class="note">事实核查：4.7 分/1878 评分、13+ 分级、美食佳饮类目、开发者上海低语网络科技有限公司（信用代码 91310117MA1J3MBL4U）、版权 © 赵纯想、内购 ¥12-669、20 种语言、版本 2.6.0、隐私标签与早期差评均为一手回溯。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx partial">[5]</span><span class="rt">A</span><span class="st">一手官网（自述）</span></div><div class="ti">Bellybook 官网（Food Passport for Global Foodies）</div><div class="mt"><b>来源：</b>bellybook.cn　<b>发布日期：</b>2026-11-12 实测<br><a href="https://www.bellybook.cn/" target="_blank" rel="noopener">https://www.bellybook.cn/</a></div><div class="note">事实核查：70K+ Active Users、1M+ Food Records、79.9% Recognition Accuracy、Privacy First、12 Languages、Free to Use/No Ads 均为官网自述口径，按部分映证处理。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx cross">[6]</span><span class="rt">B+</span><span class="st">财经科技专访</span></div><div class="ti">对话赵纯想：一个文科生如何做出榜三的 AI 应用</div><div class="mt"><b>来源：</b>36氪 · 暗涌Waves（文/徐牧心，编辑/刘旌）　<b>发布日期：</b>2024-07-09<br><a href="https://36kr.com/p/2854651050035841" target="_blank" rel="noopener">https://36kr.com/p/2854651050035841</a></div><div class="note">事实核查：化学/韩寒签约作者/编剧转产品经理轨迹、Space Chat 100 万投资、「开发者只有我一个人，几乎 0 成本」、下厨房月收入 12 万美金、薄荷健康 15 步 vs 三步、TS 无后续、「三不做」原始表述均出自此稿。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">B+</span><span class="st">科技媒体深度稿（多平台分发）</span></div><div class="ti">当一位编剧转行搞 AI 创业</div><div class="mt"><b>来源：</b>虎嗅（作者王沁，编辑苗正卿；腾讯新闻官方账号分发）　<b>发布日期：</b>2024-09-29<br><a href="https://view.inews.qq.com/a/20240929A04YPW00" target="_blank" rel="noopener">https://view.inews.qq.com/a/20240929A04YPW00</a></div><div class="note">事实核查：2024-05 上线、100 天 6 万用户/21 版本、「每月营收平稳约 1.2 万美金」口径、5 月畅销榜第三、付费榜前三、错过 150 万/200 万投资、「他和另一个程序员」、二十多款应用 5 个盈利、去掉「AI」字眼均出自此稿；虎嗅站内原文未单独回溯，以官方账号分发页为准。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx cross">[8]</span><span class="rt">B+</span><span class="st">行业媒体对话实录</span></div><div class="ti">对话赵纯想：独立开发者的下一场游戏即将到来 | NEXTA 创新夜谈</div><div class="mt"><b>来源：</b>36氪产业创新　<b>发布日期：</b>2025-08-22<br><a href="https://36kr.com/p/3433367684320899" target="_blank" rel="noopener">https://36kr.com/p/3433367684320899</a></div><div class="note">事实核查：代码手写率 30%→1%-3%、「影子开发者」写安卓版、「AI 推算馒头热量我自己都不信」引语、不认同「美国版胃之书」模式、一年多只发十几篇小红书、Claude Code 100 美元套餐、「5 个月收入 1.2 万美金」复述均出自此稿；与 [6] 同属 36氪发布方。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx partial">[9]</span><span class="rt">B</span><span class="st">行业媒体</span></div><div class="ti">25 个火过的国产 AI 应用，凉了</div><div class="mt"><b>来源：</b>智东西（作者陈骏达，编辑心缘；36氪账号分发，今日头条镜像同步命中）　<b>发布日期：</b>2025-12-24<br><a href="https://36kr.com/p/3609375496160513" target="_blank" rel="noopener">https://36kr.com/p/3609375496160513</a></div><div class="note">事实核查：「5 个月没有更新、反馈机制失效、QQ 群被禁言」「终身会员价格为 198 元/年」及「赵纯想团队」行文出自此稿；「198 元/年」与 App Store「永久会员 ¥198（买断）」不一致，按一手页面为准；智东西原文经 36氪官方账号分发页核验。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx cross">[10]</span><span class="rt">B+</span><span class="st">科技媒体（大会演讲整理）</span></div><div class="ti">AI 的「i」，原来是斜杠青年的「金箍棒」！（极客公园 IF2025 演讲全文）</div><div class="mt"><b>来源：</b>极客公园（整理/汤一涛，编辑/靖宇）　<b>发布日期：</b>2024-12-30<br><a href="https://www.geekpark.net/news/344821" target="_blank" rel="noopener">https://www.geekpark.net/news/344821</a></div><div class="note">事实核查：2012 年起为韩寒电子杂志写小说、「营收一度第二仅次于下厨房」、日停留 9 分钟/日打开 3.3 次、70% 以上女性用户来自小红书、「向技术走一步 AI 走 99 步」「从 1 到 99 不能 0 到 1」均为此演讲一手整理。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx partial">[11]</span><span class="rt">B</span><span class="st">科技媒体（头条号分发）</span></div><div class="ti">我在小红书上，发现了这些脑洞的 AI 应用 | 附产品推荐</div><div class="mt"><b>来源：</b>爱范儿　<b>发布日期：</b>约 2025-04（页面未标注确切日期，内容对应小红书独立开发大赛）<br><a href="http://m.toutiao.com/group/7496725557216920076/" target="_blank" rel="noopener">http://m.toutiao.com/group/7496725557216920076/</a></div><div class="note">事实核查：最佳 AI 赛道分层（金奖 QRBTF、银奖 Nooka、铜奖胃之书 2.0）、用户修改 AI 结果累计 170 万条、「我是个吃货，但总是记不住自己吃过什么好吃的」动机引语出自此稿；单一 B 级信源按部分映证处理。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx cross">[12]</span><span class="rt">A-</span><span class="st">央媒级门户综合报道</span></div><div class="ti">从 9 岁夺冠黑客松到 00 后破亿估值，外滩大会见证年轻人超车</div><div class="mt"><b>来源：</b>环球网科技（综合报道，文/古雨）　<b>发布日期：</b>2026-09（2026 Inclusion·外滩大会期间）<br><a href="https://tech.huanqiu.com/article/4TBoNRk0H6d" target="_blank" rel="noopener">https://tech.huanqiu.com/article/4TBoNRk0H6d</a></div><div class="note">事实核查：外滩大会「超级个体日」17 位超级个体、「一人公司批量显化」、「学化学出身、当过编剧作家的独立开发者赵纯想，凭一己之力借助 AI 打造《胃之书》，冲上苹果付费榜前三」及其引语出自此稿。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 12 条。核验标签分布：🟢 已核验（verified）2 条（羊城晚报·花城FM [2]、南方都市报 [3]——「最佳 AI 项目」双独立发布方交叉）、🔵 多源印证（cross）6 条（App Store 一手页 [4]、36氪 [6][8]、虎嗅 [7]、极客公园 [10]、环球网 [12]）、🟡 部分映证（partial）4 条（人人都是产品经理 [1]、官网自述 [5]、智东西 [9]、爱范儿 [11]——均为自述/单一 B 级信源）。信源评级分布：A/A- 级 3 条（App Store 与官网一手回溯完成、环球网央媒级）、B+ 级 5 条、B 级 4 条。四组口径冲突（收入「5 个月累计 vs 每月」、榜单「第三 vs 一度第二 vs 付费榜前三」、获奖层级「最佳 AI 项目 vs 赛道铜奖」、用户数「9 万注册 vs 70K+ 活跃」）与一处状态反转（智东西「凉了」定性 vs 2026-11 实测恢复更新）已在正文显式并列。核验失败与处理：必应站内检索抓取为空（改用 Tavily 站内检索命中羊晚原文）；小宇宙「繁星创想录」播客页未抓取全文，其「上线 72 小时注册破万」细节未采信；潘乱播客与品玩专访稿未采录（信源已达标）；智东西原文以 36氪官方账号分发页核验。未发现伪造链接；全部 URL 为检索过程实际命中页面。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-12 · 营收与用户数据均标注自述口径与置信等级，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

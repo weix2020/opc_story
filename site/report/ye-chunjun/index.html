@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · 叶纯俊的一人公司：90% 代码由 AI Agent 编写的情感陪伴生意 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · 叶纯俊的一人公司（Rochat）">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="叶纯俊深度案例报告：上海深知有谱智能科技（自然人独资）一人运营 AI 互动内容与情感陪伴产品，90% 代码由 AI Agent 编写，全球百万用户、月收入 2-3 万美元（甲子光年实地探访口径）。20 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>叶纯俊的一人公司深度案例报告</h1>
+    <h2>愚园路住宅里的百万人公司：产品隐匿于报道、90% 代码由 AI Agent 编写<br>全球百万用户 · 月收入 2-3 万美元 —— 20 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">隐匿运营型 OPC</span>
+      <span class="tag">AI Agent 原生</span>
+      <span class="tag">情感陪伴出海</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">百万</div><div class="k">全球用户（甲子光年实地口径）</div></div>
+  <div class="stat"><div class="v up">$2-3万</div><div class="k">月收入（美元 · 报道称稳定）</div></div>
+  <div class="stat"><div class="v neutral">90%</div><div class="k">Coding 由 AI 完成（自述）</div></div>
+  <div class="stat"><div class="v neutral">1 人</div><div class="k">工商参保人数（一手）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">这是案例墙中形态最特殊的样本之一：甲子光年 2025 年 11 月的实地探访稿《我的合伙人是AI》将其作为「AI 时代一人公司」的开篇人物——上海市长宁区愚园路的一处住宅内，一名创业者、一群 AI「合伙人」，运营着一家拥有全球百万用户、月收入稳定在 2-3 万美元的公司<sup class="cite verified">[1]</sup><sup class="cite verified">[2]</sup>。但报道通篇未点名产品名称，公司在大众视野中近乎隐匿——本报告在信源层面为这种「隐匿」补上了关键拼图。</p>
+  <div class="two">
+    <div class="card"><div class="ct">产品（报道未点名 · 核验补充认定）</div><div class="cb">甲子光年原文仅以「AI 驱动的互动内容与情感陪伴产品」指代，未公开产品名称。本轮核验补充：公司 BOSS 直聘官方简介自述「核心产品 Rochat——基于大语言模型（ChatGPT/GPT-4/LLAMA2/Stability.ai/Midjourney 等）开发的 AI bots 平台」<a class="cref verified" href="#ref-7">[7]</a>；太平洋科技 AI 产品库 Rochat 词条亦直接关联上海深知有谱，并给出与工商登记一致的时间线<a class="cref verified" href="#ref-8">[8]</a>。两信源交叉支持「公司核心产品为 Rochat」的认定，但报道本身未点名，两类口径存在阶段差异（详见捌），本报告按双口径如实呈现、不直接画等号。</div><div class="cm">信源：<a class="cref verified" href="#ref-7">[7]</a> <a class="cref verified" href="#ref-8">[8]</a>（认定置信：中高）</div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">叶纯俊，上海深知有谱智能科技有限公司法定代表人、直接控股股东（持股 100%）、财务负责人，同时任关联公司上海深之谱智能科技有限公司法定代表人及财务负责人<a class="cref verified" href="#ref-4">[4]</a>。报道中的形象：在住宅里办公、深夜与北美用户做社区交流、自称团队的「合伙人」是 AI<sup class="cite verified">[1]</sup>。教育背景与创业前履历：<b>未检索到公开信息</b>。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-4">[4]</a></div></div>
+    <div class="card"><div class="ct">公司（自然人独资）</div><div class="cb">上海深知有谱智能科技有限公司：2023-07-04 成立，注册资本 100 万元人民币（认缴，认缴期限至 2029-07-31），有限责任公司（自然人独资），参保人数 1 人，小微企业，登记机关长宁区市场监管局，注册地址上海市长宁区愚园路 753 号——与报道中「愚园路住宅」的叙事空间高度吻合<a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-5">[5]</a>。企查查登记网址为 rochat.tech<a class="cref partial" href="#ref-6">[6]</a>。</div><div class="cm">信源：<a class="cref verified" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-4">[4]</a> <a class="cref verified" href="#ref-5">[5]</a></div></div>
+    <div class="card blue"><div class="ct">关联主体与数据口径</div><div class="cb">关联公司上海深之谱智能科技有限公司（2023-09-22 成立）：股东为 Upro Technologies HK Limited，注册资本 200 万美元——「UPro」正是公司 BOSS 直聘简介中的英文品牌名，港资架构印证其「美元基金天使轮」自述<a class="cref cross" href="#ref-9">[9]</a><a class="cref verified" href="#ref-7">[7]</a>。数据口径：百万用户、月收入 2-3 万美元均为甲子光年实地探访+受访者自述，无第三方审计；「90% 代码由 AI 编写」为创始人自述。</div><div class="cm">信源：<a class="cref cross" href="#ref-9">[9]</a> <a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-7">[7]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2023-07-04</div><div class="tx">上海深知有谱智能科技有限公司注册成立</div><div class="td">同日启动基于 LLAMA2 等大模型的 AI bots 平台开发（太平洋 AI 产品库里程碑）；BOSS 直聘简介自述「成立于 2023 年 7 月初，美元基金天使轮阶段」。<a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-7">[7]</a><a class="cref verified" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2023-09-22</div><div class="tx">关联公司上海深之谱成立：港资入场</div><div class="td">股东为 Upro Technologies HK Limited，注册资本 200 万美元，法定代表人仍为叶纯俊——美元融资落地迹象。<a class="cref cross" href="#ref-9">[9]</a></div></div>
+    <div class="node"><div class="dt">2024-05-07</div><div class="tx">Rochat 安卓版 v1.4.4 发布：从工具向角色定制演进</div><div class="td">推出个性化 AI 角色定制功能，集成 GPT-4 Turbo 等先进模型。<a class="cref verified" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2024 年初</div><div class="tx">第二次融资：从 5-6 人团队收缩至一人</div><div class="td">叶纯俊孤身面对投资人，兜售「公司的核心价值与团队的人数成反比」的组织理念；被最尖锐地追问「万一你个人出了状况，公司怎么办」。绿洲资本创始合伙人张津剑为当时认可其模式的投资人之一。<a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2024-09-03</div><div class="tx">Rochat-Character 模型上线</div><div class="td">新增 Stable Diffusion 支持，强化虚拟角色生成能力——产品向「互动内容/虚拟角色」方向进一步收敛。<a class="cref verified" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2024 年中前后起（报道口径「一年多来」）</div><div class="tx">构建「AI 合伙人」运作体系，收入爬坡</div><div class="td">以 AI Agent 解构传统部门制：产品、市场、客服、战略一人兼顾；技术研发 90% 的 Coding 交由 AI 完成；月收入此后稳定在 2-3 万美元。<a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2025-11-20</div><div class="tx">甲子光年《我的合伙人是AI》刊发，案例浮出水面</div><div class="td">温丽虹执笔、王博编辑，甲子光年官网与微信公众号原发，36氪获授权同日转载；叶纯俊位列文中开篇人物。案例墙登记锚点 2025-11-15（月份口径），本报告以报道发布日精确化。<a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2025-11 之后</div><div class="tx">隐匿依旧：无后续独立报道、无产品级公开数据</div><div class="td">截至 2026-11-12 检索，未发现其他媒体对叶纯俊或该产品的独立跟进报道；工商登记显示公司存续、参保 1 人。<a class="cref verified" href="#ref-3">[3]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：把 AI 从「工具」升格为「智能合伙人」</div><div class="cb">「当我把 AI 从工具转变为『智能合伙人』时，一切都不一样了。」在叶纯俊的表述里，AI 时代一人公司的动机并非节省成本的权宜之计，而是 AI 已将创建和运营科技公司的关键生产要素——工程师团队、算力、数据——商品化，创业者由此可以绕过「组建和管理人类团队」的复杂形式，直接购买算力与 AI 能力，构建「人机协同」的商业系统。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-2">[2]</a></div></div>
+  <div class="card"><div class="ct">转折二：从 5-6 人到 1 人——一场近乎悖论的融资</div><div class="cb">两次融资经历构成其路径的分水岭：第一次身后还有联合创始人，符合硅谷传统「团队叙事」；第二次（2024 年初）孤身一人，公司从最初 5、6 人缩减到仅剩他自己。面对「你怎么保证公司的持续性」的尖锐质问，他当时的回答「还带着摸索中的青涩」，试图用数据和增长趋势证明模式可行；而「公司核心价值与团队人数成反比」的理念获得了绿洲资本张津剑等投资人的认可——后者自 2023 年起系统性关注「一人公司」项目。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-10">[10]</a></div></div>
+  <div class="card red"><div class="ct">转折三：算力飞轮——用「智能资源」替代「人力资源」的增长公式</div><div class="cb">公司每月产生的大部分收益都用来购买算力和技术，以持续提升产品体验；叶纯俊计划通过智能资源的「飞轮效应」而非人力资源的积累拉动长期增长。他如此对比新旧创业：「过去如果团队有 50 个人，做什么决策都要考虑这 50 个人的生活问题。现在不需要了——需要考虑的，往往只有需要多少成本来购买算力。公司的运营靠算力，产品也靠算力。」</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-2">[2]</a></div></div>
+  <div class="quote">
+    <p>一个独立创始人一个月能给公司带来 100 万美元的收入，和 50 个人能够带来 2000 万美元收入，在我看来，在 AI 时代前者更有魅力。</p>
+    <span class="src">—— 叶纯俊，甲子光年《我的合伙人是AI》（2025-11-20），转引自 <a class="cref verified" href="#ref-1">[1]</a> / <a class="cref verified" href="#ref-2">[2]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>内容</th><th>口径说明</th></tr></thead>
+    <tbody>
+      <tr><td><b>产品功能</b></td><td>报道口径：AI 驱动的<b>互动内容与情感陪伴</b>产品<a class="cref verified" href="#ref-1">[1]</a>。核验补充：Rochat 为多模型 AI bots 平台——用户零代码创建 AI 角色，支持 GPT-4 Turbo、Llama2、Rochat-Character 等模型与 DALL·E 3 / Stable Diffusion 图文生成，Web/Android/iOS 三端<a class="cref verified" href="#ref-8">[8]</a><a class="cref partial" href="#ref-11">[11]</a>；第三方目录另记载其接入 Claude、Gemini、DeepSeek<a class="cref partial" href="#ref-11">[11]</a></td><td>功能演进链自洽：AI bots 工具（2023）→ 角色定制（2024-05）→ 角色模型（2024-09）→ 情感陪伴（2025-11 报道口径）</td></tr>
+      <tr><td><b>AI Agent 编码工作流</b></td><td class="hl">90% 的 Coding 由 AI 完成；叶纯俊的角色从亲手写代码转变为<b>架构设计和代码审查</b>，AI 负责执行、他把控方向和质量<a class="cref verified" href="#ref-1">[1]</a>；创业初期曾与 Google Gemini 共同撰写 PRD 初稿并叹服——「现在 AI 写的 PRD 可能比 95% 的产品经理写的都要好」<a class="cref verified" href="#ref-2">[2]</a></td><td>自述口径，无过程数据佐证</td></tr>
+      <tr><td><b>面向客群</b></td><td>全球化运营：报道开篇即称「全球百万名用户」<a class="cref verified" href="#ref-1">[1]</a>；用户反馈散落于 X（原推特）、Discord 等海外社媒平台，叶纯俊深夜与<b>北美用户</b>进行社区交流<a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a></td><td>未见分地域用户构成披露；「海外用户为主」为信源叙事的合理指向，非直接统计</td></tr>
+      <tr><td><b>解决痛点</b></td><td>对用户：零门槛用上 AI 与情感陪伴（BOSS 直聘自述「希望每个人都能通过 Rochat 零门槛用上 AI」<a class="cref verified" href="#ref-7">[7]</a>）；对自身：以 AI 合伙人替代部门制——营销素材从创意到落地全由 AI 产出，多条视频达百万甚至千万播放，他只做决策与成果验收<a class="cref verified" href="#ref-1">[1]</a></td><td>—</td></tr>
+      <tr><td><b>运营分工</b></td><td>用户反馈（X/Discord）由 AI 助手第一步消化、沉淀为完整战略文档，辅助产品思考与最终决策；不定期与 AI 头脑风暴；AI 员工在其离线时梳理反馈、优化下周上线模块、起草推广脚本<a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a></td><td>—</td></tr>
+      <tr><td><b>变现方式</b></td><td>月收入稳定 2-3 万美元<a class="cref verified" href="#ref-1">[1]</a>；具体变现形态（订阅/内购/广告等）：<b>未检索到公开信息</b></td><td>留白，如实标注</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box insight">
+    <div class="bt">💡 工作流的激进之处</div>
+    本案不是「用 AI 辅助写代码」，而是把<b>公司全部职能 AI 化</b>：编码 90% 交给 AI、PRD 由 Gemini 起草、客服反馈由 AI 消化沉淀、市场素材由 AI 全流程产出——人类角色的定义被压缩为「架构设计 + 代码审查 + 方向把控 + 成果验收」四项。这是案例墙目前收录案例中对「AI Agent 替代人」陈述最激进的一例。
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>全球用户</td><td class="hl">百万名</td><td>2025-11（报道口径）</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td>月收入</td><td class="hl">2-3 万美元（报道称「稳定」）</td><td>2025-11（报道口径）</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td>年化营收（推算）</td><td>约 24-36 万美元</td><td>按月收入区间线性外推</td><td>推算值 · 非信源披露</td></tr>
+      <tr><td>AI 编码占比</td><td class="hl">90%（Coding 部分）</td><td>2025-11 自述</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td>团队规模</td><td>1 人（报道口径）；参保 1 人（工商）</td><td>2025-11 / 工商登记</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td>持股结构</td><td>叶纯俊 100%（自然人独资）</td><td>工商登记</td><td><a class="cref verified" href="#ref-4">[4]</a><a class="cref verified" href="#ref-5">[5]</a></td></tr>
+      <tr><td>推广内容播放</td><td>多条视频达百万甚至千万播放量</td><td>2025-11 报道引述</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>融资</td><td>两次（首次有联创、2024 年初孤身）；「美元基金天使轮阶段」（自述）</td><td>截至 2025-11 报道</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-7">[7]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    全部经营数据出自甲子光年实地探访稿及其 36氪授权转载，属「受访者自述+记者实地探访」口径，无第三方审计、无平台方直接确认；「百万用户」未指明是累计注册还是月活口径；月收入为区间值且未披露币种换算基准日；「稳定」为报道原文表述，无趋势曲线可查。本表年化营收为机械外推，仅作量级参考。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将本案放入案例墙「AI 写代码」案例坐标系（对标数据除标注外均为案例墙既有核验值，口径为公开报道值）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>AI 编码形态</th><th>数据表现</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>本案（Rochat · 认定名）</b></td><td>叶纯俊</td><td class="hl">90% Coding 由 AI 完成，一人兼顾产品/市场/客服/战略</td><td>全球百万用户、月收入 2-3 万美元</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td>Leadmore AI（Reddit 营销 SaaS）</td><td>Richard Wang（前中国大厂工程师/PM）</td><td>80-90% 代码由 AI 完成</td><td>4 个月 $30K MRR → 自述破 $1M ARR（自述口径）</td><td><a class="cref partial" href="#ref-14">[14]</a><a class="cref partial" href="#ref-15">[15]</a></td></tr>
+      <tr><td>Simen AI（猴子说话）</td><td>雷圳鹏（武汉光谷）</td><td>本地办公智能体「师门」+ AI 数字员工方向</td><td>产品未正式发布即获字节跳动近 4000 万元投资 + 奇绩创坛 200 余万元天使轮</td><td>案例墙既有核验值 · <a class="cref cross" href="#ref-17">[17]</a>（详见<a href="../simen-ai/index.html" style="color:#2980b9">Simen AI 深度报告</a>）</td></tr>
+      <tr><td>BettaFish（微舆）</td><td>郭航江（BaiFu，北邮大四）</td><td>10 天 Vibe Coding 的多智能体舆情分析系统</td><td>GitHub 趋势榜第一、约 37.7k★；获陈天桥 3000 万元投资</td><td><a class="cref verified" href="#ref-12">[12]</a><a class="cref verified" href="#ref-13">[13]</a>（详见<a href="../bettafish/index.html" style="color:#2980b9">BettaFish 深度报告</a>）</td></tr>
+      <tr><td>claude-code-router</td><td>musistudio</td><td>个人维护的 Claude Code 多模型路由网关（AI 编码基础设施）</td><td>GitHub 约 38k★、Kimi 内置赞助</td><td><a class="cref cross" href="#ref-16">[16]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>本案的差异化在两处：其一，<b>「90% 代码由 Agent 编写」是公开报道中中国个人开发者披露的最高 AI 编码占比之一</b>，与 Leadmore AI 的 80-90% 同处第一梯队，且表述更绝对；其二，对标案例多为「一人做一个产品/项目」（BettaFish、claude-code-router）或「一人 + 融资团队化」（Simen AI 现约 10 人），而叶纯俊主张的是<b>「一人运营一家公司」</b>——公司层面产品、市场、客服、战略的持续经营全部由一人与 AI 合伙人承担，并以算力飞轮替代人力扩张，这正是甲子光年将其置于「AI 时代一人公司」开篇的原因<a class="cref verified" href="#ref-1">[1]</a>。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>分析</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>AI 驱动的互动内容与情感陪伴产品（报道口径）；核验关联的产品 Rochat 提供零代码 AI 角色创建、多模型对话、图文生成，三端覆盖。产品功能无官方公开文档级的详细披露，第三方产品库描述与报道口径互为补充。</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-8">[8]</a><a class="cref partial" href="#ref-11">[11]</a></td></tr>
+      <tr><td><b>2. 面向客群</b></td><td>全球市场、海外叙事为主：全球百万用户、X/Discord 反馈渠道、北美用户社区交流。国内监管对 AI 陪伴品类的强约束（见第 6 维）与此形成互证——出海是该品类创业者的常见选择。</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>3. 解决痛点</b></td><td>用户侧：情感陪伴与低门槛 AI 交互；创业者侧：本案的更大价值在于示范「不组建人类团队如何经营一家公司」——用 AI Agent 把部门制解构为「一人 + 智能合伙」。</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>4. 商业模式与营收</b></td><td>月收入 2-3 万美元、年化约 24-36 万美元（外推）；大部分收益再投入算力与技术（算力飞轮）。变现形态未披露；对照头部 AI 陪伴产品星野/Talkie 累计用户 1.471 亿而付费用户仅 139 万（付费率约 0.9%），百万用户对应 2-3 万美元月收入的量级在此行业属合理区间，但为独立推演，非信源结论。</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-20">[20]</a></td></tr>
+      <tr><td><b>5. 融资进展</b></td><td>两次融资：首次有联合创始人、第二次（2024 年初）孤身一人；公司 BOSS 直聘简介自述「美元基金天使轮阶段」；甲子光年点名绿洲资本创始合伙人张津剑为认可其模式的投资人之一（自 2023 年关注一人公司项目）。深之谱的港资股东架构（Upro Technologies HK Limited、注册资本 200 万美元）与美元融资叙事吻合。具体轮次金额与投资方名单：均未公开点名。</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-7">[7]</a><a class="cref cross" href="#ref-9">[9]</a><a class="cref cross" href="#ref-10">[10]</a></td></tr>
+      <tr><td class="hl"><b>6. 情感陪伴产品的合规风险</b></td><td>品类性风险显著且被 2025 年底密集验证：Character.AI 于 2025-10-12 申请破产保护、AI 陪伴生意被重新审视<a class="cref cross" href="#ref-18">[18]</a>；国内头部产品星野大规模下架违规智能体，微软小冰 X Eva 宣布 11 月 30 日停运<a class="cref cross" href="#ref-19">[19]</a>；MiniMax Talkie 曾因触及监管红线被日本、美国应用商店下架，星野/Talkie 付费率不足 1%<a class="cref cross" href="#ref-20">[20]</a>。本案面向海外运营，<b>未检索到针对其自身的监管事件</b>；但情感陪伴品类共担未成年人保护、情感依赖争议、内容安全与平台下架风险，且海外主流平台（App Store/Google Play）审核同样趋严。一人公司无法务与公关编制，抗风险缓冲天然更薄。</td><td><a class="cref cross" href="#ref-18">[18]</a><a class="cref cross" href="#ref-19">[19]</a><a class="cref cross" href="#ref-20">[20]</a></td></tr>
+      <tr><td class="hl"><b>7. 隐匿运营的信任成本</b></td><td>本案的独特结构性问题：产品在报道中不点名、公司近乎零品牌曝光（官网 upro.ai 无公开可核验的运营信息，本报告访问被反爬拦截）。收益：降低舆论与合规聚焦度，符合情感陪伴品类的低调生存策略；代价：① 获客不能依赖品牌，只能依赖 AI 产出的社媒内容流（报道称多条视频百万至千万播放）；② 信任成本转嫁给「叶纯俊个人」——投资人的质问「万一你个人出了状况，公司怎么办」正是单点风险的市场化表达；③ 对外合作、用户付费决策均缺品牌背书，转化效率依赖品类刚需兜底。</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref partial" href="#ref-6">[6]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 五处留白与一处认定残余风险（截至 2026-11-12 检索）</div>
+    ① <b>产品主体认定的残余风险</b>：甲子光年报道未点名产品，「Rochat 即报道所指产品」的认定基于公司 BOSS 直聘自述与第三方产品库交叉（中高置信），无法 100% 排除 2024 年团队收缩后产品方向调整、报道所指为另一新产品的可能；② <b>百万用户口径未指明</b>（累计注册 or 月活）；③ <b>月收入无审计</b>，为受访者自述转述；④ <b>融资细节空白</b>：两次融资的轮次、金额、投资方均未公开；⑤ <b>变现方式未披露</b>。另：「90% Coding 由 AI 完成」为自述，行业无统一度量口径，与 Leadmore AI「80-90%」同为不可独立验证的自报值。
+  </div>
+  <div class="box note">
+    <div class="bt">📝 口径与核验过程记录</div>
+    ① 案例墙登记锚点 2025-11-15（月份口径），经核验甲子光年官网与 36氪发布日均为 2025-11-20，本报告以发布日精确化；② 企查查登记网址 rochat.tech 现展示为 OpenClaw 网关面板（本报告实测），与第三方产品库记载的产品官网 rochat.ai 分离，动因不明，如实记录——不影响产品归属认定（依据为 BOSS 直聘自述而非该网址）；③ 公司官网 upro.ai 访问被反爬拦截，页面内容未能核验，域名本身经产品库「直达网站」链接与港资股东名「Upro Technologies HK Limited」双重印证；④ 叶纯俊教育背景、创业前履历未检索到公开信息；⑤ 未发现任何针对本案的负面指控或监管处罚记录。
+  </div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">甲子光年以叶纯俊开篇提出命题——「AI 时代的一人公司能跑出独角兽吗」：OpenAI CEO 奥尔特曼透露科技 CEO 小群在赌「单人运营的 10 亿美元公司」何时出现；Anthropic CEO 阿莫迪预测「一个人利用 AI 创建出估值 10 亿美元的公司」最早明年就会发生。Carta 数据显示，仅一位独立创始人且无 VC 支持的初创公司比例已从 2015 年的 22.2% 升至 2024 年的 38%。叶纯俊案例是这组宏大叙事在中国的一个微观注脚：它没有独角兽体量（年化营收 24-36 万美元量级），却完整呈现了「AI 合伙人」公司形态——从编码、PRD、客服到营销的全职能 AI 化与算力飞轮。其对案例墙的核心价值不在营收数字，而在<b>组织形态的极限样本</b>：当 90% 的代码、以及事实上的全部执行职能都由 AI 承担时，「公司」这个组织单元的最小可行规模被压缩到了物理意义上的一个人。</div><div class="cm"><a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-2">[2]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 20 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx verified">[1]</span><span class="rt">B+</span><span class="st">主流研究机构原文</span></div><div class="ti">我的合伙人是AI（甲子光年官网原文，作者温丽虹 / 编辑王博）</div><div class="mt"><b>来源：</b>甲子光年（jazzyear.com）　<b>发布日期：</b>2025-11-20<br><a href="https://www.jazzyear.com/article_info.html?id=1608" target="_blank" rel="noopener">https://www.jazzyear.com/article_info.html?id=1608</a></div><div class="note">事实核查：本案核心信源，实地探访口径。与 36氪授权转载 [2] 全文互证；百万用户、月收入 2-3 万美元、90% Coding、Gemini PRD、两次融资、绿洲资本张津剑、北美用户社区交流等核心事实均出自此稿；原文另注明首发于微信公众号「甲子光年」（mp.weixin.qq.com/s/QjmVEKW-IL5PXz66HJj_gw）。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx verified">[2]</span><span class="rt">B</span><span class="st">主流门户授权转载</span></div><div class="ti">我的合伙人是AI（36氪经授权发布）</div><div class="mt"><b>来源：</b>36氪　<b>发布日期：</b>2025-11-20 16:51<br><a href="https://36kr.com/p/3561148530113667" target="_blank" rel="noopener">https://36kr.com/p/3561148530113667</a></div><div class="note">事实核查：全文取得并与甲子光年官网原文逐字一致，构成独立发布方交叉；案例墙第 29 条的底稿信源。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx verified">[3]</span><span class="rt">A+</span><span class="st">工商信息（一手）</span></div><div class="ti">上海深知有谱智能科技有限公司 · 工商登记信息（水滴信用）</div><div class="mt"><b>来源：</b>水滴信用（shuidi.cn）　<b>更新：</b>检索时点 2026-11<br><a href="https://shuidi.cn/company-58a86caf8ce7b2bcb424fb4c6facd701.html" target="_blank" rel="noopener">https://shuidi.cn/company-58a86caf8ce7b2bcb424fb4c6facd701.html</a></div><div class="note">事实核查：有限责任公司（自然人独资）、法定代表人叶纯俊、注册资本 100 万元、统一社会信用代码 91310104MACMKQ6J2R、工商注册号 310104000903276、成立 2023-07-04、营业期限至 2053-07-03、参保 1 人、长宁区市场监管局、注册地址愚园路 753 号；与 [4][5][6] 三库交叉一致。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx verified">[4]</span><span class="rt">A+</span><span class="st">工商信息（一手）</span></div><div class="ti">叶纯俊 · 法定代表人/高管/股东关联页（爱企查）</div><div class="mt"><b>来源：</b>爱企查（aiqicha.baidu.com 系）　<b>更新：</b>检索时点 2026-11<br><a href="https://www.aiqicha.com/person?entry=2115&amp;personId=1cbcbbd5f9bfe8e30ac33163fd628153" target="_blank" rel="noopener">https://www.aiqicha.com/person?entry=2115&amp;personId=1cbcbbd5f9bfe8e30ac33163fd628153</a></div><div class="note">事实核查：叶纯俊直接控股股东持股 100%、任两家公司法代及财务负责人；与 [3][5] 交叉一致。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx verified">[5]</span><span class="rt">A+</span><span class="st">工商年报（一手）</span></div><div class="ti">上海深知有谱智能科技有限公司 2025 年度企业年报 / 股东信息（启信宝）</div><div class="mt"><b>来源：</b>启信宝（qixin.com）　<b>发布日期：</b>2025 年度年报<br><a href="https://m.qixin.com/reports/51d6d471-a09e-4d1c-a893-618016f4044d?year=2025" target="_blank" rel="noopener">https://m.qixin.com/reports/51d6d471-a09e-4d1c-a893-618016f4044d?year=2025</a></div><div class="note">事实核查：股东及出资信息（叶纯俊、认缴 100 万元、认缴时间 2029-07-31）、疑似实控人/受益所有人/直接持股 100%、主要人员 1 人、对外投资 0；与 [3][4] 交叉一致。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx partial">[6]</span><span class="rt">A+</span><span class="st">工商信息（一手）</span></div><div class="ti">上海深知有谱智能科技有限公司 · 企业信息页（企查查）</div><div class="mt"><b>来源：</b>企查查（qcc.com）　<b>更新：</b>检索时点 2026-11<br><a href="https://www.qcc.com/ccomment/03862bd8b90d4b1e448f904c50f4a7a7" target="_blank" rel="noopener">https://www.qcc.com/ccomment/03862bd8b90d4b1e448f904c50f4a7a7</a></div><div class="note">事实核查：基本工商信息与他库一致；本报告引用其独有字段「登记网址 rochat.tech」为单一来源，且该网址当前实测内容为 OpenClaw 网关面板（见捌），故按 partial 处理、不作为产品归属认定依据。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx verified">[7]</span><span class="rt">B</span><span class="st">公司官方自述</span></div><div class="ti">深知有谱（UPro）公司主页与 AI 产品经理招聘页（BOSS 直聘）</div><div class="mt"><b>来源：</b>BOSS 直聘　<b>发布日期：</b>招聘信息在挂（时点未标注）<br><a href="https://www.zhipin.com/job_detail/f343a4e2713a9c611HV-3d-1FVRT.html" target="_blank" rel="noopener">https://www.zhipin.com/job_detail/f343a4e2713a9c611HV-3d-1FVRT.html</a></div><div class="note">事实核查：公司自述「UPro（上海深知有谱智能科技有限公司）成立于 2023 年 7 月初，美元基金天使轮阶段；核心产品 Rochat——基于大语言模型（ChatGPT/GPT-4/LLAMA2/Stability.ai/Midjourney 等）开发的 AI bots 平台，希望每个人零门槛用上 AI」；与 [8] 交叉确认产品名与成立时间；自述口径，招聘页在挂时间未知。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx verified">[8]</span><span class="rt">C+</span><span class="st">门户产品库</span></div><div class="ti">Rochat 产品词条（太平洋科技 AI 产品库）</div><div class="mt"><b>来源：</b>太平洋科技（pconline）　<b>更新：</b>检索时点 2026-11<br><a href="https://g.pconline.com.cn/ai/product/1446.html" target="_blank" rel="noopener">https://g.pconline.com.cn/ai/product/1446.html</a></div><div class="note">事实核查：产品描述（多模型 AI 聊天机器人、零代码创建角色、三端）、官网 upro.ai、里程碑（2023-07-04 公司成立启动开发 / 2024-05-07 安卓版 v1.4.4 角色定制 / 2024-09-03 Rochat-Character 上线）、产品官网 rochat.ai；与 [7] 及工商时间线 [3] 交叉一致；产品库内容为第三方整理，词条热度数据缺失。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx cross">[9]</span><span class="rt">A+</span><span class="st">工商信息（一手）</span></div><div class="ti">上海深之谱智能科技有限公司 · 工商与年报信息（启信宝 / 水滴信用）</div><div class="mt"><b>来源：</b>启信宝、水滴信用　<b>更新：</b>2025 年度年报<br><a href="https://m.qixin.com/company/65b92f8e-c0be-4f98-ad2d-d7d403a7ed00" target="_blank" rel="noopener">https://m.qixin.com/company/65b92f8e-c0be-4f98-ad2d-d7d403a7ed00</a></div><div class="note">事实核查：2023-09-22 成立、注册资本 200 万美元、股东 Upro Technologies HK Limited、法定代表人叶纯俊、主要人员叶纯俊/孙涤帆（孙涤帆仅启信宝单源）、统一社会信用代码 91310000MACYG5YU23；两工商库交叉印证基本盘。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx cross">[10]</span><span class="rt">B+</span><span class="st">财经媒体首发稿</span></div><div class="ti">36氪首发丨绿洲资本完成 1.5 亿美元一期基金募资，已交割 6 个项目（张津剑背景）</div><div class="mt"><b>来源：</b>36氪　<b>发布日期：</b>2019 年末（一期募资时）<br><a href="https://www.36kr.com/p/804585611076611" target="_blank" rel="noopener">https://www.36kr.com/p/804585611076611</a></div><div class="note">事实核查：绿洲资本由原挚信资本张津剑于 2019 年底成立，教育/消费/企业服务投资背景——用于第叁、柒节投资人侧写；「认可叶纯俊模式」的表述本身出自 [1]。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx partial">[11]</span><span class="rt">C+</span><span class="st">第三方产品目录</span></div><div class="ti">Rochat 应用信息页（WebCatalog）</div><div class="mt"><b>来源：</b>WebCatalog（webcatalog.io）　<b>更新：</b>检索时点 2026-11<br><a href="https://webcatalog.io/pt/apps/httpsrochat-ai/mobile" target="_blank" rel="noopener">https://webcatalog.io/pt/apps/httpsrochat-ai/mobile</a></div><div class="note">事实核查：Rochat 为 AI 角色聊天平台，支持 GPT、Claude、Gemini、Llama、DeepSeek 与 Rochat-Character 模型；单一第三方目录，模型清单未获官方页面直接印证（rochat.ai 未直接抓取成功），按 partial 收录。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx verified">[12]</span><span class="rt">B</span><span class="st">财经媒体（对标）</span></div><div class="ti">陈天桥投了个00后（BettaFish 对标数据）</div><div class="mt"><b>来源：</b>36氪　<b>发布日期：</b>约 2026-03<br><a href="https://36kr.com/p/3720728841763465" target="_blank" rel="noopener">https://36kr.com/p/3720728841763465</a></div><div class="note">事实核查：BettaFish（微舆）曾登 GitHub 趋势榜第一、郭航江获陈天桥 3000 万元投资；与新浪科技 [13] 交叉一致。</div></li>
+  <li id="ref-13" class="src"><div class="sh"><span class="idx verified">[13]</span><span class="rt">B+</span><span class="st">门户财经（对标）</span></div><div class="ti">出资 3000 万，陈天桥投资了一位大四学生（新浪科技）</div><div class="mt"><b>来源：</b>新浪科技　<b>发布日期：</b>2026-03-10<br><a href="https://finance.sina.com.cn/tob/2026-03-10/doc-inhqnvwn6308857.shtml" target="_blank" rel="noopener">https://finance.sina.com.cn/tob/2026-03-10/doc-inhqnvwn6308857.shtml</a></div><div class="note">事实核查：与 [12] 构成独立发布方交叉；星标数 37.7k 为案例墙既有核验值（2026-10/11 时点）。</div></li>
+  <li id="ref-14" class="src"><div class="sh"><span class="idx partial">[14]</span><span class="rt">C+</span><span class="st">海外自述访谈（对标）</span></div><div class="ti">Leadmore AI Revenue: $30K MRR, $100K ARR in 3 months（Startup Founder Stories）</div><div class="mt"><b>来源：</b>startupfounderstories.com　<b>发布日期：</b>约 2025<br><a href="https://startupfounderstories.com/stories/richard-wang-leadmore-ai-30k-mrr" target="_blank" rel="noopener">https://startupfounderstories.com/stories/richard-wang-leadmore-ai-30k-mrr</a></div><div class="note">事实核查：Richard Wang 前中国大厂工程师/PM 五年以上、Leadmore AI 4 个月约 $30K MRR、后自述破 $1M ARR——页面明确标注 These figures are self-reported；与 [15] 同源自述链，按 partial 收录。</div></li>
+  <li id="ref-15" class="src"><div class="sh"><span class="idx partial">[15]</span><span class="rt">C+</span><span class="st">海外案例博客（对标）</span></div><div class="ti">The Man Who Shut Down His AI Consumer App… Then Built a Reddit Marketing Tool to $1M ARR（AI for Automation）</div><div class="mt"><b>来源：</b>aiforautomation.io　<b>发布日期：</b>约 2025<br><a href="https://aiforautomation.io/cases/leadmore-ai-richard-wang" target="_blank" rel="noopener">https://aiforautomation.io/cases/leadmore-ai-richard-wang</a></div><div class="note">事实核查：「80-90% 代码 AI 完成」表述与案例墙增补批次底稿一致；自述口径。</div></li>
+  <li id="ref-16" class="src"><div class="sh"><span class="idx cross">[16]</span><span class="rt">A+</span><span class="st">开源仓库（一手，对标）</span></div><div class="ti">musistudio/claude-code-router · GitHub 仓库</div><div class="mt"><b>来源：</b>GitHub　<b>更新：</b>检索时点 2026-11<br><a href="https://github.com/musistudio/claude-code-router" target="_blank" rel="noopener">https://github.com/musistudio/claude-code-router</a></div><div class="note">事实核查：仓库可达，README 描述多模型路由网关定位与案例墙一致；38k★ 为案例墙既有核验值（2026-10/11 时点，随时间变动）。</div></li>
+  <li id="ref-17" class="src"><div class="sh"><span class="idx cross">[17]</span><span class="rt">B</span><span class="st">案例墙内部信源</span></div><div class="ti">Simen AI（猴子说话）案例 · 案例墙既有核验值</div><div class="mt"><b>来源：</b>OPC Story 案例墙 index.html 第 60 条（增补批次 2）；原始信源为长江日报专访、央视网地方频道、天眼查、simen.ai 官网<br><a href="../../index.html" target="_self">../../index.html</a> · 深度报告：<a href="../simen-ai/index.html" target="_self">../simen-ai/index.html</a></div><div class="note">事实核查：雷圳鹏、产品未正式发布即获字节跳动近 4000 万元投资（长江日报 vs 央视网双独立源）、奇绩创坛 200 余万元天使轮——均为案例墙既有核验值，本报告未重新独立核验，按转引处理。</div></li>
+  <li id="ref-18" class="src"><div class="sh"><span class="idx cross">[18]</span><span class="rt">B</span><span class="st">财经媒体（行业背景）</span></div><div class="ti">Character.AI 破产，AI 陪伴是假风口？（36氪）</div><div class="mt"><b>来源：</b>36氪　<b>发布日期：</b>约 2025-10 之后<br><a href="https://36kr.com/p/4052600729294468" target="_blank" rel="noopener">https://36kr.com/p/4052600729294468</a></div><div class="note">事实核查：Character.AI 2025-10-12 申请破产保护、AI 陪伴赛道被重新审视——用于第柒节第 6 维品类合规风险背景。</div></li>
+  <li id="ref-19" class="src"><div class="sh"><span class="idx cross">[19]</span><span class="rt">B+</span><span class="st">省级财经媒体（行业背景）</span></div><div class="ti">AI 伴侣大逃杀：星野下架大量智能体，赛博爱情崩盘在即？（21 财经）</div><div class="mt"><b>来源：</b>21 财经（m.21jingji.com）　<b>发布日期：</b>2025-11-29<br><a href="https://m.21jingji.com/article/20251129/herald/c4cf0b7853b66ba95873b68fb2dee2f2.html" target="_blank" rel="noopener">https://m.21jingji.com/article/20251129/herald/c4cf0b7853b66ba95873b68fb2dee2f2.html</a></div><div class="note">事实核查：星野大规模下架违规智能体与账号、微软小冰 X Eva 宣布 2025-11-30 停运——AI 陪伴品类国内监管收紧的直接证据。</div></li>
+  <li id="ref-20" class="src"><div class="sh"><span class="idx cross">[20]</span><span class="rt">B+</span><span class="st">门户财经（行业背景）</span></div><div class="ti">从虚拟恋人到 AI 陪伴玩具，「赛博感情」换了形态，却仍陷「三角困境」（新浪财经）</div><div class="mt"><b>来源：</b>新浪财经　<b>发布日期：</b>约 2025-10/11<br><a href="https://cj.sina.com.cn/articles/view/1652484947/627eeb5302002264e" target="_blank" rel="noopener">https://cj.sina.com.cn/articles/view/1652484947/627eeb5302002264e</a></div><div class="note">事实核查：星野/Talkie 截至 2025-09 底累计用户 1.471 亿、付费用户 139.04 万——用于第柒节第 4 维付费率参照；Talkie 海外下架史另见创业邦报道（m.cyzone.cn/article/803900.html），未单列。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 20 条。核验标签分布：🟢 已核验（verified）9 条、🔵 多源印证（cross）7 条、🟡 部分映证（partial）4 条。信源评级分布：A+ 级 7 条（工商一手 6 条 + GitHub 一手仓库，原文回溯全部完成）、B+/B 级 9 条（甲子光年原文与 36氪授权转载全文互证为核心事实基线）、C+/C 级 4 条（公司自述招聘页、产品库与目录、海外自述访谈——均已标注口径）。核心事实（百万用户/月收入 2-3 万美元/90% Coding/愚园路一人运营）由甲子光年官网与 36氪两个独立发布方全文交叉；工商事实（自然人独资/100% 持股/参保 1 人/成立日期）由四家工商库交叉。「产品=Rochat」为本轮核验新增认定（公司自述 + 第三方产品库，中高置信），报道本身未点名产品——该认定边界与五处留白已在正文与捌节显式标注。核验受阻项：upro.ai 官网被反爬拦截（域名经第三方双重印证）、Product Hunt 页面反爬拦截（改用 WebCatalog/太平洋双源覆盖产品信息）、rochat.tech 实测为 OpenClaw 网关面板（如实记录）。未发现伪造链接；全部 URL 为检索过程实际命中页面。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-12 · 营收推算值均标注置信口径，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

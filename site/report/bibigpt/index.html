@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · BibiGPT（AI 课代表）—— 吕立青 JimmyLv 的 AI 音视频摘要一人 SaaS · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · BibiGPT（AI 课代表）">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="BibiGPT 深度案例报告：吕立青（JimmyLv）2023 年 2 月以开源 BiliGPT 起步，四年演进为覆盖 30+ 平台的 AI 音视频摘要一人 SaaS，官网自述累计用户 100 万+。10 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>BibiGPT（AI 课代表）深度案例报告</h1>
+    <h2>从 B 站「省流神器」到覆盖 30+ 平台的 AI 音视频助理<br>吕立青（JimmyLv）：四年独立 SaaS 长跑 —— 10 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">工具型 OPC</span>
+      <span class="tag">AI 原生</span>
+      <span class="tag">开源 + 订阅双轨</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">100万+</div><div class="k">累计用户（官网自述口径）</div></div>
+  <div class="stat"><div class="v up">6271</div><div class="k">GitHub Stars（2026-11 API 实测）</div></div>
+  <div class="stat"><div class="v neutral">30+</div><div class="k">音视频平台覆盖（官网自述）</div></div>
+  <div class="stat"><div class="v neutral">2023-02-15 ▲</div><div class="k">案例墙锚点（约值）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">BibiGPT 是国内「AI 音视频总结」赛道最早的一批产品：2023 年 2 月以开源项目 BiliGPT 起步，凭「省流神器 &amp; AI 课代表」的定位在 B 站生态走红，此后四年演进为覆盖 30+ 平台、开源与订阅并行的独立 SaaS。创始人吕立青（网名 JimmyLv）以一人开发起步，2026 年官网自述累计用户突破 100 万。<sup class="cite partial">[1]</sup></p>
+  <div class="two">
+    <div class="card"><div class="ct">产品形态</div><div class="cb">粘贴 B站/YouTube/播客/抖音/小红书等 30+ 平台链接，或上传本地音视频文件，数秒内生成带时间戳的结构化摘要、逐字稿、思维导图，并可对内容 AI 追问；支持图文改写、Notion/Obsidian 同步、MCP 服务端与 OpenAPI。前身 BiliGPT 为 GPL-3.0 开源项目（GitHub 6271★ / 811 forks）。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="card"><div class="ct">创始人</div><div class="cb">吕立青（JimmyLv），官网口径：前 ThoughtWorks 工程师 → 前阿里巴巴工程师（钉钉文档，远程）→ 独立 SaaS 创业者；同时是 B 站 UP 主 + YouTuber，自述全网粉丝累计超 10 万；个人主页口号「Prompt, Publish, Profit」，早年以 React 中文版译者与前端单元测试系列博文为开发者社区所知。</div><div class="cm">信源：<a class="cref cross" href="#ref-3">[3]</a> <a class="cref partial" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-1">[1]</a></div></div>
+    <div class="card"><div class="ct">团队状态（重要口径）</div><div class="cb">2024 年起本人自述「已经不是一人公司」——加入一位合拍伙伴兼职开公司，当前以「全职奶爸 + 兼职开公司」状态运营；2023 年 3 月从阿里钉钉文档的远程工作中出来全职投入本项目。案例墙 OPC 标签锚定的是 2023 年起步期状态。</div><div class="cm">信源：<a class="cref partial" href="#ref-4">[4]</a></div></div>
+    <div class="card blue"><div class="ct">数据与商业模式</div><div class="cb">官网自述累计用户 1M+、累计生成摘要 5M+；收费采用「免费额度 + 订阅（Plus/Pro/终身合伙人）+ 积分制 + 开放 API」的多层结构，并以邀请返现、合伙人返现做增长裂变。</div><div class="cm">信源：<a class="cref partial" href="#ref-5">[5]</a> <a class="cref partial" href="#ref-6">[6]</a></div></div>
+  </div>
+  <div class="two">
+    <div class="card blue"><div class="ct">机构背书与生态位</div><div class="cb">腾讯研究院「AI 浪潮下的一人公司」AI 共创营嘉宾（与哥飞、花生同场），系研究机构对「超级个体」议题的公开背书；产品经 aitodo.co 面向国际市场。是否注册公司主体、营收规模：未检索到公开信息。</div><div class="cm">信源：<a class="cref partial" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-1">[1]</a></div></div>
+    <div class="card"><div class="ct">AI 契合度</div><div class="cb">典型 ai-native：产品核心能力（字幕抓取 → LLM 结构化摘要 → 对话追问 → 改写分发）完全构建在大模型能力之上，2026 年进一步将产品自身封装为可被 Agent 调用的 MCP/Skill 工具，「从知识获取到知识创造」的端到端闭环。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2022 年末</div><div class="tx">开源生涯的「代码前史」与 ChatGPT 引爆点</div><div class="td">吕立青此前已是开发者社区活跃分子：《React 学习之道》中文版译者（约 1.9k★）、Agile Learning 博客仓库 730★、前端单元测试系列作者；ChatGPT 爆火后，作为软件工程师决定「把 AI 用到真实场景」。官网博客回溯：出发点是他作为长视频 UP 主的自身痛点——视频太长、核心信息难提取。<a class="cref cross" href="#ref-2">[2]</a><a class="cref partial" href="#ref-7">[7]</a><a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2023-02-15 ▲ → 02-26/27</div><div class="tx">BiliGPT 开源上线：案例墙锚点与可查证精确节点</div><div class="td">案例墙锚点取 2023-02-15（▲ 约值）；可查证精确节点：GitHub 仓库创建于 2023-02-26（UTC，API 实测）、B 站首发视频《【BibiGPT】AI 自动总结 B站 视频内容》发布于 2023-02-27。基于 GPT-3 抓取字幕生成摘要，两种用法：粘贴链接一键总结 + URL hack（把 bilibili.com 的 .com 改成 jimmylv.cn 直达总结页）；同步提供 iOS 快捷指令。<a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-8">[8]</a><a class="cref partial" href="#ref-7">[7]</a></div></div>
+    <div class="node"><div class="dt">2023-03</div><div class="tx">从远程工作出来，全职投入</div><div class="td">本人自述：「从去年 3 月份开始，我就从远程工作出来，一直在做 BibiGPT 这个项目。」此前经历包括 ThoughtWorks 与阿里钉钉文档的远程工作。<a class="cref partial" href="#ref-4">[4]</a><a class="cref partial" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2023 年内</div><div class="tx">成本危机倒逼 BYOK，社区驱动迭代</div><div class="td">18 美元 OpenAI 免费额度在开发测试期即快速烧穿，遂引入 BYOK（用户自带 API Key、只存本地浏览器不上传服务器）作为过渡；开源仓库社区驱动迭代，后以 BibiGPT-v1 归档（GPL-3.0，累计 6271★ / 811 forks）。<a class="cref partial" href="#ref-7">[7]</a><a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2024 年</div><div class="tx">演进为 SaaS；登上腾讯研究院共创营；「一人」边界第一次松动</div><div class="td">官网项目史：2024 年由开源项目演进为 SaaS 产品 bibigpt.co；同年在腾讯研究院「AI 浪潮下的一人公司」AI 共创营担任嘉宾（文稿内文自述 ChatGPT 上线已约一年半），并自述「今年开始加入了一位很合拍的伙伴」。<a class="cref partial" href="#ref-1">[1]</a><a class="cref partial" href="#ref-4">[4]</a><a class="cref cross" href="#ref-9">[9]</a></div></div>
+    <div class="node"><div class="dt">2025 年</div><div class="tx">多端扩展 + 内容营销体系化</div><div class="td">官网项目史：扩展浏览器插件、桌面端、移动端客户端；同年 4 月官方博客开设「成长系列」，把早期上线过程整理为系统化的内容资产。<a class="cref partial" href="#ref-1">[1]</a><a class="cref partial" href="#ref-7">[7]</a></div></div>
+    <div class="node"><div class="dt">2026 年</div><div class="tx">Agent 化与国际市场；自述累计用户 1M+</div><div class="td">发布 Agent / MCP / Skill 集成（含可安装的 Anthropic Skill 与 NLWeb /ask 端点），经 aitodo.co 拓展国际市场；官网自述累计用户 100 万+、累计生成摘要 5M+（自述口径，未见第三方审计）。<a class="cref partial" href="#ref-1">[1]</a><a class="cref partial" href="#ref-5">[5]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：从自身刚需出发的「课代表」定位——先做给自己的工具</div><div class="cb">BiliGPT 的第一性原理极简单：吕立青自己是 B 站长视频 UP 主，最痛的就是「一小时视频的信息密度」。GPT-3 抓字幕生成摘要的 MVP 在 ChatGPT 爆火后数周内即上线，URL hack（bilibili.com → jimmylv.cn）这条极客传播路径让工具在 B 站与推特形成自传播——首发视频至今累计 25.8 万播放、915 条评论。产品定位「省流神器 &amp; AI 课代表」用社区黑话完成了自我解释，是冷启动期最省钱的定位策略。</div><div class="cm">信源：<a class="cref partial" href="#ref-7">[7]</a> <a class="cref cross" href="#ref-8">[8]</a></div></div>
+  <div class="card"><div class="ct">转折二：成本结构倒逼商业模式——$18 额度烧穿之后</div><div class="cb">独立开发者最现实的约束是 API 账单：18 美元免费额度在开发测试期就消耗大半，BiliGPT 第一时间引入 BYOK（用户自带 Key、本地存储）把推理成本转嫁给重度用户——这既是成本自救，也无意识地完成了一次「愿付价格」筛选。此后产品顺水推舟演进为「免费额度 + 订阅 + 积分制（1 积分 = 总结 1 分钟）+ 开放 API 按量充值」的多层收费结构，从开源获客到 SaaS 转化的双轨就此成型。</div><div class="cm">信源：<a class="cref partial" href="#ref-7">[7]</a> <a class="cref partial" href="#ref-6">[6]</a></div></div>
+  <div class="card red"><div class="ct">转折三：一人公司的边界是动态的——2024 年引入伙伴</div><div class="cb">与案例墙多数案例不同，吕立青对「一人公司」标签表现出罕见的坦诚：2024 年他在共创营公开修正「我现在已经不是一人公司了」，原因是 API 成本、客服与多端开发的复合压力，选择「全职奶爸 + 兼职开公司」的状态。本案提示：OPC 不是身份标签而是光谱——案例墙锚点（2023-02-15）定格的是起步期的严格一人状态，四年长跑后边界已自然演化。</div><div class="cm">信源：<a class="cref partial" href="#ref-4">[4]</a></div></div>
+  <div class="quote">
+    <p>「你不会被 AI 取代，但是你会被使用 AI 的人取代」——这种思维明显是零和博弈的；我认为这明显是一个大家一起做大蛋糕的事情……AI 其实就补齐了我其他方面可能没有那么强的部分。</p>
+    <span class="src">—— 吕立青，腾讯研究院 AI 共创营文稿（BibiGPT AI 一键改写，本人发布），转引自 <a class="cref partial" href="#ref-4">[4]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>内容</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>产品功能</b></td><td>粘贴 B站/YouTube/播客/抖音/小红书等 30+ 平台链接或上传本地文件 → 结构化时间戳摘要 / 逐字稿 / 思维导图 / AI 追问；进阶含字幕翻译烧录、画面内容解析、一键改写为公众号图文/小红书卡片/PPT 大纲、Notion 与 Obsidian 同步；Agent 侧提供 MCP 服务端、OpenAPI、NLWeb /ask 与 Anthropic Skill</td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>定价</b></td><td>免费体验版 120 分钟 + 基础模型；Plus 年付折合 ¥80.78/月（¥969.41/年）；Pro 年付折合 ¥141.98/月（¥1703.81/年）；终身合伙人 ¥6038.40 一次性买断；积分制 1 积分 = 总结 1 分钟；邀请返现 20%、合伙人引荐返现 33%；人民币结算（官网标注 $1 = ¥6.8）</td><td><a class="cref partial" href="#ref-6">[6]</a></td></tr>
+      <tr><td><b>面向客群</b></td><td>知识内容消费者分层：知识工作者（会议录音 → 纪要 + 行动项）、内容创作者（一鱼多吃多平台分发）、师生（课程/讲座高效吸收）、研究者（可检索音视频知识库）、企业与开发者（API/MCP 集成）</td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>解决痛点</b></td><td>长视频/播客的信息获取成本：一小时内容「3 分钟带走要点」，官网概括为「用算力换认知」（compress an hour of lecture into five minutes of takeaways）</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref partial" href="#ref-7">[7]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 定价口径说明</div>
+    价格与权益随促销变动（页面含拼团、年付立省 40% 等活动），以上为 2026-11-13 定价页实抓值，引用请以官网为准；「87% 用户首选」等用户占比表述为官网自述营销口径，未经第三方验证。
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>口径</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>累计用户</td><td class="hl">100 万+</td><td>2026（官网 About 自述）</td><td>自述，未经第三方审计</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref partial" href="#ref-5">[5]</a></td></tr>
+      <tr><td>累计生成摘要</td><td>500 万+ 次</td><td>官方博客自述（30+ 平台）</td><td>自述</td><td><a class="cref partial" href="#ref-5">[5]</a></td></tr>
+      <tr><td>GitHub Stars / Forks</td><td class="pos">6271 / 811</td><td>2026-11-13 API 实测</td><td>平台一手实测（GPL-3.0，2023-02-26 创建）</td><td><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td>B 站首发视频</td><td>播放 25.83 万 / 评论 915 / 收藏 1.06 万</td><td>2026-11-13 API 实测（发布于 2023-02-27）</td><td>平台一手实测</td><td><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td>创始人全网粉丝</td><td>10 万+</td><td>官网 About 自述（B 站 + YouTube）</td><td>自述</td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td>营收 / 付费用户数</td><td>未披露</td><td>—</td><td>留白：未检索到公开信息</td><td>—</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    本案可实测数据（GitHub、B 站 API）与自述数据（用户量、摘要量、粉丝量）分列呈现；「100 万+ 用户」仅见于官网与官方博客，无平台方或第三方审计印证，引用时务必保留「自述」前缀。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将 BibiGPT 放入案例墙「AI 信息工具」坐标系。对标数据均为<a href="../../index.html" style="color:#2980b9">案例墙</a>既有核验值（本轮未重新核验）；宏观背景参照腾讯研究院《超级个体时代》报告对一人公司趋势的系统论述<a class="cref cross" href="#ref-10">[10]</a>：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>数据表现（案例墙既有核验值）</th></tr></thead>
+    <tbody>
+      <tr><td><b>BibiGPT（AI 课代表）</b></td><td>吕立青（JimmyLv）</td><td>B 站生态起步 → 30+ 平台的 AI 音视频摘要 SaaS（开源 + 订阅）</td><td>累计用户 100 万+（官网自述）；GitHub 6271★</td></tr>
+      <tr><td>沉浸式翻译</td><td>Owen Young</td><td>AI 双语对照网页/PDF/视频字幕/漫画翻译，聚合 10+ 引擎</td><td>全球激活用户破 3000 万，Chrome 年度精选</td></tr>
+      <tr><td>Chat Memo</td><td>一泽 Eze</td><td>跨 AI 平台「记忆中枢」插件：自动存档对话并全库检索</td><td>20000+ 用户，Chrome 商店 4.9 分获 Google 精选认证</td></tr>
+      <tr><td>chatGPTBox</td><td>josStorer</td><td>把 ChatGPT 深度集成进浏览器：划词翻译/网页总结/视频对话</td><td>GitHub 约 10.7k★，Chrome 用户约 3 万</td></tr>
+      <tr><td>Copilot for Obsidian</td><td>Logan Yang</td><td>Obsidian 笔记库 AI 副驾插件：全库问答/检索/改写</td><td>下载突破 100 万（2026-02），GitHub 7.8k★</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>BibiGPT 的差异化定位清晰：它是五者中<b>唯一以音视频内容为核心对象、从 B 站链接场景垂直起步</b>的工具——与翻译类（沉浸式翻译）、对话存档类（Chat Memo / chatGPTBox）、笔记副驾类（Copilot for Obsidian）互不重叠。用户量级上仅次于「3000 万激活」的沉浸式翻译；若自述口径成立，它是国内 B 站生态垂直工具中触达用户面最广的一个。共性风险亦相似：均深度依附宿主平台（B 站/YouTube/浏览器/Obsidian）的接口政策，平台侧一次接口调整即可动摇产品根基。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="card"><div class="ct">1. 产品功能</div><div class="cb">「粘贴链接 → 结构化知识」的单核体验四年未变，外围持续加厚：从 B 站单一平台扩至 30+ 平台与本地文件，从摘要扩至逐字稿、脑图、追问、改写分发、笔记同步，2026 年再向 Agent 基础设施（MCP/OpenAPI/Skill）延伸。功能扩张方向始终围绕「知识获取 → 知识内化 → 知识创造」闭环，是工具型产品少有的连贯演进。</div><div class="cm"><a class="cref partial" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-7">[7]</a></div></div>
+  <div class="card"><div class="ct">2. 面向客群</div><div class="cb">官网明示五类客群：知识工作者、内容创作者、师生、研究者、企业与开发者。真实基本盘大概率仍是「学习者/知识工作者」——与 B 站「学习 site」的用户心智天然重合；开发者客群经由开源仓库与 MCP/API 转化，创始人本人即开发者 KOL，获客与产品互为放大器。</div><div class="cm"><a class="cref partial" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-4">[4]</a></div></div>
+  <div class="card"><div class="ct">3. 解决痛点</div><div class="cb">长视频信息获取成本：B 站学习类视频动辄一小时起步，字幕抓取 + LLM 结构化把「看完」压缩为「扫要点 + 按需追问」；时间戳与逐字稿对照是缓解 AI 摘要「丢点/幻觉」的机制设计。痛点真实且高频，这解释了一个「周末项目」为何能长跑四年。</div><div class="cm"><a class="cref partial" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-7">[7]</a></div></div>
+  <div class="card"><div class="ct">4. 预估年化营收（推算，置信度 C）</div><div class="cb">营收<b>零披露</b>，不做数字推算。可核验的商业结构事实：多层定价（¥80.78/月起 至 ¥6038.40 买断）+ 开放 API 按量充值 + 20%/33% 两级返现，说明收入模型以订阅为主、API 为辅、裂变为增长杠杆。参照系：案例墙同类信息工具（Chat Memo 2 万用户、Copilot for Obsidian 100 万下载）同样无营收披露——「AI 信息工具赛道营收普遍留白」本身即是可记录的行业事实。100 万自述用户若按典型 freemium 1-5% 付费率定性推断，属中等量级 SaaS，但该推算仅为方向性判断。</div><div class="cm">推算依据：<a class="cref partial" href="#ref-6">[6]</a> <a class="cref partial" href="#ref-5">[5]</a>，推算口径为 C 级</div></div>
+  <div class="card"><div class="ct">5. 融资进展</div><div class="cb">未检索到公开融资信息。非货币资源：开源社区贡献者网络（811 forks）、GitHub README 显示的 OpenDev Org / Vectrust API 资源赞助、创始人自有流量矩阵（B 站/YouTube/推特/Newsletter）作为零成本分发渠道。</div><div class="cm"><a class="cref cross" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-3">[3]</a></div></div>
+  <div class="card"><div class="ct">6. 市场评价</div><div class="cb">机构背书：腾讯研究院 AI 共创营嘉宾身份（本人文稿与哥飞博客双源印证），且研究院 2026 年《超级个体时代》报告系统引用了一人公司趋势数据（Carta：美国单人创办新公司占比 2019 年 23.7% → 2025 上半年 36.3%），BibiGPT 处于该叙事的中心地带；官方博客 56+ 篇内容资产持续经营SEO。局限：第三方独立媒体报道稀少，官网展示的用户评价为自述营销口径。</div><div class="cm"><a class="cref partial" href="#ref-4">[4]</a> <a class="cref cross" href="#ref-9">[9]</a> <a class="cref cross" href="#ref-10">[10]</a> <a class="cref partial" href="#ref-6">[6]</a></div></div>
+  <div class="card red"><div class="ct">7. 投入成本与合规风险</div><div class="cb">平台 API 政策依赖：核心能力依赖 B 站/YouTube 等平台的字幕与内容接口，接口策略调整（风控、字段变更、反爬升级）会直接冲击可用性，本案是案例墙中平台依赖度最高的类型之一。摘要准确性：无字幕内容需先行转写，LLM 摘要存在幻觉与丢点风险，官网以时间戳 + 逐字稿对照缓解但无法根除。成本结构：LLM 推理成本随用量线性增长（起步期 $18 额度烧穿即为预演），免费额度是持续性成本敞口。隐私合规：官网承诺上传文件 30 天后自动删除、摘要默认私密、未经授权不用于训练；BYOK 期「Key 只存本地浏览器」。<b>未检索到</b>针对 BibiGPT 的版权或平台方投诉公开信息。</div><div class="cm"><a class="cref partial" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-7">[7]</a> <a class="cref cross" href="#ref-2">[2]</a></div></div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 四处留白与一处口径张力（截至 2026-11-13 检索）</div>
+    ① 「累计 100 万+ 用户」为官网自述，无第三方审计或平台方印证——所有引用必须标注「自述口径」；② 本人 2024 年自述「已经不是一人公司」与案例墙 OPC 标签存在口径张力（墙内锚点为 2023-02-15 起步期，本报告如实并列两种口径）；③ 营收、付费转化率、公司注册主体均未检索到公开信息；④ 第三方独立媒体报道稀少——本案信源体系高度集中于创始人自有渠道（官网/GitHub/官方博客/社交账号），这是该案例区别于央媒报道型案例的最大核验特征。
+  </div>
+  <div class="card"><div class="ct">核验边界说明（如实记录）</div><div class="cb">案例墙锚点 2023-02-15 为约值标注（▲）：本轮可查证到日粒度的节点是 GitHub 仓库创建（2023-02-26 UTC，API 实测）与 B 站首发视频发布（2023-02-27，API 实测），两者与锚点同处 2023 年 2 月下旬，未见冲突；共创营具体日期未在公开文稿中标注，按文稿内文「ChatGPT 上线已约一年半」推定为 2024 年，置信度中。B 站账号粉丝数接口（relation/stat）一次访问超时未重试，「全网粉丝 10 万+」仅按官网自述的 partial 口径处理。</div><div class="cm">实测：<a class="cref cross" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-8">[8]</a>；推定：<a class="cref partial" href="#ref-4">[4]</a></div></div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">BibiGPT 展示了工具型 OPC 的「长跑型」样本：不做爆款叙事，而是以真实刚需冷启动、以成本危机倒逼商业模型、以创始人内容矩阵替代投放预算、以开源社区沉淀技术信用，四年内从周末项目长成多端 SaaS 并进入研究机构叙事。它同时提示了 OPC 的演进真相：一人公司不是终身身份，而是可进可退的阶段性形态——诚实标注边界变化，恰是这个案例最值得被案例墙保留的部分。</div><div class="cm"><a class="cref partial" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-10">[10]</a></div></div>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 10 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级信源）。<b>本案特点：核心信源集中于创始人自有体系，独立第三方报道缺位，故 partial 占比偏高，系从严标注的结果。</b></p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx partial">[1]</span><span class="rt">A</span><span class="st">官网一手（About）</span></div><div class="ti">About BibiGPT（官网项目史 / 团队 / 能力 / 自述用户量）</div><div class="mt"><b>来源：</b>bibigpt.co（另有中文版 /zh/about）　<b>核验日期：</b>2026-11-13<br><a href="https://bibigpt.co/about" target="_blank" rel="noopener">https://bibigpt.co/about</a></div><div class="note">事实核查：创始人履历（ex-ThoughtWorks → ex-Alibaba → 独立 SaaS）、项目史 2023-2026、30+ 平台、MCP/Skill 能力、隐私承诺、累计用户 1M+ 均出自此页；用户量与功能覆盖为官网自述口径，无第三方审计。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx cross">[2]</span><span class="rt">B+</span><span class="st">平台一手实测（GitHub API）</span></div><div class="ti">JimmyLv/BibiGPT-v1 仓库（原 BiliGPT）</div><div class="mt"><b>来源：</b>GitHub + GitHub REST API　<b>核验日期：</b>2026-11-13<br><a href="https://github.com/JimmyLv/BibiGPT-v1" target="_blank" rel="noopener">https://github.com/JimmyLv/BibiGPT-v1</a></div><div class="note">事实核查：API 实测 created_at 2023-02-26T16:05:11Z、stars 6271、forks 811、GPL-3.0、TypeScript；README 自述「原 BiliGPT 省流神器 &amp; AI 课代表」及 Vectrust/OpenDev 赞助信息。与 [1] 项目史、[7] 起源博客互证。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx cross">[3]</span><span class="rt">A</span><span class="st">官网一手（个人主页）</span></div><div class="ti">JimmyLv 个人主页（社交矩阵与个人定位）</div><div class="mt"><b>来源：</b>www.jimmylv.cn　<b>核验日期：</b>2026-11-13<br><a href="https://www.jimmylv.cn/" target="_blank" rel="noopener">https://www.jimmylv.cn/</a></div><div class="note">事实核查：口号「Prompt, Publish, Profit」、社交矩阵（Twitter @Jimmy_JingLv、B 站 space 37648256、blog.jimmylv.info、Substack、即刻 jike.city/jimmylv）为本页一手内容；开源前史（React 中文版译者等）经 GitHub 主页 pin 仓库交叉。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx partial">[4]</span><span class="rt">B+</span><span class="st">一手嘉宾自述（AI 改写文稿）</span></div><div class="ti">【文稿】AI 浪潮下的一人公司丨腾讯研究院 AI 共创营（吕立青发布）</div><div class="mt"><b>来源：</b>哔哩哔哩图文（UP 主 吕立青_JimmyLv，标注「由 BibiGPT AI 一键改写」）　<b>核验日期：</b>2026-11-13<br><a href="https://m.bilibili.com/opus/952763053553745939" target="_blank" rel="noopener">https://m.bilibili.com/opus/952763053553745939</a></div><div class="note">事实核查：第一人称确认 2023-03 全职投入、2024 年起加入伙伴、「全职奶爸 + 兼职开公司」状态、阿里钉钉文档远程经历及多篇引语；嘉宾身份与 [9] 独立交叉；文稿为 AI 改写转述，故按 partial 处理。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx partial">[5]</span><span class="rt">A</span><span class="st">官网一手（官方博客）</span></div><div class="ti">7 Best NotebookLM Alternatives for Video Summarization（自述 1M+ 用户 / 5M+ 摘要）</div><div class="mt"><b>来源：</b>BibiGPT 官方博客　<b>核验日期：</b>2026-11-13<br><a href="https://bibigpt.co/de/blog/posts/best-notebooklm-alternatives-for-video" target="_blank" rel="noopener">https://bibigpt.co/de/blog/posts/best-notebooklm-alternatives-for-video</a></div><div class="note">事实核查：「served 1M+ users and generated over 5M summaries across 30+ platforms」为官方自述口径；与 [1] About 页自述一致，同属自有渠道，按 partial 收录。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx partial">[6]</span><span class="rt">A</span><span class="st">官网一手（定价页）</span></div><div class="ti">BibiGPT 定价页（免费额度 / Plus / Pro / 终身合伙人 / 积分制）</div><div class="mt"><b>来源：</b>bibigpt.co/pricing（当前渲染为国内版 bibigpt.cn，人民币结算）　<b>核验日期：</b>2026-11-13<br><a href="https://bibigpt.co/pricing" target="_blank" rel="noopener">https://bibigpt.co/pricing</a></div><div class="note">事实核查：免费体验版 120 分钟、Plus 年付折合 ¥80.78/月、Pro ¥141.98/月、终身合伙人 ¥6038.40、1 积分 = 总结 1 分钟、邀请返现 20%、合伙人返现 33% 为页面实抓值；价格随促销变动，以官网为准；「87% 用户首选」为自述营销口径。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx partial">[7]</span><span class="rt">A</span><span class="st">官网一手（成长系列博客，回溯自述）</span></div><div class="ti">BibiGPT 成长系列第 1 期：AI 自动总结 B 站视频内容的诞生之路 / BiliGPT 上线复盘</div><div class="mt"><b>来源：</b>BibiGPT 官方博客（2025-04-21 发布，基于早期视频回溯整理）　<b>核验日期：</b>2026-11-13<br><a href="https://bibigpt.co/zh/blog/posts/ai-summary-bilibili-video-bibigpt-origin" target="_blank" rel="noopener">https://bibigpt.co/zh/blog/posts/ai-summary-bilibili-video-bibigpt-origin</a></div><div class="note">事实核查：GPT-3 起源、URL hack（bilibili.com → jimmylv.cn）、BYOK 与 $18 免费额度烧穿、iOS 快捷指令等细节出自此系列；系四年后的回溯性自述，按 partial 处理；原始视频链接与 [8] 实测一致。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx cross">[8]</span><span class="rt">B+</span><span class="st">平台一手实测（B站 API）</span></div><div class="ti">B 站首发视频 BV1fX4y1Q7Ux（2023-02-27）</div><div class="mt"><b>来源：</b>哔哩哔哩 + B 站 Web API　<b>核验日期：</b>2026-11-13<br><a href="https://www.bilibili.com/video/BV1fX4y1Q7Ux" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1fX4y1Q7Ux</a></div><div class="note">事实核查：API 实测 pubdate 2023-02-27（时间戳 1677488158）、播放 25.83 万、评论 915、收藏 1.06 万、硬币 3023、分享 2683；UP 主 吕立青_JimmyLv（mid 37648256）；简介含官网与 iOS 快捷指令信息，与 [7] 回溯文互证。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx cross">[9]</span><span class="rt">B</span><span class="st">独立第三方亲历记述（博客）</span></div><div class="ti">哥飞：接受腾讯采访「AI 浪潮下的一人公司」——从互联网大厂纵身入局的一年</div><div class="mt"><b>来源：</b>哥飞个人博客（itpub 托管）　<b>核验日期：</b>2026-11-13<br><a href="https://m.blog.itpub.net/70043119/viewspace-3063412/" target="_blank" rel="noopener">https://m.blog.itpub.net/70043119/viewspace-3063412/</a></div><div class="note">事实核查：独立第三方对同一活动的记述——嘉宾阵容（吕立青 BibiGPT AI 创业者、哥飞出海 AI、花生 AI 工具开发者）、主持人王建飞、完整内容见「腾讯研究院」公众号；与 [4] 双源交叉成立共创营嘉宾事实。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx cross">[10]</span><span class="rt">B+</span><span class="st">研究机构报告</span></div><div class="ti">超级个体时代｜腾讯研究院 3 万字报告</div><div class="mt"><b>来源：</b>腾讯研究院（袁晓辉、余一），腾讯新闻　<b>发布日期：</b>2026-06-03<br><a href="http://news.qq.com/rain/a/20260603A07TIY00" target="_blank" rel="noopener">http://news.qq.com/rain/a/20260603A07TIY00</a></div><div class="note">事实核查：一人公司概念脉络（Paul Jarvis《Company of One》）与 Carta Solo Founders Report 数据（单人创办占比 2019 年 23.7% → 2025 上半年 36.3%）作为宏观参照引用；该报告未直接提及 BibiGPT。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 10 条。核验标签分布：🟢 已核验（verified）0 条、🔵 多源印证（cross）5 条、🟡 部分映证（partial）5 条。信源评级分布：A 级 5 条（官网/官方博客/个人主页一手，原文回溯全部完成）、B+/B 级 5 条（GitHub 与 B 站 API 实测、腾讯研究院报告、第三方博客）。<b>本案 green 为零系从严结果</b>：核心信源集中于创始人自有渠道，唯一经双人独立交叉的事实簇（腾讯研究院共创营嘉宾身份，[4]+[9]）因稿件分别为 AI 改写文稿与个人博客而保守标注。核验失败处理：B 站粉丝数接口（api.bilibili.com/x/relation/stat?vmid=37648256）一次访问超时，未重试，「全网粉丝 10 万+」仅按官网自述 partial 口径收录；其余 10 条 URL 均为检索实际命中页面，未发现伪造链接。三处推定/留白（共创营年份推定 2024、营收零披露、注册主体未查得）已在正文显式标注。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-13 · 用户量等自述数据均标注口径，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

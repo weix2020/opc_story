@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · 音行三界——95 后音乐硕士的 AI 音乐 OPC · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · 音行三界">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="音行三界深度案例报告：95 后上海音乐学院在读硕士陶雯煜，两人运营 AI 音乐公司（AI 歌曲生成 + 音乐数据标注 + 虚拟偶像 IP），虚拟偶像全网粉丝 20 万+、播放 3000 万+，与山西文旅等机构合作。14 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>音行三界深度案例报告</h1>
+    <h2>95 后上海音乐学院在读硕士陶雯煜：从一人音乐工作室到两人 AI 音乐公司<br>用「AI 歌曲生成 + 音乐数据标注 + 虚拟偶像 IP」三条业务线跑通音乐 OPC —— 14 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">音乐 OPC</span>
+      <span class="tag">虚拟偶像 IP</span>
+      <span class="tag">AI 数据标注</span>
+      <span class="tag">公司化运营</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">20 万+</div><div class="k">虚拟偶像全网粉丝（两大 IP）</div></div>
+  <div class="stat"><div class="v up">3000 万+</div><div class="k">IP 作品累计播放量</div></div>
+  <div class="stat"><div class="v neutral">3 条</div><div class="k">业务线（AI 音乐 + 数据标注 + 虚拟 IP）</div></div>
+  <div class="stat"><div class="v neutral">50 万</div><div class="k">政府贴息创业贷款（3 周放款）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">音行三界是 2026 年「AI + 音乐」赛道少见的「公司化运营 OPC」样本：创业者陶雯煜以专业音乐人身份全面拥抱 AI，将 AI 歌曲生成、音乐数据标注服务与虚拟偶像 IP 运营整合为三条业务线，由她和合伙人两人运营，虚拟偶像「逐鹿人」「桃也呆」全网粉丝超 20 万、作品累计播放量超 3000 万次，并与山西文旅等机构达成内容合作。<sup class="cite verified">[1]</sup></p>
+  <div class="two">
+    <div class="card"><div class="ct">公司与主体</div><div class="cb">音行三界（上海）文化传媒有限公司，2025 年 1 月由陶雯煜在上海音乐学院内创立，初创团队均为在校学生，致力于音乐虚拟 IP 孵化及 AIGC 内容制作；工商信息显示成立日期 2025-01-13、法定代表人陶雯煜、注册资本 300 万元人民币、经营状态存续。现入驻上海西岸「模速空间」大模型创新生态社区（办公地徐汇区龙耀路）。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">陶雯煜，95 后。从小喜欢音乐但高考未走艺考，本科读英语专业，毕业后从事过其他工作；2019 年创业开设个人音乐工作室，一人包揽词曲编录混，接项目、拉伙伴、灵活合作。后就读上海音乐学院研究生，主攻流行音乐研究，研究方向为生成式 AI 音乐的情感参数调整。创始人身份之外，她的网名「桃也呆」本身即是旗下虚拟艺人。</div><div class="cm">信源：<a class="cref cross" href="#ref-4">[4]</a> <a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="card blue"><div class="ct">虚拟偶像 IP</div><div class="cb">「逐鹿人」「桃也呆」两大虚拟偶像 IP，化身「知识博主」以视频和歌曲形式讲知识：与山西文旅合作制作《黑神话：悟空》背后古建筑与壁画的深度解读视频，把中国航天的故事写成歌，还用 AI 采样复现大理南诏古乐的古代乐器声音重新创作。B 站「桃也呆」账号人设为「太空歌姬，超弦音号星舰舰长」，曾因翻唱《三体》主题曲《永恒孤独》获粉丝好评。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="card blue"><div class="ct">合作与生态身份</div><div class="cb">字节跳动 AI 音乐合作方、剪映海外 BGM 头部供应商；创业初期即陆续接到多家知名互联网公司订单。模速空间背景为其提供生态位：截至 2026 年 4 月该社区已吸纳超 300 家企业、企业年营收同比增长超 1200%，带动徐汇集聚 1700 多家 AI 企业。</div><div class="cm">信源：<a class="cref cross" href="#ref-6">[6]</a> <a class="cref verified" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-1">[1]</a></div></div>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 团队口径速览</div>
+    界面新闻 2026-04 报道口径为陶雯煜「和合伙人两个人」运营；人社局 2026-05 稿称「初创团队均为在校学生」；2025-05 都市快报稿中她提到「另一位合伙人在杭州」。2026-09 公司发布 7 类实习岗位招聘（含 15 名音乐标注实习生），显示团队此后处于扩张中——案例墙收录的「两人运营」口径为 2026-04 锚点时点口径，详见 <a class="cref cross" href="#ref-7">[7]</a> 与「捌 争议与不确定性」。
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2019 年</div><div class="tx">开设个人音乐工作室，一人包揽词曲编录混</div><div class="td">高考未走艺考、本科英语专业的陶雯煜开始创业，接项目、拉伙伴、灵活合作——在没有 AI 的年代，单兵作战形态已接近今天的 OPC。<a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2023 年</div><div class="tx">开始关注 AI 音乐工具，从 Suno V3 一路跟到 5.5</div><div class="td">「V3 的时候音质还很『拉垮』……但只花了一年，4.5 版本出来的时候，质变发生了」——她亲眼看着身边同行一批批掉队，判断 AI 生成的音质和时长已能满足大部分商业场景。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2025-01</div><div class="tx">在上海音乐学院内创立音行三界（上海）文化传媒有限公司</div><div class="td">工商登记成立日期 2025-01-13，注册资本 300 万元；初创团队均为在校学生，方向为音乐虚拟 IP 孵化与 AIGC 内容制作。<a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2025-05</div><div class="tx">携「桃也呆」参加杭州文三数字生活街区开放路演</div><div class="td">时为上音研二，研究方向为生成式 AI 音乐的情感参数调整；利用 GitHub 开源模型与音乐应用个性化重组、AI 声音克隆让「桃也呆」开口唱歌；「另一位合伙人在杭州」——两人团队结构在此口径可见。<a class="cref cross" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2026 年春节</div><div class="tx">与合伙人用 Seedance 2.0 十天手搓 10 分钟动画</div><div class="td">放在过去，专业动画每 1 秒要花费数千元、团队至少五到六人、分原画/建模/动作/渲染。「我们两个都不是动画专业出身，但审美相通，加上 AI 工具，就能把虚拟偶像手搓落地。」<a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-04-25</div><div class="tx">亮相上海芈城 T3 科创街 AI 赋能 OPC 创业实战沙龙</div><div class="td">公开身份口径：字节跳动 AI 音乐合作方、剪映海外 BGM 头部供应商，虚拟偶像 IP 矩阵全网粉丝超 20 万。<a class="cref cross" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2026-04-29 ▲</div><div class="tx">界面新闻 OPC 专题报道（本案例锚点）</div><div class="td">界面新闻《一个人跑通一家公司，上海模速空间里的 AI 新物种》以「用 AI 养一个虚拟偶像厂牌」为题报道音行三界，三条业务线与两大虚拟偶像 IP 数据首次完整公开。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-05-14</div><div class="tx">上海人社局披露：3 周放贷 50 万元个人创业担保贷款</div><div class="td">经徐汇区就业促进中心对接上海银行漕河泾支行，贷款期限 3 年、市区两级全额贴息；她被称为「青年音乐 OPC 创客的领潮人」。此时她已是上音研三学生。<a class="cref verified" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2026-09-18</div><div class="tx">发布 7 类实习岗位招聘，数据标注团队扩容</div><div class="td">经上观新闻发布：AI 音乐制作、音乐标注（15 人）、AI 短视频提示词、小语种歌词标注、AI 设计、视频制作、美术设计等岗位，显示数据服务与 IP 内容业务进入规模化扩张。<a class="cref cross" href="#ref-7">[7]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：「斩杀线」下的职业押注——专业音乐人主动跳上 AI 快车</div><div class="cb">AI 浪潮第一波冲击的恰恰是音乐人、画师、设计师。「斩杀线就划在那里，你只能选择拥抱或者被斩掉」——2019 年起单兵作战的音乐工作室经历，让她在 2023 年判断 AI 音乐工具已越过商用临界点后迅速转向：既然挡不住 AI，那就跑到行业前面去。与被动的转行者不同，她的转向建立在对音乐工业全流程（词曲编录混）的完整掌握之上。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a></div></div>
+  <div class="card"><div class="ct">转折二：从「卖歌式写作」到「让知识唱歌」——虚拟偶像成为音乐人的新出口</div><div class="cb">她自述创作的音乐背后文化价值难以通过传统渠道触达大众，因此摒弃简单的「卖歌式写作」，由音乐数字人代替她走到大众面前演绎作品。技术组合拳为：用 AI 克隆声音让虚拟偶像开口；用算法和创作把知识点写成歌词、谱成旋律；用动画让它可视化——把「高冷」的文化知识、科学内容转化为 Z 世代喜爱的音乐与视频。这一产品哲学直接决定了「知识博主」型虚拟偶像的差异化定位。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-7">[7]</a></div></div>
+  <div class="card green"><div class="ct">转折三：一条业务线养另一条——「AI 音乐 + 数据标注 + IP」的飞轮闭环</div><div class="cb">AI 歌曲生成与海外 BGM 定制业务（字节跳动 AI 音乐合作方、剪映海外 BGM 头部供应商）提供现金流；音乐数据标注服务（为大模型训练方清洗、标注音乐数据）将音乐专业能力变现为 to-B 服务，并在 2026-09 扩招 15 名标注实习生；两者积累的工具链与数据资产反哺虚拟偶像 IP 内容产能。三条业务线互为输入输出，是本案区别于单一作品型/工具型音乐 OPC 的关键结构。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-7">[7]</a></div></div>
+  <div class="quote">
+    <p>「斩杀线」就划在那里，你只能选择拥抱或者被斩掉……虽然我不是专业程序员，但我是专业音乐人。既然挡不住 AI，那就跑到行业前面去。</p>
+    <span class="src">—— 陶雯煜，界面新闻专访（2026-04-29），转引自 <a class="cref verified" href="#ref-1">[1]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Business Model</span></div>
+  <p class="lead">界面新闻将音行三界的业务归纳为三块；公司在 2026-09 招聘稿中将同一结构表述为「AI 音乐 + 虚拟偶像 + IP 衍生」三层飞轮。三条业务线对应三类客群与三类痛点：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>业务线</th><th>业务内容</th><th>面向客群</th><th>解决痛点</th></tr></thead>
+    <tbody>
+      <tr><td><b>AI 歌曲生成</b></td><td>用 Suno、Mureka、ACE Studio 等主流 AI 音乐工具按需求生成多风格歌曲/音效/人声片段，后期剪辑调音至商用标准；自建情绪标签数据库（企业自述：单曲成本下降 45%、新歌发酵速度提升 50% 以上）</td><td class="hl">字节系（字节跳动 AI 音乐合作方）、剪映海外 BGM 定制（头部短视频平台）、品牌方</td><td>传统音乐制作依赖人力堆叠（一首歌最快约一个月）；海外短视频 BGM 需求量大、周期短、成本敏感</td></tr>
+      <tr><td><b>音乐数据标注</b></td><td>为大模型训练方清洗、标注音乐数据：曲式结构、节拍速度、调性、和弦、旋律、配器、人声技巧、语种识别；另设小语种歌词标注线（土耳其语、俄语等 10 语种）</td><td class="hl">大模型训练方（AI 音乐/音频模型公司）</td><td>音乐数据标注需要专业听觉判断（低质、低创、拼接类音乐识别），非音乐专业团队难以胜任</td></tr>
+      <tr><td><b>虚拟偶像 IP 运营</b></td><td>「逐鹿人」「桃也呆」两大 IP，以「知识博主」定位产出知识视频与歌曲；IP 形象、插画、MV 全链路内容制作（AI 设计/视频制作/美术设计岗协同）</td><td class="hl">Z 世代粉丝（C 端）；文旅机构（山西文旅）、科普场景（中国航天）等 B 端合作方</td><td>传统虚拟人运营需几十人团队、数百万级软硬件投入；「高冷」知识缺乏年轻人喜爱的高效触达载体；IP 运营人力成本高</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h4>模式的两个杠杆</h4>
+  <ul class="bl">
+    <li><b>产能杠杆：</b>2026 年春节她与合伙人两人用 Seedance 2.0 十天完成 10 分钟动画，对比传统动画「每秒数千元 + 五六人分工」的成本结构——AI 工具把虚拟偶像动画从重工业变成两人可完成的轻工业 <a class="cref verified" href="#ref-1">[1]</a>；</li>
+    <li><b>生态杠杆：</b>入驻模速空间后，「过去讲项目，别人总觉得你的 AI 属性不够硬，会觉得做音乐的能有什么 AI 技术，但入驻之后质疑声少了很多」——产业社区背书降低了 B 端信任成本 <a class="cref verified" href="#ref-1">[1]</a>。</li>
+  </ul>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>虚拟偶像全网粉丝</td><td class="hl">20 万+（逐鹿人 + 桃也呆合计）</td><td>2026-04 → 2026-09（三源口径一致）</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td>IP 作品累计播放</td><td class="hl">3000 万+</td><td>2026-04 → 2026-09（双源口径一致）</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td>歌曲产能（自述）</td><td>一周几十首；3 个月创作 700 首（对比传统一首歌最快约 1 个月）</td><td>2026 年（期刊稿）</td><td><a class="cref partial" href="#ref-8">[8]</a></td></tr>
+      <tr><td>企业自述效率值</td><td>单曲成本下降 45%、新歌发酵速度提升 50%+（自建情绪标签数据库）</td><td>2026-09 招聘稿</td><td><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td>政府贴息贷款</td><td class="pos">50 万元个人创业担保贷款（3 周放款，期限 3 年，全额贴息）</td><td>2026-05-14 披露</td><td><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td>公司注册资本</td><td>300 万元人民币</td><td>2025-01-13 登记</td><td><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td>在招岗位规模</td><td>7 类实习岗位（含音乐标注实习生 15 人、AI 音乐制作 3 人）</td><td>2026-09-18</td><td><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    粉丝与播放量均为媒体引用的受访者/企业口径，三处信源（界面、宝山区政府稿、上观招聘稿）数字一致，但未见平台方账号后台直接确认；「逐鹿人」独立账号页未检索到可确证链接，B 站「桃也呆」账号页可回溯但未展示投稿数据；歌曲产能与成本降幅为创始人/企业自述，无第三方审计。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将音行三界放入案例墙「AI 音乐 / 语音 / 内容 IP」坐标系（对标数据均为案例墙既有核验值，口径为公开报道值，详见案例墙各卡片信源）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者/主体</th><th>形态</th><th>商业模式</th><th>数据表现</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>音行三界</b></td><td>陶雯煜 + 合伙人（两人）</td><td>公司化运营：AI 歌曲生成 + 数据标注 + 虚拟偶像 IP</td><td>B 端定制 + 数据服务 + IP 衍生（三层飞轮）</td><td>粉丝 20 万+、播放 3000 万+；字节 AI 音乐合作方、剪映海外 BGM 头部供应商</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td>GPT-SoVITS</td><td>花儿不哭（RVC-Boss，B 站 UP 主）</td><td>开源工具：5 秒音频克隆音色的少样本 TTS/语音转换，中英日韩多语言</td><td>开源项目（非公司化）</td><td>GitHub 64k+ stars，中文语音克隆事实标准</td><td>案例墙核验值：github.com/RVC-Boss/GPT-SoVITS（置信度：高）</td></tr>
+      <tr><td>lsaiah AI 音乐出海站</td><td>lsaiah（V2EX 用户，名称未公开）</td><td>AI 音乐生成 API 包装的出海订阅站，SEO 获取自然流量</td><td>C 端订阅 + Stripe 收款</td><td>自述月新增注册 12 万、单产品月收入不少于 1.2 万美元；获个人投资 10 万+70 万（自述，回帖有质疑）</td><td>案例墙核验值：v2ex.com/t/1204936（置信度：中低）</td></tr>
+      <tr><td>《砚边青梅》国风 AI 漫剧</td><td>晚晚（85 后，真名未公开）</td><td>作品型：自学 AI 两个月，一人包办小说/剧本/分镜/建模/配音/剪辑，两季 48 集连载</td><td>平台播放分成（作品逻辑）</td><td>播放破亿、热度超 4000 万（多信源交叉）</td><td>案例墙核验值：大象新闻、鲁中晨报等（置信度：高）</td></tr>
+      <tr><td>碳基圈</td><td>杨平（Yapie程序员哥）</td><td>AI 社交平台 + AI 歌曲生成，Claude Code 独立开发</td><td>平台产品（一人开发）</td><td>用户 4 万+、日访问 100 万+、AI 音乐 2 天产生收入；拟获 3000 万投前估值投资意向</td><td>案例墙核验值：中国经营报（2026-04-16，置信度：高）</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>音行三界在坐标系中的位置独特：GPT-SoVITS 与 lsaiah 分别代表「开源工具」与「出海订阅站」的 solo 打法，晚晚代表「作品型」路线，碳基圈是一人开发的平台产品——而音行三界是五者中<b>唯一以公司主体公司化运营、唯一同时跑通 to-B 服务（数据标注 + BGM 定制）与 to-C IP（虚拟偶像）、唯一有文旅机构（山西文旅）公开 B 端合作</b>的案例。它验证的核心命题是：音乐人的 OPC 不必然是「一个人接活」，而可以是「两人公司 + 三条业务线」的最小组织形态；其文化机构合作路径（古建筑、航天、古乐）也为 AI 音乐内容提供了「正能量叙事」的 B 端变现样本 <a class="cref verified" href="#ref-1">[1]</a>。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:14%">维度</th><th>分析</th><th style="width:16%">信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>三条业务线产品化：①AI 歌曲生成（Suno/Mureka/ACE Studio 工具链 + 提示词工程 + 情绪标签数据库，输出商用级 BGM/歌曲）；②音乐数据标注（曲式/节拍/调性/和弦/旋律/配器/人声技巧/语种八类标签 + 小语种歌词线）；③虚拟偶像 IP（人设「太空歌姬」等 + 知识视频 + AI 声音克隆演唱 + Seedance 动画可视化），构建「AI 音乐 + 虚拟偶像 + IP 衍生」三层飞轮</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-7">[7]</a> <a class="cref partial" href="#ref-5">[5]</a></td></tr>
+      <tr><td><b>2. 面向客群</b></td><td>to-B：大模型训练方（数据标注）、字节系与海外短视频平台（BGM 定制）、文旅/科普机构（山西文旅、中国航天题材合作）；to-C：B 站/小红书等平台的 Z 世代粉丝（桃也呆人设即面向二次元人群）。未披露营收结构与客群占比</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>3. 解决痛点</b></td><td>音乐制作成本：AI 产能将「一首歌一个月」压缩为「一周几十首」（自述）；IP 运营人力：传统虚拟人需几十人团队与数百万投入，本案两人 + AI 工具即可产出动画与 MV；知识触达：把高冷的文化/科学知识转译为年轻人喜爱的歌曲与视频，替代低效的「卖歌式写作」</td><td><a class="cref partial" href="#ref-8">[8]</a> <a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>4. 预估年化营收（推算，置信度 C）</b></td><td>营收<b>零披露</b>。可核验的财务事实：注册资本 300 万元；50 万元政府贴息创业贷款（自有资金难支撑扩张的自述佐证融资需求）；头部平台海外 BGM 定制供应商身份与 15 人标注团队扩招表明 to-B 业务已有稳定订单。行业参照：AI 音乐 BGM 定制与数据标注均为服务型收入，现金流稳定性优于播放分成模式，但客单价与毛利未披露——推算营收为数十万至数百万元量级，无法收敛，按 C 级置信处理</td><td><a class="cref cross" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>5. 融资进展</b></td><td>无 VC 融资披露。非货币/准股权资源：上海市天使基金资助清单检索快照中可见「陶雯煜／音行三界（上海）文化传媒有限公司／AI 赋能文化传承：虚拟偶像奏响科普『元』舞曲」条目（页面动态渲染、全文回溯受限，按待证处理）；50 万元个人创业担保贷款（市区两级全额贴息）为经政府核实的唯一到账资金；高校生态（上音「马兰花」创业培训、徐汇区就业促进中心长期跟踪）提供隐性孵化资源</td><td><a class="cref partial" href="#ref-9">[9]</a> <a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>6. 市场评价</b></td><td>权威背书密集：界面新闻将其作为模速空间 OPC 三样本中唯一音乐案例；上海市政府官网（宝山区供稿）与上海人社局先后报道，后者称其为「青年音乐 OPC 创客的领潮人」；字节系合作方身份（字节跳动 AI 音乐合作方、剪映海外 BGM 头部供应商）构成产业侧评价。行业侧：2026 年 AI 艺人产业爆发，B 站「AI 艺人出道季」近万创作者入局、斩获 1.6 亿浏览量，音乐赛道是普及度最高的垂直领域，专业音乐人与厂牌正批量入场——本案卡位「知识型 AI 偶像」细分位</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-6">[6]</a> <a class="cref verified" href="#ref-2">[2]</a> <a class="cref partial" href="#ref-10">[10]</a> <a class="cref partial" href="#ref-11">[11]</a></td></tr>
+      <tr><td><b>7. 投入成本与合规风险</b></td><td><b>AI 音乐版权：</b>行业正从对抗转向授权——Suno 2024 年遭三大唱片起诉后，2025-11-25 与华纳音乐达成授权合作（新华网口径），2026-09-09 发布首个用授权曲库训练的 v6 模型（华纳/BMG/Believe）；国内 AI 生成音乐商用需关注训练数据来源与翻唱授权（「桃也呆」翻唱《三体》主题曲即涉及词曲授权），本案数据标注业务同时站在版权产业链上游，边界敏感。<b>虚拟偶像人设合规：</b>四部门《人工智能生成合成内容标识办法》2025-09-01 施行，AI 生成歌曲/视频须添加显式与隐式标识；AI 声音克隆须获得声音来源授权；「知识博主」人设发布科普内容，还需对内容准确性负责。未检索到针对音行三界的监管处罚或版权诉讼记录</td><td><a class="cref verified" href="#ref-12">[12]</a> <a class="cref cross" href="#ref-13">[13]</a> <a class="cref cross" href="#ref-14">[14]</a> <a class="cref partial" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-4">[4]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 三处留白与两处口径漂移（截至 2026-11-12 检索）</div>
+    ① <b>营收零披露：</b>三条业务线各自的收入结构、客单价、毛利均未公开，「年入百万甚至破千万」仅见于界面新闻对模速空间 OPC 群体的开篇泛指，不构成对音行三界的营收认定；② <b>「逐鹿人」账号未确证：</b>两大 IP 中仅「桃也呆」的 B 站账号页与人设可回溯，全网粉丝 20 万+ 中两个 IP 的占比无法拆分，「逐鹿人」独立账号页未检索到可确证链接；③ <b>天使基金资助待证：</b>上海市发改委信用网天使基金资助清单页面为动态渲染，全文回溯受限，仅检索快照命中相关条目。<b>口径漂移：</b>团队规模从「初创团队均为在校学生」（2026-05 人社局口径）到 2026-09 发布含 15 名标注实习生的 7 类岗位，公司化扩张与「两人 OPC」的收录口径存在时点差异；上海音乐学院在读身份（研二 → 研三）亦随时间演进，引用时需注明时点。
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径与自述成分</div>
+    粉丝 20 万+/播放 3000 万+ 为企业与媒体口径（三源一致但无平台后台确认）；「单曲成本下降 45%」「新歌发酵提速 50%+」「一周几十首」均为企业自述，无第三方审计；「字节跳动 AI 音乐合作方、剪映海外 BGM 头部供应商」出自区政府活动稿的报道口径，未见字节/剪映官方公告直接确认。另需说明：AI 音乐行业数据标注业务的版权边界（标注训练数据的授权链条）业内尚无成文规范，本案相关合规实践未检索到公开信息。
+  </div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">捌·附</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 14 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx verified">[1]</span><span class="rt">B+</span><span class="st">主流财经媒体专访</span></div><div class="ti">一个人跑通一家公司，上海模速空间里的AI新物种（界面新闻，记者程璐）</div><div class="mt"><b>来源：</b>界面新闻　<b>发布日期：</b>2026-04-29　<b>相关章节：</b>「用AI养一个虚拟偶像厂牌」<br><a href="https://www.jiemian.com/article/14358087.html" target="_blank" rel="noopener">https://www.jiemian.com/article/14358087.html</a></div><div class="note">事实核查：本案例主底稿，原文全文回溯完成。斩杀线背景、2019 工作室、Suno V3→5.5、三条业务线、山西文旅/航天/古乐合作、Seedance 2.0 十天动画、白箱化观点、模速空间生态数据均出自此稿；粉丝 20 万+/播放 3000 万+ 与 [6][7] 交叉。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx verified">[2]</span><span class="rt">A</span><span class="st">政府官网（人社系统）</span></div><div class="ti">政银联动速解融资难，3周放贷50万助95后音乐创客逐梦（上海市人社局·图片新闻，徐汇区人社局供稿）</div><div class="mt"><b>来源：</b>上海市人力资源和社会保障局　<b>发布日期：</b>2026-05-14<br><a href="https://rsj.sh.gov.cn/ttpxw_17107/20260514/t0035_1440762.html" target="_blank" rel="noopener">https://rsj.sh.gov.cn/ttpxw_17107/20260514/t0035_1440762.html</a></div><div class="note">事实核查：政府原文回溯完成。95 后、上音研三主攻流行音乐研究、2025-01 在学院内创立公司、初创团队均为在校学生、「让知识唱歌」技术组合拳、知名互联网公司订单、50 万创业担保贷款（上海银行漕河泾支行、3 周、3 年期、全额贴息）均出自此稿；注册时间与 [3] 交叉、粉丝数据与 [1][7] 交叉。上海人社局报纸数字版 2026-05-21 第 04 版（rsj.sh.gov.cn/dzb/rsj/2026-05-21/aid/04-02.html）同稿印证。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx cross">[3]</span><span class="rt">B</span><span class="st">工商数据平台</span></div><div class="ti">音行三界（上海）文化传媒有限公司 · 工商信息（天眼查）</div><div class="mt"><b>来源：</b>天眼查　<b>查询时点：</b>2026-11-12<br><a href="https://m.tianyancha.com/company/7385661968" target="_blank" rel="noopener">https://m.tianyancha.com/company/7385661968</a></div><div class="note">事实核查：法定代表人陶雯煜、注册资本 300 万人民币、成立日期 2025-01-13、经营状态存续；成立日期与人社局稿 [2]「2025 年 1 月创立」交叉一致。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx cross">[4]</span><span class="rt">B+</span><span class="st">副省级都市报</span></div><div class="ti">因为一场开放路演 他们萌生了落户杭州的念头（都市快报，记者熊文媛、刘永丽、童蔚、沈积慧）</div><div class="mt"><b>来源：</b>都市快报（杭州日报报业集团）　<b>发布日期：</b>2025-05-03<br><a href="https://mdaily.hangzhou.com.cn/dskb/2025/05/03/article_detail_2_20250503A021.html" target="_blank" rel="noopener">https://mdaily.hangzhou.com.cn/dskb/2025/05/03/article_detail_2_20250503A021.html</a></div><div class="note">事实核查：高考未走艺考/英语专业/2019 音乐工作室、上音研二与生成式 AI 音乐情感参数研究方向、「桃也呆」网名与太空歌姬标签、GitHub 开源模型 + AI 声音克隆、《三体》《永恒孤独》翻唱、「另一位合伙人在杭州」均出自此稿；人设与 [5] 账号页交叉、合伙人结构与 [1] 交叉。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx partial">[5]</span><span class="rt">C+</span><span class="st">平台账号页</span></div><div class="ti">桃也呆的个人空间（哔哩哔哩）</div><div class="mt"><b>来源：</b>哔哩哔哩　<b>查询时点：</b>2026-11-12<br><a href="https://space.bilibili.com/24699921" target="_blank" rel="noopener">https://space.bilibili.com/24699921</a></div><div class="note">事实核查：账号简介「太空歌姬，超弦音号星舰舰长」与都市快报 [4] 的人设标签交叉一致；该频道页未展示投稿数据，粉丝/播放等量化数据无法从此页取数，故仅作人设印证、按 C+ 收录。「逐鹿人」独立账号页未检索到可确证链接（同名干扰多）。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx cross">[6]</span><span class="rt">A</span><span class="st">政府官网（区府供稿）</span></div><div class="ti">数千人打卡！集市+创业沙龙，这场活动太圈粉了（上海市政府官网·地区动态，来源：宝山区人民政府）</div><div class="mt"><b>来源：</b>上海市人民政府网　<b>发布日期：</b>2026-04-30　<b>活动时点：</b>2026-04-25<br><a href="https://www.shanghai.gov.cn/nw15343/20260430/ff03c2cff264427faf35b8e116ba1c9d.html" target="_blank" rel="noopener">https://www.shanghai.gov.cn/nw15343/20260430/ff03c2cff264427faf35b8e116ba1c9d.html</a></div><div class="note">事实核查：政府原文回溯完成。「音乐专业硕士到连续创业者的转型历程」「字节跳动AI音乐合作方、剪映海外BGM头部供应商」「虚拟偶像IP矩阵全网粉丝超20万」出自此稿；与 [1] 交叉一致。澎湃新闻客户端/头条号另有同稿分发。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">B+</span><span class="st">门户转载主流财经</span></div><div class="ti">模速入驻企业——音行三界（上海）文化传媒有限公司发布7个招聘岗位</div><div class="mt"><b>来源：</b>新浪财经（原发上观新闻·滚动播报）　<b>发布日期：</b>2026-09-18<br><a href="https://finance.sina.com.cn/jjxw/2026-09-18/doc-inisfyev3240860.shtml" target="_blank" rel="noopener">https://finance.sina.com.cn/jjxw/2026-09-18/doc-inisfyev3240860.shtml</a></div><div class="note">事实核查：「技术+艺术双螺旋」「让知识会唱歌，让IP有生命」、海外BGM定制核心供应商、情绪标签数据库（成本降 45%/发酵提速 50%+）、逐鹿人桃也呆粉丝 20 万+/播放 3000 万+、三层飞轮、徐汇区龙耀路办公、Suno/Mureka/ACE Studio 工具栈、7 类岗位明细均出自此稿；核心数据与 [1] 交叉一致。企业自述部分按自述口径使用。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx partial">[8]</span><span class="rt">B</span><span class="st">正规期刊（摘要可见）</span></div><div class="ti">以AI重构音乐生产（《成才与就业》2026 年 15 期，刘闻亮）</div><div class="mt"><b>来源：</b>中国知网 CNKI　<b>发布日期：</b>2026 年（第 15 期）<br><a href="https://www.cnki.com.cn/Article/CJFDTOTAL-CCJY202615014.htm" target="_blank" rel="noopener">https://www.cnki.com.cn/Article/CJFDTOTAL-CCJY202615014.htm</a></div><div class="note">事实核查：「3个月创作700首歌」「过去一首歌最快也要1个月……AI赋能下现在一周就能有几十首歌曲的产量」出自 CNKI 页面摘要（全文在付费墙内，未全文回溯，按部分映证收录）；产量数据为创始人自述口径。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx partial">[9]</span><span class="rt">B</span><span class="st">政府清单（快照命中）</span></div><div class="ti">天使基金-资助清单（上海市发展改革委信用网）</div><div class="mt"><b>来源：</b>credit.fgw.sh.gov.cn　<b>查询时点：</b>2026-11-12<br><a href="http://credit.fgw.sh.gov.cn/tsjjycmd" target="_blank" rel="noopener">http://credit.fgw.sh.gov.cn/tsjjycmd</a></div><div class="note">事实核查：检索快照命中「陶雯煜， 音行三界（上海）文化传媒有限公司， AI赋能文化传承：虚拟偶像奏响科普『元』舞曲」条目；页面为动态渲染，直接抓取两次均返回空、全文回溯受限，按部分映证/待证处理，不作为确定事实引用。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx partial">[10]</span><span class="rt">B</span><span class="st">行业垂直媒体</span></div><div class="ti">AI正在把「造艺人」变成一场大众游戏（网易号，作者冯勇）</div><div class="mt"><b>来源：</b>网易　<b>发布日期：</b>约 2026<br><a href="https://www.163.com/dy/article/L1GFBE6G0556KXO1.html" target="_blank" rel="noopener">https://www.163.com/dy/article/L1GFBE6G0556KXO1.html</a></div><div class="note">事实核查：B 站「AI艺人出道季」近万创作者入局/1.6 亿浏览量、AI 歌手 Yuri 获全国首张 AI 角色「数字身份证」、音乐赛道为普及度最高垂直领域、传统虚拟人运营需几十人团队与数百万投入、Seedance 2.0/Suno 成熟催生 AI 艺人产业出自此稿；单一行业稿按部分映证收录，用于第柒-6 维行业坐标系。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx partial">[11]</span><span class="rt">B</span><span class="st">行业垂直媒体</span></div><div class="ti">近万个AI偶像背后：一场全民造星运动的底层逻辑（音乐财经，网易号分发）</div><div class="mt"><b>来源：</b>网易（音乐财经）　<b>发布日期：</b>约 2026<br><a href="https://www.163.com/dy/article/KVO79V6B0517HP9B.html" target="_blank" rel="noopener">https://www.163.com/dy/article/KVO79V6B0517HP9B.html</a></div><div class="note">事实核查：专业音乐人与厂牌批量入场 AI 偶像赛道（961Flow 厂牌主理人杨川云打造 AI 歌手鹿白等）、AI 偶像大赛「演技」痛点（面部表情细腻度、肢体流畅度、音画同步）、Suno/Udio/Minimax/Seedance 2.0 等工具成熟背景出自此稿；单一行业稿按部分映证收录，用于第柒-6 维。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx verified">[12]</span><span class="rt">A+</span><span class="st">政府规章</span></div><div class="ti">四部门联合发布《人工智能生成合成内容标识办法》（国家网信办）</div><div class="mt"><b>来源：</b>中央网络安全和信息化委员会办公室　<b>发布日期：</b>2025-03-14（2025-09-01 施行）<br><a href="https://www.cac.gov.cn/2025-03/14/c_1743654685899683.htm" target="_blank" rel="noopener">https://www.cac.gov.cn/2025-03/14/c_1743654685899683.htm</a></div><div class="note">事实核查：政府原文回溯完成；国务院政策文件库（gov.cn）同文印发，强制性国标 GB 45438-2025 配套出台（网信办专家解读稿互证）。用于第柒-7 维虚拟偶像内容合规基线。</div></li>
+  <li id="ref-13" class="src"><div class="sh"><span class="idx cross">[13]</span><span class="rt">A+</span><span class="st">央媒报道</span></div><div class="ti">人工智能平台Suno与华纳音乐达成合作协议（新华网）</div><div class="mt"><b>来源：</b>新华网　<b>发布日期：</b>2025-11-26（协议签署 2025-11-25）<br><a href="http://www.news.cn/20251126/410b41837f6441bf84a9f50e9c414286/c.html" target="_blank" rel="noopener">http://www.news.cn/20251126/410b41837f6441bf84a9f50e9c414286/c.html</a></div><div class="note">事实核查：Suno 与华纳「里程碑式」授权合作、2026 年平台调整（付费用户才可下载音频）出自此稿；与 36氪行业稿 [14] 交叉一致。</div></li>
+  <li id="ref-14" class="src"><div class="sh"><span class="idx cross">[14]</span><span class="rt">B</span><span class="st">财经媒体</span></div><div class="ti">你单曲循环的歌，正在被300元的AI音乐挤出歌单（36氪）</div><div class="mt"><b>来源：</b>36氪　<b>发布日期：</b>约 2026-09/10<br><a href="https://36kr.com/p/4066181358212742" target="_blank" rel="noopener">https://36kr.com/p/4066181358212742</a></div><div class="note">事实核查：2025-11-25 华纳与 Suno 和解并签授权协议、2026-09-09 Suno 发布 v6（首个用授权曲库训练的模型，曲库来自华纳/BMG/Believe/TuneCore）、网易云音乐百万奖金 AI 音乐创作大赛出自此稿；华纳和解与 [13] 交叉。Suno 2024 年遭三大唱片起诉另见 Rolling Stone 报道（rollingstone.com/music/music-news/suno-new-model-v6-warner-music-group-1235623431/）。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 14 条。核验标签分布：🟢 已核验（verified）3 条、🔵 多源印证（cross）6 条、🟡 部分映证（partial）5 条。信源评级分布：A+/A 级 4 条（政府原文/央媒：上海人社局、上海市政府官网、国家网信办、新华网，原文回溯全部完成）、B+/B 级 9 条、C+ 级 1 条（B 站账号页——仅人设印证）。核心事实链条（公司注册 2025-01-13、两条业务身份、粉丝 20 万+/播放 3000 万+、50 万贴息贷款）均获 ≥2 独立信源交叉。核验失败/受限处理：上海市发改委天使基金清单（credit.fgw.sh.gov.cn/tsjjycmd）动态渲染两次直接抓取返回空，降级为「快照命中+待证」[9]；澎湃新闻站内原链（newsDetail_forward 猜测 ID）404，改用上海市政府官网同稿 [6] 与头条分发版互证；「逐鹿人」独立账号页未检索到可确证链接（同名干扰），已在捌节如实留白。全部 URL 为检索过程实际命中页面，未发现伪造链接。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-12 · 营收与推算值均标注置信口径，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · 艾逗笔（idoubi）—— PodLM / ShipAny / ThinkAny / MCP.so 产品矩阵 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · 艾逗笔（idoubi）产品矩阵">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="艾逗笔（idoubi）深度案例报告：前腾讯微信后台工程师裸辞全职独立开发，2 年上线 20+ AI 产品——AI 播客生成器 PodLM、AI 搜索 ThinkAny、MCP 市场 MCP.so（峰值月访问 270 万）、SaaS 框架 ShipAny（预售 4 小时破 1 万美元）。20 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>艾逗笔（idoubi）产品矩阵深度案例报告</h1>
+    <h2>前腾讯微信后台工程师裸辞，两年上线 20+ 款 AI 产品：<br>PodLM × ThinkAny × MCP.so × ShipAny —— 一个人的「基础设施 + 框架 + 应用」组合打法，20 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">产品矩阵型 OPC</span>
+      <span class="tag">开发者工具</span>
+      <span class="tag">框架商业化</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">$1万+</div><div class="k">ShipAny 预售 4 小时销售额</div></div>
+  <div class="stat"><div class="v up">270 万</div><div class="k">MCP.so 峰值月访问（2025-05 自述口径）</div></div>
+  <div class="stat"><div class="v up">60 万</div><div class="k">ThinkAny 峰值月访问</div></div>
+  <div class="stat"><div class="v neutral">20+</div><div class="k">两年上线 AI 产品（官网口径）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">艾逗笔（网名 idoubi）是中文独立开发圈「一人多产品」路线的代表样本：以「AI 应用出海」为总方向，两年内密集上线 20+ 款产品，其中 AI 搜索引擎 ThinkAny、MCP 应用市场 MCP.so、SaaS 开发框架 ShipAny、AI 播客生成器 PodLM 构成核心四件套——分别卡位「应用、基础设施、框架、内容工具」四个生态位，是案例墙中少见的以「开发者基建」为主轴的产品组合。</p>
+  <div class="two">
+    <div class="card"><div class="ct">产品矩阵全貌</div><div class="cb">官网产品清单 15+ 项：FastClaw（Agent 框架）、WeClaw（多角色 Agent）、WorkAny（桌面 Agent）、ShipAny（Agent-Native 开发框架）、ThinkAny（AI 搜索）、MCP.so（MCP 市场）、CopyWeb（AI 网页复刻）、PodLM（AI 播客生成器）、HeyBeauty（AI 虚拟试衣）、Pagen（AI 落地页生成）、MCPRouter、Melodisco（AI 音乐播放器）、AI Cover、AI Wallpaper、GPTS Works 等；官网自述「两年上线 20+ AI 产品」。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">艾逗笔（idoubi），武汉大学核工程专业 2011 级入学、2015 届毕业，大一暑假自学 Photoshop/Dreamweaver 转入 IT，网名致敬 Adobe；2018-2023 就职腾讯五年，任高级工程师、微信后台开发（支付系统与分布式基础设施方向），AICon 讲师页称其「曾负责腾讯百万级日活产品架构设计，连续三次获评腾讯优秀员工」；2023-10-24 裸辞成为全职独立开发者。</div><div class="cm">信源：<a class="cref cross" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-3">[3]</a> <a class="cref partial" href="#ref-4">[4]</a> <a class="cref cross" href="#ref-5">[5]</a></div></div>
+    <div class="card"><div class="ct">工作方式</div><div class="cb">无固定办公室，「每天辗转于各个咖啡馆，出国旅游时也带着电脑，Coding Anywhere」；开发以单人为主，AI 用于辅助编程但「大部分代码还是由我自己编写」——其自我归因的高效率来自多年项目沉淀的可复用组件与开源模板，而非 AI 替代。</div><div class="cm">信源：<a class="cref cross" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-7">[7]</a></div></div>
+    <div class="card"><div class="ct">商业化与影响力基建</div><div class="cb">2024 年 10 月自述当时「收入主要来源于付费社群」（两百余人）；运营全栈开发社群 1024.is；在即刻、Twitter（@idoubicc）、GitHub、公众号持续输出；2025 年 8 月出版《这就是 MCP》（人民邮电出版社，234 页）——个人 IP、开源仓库与图书共同构成矩阵的流量与信任底座。</div><div class="cm">信源：<a class="cref cross" href="#ref-8">[8]</a> <a class="cref cross" href="#ref-9">[9]</a> <a class="cref partial" href="#ref-10">[10]</a></div></div>
+  </div>
+  <div class="two">
+    <div class="card blue"><div class="ct">公司 / 融资状态</div><div class="cb">以自由职业者身份运营，未检索到公司注册与融资的公开信息；其自述接触过大量投资人但「拿不到投资」，并将其总结为「资本只是锦上添花」「自己造血，打铁还需自身硬」——与多数拿融资的 AI 创业案例形成鲜明对照。</div><div class="cm">信源：<a class="cref cross" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-7">[7]</a></div></div>
+    <div class="card blue"><div class="ct">案例墙锚点</div><div class="cb">案例墙登记锚点 2024-12-24 ✓（verified）——对应 ShipAny 于圣诞节前后预售、4 小时销售额破 1 万美元的时间节点；本报告据此展开时间线核验。</div><div class="cm">信源：案例墙 index.html 第 54 号卡片 · <a class="cref cross" href="#ref-6">[6]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2011 → 2015</div><div class="tx">武大核工程 → 自学编程入行</div><div class="td">大一暑假接触 Photoshop/Dreamweaver，自学平面设计与网页编程，取网名「艾逗笔（idoubi）」致敬 Adobe 并沿用至今；2015 年毕业（毕业典礼恰逢雷军演讲）。<a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2018 → 2023-10-24</div><div class="tx">腾讯五年：支付系统 / 微信后台</div><div class="td">从非科班程序员成长为高级工程师，专注支付系统与云原生架构；2023 年 10 月 24 日裸辞，全职进入独立开发赛道。<a class="cref verified" href="#ref-1">[1]</a><a class="cref partial" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2022-12 → 2023-11</div><div class="tx">开源热身期：API 库 → GPTs 目录</div><div class="td">GitHub 一手实测：openai-go（2023-01 建）、claude-webapi（2023-07 建）、gpts-works（2023-11-13 建，现 1629★）——大模型应用层的开发能力与开源影响力在裸辞前后同步积累。<a class="cref verified" href="#ref-11">[11]</a></div></div>
+    <div class="node"><div class="dt">2024-01</div><div class="tx">AI 红包封面生成器：星巴克一小时的第一次出圈</div><div class="td">「过年前几天」在星巴克约一小时上线 aicover.design，跑量明显；同期开源 aicover 仓库（现 1796★，为 all-in-aigc 组织下最高星项目）。<a class="cref cross" href="#ref-6">[6]</a><a class="cref verified" href="#ref-11">[11]</a><a class="cref partial" href="#ref-12">[12]</a></div></div>
+    <div class="node"><div class="dt">2024-02 → 04</div><div class="tx">追热点矩阵：Sora.FM、Melodisco 等密集上线</div><div class="td">sorafm（2024-02-17 建，1165★）、melodisco（2024-04-06 建，515★）等仓库按月落地，「去年基本保持每个月发布一款新产品的节奏」。<a class="cref verified" href="#ref-11">[11]</a><a class="cref cross" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2024-03</div><div class="tx">ThinkAny 上线：一个周末写完第一版</div><div class="td">AI 搜索引擎对标 Perplexity；上线第三天在 ProductHunt 打榜获日榜第四，后被 YouTube/TikTok 大 V 自发宣传；高峰期月访问量大几十万。<a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-13">[13]</a><a class="cref partial" href="#ref-14">[14]</a><a class="cref partial" href="#ref-15">[15]</a></div></div>
+    <div class="node"><div class="dt">2024 国庆</div><div class="tx">NotebookLM 出圈 → 决定做 PodLM</div><div class="td">「国庆的时候看到大家都在群里讨论……我看了一下好像还挺简单的，刚好能做，就去做了一个」——PodLM（URL/文本转双人 AI 播客）由此而来，并与 ThinkAny 打通「搜完即生成播客」的联动。<a class="cref cross" href="#ref-8">[8]</a><a class="cref verified" href="#ref-16">[16]</a></div></div>
+    <div class="node"><div class="dt">2024-10-29</div><div class="tx">Founder Park 专访：辞职一年做了 11 个产品</div><div class="td">媒体报道口径「一年做 11 个产品」；同期自陈「也许砍掉一半（产品）会开心一些吧」，自评产品「粗糙半成品、商业化困难」。</div></div>
+    <div class="node"><div class="dt">2024-11 下旬</div><div class="tx">Anthropic 发布 MCP 协议 → MCP.so 抢先占位</div><div class="td">「MCP 协议发布之初，我就坚定看好」——先做导航站占位并做程序化 SEO，原型不到两天、代码开源；同期动手的 Chat MCP 客户端因生态未熟而搁置。<a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-7">[7]</a></div></div>
+    <div class="node"><div class="dt">2024-12-24（圣诞节）✓</div><div class="tx">ShipAny 预售：4 小时销售额破 1 万美元</div><div class="td">第一次以预售方式推新产品，「短时间内很多用户支持，给了我很大的惊喜」；预售结束后一周内写完代码交付——案例墙锚点 2024-12-24 ✓。<a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2025-03-20</div><div class="tx">a16z 发布 MCP 生态深度研报</div><div class="td">a16z 投资人 Yoko Li 发表《A Deep Dive Into MCP and the Future of AI Tooling》并给出 MCP 市场地图；艾逗笔官网及多家媒体称 MCP.so「被 a16z 市场报告引用」（本次核验说明见捌·附）。<a class="cref cross" href="#ref-17">[17]</a><a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2025-03 → 05</div><div class="tx">Manus 带动 MCP 出圈，MCP.so 流量暴涨</div><div class="td">3 月起 MCP 热度走高，「主要靠前面三个月的 SEO 积累」；5 月自述月访问量超 270 万、收录量为「全球第一」，媒体报道收录超 11000 个 MCP Server。<a class="cref cross" href="#ref-7">[7]</a><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-18">[18]</a></div></div>
+    <div class="node"><div class="dt">2025-06 → 08</div><div class="tx">AICon 演讲《一年上线超 10 款产品》与出书</div><div class="td">6 月 27-28 日 AICon 北京站分享独立开发方法论；8 月《这就是 MCP》由人民邮电出版社出版——个人方法论完成「媒体 → 大会 → 图书」的三级沉淀。<a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-9">[9]</a></div></div>
+    <div class="node"><div class="dt">2026 年</div><div class="tx">ShipAny 转型「Agent-Native 开发框架」，产品线延伸</div><div class="td">发布 shipany-next / vinext / tanstack 三套基础模板与内置 Skills，面向 Coding Agent 设计；产品矩阵向 Agent 基建延伸（FastClaw / WeClaw / WorkAny）；自述 MCP.so SEO 权重 DR 涨至 73。<a class="cref partial" href="#ref-19">[19]</a><a class="cref verified" href="#ref-1">[1]</a><a class="cref partial" href="#ref-10">[10]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：非科班的全栈底座——核工程学生如何在腾讯长出「架构能力」</div><div class="cb">他复盘腾讯五年：「平台很重要，接触的项目比较多；我在腾讯做后台开发，但业余时间很关注前端；在微信的时候，有一些新项目需要从 0 到 1，就有机会按照自己的想法去选型」。核工程→自学的背景决定了他「自学转行」的方法论底色，而微信后台支付系统的经历给了他登录、支付、订单等 SaaS 基建的第一手积累——这正是日后 ShipAny 框架的产品母体。</div><div class="cm">信源：<a class="cref cross" href="#ref-8">[8]</a> <a class="cref cross" href="#ref-6">[6]</a></div></div>
+  <div class="card"><div class="ct">转折二：「唯快不破」的 SOP 化——1 小时、一个周末、预售制</div><div class="cb">其速度被反复拆解：AI 红包封面 1 小时上线、ThinkAny 第一个版本「一个周末完成」、ShipAny 预售后一周交付。他自陈秘诀并非打字快，而是「做得多，所以知道怎么做」——登录、支付、表单、多语言等基础功能全部组件化并开源，新项目只写主流程。ShipAny 更把「预售制」制度化：先收钱验证需求，再投入开发，「先起飞再加油」。</div><div class="cm">信源：<a class="cref cross" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-7">[7]</a></div></div>
+  <div class="card red"><div class="ct">转折三：从「做多」到「做精」的自我纠偏</div><div class="cb">2024 年 10 月起他公开反思「一年 11 个产品」的副作用：早期 chatbot 客户端、AI 知识库等赛道「冷启动做得还可以……只是后面没有坚持做，用户和口碑都流失了」；ThinkAny 因 token 成本高、拿不到投资而「备受打击」，大厂 chatbot 内置联网搜索后竞争加剧。2025 年演讲口径转为「最近三个月，我没开发新产品」「快不如精，长期主义」——这是本案从「执行力的惯性」走向「战略性收敛」的关键拐点。</div><div class="cm">信源：<a class="cref cross" href="#ref-8">[8]</a> <a class="cref cross" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-7">[7]</a></div></div>
+  <div class="quote">
+    <p>过去几年，我做了很多项目，这在外人看来可能是高产和成功的象征，但实际上给我带来了不少焦虑和困扰。由于项目太多，导致精力分散，缺乏专注，进而影响了深度和长期价值的积累。</p>
+    <span class="src">—— 艾逗笔，InfoQ《极客有约》直播（2025-06 整理发布），转引自 <a class="cref cross" href="#ref-7">[7]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Products &amp; Business</span></div>
+  <p class="lead">下表逐项列出核心产品矩阵（流量数据口径详见伍节）。变现结构为「框架订阅 + 市场赞助 + 应用订阅 + 开源获客」四层组合，收入构成自始未公开披露。</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>产品</th><th>上线</th><th>功能定位</th><th>流量 / 热度</th><th>变现方式</th></tr></thead>
+    <tbody>
+      <tr><td><b>PodLM</b></td><td>2024 国庆后</td><td>AI 播客生成器：URL/文本/文档转双人播客，官网自定位「强大的 NotebookLM 替代品」</td><td>未检索到公开流量数据</td><td>订阅付费（具体定价未检索到公开信息）</td></tr>
+      <tr><td><b>ThinkAny</b></td><td>2024-03</td><td>AI 搜索引擎，对标 Perplexity，主打海外市场，在埃及、日本等市场获关注</td><td class="hl">峰值月访问 60 万（官网口径）；高峰「大几十万」（演讲口径）；PH 日榜第四</td><td>未检索到公开定价；自述一度「拿不到投资，又赚不到钱」</td></tr>
+      <tr><td><b>MCP.so</b></td><td>2024-11 底</td><td>全球最大 MCP 应用市场之一：收录 10000+ → 11000+ 个 MCP Server，支持网页调用、云端部署、在线 Chat</td><td class="hl">2025-05 月访问超 270 万；近三个月平均月访问百万（2025-07 口径）；2026-09 第三方实测 29.6 万</td><td>付费提交、广告赞助、客座文章（即刻自述口径）；开放 API</td></tr>
+      <tr><td><b>ShipAny</b></td><td>2024-12-24 预售</td><td>Agent-Native AI 应用开发框架：登录/支付/积分/多语言/SEO 等开箱即用，「一小时上线 AI SaaS」；2026 年迭代三套模板 + Skills</td><td>预售 4 小时破 1 万美元；用户提交数百个案例（自述口径）</td><td>模板买断 / Premium 会员 / 联盟分成（返佣）</td></tr>
+      <tr><td>CopyWeb / HeyBeauty / Melodisco 等</td><td>2024-02 起</td><td>网页复刻、虚拟试衣、AI 音乐播放器、壁纸、落地页生成等长尾应用</td><td>CopyWeb 自述「跑通 PMF」；其余多数未披露</td><td>订阅 + 谷歌广告（AI Wrapper 通用打法自述）</td></tr>
+      <tr><td>开源仓库（all-in-aigc）</td><td>2022-12 起</td><td>aicover、gpts-works、sorafm、aiwallpaper、melodisco、pagen 等开源模板</td><td class="pos">aicover 1796★ / gpts-works 1629★ / sorafm 1165★（2026-11-13 API 实测）</td><td>不直接变现；作为 ShipAny 的信任背书与获客入口</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h4>组合打法逻辑：把「开发者旅程」做成产品闭环</h4>
+  <p>与单点工具型 OPC 不同，本矩阵的协同关系清晰：<b>MCP.so</b> 是 Agent 时代的「工具分发入口」（流量层），<b>ShipAny</b> 是把流量转化为开发者的「造船框架」（转化层），<b>ThinkAny / PodLM / CopyWeb</b> 等应用是框架能力的「样板间」（示范层），而开源仓库、社群、图书与社媒 IP 则是贯穿三层的信任底座。他自己对应用层的联动有明确表述：「search 是过程，after search 是目的」——ThinkAny 搜完可一键转播客、转落地页，规划中的思维导图与 PPT 亦挂载于 after search 面板。<a class="cref cross" href="#ref-8">[8]</a> 这一「基础设施 + 框架 + 应用」的三层结构，使单个产品的失败不致命，而任一产品起量都会反哺其余——2025 年 3 月 MCP 协议出圈时，占位三个月的 MCP.so 独享了 SEO 先发优势，即为该模型的直接验证。<a class="cref cross" href="#ref-2">[2]</a></p>
+  <h4>客群与痛点</h4>
+  <ul class="bl">
+    <li><b>核心客群</b>：独立开发者与 AI 出海从业者（ShipAny 官网称其为「一些独立出海项目的首选开发框架」）；PodLM 面向内容创作者与播客主；ThinkAny 面向海外通用搜索用户。<a class="cref cross" href="#ref-6">[6]</a></li>
+    <li><b>解决痛点</b>：AI SaaS 开发中登录、支付、i18n、存储等基建的重复造轮子（对应 ShipAny）；MCP Server 的发现、调试与部署（对应 MCP.so）；长文/资料到播客音频的转化（对应 PodLM）；信息搜索后的多形态导出（对应 after search 联动）。</li>
+    <li><b>分发策略</b>：ProductHunt 打榜、程序化 SEO（自述拿下谷歌「MCP」关键词搜索第一）、社媒内容输出、GitHub 开源获客——四条获客通道全部是零预算打法。<a class="cref cross" href="#ref-6">[6]</a></li>
+  </ul>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>ShipAny 预售销售额</td><td class="hl">4 小时破 1 万美元</td><td>2024-12（圣诞节前后）</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td>MCP.so 月访问量（峰值）</td><td class="hl">超 270 万</td><td>2025-05（自述口径，媒体发布）</td><td><a class="cref cross" href="#ref-7">[7]</a><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>MCP.so 近三个月平均月访问</td><td>百万级</td><td>2025-07（演讲口径）</td><td><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td>MCP.so 月访问量（第三方实测）</td><td>295,663（环比 -12.6%）</td><td>2026-09</td><td><a class="cref cross" href="#ref-20">[20]</a></td></tr>
+      <tr><td>ThinkAny 峰值月访问</td><td>60 万（官网）/ 大几十万（演讲）</td><td>2024-2025 口径</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td>MCP.so 收录 Server 数</td><td>超 10000 → 超 11000</td><td>2025-05（同月两口径）</td><td><a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-18">[18]</a></td></tr>
+      <tr><td>ThinkAny ProductHunt 排名</td><td>日榜第四（上线第三天打榜）</td><td>2024-03</td><td><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td>GitHub 明星仓库（一手实测）</td><td class="pos">aicover 1796★ / gpts-works 1629★ / sorafm 1165★ / aiwallpaper 720★ / melodisco 515★ / pagen 373★</td><td>2026-11-13 检索</td><td><a class="cref verified" href="#ref-11">[11]</a></td></tr>
+      <tr><td>付费社群规模</td><td>两百余人（自述当时为主要收入来源）</td><td>2024-10</td><td><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td>出版图书</td><td>《这就是 MCP》，234 页，ISBN 978-7-115-67747-1</td><td>2025-08</td><td><a class="cref cross" href="#ref-9">[9]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    全部流量与收入数据均为主方口径（官网、演讲、自述）或媒体转述，无第三方审计；唯一可用的第三方工具 AlphaMoat 显示 2026-09 月访问约 29.6 万，与其峰值 270 万相差近一个数量级——提示「峰值 ≠ 稳态」，MCP 流量红利消退后数据已显著回落。ShipAny「预售 4 小时破 1 万美元」为多个独立信源一致的关键锚点，但无支付流水佐证；「用户提交数百案例」为 2026 年自述口径。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将本案放入案例墙「一人多产品」坐标系。对标两例的数据均为<b>案例墙既有核验值</b>（本报告未重新核验，详见案例墙 index.html 对应卡片与独立报告）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态与矩阵逻辑</th><th>数据表现</th><th>口径</th></tr></thead>
+    <tbody>
+      <tr><td><b>艾逗笔产品矩阵</b>（本案）</td><td>艾逗笔（idoubi）</td><td>框架（ShipAny）+ 基础设施入口（MCP.so）+ 应用（ThinkAny/PodLM 等）+ 开源模板，三层协同互相导流</td><td>ShipAny 预售 4 小时破 $1 万；MCP.so 峰值月访问 270 万；ThinkAny 峰值月访问 60 万</td><td>主方口径 + 媒体交叉</td></tr>
+      <tr><td><a href="../../report/nuxtpro/index.html" style="color:#2980b9">NuxtPro 等 AI 工具矩阵</a></td><td>IndieMakerKevin（PennyJoly）</td><td>SaaS 模板（NuxtPro $158 买断）+ API 中转 + 视频去水印等工具站，同为「模板 + 网关 + 工具」组合</td><td>自述每月至少 1 万美元「睡后收入」</td><td>自述口径，0 条独立第三方交叉（案例墙既有核验值）</td></tr>
+      <tr><td><a href="../../report/raphael-ai/index.html" style="color:#2980b9">Raphael AI + Fast3D（刘小排）</a></td><td>刘小排（前猎豹产品总监）</td><td>免费无限制文生图出海站（Raphael）+ 全 AI 开发 3D 工具（Fast3D），单站打法为主</td><td>上线初期月活破 100 万；产品矩阵 2024 年营收接近 1000 万元</td><td>自媒体/自述口径（案例墙既有核验值）</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>三案的共同点是以<b>开发者/工具类产品</b>为主阵地、以海外市场变现、以 SEO 与社媒为主要获客通道。差异在于协同结构：NuxtPro 是「平行的工具摊位」，刘小排是「单爆款 + AI 编码延伸」，而艾逗笔是唯一把<b>框架商业化</b>（ShipAny）与<b>基础设施入口</b>（MCP.so）做进组合的案例——框架天然带 B 端付费属性（会员制、联盟分成），市场型入口自带网络效应（开发者提交内容 → SEO → 流量 → 更多提交），配合开源与出书形成「内容-产品」飞轮。这让本案在「一人多产品」样本中呈现出最强的<b>结构性</b>，但其流量数据的第三方可验证性弱于刘小排案（后者有第三方增长榜佐证），强于 NuxtPro 案（后者全为自述）。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>分析</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>矩阵覆盖「开发（ShipAny 框架/开源模板）→ 分发（MCP.so 市场）→ 应用（ThinkAny/PodLM/CopyWeb）→ 变现（订阅/会员/赞助）」全链路；2026 年向 Agent 基建（FastClaw/WeClaw/WorkAny）继续延伸。<a class="cref verified" href="#ref-1">[1]</a><a class="cref partial" href="#ref-19">[19]</a></td></tr>
+      <tr><td><b>2. 面向客群</b></td><td>双重客群：B 端成分高的开发者/出海从业者（框架与市场），与 C 端内容创作者、海外搜索用户（应用层）。B 端客群付费意愿强、传播靠圈层口碑，与其社群+社媒打法吻合。<a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td><b>3. 解决痛点</b></td><td>独立开发者做 AI SaaS 时「登录、支付、表单、多语言」等基建重复建设——框架与模板直接省掉数周工时；MCP 生态爆发初期「鸡蛋悖论」（无 Registry 则无人提交、无 Server 则无人使用）——MCP.so 以先行收录与 SEO 打破冷启动。<a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>4. 预估年化营收（推算，置信度 C）</b></td><td>零公开披露。可核验的财务事实仅三件：ShipAny 预售 4 小时 $1 万（2024-12 时点值）、2024-10 自述收入主要来自付费社群（两百余人）、MCP.so 配置付费提交/广告赞助。据此推算其收入结构为「框架会员 + 市场赞助 + 应用订阅 + 社群 + 图书版税」的多元小额组合，年化量级大概率在数万美元至十几万美元区间——<b>该推算无任何流水佐证，仅为结构示意，不构成结论</b>。<a class="cref cross" href="#ref-8">[8]</a><a class="cref partial" href="#ref-10">[10]</a></td></tr>
+      <tr><td><b>5. 融资进展</b></td><td>未检索到任何公开融资信息。其自述为 2024-2025 年间「见了很多投资人」但未获投，并把原因总结为资本逻辑（看重团队与竞争格局：「AI 搜索和 MCP 都在大厂的射程范围内」），转而主张「自己造血，对资本祛魅」——是案例墙中极少数明确拒绝融资叙事的样本。<a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>6. 市场评价</b></td><td>正面：InfoQ 两度专访 + AICon 演讲「现场反响热烈」；腾讯新闻称 MCP.so 为「全球最受欢迎的 MCP 应用市场」；人民邮电出版社为其出书；被纳入 a16z MCP 生态讨论语境（引用一事存疑，见捌）。争议面：「一年做 11 个产品」在圈内引发「广度 vs 深度」讨论，其「也许砍掉一半会更开心」的自我批评反而成为流传最广的评价。<a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-18">[18]</a><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td><b>7. 投入成本与风险（含矩阵精力分配、开源维护成本）</b></td><td>① <b>矩阵精力分配</b>：一人运营 15+ 产品线，自述「项目太多，导致精力分散，缺乏专注」——早期产品（chatbot 客户端、AI 知识库）因不再维护而流失用户与口碑，是矩阵模式的直接代价；② <b>开源框架的社区维护成本</b>：多个长尾开源仓库（部分 2022-2023 年建）与商业框架并行，issue、文档、模板兼容性维护为持续性负债；③ <b>模型成本</b>：ThinkAny 自述「有段时间 token 成本特别高，拿不到投资，又赚不到钱」；④ <b>合规</b>：MCP.so 收录第三方 Server 的安全与内容责任边界、AI 应用出海的数据合规——未检索到涉诉或监管处罚信息。<a class="cref cross" href="#ref-7">[7]</a><a class="cref cross" href="#ref-8">[8]</a><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 五处留白与存疑点（截至 2026-11-13 检索）</div>
+    ① <b>「a16z 报告引用」存疑</b>：该说法出自官网自述与 InfoQ 等媒体转述；本次核验调取的 a16z《A Deep Dive Into MCP and the Future of AI Tooling》（2025-03-20）正文直接点名的市场为 Mintlify mcpt、Smithery、OpenTools，未点名 MCP.so（其市场地图为图片，无法核验图中是否收录）——引用时应标注为「自述被引用」。② <b>流量数据无审计</b>：270 万峰值与 2026-09 第三方实测 29.6 万差距近十倍，峰值时点后流量明显回落。③ <b>底稿信源「新浪财经专访」未检索命中</b>：多轮限定检索（finance.sina.com.cn / sina.com.cn / sina.cn）0 命中，本报告以极客公园（Founder Park）专访等替代核验，详见捌·附核查小结。④ <b>产品数量口径</b>：「一年 11 个」（2024-10 媒体）与「两年 20+」（官网 2026-06 更新）并存，统计边界不清。⑤ <b>ThinkAny 现状</b>：2025-08 后未检索到其转型或迭代的公开信息，官网是否仍运营未在本次检索中确认。
+  </div>
+  <div class="card"><div class="ct">负面与自我批评（如实收录）</div><div class="cb">其自述的问题清单比外界批评更严苛：「产品粗糙半成品、做很多 Feature 但还没来得及修 bug、不够克制、早期做的产品没有再维护、商业化困难、没找到对的用户人群」；「很多产品都是浅尝辄止，没有往深了做，抓住了一些机会，也错过了很多机会」；对独立开发滤镜的祛魅：「要做一个东西出来真的很简单，但要把它做好、实现世俗意义上的成功，还是非常难」。</div><div class="cm">信源：<a class="cref cross" href="#ref-8">[8]</a> <a class="cref cross" href="#ref-6">[6]</a></div></div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">艾逗笔案例证明了 OPC 的另一种形态：不是把一件事做到极致，而是把<b>一个人的底层能力（全栈工程 + 审美 + SEO + 个人 IP）资产化</b>，再以矩阵方式在多个生态位反复兑现——「造轮子是一种追求，用好轮子是一种本事」。它同时示范了「框架商业化」这一在国内独立开发圈罕见的变现路径：把方法论（SOP）做成产品（ShipAny），把产品做成教材（《这就是 MCP》），把教材变成获客漏斗。其对「做多 vs 做精」的公开反思，也为一窝蜂上矩阵的后来者提供了少见的自我解剖样本。</div><div class="cm">信源：<a class="cref cross" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-9">[9]</a> <a class="cref cross" href="#ref-8">[8]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 20 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级信源）。</p>
+  <ul>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx verified">[1]</span><span class="rt">A+</span><span class="st">官网一手</span></div><div class="ti">About Me | idoubi（个人官网，Last updated 2026-06-16）</div><div class="mt"><b>来源：</b>idoubi.ai　<b>核验日期：</b>2026-11-13　<b>链接：</b><a href="https://idoubi.ai/about" target="_blank" rel="noopener">https://idoubi.ai/about</a></div><div class="note">事实核查：武大核工程 2015 届、腾讯 2018-2023 后端（支付系统与分布式基础设施）、2023-10-24 裸辞、两年 20+ 产品；ThinkAny 峰值月访问 600K、PH 首日 #4 与演讲稿口径（第三天打榜日榜第四）存在「首日/第三天」差异，正文按演讲稿口径并注明；ShipAny 预售 4 小时 $10K；MCP.so「cited in an a16z investment report，峰值 2.7M monthly visits」——a16z 引用一事按存疑处理（见 [17]）。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx cross">[2]</span><span class="rt">B+</span><span class="st">技术媒体专访</span></div><div class="ti">全球最流行 MCP 应用市场，来自一位中国独立开发者（InfoQ，罗燕珊）</div><div class="mt"><b>来源：</b>InfoQ　<b>发布日期：</b>2025-05-06　<b>链接：</b><a href="https://www.infoq.cn/article/ljlQa15u4r9KCSIA90Or" target="_blank" rel="noopener">https://www.infoq.cn/article/ljlQa15u4r9KCSIA90Or</a></div><div class="note">事实核查：MCP.so 收录超 10000 个 Server、全球最大 MCP 应用市场、被 a16z 市场报告引用（媒体转述口径）；ShipAny「预售第一天 4 小时内销售额破万美元」；「先做导航站占位 + 程序化 SEO」出自其答问原文。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx cross">[3]</span><span class="rt">B+</span><span class="st">大会官网讲师页</span></div><div class="ti">艾逗笔 — AICon 北京 2025 专题演讲嘉宾页</div><div class="mt"><b>来源：</b>AICon（InfoQ 主办）　<b>链接：</b><a href="https://aicon.infoq.cn/2025/beijing/speaker/9471" target="_blank" rel="noopener">https://aicon.infoq.cn/2025/beijing/speaker/9471</a></div><div class="note">事实核查：「武汉大学核工程专业毕业后自学转行互联网，曾负责腾讯百万级日活产品架构设计，连续三次获评腾讯优秀员工」——与 [1][2] 交叉一致。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx partial">[4]</span><span class="rt">C+</span><span class="st">文档页（疑似一手）</span></div><div class="ti">Idoubi - AI 创业者（飞书文档）</div><div class="mt"><b>来源：</b>docs.feishu.cn　<b>链接：</b><a href="https://docs.feishu.cn/article/wiki/ArC6wfhQLiPDI6k98S6caWUZnpd" target="_blank" rel="noopener">https://docs.feishu.cn/article/wiki/ArC6wfhQLiPDI6k98S6caWUZnpd</a></div><div class="note">事实核查：「前腾讯高级工程师，微信后台架构师（2018-2023）」——「架构师」称谓仅此单源使用，与 [1]「backend engineer」并存，正文采「后台开发/高级工程师」保守表述。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx cross">[5]</span><span class="rt">C+</span><span class="st">第三方工具站</span></div><div class="ti">MCP.so — Founder Profile（everydev.ai）</div><div class="mt"><b>来源：</b>everydev.ai　<b>链接：</b><a href="https://www.everydev.ai/developers/mcp-so" target="_blank" rel="noopener">https://www.everydev.ai/developers/mcp-so</a></div><div class="note">事实核查：「Former Backend Developer at Tencent (2018-2023) and Wuhan University graduate (Nuclear Engineering and Technology, 2015)」——教育背景第三源交叉；聚合站内容可信度有限，仅作背景佐证。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx cross">[6]</span><span class="rt">B+</span><span class="st">大会演讲整理（作者署名一手）</span></div><div class="ti">一年上线超 10 款产品，AI 时代如何做独立开发（AICon 北京站演讲全文，InfoQ 发布）</div><div class="mt"><b>来源：</b>InfoQ（署名 idoubi，编罗燕珊）　<b>发布日期：</b>2025-07-10　<b>链接：</b><a href="https://www.infoq.cn/article/x7qete70h8mefvmkrjh4" target="_blank" rel="noopener">https://www.infoq.cn/article/x7qete70h8mefvmkrjh4</a></div><div class="note">事实核查：2011 入学/网名致敬 Adobe/2018 入职腾讯/2023 裸辞；ThinkAny「去年三月上线」「高峰月访问量大几十万」；ShipAny「去年圣诞节发布，预售四小时销售额破 1w 美金，预售后一周写完代码交付」；MCP.so「去年 11 月底上线，近三月平均月访问百万，被 a16z 市场报告引用」；CopyWeb 2025-02 上线跑通 PMF；PH 打榜日榜第四；程序化 SEO 拿下谷歌 MCP 关键词第一；技术栈与 AI Wrapper SOP。为本报告事实密度最高的一手演讲整理。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">B+</span><span class="st">技术媒体圆桌</span></div><div class="ti">Agent 当道、模型封装一切：AI 时代的产研人如何不被「优化」？（InfoQ《极客有约》×AICon）</div><div class="mt"><b>来源：</b>InfoQ　<b>发布日期：</b>2025-06-03　<b>链接：</b><a href="https://www.infoq.cn/article/XAo4LEPaVbGb5kIzVaup" target="_blank" rel="noopener">https://www.infoq.cn/article/XAo4LEPaVbGb5kIzVaup</a></div><div class="note">事实核查：「上个月网站访问量超过了 270 万，整体流量持续成倍增长」（第一人称，发布于 2025-06，即 2025-05 口径）——为 270 万峰值数据的媒体侧独立出处；「MCP 原型不到两天、代码开源」「鸡蛋悖论」「Manus 带动 3 月出圈」「项目太多精力分散」等引语出自此稿。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx cross">[8]</span><span class="rt">B+</span><span class="st">媒体专访（长文）</span></div><div class="ti">独立开发者 idoubi：一年做 11 个产品，「也许砍掉一半会更开心」（Founder Park，极客公园头条号分发）</div><div class="mt"><b>来源：</b>Founder Park（采访｜马多灵、Nico）　<b>发布日期：</b>2024-10-29　<b>链接：</b><a href="http://m.toutiao.com/group/7690582974554735104/" target="_blank" rel="noopener">http://m.toutiao.com/group/7690582974554735104/</a></div><div class="note">事实核查：辞职一年 11 个产品；PodLM 起因（2024 国庆 NotebookLM 讨论热）；ThinkAny+PodLM「search 是过程，after search 是目的」联动；腾讯五年对全栈的作用；付费社群两百余人且为主要收入（2024-10 口径）；自我批评清单。注：底稿标注的「新浪财经专访」URL 未检索命中，本条为其同源长专访替代。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx cross">[9]</span><span class="rt">A</span><span class="st">出版社官网</span></div><div class="ti">《这就是 MCP》（签名版）图书详情页 — 人民邮电出版社</div><div class="mt"><b>来源：</b>ptpress.com.cn　<b>出版时间：</b>2025-08　<b>链接：</b><a href="https://www.ptpress.com.cn/publishing/book/191d7291-a1f0-4c36-86c6-0a6f4d703789" target="_blank" rel="noopener">https://www.ptpress.com.cn/publishing/book/191d7291-a1f0-4c36-86c6-0a6f4d703789</a></div><div class="note">事实核查：作者艾逗笔（@idoubi），ISBN 978-7-115-67747-1，234 页；作者简介「MCP.so（月访问量百万级）/ ThinkAny（深受东南亚用户喜爱）/ ShipAny（独立开发者出海首选）；曾任腾讯高级工程师，专注支付系统设计」——与 [1][6] 交叉一致。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx partial">[10]</span><span class="rt">B</span><span class="st">社区主页（一手动态）</span></div><div class="ti">艾逗笔的即刻个人主页（termany.sh / fastclaw.ai 展示；「mcp.so 的 DR 涨到了 73」）</div><div class="mt"><b>来源：</b>即刻 App　<b>链接：</b><a href="https://m.okjike.com/users/35224A78-8B11-469E-B307-16B58688FBEC" target="_blank" rel="noopener">https://m.okjike.com/users/35224A78-8B11-469E-B307-16B58688FBEC</a></div><div class="note">事实核查：「可配置付费提交、广告赞助、客座文章」为 MCP.so 变现方式的一手表述；DR 73 为其自述数据，无第三方回溯，按 B 级收录。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx verified">[11]</span><span class="rt">A+</span><span class="st">GitHub API（一手实测）</span></div><div class="ti">all-in-aigc 组织仓库列表（GitHub REST API 实测）</div><div class="mt"><b>来源：</b>api.github.com　<b>核验日期：</b>2026-11-13　<b>链接：</b><a href="https://github.com/all-in-aigc" target="_blank" rel="noopener">https://github.com/all-in-aigc</a></div><div class="note">事实核查：aicover 2024-01-28 建 1796★、gpts-works 2023-11-13 建 1629★、sorafm 2024-02-17 建 1165★、aiwallpaper 2024-01-08 建 720★、melodisco 2024-04-06 建 515★、pagen 2024-09-12 建 373★、openai-go/chatgpt-webapi/claude-webapi 等——时间线「开源热身期」与红包封面开源节奏均据此校准。注：github.com/idoubi/thinkany 返回 404，ThinkAny 未以该路径开源。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx partial">[12]</span><span class="rt">B</span><span class="st">社区一手帖</span></div><div class="ti">「AI 红包封面生成器正式发布了」（艾逗笔即刻帖，aicover.design）</div><div class="mt"><b>来源：</b>即刻 App　<b>发布时间：</b>约 2024-01（帖子 ID 时间戳与 aicover 仓库创建日期互证）　<b>链接：</b><a href="https://m.okjike.com/originalPosts/65b70f023b9c66cae420f5ee" target="_blank" rel="noopener">https://m.okjike.com/originalPosts/65b70f023b9c66cae420f5ee</a></div><div class="note">事实核查：「第一个版本只做了封面图片生成……过几天择机开源」与 aicover 仓库 2024-01-28 创建互证。</div></li>
+  <li id="ref-13" class="src"><div class="sh"><span class="idx cross">[13]</span><span class="rt">B+</span><span class="st">财经媒体</span></div><div class="ti">AI 搜索能颠覆广告的营收模式吗？（36氪）</div><div class="mt"><b>来源：</b>36氪　<b>链接：</b><a href="https://m.36kr.com/p/2942180860418688" target="_blank" rel="noopener">https://m.36kr.com/p/2942180860418688</a></div><div class="note">事实核查：「独立开发者『艾逗笔』花了一个周末就写了 AI 搜索 ThinkAny」——与演讲稿「第一个版本是在一个周末完成的」一致。</div></li>
+  <li id="ref-14" class="src"><div class="sh"><span class="idx partial">[14]</span><span class="rt">B+</span><span class="st">科技媒体</span></div><div class="ti">AI 时代的权力游戏：开发者、投资人和大厂的微妙平衡（虎嗅）</div><div class="mt"><b>来源：</b>虎嗅　<b>链接：</b><a href="https://www.huxiu.com/article/3612610.html?f=sohucom" target="_blank" rel="noopener">https://www.huxiu.com/article/3612610.html?f=sohucom</a></div><div class="note">事实核查：「因 3 天写出 AI 搜索引擎 ThinkAny 而破圈」「在 ThinkAny 之前，他还写过知了阅读、AI 红包等小应用。近期，他发布了 AI 播客编辑器 PodLM」——「3 天/一个周末/封闭两周」三口径并存（见 [15]），正文按演讲稿「一个周末」采信并保留差异。</div></li>
+  <li id="ref-15" class="src"><div class="sh"><span class="idx partial">[15]</span><span class="rt">B+</span><span class="st">科技媒体</span></div><div class="ti">这个群体，AI 捏爆款，1 人年入百万，能造出下个 Super App？（钛媒体）</div><div class="mt"><b>来源：</b>钛媒体　<b>链接：</b><a href="https://www.tmtpost.com/7358389.html" target="_blank" rel="noopener">https://www.tmtpost.com/7358389.html</a></div><div class="note">事实核查：「艾逗笔最火的产品是 AI 搜索 ThinkAny……他封闭开发了两周时间，这款产品就上线了」「期间招募过愿意为爱发电的开发者支援」——开发周期第三口径，与 [13][14] 并存标注。</div></li>
+  <li id="ref-16" class="src"><div class="sh"><span class="idx verified">[16]</span><span class="rt">A</span><span class="st">产品官网一手</span></div><div class="ti">PodLM — 将任何内容转化为 AI 播客（产品官网）</div><div class="mt"><b>来源：</b>podlm.ai　<b>核验日期：</b>2026-11-13　<b>链接：</b><a href="https://podlm.ai/" target="_blank" rel="noopener">https://podlm.ai/</a></div><div class="note">事实核查：URL/文本/文档转播客、多说话人（双人播客）、AI 语音定制、自定位「NotebookLM 替代品」——与底稿「URL/文本转双人播客」一致；官网含模板化营销内容（用户评价为样板文案），仅采功能层描述。</div></li>
+  <li id="ref-17" class="src"><div class="sh"><span class="idx cross">[17]</span><span class="rt">A</span><span class="st">投资机构研报</span></div><div class="ti">A Deep Dive Into MCP and the Future of AI Tooling（a16z，Yoko Li）</div><div class="mt"><b>来源：</b>a16z.com　<b>发布日期：</b>2025-03-20　<b>链接：</b><a href="https://a16z.com/a-deep-dive-into-mcp-and-the-future-of-ai-tooling/" target="_blank" rel="noopener">https://a16z.com/a-deep-dive-into-mcp-and-the-future-of-ai-tooling/</a></div><div class="note">事实核查：MCP 2024-11 由 Anthropic 推出、市场地图与 marketplace 生态论述可回溯；<b>正文直接点名的市场为 Mintlify mcpt / Smithery / OpenTools，未点名 MCP.so</b>——「被 a16z 报告引用」仅能锚定于自述与媒体转述，本次核验按存疑处理（见捌）。</div></li>
+  <li id="ref-18" class="src"><div class="sh"><span class="idx cross">[18]</span><span class="rt">B+</span><span class="st">门户媒体</span></div><div class="ti">大厂竞相押注的 MCP 是啥？（腾讯新闻）</div><div class="mt"><b>来源：</b>腾讯新闻　<b>发布日期：</b>2025-05-13　<b>链接：</b><a href="https://view.inews.qq.com/a/20250513A00VN500" target="_blank" rel="noopener">https://view.inews.qq.com/a/20250513A00VN500</a></div><div class="note">事实核查：「全球最受欢迎的 MCP 应用市场 MCP.so 亦出自一名中国独立开发者『艾逗笔』，此前他曾为腾讯高级工程师。目前 MCP.so 上收录了超过 11000 个 MCP Server」——收录数第二口径，与 [2] 同月并存。</div></li>
+  <li id="ref-19" class="src"><div class="sh"><span class="idx partial">[19]</span><span class="rt">B</span><span class="st">社区一手帖</span></div><div class="ti">ShipAny 新版本发布：Agent-Native 开发框架（V2EX 分享创造，发帖人 idoubi）</div><div class="mt"><b>来源：</b>V2EX　<b>发帖时间：</b>页面相对时间「13 天前」（约 2026-10 底；同页回复时间戳显示 2026-06-11，两口径并存，正文按「2026 年」模糊处理）　<b>链接：</b><a href="https://edge.v2ex.com/t/1219373" target="_blank" rel="noopener">https://edge.v2ex.com/t/1219373</a></div><div class="note">事实核查：shipany-next/vinext/tanstack 三套模板、内置 Skills、老用户 $1.99 升级、Premium 会员 + 优惠码 + 联盟分成、「用户提交了几百个案例」——ShipAny 2026 年形态与变现结构的一手表述。</div></li>
+  <li id="ref-20" class="src"><div class="sh"><span class="idx cross">[20]</span><span class="rt">B</span><span class="st">第三方流量工具</span></div><div class="ti">MCP.so Traffic &amp; Stats — September 2026（AlphaMoat）</div><div class="mt"><b>来源：</b>alphamoat.ai　<b>数据月份：</b>2026-09　<b>链接：</b><a href="https://www.alphamoat.ai/en/ai/mcp-so" target="_blank" rel="noopener">https://www.alphamoat.ai/en/ai/mcp-so</a></div><div class="note">事实核查：2026-09 月访问 295,663（环比 -12.6%）、最大市场为中国——唯一第三方流量实测点，用于校准「峰值 270 万」口径的时效性；第三方工具对「月访问」的定义与主方口径未必一致，仅作趋势参照。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 20 条。核验标签分布：🟢 已核验（verified）3 条（官网一手、GitHub API 实测、PodLM 官网——均完成原文回溯）、🔵 多源印证（cross）11 条（InfoQ 三稿、腾讯新闻、36氪、a16z、出版社、AlphaMoat 等，原文回溯全部完成）、🟡 部分映证（partial）6 条（即刻两帖、飞书文档、V2EX、虎嗅、钛媒体——多为单源自述或转载口径，已逐条标注）。三处开发周期口径冲突（ThinkAny「一个周末/3 天/封闭两周」）与两处收录数口径（10000+/11000+）已在正文显式并列；「被 a16z 报告引用」经原文核验后降级为「自述被引用」；底稿信源「新浪财经专访（finance.sina.com.cn）」经 4 轮限定检索 0 命中，以同源长专访（Founder Park/极客公园，[8]）替代并如实标注；github.com/idoubi/thinkany 返回 404（ThinkAny 未按该路径开源）。未发现伪造链接，全部 URL 为检索过程实际命中页面。全部流量与收入数据均为无审计的主方口径，引用时请注意时效（检索截止 2026-11-13）。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-13 · 营收与流量推算值均标注置信口径，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

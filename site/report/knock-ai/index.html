@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · 敲敲门童话（Knock AI）—— 05 后兄弟的 AI 原生儿童童话平台 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · 敲敲门童话（Knock AI）">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="敲敲门童话（Knock AI）深度案例报告：05 后华人高中生兄弟 Chris & Tony Lai 打造 AI 原生儿童互动童话平台，孩子引导 AI 续写专属绘本/儿歌/卡通，三端上线，中国区累计读者 10 万+ 人次，获 300 万元融资（含 Google Cloud 25 万美元）。10 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>敲敲门童话（Knock AI）深度案例报告</h1>
+    <h2>05 后华人高中生兄弟 Chris &amp; Tony Lai：让孩子当「故事导演」的 AI 原生儿童童话平台<br>三端上线 · 中国区累计读者 10 万+ 人次 · 获 300 万元融资（含 Google Cloud 25 万美元）—— 10 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">AI 原生教育</span>
+      <span class="tag">儿童互动内容</span>
+      <span class="tag">05 后创业</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">10万+</div><div class="k">中国区累计读者（人次 · 2024-09 报道口径）</div></div>
+  <div class="stat"><div class="v up">300 万元</div><div class="k">融资额（含 Google Cloud 25 万美元）</div></div>
+  <div class="stat"><div class="v neutral">2 人</div><div class="k">创始人：05 后高中生兄弟</div></div>
+  <div class="stat"><div class="v neutral">3 端</div><div class="k">App Store / Google Play / 微信小程序</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">敲敲门童话（Knock AI）是一款「AI 原生」儿童互动童话平台：与给 AI 挂上具体形象、由 AI 主导对话的儿童陪伴类产品不同，它把讲故事的主导权交给孩子——小朋友当「小小故事导演」，用语音指挥 AI 创作专属绘本，只要孩子追问，AI 就不断续写，让故事永不落幕<a class="cref verified" href="#ref-1">[1]</a>。创始人是 05 后华人高中生兄弟 Chris 与 Tony，项目 2024 年 9 月披露时已三端上线、获得 300 万元融资<a class="cref verified" href="#ref-1">[1]</a>。</p>
+  <div class="two">
+    <div class="card"><div class="ct">产品</div><div class="cb">AI 原生儿童互动童话平台：孩子按住麦克风说出想听的故事，AI 一次性生成文本并配乐、配音、配图即时播放；家长端可按年龄、风格、文本长度、配图张数定制，1-3 分钟生成绘本故事并可同步生成儿歌。配套硬件：不伤眼的墨水书、可投天花板的投影仪。中国区累计读者 10 万+ 人次（2024-09 报道口径）。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="card"><div class="ct">主创</div><div class="cb">Chris Lai 与 Tony Lai，05 后华人高中生兄弟（案例墙底稿标注香港背景——36 氪报道口径为「华人高中生兄弟」，独立信源未直接印证香港背景，按待证口径处理）。发起初衷源于兄弟俩在学校附近参与的教育公益项目：他们发现贫困家庭孩子在街上游荡的根源是缺乏好的教育资源。理念：「这个项目的核心理念不是为了教育收费」。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-5">[5]</a></div></div>
+    <div class="card blue"><div class="ct">融资</div><div class="cb">截至 2024-09 报道，公司已获 300 万元人民币融资，其中包括 Google Cloud 的 25 万美元「投资」<a class="cref verified" href="#ref-1">[1]</a>。性质说明：25 万美元按当期汇率约合 175 万元人民币，若全额计入则现金融资约百万元量级；Google 对初创的同类支持多为云资源额度（credits）形式，本案 25 万美元的现金/额度构成与对应项目未披露——未检索到 Google for Startups 官方项目页（见捌·附）。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-4">[4]</a></div></div>
+    <div class="card blue"><div class="ct">三端与主体</div><div class="cb">上线端：App Store（iOS/iPad）、Google Play、微信小程序，免费使用（原始报道口径）；案例墙底稿的三端口径为 iOS/Android/Web，与原报道「微信小程序」存在出入，双口径存档。运营主体：上海启扉绘梦智能科技有限公司（2024-03-25 成立，注册资本 50 万元，法定代表人王孝黎），官网品牌名「启扉绘梦」。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-7">[7]</a> <a class="cref partial" href="#ref-8">[8]</a></div></div>
+  </div>
+  <div class="box insight">
+    <div class="bt">未成年 / 刚成年创业者的特殊性（如实呈现）</div>
+    本案主创披露身份为「高中生兄弟」，属未成年或刚成年创业者，带来三重结构性特征：① 法定代表人并非创始人本人（王孝黎），未成年人在境内无法担任公司法定代表人、独立签署投资协议，需成年监护人或协作者代持治理岗位<a class="cref cross" href="#ref-7">[7]</a>；② 公开报道回避了两人的姓氏全名、学校与确切年龄，身份信息刻意留白；③ 相对同龄开发者单人作品（如案例墙 EmoEase 为单人独立开发），本案从第一天起就是「兄弟双人 + 成年技术与设计协作者」（技术负责人左德伟、硬件设计师高若彤）的微型协作结构<a class="cref verified" href="#ref-1">[1]</a>，更接近「未成年人主导 + 成年人补位」的混合形态。
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2024 年（报道时点前）</div><div class="tx">公益项目催生创业念头</div><div class="td">兄弟俩在学校附近参与教育公益项目，发现贫困家庭孩子缺乏好的教育资源，决定做一个「不是为了教育收费」的公平教育平台。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2024-03-25</div><div class="tx">运营主体成立</div><div class="td">上海启扉绘梦智能科技有限公司注册成立，注册资本 50 万元，法定代表人王孝黎（工商登记）。官网称公司成立于 2024 年 3 月、总部上海。<a class="cref cross" href="#ref-7">[7]</a><a class="cref partial" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2024-08-14</div><div class="tx">iOS 端版本迹点</div><div class="td">App Store 中国区版本历史首条记录 1.1.2（此前开发与内测未见公开记录）；8 月 31 日 1.1.7 新增「声音定制」（家长声色讲故事）功能。<a class="cref verified" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2024-09（报道前）</div><div class="tx">三端上线 + 数据 + 融资完成</div><div class="td">App Store / Google Play / 微信小程序三端上线、免费使用；中国区累计读者超 10 万人次、注册活跃用户 2-3 千人、美国市场下载破千；获 300 万元融资（含 Google Cloud 25 万美元）。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2024-09-25</div><div class="tx">36氪《智能涌现》首发报道</div><div class="td">记者王奕昕、编辑邓咏仪以《05后华人高中生兄弟创业AI教育》为题深度报道，披露 StoryOS 理念、产品交互、技术方案与硬件规划；同日腾讯新闻、新浪财经转载。<a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2024-09-26</div><div class="tx">和讯、中华网跟进 · 案例墙锚点 ✓</div><div class="td">和讯自选股写手摘要稿与中华网转载稿发布，核心数据与 36 氪一致；2024-09-26 即为本案例墙收录锚点（上线披露完成日）。<a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2024-11-20 → 2025</div><div class="tx">功能持续迭代：视频创作上线</div><div class="td">1.2.8 添加「视频创作版块」（对应报道中预告的视频功能）；2025 年陆续增加涂鸦生画、素描/彩铅/抽象画风、设备扫码登录等。<a class="cref verified" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2025 年</div><div class="tx">品牌升级为「启扉绘梦」，产品矩阵扩展</div><div class="td">官网以「启扉绘梦-儿童AI智能创作平台」亮相：五大核心功能（故事/绘本/音乐/动画/马良画板）、面向 3-12 岁、「语音+多模态生成+硬件联动」定位，并新增马良 AI 画板等矩阵产品。<a class="cref partial" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2025-10-16 → 2025-12-13</div><div class="tx">心理报告、多语言能力上线</div><div class="td">1.4.3 新增心理报告查询；1.4.5 新增日语、西班牙语（此前已支持中英双语与「几乎全部主流语言」的声音定制）。<a class="cref verified" href="#ref-6">[6]</a><a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-06-21</div><div class="tx">商标注册完成</div><div class="td">「敲敲门童话」商标注册成功（注册号 88615577），有效期 2026-06-21 至 2036-06-20，申请人为上海启扉绘梦智能科技有限公司。<a class="cref cross" href="#ref-7">[7]</a></div></div>
+    <div class="node"><div class="dt">2026 年（时间未核验）</div><div class="tx">海外众筹「Kiddo Box 智能投影仪」</div><div class="td">Indiegogo 上线 Knock AI Kiddo Box Smart Projector（教育类目），团队自述与中文报道口径一致（Chinese high school brothers, Chris and Tony）；页面处于 pledge manager 状态，显示筹得 10,523 美元 / 11 位支持者（该数字为 pledge manager 阶段页面值，非完整众筹总额）。<a class="cref partial" href="#ref-9">[9]</a></div></div>
+    <div class="node"><div class="dt">2026-08-12</div><div class="tx">最新版本 1.4.8</div><div class="td">App Store 当前版本 1.4.8 添加「音频心理学功能」；自 2024-08 以来已连续公开迭代 23 个版本，产品仍处活跃维护状态。<a class="cref verified" href="#ref-6">[6]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：从公益观察到产品定义——「不是为了教育收费」</div><div class="cb">项目的起点不是技术，而是一次教育公益的现场观察：孩子们在街上游荡的根源是缺乏好的教育资源。由此确立的产品伦理是把「教育公平」写进商业模式——免费使用、让孩子自己选择接受什么样的教育机会。这个选择决定了它不走「AI 陪伴玩具」的高溢价硬件路线，而走免费内容平台 + 云厂商资源支持的组合，也让 300 万元融资（含 Google Cloud 25 万美元）成为早期存活的关键。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+  <div class="card"><div class="ct">转折二：反常规交互——把 AI 藏起来，让孩子当导演</div><div class="cb">与 OpenAI 投资的 Heeyo（实时生成互动教育游戏）、跃然科技 BubblePal（毛绒玩具开口说话）等主流「AI 具象化」路线不同，敲敲门反其道而行：讲述者是「无形」的。技术负责人左德伟的解释是「几乎所有人在成长过程中都有个想象中的朋友，关键不在于『朋友』，而在于『想象中』」——给 AI 具体形象反而会限制孩子想象力。孩子按住麦克风说想法，AI 一次性完成文本、配乐、配音、配图；追问即续写。产品范式从「AI 陪伴孩子」转为「孩子引导 AI」，这是本案最核心的产品资产。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+  <div class="card red"><div class="ct">转折三：软件先行、硬件延展，以及「让 AI 像童话专家」的技术攻坚</div><div class="cb">团队没有停留在 App：为适配儿童场景做了墨水书（白天护眼阅读）与投影仪（夜晚投天花板）的深度硬件适配，重新对 AI 做调度而非简单装 App。技术侧攻坚童话生成质量——用公版经典故事 + 自创儿童故事/绘本/插画构成训练集，做多轮深度训练形成「人格系统」，再按「故事骨架 → 长出肉来 → 风格润色」的事件流产出绘本文本；用关键词屏蔽确保内容对儿童健康无害，而非靠预设场景锁死 AI 的创造力。报道同时如实记录了短板：虽有 7-12 岁与 3000 字选项，生成故事情节相对简单，更适合学龄前儿童。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+  <div class="quote">
+    <p>我们希望敲敲门是一个故事发生器（StoryOS），产生文字和内容，让孩子自己 guide（引导）自己。</p>
+    <span class="src">—— 敲敲门创始人 Tony Lai，36氪《智能涌现》（2024-09-25），转引自 <a class="cref verified" href="#ref-1">[1]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>内容</th><th>依据</th></tr></thead>
+    <tbody>
+      <tr><td><b>产品功能</b></td><td>故事（语音输入 → AI 一次性生成文本+配乐+配音+配图）、AI 绘本（选主题/年龄/风格/文本长度/配图张数，1-3 分钟生成）、AI 儿歌（按故事内容编写歌词，支持纯音乐/摇篮曲/绕口令，中英双语）、卡通/动画（一键转化分镜动画，支持 4K 投影播放）、绘画（马良 AI 画板，AI 实时补全涂鸦）；声音定制（家长一句话克隆声色讲故事）</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-6">[6]</a> <a class="cref partial" href="#ref-8">[8]</a></td></tr>
+      <tr><td><b>「孩子引导 AI」<br>反常规交互设计</b></td><td>讲述者「无形」：不赋予 AI 具体形象与人格，避免限制孩子想象力；孩子按住麦克风口述想法即生成，追问即续写，「让故事永不落幕」；发现广场支持浏览、点赞、收藏、二次创作与续写接龙，构成群体共创故事宇宙；与「AI 具象化陪伴」（BubblePal 类）形成路线分野</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>定价</b></td><td class="pos">免费（三端均免费使用，消耗免费积分生成）</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>面向客群</b></td><td>直接用户为儿童（官网定位 3-12 岁；报道实测更适配学龄前），决策与付费相关方为家长：家长端独立入口可设置主题/风格/文本长度/配图张数、查看专辑封面与歌词、使用「故事集」记录孩子成长；家长/儿童双入口双模式设计</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-6">[6]</a> <a class="cref partial" href="#ref-8">[8]</a></td></tr>
+      <tr><td><b>解决痛点</b></td><td>供给端：疲于工作的父母无法随时随地陪伴孩子、无法满足孩子旺盛的好奇心——AI 以 1-3 分钟的生成速度填补「陪讲故事」的人力空缺；需求端（创始人立场）：贫困家庭孩子缺乏好的教育资源，以免费 + 自主选择实现教育公平</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-5">[5]</a></td></tr>
+      <tr><td><b>硬件延展</b></td><td>墨水书（白天护眼看 AI 绘本）、投影仪（夜晚投天花板、可扩散至整个房间），对硬件「推倒现有设备设计、重新适配调度」，形成区别于电视/投影仪的新交互模式；海外以 Kiddo Box 智能投影仪众筹推进</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-9">[9]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 商业模式判定</div>
+    本案在收录时点上（2024-09）是「免费内容平台 + 云厂商资源支持」模式：不向教育收费，收入模式未披露；25 万美元 Google Cloud 支持与 300 万元融资是可核验的生存燃料。2025 年后官网未显示明确付费墙，App Store 页面亦为免费应用<a class="cref verified" href="#ref-6">[6]</a>——商业模式变现路径截至检索时点未见公开披露。
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>中国区累计读者</td><td class="hl">10 万+ 人次</td><td>2024-09 报道</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td>注册活跃用户</td><td>2-3 千人</td><td>2024-09 报道</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>美国市场下载量</td><td>破千次</td><td>2024-09 报道</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-5">[5]</a></td></tr>
+      <tr><td>融资</td><td class="hl">300 万元人民币（含 Google Cloud 25 万美元）</td><td>截至 2024-09</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td>App Store 中国区评分</td><td>5.0 / 5（仅 5 个评分）</td><td>2026-11 实测</td><td><a class="cref verified" href="#ref-6">[6]</a></td></tr>
+      <tr><td>版本迭代</td><td>23 个公开版本（1.1.2 → 1.4.8）</td><td>2024-08-14 → 2026-08-12</td><td><a class="cref verified" href="#ref-6">[6]</a></td></tr>
+      <tr><td>Indiegogo（Kiddo Box）</td><td>页面显示筹得 10,523 美元 / 11 位支持者（pledge manager 阶段页面值）</td><td>2026-11 实测快照</td><td><a class="cref partial" href="#ref-9">[9]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    「累计读者 10 万+ 人次」与「注册活跃用户 2-3 千人」为同一篇报道给出的两个口径：前者为读者人次（含未注册阅读），后者为注册且活跃用户，两者量级相差约 30-50 倍，引用时不可混用。所有运营数据均为 2024-09-25 创业者向媒体披露的口径，未见平台方或第三方审计数据；2024-09 之后的核心数据（读者、用户、下载）未检索到更新披露。Indiegogo 数字为 pledge manager 页面快照，非完整众筹总额。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将敲敲门放入案例墙「未成年 / 低龄创业者」与「AI + 家庭情感 / 儿童教育」坐标系（对标数据均为案例墙既有核验值，口径为公开报道值）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>成功迹象</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>敲敲门童话（Knock AI）</b></td><td>Chris &amp; Tony Lai（05 后兄弟）</td><td>AI 原生儿童互动童话平台，三端上线 + 硬件</td><td>累计读者 10 万+ 人次、300 万元融资（含 Google Cloud 25 万美元）</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>EmoEase</td><td>冼星朗（05 后佛山顺德人，香港读高中）</td><td>Cursor/Trae 零基础 20 天开发的 AI 情绪疗愈 App</td><td>上线即冲 App Store 付费工具榜第 5；苹果 SSC 全球杰出获奖者；月入过万（南都系单一自述口径）</td><td>案例墙核验值：南都专访、腾讯新闻、钛媒体、网易、南方新闻网、Apple SSC 页面</td></tr>
+      <tr><td>天之灵AI</td><td>张翼（37 岁，失业送外卖期间起步）</td><td>AI 哀伤陪伴小程序：上传亲人照片生成数字形象陪对话</td><td>注册用户 11.1 万、付费会员 2000-3000 人（年费 99 元起）、已盈利</td><td>案例墙核验值：36氪（36kr.com/p/4052600729294468）</td></tr>
+      <tr><td>在场（对照条目）</td><td>朱书浛（13 岁初二学生）</td><td>AI 虚拟家长陪写作业应用</td><td>成功迹象仅黑客松三天 1.8 万元（案例墙因成功迹象不足未收录主线）</td><td>案例墙落选对照条目</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>本案的对标价值集中在两点：其一，<b>「兄弟创业 + 儿童教育」的组合在案例墙内无同类</b>——同为 05 后，EmoEase 是单人工具型 App（情绪疗愈，C 端订阅思路），敲敲门则是平台型产品（内容生成 + 社区 + 硬件），且一开始就有外部融资与云厂商资源加持；同为儿童教育场景，「在场」止步黑客松，敲敲门已完成三端上线与十万级读者验证。其二，与「天之灵AI」同属「AI 承接家庭情感场景」赛道，但路线相反：天之灵AI 用 AI 复刻逝者形象、靠付费会员盈利，敲敲门拒绝给 AI 具体形象、坚持免费——两条路径恰好构成「AI 家庭情感内容」的一体两面，其商业成败目前尚未分出（截至检索时点，敲敲门未披露收入，天之灵AI 已盈利）。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:130px">维度</th><th>分析</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>AI 原生儿童互动童话平台：语音输入 → 一次生成文本+配乐+配音+配图，追问即续写；绘本/儿歌/动画/绘画四类生成物 + 发现广场社区共创 + 家长端定制入口；软件（小程序/App）与硬件（墨水书、投影仪）双轨。技术管线为「多轮深度训练的人格系统 → 故事骨架 → 扩写润色 → 语音/配图转化」<a class="cref verified" href="#ref-1">[1]</a><a class="cref partial" href="#ref-8">[8]</a>。</td></tr>
+      <tr><td><b>2. 面向客群</b></td><td>双客群结构：儿童是使用者（官网定位 3-12 岁，报道实测更适配学龄前），家长是决策者与设置者（主题、风格、长度、防沉迷）；获客双市场——中国区为主（10 万+ 人次读者），美国市场破千下载作为出海探针。「不是为了教育收费」的立场直接排除了家长付费墙模式<a class="cref verified" href="#ref-1">[1]</a><a class="cref partial" href="#ref-8">[8]</a>。</td></tr>
+      <tr><td><b>3. 解决痛点</b></td><td>核心痛点是「父母缺位时的陪伴质量」：孩子连环追问而家长无暇回应。产品把「讲故事的主动性」交还孩子，AI 充当「创造力的拐杖」而非替代者；对贫困家庭孩子的教育公平关怀构成差异化叙事（公益初心 vs 商业变现的张力见柒-4）。<a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>4. 预估年化营收<br>（推算，置信度 C）</b></td><td class="hl">零披露。可核验事实：三端免费、无付费墙报道、收入模式未见披露；融资 300 万元（含 Google Cloud 25 万美元）为唯一外部资金口径。按当期汇率（2024-09 约 7.0）25 万美元约合 175 万元，若全额计入 300 万元融资，现金部分约百万元量级（推算口径，实际构成未披露）。免费模式下营收想象空间在硬件销售（墨水书/投影仪/Kiddo Box 众筹）与后续增值服务，均未兑现公开数据。营收推算置信度 C，仅供参考。</td></tr>
+      <tr><td><b>5. 融资进展</b></td><td>300 万元人民币融资（截至 2024-09 报道），其中含 Google Cloud 25 万美元——报道以「投资」表述，未检索到 Google for Startups 官方项目页印证（英文检索命中的均为同名无关公司）；业内 Google 对初创的同类支持多为云资源额度（credits）性质，本案 25 万美元的现金/额度构成未披露。融资轮次、投资方全名单、投后估值均未公开。后续轮次未检索到公开信息。<a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>6. 儿童隐私与<br>AI 内容审核<br>（合规重点）</b></td><td>本案客群为 3-12 岁儿童，处于儿童数据合规最严区间：中国侧，《个人信息保护法》第 31 条要求处理不满 14 周岁未成年人个人信息须取得父母或其他监护人同意并制定专门处理规则，《未成年人网络保护条例》（2024-01 施行）对适龄内容与服务提出要求；美国侧，COPPA 对 13 岁以下儿童在线数据的「可验证家长同意」要求直接适用于其美国市场。实测核验：App Store 年龄分级为 13+（含年龄验证、用户生成内容、社交媒体控件）——与官网「3-12 岁」定位存在错位，属常见的商店分级规避做法，但意味着 COPPA 合规压力实质存在；隐私标签显示开发者声明收集电话号码（与身份关联，用于 App 功能，未经 Apple 验证）。内容审核侧：产品以关键词屏蔽确保内容对儿童健康无害、以儿童模式（数学题解锁）实现防沉迷，报道确认其实装；AI 生成内容的「恐怖谷」风险由「声音定制仅限讲故事环节」的克制设计缓解。整体判断：产品层有防沉迷与内容过滤实装，但儿童数据处理的监护人同意机制、隐私政策的儿童专章条款未见公开核验材料，属本案最大合规留白<a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-6">[6]</a>。</td></tr>
+      <tr><td><b>7. 团队化程度<br>与投入成本</b></td><td>「兄弟创业 + 成年协作者」的微型结构：创始人 2 人（未成年/刚成年），公开露面的关键协作者有技术负责人左德伟、硬件设计师高若彤<a class="cref verified" href="#ref-1">[1]</a>；公司治理层面法定代表人为王孝黎（非创始人本人，与创始人未成年身份自洽）<a class="cref cross" href="#ref-7">[7]</a>。融资后团队化程度判断：未见扩张报道，2025-2026 年仍在招聘移动前端工程师（招聘文案口径待证），判断为「10 人以内小团队 + 兄弟核心」形态，远未公司化——符合案例墙「一人/两人及以下」收录口径。投入成本：算力与训练数据成本未披露，250,000 美元云资源（若为额度）构成主要基础设施投入（推算口径）。</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 留白与口径冲突（截至 2026-11-13 检索）</div>
+    ① 创始人完整身份留白：两人姓氏全名、学校、确切年龄均未见于公开报道，「香港背景」为案例墙底稿口径，独立信源未直接印证；② Google for Startups / Google Cloud 项目页未检索到——25 万美元支持对应的官方项目无法回溯，性质（现金/云额度）未披露；③ 2024-09 之后的核心运营数据（读者、用户、下载、融资进展）未检索到任何更新披露，本案成功迹象停留在报道时点；④ Google Play 商店详情页两次抓取超时未能直接核验（36 氪明确称已上线）；⑤ Indiegogo 众筹的发起时间、完整筹资总额未核验（主页被安全验证拦截，仅能以镜像页快照间接核验）。口径冲突：三端口径——原报道为「微信小程序 / App Store / Google Play」，案例墙底稿写「iOS / Android / Web」，按原报道采信、双口径存档；BOSS 直聘招聘文案称「敲敲门童话由美国硅谷科技团队打造，斯坦福博士为孩子打开人生新视角」，与「05 后高中生兄弟创业」的报道口径存在明显张力，判定为雇主品牌文案夸饰或指技术顾问团队，按待证处理<a class="cref partial" href="#ref-10">[10]</a>；另检索到「杭州敲敲门文化创意有限公司」与本案运营主体（上海启扉绘梦）的关系未检索到公开信息，存在同名干扰，不作关联。
+  </div>
+  <div class="box note">
+    <div class="bt">📝 如实记录的产品短板与叙事风险</div>
+    ① 报道实测即指出：生成故事「情节相对简单」，虽有 7-12 岁与 3000 字选项，与一般小学生读物水平仍有差距，更适配学龄前——3-12 岁的官方定位与实际能力存在差距；② 「读者 10 万+ 人次 vs 注册活跃用户 2-3 千人」的漏斗落差显著，免费读者向活跃用户的转化路径未披露；③ 免费教育叙事与商业化变现的张力尚未解决，截至检索时点无收入披露；④ App Store 中国区仅 5 个评分（5.0），样本过小，口碑数据不具统计意义<a class="cref verified" href="#ref-6">[6]</a>；⑤ 「教育公平」公益叙事与 300 万元商业融资并存，投资者回报预期与免费承诺如何兼容未见公开解释。
+  </div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">捌·附</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 10 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx verified">[1]</span><span class="rt">A</span><span class="st">主流财经科技媒体原文</span></div><div class="ti">05后华人高中生兄弟创业AI教育，用AI给在街上游荡的孩子们讲故事 | New Things</div><div class="mt"><b>来源：</b>36氪《智能涌现》（文/王奕昕，编辑/邓咏仪）　<b>发布日期：</b>2024-09-25<br><a href="https://36kr.com/p/2963790071566595" target="_blank" rel="noopener">https://36kr.com/p/2963790071566595</a></div><div class="note">事实核查：原文全文回溯完成；产品交互（语音生成/1-3 分钟/儿歌/发现广场/儿童模式/墨水书/投影仪）、技术方案（人格系统/故事骨架/关键词屏蔽/声音定制）、主创身份（华人高中生兄弟/公益初衷/「不为教育收费」）、核心数据（读者 10 万+ 人次、注册活跃 2-3 千、美国下载破千、300 万元融资含 Google Cloud 25 万美元）均出自此稿；经 [2][3][4][5] 四条独立转载链交叉印证。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx cross">[2]</span><span class="rt">B+</span><span class="st">门户转载（官方账号）</span></div><div class="ti">05后华人高中生兄弟创业AI教育（36氪官方账号分发）</div><div class="mt"><b>来源：</b>腾讯新闻　<b>发布日期：</b>2024-09-25 09:06<br><a href="https://view.inews.qq.com/a/20240925A01H6C00" target="_blank" rel="noopener">https://view.inews.qq.com/a/20240925A01H6C00</a></div><div class="note">事实核查：与 [1] 全文一致，确认为 36 氪官方账号分发，转载链交叉完成。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx cross">[3]</span><span class="rt">B+</span><span class="st">门户转载</span></div><div class="ti">05后华人高中生兄弟创业AI教育，用AI给在街上游荡的孩子们讲故事 | New Things</div><div class="mt"><b>来源：</b>新浪财经　<b>发布日期：</b>2024-09-25<br><a href="https://finance.sina.com.cn/roll/2024-09-25/doc-incqirix0813855.shtml" target="_blank" rel="noopener">https://finance.sina.com.cn/roll/2024-09-25/doc-incqirix0813855.shtml</a></div><div class="note">事实核查：与 [1] 一致；「读者 10 万+ 人次」「300 万元融资含 Google Cloud 25 万美元」等关键数字经此链再次印证。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx cross">[4]</span><span class="rt">B+</span><span class="st">主流财经（摘要转载）</span></div><div class="ti">敲敲门童话:创新 AI 教育，融资 300 万</div><div class="mt"><b>来源：</b>和讯（自选股写手）　<b>发布日期：</b>2024-09-26<br><a href="https://m.hexun.com/stock/2024-09-26/214722025.html" target="_blank" rel="noopener">https://m.hexun.com/stock/2024-09-26/214722025.html</a></div><div class="note">事实核查：可达；三端上线（微信小程序/App Store/Google Play）、读者 10 万+ 人次、注册活跃 2-3 千、美国下载破千、300 万元融资含 Google Cloud 25 万美元、儿童模式与防沉迷、墨水书与投影仪硬件、关键词屏蔽等技术细节与 [1] 一致；另载「技术负责人称无形激发想象力」「未来推出视频功能」等。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx cross">[5]</span><span class="rt">B</span><span class="st">门户转载（改写稿）</span></div><div class="ti">05后华人高中生兄弟创业AI教育</div><div class="mt"><b>来源：</b>中华网（转 36氪/头条号）　<b>发布日期：</b>2024-09-26 07:47<br><a href="https://3g.china.com/act/news/10000169/20240926/47278496.html" target="_blank" rel="noopener">https://3g.china.com/act/news/10000169/20240926/47278496.html</a></div><div class="note">事实核查：可达（改写稿，注明出处 36氪）；教育公平叙事、免费策略、融资口径与 [1] 一致；「美国市场获得初步成功」表述经此链印证。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx verified">[6]</span><span class="rt">A</span><span class="st">应用商店（一手实测）</span></div><div class="ti">敲敲门童话 App Store 中国区页面（开发者：上海启扉绘梦智能科技有限公司）</div><div class="mt"><b>来源：</b>Apple App Store　<b>查询日期：</b>2026-11-13 实测<br><a href="https://apps.apple.com/cn/app/%E6%95%B2%E6%95%B2%E9%97%A8%E7%AB%A5%E8%AF%9D/id6504226345" target="_blank" rel="noopener">https://apps.apple.com/cn/app/敲敲门童话/id6504226345</a></div><div class="note">事实核查：一手平台页。实测确认：免费、「工具」分类、评分 5.0（仅 5 个评分）、年龄分级 13+（含年龄验证/用户生成内容/社交媒体控件）、隐私声明收集电话号码（与身份关联，未经 Apple 验证）、开发者主体为上海启扉绘梦智能科技有限公司（与 [7] 工商信息交叉）；版本历史 1.1.2（2024-08-14）→ 1.4.8（2026-08-12）共 23 个版本，含 1.1.7 声音定制（2024-08-31）、1.2.8 视频创作（2024-11-20）、1.4.3 心理报告（2025-10-16）、1.4.5 日语/西班牙语（2025-12-13）等节点。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">B+</span><span class="st">工商信息（登记数据）</span></div><div class="ti">上海启扉绘梦智能科技有限公司（工商登记与商标信息）</div><div class="mt"><b>来源：</b>企查查　<b>查询日期：</b>2026-11-13 实测<br><a href="https://www.qcc.com/cassets/5ea63360d94599ce68ae0e3f72d881e6.html" target="_blank" rel="noopener">https://www.qcc.com/cassets/5ea63360d94599ce68ae0e3f72d881e6.html</a>（另见商标页：注册号 88615577）</div><div class="note">事实核查：成立日期 2024-03-25、注册资本 50 万元、法定代表人王孝黎、小微企业、存续；「敲敲门童话」商标有效期 2026-06-21 至 2036-06-20、申请地址上海市长宁区天山路18号901室；开发者主体与 [6] App Store 开发者名互证。注：检索另见「杭州敲敲门文化创意有限公司」，与本案主体关联未检索到公开信息（见捌）。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx partial">[8]</span><span class="rt">A</span><span class="st">官网（一手自述）</span></div><div class="ti">启扉绘梦-儿童AI智能创作平台（官网首页 / case / aboutus 页）</div><div class="mt"><b>来源：</b>敲敲门童话官网　<b>查询日期：</b>2026-11-13 实测<br><a href="https://www.knockai.cn/" target="_blank" rel="noopener">https://www.knockai.cn/</a>（公司页 <a href="https://www.knockai.cn/?case/" target="_blank" rel="noopener">knockai.cn/?case/</a>、<a href="https://www.knockai.cn/?aboutus/" target="_blank" rel="noopener">knockai.cn/?aboutus/</a>）</div><div class="note">事实核查：官网可达（一手）。确认五大核心功能（故事/绘本/音乐/动画/马良画板）、3-12 岁定位、「语音+多模态生成+硬件联动」、多端联动与 4K 投影、宝宝盒投影仪、公司成立于 2024 年 3 月总部上海。按自述型一手信源处理（单源，无第三方印证的功能描述以 partial 标注）。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx partial">[9]</span><span class="rt">B</span><span class="st">海外众筹页（间接核验）</span></div><div class="ti">Knock AI Kiddo Box Smart Projector（Indiegogo）</div><div class="mt"><b>来源：</b>Indiegogo（教育类目）　<b>查询日期：</b>2026-11-13<br><a href="https://www.indiegogo.com/pl/projects/knockai/knock-ai-kiddo-box-smart-projector--2" target="_blank" rel="noopener">https://www.indiegogo.com/pl/projects/knockai/knock-ai-kiddo-box-smart-projector--2</a></div><div class="note">事实核查：主页面被安全验证（Cloudflare）拦截，无法全文抓取；经意大利语镜像页与搜索摘要间接核验：项目存在、类目为 Education、团队自述「The founders of Knock Knock Fairytales are a pair of Chinese high school brothers, Chris and Tony」（与 [1] 口径一致）、投资段复述与 [1] 一致、页面为 pledge manager 状态显示筹得 10,523 美元 / 11 位支持者（非完整众筹总额）。发起时间与最终筹资额未核验，按 partial 处理。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx partial">[10]</span><span class="rt">C</span><span class="st">招聘页（待证口径）</span></div><div class="ti">上海启扉绘梦智能科技——移动前端开发工程师岗位（公司介绍文案）</div><div class="mt"><b>来源：</b>BOSS 直聘　<b>查询日期：</b>2026-11-13<br><a href="https://m.zhipin.com/job_detail/3031ca950cace7e3031_3925FVJV.html" target="_blank" rel="noopener">https://m.zhipin.com/job_detail/3031ca950cace7e3031_3925FVJV.html</a></div><div class="note">事实核查：可达。招聘文案称「敲敲门童话由美国硅谷科技团队打造，斯坦福博士为孩子打开人生新视角」——与 [1]「05 后高中生兄弟创业」口径存在张力，判定为雇主品牌文案（夸饰或指技术顾问构成），按 C 级待证口径收录，仅用于捌的争议记录；另可佐证 2026 年公司仍在招聘（团队未解散）。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 10 条。核验标签分布：🟢 已核验（verified）2 条、🔵 多源印证（cross）5 条、🟡 部分映证（partial）3 条。信源评级分布：A 级 3 条（36氪原文、App Store 一手、官网一手，均全文/页面回溯完成）、B+ 级 4 条（腾讯新闻、新浪财经、和讯、企查查工商数据）、B 级 2 条（中华网、Indiegogo 间接核验）、C 级 1 条（BOSS 直聘招聘文案，已标注待证）。核验失败与不可达处理：① Google for Startups / Google Cloud 项目页未检索到（英文检索命中 knock-ai.com、knock.app、Knock Ai Technologies（Dallas）等同名无关实体，已全部排除）——25 万美元支持性质按「未披露」处理并在壹/柒显式说明；② Google Play 商店详情页两次抓取超时，未核验，正文按「36氪称已上线、商店页未直接核验」表述；③ Indiegogo 主页安全验证拦截，以意大利语镜像页快照间接核验并如实标注。两处口径冲突（三端口径、招聘文案「硅谷团队/斯坦福博士」）与「香港背景」待证口径均已在正文显式标注。未发现伪造链接；全部 URL 为检索过程实际命中页面。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-13 · 运营数据为 2024-09 创业者披露口径且未获后续更新，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

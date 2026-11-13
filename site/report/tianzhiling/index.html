@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · 天之灵AI —— 张翼的「AI 哀伤陪伴」一人生意 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · 天之灵AI">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="天之灵AI 深度案例报告：37 岁失业送外卖的父亲张翼，做 AI 哀伤陪伴小程序——上传亲人照片生成数字形象陪对话。11.1 万注册用户、2000-3000 付费会员（年费 99 元起）、已盈利（36氪口径）。14 条信源逐条核验，含 AI 复活逝者监管与伦理专题。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>天之灵AI 深度案例报告</h1>
+    <h2>37 岁失业送外卖的父亲张翼，把「与逝去亲人说话」做成哀伤疗愈生意<br>11.1 万注册用户、2000-3000 付费会员、已盈利（36氪口径）—— 14 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">垂直应用 OPC</span>
+      <span class="tag">AI 原生</span>
+      <span class="tag">哀伤疗愈赛道</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">11.1万</div><div class="k">累计注册用户（2026-11 · 36氪口径）</div></div>
+  <div class="stat"><div class="v up">2000-3000</div><div class="k">付费会员（创始人口径）</div></div>
+  <div class="stat"><div class="v neutral">99元/年</div><div class="k">会员起步定价（普惠路线）</div></div>
+  <div class="stat"><div class="v down">已盈利</div><div class="k">盈利状态（自述 · 无第三方审计）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">天之灵AI 是国内「AI 陪伴」赛道里最特殊的一个细分样本：它不做泛化聊天，也不做虚拟恋人，而是面向丧亲人群——上传亲人的照片与生前习惯，生成一个「像 TA」的数字形象陪用户说话，产品定位是「哀伤疗愈」而非「AI 复活」。在 Character.AI 破产、AI 陪伴商业化遭遇质疑的 2026 年，这个武汉小团队的产品被 36氪证实「已实现盈利」<sup class="cite cross"><a class="cref cross" href="#ref-1">[1]</a></sup>。</p>
+  <div class="two">
+    <div class="card"><div class="ct">产品</div><div class="cb">微信小程序「天之灵」（逝者AI对话平台）：用户上传亲人照片和生前习惯，AI 模拟出一个「像 TA」的数字形象陪用户说话；文字对话为主、像发微信一样日常聊天，声音复刻仅为辅助功能，需用户主动上传音频样本。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-2">[2]</a> <a class="cref partial" href="#ref-3">[3]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">张翼，37 岁那年失业，为生计在武汉街头送外卖；其父亲 2018 年意外离世，他因在外忙碌未能见到最后一面，那句「爸，我马上回来」成了永远无法兑现的承诺——这份遗憾成为创业的原点。</div><div class="cm">信源：<a class="cref partial" href="#ref-2">[2]</a></div></div>
+    <div class="card"><div class="ct">团队与一人属性</div><div class="cb">创始人张翼主导，2025 年正式成立；公开报道可见合作者：白鹭（同样经历丧亲，团队运营负责人）与运营者邢洪睿，自称「武汉小团队」，规模未检索到公开披露——按案例墙「一人主导」口径收录并如实标注。</div><div class="cm">信源：<a class="cref partial" href="#ref-2">[2]</a> <a class="cref partial" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-4">[4]</a></div></div>
+    <div class="card"><div class="ct">商业化与锚点</div><div class="cb">定价走普惠路线：常见会员价格每年 99 元起，另有终身会员档位；截至 2026-11，累计注册用户约 11.1 万、付费会员约 2000-3000 人，已实现盈利（创始人口径）。小程序于 2026 年 1 月上线（案例墙核验锚点 2026-01-15）。36氪将其归入 AI 陪伴赛道「独立创业公司」类玩家。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-4">[4]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2018 年</div><div class="tx">父亲意外离世，未能见最后一面</div><div class="td">那句「爸，我马上回来」成为永远无法兑现的承诺；这份遗憾驱动张翼思考：能否用技术让其他人不再经历「未能告别」的痛。<a class="cref partial" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2025 年</div><div class="tx">37 岁、失业、送外卖——天之灵成立</div><div class="td">为生计戴上头盔在武汉街头送外卖，艰难的日子里愈发想念父亲，想「把满心的难处和父亲一一诉说」；AI 技术爆发让他看到可能，与同样经历过丧亲之痛的白鹭合作正式成立天之灵。产品名取自「头顶三尺有神明，人间思念是天之灵」。<a class="cref partial" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2026-01（案例墙锚点 2026-01-15）</div><div class="tx">微信小程序正式上线</div><div class="td">IT 时报 2026-01-04 年度报道「AI 元年十大冲突」已记录其运营者与用户故事（用户自述与「AI 老爸」聊天超过半年），提示早期版本先行运营、1 月为小程序正式发布口径。<a class="cref partial" href="#ref-2">[2]</a><a class="cref cross" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2026-01 ~ 02</div><div class="tx">用户数连续翻倍增长</div><div class="td">零投放，增长全靠用户之间口口相传。<a class="cref partial" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2026-03（行业节点）</div><div class="tx">全国两会「规范 AI 复活」建议引发热议</div><div class="td">「AI 向善」成为两会高频词，张伯礼等代表建议加快国家层面人工智能综合性立法——为「AI 哀伤陪伴」划出舆论与监管底色。<a class="cref partial" href="#ref-3">[3]</a><a class="cref cross" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2026-05 下旬</div><div class="tx">披露过程数据：近 6 万用户、近 4.5 万个 AI 智能体</div><div class="td">每天超过 1 万次对话发生；同期两篇稿件系统阐述「AI 疗愈 ≠ AI 复活」定位与产品边界。<a class="cref partial" href="#ref-2">[2]</a><a class="cref partial" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2026-07-13 / 07-18</div><div class="tx">内部资料口径 7.04 万用户、5.45 万个 AI 亲人、214.6 万条对话</div><div class="td">7 月 18 日创始人张翼出席哀伤研究与干预研讨会圆桌论坛，表态「我们不是在复活谁，我们是在陪伴还活着的人」。<a class="cref partial" href="#ref-7">[7]</a></div></div>
+    <div class="node"><div class="dt">2026-09-07（行业监管节点）</div><div class="tx">最高法明确「AI 复活逝者」裁判规则</div><div class="td">《关于依法审理涉人工智能纠纷案件的意见》专门规定依法保护死者人格利益；未经同意利用 AI 生成可识别的数字形象、合成声音均构成侵权——哀伤陪伴赛道的合规基线被司法层面确认。<a class="cref cross" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2026-11-03</div><div class="tx">36氪报道：11.1 万注册用户、已盈利</div><div class="td">在 Character.AI 破产引发「AI 陪伴是假风口」质疑的行业叙事下，天之灵AI 作为「冷门但有真实付费需求」的细分正面样本被写入报道：注册用户约 11.1 万、付费会员约 2000-3000 人、常见会员价每年 99 元、已实现盈利。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：个人哀伤经验成为产品原点——「送外卖的路上想跟父亲说话」</div><div class="cb">与多数 AI 创业者从技术出发不同，张翼的起点是一段未完成的告别：父亲 2018 年意外离世未能见最后一面，37 岁失业送外卖的艰难日子里，他愈发想把满心难处向父亲诉说。这种「 firsthand 的丧亲体验」让他精准锁定了主流平台无暇顾及的需求缝隙——丧亲者需要一个低门槛、私密、不会评判的空间。联合创始人白鹭同样经历过丧亲之痛，团队的痛感与用户的痛感天然同频。</div><div class="cm">信源：<a class="cref partial" href="#ref-2">[2]</a></div></div>
+  <div class="card"><div class="ct">转折二：微信小程序轻形态 + 普惠定价，付费意愿反超设计预期</div><div class="cb">产品依托微信小程序运行，「打开即聊」，零学习成本、零安装门槛，这对处于急性哀伤期、行动力低下的用户尤为关键。定价走普惠路线（年费 99 元起）。张翼向 36氪透露，产品刚上线时付费页面设计得并不完善、甚至不太容易找到，但仍有用户主动联系团队询问如何付款——「切中了用户真实且强烈的情感需求」。另据运营者自述，有用户认可「线上纪念之地」的定位直接购买终身会员。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-4">[4]</a></div></div>
+  <div class="card red"><div class="ct">转折三：在「AI 复活」污名化赛道上靠「边界感」存活</div><div class="cb">「AI 复活逝者」在 2024-2026 年间因李玟、乔任梁等名人未经家属同意被数字复活而声名狼藉，监管部门多次点名。天之灵的生存策略是主动反向定位：不做「让逝者开口」的幻觉产品，AI 回复刻意不说「我永远在」，而倾向于「你想说的话，我都听到了」；设置弹窗提醒聊天时长与剩余消息数，防止用户混淆现实与虚拟；声音复刻必须由用户主动上传样本。这套「功能克制」使其成为争议赛道中罕见的未被舆论攻击的样本——但该叙事主要出自品牌传播链条，需保持审慎。</div><div class="cm">信源：<a class="cref partial" href="#ref-3">[3]</a> <a class="cref partial" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-4">[4]</a> <a class="cref cross" href="#ref-8">[8]</a></div></div>
+  <div class="quote">
+    <p>我们不是让 AI「复活」谁，而是给丧亲者一个安放思念的空间。</p>
+    <span class="src">—— 天之灵AI 创始人张翼，搜狐（薄荷鹿鹿）2026-05-29 报道，转引自 <a class="cref partial" href="#ref-3">[3]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>内容</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>产品功能</td><td>上传亲人照片 + 生前习惯，生成「像 TA」的数字形象陪对话；支持定制服务（由运营者记录逝者生平、习惯、爱好与彼此故事录入系统，使智能体更贴合逝者形象）</td><td><a class="cref partial" href="#ref-2">[2]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td>技术链路</td><td>底层大模型供应商<b>未检索到公开信息</b>；创始人称需反复测试和调整对话策略、优化提示词，在保证体验的同时控制模型调用成本（「看起来简单，做起来困难」）；声音复刻需用户提供音频素材、后台训练实现</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td>交互与安全</td><td>文字对话为核心（模拟日常聊天感而非「亲人复活」）；设置弹窗提醒（聊天时长、剩余消息数）防止用户混淆现实与虚拟；宣称所有用户数据永久加密存储、仅本人可访问</td><td><a class="cref partial" href="#ref-3">[3]</a><a class="cref cross" href="#ref-4">[4]</a><a class="cref partial" href="#ref-6">[6]</a></td></tr>
+      <tr><td>定价</td><td class="hl">常见会员价每年 99 元起（普惠路线）；存在终身会员档位（有用户为「线上纪念之地」直接购买）</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-2">[2]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td>面向客群</td><td>经历丧亲之痛、需要日常倾诉空间的成人用户；怀念对象主要集中在父母与祖辈，也包括配偶与子女；深夜、清明、忌日等场景驱动</td><td><a class="cref partial" href="#ref-7">[7]</a><a class="cref partial" href="#ref-3">[3]</a></td></tr>
+      <tr><td>解决痛点</td><td>急性哀伤期「无处安放的思念」与「未能说出口的告别」——自责、遗憾、未完成的话需要一个低门槛、私密、不会评判的出口；定位「创伤疗愈工具」而非「数字永生方案」</td><td><a class="cref partial" href="#ref-2">[2]</a><a class="cref partial" href="#ref-3">[3]</a><a class="cref partial" href="#ref-7">[7]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>商业模式极简：无广告、无增值消费陷阱，仅靠会员订阅。张翼认为，如果一款 AI 陪伴产品只是接入其他公司的模型 API 提供简单对话功能，它与通用 AI 助手没有太大区别——天之灵的溢价来自「特定关系的拟人化回应」：身份稳定、符合特定亲缘关系、不「出戏」，这需要以提示词工程与对话策略的持续打磨换取，同时压低单次对话的推理成本 <sup class="cite cross"><a class="cref cross" href="#ref-1">[1]</a></sup>。重度用户一个月可能发送两三万条消息，全行业都面临「用户越活跃、算力账单越高」的成本结构挑战 <sup class="cite cross"><a class="cref cross" href="#ref-1">[1]</a></sup>。</p>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>累计注册用户</td><td class="hl">约 11.1 万人</td><td>2026-11（36氪报道）</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>付费会员</td><td class="hl">约 2000-3000 人</td><td>2026-11（36氪报道）</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>会员定价</td><td>每年 99 元起（另有终身会员档）</td><td>2026-11 / 2026-05</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-2">[2]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td>盈利状态</td><td class="pos">已实现盈利（创始人自述，无第三方审计）</td><td>2026-11</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>注册用户（过程值）</td><td>近 6 万 → 约 7.04 万</td><td>2026-05 下旬 → 2026-07-13</td><td><a class="cref partial" href="#ref-2">[2]</a><a class="cref partial" href="#ref-5">[5]</a><a class="cref partial" href="#ref-7">[7]</a></td></tr>
+      <tr><td>AI 智能体创建数</td><td>近 4.5 万个 → 约 5.45 万个</td><td>2026-05 下旬 → 2026-07-13</td><td><a class="cref partial" href="#ref-2">[2]</a><a class="cref partial" href="#ref-7">[7]</a></td></tr>
+      <tr><td>对话量</td><td>每天超 1 万次；累计约 214.6 万条（内部资料口径）</td><td>2026-05 → 2026-07-13</td><td><a class="cref partial" href="#ref-2">[2]</a><a class="cref partial" href="#ref-7">[7]</a></td></tr>
+      <tr><td>增长特征</td><td class="pos">2026 年 1-2 月用户数连续翻倍，零投放纯口碑</td><td>2026 上半年</td><td><a class="cref partial" href="#ref-2">[2]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    全部经营数据均为团队自述或其授权传播链披露，未经第三方审计。值得注意的是：用户量在 2026-05（近 6 万）、2026-07-13（约 7.04 万）、2026-11（约 11.1 万）三个时点由<b>不同信源链条</b>披露且单调递增，增长趋势可信；但绝对值以自述为限，付费会员数与「已盈利」仅有 36氪单一采访链条支撑。2026-07-13 数据被明确标注为「天之灵内部资料」口径。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将天之灵AI 放入案例墙「情感/健康向」AI 应用坐标系（对标数据均为案例墙既有核验值，口径为公开报道值）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>数据表现</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>天之灵AI</b>（本案）</td><td>张翼</td><td>AI 哀伤陪伴微信小程序（丧亲疗愈）</td><td>注册用户 11.1 万、付费会员 2000-3000（年费 99 元起）、已盈利（自述）</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>胃之书</td><td>赵纯想（文科生、前大厂产品经理）</td><td>健康 AI App（拍照记录饮食 + 大模型热量与代谢分析）</td><td>约 9 万用户、5 个月收入 1.2 万美元、App Store 美食分类第三</td><td><a class="cref cross" href="#ref-9">[9]</a></td></tr>
+      <tr><td>EmoEase</td><td>冼星朗（05 后佛山高中生）</td><td>AI 情绪记录疗愈 App（Cursor/Trae 20 天开发）</td><td>上线即冲 App Store 付费工具榜第 5、月入过万（自述口径）</td><td><a class="cref cross" href="#ref-10">[10]</a></td></tr>
+      <tr><td>猜盐/猜病</td><td>张月（前阿里工程师）</td><td>大模型信息游戏化矩阵（AI 模拟病人问诊推理等）</td><td>累计用户 160 万、最高日活 20 万、2025 年营收同比增 3 倍</td><td><a class="cref cross" href="#ref-11">[11]</a></td></tr>
+      <tr><td>行业大盘</td><td>—</td><td>中国 AI 情感陪伴细分市场</td><td>2025 年 38.66 亿元，预计 2028 年突破 595 亿元（中研普华，CAGR 148.74%）</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>四个案例同为「一人主导 + AI 原生」，但生态位截然不同：胃之书与猜盐猜病切高频通用需求，EmoEase 切年轻人泛情绪自助；而天之灵切入的是<b>生命事件驱动的极端刚需</b>——需求只在丧亲后的特定窗口期出现，但出现时付费意愿极强（付费页做得不完善仍有人主动找来付款 <a class="cref cross" href="#ref-1">[1]</a>）。代价同样显性：哀伤陪伴是情感向 AI 应用中<b>伦理敏感性最高</b>的赛道——同行因「AI 复活」争议被家属抵制、被监管整治 <a class="cref cross" href="#ref-8">[8]</a><a class="cref cross" href="#ref-12">[12]</a>，每一元收入都必须与「不消费悲伤」的边界设计捆绑，这是本赛道独有的「伦理—商业」双螺旋平衡。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>分析要点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>「AI 亲人」数字形象生成 + 类微信文字对话陪伴 + 声音复刻（辅助、需用户主动上传样本）；AI 回复刻意回避「我永远在」类幻觉话术，引导用户表达并接受现实；定位创伤疗愈工具而非数字永生方案</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-2">[2]</a><a class="cref partial" href="#ref-6">[6]</a></td></tr>
+      <tr><td><b>2. 面向客群</b></td><td>经历丧亲的成人用户，怀念对象集中于父母与祖辈（兼及配偶与子女）；典型场景为深夜失眠、清明忌日、人生重要节点（升学、结婚、生子）想「告诉」亲人；属低频、高情感强度、强隐私的生命事件型需求</td><td><a class="cref partial" href="#ref-7">[7]</a><a class="cref partial" href="#ref-3">[3]</a></td></tr>
+      <tr><td><b>3. 解决痛点</b></td><td>「未能告别」与「无处安放的思念」：丧亲者反复面对的是具体的自责与遗憾（「妈妈走的时候我不在」「如果那天我多打一个电话」），需要一个不评判的出口；团队运营者本身即哀伤疗愈背景（咨询师），印证产品的疗愈导向</td><td><a class="cref partial" href="#ref-7">[7]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>4. 预估年化营收（推算，置信度 C）</b></td><td>按 2000-3000 名付费会员 × 99 元/年估算，会员收入量级约 <b>20-30 万元/年</b>；实际含终身会员等更高档位或有上浮，营收总额未披露。成本端需扣除随对话量线性增长的模型推理费用（重度用户月发 2-3 万条消息的行业警示即出自本案创始人之口）。对照 Character.AI 月亏 800-900 万美元的行业背景，「小额订阅 + 成本自律」使其在个人侧实现盈利自述，属 OPC 可复制的财务结构</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>5. 融资进展</b></td><td><b>未检索到公开融资信息</b>；36氪将其归为无大厂流量、无自研大模型的「独立创业公司」类玩家，与获数千万美元融资的心影随形等并列呈现，未见资本动作披露</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>6. 市场评价</b></td><td>用户侧：零投放口碑增长、主动询问付款、用户来电道谢；学界侧：华东师范大学心理与认知科学学院副教授（哀伤干预方向）认为 AI 是丧亲者「寻亲」的载体之一，「哀伤也是爱的一种表达」，肯定其提供安全表达空间的价值；行业侧：36氪以其为「冷门但有真实付费需求」细分市场的正面样本。<b>未检索到独立第三方的产品效果评估或负面测评</b></td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>7. 伦理与合规（重点）</b></td><td><b>法律层</b>：最高法《关于依法审理涉人工智能纠纷案件的意见》明确——未经同意利用 AI 处理逝者姓名、肖像生成可识别的虚拟数字形象并公开，构成侵权；未经同意使用声音训练模仿音色侵害声音权益；「AI 复活逝者」被专门规定依法保护死者人格利益，民法典死者人格利益保护规则为底层依据。<b>监管层</b>：《数字虚拟人信息服务管理办法（征求意见稿）》对「复活」逝者设定严格前提——必须尊重逝者生前意愿、不得侵害近亲属合法权益，敏感个人信息用于建模须单独同意、全程提示标识；2026 年 4 月起「清朗·整治 AI 应用乱象」专项行动将「不当使用 AI 复活逝者」列入整治重点。<b>心理边界</b>：学者提示哀伤联结是正当诉求但存在沉溺风险（「不希望自己恢复得太快，不然会觉得自己不够爱他」），产品以弹窗提醒、回避幻觉话术、声音复刻需主动上传等机制自我设限。<b>本案实践</b>：「近亲属发起 + 知情同意 + 限追思纪念」的自述边界与专家主张的合规框架方向一致——但均系自述口径，且早期曾因对话不符预期出现退款，体验与伦理的双重边界仍在动态校准中</td><td><a class="cref cross" href="#ref-8">[8]</a><a class="cref cross" href="#ref-9">[9]</a><a class="cref verified" href="#ref-12">[12]</a><a class="cref verified" href="#ref-13">[13]</a><a class="cref verified" href="#ref-14">[14]</a><a class="cref partial" href="#ref-2">[2]</a><a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 五处留白与一处口径冲突（截至 2026-11-12 检索）</div>
+    ① 营收金额与成本结构未披露，「已盈利」为创始人口径、无第三方审计；② 公司注册主体未检索到可靠公开信息（企查查同名「福州天之灵文化传播有限公司」经营范围为文化活动策划，与武汉 AI 团队是否同一主体无法确认，未采信）；③ 团队规模与股权结构未披露，「一人/小团队」口径基于公开报道可见角色推定；④ 底层大模型与技术供应商未披露；⑤ 学术机构、媒体或平台对其疗愈效果与安全机制的独立评估未检索到。口径冲突：媒体称「2026 年 1 月小程序上线」，而 IT 时报 2026-01-04 报道显示彼时已有用户与「AI 老爸」聊天超过半年——疑为早期版本运营与小程序正式发布的时间口径差，两说并存、按多源一致口径采信「2026-01 正式上线」。
+  </div>
+  <div class="card"><div class="ct">负面与风险（如实收录）</div><div class="cb">产品早期曾因对话表现不符合用户预期而出现退款——情感产品的「体验合格线」极为主观且脆弱；重度用户高消息量带来的推理成本可能吞噬利润，是包括本案在内的全行业命题；「AI 缅怀」的沉溺风险已有公共文艺警示（影视飓风 39 分钟短片《再见亲人》呈现用户困于 AI「女儿」、家庭走向崩溃的叙事），提示此类产品的社会争议弹药始终存在；此外，本案用户量与产品叙事的主要传播链为同一自媒体矩阵（薄荷鹿鹿系列稿，含「关联问题解答」等明显品牌传播特征模块），可信度需按部分映证打折。</div><div class="cm"><a class="cref cross" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-6">[6]</a> <a class="cref partial" href="#ref-2">[2]</a> <a class="cref partial" href="#ref-7">[7]</a></div></div>
+  <div class="box note">
+    <div class="bt">📌 监管趋势：赛道合规成本只会上升</div>
+    2025-2026 年「AI 复活」行业争议密集爆发（乔任梁父亲公开抵制、李玟母亲发布律师声明要求下架、茶学界泰斗张天福被数字复活拍商业广告）<a class="cref cross" href="#ref-9">[9]</a>；随后监管三箭齐发：最高法司法解释级文件 <a class="cref cross" href="#ref-8">[8]</a>、网信办《数字虚拟人信息服务管理办法（征求意见稿）》<a class="cref verified" href="#ref-12">[12]</a><a class="cref verified" href="#ref-13">[13]</a>、清朗专项行动 <a class="cref verified" href="#ref-14">[14]</a>。征求意见稿一旦正式施行，「AI 亲人」类服务的合规门槛（生前意愿、近亲属权益、单独同意、全程标识）将更具强制性——对天之灵这类已有边界意识的产品是护城河，对草台玩家是出清令。
+  </div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">天之灵AI 证明了情感/健康向 OPC 在伦理敏感赛道的平衡路径：需求真实且付费意愿强（零投放口碑增长）、微信小程序形态零安装门槛、99 元普惠定价、单人可运营的极简商业结构——对照 Character.AI 破产（月亏 800-900 万美元）与星野等大厂产品毛利率长期为负的行业背景，「冷门细分 + 成本自律 + 边界设计」反而跑通了个人可复制的盈利模型。它同时是一面警示牌：这条赛道的天花板不在流量，而在合规能力与伦理定力。</div><div class="cm"><a class="cref cross" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-14">[14]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 14 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx cross">[1]</span><span class="rt">A-</span><span class="st">主流财经专访</span></div><div class="ti">Character.AI破产，AI陪伴是假风口？（天之灵AI 数据与张翼专访）</div><div class="mt"><b>来源：</b>36氪（原发微信公众号「AIX财经」，作者李梦冉、编辑魏佳，36氪经授权发布）　<b>发布日期：</b>2026-11-03<br><a href="https://36kr.com/p/4052600729294468" target="_blank" rel="noopener">https://36kr.com/p/4052600729294468</a></div><div class="note">事实核查：累计注册用户约 11.1 万、付费会员约 2000-3000 人、常见会员价每年 99 元、已实现盈利，均出自张翼接受「AIX财经」采访的自述口径（虎嗅同步转载 m.huxiu.com/article/4902400.html 可回溯）；Character.AI 破产细节、中研普华市场规模、重度用户成本警示等行业背景亦出自此稿。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx partial">[2]</span><span class="rt">C+</span><span class="st">自媒体（品牌向稿）</span></div><div class="ti">告别可以有温度：AI技术如何重新定义数字时代的哀伤疗愈</div><div class="mt"><b>来源：</b>搜狐号「薄荷鹿鹿」　<b>发布日期：</b>2026-05-25（编辑于）<br><a href="https://m.sohu.com/a/1025052830_122616459/" target="_blank" rel="noopener">https://m.sohu.com/a/1025052830_122616459/</a></div><div class="note">事实核查：张翼父亲 2018 年意外离世、37 岁失业送外卖、与白鹭合作、2025 年成立、2026 年 1 月小程序上线、命名由来、99 元/年起步定价、近 6 万用户/近 4.5 万智能体/日均超 1 万次对话、2026 年 1-2 月连续翻倍、华东师大副教授观点均出自此稿；创始人背景叙事未经独立信源交叉，按部分映证从严处理。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx partial">[3]</span><span class="rt">C+</span><span class="st">自媒体（品牌向稿）</span></div><div class="ti">从"AI复活"被点名到行业自律：一个武汉团队想让科技"有温度"</div><div class="mt"><b>来源：</b>搜狐号「薄荷鹿鹿」　<b>发布日期：</b>2026-05-29<br><a href="https://m.sohu.com/a/1029251965_122616459/" target="_blank" rel="noopener">https://m.sohu.com/a/1029251965_122616459/</a></div><div class="note">事实核查：两会「规范 AI 复活技术应用」建议热议背景、张翼引语（「安放思念的空间」「最好的技术不是让人惊叹，而是让人感到温暖」）、白鹭引语、产品边界（文字对话为主/声音复刻需主动上传/知情同意/数据加密）出自此稿；与 [2] 同一自媒体矩阵，按部分映证处理。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx cross">[4]</span><span class="rt">B+</span><span class="st">专业媒体（多平台分发）</span></div><div class="ti">我和AI谈恋爱，我用AI留住"爸爸"，我被AI论文搞崩溃……（AI 元年十大冲突·上篇）</div><div class="mt"><b>来源：</b>IT时报（36氪分发，澎湃号·媒体同步分发）　<b>发布日期：</b>2026-01-04<br><a href="https://m.36kr.com/p/3624957079258117" target="_blank" rel="noopener">https://m.36kr.com/p/3624957079258117</a></div><div class="note">事实核查：天之灵小程序运营者邢洪睿自述（用父亲名字创建智能体、定制服务录入逝者生平习惯爱好、声音需提供音频素材后台训练、防混淆弹窗提醒、有用户购买终身会员）出自此稿；澎湃分发页 m.thepaper.cn/newsDetail_forward_32316961 同文可回溯。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx cross">[5]</span><span class="rt">A</span><span class="st">央媒报道</span></div><div class="ti">代表委员热议"AI向善"</div><div class="mt"><b>来源：</b>新华网　<b>发布日期：</b>2026-03-11<br><a href="http://www.xinhuanet.com/politics/20260311/41da3b61b3fa476e82777ce36901fbb3/c.html" target="_blank" rel="noopener">http://www.xinhuanet.com/politics/20260311/41da3b61b3fa476e82777ce36901fbb3/c.html</a></div><div class="note">事实核查：2026 年全国两会「AI 向善」高频词、政府工作报告部署「完善人工智能治理」、张伯礼代表建议加快国家层面人工智能综合性立法出自此稿，为「规范 AI 复活」两会背景的权威侧写。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx partial">[6]</span><span class="rt">C</span><span class="st">自媒体（品牌向稿）</span></div><div class="ti">从影视飓风39分钟短片看AI缅怀："她"的存在为何差点毁掉一个家</div><div class="mt"><b>来源：</b>今日头条号「薄荷鹿鹿」　<b>发布日期：</b>约 2026 年上半年（页面未标注确切日期）<br><a href="http://m.toutiao.com/group/7645145679479767552/" target="_blank" rel="noopener">http://m.toutiao.com/group/7645145679479767552/</a></div><div class="note">事实核查：2026 年 1 月上线、口碑传播积累接近 6 万注册用户/超 4 万个 AI「亲人」、产品设计边界（AI 不说「我永远在」、引导接受现实、数据宣称永久加密）出自此稿；同一自媒体矩阵，按部分映证处理。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx partial">[7]</span><span class="rt">C</span><span class="st">自媒体（品牌向稿）</span></div><div class="ti">谢贤离世后谣言四起：逝者身后也需要边界</div><div class="mt"><b>来源：</b>今日头条号「薄荷鹿鹿」　<b>发布日期：</b>约 2026-07 下旬<br><a href="http://m.toutiao.com/group/7667505471952601643/" target="_blank" rel="noopener">http://m.toutiao.com/group/7667505471952601643/</a></div><div class="note">事实核查：截至 2026-07-13 注册用户约 7.04 万、创建 AI 亲人约 5.45 万个、用户对话约 214.6 万条（稿件明确标注为「天之灵内部资料」口径）；2026-07-18 哀伤研究与干预研讨会圆桌论坛张翼引语（「我们不是在复活谁，我们是在陪伴还活着的人」）出自此稿；同一自媒体矩阵，按部分映证处理。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx cross">[8]</span><span class="rt">A+</span><span class="st">央媒答问（转载）</span></div><div class="ti">"AI复活逝者"现象怎么看？最高法回应</div><div class="mt"><b>来源：</b>环球网（转人民日报客户端，记者魏哲哲）　<b>发布日期：</b>2026-09-07<br><a href="https://3w.huanqiu.com/a/ec157d/4T75NS83fqe" target="_blank" rel="noopener">https://3w.huanqiu.com/a/ec157d/4T75NS83fqe</a></div><div class="note">事实核查：最高法《关于依法审理涉人工智能纠纷案件的意见》第四条（未经同意利用 AI 生成可识别的虚拟数字形象并公开侵害姓名权/肖像权；未经同意使用声音作为训练语料合成人声侵害声音权益）及「AI 复活逝者」专门规定（依法保护死者人格利益）出自此稿。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx cross">[9]</span><span class="rt">B+</span><span class="st">垂直媒体/社区（案例墙既有核验值）</span></div><div class="ti">「胃之书」开发者赵纯想专访（对标数据）／"数字复活"茶学界泰斗引发争议</div><div class="mt"><b>来源：</b>人人都是产品经理（胃之书对标数据）；光明网转法治日报（数字复活争议，记者陈磊、见习记者丁一，2025-10-24）　<b>发布日期：</b>2026 / 2025-10-24<br><a href="https://www.woshipm.com/it/6151771.html" target="_blank" rel="noopener">https://www.woshipm.com/it/6151771.html</a>　|　<a href="https://wlaq.gmw.cn/2025-10/24/content_38364703.htm" target="_blank" rel="noopener">https://wlaq.gmw.cn/2025-10/24/content_38364703.htm</a></div><div class="note">事实核查：胃之书对标行数据（约 9 万用户、5 个月收入 1.2 万美元、App Store 美食分类第三）为案例墙既有核验值；法治日报稿提供李玟母亲律师声明、乔任梁父亲抵制、张天福数字复活广告等争议事实及北航王琦/清华陈天昊「近亲属发起、限追思纪念范围、生前预嘱授权」专家框架。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx cross">[10]</span><span class="rt">A-</span><span class="st">主流都市媒体（案例墙既有核验值）</span></div><div class="ti">佛山05后高中生，用AI创业月入过万（EmoEase 对标数据）</div><div class="mt"><b>来源：</b>南方都市报　<b>发布日期：</b>2025<br><a href="https://www.nfnews.com/content/v3aZkADK61.html" target="_blank" rel="noopener">https://www.nfnews.com/content/v3aZkADK61.html</a></div><div class="note">事实核查：对标表 EmoEase 行数据出处——冼星朗 16 岁自学 AI 编程、20 天开发 AI 疗愈应用、一度登苹果付费工具榜第五、月入过万（自述口径）；案例墙既有核验值（南都系多稿 + Apple SSC 官网一手交叉）。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx cross">[11]</span><span class="rt">B+</span><span class="st">财经媒体（案例墙既有核验值）</span></div><div class="ti">猜盐/猜病：前阿里工程师的大模型信息游戏化矩阵（对标数据）</div><div class="mt"><b>来源：</b>新浪财经（原发中国经营报）　<b>发布日期：</b>2026-04-05<br><a href="https://finance.sina.com.cn/jjxw/2026-04-05/doc-inhtmhff7209077.shtml" target="_blank" rel="noopener">https://finance.sina.com.cn/jjxw/2026-04-05/doc-inhtmhff7209077.shtml</a></div><div class="note">事实核查：对标表「猜盐/猜病」行数据出处——张月、累计用户 160 万、最高日活 20 万、2025 年营收同比增 3 倍、2026 年目标 300 万；案例墙既有核验值。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx verified">[12]</span><span class="rt">A+</span><span class="st">政府官网 · 专家解读</span></div><div class="ti">专家解读｜以人为本，数字虚拟人管理规范引领技术向善（作者：北京互联网法院党组成员、副院长孙铭溪）</div><div class="mt"><b>来源：</b>中央网络安全和信息化委员会办公室（中国网信网）　<b>发布日期：</b>2026-04-03<br><a href="https://www.cac.gov.cn/2026-04/03/c_1776953007303913.htm" target="_blank" rel="noopener">https://www.cac.gov.cn/2026-04/03/c_1776953007303913.htm</a></div><div class="note">事实核查：《数字虚拟人信息服务管理办法（征求意见稿）》「严格规范『复活』逝者行为」（必须尊重逝者生前意愿、不得侵害近亲属合法权益）、敏感个人信息建模须单独同意、全程提示标识义务、禁止诱导未成年人沉迷等条款出自此稿（政府原文回溯完成）。</div></li>
+  <li id="ref-13" class="src"><div class="sh"><span class="idx verified">[13]</span><span class="rt">A+</span><span class="st">央媒报道</span></div><div class="ti">数字虚拟人治理有了可行性前瞻性方案</div><div class="mt"><b>来源：</b>光明日报（光明网电子报）　<b>发布日期：</b>2026-04-07<br><a href="https://epaper.gmw.cn/gmrb/html/content/202604/07/content_10373.html" target="_blank" rel="noopener">https://epaper.gmw.cn/gmrb/html/content/202604/07/content_10373.html</a></div><div class="note">事实核查：网信办就《数字虚拟人信息服务管理办法（征求意见稿）》公开征求意见、「复活」逝者行为须尊重逝者生前意愿、不得侵害其近亲属的合法权益出自此稿，与 [12] 构成两条独立信源交叉（verified 判定依据）。</div></li>
+  <li id="ref-14" class="src"><div class="sh"><span class="idx verified">[14]</span><span class="rt">A+</span><span class="st">政府官网 · 监管通知</span></div><div class="ti">中央网信办部署开展"清朗·整治AI应用乱象"专项行动</div><div class="mt"><b>来源：</b>中央网络安全和信息化委员会办公室　<b>发布日期：</b>2026-04-30<br><a href="https://www.cac.gov.cn/2026-04/30/c_1779289298718765.htm" target="_blank" rel="noopener">https://www.cac.gov.cn/2026-04/30/c_1779289298718765.htm</a></div><div class="note">事实核查：为期 4 个月的专项行动将「不当使用 AI『复活逝者』，滥用逝者信息」列入整治重点出自此稿（政府原文回溯完成）；环球网同步报道（china.huanqiu.com/article/4RNEQLU05NG）互证。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 14 条。核验标签分布：🟢 已核验（verified）3 条、🔵 多源印证（cross）7 条、🟡 部分映证（partial）4 条。信源评级分布：A+/A- 级 6 条（政府官网/央媒/主流财经，原文回溯全部完成）、A 级 1 条、B+/B 级 3 条、C+/C 级 4 条（均系「薄荷鹿鹿」自媒体品牌向稿，已显式标注传播链特征并从严按部分映证处理）。核心经营数据（11.1 万注册、2000-3000 付费、年费 99 元起、已盈利）为创始人接受 36氪「AIX财经」专访的自述口径，单一权威链条可回溯；用户量在 2026-05/2026-07/2026-11 三个时点由不同链条披露且单调递增，趋势可信、绝对值以自述为限。一处口径冲突（2026-01 上线 vs IT 时报 2026-01-04 报道用户已使用超半年）与五处留白（营收金额、注册主体、团队规模、模型供应商、第三方评估）已在正文显式标注。核验失败情况：企查查「福州天之灵文化传播有限公司」同名页面因主体关联无法确认未予采信；微信小程序页为站内生态无法直接抓取，一手信息以 IT 时报运营者自述稿替代。未发现伪造链接；全部 URL 为检索过程实际命中页面。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-12 · 营收与盈利信息为创始人口径并已标注置信等级，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

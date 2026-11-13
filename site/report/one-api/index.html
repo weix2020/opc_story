@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · one-api —— JustSong 与 LLM API 网关的"事实标准"之路 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · one-api">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="one-api（songquanpeng/JustSong）深度案例报告：Go 单二进制 LLM API 网关，统一适配 28+ 模型供应商，GitHub 37,420★（2026-11-13 API 实测），国内 AI 中转站生态事实标准、new-api 的上游。13 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>one-api 深度案例报告</h1>
+    <h2>songquanpeng（JustSong）：一个 Go 单二进制网关，统一适配 28+ 模型供应商<br>长成国内 AI 中转站生态的"事实标准"、new-api 的上游 —— 13 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">基础设施型 OPC</span>
+      <span class="tag">开源公共品</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">37,420★</div><div class="k">GitHub 星标（2026-11-13 API 实测）</div></div>
+  <div class="stat"><div class="v up">6,894</div><div class="k">Forks（含 new-api 等下游衍生）</div></div>
+  <div class="stat"><div class="v neutral">28+</div><div class="k">统一适配的模型供应商（README 口径）</div></div>
+  <div class="stat"><div class="v neutral">1 人</div><div class="k">主导维护 · MIT 协议 · 无融资披露</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">one-api 是 2023 年 4 月由个人开发者 songquanpeng 开源、用 Go 编写的「LLM API 管理 &amp; 分发系统」：以标准的 OpenAI API 格式统一访问所有大模型，支持令牌管理、额度控制与二次分发，单可执行文件、提供 Docker 镜像、一键部署<a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a>。它不直接向用户收费、不做公司化运营，却成为此后两年国内「API 中转站」生态几乎绕不开的地基——下游分支 new-api 的星标已反超本体<a class="cref verified" href="#ref-3">[3]</a><a class="cref cross" href="#ref-4">[4]</a>。</p>
+  <div class="two">
+    <div class="card"><div class="ct">项目</div><div class="cb">GitHub 仓库 songquanpeng/one-api：MIT 协议，主仓库描述为「LLM API 管理 &amp; 分发系统」，支持 OpenAI、Azure、Anthropic Claude、Google Gemini、DeepSeek、字节豆包、ChatGLM、文心一言、讯飞星火、通义千问、360 智脑、腾讯混元等主流模型；项目主页 oneapi.justsong.cn，在线演示站 openai.justsong.cn。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-2">[2]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">songquanpeng，GitHub 显示名 JustSong（社区惯称 justsong）。GitHub 档案：所在地上海，公司栏标注 South China University of Technology（华南理工大学），粉丝 1,962、公开仓库 105 个，账号 2018-06-06 注册；个人网站 iamazing.cn / justsong.cn。<b>真实姓名未公开确认，本报告以网名行文。</b></div><div class="cm">信源：<a class="cref verified" href="#ref-5">[5]</a> <a class="cref partial" href="#ref-6">[6]</a></div></div>
+    <div class="card"><div class="ct">项目性质</div><div class="cb">个人开源公共品：英文技术媒体报道其「Funding: None publicly disclosed; community-maintained」（无公开融资、社区维护），作者通过 iamazing.cn 的「赞赏支持」页接受捐赠，未检索到公司注册、付费版或商业化主体的公开信息。</div><div class="cm">信源：<a class="cref partial" href="#ref-7">[7]</a> <a class="cref verified" href="#ref-2">[2]</a> <a class="cref partial" href="#ref-6">[6]</a></div></div>
+    <div class="card"><div class="ct">成功迹象</div><div class="cb">GitHub 37,420★ / 6,894 forks（2026-11-13 API 实测）<a class="cref verified" href="#ref-1">[1]</a>；案例墙收录口径为「国内 AI 中转站生态事实标准」——第三方对比文称其为「自建 Token 中转站的常用方案」，下游 new-api 被大量商用中转站用作底座，均传导自 one-api 的能力与数据模型。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-8">[8]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2018-06-06</div><div class="tx">songquanpeng 注册 GitHub 账号</div><div class="td">此后陆续发布 105 个公开仓库，one-api 之前已是多产的个人开发者。&nbsp;<a class="cref verified" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2023-04-22</div><div class="tx">one-api 仓库创建（GitHub API 实测）</div><div class="td">案例墙锚点记为 2023-04-15，与实测值相差约一周；本报告按一手 API 口径采信 2023-04-22，锚点差异已在捌·附注明。&nbsp;<a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2023-04-23</div><div class="tx">作者发布项目介绍页：瞄准「二手 API 卖家」的稳定性痛点</div><div class="td">自述动机：「OpenAI 的 API 在国内访问困难，出现了一批二手 API 卖家，但稳定性存疑」——聚合众多接口提供一个尽量稳定的访问渠道；初版渠道即包含 API2D、CloseAI、OpenAI-SB、OpenAI Max、OhMyGPT 等第三方中转服务。&nbsp;<a class="cref partial" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2023-11-10</div><div class="tx">下游分支 new-api 仓库创建</div><div class="td">Calcium-Ion（后迁 QuantumNous 组织）基于 one-api 二次开发，兼容原数据库、扩展 Claude/Gemini 原生格式互转与在线支付；new-api 现为大量商用 API 中转站的底座。&nbsp;<a class="cref verified" href="#ref-3">[3]</a><a class="cref cross" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2023 → 2025</div><div class="tx">适配范围持续扩张至 28+ 供应商</div><div class="td">截至 2026-11 的 README 已列 OpenAI/Azure、Claude（含 AWS）、Gemini、Mistral、豆包、文心一言、通义千问、讯飞星火、ChatGLM、360 智脑、腾讯混元、Moonshot、百川、MiniMax、DeepSeek、硅基流动、xAI、Ollama、Groq 等 28+ 渠道。&nbsp;<a class="cref verified" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2025-02-02</div><div class="tx">最新正式版 v0.6.10 发布</div><div class="td">此后再无新版本发布。&nbsp;<a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-01-09</div><div class="tx">最后一次代码 push，此后进入「准维护」状态</div><div class="td">截至 2026-11-13 已逾 10 个月无推送，open issues 累积至 1,045。&nbsp;<a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-05</div><div class="tx">中转站生态进入公众视野：自媒体长文与英文媒体相继记录</div><div class="td">5 月初自媒体拆解「AI 中转站生意」（号池、超售、跑路与造假乱象）<a class="cref partial" href="#ref-8">[8]</a>；5 月底英文技术媒体报道 one-api 约 29,158★（OSSInsight 口径）、30+ 供应商，称其为「最受星标的 LLM 基础设施工具之一」。&nbsp;<a class="cref partial" href="#ref-7">[7]</a></div></div>
+    <div class="node"><div class="dt">2026-07</div><div class="tx">第三方对比文更新：One API「在维护」vs New API「活跃」</div><div class="td">支流科技对比文给出明确定性：New API 是 One API 二次开发的分支，维护更活跃、功能更全；One API 的优势在 MIT 宽松协议与轻量。&nbsp;<a class="cref cross" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2026-11-13</div><div class="tx">本报告实测：37,420★ / 6,894 forks / 1,045 open issues</div><div class="td">与案例墙 2026-10/11 时点值 37.3k★ 相符（缓慢自然增长）。&nbsp;<a class="cref verified" href="#ref-1">[1]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card blue"><div class="ct">转折一：从「二手 API 卖家不稳定」的个人痛点，到公共基础设施</div><div class="cb">2023 年春，国内开发者访问 OpenAI API 困难，市场上充斥稳定性存疑的「二手 API 卖家」。songquanpeng 的解法不是再做一个卖家，而是把「聚合 + 负载均衡 + 密钥分发」做成开箱即用的开源工具——初版即支持接入多家第三方中转渠道并自动分流。作者在项目页写明双重定位：既是稳定的 API 后端，「或者你也想当 API 卖家，那么本项目也可以帮助你快速搭建一个 API 服务」。这种「卖铲子」而非「卖水」的定位，让 one-api 从一开始就站在了生态的分发层。</div><div class="cm">信源：<a class="cref partial" href="#ref-6">[6]</a> <a class="cref verified" href="#ref-2">[2]</a></div></div>
+  <div class="card"><div class="ct">转折二：MIT 协议 + 单二进制 + Docker 的「零门槛」策略</div><div class="cb">one-api 全程坚持 MIT 协议（商用与闭源二开几乎不受限）、单可执行文件、SQLite 开箱即用、一条 docker run 命令部署。第三方对比将其总结为「中小团队做 LLM 资源整合的最省事方案」——不需要懂路由、不需要自己写计费逻辑。这一零门槛组合客观上成为中转站生态爆发的助推器：任何人都能在几分钟内把「聚合 API」变成「对外卖 API」的服务，而无需向后 surrender 任何权利（对比下游 new-api 选择的 AGPLv3 附加条款路线）。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-9">[9]</a></div></div>
+  <div class="card red"><div class="ct">转折三：不收费、不融资、不公司化——价值全部外溢给生态</div><div class="cb">无公开融资、无付费版本，变现路径止步于个人网站「赞赏支持」。代价是维护能力受限于个人精力：最新版本停在 2025-02，最后 push 停在 2026-01，英文媒体直言「无机构支持下，长期维护、安全补丁与供应商 API 适配全依赖志愿者」；馈赠则是整个下游生态——new-api 在其数据模型与代码底座上长到 51,855★、反超本体，成为商用中转站的主流底座。one-api 完成了「个人项目长成行业地基」的全过程，却几乎未曾从地基上的商业大厦收取租金。</div><div class="cm">信源：<a class="cref partial" href="#ref-7">[7]</a> <a class="cref verified" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-6">[6]</a> <a class="cref verified" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-4">[4]</a></div></div>
+  <div class="quote">
+    <p>由于众所周知的原因，OpenAI 的 API 在国内访问困难，因此目前出现了一批二手 API 卖家，但是这些二手 API 卖家的稳定性存疑。……或者你也想当 API 卖家，那么本项目也可以帮助你快速搭建一个 API 服务。</p>
+    <span class="src">—— songquanpeng，《One API》项目介绍页（iamazing.cn，2023-04-23），转引自 <a class="cref partial" href="#ref-6">[6]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Model</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>内容</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>产品功能 · 统一适配</b></td><td>以标准 OpenAI API 格式访问 28+ 模型供应商（README 官方清单：OpenAI/Azure、Claude/AWS、Gemini、豆包、文心一言、通义千问、星火、ChatGLM、混元、DeepSeek、硅基流动、xAI、Ollama 等），支持负载均衡、失败自动重试、stream 流式、模型映射</td><td><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>产品功能 · 密钥管理与二次分发</b></td><td>令牌管理（过期时间、额度、IP 白名单、模型范围）、兑换码批量生成与充值、渠道管理、用户/渠道分组倍率、额度明细、美元计价显示、GitHub/微信/飞书 OAuth 登录、管理 API 可无二开扩展</td><td><a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>生态位</b></td><td>「自建 Token 中转站的常用方案」（第三方对比文定性）；评价口径「想做白标 API 卖给客户，one-api 比 LiteLLM 更省事」；中转站生意长文印证该生态的规模与玩法（号池、超售、分销），面板级工具是其中游标配</td><td><a class="cref cross" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-9">[9]</a> <a class="cref partial" href="#ref-10">[10]</a></td></tr>
+      <tr><td><b>衍生项目（下游 fork 生态）</b></td><td>new-api（QuantumNous，2023-11-10 创建）：基于 one-api 二次开发，兼容原数据库，新增 Claude/Gemini 原生格式互转、Rerank/Midjourney/Suno 接口、易支付/Stripe 在线充值、数据看板；另有 Gitee 镜像等传播渠道</td><td><a class="cref verified" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-11">[11]</a></td></tr>
+      <tr><td><b>面向客群</b></td><td>个人开发者（自用聚合）、中小团队（统一 LLM 网关）、API 卖家/中转站运营者（二次分发与计费底座）；中文部署教程在 CSDN、腾讯云开发者社区等平台大量存在，说明下沉使用者广泛</td><td><a class="cref partial" href="#ref-6">[6]</a> <a class="cref partial" href="#ref-9">[9]</a> <a class="cref partial" href="#ref-10">[10]</a></td></tr>
+      <tr><td><b>解决痛点</b></td><td>供给侧：多供应商 SDK/密钥/计费面板割裂、单一渠道故障导致服务中断（负载均衡 + 失败重试）；需求侧：国内访问海外模型 API 困难、二手卖家服务质量参差——one-api 提供自建可控的中间层</td><td><a class="cref partial" href="#ref-6">[6]</a> <a class="cref partial" href="#ref-7">[7]</a> <a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>商业模式</b></td><td>开源免费、无付费版、无融资披露；变现止于个人网站赞赏入口。商业价值由下游生态间接兑现（new-api 及中转站体系），本体未捕获</td><td><a class="cref partial" href="#ref-7">[7]</a> <a class="cref partial" href="#ref-6">[6]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点 / 口径</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>GitHub 星标</td><td class="hl">37,420</td><td>2026-11-13 API 实测；案例墙 2026-10/11 时点值 37.3k★、2026-05-30 媒体转引 OSSInsight 29,158★</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref partial" href="#ref-7">[7]</a></td></tr>
+      <tr><td>Forks</td><td>6,894</td><td>2026-11-13 API 实测（2026-05 媒体口径 5,660）</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref partial" href="#ref-7">[7]</a></td></tr>
+      <tr><td>贡献者</td><td>100+</td><td>媒体转引自述口径</td><td><a class="cref partial" href="#ref-7">[7]</a></td></tr>
+      <tr><td>Open issues</td><td class="hl">1,045</td><td>2026-11-13 API 实测——维护停滞的直接表征</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>最新 release / 最后 push</td><td>v0.6.10（2025-02-02）/ 2026-01-09</td><td>GitHub API 实测：正式版停更 21 个月、代码停更 10 个月</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>下游 new-api</td><td class="hl">51,855★ / 12,645 forks</td><td>2026-11-13 API 实测；与案例墙「51.8k★」口径一致——fork 反超本体</td><td><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td>生态扩散</td><td>Gitee 镜像收录；CSDN 等平台部署教程持续更新</td><td>2026-11 检索命中</td><td><a class="cref partial" href="#ref-11">[11]</a><a class="cref partial" href="#ref-12">[12]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    ① 星标为时点值，随时间变动，引用请注明实测日期。② Docker Hub 拉取总量（justsong/one-api 镜像）在本次检索环境未能获取可核验数值，README 中仅以徽章形式存在，本报告不采信任何具体拉取数。③ 100+ 贡献者为媒体转引的项目自述口径，未经独立核验。④「事实标准」为案例墙收录口径，正文以多源旁证支撑（见柒·生态位），非官方统计称号。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将 one-api 放入案例墙「网关 / API 中转」坐标系（对标数据均取自案例墙既有核验值，本次以 GitHub API 复测一致）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>创建时间</th><th>定位</th><th>协议</th><th>数据表现</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>one-api（本案）</b></td><td>songquanpeng（JustSong）</td><td>2023-04-22</td><td>LLM API 管理 &amp; 分发系统，中转站生态上游</td><td>MIT</td><td class="hl">37,420★ / 6,894 forks（实测）</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>new-api</td><td>Calcium-Ion（QuantumNous）</td><td>2023-11-10</td><td>one-api 二次开发的「fork 超越者」，大量商用中转站底座</td><td>AGPLv3 + 附加条款</td><td class="hl">51,855★ / 12,645 forks（实测，案例墙 51.8k★）</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td>claude-code-router</td><td>musistudio</td><td>2025-02-25</td><td>让 Claude Code 路由到任意大模型的编程网关，按任务分流供应商</td><td>开源</td><td>38,131★ / 3,207 forks（实测，案例墙 38.1k★）</td><td><a class="cref verified" href="#ref-12">[12]</a></td></tr>
+      <tr><td>AIClient-2-API（现名 AIClient2API）</td><td>justlovemaki</td><td>2025-07-20</td><td>把 Gemini CLI/Codex 等客户端协议反代为本地 OpenAI 兼容 API</td><td>开源</td><td>8,978★（实测，案例墙 8.9k★）；Docker 下载 10 万+（案例墙口径）</td><td><a class="cref verified" href="#ref-13">[13]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>四个案例构成一条清晰的谱系：one-api 是<b>最早（2023-04）的公共上游</b>——new-api 直接基于它二次开发并在功能与星标上实现反超（51,855★ vs 37,420★），是开源史上罕见的「fork 超越母项目」样本；claude-code-router 与 AIClient-2-API 则是 2025 年后在新场景（AI 编程客户端路由、客户端协议反代）上的分化物种。三者共同确认了一件事：one-api 定义的「OpenAI 兼容格式 + 令牌计费 + 渠道管理」范式，已经成为中文开发者世界事实上的网关语言——这正是案例墙将 one-api 标注为「事实标准」的依据。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>分析</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>完整覆盖「聚合—管理—分发」三层：28+ 供应商统一适配、负载均衡与失败重试、令牌/额度/IP/模型范围控制、兑换码充值、分组倍率、模型映射、多机部署、管理 API；单二进制 + Docker + SQLite/MySQL/PG，从个人玩具到小规模生产均可承载</td><td><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>2. 生态位（中转站事实标准）</b></td><td>第三方对比文将其定性为「自建 Token 中转站的常用方案」；下游 new-api 为大量商用中转站底座且兼容 one-api 数据库（迁移路径顺畅）；生态长文显示中转站已成产业链（上游号商—中游面板—下游分销），面板级工具即 one-api/new-api 一系的范式。多源旁证成立，但无权威统计直接点名</td><td><a class="cref cross" href="#ref-4">[4]</a> <a class="cref verified" href="#ref-3">[3]</a> <a class="cref partial" href="#ref-10">[10]</a></td></tr>
+      <tr><td><b>3. 面向客群</b></td><td>三层客群：自用型个人开发者（聚合自己的 Key）、中小团队（统一 LLM 网关，评价称「UI 直接给产品经理用」）、中转站运营者（白标 API 卖给客户）；部署教程类内容（CSDN 等）的持续产出显示非专业用户占比可观</td><td><a class="cref partial" href="#ref-9">[9]</a> <a class="cref partial" href="#ref-10">[10]</a> <a class="cref partial" href="#ref-6">[6]</a></td></tr>
+      <tr><td><b>4. 解决痛点</b></td><td>核心痛点是「provider fragmentation」：每接一家模型就要管理一套 SDK、认证流与账单。one-api 用一个 OpenAI 兼容端点抹平差异，叠加国内访问海外 API 困难的特殊环境，恰逢 2023 年国产大模型爆发期——「统一适配国产模型」使其成为横跨中西生态的稀缺汇合点</td><td><a class="cref partial" href="#ref-7">[7]</a> <a class="cref verified" href="#ref-2">[2]</a> <a class="cref partial" href="#ref-6">[6]</a></td></tr>
+      <tr><td><b>5. 商业化与营收（置信度 C）</b></td><td>零营收披露：无付费版、无融资、无公司主体公开信息，变现仅见个人站赞赏入口。可推断的商业选项（企业版托管、支持服务）均未落地。作为 OPC 样本，其「收入」维度无数据可分析——这是与案例墙内收费型案例（如 ChatWise、Bob）最大的结构差异</td><td><a class="cref partial" href="#ref-7">[7]</a> <a class="cref partial" href="#ref-6">[6]</a> <a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>6. 开源维护可持续性（一人维护的更新节奏）</b></td><td class="hl">实测数据显示明显的节奏滑坡：最新 release v0.6.10 停在 2025-02-02，最后 push 2026-01-09，此后 10 个月无更新，open issues 堆积至 1,045；第三方对比文 2026-07 将其活跃度评为「在维护」（弱于 new-api 的「活跃」）；英文媒体早在 2026-05 即警告「无机构支持，长期维护、安全补丁与供应商适配依赖志愿者」。100+ 贡献者存在，但架构决策与发版高度集中于一人</td><td><a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>7. 合规灰区（API 二次分发）</b></td><td class="hl">one-api 的核心场景「key 二次分发」正处于灰色地带：作者在 README 顶部主动置入合规声明——须遵循 OpenAI 使用条款与《生成式人工智能服务管理暂行办法》，「请勿对中国地区公众提供一切未经备案的生成式人工智能服务」；生态长文指出转卖 API 在 Anthropic 服务条款中被禁止（国内无对应条款，风险为封号与支付冻结），并记录了中转站生态的乱象：媒体转述的 CISPA 论文审计称 17 家主流中转站近 45% 存在模型造假，叠加流量虚扣、卷款跑路。工具本身中立，但其最大用例处于上游 ToS 的禁区与国内备案要求的边缘——作者以免责声明「切割」，而非下架功能</td><td><a class="cref verified" href="#ref-2">[2]</a> <a class="cref partial" href="#ref-8">[8]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 三项风险与两处留白（截至 2026-11-13 检索）</div>
+    ① <b>维护停滞风险</b>：代码停更 10 个月、版本停更 21 个月、1,045 个 open issues——若作者持续投入意愿下降，安全补丁与新供应商适配将依赖社区接棒，这正是媒体点名的「无机构支持」结构性风险<a class="cref verified" href="#ref-1">[1]</a><a class="cref partial" href="#ref-7">[7]</a>。② <b>生态重心转移</b>：下游 new-api 在功能（多格式互转、在线支付、数据看板）与活跃度上全面反超，中转站新建部署事实上正向 new-api 迁移<a class="cref cross" href="#ref-4">[4]</a><a class="cref verified" href="#ref-3">[3]</a>。③ <b>合规外溢风险</b>：上游模型商 ToS 禁止转卖、国内生成式 AI 备案要求趋严，中转站生态的收紧会直接压缩 one-api 的核心用例<a class="cref partial" href="#ref-8">[8]</a><a class="cref verified" href="#ref-2">[2]</a>。留白：作者真实身份与职业状态未公开确认；Docker 拉取总量、实际部署站点数等生态规模数据无公开可核验口径。
+  </div>
+  <div class="box note">
+    <div class="bt">📝 口径说明</div>
+    ① 案例墙锚点 2023-04-15 与 GitHub API 实测仓库创建时间 2023-04-22 相差一周，本报告按一手 API 口径采信后者，锚点值保留于案例墙待复核<a class="cref verified" href="#ref-1">[1]</a>。② 星标 37.3k★（案例墙 2026-10/11）与 37,420★（本次实测）为同一口径的时点差。③「国内 AI 中转站生态事实标准」为案例墙收录口径，本报告以第三方对比、下游生态与媒体报道多源旁证，非官方统计称号。④ 英文媒体报道的 29,158★（2026-05-30）转引自 OSSInsight，为历史时点值，无法独立复测。
+  </div>
+  <div class="card green"><div class="ct">本案的样本价值：OPC 的另一种形态——「零收入的生态型一人公司」</div><div class="cb">案例墙内多数 OPC 以营收或用户量证明自己，one-api 提供了另一种证明方式：<b>一个人的项目成为整个行业生态的地基</b>。它没有收入、没有融资、没有公司，却定义了中文世界的 LLM 网关范式，供养出星标反超自己的下游（new-api 51,855★）与一个规模可观的产业带（中转站生态）。同时它也是一面警示牌：不商业化的公共品最终受制于单人维护的精力天花板，「事实标准」的护城河会随维护停滞而被 fork 蚕食——2026 年的 one-api 正站在这条曲线的拐点上。</div><div class="cm">信源：<a class="cref verified" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-4">[4]</a> <a class="cref verified" href="#ref-1">[1]</a> <a class="cref partial" href="#ref-10">[10]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 13 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（一手可回溯 / ≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述 / 转述 / 单一 B 级及以下信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx verified">[1]</span><span class="rt">A+</span><span class="st">GitHub API 一手实测</span></div><div class="ti">songquanpeng/one-api 仓库元数据（星标 / forks / 创建与推送时间 / 协议 / issues / release）</div><div class="mt"><b>来源：</b>GitHub REST API　<b>实测时点：</b>2026-11-13<br><a href="https://api.github.com/repos/songquanpeng/one-api" target="_blank" rel="noopener">https://api.github.com/repos/songquanpeng/one-api</a></div><div class="note">事实核查：37,420★、6,894 forks、created_at 2023-04-22T12:39:24Z、pushed_at 2026-01-09、MIT、open issues 1,045、homepage oneapi.justsong.cn、最新 release v0.6.10（2025-02-02 发布）均为本次直接实测；案例墙 37.3k★ 与之相符。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx verified">[2]</span><span class="rt">A</span><span class="st">项目 README（一手）</span></div><div class="ti">one-api README（main 分支）：功能清单、28+ 供应商列表、合规 NOTE、部署方式</div><div class="mt"><b>来源：</b>GitHub raw　<b>检索时点：</b>2026-11-13<br><a href="https://raw.githubusercontent.com/songquanpeng/one-api/main/README.md" target="_blank" rel="noopener">https://raw.githubusercontent.com/songquanpeng/one-api/main/README.md</a></div><div class="note">事实核查：功能 24 项（负载均衡、令牌管理、兑换码、分组倍率、模型映射、失败重试、管理 API、OAuth 登录等）与 28+ 供应商清单逐项摘录；README 顶部合规 NOTE（遵循 OpenAI 使用条款、《生成式人工智能服务管理暂行办法》、勿向中国地区公众提供未备案服务）为原文引用；初始账号 root/123456、Docker 部署命令为原文。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx verified">[3]</span><span class="rt">A</span><span class="st">GitHub API 一手实测（下游）</span></div><div class="ti">QuantumNous/new-api 仓库元数据（原 Calcium-Ion/new-api，已迁移组织）</div><div class="mt"><b>来源：</b>GitHub REST API　<b>实测时点：</b>2026-11-13<br><a href="https://api.github.com/repos/QuantumNous/new-api" target="_blank" rel="noopener">https://api.github.com/repos/QuantumNous/new-api</a></div><div class="note">事实核查：51,855★、12,645 forks、created_at 2023-11-10 直接实测，与案例墙「51.8k★（2026-11 实测）」一致；旧地址 Calcium-Ion/new-api 经 API 请求未返回有效数据（组织迁移），已用现地址替代核验。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx cross">[4]</span><span class="rt">B+</span><span class="st">第三方技术对比文</span></div><div class="ti">One API vs New API（2026）：开源 Token 中转站对比（支流科技 APISEVEN）</div><div class="mt"><b>来源：</b>apiseven.com（支流科技，Apache APISIX 团队背景）　<b>最后更新：</b>2026-07<br><a href="https://www.apiseven.com/one-api-vs-new-api" target="_blank" rel="noopener">https://www.apiseven.com/one-api-vs-new-api</a></div><div class="note">事实核查：One API「自建 Token 中转站常用方案」定性、MIT vs AGPLv3+附加条款、New API「基于 One API 二次开发、兼容原数据库」、功能对比表、「维护活跃度：One API 在维护 / New API 活跃」均出自此稿；关键事实与两仓库 README/API 可交叉印证，故按 cross 收录。注：该文尾部含厂商自家网关推广，属利益相关方对比文，已在引用时仅取可交叉事实。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx verified">[5]</span><span class="rt">A</span><span class="st">GitHub 用户档案（一手实测）</span></div><div class="ti">songquanpeng（JustSong）GitHub 档案</div><div class="mt"><b>来源：</b>GitHub REST API　<b>实测时点：</b>2026-11-13<br><a href="https://api.github.com/users/songquanpeng" target="_blank" rel="noopener">https://api.github.com/users/songquanpeng</a></div><div class="note">事实核查：name 字段为 JustSong（非真实姓名）、location 上海、company 栏 South China University of Technology、followers 1,962、public repos 105、账号注册 2018-06-06、blog justsong.cn 均为直接实测；真实姓名未在任何信源确认，正文如实注明。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx partial">[6]</span><span class="rt">B</span><span class="st">作者项目介绍页（自述）</span></div><div class="ti">《One API》—— iamazing.cn 作者个人站项目页</div><div class="mt"><b>来源：</b>iamazing.cn（songquanpeng 个人网站）　<b>发布日期：</b>2023-04-23 22:32（页面标注，浏览 14,273）<br><a href="https://iamazing.cn/page/one-api" target="_blank" rel="noopener">https://iamazing.cn/page/one-api</a></div><div class="note">事实核查：动机自述（二手 API 卖家稳定性存疑、聚合多渠道、可作 API 代理、「想当 API 卖家可快速搭建」）与初版渠道列表（API2D、CloseAI、OpenAI-SB、OpenAI Max、OhMyGPT）均为原文；发布时间与 GitHub 仓库创建时间（2023-04-22）互证吻合。内容属作者自述口径，按 partial 收录。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx partial">[7]</span><span class="rt">C+</span><span class="st">英文技术媒体（二手转引）</span></div><div class="ti">Open-Source LLM Gateway Crosses 29K GitHub Stars, Unifying 30+ Providers Behind One Endpoint（The Agent Times）</div><div class="mt"><b>来源：</b>The Agent Times（作者 Roman Bietin，其信源台账仅列 dev.to 一手转引）　<b>发布日期：</b>2026-05-30<br><a href="https://www.theagenttimes.com/articles/open-source-llm-gateway-crosses-29k-github-stars-unifying-30-e813ab43" target="_blank" rel="noopener">https://www.theagenttimes.com/articles/open-source-llm-gateway-crosses-29k-github-stars-unifying-30-e813ab43</a></div><div class="note">事实核查：29,158★（OSSInsight 口径）、5,660 forks、100+ contributors（自述）、「Funding: None publicly disclosed; community-maintained」、竞品 LiteLLM/Portkey 对比、无机构支持的维护风险论述均出自此稿；星数为历史时点值无法复测，且该文一手来源仅 dev.to 一条，从严按 partial 收录。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx partial">[8]</span><span class="rt">C+</span><span class="st">自媒体生态长文</span></div><div class="ti">我花了半个月，把AI中转站这门生意从头到尾扒透（aitnt 转载微信公众号「拟像AIGC」）</div><div class="mt"><b>来源：</b>aitntnews.com（原发微信公众号「拟像AIGC」）　<b>发布日期：</b>2026-05-04<br><a href="https://m.aitntnews.com/newDetail.html?newId=24713" target="_blank" rel="noopener">https://m.aitntnews.com/newDetail.html?newId=24713</a></div><div class="note">事实核查：中转站生态侧写（号池 100-500、月流水 5-30 万、超售毛利率、上下游链条、「一半帖子在教搭建、一半在骂跑路」）、「转卖 API 在 Anthropic ToS 中被禁止、国内法律无对应条款」、媒体转述 CISPA 论文《Real Money, Fake Models》审计 17 家中转站近 45% 造假等均出自此稿；属自媒体一手观察+CISPA 转述，未经独立审计复核，从严按 partial（C+）收录，仅用于生态侧证与风险描述。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx partial">[9]</span><span class="rt">B</span><span class="st">工具站评测页</span></div><div class="ti">x-cmd one-api 一键安装页（含第三方评价）</div><div class="mt"><b>来源：</b>x-cmd.com　<b>检索时点：</b>2026-11-13<br><a href="https://cn.x-cmd.com/install/one-api/" target="_blank" rel="noopener">https://cn.x-cmd.com/install/one-api/</a></div><div class="note">事实核查：「one-api 是中小团队做 LLM 资源整合的最省事方案——不需要懂路由、不需要自己写计费逻辑、UI 直接给产品经理用」「想做白标 API 卖给客户，one-api 比 LiteLLM……」评价出自此页；属第三方工具站观点性内容，按 partial 收录。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx partial">[10]</span><span class="rt">C+</span><span class="st">技术社区教程（佐证）</span></div><div class="ti">One API: 开源的 LLM API 管理与分发系统部署和使用（CSDN 博客）</div><div class="mt"><b>来源：</b>CSDN（u013172930）　<b>检索时点：</b>2026-11-13<br><a href="https://blog.csdn.net/u013172930/article/details/151821745" target="_blank" rel="noopener">https://blog.csdn.net/u013172930/article/details/151821745</a></div><div class="note">事实核查：项目定位与支持的供应商清单与 README 一致，作为中文技术社区持续产出部署教程的旁证；内容为科普性转述，按 partial（C+）收录。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx partial">[11]</span><span class="rt">C</span><span class="st">镜像站点（生态扩散佐证）</span></div><div class="ti">one-api —— Gitee 镜像页（gitee.com/filer/one-api）</div><div class="mt"><b>来源：</b>Gitee（第三方镜像，注明来源 GitHub）　<b>检索时点：</b>2026-11-13<br><a href="https://gitee.com/filer/one-api" target="_blank" rel="noopener">https://gitee.com/filer/one-api</a></div><div class="note">事实核查：镜像页简介与 GitHub 原仓库一致并标注来源，证明项目在境内代码托管平台的扩散；仅作生态扩散旁证，按 partial（C）收录。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx verified">[12]</span><span class="rt">A</span><span class="st">GitHub API 一手实测（对标）</span></div><div class="ti">musistudio/claude-code-router 仓库元数据（对标数据）</div><div class="mt"><b>来源：</b>GitHub REST API　<b>实测时点：</b>2026-11-13<br><a href="https://api.github.com/repos/musistudio/claude-code-router" target="_blank" rel="noopener">https://api.github.com/repos/musistudio/claude-code-router</a></div><div class="note">事实核查：38,131★、3,207 forks、created_at 2025-02-25、pushed_at 2026-10-10 直接实测；与案例墙既有核验值 38.1k★（2026-11 API 实测）一致。定位描述引自案例墙条目。</div></li>
+  <li id="ref-13" class="src"><div class="sh"><span class="idx verified">[13]</span><span class="rt">A</span><span class="st">GitHub API 一手实测（对标）</span></div><div class="ti">justlovemaki/AIClient2API 仓库元数据（对标数据，原 AIClient-2-API 已更名）</div><div class="mt"><b>来源：</b>GitHub REST API（经仓库搜索定位现名）　<b>实测时点：</b>2026-11-13<br><a href="https://github.com/justlovemaki/AIClient2API" target="_blank" rel="noopener">https://github.com/justlovemaki/AIClient2API</a></div><div class="note">事实核查：8,978★、created_at 2025-07-20 直接实测，与案例墙「8.9k★（2026-11 API 实测）」一致；原地址 justlovemaki/AIClient-2-API 已不可用（更名），现名经 GitHub Search API 核验。「Docker 下载 10 万+」为案例墙既有核验值，本次未复测。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 13 条（案例墙内部核验值作口径参照，不计入编号）。核验标签分布：🟢 已核验（verified）6 条、🔵 多源印证（cross）1 条、🟡 部分映证（partial）6 条。信源评级分布：A/A+ 级 6 条（GitHub API 仓库与用户档案、README 一手原文，全部实测回溯完成）、B/B+ 级 3 条、C/C+ 级 4 条（英文媒体二手转引、自媒体生态长文、工具站观点、镜像页——均已标注口径与限制）。核验受限与处理：① Docker Hub 拉取总量在检索环境不可获取（curl 与网页抓取均空），正文与数据表均注明「未采信具体数值」；② Calcium-Ion/new-api 旧地址 API 无返回（组织迁移），改用 QuantumNous/new-api 现址实测；③ AIClient-2-API 已更名 AIClient2API，经搜索定位后实测；④ 案例墙锚点 2023-04-15 与实测创建时间 2023-04-22 存在一周偏差，正文按一手 API 口径采信并在捌·附注明。未发现伪造链接；全部 URL 为检索过程实际命中页面。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-13 · 星标等时点值会随时间变动，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · HivisionIDPhotos——学生开发者林泽毅的轻量 AI 证件照工具 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · HivisionIDPhotos">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="HivisionIDPhotos 深度案例报告：西电学生开发者林泽毅（Zeyi-Lin）以纯 CPU 离线 AI 证件照工具登 GitHub 热榜第一，累计 21.7k★、Docker 拉取 100K+、衍生小程序用户百万级。10 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>HivisionIDPhotos 深度案例报告</h1>
+    <h2>西电学生开发者林泽毅（Zeyi-Lin）：一个「纯 CPU 离线」的轻量 AI 证件照工具<br>登 GitHub 热榜第一、两年累计 21.7k★、Docker 拉取 100K+ —— 10 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">开源工具型 OPC</span>
+      <span class="tag">CPU-only 轻量推理</span>
+      <span class="tag">开源 + 在线双轨</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">21,721★</div><div class="k">GitHub 星标（2026-11-13 API 实测）</div></div>
+  <div class="stat"><div class="v up">热榜第一</div><div class="k">GitHub Trending（2024-09-05 · 校方稿）</div></div>
+  <div class="stat"><div class="v neutral">100K+</div><div class="k">Docker 镜像拉取量（页面实测）</div></div>
+  <div class="stat"><div class="v neutral">百万级</div><div class="k">衍生小程序「焕影一新」用户（2024-09 口径）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">HivisionIDPhotos 是 2024 年 9 月中国开源圈最出圈的「实用型 AI 工具」样本之一：一个只需 CPU 即可推理的轻量级 AI 证件照制作算法，由西安电子科技大学学生开发者林泽毅主导开源，上线两周内登 GitHub Trending 热榜第一，被机器之心、量子位等 AI 垂类媒体密集报道，随后演化出覆盖 ComfyUI、微信小程序、C++、网页端的开源衍生生态——是国内「开源工具 + 在线服务」双轨路线的早期范本。</p>
+  <div class="two">
+    <div class="card"><div class="ct">项目</div><div class="cb">轻量级 AI 证件照制作算法（开源）：人像抠图 → 多规格标准证件照 / 六寸排版照生成 → 背景更换，支持纯离线或端云推理，纯离线模式下仅需 CPU 即可快速推理；另含美颜（已上线）与智能换正装（规划中）。Apache-2.0 协议，Python 主语言。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-4">[4]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">林泽毅（网名 Zeyi-Lin / ZeYiLin），西安电子科技大学电子工程学院 2023 级博士研究生（2024-09 时为博一，师从吴家骥教授），隶属学校极创工作室；同时是 SwanLab 与 SwanHub 开源社区的创始人之一，热衷全栈、机器学习、UI/UX 与产品顶层设计。</div><div class="cm">信源：<a class="cref cross" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="card blue"><div class="ct">前身与闭环</div><div class="cb">证件照算法源自其参与「互联网+」创新创业大赛的成果；开源之前，团队已基于同一套技术上线小程序「焕影一新」，据作者知乎自述国内使用人数接近 100 万，校方新闻稿口径为「百万级用户」——先做闭源产品验证需求，再将算法层开源。</div><div class="cm">信源：<a class="cref cross" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="card blue"><div class="ct">公司 / 投资状态</div><div class="cb">未检索到 HivisionIDPhotos 本身的公司注册、营收或融资公开信息；作者当前以「CPO，情感机器」署名出现在 SwanLab 官网推荐语中（该公司与其学生项目的承接关系未公开披露）。项目本体维持个人主导：GitHub 贡献榜第一名 Zeyi-Lin 独占 400 次 commits，第二名仅 12 次。</div><div class="cm">信源：<a class="cref cross" href="#ref-8">[8]</a> <a class="cref verified" href="#ref-1">[1]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">开源前（大赛时期）</div><div class="tx">「互联网+」大赛成果 → 闭源小程序「焕影一新」</div><div class="td">证件照制作算法为参赛成果；基于该代码的小程序在国内已被接近 100 万人使用（作者知乎自述）。<a class="cref cross" href="#ref-2">[2]</a> 校方稿口径「焕影一新已拥有百万级用户」。<a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2023-06-18</div><div class="tx">GitHub 仓库创建</div><div class="td">Zeyi-Lin/HivisionIDPhotos 建仓（GitHub API 实测 created_at），此后处于低曝光积累期。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2024-09 上旬</div><div class="tx">连续多日挂在 GitHub 热榜，量子位介入报道</div><div class="td">2024-09-04 量子位报道时已「狂揽 3.2K 星标」，文中实测网页 Demo 并披露技术路线：MODNet 抠图模型经证件照数据微调转 ONNX、MTCNN 人脸检测转 ONNX、CPU 可运行、FastAPI API 服务与 Docker 部署。<a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2024-09-05 → 09-09</div><div class="tx">登 GitHub Trending 热榜第一，星标一周从 3.2k 冲至 7.9k</div><div class="td">校方新闻稿确认 9 月 5 日趋势榜第一；同时登上智源社区、HelloGitHub 等国内外开源平台热榜，「得到机器之心、量子位、GithubDaily 等国内人工智能领域主流媒体推荐」。案例墙锚点 2024-09-15 即取此爆发窗口。<a class="cref verified" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2024-09-16 → 11-20</div><div class="tx">爆发后的密集迭代（README 更新日志）</div><div class="td">两个月内连续上线：人脸旋转对齐、自定义底色 HEX、社区贡献 C++ 版、野兽模式（内存加载策略）、dpi 与 face_alignment API 参数、排版照裁剪线、五寸相纸与 JPEG 300DPI、美颜 API 参数、六寸/五寸/A4/3R/4R 五种打印排版尺寸。<a class="cref cross" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2024 下半年起</div><div class="tx">生态化：社区衍生项目矩阵 + 多平台在线服务</div><div class="td">README 收录社区衍生：ComfyUI 工作流、微信小程序（Java 后端版与 Uniapp 版）、网页版、C++ 版、Windows GUI 版等；算法同时部署到 SwanHub Demo、HuggingFace Spaces、ModelScope 魔搭、Modelers、Compshare 五个在线入口；官方 Docker 镜像 linzeyi/hivision_idphotos 累计拉取 100K+。<a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-5">[5]</a><a class="cref cross" href="#ref-7">[7]</a></div></div>
+    <div class="node"><div class="dt">2025 → 2026</div><div class="tx">作者重心转向 SwanLab 生态，本项目进入维护态</div><div class="td">SwanLab 官网显示林泽毅以「CPO，情感机器」署名；HivisionIDPhotos 仓库最后 push 为 2026-07-03（API 实测），Docker 镜像约 9 个月未更新，v1.3.1 成为最新 tag。<a class="cref cross" href="#ref-8">[8]</a><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2026-11-13</div><div class="tx">本报告实测：星标 21,721、fork 2,532、仍在活跃 Star 增长曲线中</div><div class="td">HelloGitHub 页面近 6 天新增 21 星；贡献者 24 人，主创 400 commits 一骑绝尘。<a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-6">[6]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：先闭源验证需求，再开源收割开发者心智</div><div class="cb">与多数「先开源再找场景」的学生项目相反，林泽毅的顺序是反过来的：算法先在「互联网+」大赛里打磨，再以小程序「焕影一新」完成百万级用户的闭源商业验证，然后才把算法层开源<sup class="cite cross">[2]</sup><sup class="cite verified">[3]</sup>。开源时机也经过思考——他在知乎自述：AIGC 浪潮到来后，「证件照制作这个非常偏图像代码工程落地的场景有点 old 了」，并坦言「当年有做线上海马体的想法」<sup class="cite cross">[2]</sup>。闭源期赚到的用户认知与场景理解，成为开源后两周登顶热榜的势能。</div><div class="cm">信源：<a class="cref cross" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-3">[3]</a></div></div>
+  <div class="card"><div class="ct">转折二：以「CPU-only 纯离线」的技术选型击中爆点</div><div class="cb">2024 年开源 AI 项目的主流叙事是参数量与 GPU 军备竞赛，HivisionIDPhotos 反其道而行：抠图模型（MODNet + 证件照数据微调）与人脸检测模型（早期 MTCNN，v1.3 升级为 retinaface-resnet50）全部转 ONNX，在无 GPU 的普通电脑上秒级推理<sup class="cite cross">[2]</sup><a class="cref cross" href="#ref-7">[7]</a>。这让「内网部署 / 离线环境 / 低配机器」三类长尾需求（高校机房、政企内网、个人旧电脑）全部成为它的铺开场景，也是第三方部署教程密集出现的原因<sup class="cite partial">[9]</sup><sup class="cite partial">[10]</sup>。热榜第一的爆点不是模型多强，而是把深度学习工具的使用门槛降到了零 GPU。</div><div class="cm">信源：<a class="cref cross" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-7">[7]</a> <a class="cref partial" href="#ref-10">[10]</a></div></div>
+  <div class="card red"><div class="ct">转折三：开源个人品牌的复利——从证件照工具到 SwanLab 生态</div><div class="cb">热榜之后，作者没有走「融资—公司化—商业化闭源」的常规路径，而是把开源声望沉淀为社区身份：林泽毅作为 SwanLab / SwanHub 开源社区创始人之一，HivisionIDPhotos 的在线 Demo 即托管于 SwanHub，后又铺到魔搭与 HuggingFace；校方稿披露其极创工作室的 SwanLab 项目获中国国际大学生创新大赛（2024）陕西赛区高教主赛道总冠军<sup class="cite cross">[3]</sup>。2026 年的 SwanLab 官网推荐语中，他已以「CPO，情感机器」署名<sup class="cite cross">[8]</sup>——证件照项目本身未检索到任何收入披露，它更像是作者开源履历中的「破圈代表作」。</div><div class="cm">信源：<a class="cref cross" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-8">[8]</a></div></div>
+  <div class="quote">
+    <p>开源促进了知识的共享和传播，带来了更广泛的协作和共享文化……希望 HivisionIDPhotos 将来能成为一个在 AIGC 领域有影响力的工具类项目，集成开源生态中优秀的 matting 模型和 diffusion 模型，让人人都能拥有自己的「线上海马体」。</p>
+    <span class="src">—— 林泽毅，西电新闻网采访（2024-09-09），转引自 <a class="cref verified" href="#ref-3">[3]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product & Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>内容</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>产品功能</td><td class="hl">抠图 / 多规格生成 / 排版 / 美颜</td><td>上传一张照片输出标准证件照与高清 4 通道透明 PNG；覆盖一寸二寸及教师资格证、公务员考试、四六级、签证等规格；六寸/五寸/A4/3R/4R 打印排版；美颜已上线，智能换正装长期处于 waiting 状态</td></tr>
+      <tr><td>技术路线</td><td>开源模型组合</td><td>MODNet 人像抠图模型（经开源证件照数据微调）+ 人脸检测模型（早期 MTCNN → v1.3 retinaface-resnet50），统一转 ONNX 加速；FastAPI 后端 + Gradio Demo 前端；纯 CPU 推理，支持纯离线或端云两种模式</td></tr>
+      <tr><td>部署形态</td><td>本地 / API / 在线</td><td>本地：Python 推理脚本与 Docker（官方镜像 linzeyi/hivision_idphotos）；API：FastAPI 服务供第三方集成；在线：SwanHub Demo、HuggingFace Spaces、魔搭 ModelScope、Modelers、Compshare 多入口，HF Space 当前状态 Running</td></tr>
+      <tr><td>面向客群</td><td>开发者集成 + 个人用户</td><td>开发者：以 Docker/FastAPI 自部署做二次集成（衍生出小程序、网页版、C++ 版、ComfyUI 工作流等社区项目）；个人用户：在线 Demo 免费应急制作</td></tr>
+      <tr><td>解决痛点</td><td class="hl">证件照拍摄成本</td><td>线下照相馆单次数十元、换底/换尺寸需重拍重付费；本工具把「随手拍一次、后续换底换尺寸」的边际成本降为零，主打应急与省钱场景</td></tr>
+      <tr><td>商业模式</td><td>开源免费 + 变现载体分离</td><td>算法层 Apache-2.0 完全免费，项目本体未检索到任何收费、订阅或 API 计价公开信息；变现功能由闭源小程序「焕影一新」（百万级用户）承接，其运营主体与收入未公开</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box insight">
+    <div class="bt">💡 「开源工具 + 在线服务」双轨结构</div>
+    与先行的 pdf2zh（开源翻译 + pdf2zh.com 在线服务）类似，HivisionIDPhotos 的分发是三层的：算法层开源（GitHub 星标生态）→ 自部署层开放（Docker/API，服务开发者与内网场景）→ 在线层免费托管（SwanHub/HF/魔搭，服务个人用户）。在线层本身不收费，但其作用是把个人用户流量导向闭源小程序，并为作者的 SwanLab 开源品牌持续背书——这是国内学生开发者「以工具养品牌、以品牌养生态」的典型双轨打法。
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>GitHub 星标</td><td class="hl">3.2k → 7.9k → 21,721</td><td>2024-09-04 → 09-09 → 2026-11-13（API 实测）</td><td><a class="cref cross" href="#ref-2">[2]</a><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>GitHub Trending</td><td class="hl">热榜第一（9 月 5 日趋势榜截图）</td><td>2024-09-05</td><td><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td>GitHub Forks / Watch</td><td>2,532 / 93</td><td>2026-11-13 实测</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>贡献者结构</td><td>24 人；主创 Zeyi-Lin 400 commits（第二名 12 次）</td><td>2026-11-13 实测</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-6">[6]</a></td></tr>
+      <tr><td>Docker 拉取量</td><td class="pos">100K+（镜像 linzeyi/hivision_idphotos，v1.3.1）</td><td>2026-11-13 页面实测</td><td><a class="cref cross" href="#ref-5">[5]</a></td></tr>
+      <tr><td>HelloGitHub</td><td>评分 9.8（16 人评分）、168 点赞、近 6 天 +21 星</td><td>2026-11 查询</td><td><a class="cref verified" href="#ref-6">[6]</a></td></tr>
+      <tr><td>HuggingFace Space</td><td>211 likes、Running 在线</td><td>2026-11-13 实测</td><td><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td>衍生小程序「焕影一新」用户</td><td>接近 100 万（作者自述）→ 百万级（校方口径）</td><td>2024-09</td><td><a class="cref cross" href="#ref-2">[2]</a><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td>媒体热榜推荐</td><td>机器之心、量子位、GithubDaily；智源社区周榜、HelloGitHub 热榜</td><td>2024-09</td><td><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    星标为时点值且会随时间变动：3.2k 与 7.9k 分别为量子位报道日（2024-09-04）与校方新闻稿日（2024-09-09）的历史口径；21,721 为本报告 GitHub API 实测值（2026-11-13）。「焕影一新」百万级用户为作者自述与校方新闻稿双重口径，属开源前闭源产品数据，无第三方独立审计。Docker Hub API 直连核验失败（沙箱网络限制，HTTP 000），改经网页端页面实测成功。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将 HivisionIDPhotos 放入案例墙「国内高星个人开源工具」坐标系（对标数据均为案例墙既有核验值，时点 2026-10/11，口径为 domestic-pool 主清单；本案星标为本报告 2026-11-13 实测）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>星标（时点）</th><th>「开源 + 在线」双轨布局</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>HivisionIDPhotos</b></td><td>林泽毅（西电博士生）</td><td>AI 证件照工具（CPU 离线推理）</td><td class="hl">21.7k★（2026-11-13 实测）</td><td>开源 + 五平台在线 Demo + 闭源小程序承接变现</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>MoneyPrinterTurbo</td><td>harry0703</td><td>AI 短视频一键生成器</td><td>133k+★（案例墙核验值）</td><td>纯开源，未检索到官方在线服务</td><td>案例墙既有核验值</td></tr>
+      <tr><td>GPT-SoVITS</td><td>花儿不哭（RVC-Boss，B 站 UP 主）</td><td>少样本音色克隆 TTS</td><td>64k+★（案例墙核验值）</td><td>纯开源，社区整合包分发</td><td>案例墙既有核验值</td></tr>
+      <tr><td>PDFMathTranslate（pdf2zh）</td><td>Byaidu</td><td>PDF 学术文档 AI 全文双语翻译</td><td>38.3k★（案例墙核验值）</td><td class="hl">开源 CLI/GUI/Zotero 插件 + 官方在线服务 pdf2zh.com，入选 EMNLP 2025 Demo</td><td>案例墙既有核验值</td></tr>
+      <tr><td>Umi-OCR</td><td>hiroi-sora</td><td>开源离线 OCR 软件</td><td>48.4k★（案例墙核验值）</td><td>纯开源离线，解压即用</td><td>案例墙既有核验值</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>五者同为中国个人开发者的现象级开源工具，但路线分化明显：MoneyPrinterTurbo、GPT-SoVITS、Umi-OCR 是「纯开源」路线，热度来自开源社区本身；HivisionIDPhotos 与 pdf2zh 则是少数走通「开源工具 + 在线服务」双轨的样本——前者把个人用户导流至闭源小程序、把开发者用户导流至自部署生态，后者直接以官网在线服务承接。就「个人主导度」而言，HivisionIDPhotos 的 400/12 commits 头部集中度，在一众高星项目中属于个人属性最纯粹的梯队<sup class="cite verified">[1]</sup>；就「破圈速度」而言，它是案例墙内唯一有校方官方新闻稿确认「GitHub 热榜第一」的项目<sup class="cite verified">[3]</sup>。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:130px">维度</th><th>分析</th><th style="width:110px">信源</th></tr></thead>
+    <tbody>
+      <tr><td>1. 产品功能</td><td>单点工具的克制迭代：核心链路「人像抠图 → 上下补全 → 智能裁切 → 背景更换 → 排版照生成」全部围绕证件照一个场景；爆发期两个月内快速补齐人脸对齐、dpi 参数、300DPI 打印、五种排版纸型等工程细节，美颜从 Demo 承诺落地为 API 参数；「智能换正装」至今停留在 waiting 状态，成为功能叙事中最长的一张空头支票。</td><td><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td>2. 面向客群</td><td>双客群结构：开发者客群通过 Docker/FastAPI 自部署做产品集成（衍生出微信小程序、ComfyUI、C++、网页版等社区项目，其中仅微信小程序衍生仓库即有多版本并行）；个人客群通过五平台在线 Demo 免费使用。真正的付费转化发生在闭源小程序层，开源仓库本身不承载变现。</td><td><a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-5">[5]</a></td></tr>
+      <tr><td>3. 解决痛点</td><td>证件照是低频、刚需、强规格约束的图像处理场景：线下拍摄成本数十元且换底换尺寸须重拍；通用 AIGC 工具又难以保证「标准规格 + 可打印」。本项目的答案是用确定性的传统管线（抠图+几何裁切+排版）而非端到端生成——效果稳定可复现，代价是解决不了原片姿态与光照问题（见第六行负面评价）。</td><td><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td>4. 预估年化营收</td><td class="hl">未检索到公开信息（置信度 C）。项目本体免费开源，无收费/订阅/API 计价披露；闭源小程序「焕影一新」百万级用户但运营主体与收入均未公开。以同类在线证件照服务单次 5-20 元的市场惯例推算其潜在收入规模缺乏依据，本报告不做虚构估算。</td><td><a class="cref cross" href="#ref-2">[2]</a><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td>5. 融资进展</td><td>未检索到公开信息。项目层面无公司实体、无融资披露的任何线索；作者个人层面的新动态是以「CPO，情感机器」身份出现在 SwanLab 官网（SwanLab 仓库主体为 SwanHubX 组织），其与西电极创工作室学生项目的承接关系未披露。</td><td><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td>6. 市场评价</td><td>正面：机器之心、量子位、GithubDaily 推荐，智源社区开源周榜、HelloGitHub 热榜与 9.8 高分、HF Space 211 likes，第三方部署教程覆盖腾讯云开发者社区等主流技术平台。负面（如实收录）：量子位实测认为「抠图感比较明显」「完全从随手拍到证件照还差点意思（也需要碰运气）」；36氪评论区质疑「出图分辨率低，不能解决人像 pose 和 lighting 问题，用途受限」「火的有点莫名其妙」。</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-6">[6]</a><a class="cref cross" href="#ref-7">[7]</a><a class="cref cross" href="#ref-2">[2]</a><a class="cref partial" href="#ref-9">[9]</a></td></tr>
+      <tr><td>7. 合规风险</td><td class="hl"><b>人脸数据合规（重点）</b>：证件照处理的核心对象是人脸图像，人脸信息属《个人信息保护法》界定的敏感个人信息，处理须取得单独同意并遵循最小必要原则。本项目的架构选择与此高度相关——纯离线/自部署模式下人脸数据不出本机，天然规避了云端人脸库风险，这正是其在政企内网、高校机房场景铺开的合规优势；但在线 Demo（HF/魔搭等）与「焕影一新」小程序涉及人脸信息上传，其告知同意、存储期限与删除机制均未见公开披露，构成待验证项。<b>开源许可与商用</b>：Apache-2.0 允许商用、修改与闭源分发，只需保留版权与许可声明——社区衍生小程序的密集出现与此许可宽松度直接相关；但项目依赖的第三方模型权重（MODNet 等适用其自身许可）商用合规需使用方自行确认，仓库层面未检索到统一的模型许可声明。</td><td><a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 商业化程度与维护节奏（截至 2026-11-13 检索）</div>
+    ① 商业化程度未证：项目本体零收入披露，「焕影一新」小程序的运营主体、付费模式与收入均未检索到公开信息，「百万级用户」为作者自述 + 校方口径，无第三方审计——本案例在案例墙中的定位因此是「开源影响力型 OPC」而非「营收型 OPC」。② 维护进入低缓期：仓库最后 push 2026-07-03（API 实测），官方 Docker 镜像约 9 个月未更新、最新 tag v1.3.1，美颜功能承诺多年后仍以 API 参数形式浅层存在，「智能换正装」持续 waiting。③ 星标增速放缓：HelloGitHub 显示近 6 天仅 +21 星，年增量较 2024 年爆发期大幅回落。④ 机器之心报道原文 URL 未检索到，其推荐事实目前仅能追溯至校方新闻稿的转述记载。
+  </div>
+  <div class="box note">
+    <div class="bt">📌 身份与口径的两点说明</div>
+    ① 「一人公司」口径：本案例严格说是「学生开发者主导的开源项目」，无公司实体证据，主创 400 commits 对第二名 12 次的碾压式集中度是个人属性最硬的证据；但西电稿署名通讯员即含林泽毅本人，且项目从大赛到小程序均依托学校极创工作室资源，纯粹的「一人」叙事应打上校园孵化协作的补注。② 「热榜第一」口径：校方新闻稿以 9 月 5 日 GitHub 趋势榜截图佐证「热榜第一」，为单一官方信源 + 截图证据，未见 GitHub 官方存档级印证，采信时已按校方一手口径标注。
+  </div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">HivisionIDPhotos 证明了 OPC 在「确定性小工具」赛道的独特打法：不卷模型参数，而卷部署门槛（CPU-only）与场景规格（按寸排版）；不急着商业化，而让闭源小程序在前台赚钱、开源仓库在后台积累品牌。对一人开发者而言，它示范了「闭源产品验证 → 开源破圈 → 开源品牌反哺下一个生态（SwanLab）」的三段式路径——这也是它与案例墙内纯开源项目（Umi-OCR）、纯营收项目（sitesfy、Leadmore AI）最本质的分野。其隐忧同样典型：单点工具的天花板清晰、维护不可持续，最终以「生态化退出」而非「产品化持续经营」收束，是个人开源项目生命周期的常见终局。</div><div class="cm"><a class="cref cross" href="#ref-8">[8]</a> <a class="cref verified" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-3">[3]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">捌</div><h3>捌·附 · 资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 10 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx verified">[1]</span><span class="rt">A</span><span class="st">GitHub 一手实测</span></div><div class="ti">Zeyi-Lin/HivisionIDPhotos 仓库（GitHub API 实测）</div><div class="mt"><b>来源：</b>GitHub　<b>实测日期：</b>2026-11-13<br><a href="https://github.com/Zeyi-Lin/HivisionIDPhotos" target="_blank" rel="noopener">https://github.com/Zeyi-Lin/HivisionIDPhotos</a></div><div class="note">事实核查：API 实测 stars 21,721 / forks 2,532 / watch 93 / Apache-2.0 / Python / created 2023-06-18 / pushed 2026-07-03；贡献者榜 Zeyi-Lin 400 commits 居首；与 HelloGitHub [6] 星数交叉一致。星标为时点值。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx cross">[2]</span><span class="rt">B+</span><span class="st">AI 垂类媒体报道</span></div><div class="ti">AI证件照神器登GitHub热榜，内置考研考公签证模版一键生成（量子位，36氪授权转载，作者一水）</div><div class="mt"><b>来源：</b>36氪（原发量子位公众号）　<b>发布日期：</b>2024-09-04<br><a href="https://m.36kr.com/p/2935405970545537" target="_blank" rel="noopener">https://m.36kr.com/p/2935405970545537</a></div><div class="note">事实核查：3.2K 星标（报道日）、作者身份（西电博一、师从吴家骥教授、SwanLab/SwanHub 创始人之一）、小程序接近 100 万人使用（作者知乎自述口径）、MODNet+MTCNN+ONNX 技术路线、FastAPI/Docker 部署、「线上海马体」开源动机、实测负评与评论区质疑均出自此稿；与校方新闻稿 [3] 交叉印证。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx verified">[3]</span><span class="rt">B+</span><span class="st">高校官方新闻稿</span></div><div class="ti">拥抱开源 创新未来 西电开源项目登上GitHub热榜第一（西安电子科技大学新闻网，通讯员靳梁巍 林泽毅）</div><div class="mt"><b>来源：</b>西电新闻网（创新创业学院/电子工程学院）　<b>发布日期：</b>2024-09-09<br><a href="https://xsw.xidian.edu.cn/info/1002/11681.htm" target="_blank" rel="noopener">https://xsw.xidian.edu.cn/info/1002/11681.htm</a></div><div class="note">事实核查：「GitHub 热榜第一」+9 月 5 日趋势榜截图、7.9k 星（9 月 9 日）、智源社区/HelloGitHub 热榜、机器之心/量子位/GithubDaily 推荐、「焕影一新」小程序百万级用户、极创工作室背景与 SwanLab 大赛冠军均出自此稿；与 [2] 双向交叉。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx cross">[4]</span><span class="rt">A</span><span class="st">项目一手文档</span></div><div class="ti">HivisionIDPhotos README（GitHub API 原文抓取）</div><div class="mt"><b>来源：</b>GitHub 仓库 README_CN.md　<b>抓取日期：</b>2026-11-13<br><a href="https://github.com/Zeyi-Lin/HivisionIDPhotos/blob/master/README_CN.md" target="_blank" rel="noopener">https://github.com/Zeyi-Lin/HivisionIDPhotos/blob/master/README_CN.md</a></div><div class="note">事实核查：功能清单（轻量级抠图 CPU 推理、多规格排版、美颜、换正装 waiting）、2024-09-16 至 11-20 更新日志、社区衍生项目矩阵（ComfyUI/微信小程序/Uniapp/web/C++/Windows GUI）、Docker 镜像名 linzeyi/hivision_idphotos、HuggingFace/ModelScope/Modelers/Compshare 在线入口均出自此文档。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx cross">[5]</span><span class="rt">B+</span><span class="st">平台数据页</span></div><div class="ti">linzeyi/hivision_idphotos Docker Hub 仓库页（拉取量 100K+）</div><div class="mt"><b>来源：</b>Docker Hub　<b>实测日期：</b>2026-11-13<br><a href="https://hub.docker.com/r/linzeyi/hivision_idphotos" target="_blank" rel="noopener">https://hub.docker.com/r/linzeyi/hivision_idphotos</a></div><div class="note">事实核查：页面显示 100K+ 拉取量、最新 tag v1.3.1、镜像 905.5MB、约 9 个月未更新。核验过程说明：Docker Hub API 直连失败（HTTP 000，沙箱网络限制），改经网页端核验成功。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx verified">[6]</span><span class="rt">B+</span><span class="st">开源社区平台页</span></div><div class="ti">HivisionIDPhotos 项目页（HelloGitHub 评分 9.8 / 星数趋势 / 作者评论）</div><div class="mt"><b>来源：</b>HelloGitHub　<b>查询日期：</b>2026-11<br><a href="https://hellogithub.com/repository/Zeyi-Lin/HivisionIDPhotos" target="_blank" rel="noopener">https://hellogithub.com/repository/Zeyi-Lin/HivisionIDPhotos</a></div><div class="note">事实核查：评分 9.8（16 人评分）、星数 21.7k 与 GitHub API [1] 交叉一致、24 贡献者、Apache-2.0、近 6 天 +21 星；作者 Ze-Yi LIN 本人在评论区回应迭代方向（换正装等）。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">B+</span><span class="st">在线服务页</span></div><div class="ti">HivisionIDPhotos 在线 Demo（HuggingFace Spaces）</div><div class="mt"><b>来源：</b>HuggingFace Space（TheEeeeLin/HivisionIDPhotos）　<b>实测日期：</b>2026-11-13<br><a href="https://huggingface.co/spaces/TheEeeeLin/HivisionIDPhotos" target="_blank" rel="noopener">https://huggingface.co/spaces/TheEeeeLin/HivisionIDPhotos</a></div><div class="note">事实核查：Space 状态 Running、211 likes；Demo 页显示 v1.3、人脸检测模型 retinaface-resnet50、抠图模型 modnet_photographic_portrait_matting，与 README [4] 及量子位稿 [2] 的技术路线描述交叉。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx cross">[8]</span><span class="rt">B+</span><span class="st">官网一手</span></div><div class="ti">SwanLab 官网（林泽毅以「CPO，情感机器」署名）</div><div class="mt"><b>来源：</b>swanlab.cn　<b>实测日期：</b>2026-11-13<br><a href="https://swanlab.cn" target="_blank" rel="noopener">https://swanlab.cn</a></div><div class="note">事实核查：官网推荐语署名「林泽毅 CPO，情感机器」，证实作者当前身份与 SwanLab 生态的承接；GitHub 仓库主体为 SwanHubX 组织。「情感机器」公司与西电学生项目的承接关系未披露，按待证处理。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx partial">[9]</span><span class="rt">B</span><span class="st">第三方技术社区教程</span></div><div class="ti">AI证件照，抠图、换背景、任意尺寸……本地化部署教程（腾讯云开发者社区）</div><div class="mt"><b>来源：</b>腾讯云开发者社区　<b>发布日期：</b>约 2024 下半年<br><a href="https://cloud.tencent.com/developer/article/2449972" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/2449972</a></div><div class="note">事实核查：作为生态铺开广度的佐证（第三方主动撰写本地部署教程），检索命中页面，未逐句核验正文。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx partial">[10]</span><span class="rt">C</span><span class="st">第三方博客</span></div><div class="ti">HivisionIDPhoto 证件照工坊：抠图、裁切、换底、排版一条龙（CSDN 博客）</div><div class="mt"><b>来源：</b>CSDN（yilvyangguang520）　<b>发布日期：</b>约 2025<br><a href="https://blog.csdn.net/yilvyangguang520/article/details/170029554" target="_blank" rel="noopener">https://blog.csdn.net/yilvyangguang520/article/details/170029554</a></div><div class="note">事实核查：能力链「人像抠图 → 上下补全 → 美颜 → 人脸检测 → 智能裁切 → 背景更换 → 排版照生成」与 ONNX CPU 推理口径与一手文档 [4] 一致，按 C 级引用，仅用于技术链佐证。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 10 条。核验标签分布：🟢 已核验（verified）3 条、🔵 多源印证（cross）5 条、🟡 部分映证（partial）2 条。信源评级分布：A 级 2 条（GitHub API 一手实测 + 项目一手 README，原文/原文数据回溯完成）、B+ 级 6 条（量子位/36氪、西电官方新闻稿、Docker Hub、HelloGitHub、HuggingFace、SwanLab 官网）、B 级 1 条、C 级 1 条（均为第三方教程佐证）。关键数字三重交叉：星标 21,721 由 GitHub API 与 HelloGitHub 双平台一致；「热榜第一」由校方新闻稿截图佐证；「百万级小程序用户」为作者自述 + 校方口径双重一致但无第三方审计（已显式标注）。核验失败与处理：① 机器之心报道原文 URL 未检索到——其推荐事实以西电官方新闻稿 [3] 记载为准，正文一律按 [3] 引用，不单独设条目；② Docker Hub API 直连失败（沙箱网络限制，HTTP 000）——改经网页端实测成功，数据可用；③ SwanLab 仓库星标查询因组织名解析失败未获数值——不影响本报告结论，未引用。GitHub README 首次抓取超时一次，改经 GitHub API（Accept: raw）重试成功。全部 URL 为检索过程实际命中页面，未发现伪造链接。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-13 · GitHub 星标等时点值会随时间变动，营收类留白均如实标注，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

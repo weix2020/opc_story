@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · new-api——一个人的 fork，长成中转站生态的底座 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · new-api（Calcium-Ion → QuantumNous）">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="new-api 深度案例报告：Calcium-Ion 个人 fork one-api 二次开发，星标反超上游 38%，成为中国 API 中转站生态事实底座，最终转入 QuantumNous 组织维护。GitHub 51,840★ 实测，15 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>new-api：一个人的 fork，长成了中转站生态的底座</h1>
+    <h2>Calcium-Ion 以个人账户 fork one-api 二次开发，星标反超上游 38%<br>成为中国 API 中转站生态的事实底座，最终转入 QuantumNous 组织维护 —— 15 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">基础设施型 OPC</span>
+      <span class="tag">Fork 超越上游</span>
+      <span class="tag">组织化演进（一人属性：中）</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">51,840</div><div class="k">GitHub 星标（2026-11-13 API 实测）</div></div>
+  <div class="stat"><div class="v up">+38%</div><div class="k">星标反超上游 one-api（37,419★）</div></div>
+  <div class="stat"><div class="v neutral">3,113 次</div><div class="k">发起人 Calcium-Ion 个人提交数 · 居首</div></div>
+  <div class="stat"><div class="v neutral">约 361 名</div><div class="k">贡献者总数（组织化演进口径）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">new-api 是国内「fork 超越上游」的标志性样本：Calcium-Ion 以个人账户在 one-api（songquanpeng 开源的 LLM API 管理 & 分发系统）基础上二次开发，功能广度与维护活跃度全面反超原版，成为大量商用 API 中转站的搭建底座<sup class="cite partial"><a class="cref partial" href="#ref-1">[1]</a></sup>；项目后转入 QuantumNous 组织维护<sup class="cite cross"><a class="cref cross" href="#ref-2">[2]</a></sup>。这是案例墙中首个须如实标注「组织化演进、一人属性：中」的主线案例——个人发起的爆发力与组织化之后的持续力，在本案中先后登场。</p>
+  <div class="two">
+    <div class="card"><div class="ct">产品：New API</div><div class="cb">自托管 AI 网关（新一代大模型网关与 AI 资产管理系统）<a class="cref partial" href="#ref-3">[3]</a>：将 OpenAI、Anthropic、Google Gemini、Azure OpenAI、AWS Bedrock、Vertex AI、DeepSeek、通义千问等上游模型服务接入统一入口，在同一套控制台中管理渠道、访问权限、用量与成本<a class="cref cross" href="#ref-4">[4]</a>；官网 newapi.ai，AGPLv3 开源<a class="cref cross" href="#ref-2">[2]</a>。</div><div class="cm">信源：<a class="cref cross" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-3">[3]</a></div></div>
+    <div class="card"><div class="ct">创业者：Calcium-Ion</div><div class="cb">GitHub 个人账户（2020-02-19 注册，真名未公开）<a class="cref cross" href="#ref-5">[5]</a>。以个人身份 fork one-api 二次开发发起 new-api（案例墙底稿锚点 2024-07-24）<a class="cref cross" href="#ref-6">[6]</a>，个人提交 3,113 次居全体贡献者之首（第二名 634 次）<a class="cref cross" href="#ref-6">[6]</a>；后转入 QuantumNous 组织维护。</div><div class="cm">信源：<a class="cref cross" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-6">[6]</a></div></div>
+    <div class="card blue"><div class="ct">一人属性口径（核心张力）</div><div class="cb">发起期个人属性强：Calcium-Ion 一人提交数 3,113 次、约为第二名的 4.9 倍<a class="cref cross" href="#ref-6">[6]</a>；组织化后：仓库归属 QuantumNous（GitHub Organization 类型实测）<a class="cref cross" href="#ref-2">[2]</a>、贡献者约 361 名<a class="cref cross" href="#ref-6">[6]</a>。案例墙收录口径如实标注：<b>一人属性：中（已组织化）</b>——按「个人发起→组织化收束」的演进双阶段呈现。</div><div class="cm">信源：<a class="cref cross" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-6">[6]</a></div></div>
+    <div class="card blue"><div class="ct">商业与治理</div><div class="cb">开源本体免费（AGPLv3 + 第 7 节附加署名与原项目链接条款，不接受义务者可联系项目方获取商业许可）<a class="cref cross" href="#ref-7">[7]</a><a class="cref cross" href="#ref-8">[8]</a>；无公开融资、营收信息（未检索到公开信息）；成功迹象以 GitHub 生态数据与中转站生态采用度为口径<a class="cref cross" href="#ref-2">[2]</a>。</div><div class="cm">信源：<a class="cref cross" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-7">[7]</a> <a class="cref cross" href="#ref-8">[8]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2023-04-22</div><div class="tx">上游 one-api 创建：中转站生态的原点</div><div class="td">songquanpeng（JustSong）在 GitHub 创建 one-api（LLM API 管理 & 分发系统，MIT 协议），后成为自建中转站的常用方案。<a class="cref cross" href="#ref-9">[9]</a><a class="cref cross" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2023-11-10</div><div class="tx">new-api 仓库在 GitHub 创建</div><div class="td">API 实测仓库 created_at 为 2023-11-10——早于 fork 锚点，彼时仓库形态未检索到更细公开信息；与 2024-07-24 fork 锚点并存辨析（见捌章）。<a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2024-07-24（案例墙底稿锚点）</div><div class="tx">fork 自 one-api，开启二次开发</div><div class="td">README 明确「基于 One API 二次开发」并保留署名与原项目链接；提交历史显示 2024-07 下旬起 Calcium-Ion 密集合并社区 PR（#380/#383/#391）与功能修复。<a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-8">[8]</a><a class="cref cross" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2024-08 起</div><div class="tx">个人主导的快速迭代期</div><div class="td">提交署名 Calcium-Ion / CalciumIon：易支付（epay）接入、图片额度、Gemini 适配、渠道类型修复等，节奏为日更级。<a class="cref cross" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2024–2025</div><div class="tx">吃准中转站生态红利，成为底座</div><div class="td">36氪/机器之心：2024、2025 年 AI 中转站扮演「当年拉光纤、卖服务器机架的人」的角色，是基础设施型印钞机；社区口径称大量商用中转站以 new-api 为底座搭建。<a class="cref verified" href="#ref-10">[10]</a><a class="cref partial" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2025–2026</div><div class="tx">转入 QuantumNous 组织维护（组织化演进）</div><div class="td">仓库归属由 Calcium-Ion 个人账户转移至 QuantumNous 组织（GitHub Organization 类型实测，旧路径 Calcium-Ion/new-api 301 重定向核验一致）；开源协议定型为 AGPLv3+附加条款；README 同时挂 HelloGitHub 推荐、Trendshift、AtomGit G-Star 多平台徽章。<a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-8">[8]</a><a class="cref cross" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2026-05-25</div><div class="tx">36氪/机器之心《Token贩子的盛宴》：生态站上聚光灯</div><div class="td">孙宇晨、傅盛（Easy Router）等名人入局中转站，知乎相关提问浏览量超 75 万；文章同时点破：OpenAI 与 Anthropic 服务条款均明确禁止 API 转售。<a class="cref verified" href="#ref-10">[10]</a></div></div>
+    <div class="node"><div class="dt">2026-07-28</div><div class="tx">央广网：中转站刑拘案与停摆潮</div><div class="td">中国经营报报道：上海一 Token 中转站站长因「反向代理+账号池」模式涉嫌非法经营罪被刑事拘留；国家安全部 2026 年 4 月、6 月两度发文提示中转站乱象；近几个月一批中转站停摆退出。<a class="cref verified" href="#ref-11">[11]</a></div></div>
+    <div class="node"><div class="dt">2026-09-29</div><div class="tx">新浪财经：国产厂商协议封堵二次分发</div><div class="td">智谱《用户协议》明确禁止以出租、出售、分销、转售、二次封装、服务中转、聚合中转等变相方式向第三方提供模型服务——中转站的合规空间进一步收窄。<a class="cref cross" href="#ref-12">[12]</a></div></div>
+    <div class="node"><div class="dt">2026-11-12 / 11-13（本次实测）</div><div class="tx">仍处高频活跃维护</div><div class="td">v1.0.0-rc.50 于 2026-11-12 发布（rc.49 为 11-08、rc.48 为 11-04），周更级发版；实测 51,840★ / 12,645 forks / 1,466 open issues。<a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-2">[2]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：站在 one-api 肩膀上 fork——不重造轮子，只做增量碾压</div><div class="cb">Calcium-Ion 没有从零写一个网关，而是 fork 已被验证的上游 one-api 并保持数据库兼容，让存量用户可平滑迁移<a class="cref cross" href="#ref-8">[8]</a>。增量全部打在上游的薄弱处：OpenAI 兼容单一格式升级为 OpenAI / Claude / Gemini 三格式互转，兑换码升级为易支付 / Stripe 在线支付，新增 Rerank、Midjourney、Suno、Embeddings、Realtime 等接口，UI 与数据看板现代化<a class="cref cross" href="#ref-8">[8]</a>。同时把协议从 MIT 改为 AGPLv3+第 7 节附加条款——既以 copyleft 防止闭源套壳，又为商业许可留出变现通道<a class="cref cross" href="#ref-8">[8]</a>。</div><div class="cm">信源：<a class="cref cross" href="#ref-8">[8]</a> <a class="cref cross" href="#ref-4">[4]</a></div></div>
+  <div class="card"><div class="ct">转折二：不做产品，做生态的「底座」</div><div class="cb">new-api 的真正杠杆不是终端用户，而是「站长」群体：2024-2025 年中转站（卖 API 调用额度的服务商）批量涌现时，大量商用站点选择以 new-api 为底座搭建<a class="cref partial" href="#ref-1">[1]</a>——统一适配、令牌分组倍率、在线充值、用量看板恰好是「开一家 API 中转店」所需的全部柜台组件<a class="cref cross" href="#ref-8">[8]</a>。当一门生意进入名人带货阶段（孙宇晨、傅盛 2026-05 相继入局）<a class="cref verified" href="#ref-10">[10]</a>，其背后的开店工具链也随之水涨船高。生态位的价值超过了产品本身的直接变现。</div><div class="cm">信源：<a class="cref partial" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-10">[10]</a> <a class="cref cross" href="#ref-8">[8]</a></div></div>
+  <div class="card red"><div class="ct">转折三：个人项目 → QuantumNous 组织——「一人公司」叙事的边界</div><div class="cb">Calcium-Ion 以一人之力完成了 fork 后的原始积累（3,113 次提交居首）<a class="cref cross" href="#ref-6">[6]</a>，但当项目成为数以千计站点依赖的基础设施后，个人账户的维护带宽成为单点风险——转入 QuantumNous 组织、接受约 361 名贡献者的社区协作<a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-6">[6]</a>，是开源治理意义上的「团队化」。这也正是案例墙将其一人属性标注为「中」的原因：本案的价值不在于「一个人做到了多大」，而在于完整展示了个人开源项目长成公共基础设施后的组织化必然。</div><div class="cm">信源：<a class="cref cross" href="#ref-6">[6]</a> <a class="cref cross" href="#ref-2">[2]</a></div></div>
+  <div class="quote">
+    <p>将本项目作为面向公众的生成式 AI 服务或 API 转售服务运营时，使用者应先完成备案、内容安全、实名、日志留存、税务、支付和上游授权等合规义务。</p>
+    <span class="src">—— new-api README 中文版 WARNING 块原文（2026-11 实测），作者以声明将合规责任明确下沉给下游运营者，转引自 <a class="cref cross" href="#ref-4">[4]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product & Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>内容</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>产品功能</b></td><td>统一适配多模型上游（OpenAI / Anthropic / Gemini / Azure / Bedrock / Vertex / DeepSeek / 通义等）<a class="cref cross" href="#ref-4">[4]</a>；OpenAI / Claude / Gemini 三格式互转；渠道加权随机、失败重试、故障渠道自动禁用；令牌分组与模型倍率；按量 / 按次 / 缓存计费；兑换码 + 易支付 / Stripe 在线充值；数据看板与插件市场</td><td><a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td><b>与 one-api 的差异</b></td><td>协议 MIT → AGPLv3（含第 7 节附加署名与原项目链接条款）；接口 OpenAI 兼容 → 多格式互转；充值兑换码 → 在线支付；新增 Rerank / Midjourney / Suno / Embeddings / Realtime 接口；认证体系改为 OIDC + Discord / LinuxDO / Telegram；<b>兼容原 One API 数据库</b>可平滑迁移；维护更活跃</td><td><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td><b>生态位</b></td><td>国内 API 中转站生态的开源底座之一（fork 系）：中转站站长以之搭建商用「卖 Token」站点；同时覆盖团队私有化网关场景（组织内部鉴权、用量统计、成本核算）</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>面向客群</b></td><td>个人开发者与小团队（自托管私有部署、Docker 一键起）<a class="cref partial" href="#ref-13">[13]</a>；中转站站长（二次分发运营）<a class="cref partial" href="#ref-1">[1]</a>；企业与 Agent 团队（多模型接入统一入口）<a class="cref cross" href="#ref-4">[4]</a></td><td><a class="cref partial" href="#ref-13">[13]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>解决痛点</b></td><td>各厂商 API 格式互不相同，多模型接入时调试、统计、计费繁琐——new-api 在中间做格式转换与统一管理，切上游时客户端零改动；对「开店」人群，则把 key 管理、额度、计费、收款打包成开箱即用的柜台</td><td><a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-14">[14]</a></td></tr>
+      <tr><td><b>商业模式</b></td><td>开源本体免费；AGPLv3 义务不接受者可联系项目方获取商业许可（协议层面的变现通道）<a class="cref cross" href="#ref-8">[8]</a>；面向公众的转售运营需自行完成备案、实名、税务、上游授权等义务（责任下沉）<a class="cref cross" href="#ref-4">[4]</a>；项目方自身营收未检索到公开信息</td><td><a class="cref cross" href="#ref-8">[8]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>GitHub 星标</td><td class="hl">51,840（底稿时点值 51,300）</td><td>2026-11-13 API 实测（底稿 2026-11-10）</td><td><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td>GitHub Forks</td><td>12,645</td><td>2026-11-13 实测</td><td><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td>Open Issues</td><td>1,466</td><td>2026-11-13 实测</td><td><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td>贡献者规模</td><td>约 361 名（首贡献者 Calcium-Ion 3,113 次居首）</td><td>2026-11-13 实测</td><td><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td>上游 one-api 星标</td><td class="pos">37,419（fork 反超约 38%）</td><td>2026-11-13 实测</td><td><a class="cref cross" href="#ref-9">[9]</a></td></tr>
+      <tr><td>发版活跃度</td><td>v1.0.0-rc.50（11-12）/ rc.49（11-08）/ rc.48（11-04），周更级</td><td>2026-11 实测</td><td><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td>生态采用（定性）</td><td>「大量商用 API 中转站基于该底座搭建」（社区口径，无官方统计）</td><td>2026 检索口径</td><td><a class="cref partial" href="#ref-1">[1]</a></td></tr>
+      <tr><td>多平台徽章</td><td>HelloGitHub 推荐、Trendshift、AtomGit G-Star（README 挂载）</td><td>2026-11 实测</td><td><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    星标与 forks 为 GitHub API 时点值，会随时间变动（底稿 51.3k★ → 本次实测 51.8k★，三日自然增长约 500★，增速量级可作活跃度旁证）；「大量中转站底座」为社区定性口径（C 级信源），未检索到官方统计或第三方量化数据；项目营收、部署站点数量均未检索到公开信息。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将 new-api 放入案例墙「网关 / 基础设施类」坐标系（对标项目的案例墙核验值与本次 GitHub API 实测值并列呈现）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>定位</th><th>星标（案例墙核验值 → 本次实测）</th><th>与本案关系</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>new-api</b></td><td>Calcium-Ion → QuantumNous</td><td>全功能 LLM 网关 + AI 资产管理（多模型适配 / 密钥 / 计费 / 二次分发）</td><td class="hl">51.3k★ → 51,840★</td><td>本案</td><td><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td>one-api（上游）</td><td>songquanpeng（JustSong）</td><td>LLM API 管理 & 分发系统（MIT，轻量）</td><td>37.3k★ → 37,419★</td><td>被 fork 的上游；2023-04-22 创建</td><td><a class="cref cross" href="#ref-9">[9]</a></td></tr>
+      <tr><td>claude-code-router</td><td>musistudio</td><td>Claude Code 多模型路由网关（锚点 2025-02 首提交）</td><td>38k★ → 38,127★</td><td>同属网关类，但聚焦编程 Agent 场景路由</td><td><a class="cref cross" href="#ref-14">[14]</a></td></tr>
+      <tr><td>AIClient-2-API（仓库实名 AIClient2API）</td><td>justlovemaki</td><td>把 Gemini CLI / Codex 等客户端协议反代为本地 OpenAI 兼容 API</td><td>8.9k★ → 8,978★</td><td>同属基础设施类，走「客户端协议反代」路线</td><td><a class="cref cross" href="#ref-15">[15]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>三个差异化结论：其一，<b>「fork 超越上游」</b>在星标维度已经兑现——new-api（51,840★）较上游 one-api（37,419★）高出约 38%<a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-9">[9]</a>， forks（12,645）亦远超上游（6,895）<a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-9">[9]</a>，在国内开源史上属罕见的 fork 反超案例；其二，本案是四者中唯一完成<b>「个人 → 组织」演进</b>的（QuantumNous Organization 实测<a class="cref cross" href="#ref-2">[2]</a>），其余三者仍以个人账户为主要维护主体；其三，三者构成网关类光谱——new-api 做「中转 + 计费的全功能柜台」<a class="cref cross" href="#ref-8">[8]</a>、claude-code-router 做「编程 Agent 的模型路由」<a class="cref cross" href="#ref-14">[14]</a>、AIClient2API 做「客户端协议反代」<a class="cref cross" href="#ref-15">[15]</a>，服务对象互不重叠。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:130px">维度</th><th>分析</th><th style="width:120px">信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>自托管 AI 网关：统一适配多模型上游、三格式互转、渠道负载均衡与故障禁用、令牌分组倍率、按量 / 按次 / 缓存计费、易支付 / Stripe 充值、数据看板与插件市场<a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-8">[8]</a>。功能密度全面覆盖「多模型接入 + 密钥管理 + 二次分发 + 计费」四件套，是本案区别于单一功能工具的核心。</td><td><a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td><b>2. 面向客群</b></td><td>三层客群：① 中转站站长（商用二次分发运营者）——生态位的核心客群<a class="cref partial" href="#ref-1">[1]</a>；② 个人开发者 / 小团队——私有化部署、多模型统一调用<a class="cref partial" href="#ref-13">[13]</a>；③ 企业与 Agent 团队——组织级鉴权、用量与成本核算<a class="cref cross" href="#ref-4">[4]</a>。未检索到用户画像量化数据。</td><td><a class="cref partial" href="#ref-1">[1]</a><a class="cref partial" href="#ref-13">[13]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>3. 解决痛点</b></td><td>供给端：各厂商 API 格式互不相同，多模型接入的调试、统计、计费成本高——new-api 以统一入口与格式转换消解<a class="cref cross" href="#ref-4">[4]</a>；需求端：Token 消耗爆发（2026 年 3 月日均调用量突破 140 万亿次<a class="cref verified" href="#ref-11">[11]</a>）催生低价多模型调用需求，中转站以之快速开店供给。</td><td><a class="cref cross" href="#ref-4">[4]</a><a class="cref verified" href="#ref-11">[11]</a></td></tr>
+      <tr><td><b>4. 预估年化营收（推算，置信度 C）</b></td><td class="hl">未检索到任何公开营收信息</td><td>——</td></tr>
+      <tr><td><b>5. 融资进展</b></td><td>未检索到融资、公司注册或 QuantumNous 组织背景（是否公司实体）的公开信息。可核验的非货币资源：约 361 名贡献者的社区协作网络、HelloGitHub / Trendshift / AtomGit G-Star 等多平台分发位<a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-4">[4]</a>；AGPLv3 商业许可通道为潜在变现接口<a class="cref cross" href="#ref-8">[8]</a>。</td><td><a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td><b>6. 市场评价</b></td><td>技术社区正评价为主：支流科技对比文认定其「格式与接口更全、带在线支付与数据看板，维护更活跃」<a class="cref cross" href="#ref-8">[8]</a>；社区博客称其为「国内 AI API 中转站生态的核心开源项目」<a class="cref partial" href="#ref-1">[1]</a>；官方文档站与多语言 README（中 / 繁 / 英 / 法 / 日）体现国际化运营<a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-7">[7]</a>。未见权威媒体的独立深度报道——本案的「市场」主要在开发者社区内部。</td><td><a class="cref cross" href="#ref-8">[8]</a><a class="cref partial" href="#ref-1">[1]</a><a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td class="hl"><b>7. 投入成本与合规风险（重点）</b></td><td>合规灰区是本案最大变量：<b>① 上游条款</b>——OpenAI 与 Anthropic 服务条款均明确禁止 API 转售，账号池轮询违反平台协议，封号风险由站长承担<a class="cref verified" href="#ref-10">[10]</a>；<b>② 国内监管</b>——国家安全部 2026 年 4 月、6 月两度发文提示中转站乱象，上海一站长因「反向代理+账号池」涉嫌非法经营罪被刑拘，一批中转站停摆<a class="cref verified" href="#ref-11">[11]</a>；<b>③ 国产厂商封堵</b>——智谱协议明确禁止转售、二次封装、服务中转、聚合中转<a class="cref cross" href="#ref-12">[12]</a>。<b>开源治理侧</b>：作者以 README IMPORTANT/WARNING 块显式划界，引用《生成式人工智能服务管理暂行办法》将备案、实名、税务、上游授权义务下沉给下游运营者<a class="cref cross" href="#ref-4">[4]</a>——工具中立声明 + AGPLv3 附加条款（保留署名与原项目链接）<a class="cref cross" href="#ref-8">[8]</a>，构成「责任隔离型」治理样本。项目本体为开源代码、无公开涉诉信息，但下游生态的监管收紧将直接重塑其生态位。</td><td><a class="cref verified" href="#ref-10">[10]</a><a class="cref verified" href="#ref-11">[11]</a><a class="cref cross" href="#ref-12">[12]</a><a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 五处留白与两处口径辨析（截至 2026-11-13 检索）</div>
+    ① 项目方营收、融资、公司主体信息未检索到公开信息——QuantumNous 是否为注册公司实体不可考；② Calcium-Ion 真名未公开（GitHub 用户页 name 为空）<a class="cref cross" href="#ref-5">[5]</a>；③ 「大量商用中转站底座」为社区定性口径<a class="cref partial" href="#ref-1">[1]</a>，部署站点数量无官方统计；④ 星标增长史未回溯：GitHub API 不提供星标历史，「爆星」确切时间轴未检索到公开信源，时间线以阶段化表述处理；⑤ 中转站站长群体收入的抽成是否回流项目方，无公开信息。
+    口径辨析：其一，仓库 created_at（2023-11-10）早于 fork 锚点（2024-07-24）——GitHub 转为 fork 关系时保留原创建时间，或仓库先以独立形态存在，两时点并存、按案例墙底稿与 README「基于 One API 二次开发」口径采信<a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-4">[4]</a>；其二，当前 GitHub API 已无 fork 元数据（fork=false、parent=null），且上游 one-api 为 MIT、本案为 AGPLv3——fork 关系存续状态无法直接回溯，「fork 自 one-api」以官方 README 自述 + 第三方对比文交叉采信<a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-8">[8]</a>。
+  </div>
+  <div class="box note">
+    <div class="bt">📌 生态逆风：底座的不确定未来</div>
+    new-api 的生态位与中转站行业深度绑定，而该行业正在经历合规出清：国安部两度发文、站长刑拘、厂商协议封堵（2026-04 至 09 连续动作）<a class="cref verified" href="#ref-11">[11]</a><a class="cref cross" href="#ref-12">[12]</a>。若灰色二次分发空间持续收窄，new-api 的增长引擎将更多依赖其 README 中划定的合法场景——团队私有化网关、组织内部多模型管理<a class="cref cross" href="#ref-4">[4]</a>。本案的一手价值恰在于此：作者早在监管落锤前，就以 README 声明完成了责任下沉与场景重构。
+  </div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">new-api 展示了 OPC 模式在基础设施赛道的完整生命周期：个人以 fork 完成低成本冷启动（复用上游兼容性换迁移友好）→ 以增量功能密度实现反超（51.8k★ vs 上游 37.4k★）→ 生态位兑现（中转站开店柜台）→ 组织化收束（QuantumNous + 361 贡献者）。它与作品型 OPC（如《归墟》）互为镜像：作品型的天花板是个人审美的稀缺性，基础设施型的天花板则是公共依赖度——而公共依赖度最终必然溢出「一人」的边界。</div><div class="cm"><a class="cref cross" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-9">[9]</a> <a class="cref cross" href="#ref-6">[6]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 15 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级以下信源）。</p>
+  <ul><li id="ref-1" class="src"><div class="sh"><span class="idx partial">[1]</span><span class="rt">C</span><span class="st">技术博客（社区口径）</span></div><div class="ti">「New API 是国内 AI API 中转站生态的核心开源项目……大量中转站都是基于这个项目搭建的」</div><div class="mt"><b>来源：</b>「一定会自由」博客（yidinghuiziyou.com）　<b>检索日期：</b>2026-11-13<br><a href="https://yidinghuiziyou.com/github/new-api/" target="_blank" rel="noopener">https://yidinghuiziyou.com/github/new-api/</a></div><div class="note">事实核查：「中转站生态核心项目 / 大量商用中转站底座」为社区定性口径，无官方统计，与案例墙底稿表述一致；按 C 级信源收录，引用处均标注「社区口径」。</div></li><li id="ref-2" class="src"><div class="sh"><span class="idx cross">[2]</span><span class="rt">A</span><span class="st">GitHub 仓库 API 实测（一手）</span></div><div class="ti">QuantumNous/new-api 仓库元数据（星标 / forks / 许可证 / 组织类型 / 重定向）</div><div class="mt"><b>来源：</b>GitHub API（api.github.com）　<b>实测日期：</b>2026-11-13<br><a href="https://github.com/QuantumNous/new-api" target="_blank" rel="noopener">https://github.com/QuantumNous/new-api</a>　（旧路径 github.com/Calcium-Ion/new-api）</div><div class="note">事实核查：51,840★ / 12,645 forks / 1,466 open issues / license AGPL-3.0 / created_at 2023-11-10 / homepage newapi.ai / owner type=Organization 均为 API 一手实测；Calcium-Ion/new-api 老路径经 HTTP 301 重定向核验指向同一仓库（id 717197250）；fork=false、parent=null（fork 元数据已解除）如实记录。</div></li><li id="ref-3" class="src"><div class="sh"><span class="idx partial">[3]</span><span class="rt">B-</span><span class="st">第三方镜像文档站</span></div><div class="ti">「New API 是一个新一代大模型网关与 AI 资产管理系统，基于 One API 进行二次开发」（项目定位语）</div><div class="mt"><b>来源：</b>doc.newapi.pro（项目介绍页）　<b>检索日期：</b>2026-11-13<br><a href="https://doc.newapi.pro/wiki/project-introduction/" target="_blank" rel="noopener">https://doc.newapi.pro/wiki/project-introduction/</a></div><div class="note">事实核查：「新一代大模型网关与 AI 资产管理系统」定位语与案例墙底稿口径一致；该站为社区镜像文档站（与官方 docs.newapi.ai 并存），定位语同时见于官方文档站 [7]，采信但按 partial 标注来源层级。</div></li><li id="ref-4" class="src"><div class="sh"><span class="idx cross">[4]</span><span class="rt">A</span><span class="st">GitHub README（官方一手）</span></div><div class="ti">new-api README 中文版（定位描述 / 上游清单 / 合规声明 / 多平台徽章）</div><div class="mt"><b>来源：</b>GitHub 仓库 README.zh_CN.md（raw 实测）　<b>实测日期：</b>2026-11-13<br><a href="https://github.com/QuantumNous/new-api/blob/main/README.zh_CN.md" target="_blank" rel="noopener">https://github.com/QuantumNous/new-api/blob/main/README.zh_CN.md</a></div><div class="note">事实核查：「基于 One API 二次开发」表述、OpenAI/Anthropic/Gemini/Azure/Bedrock/Vertex/DeepSeek/通义上游清单、IMPORTANT/WARNING 合规声明（引用《生成式人工智能服务管理暂行办法》cac.gov.cn 原文链接）、HelloGitHub/Trendshift/AtomGit 徽章、Docker Hub（CalciumIon/new-api）均为一手实测内容。</div></li><li id="ref-5" class="src"><div class="sh"><span class="idx cross">[5]</span><span class="rt">A</span><span class="st">GitHub 用户 API 实测（一手）</span></div><div class="ti">Calcium-Ion GitHub 用户档案</div><div class="mt"><b>来源：</b>GitHub API（api.github.com/users/Calcium-Ion）　<b>实测日期：</b>2026-11-13<br><a href="https://github.com/Calcium-Ion" target="_blank" rel="noopener">https://github.com/Calcium-Ion</a></div><div class="note">事实核查：type=User（个人账户）、created_at 2020-02-19、name 为 null（真名未公开）、54 公开仓库、838 followers；bio 为个人签名文案。</div></li><li id="ref-6" class="src"><div class="sh"><span class="idx cross">[6]</span><span class="rt">A</span><span class="st">GitHub 提交史 / 贡献者 API 实测（一手）</span></div><div class="ti">new-api 提交历史与贡献者分布（2024-07 系列提交 / rc 版本节奏 / 贡献者 361 名）</div><div class="mt"><b>来源：</b>GitHub API（commits / releases / contributors 端点）　<b>实测日期：</b>2026-11-13<br><a href="https://github.com/QuantumNous/new-api/commits/main" target="_blank" rel="noopener">https://github.com/QuantumNous/new-api/commits/main</a></div><div class="note">事实核查：2024-07-22 至 07-26 提交（署名 Calcium-Ion / CalciumIon，含合并社区 PR #380/#383/#391、epay、图片额度、Gemini 修复）；2026-11-12 发版 v1.0.0-rc.50；contributors Link header 解析约 361 名，首名 Calcium-Ion 3,113 次（第二名 seefs001 634 次，上游作者 songquanpeng 509 次为 fork 继承历史提交）。</div></li><li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">B+</span><span class="st">官方文档站</span></div><div class="ti">New API 官方文档 · 项目介绍（AGPLv3 许可证说明）</div><div class="mt"><b>来源：</b>newapi.ai / docs.newapi.ai 官方文档　<b>检索日期：</b>2026-11-13<br><a href="https://www.newapi.ai/zh/docs/guide/wiki/basic-concepts/project-introduction" target="_blank" rel="noopener">https://www.newapi.ai/zh/docs/guide/wiki/basic-concepts/project-introduction</a></div><div class="note">事实核查：AGPLv3 许可证条款说明与 GitHub license 字段 [2] 一致；文档站为项目方官方自述口径。官网 https://www.newapi.ai/ 可达性核验 200。</div></li><li id="ref-8" class="src"><div class="sh"><span class="idx cross">[8]</span><span class="rt">B+</span><span class="st">技术厂商对比文</span></div><div class="ti">支流科技《One API vs New API：开源 Token 中转站怎么选？》（2026-07 更新）</div><div class="mt"><b>来源：</b>apiseven.com（支流科技，Apache APISIX 原班团队，文末有自家网关推广，注意利益相关）　<b>更新：</b>2026-07<br><a href="https://www.apiseven.com/one-api-vs-new-api" target="_blank" rel="noopener">https://www.apiseven.com/one-api-vs-new-api</a></div><div class="note">事实核查：One API（MIT/Go）vs New API（AGPLv3+第 7 节附加署名与原项目链接条款）对比、三格式互转 / Rerank / Midjourney / Suno / Embeddings / Realtime 接口、易支付 / Stripe、兼容原 One API 数据库、商业许可通道等均与 README [4] 交叉一致；该文有推广自有产品动机，功能对比表逐项与官方 README 核验后采信。</div></li><li id="ref-9" class="src"><div class="sh"><span class="idx cross">[9]</span><span class="rt">A</span><span class="st">GitHub 仓库 API 实测（一手）</span></div><div class="ti">songquanpeng/one-api 仓库元数据（上游基准）</div><div class="mt"><b>来源：</b>GitHub API（api.github.com）　<b>实测日期：</b>2026-11-13<br><a href="https://github.com/songquanpeng/one-api" target="_blank" rel="noopener">https://github.com/songquanpeng/one-api</a></div><div class="note">事实核查：37,419★ / 6,895 forks / created_at 2023-04-22 / homepage oneapi.justsong.cn；与案例墙核验值 37.3k★ 一致。作者 songquanpeng（JustSong）身份另经其 GitHub 档案核验。</div></li><li id="ref-10" class="src"><div class="sh"><span class="idx verified">[10]</span><span class="rt">B+</span><span class="st">财经媒体特稿</span></div><div class="ti">36氪转机器之心《Token贩子的盛宴：从草根到名人，为什么大家都想做AI中转站？》</div><div class="mt"><b>来源：</b>36氪（原发机器之心）　<b>发布日期：</b>2026-05-25<br><a href="https://m.36kr.com/p/3822775952707719" target="_blank" rel="noopener">https://m.36kr.com/p/3822775952707719</a></div><div class="note">事实核查：2024/2025 中转站「IDC 式印钞机」类比、孙宇晨/傅盛 Easy Router/WLFI WorldClaw 入局、知乎提问浏览量 75 万+、OpenAI 与 Anthropic 服务条款明确禁止 API 转售、封号风险由站长承担等出自此稿；与央广网/中国经营报 [11] 在「条款禁止转售、监管趋严」上独立交叉，标 verified。</div></li><li id="ref-11" class="src"><div class="sh"><span class="idx verified">[11]</span><span class="rt">A+</span><span class="st">央媒（实地/法律信源）</span></div><div class="ti">央广网《"Token中转站"：AI风口下的风险生意》（原发中国经营报，记者郑瑜）</div><div class="mt"><b>来源：</b>央广网（原发中国经营报）　<b>发布日期：</b>2026-07-28<br><a href="http://www.cnr.cn/mspd/msyx/20260728/t20260728_527733647.shtml" target="_blank" rel="noopener">http://www.cnr.cn/mspd/msyx/20260728/t20260728_527733647.shtml</a></div><div class="note">事实核查：Token 日均调用量 2026 年 3 月突破 140 万亿次、国家安全部 2026 年 4 月/6 月两度发文、上海站长「反向代理+账号池」涉嫌非法经营罪刑拘、中转站停摆潮等出自此稿；与 36氪 [10] 独立交叉印证监管趋严与条款禁止，标 verified。</div></li><li id="ref-12" class="src"><div class="sh"><span class="idx cross">[12]</span><span class="rt">B+</span><span class="st">财经媒体（协议原文转述）</span></div><div class="ti">新浪财经《API中转风险浮现：合规红线如何界定？》（智谱用户协议条款）</div><div class="mt"><b>来源：</b>新浪财经　<b>发布日期：</b>2026-09-29<br><a href="https://finance.sina.com.cn/stock/t/2026-09-29/doc-initphzz2844035.shtml" target="_blank" rel="noopener">https://finance.sina.com.cn/stock/t/2026-09-29/doc-initphzz2844035.shtml</a></div><div class="note">事实核查：智谱《用户协议》禁止「出租、出借、出售、分销、转售、转让、共享账号、转授权、二次封装、服务中转、聚合中转或其他变相方式」等条款表述出自此稿（协议原文转述口径）。</div></li><li id="ref-13" class="src"><div class="sh"><span class="idx partial">[13]</span><span class="rt">B-</span><span class="st">技术工具站</span></div><div class="ti">X-CMD「new-api」介绍页（自托管部署与密钥管理描述）</div><div class="mt"><b>来源：</b>x-cmd.com　<b>检索日期：</b>2026-11-13<br><a href="https://www.x-cmd.com/install/new-api/" target="_blank" rel="noopener">https://www.x-cmd.com/install/new-api/</a></div><div class="note">事实核查：官方 Docker 镜像 / Docker Compose 自托管、上游 provider API key 存储于网关数据库、用户侧 API key 自动生成等部署特性出自此页；面向个人开发者/小团队的客群判断据此 + README [4] 综合，按 partial 标注。</div></li><li id="ref-14" class="src"><div class="sh"><span class="idx cross">[14]</span><span class="rt">A</span><span class="st">GitHub 仓库 API 实测（一手）</span></div><div class="ti">musistudio/claude-code-router 仓库元数据（对标）</div><div class="mt"><b>来源：</b>GitHub API（api.github.com）　<b>实测日期：</b>2026-11-13<br><a href="https://github.com/musistudio/claude-code-router" target="_blank" rel="noopener">https://github.com/musistudio/claude-code-router</a></div><div class="note">事实核查：38,127★ / 3,206 forks / created_at 2025-02-25；与案例墙核验值 38k★、锚点 2025-02 一致。</div></li><li id="ref-15" class="src"><div class="sh"><span class="idx cross">[15]</span><span class="rt">A</span><span class="st">GitHub 仓库 API 实测（一手）</span></div><div class="ti">justlovemaki/AIClient2API 仓库元数据（对标）</div><div class="mt"><b>来源：</b>GitHub API / GitHub Search API　<b>实测日期：</b>2026-11-13<br><a href="https://github.com/justlovemaki/AIClient2API" target="_blank" rel="noopener">https://github.com/justlovemaki/AIClient2API</a></div><div class="note">事实核查：8,978★ / created_at 2025-07-20；与案例墙核验值 8.9k★ 一致。勘误：案例墙底稿记为「AIClient-2-API」，GitHub 现行仓库名实为「AIClient2API」（无连字符），搜索 API 确认同一项目；底稿「github.com/justlovemaki（原仓库）」表述以本路径修正。</div></li></ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 15 条。核验标签分布：🟢 已核验（verified）2 条（中转站生态合规风险经 36氪/机器之心与央广网/中国经营报两个独立发布方交叉）、🔵 多源印证（cross）10 条（GitHub API/README 一手实测 7 条 + 官方文档、技术对比文与主流财经 3 条）、🟡 部分映证（partial）3 条（社区博客、镜像文档站、技术工具站——均已标注口径）。信源评级：A/A+ 级 8 条（GitHub 一手实测 7 条 + 央媒 1 条，原文回溯全部完成）、B+/B- 级 6 条、C 级 1 条。关键数据（51,840★/12,645 forks/AGPLv3/created_at/重定向）全部 GitHub API 一手实测；两处口径辨析（created_at 早于 fork 锚点、fork 元数据已解除）与五处留白（营收/融资/主体、星标增长史、部署规模等）已在正文显式标注；一处勘误（对标仓库名 AIClient2API）。未发现伪造链接；15 条 URL 经 HTTP 状态码逐条核验全部可达（200）。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-13 · GitHub 数据为时点实测值会随时间变动 · <b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

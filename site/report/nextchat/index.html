@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · NextChat（ChatGPT-Next-Web）—— 一个人写爆全球的 ChatGPT 前端 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · NextChat（ChatGPT-Next-Web）">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="NextChat（ChatGPT-Next-Web）深度案例报告：Yifei Zhang（Yidadaa）2023 年 3 月发布的一键免费部署 ChatGPT 跨平台客户端，GitHub 88.9k 星标、5.8 万 Fork，全球部署最广的开源 AI 聊天前端之一。13 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>NextChat（ChatGPT-Next-Web）深度案例报告</h1>
+    <h2>Yifei Zhang（Yidadaa）2023 年 3 月发布的一键免费部署 ChatGPT 跨平台客户端<br>GitHub 88.9k 星标、5.8 万 Fork —— 全球部署最广的开源 AI 聊天前端之一 · 13 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">产品型 OPC</span>
+      <span class="tag">开源出海</span>
+      <span class="tag">2023 元年爆火样本</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">88,951</div><div class="k">GitHub 星标（2026-11-13 API 实测）</div></div>
+  <div class="stat"><div class="v up">58,534</div><div class="k">GitHub Forks（同上实测）</div></div>
+  <div class="stat"><div class="v neutral">7500+</div><div class="k">Shodan 暴露实例（2024-03 安全研究口径）</div></div>
+  <div class="stat"><div class="v neutral">3M+</div><div class="k">活跃用户（官网自述口径）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">NextChat，原名 ChatGPT-Next-Web，是中国开发者 Yifei Zhang（网名 Yidadaa）在 2023 年 3 月 ChatGPT 前端爆发潮最前端推出的开源项目：把「部署一个自己的 ChatGPT 网页」压缩成「点一次按钮、不到一分钟」，以 MIT 协议开放全量源码。它是最早引爆 GitHub 的开源 ChatGPT 前端之一，也是安全研究机构认定的「全球部署最广的独立 GenAI 聊天应用」<a class="cref cross" href="#ref-6">[6]</a>。</p>
+  <div class="two">
+    <div class="card"><div class="ct">产品</div><div class="cb">一键免费部署的私人 ChatGPT / AI 聊天客户端：Web + PWA、Linux/Windows/macOS 三端轻量桌面应用（约 5MB）与 iOS App（NextChat AI）；聚合 OpenAI GPT、Anthropic Claude、Google Gemini、DeepSeek 及百度、字节、阿里、讯飞、ChatGLM 等十余家模型接口；支持 Vercel/Zeabur 一键部署与 Docker 自托管。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">Yidadaa，真名 Yifei Zhang（GitHub 用户 API 一手确认：name=Yifei Zhang，location=China，个人博客 simplenaive.cn，注册于 2016 年 1 月，签名「Man on the moon, code just for fun.」，粉丝 5419）<a class="cref cross" href="#ref-3">[3]</a>；个人身份外的教育/职业背景未检索到公开信息。</div><div class="cm">信源：<a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="card"><div class="ct">运营形态</div><div class="cb">个人业余发起 → 全球社区共创：仓库累计贡献者约 305-306 人（HelloGitHub 与 GitHub API 双口径）<a class="cref cross" href="#ref-4">[4]</a><a class="cref verified" href="#ref-1">[1]</a>；2023-2024 年间仓库由个人账号 Yidadaa 迁至组织 ChatGPTNextWeb（原链接 GitHub API 实测 301 重定向确认）<a class="cref verified" href="#ref-1">[1]</a>。</div><div class="cm">信源：<a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-4">[4]</a></div></div>
+    <div class="card"><div class="ct">公司 / 商业状态</div><div class="cb">开源本体免费；商业化为 NextChat SaaS（nextchat.club，按量付费、无订阅制口号）与企业版私有化部署（README 公开询价邮箱 business@nextchat.dev）；iOS 版上架主体为 GPTsMotion Tech LLC（iTunes API 一手），与个人作者的关联以 README 官方链接为据；营收数据未检索到公开信息。</div><div class="cm">信源：<a class="cref cross" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-7">[7]</a> <a class="cref partial" href="#ref-5">[5]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <p class="lead">2023 年春，ChatGPT 官方客户端存在区域封锁与 Plus 付费墙，而 3 月 1 日开放 API 后，「给自己搭一个不受限的 ChatGPT 网页」成为全球开发者的共同冲动——NextChat 恰好出现在这股浪潮的最前端，并成为其中跑得最远的一个<a class="cref partial" href="#ref-8">[8]</a><a class="cref partial" href="#ref-11">[11]</a>。</p>
+  <div class="tl">
+    <div class="node"><div class="dt">2023-03-10</div><div class="tx">仓库创建</div><div class="td">GitHub API 实测仓库创建时间 2023-03-10T18:27:54Z，初始地址 Yidadaa/ChatGPT-Next-Web。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2023-03-15（案例墙锚点 ✓）</div><div class="tx">发布即火：项目进入公众视野并快速冲上 GitHub 热门</div><div class="td">案例墙锚点定为 2023-03-15（发布/爆火起点），与仓库创建时间兼容；2023-03-01 ChatGPT API 开放后前端需求井喷，同期部署教程即开始刷屏中文社区。<a class="cref verified" href="#ref-1">[1]</a><a class="cref partial" href="#ref-8">[8]</a><a class="cref partial" href="#ref-11">[11]</a></div></div>
+    <div class="node"><div class="dt">2023 年上半年</div><div class="tx">「零撸部署自己的聊天私服」教程潮，NextChat 成默认选项之一</div><div class="td">「Vercel 一键部署 + 免费」切中痛点，掘金等社区大量手把手教程以 ChatGPT-Next-Web 为骨架（2023-04 起可考）；「跨平台 ChatGPT 用户界面，支持 Web、PWA、Linux、Windows 和 MacOS」成为通行描述。<a class="cref partial" href="#ref-11">[11]</a><a class="cref partial" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2023-06</div><div class="tx">HelloGitHub 第 87 期收录；CSDN 每日热门榜常客</div><div class="td">中文开源社区权威月刊收录（评分 10.0）；2023-06-19 CSDN 每日指数将其列入热门开源项目。<a class="cref cross" href="#ref-4">[4]</a><a class="cref partial" href="#ref-12">[12]</a></div></div>
+    <div class="node"><div class="dt">2023-09 → 2023-11</div><div class="tx">埋下安全隐患：/api/cors 开放代理端点引入；安全公司私下报告</div><div class="td">2023-09 引入的 WebDAV 同步代理端点构成高危 SSRF 面；2023-11-25 Horizon3.ai 经 GitHub 漏洞披露流程报告，次日厂商接受。<a class="cref cross" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2024-01 → 2024-03</div><div class="tx">56K Star；「全球部署最广的独立 GenAI 聊天应用」被安全研究证实</div><div class="td">掘金专文统计 56K+ Star（2024-01）；2024-03-11 Horizon3 因 90 天未获修复公开披露 CVE-2023-49785（CVSS 9.1），Shodan 检索到 7500+ 暴露实例，主要位于中国和美国。<a class="cref partial" href="#ref-9">[9]</a><a class="cref cross" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2024 年（贯穿）</div><div class="tx">版本大跃迁与组织化：v2.8 全平台客户端 → v2.10.1 Gemini → v2.15 插件 → v2.15.8 实时语音</div><div class="td">Tauri 约 5MB 桌面端落地；Azure/Gemini Pro 接入；Artifacts &amp; SD、插件体系、Realtime Chat 相继落地；仓库迁移至组织 ChatGPTNextWeb。<a class="cref cross" href="#ref-2">[2]</a><a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2025-04-18</div><div class="tx">iOS 版《NextChat AI》上架 App Store，SaaS 官网上线</div><div class="td">iTunes API 实测首发 2025-04-18（上架主体 GPTsMotion Tech LLC，免费+内购）；官网 nextchat.club 标注「2025 Github Best · 82K+ Star · 3M+ Active User」，主打按量付费。<a class="cref verified" href="#ref-7">[7]</a><a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2025-07-29</div><div class="tx">最后一个正式版本 v2.16.1</div><div class="td">GitHub API 实测最新 release 为 v2.16.1（2025-07-29），此后不再发版；README 仍保持 MCP 支持、企业版入口的活跃宣称。<a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2026-10-20</div><div class="tx">维护仍在继续，节奏显著放缓</div><div class="td">最近一次 push 为 2026-10-20（API 实测）；星标 88,951、开放 issue 866；与 2023 年月增数万星的峰值速度相比，增长进入长尾。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：踩中 2023-03 的「API 开放 + 访问壁垒」双红利窗口</div><div class="cb">2023 年 3 月 ChatGPT API 开放，而官方客户端对大量地区不可用、Plus 又有付费墙——「有 API Key 的人缺一个顺手的界面，没账号的人缺一个入口」。NextChat 用「Vercel 一键部署、不到一分钟、免费」把自建门槛压到零，仓库创建于 2023-03-10、一周内即进入公众视野：产品发布与需求井喷在时间上严丝合缝，这是项目成功的第一性原因<a class="cref partial" href="#ref-8">[8]</a><a class="cref partial" href="#ref-11">[11]</a><a class="cref verified" href="#ref-1">[1]</a>。</div></div>
+  <div class="card"><div class="ct">转折二：把「部署」做成增长引擎——Fork 即分发</div><div class="cb">NextChat 的增长飞轮不在广告也不在市场投放，而在 Vercel 的「Fork + Deploy」按钮：每个用户部署自己实例的同时，都在 GitHub 上复制出一个新仓库（Fork 5.85 万）。README 中「部署后每小时自动同步上游」的机制进一步把 5.8 万个 Fork 变成 5.8 万个持续在线的镜像分发节点；约 5MB 的轻量客户端与本地存储的隐私设计又强化了「私人 ChatGPT」的口碑传播<a class="cref cross" href="#ref-2">[2]</a><a class="cref partial" href="#ref-8">[8]</a>。</div></div>
+  <div class="card"><div class="ct">转折三：从 BYOK 开源客户端到 SaaS 化——补商业化短板</div><div class="cb">纯开源客户端没有收入，NextChat 的路径是三步走：接入面持续扩张（十余家模型商的环境变量）→ 推出 SaaS 官网 nextchat.club（「No Subscription No Tricks」按量付费口号，标注 3M+ 活跃用户自述口径）→ 上线 iOS 版并开放企业版询价（品牌定制/权限管控/知识库/私有部署）。但 2025-07 之后不再发版，说明商业化并未反哺出高强度迭代，项目进入守成状态<a class="cref cross" href="#ref-2">[2]</a><a class="cref partial" href="#ref-5">[5]</a><a class="cref verified" href="#ref-7">[7]</a><a class="cref verified" href="#ref-1">[1]</a>。</div></div>
+  <div class="quote">
+    <p>All AI Model, No Subscription No Tricks.（所有模型，无订阅、无套路。）</p>
+    <span class="src">—— NextChat 官网 nextchat.club 首页口号（2026-11 实测），转引自 <a class="cref partial" href="#ref-5">[5]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>要点</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>产品功能：跨平台</td><td class="hl">Web/PWA + 桌面三端（约 5MB）+ iOS</td><td>Tauri 桌面端覆盖 Linux/Windows/macOS；iOS 版《NextChat AI》2025-04-18 首发（免费+内购）<a class="cref cross" href="#ref-2">[2]</a><a class="cref verified" href="#ref-7">[7]</a></td></tr>
+      <tr><td>产品功能：一键部署</td><td>Vercel / Zeabur / Gitpod / Docker</td><td>官方宣称 Vercel 一键免费部署「不到一分钟」；支持每小时自动同步上游；Docker 镜像自托管<a class="cref cross" href="#ref-2">[2]</a><a class="cref partial" href="#ref-8">[8]</a>；增长轨迹中间时点（63.8k★，约 2024）见<a class="cref partial" href="#ref-10">[10]</a>，生态定位佐证见<a class="cref partial" href="#ref-13">[13]</a></td></tr>
+      <tr><td>产品功能：多模型</td><td>OpenAI/Claude/Gemini/DeepSeek + 国产六家以上</td><td>环境变量原生支持 OpenAI、Azure、Anthropic、Google、百度、字节（豆包）、阿里、讯飞、ChatGLM、DeepSeek、SiliconFlow、302.AI 等；另支持 RWKV-Runner/LocalAI 本地模型<a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td>开源策略</td><td class="pos">MIT 协议全量开源</td><td>约 305-306 位贡献者共创；mask 提示词模板、插件市场（NextChat-Awesome-Plugins）、MCP、Artifacts、Realtime Chat 均经社区 issue/PR 演进<a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td>面向客群</td><td>个人自部署 → SaaS 个人付费 → 企业版</td><td>个人：拿自己的 API Key 自建（BYOK）；SaaS：按量付费免配置；企业：品牌定制、权限/知识库、私有化部署，公开询价邮箱 business@nextchat.dev<a class="cref cross" href="#ref-2">[2]</a><a class="cref partial" href="#ref-5">[5]</a></td></tr>
+      <tr><td>解决痛点</td><td class="hl">官方 ChatGPT 访问门槛</td><td>区域封锁 + Plus 付费墙 + API Key 配置门槛三重门槛之下，「免费、一分钟、自己的私人 ChatGPT」成为 2023 年最锋利的价值主张；数据本地存储强化隐私诉求<a class="cref partial" href="#ref-8">[8]</a><a class="cref partial" href="#ref-11">[11]</a><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>商业模式的本质是「开源获客、按量变现」：开源本体承担全部获客与信任成本，SaaS 把不愿折腾 API Key 的长尾用户转化为按量付费客户，企业版则以私有化部署承接组织客户——但三段中仅开源段的规模可被独立核验，后两段均无公开运营数据。</p>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>GitHub 星标</td><td class="hl">88,951</td><td>2026-11-13 API 实测</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>GitHub Forks</td><td class="pos">58,534</td><td>2026-11-13 API 实测</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>贡献者数</td><td>305（HelloGitHub）/ 306（API 含匿名）</td><td>2026-11 查询</td><td><a class="cref cross" href="#ref-4">[4]</a><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>开放 Issue</td><td>866</td><td>2026-11-13 API 实测</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>最新正式版本</td><td>v2.16.1（此后无发版）</td><td>2025-07-29 发布</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>最近代码提交</td><td>2026-10-20（维护未停、节奏放缓）</td><td>2026-11-13 实测</td><td><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>公网暴露实例</td><td>Shodan 检索 7500+</td><td>2024-03 安全研究口径</td><td><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td>星标增长轨迹</td><td>63K+（2024-03）→ 82K+（官网口径）→ 88.9K（2026-11）</td><td>约三年跨度</td><td><a class="cref cross" href="#ref-6">[6]</a><a class="cref partial" href="#ref-5">[5]</a><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>活跃用户</td><td>3M+（官网自述，未经第三方交叉）</td><td>官网当前口径（标注 2025 Github Best）</td><td><a class="cref partial" href="#ref-5">[5]</a></td></tr>
+      <tr><td>iOS 版</td><td>首发 2025-04-18；v0.0.7；评分 2.45/5（仅 11 条，样本极小）</td><td>2026-11-13 iTunes API 实测</td><td><a class="cref verified" href="#ref-7">[7]</a></td></tr>
+      <tr><td>营收 / 付费数据</td><td>未检索到公开信息</td><td>截至 2026-11-13 检索</td><td>—</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    星标/Fork/Issue/版本/提交时间为本次 GitHub API 一手实测；「7500+ 暴露实例」是安全研究机构 2024-03 的 Shodan 检索口径，只反映公网自部署存量下限；「3M+ 活跃用户」「82K+ Star」为官网自述且为非精确时点值；iOS 评分样本仅 11 条，不具备统计意义。增长轨迹三个时点口径不同源，仅作趋势参考。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将 NextChat 放入案例墙「AI 客户端」坐标系。对标行数据为案例墙既有核验值（详见案例墙各卡片信源），星标数为本次 GitHub API 复测（2026-11-13）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>模式</th><th>数据表现</th><th>状态</th></tr></thead>
+    <tbody>
+      <tr><td><b>NextChat</b></td><td>Yidadaa（Yifei Zhang）</td><td>Web/桌面/iOS 全平台客户端，MIT 开源</td><td>BYOK 自部署 → SaaS 按量付费 → 企业版</td><td class="hl">88.9k★ / 5.85 万 Fork（复测）</td><td>2023 元年爆火样本；2025-07 后无发版，长尾维护</td></tr>
+      <tr><td>Cherry Studio</td><td>亢奋猫（kangfenmao）</td><td>开源跨平台桌面客户端：300+ 模型/知识库/智能体/MCP</td><td>开源 + 社区，自述长期「两人兼职团队」</td><td>53,470★（本次复测；案例墙时点值 32k+）下载超 1000 万次（既有核验值）</td><td>后起之秀，正处上升期</td></tr>
+      <tr><td>ChatWise</td><td>egoist</td><td>macOS/Windows 桌面客户端，闭源</td><td>BYOK + $29 买断制</td><td>案例墙既有核验值：第三方评测明确「made by one developer」</td><td>官网可达（本次核验 200），持续销售</td></tr>
+      <tr><td>ChatNio（已更名 coai）</td><td>zmh（创办时 15 岁）</td><td>多模型对话 + API 中转/计费一站式开源平台</td><td>开源 + 商用，2024 年七位数收购（既有核验值）</td><td>9,346★（本次复测，仓库已更名 coaidev/coai）月活近 10 万（既有核验值）</td><td>已通过收购实现商业退出</td></tr>
+      <tr><td>gpt_academic（生态参照）</td><td>binary-husky</td><td>学术场景 LLM 工具，个人账号主导</td><td>开源</td><td>71,656★（本次复测）</td><td>垂直场景长青</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>对标结论：NextChat 是这一坐标系里<b>唯一的「2023 元年爆火样本」</b>——它的星标量级（88.9k）与公网部署规模至今仍居独立 AI 聊天前端前列<a class="cref cross" href="#ref-6">[6]</a>，但增长曲线明显后继乏力（2024-03 至 2026-11 增量约 2.6 万星，不足 2023 年一年内增速）；而 Cherry Studio 等后起项目以更现代的桌面体验与知识库/MCP 能力承接了 2024 年后的新增需求。同一赛道里，ChatWise 证明了「闭源买断」的小而美路径，ChatNio 证明了「平台化+中转」的收购退出路径——三条路径共同构成中国个人开发者做 AI 客户端的完整可能性空间。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:130px">维度</th><th>分析</th></tr></thead>
+    <tbody>
+      <tr><td>1. 产品功能</td><td>「全平台 + 全模型 + 零门槛部署」三合一：Web/PWA、约 5MB Tauri 桌面端、iOS App；十余家模型商开箱即用；mask 模板、插件、MCP、Artifacts、实时语音持续堆叠。<a class="cref cross" href="#ref-2">[2]</a><a class="cref verified" href="#ref-7">[7]</a></td></tr>
+      <tr><td>2. 开源策略</td><td>MIT 全量开源 + 305 位贡献者 + 5.85 万 Fork：开源不是获客补充而是产品本体，社区贡献覆盖插件、模型适配与 i18n（14 种语言）。组织化迁移后个人仓库链接（Yidadaa/releases）仍保留为下载入口，社区与个人叙事深度绑定。<a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td>3. 面向客群</td><td>三层漏斗：技术型个人用户自部署（BYOK，占公开可见面的大头——7500+ 公网实例主要位于中美）；轻度用户走 SaaS 按量付费；组织客户走企业版询价。三层客群的能力与付费意愿依次递增，规模依次递减。<a class="cref cross" href="#ref-6">[6]</a><a class="cref partial" href="#ref-5">[5]</a></td></tr>
+      <tr><td>4. 解决痛点</td><td>2023 年的痛点是官方 ChatGPT 的访问门槛（区域封锁/付费墙/Key 配置）；NextChat 把解决成本压到「点一次按钮」。该痛点随官方多端放开与国产模型平价化而衰减，但「隐私本地化 + 多模型聚合」的次级需求仍在，构成项目长尾存续的基础。<a class="cref partial" href="#ref-8">[8]</a><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td>5. BYOK 上游依赖</td><td>客户端不持有任何模型能力，体验与成本完全锚定上游：API 价格战（如 DeepSeek 降价）利好其获客，但官方客户端体验升级与厂商各自 App 的完善会持续抽走其差异化空间；SaaS 化后上游成本直接进入其损益表，定价权在上游。「No Subscription」口号本身即是上游依赖下的被动选择——按量付费才敢定价。<a class="cref cross" href="#ref-2">[2]</a><a class="cref partial" href="#ref-5">[5]</a></td></tr>
+      <tr><td>6. 2023 爆火窗口期复盘</td><td>NextChat 的爆火是三重红利的时代性叠加：① ChatGPT API 2023-03 开放的供给侧红利；② 区域访问壁垒形成的需求侧红利；③ Vercel/Zeabur 免费基建把分发成本压到零的基建红利。窗口期大约在 2023 内关闭：官方客户端放开、竞品涌现（同期 chatgpt-web 等）后，月增星量断崖回落。此后 63K→82K→88.9K 的增量主要由功能升级与国产模型接入维持——<b>窗口型产品的高度由红利决定，长度由维护决定</b>。<a class="cref partial" href="#ref-11">[11]</a><a class="cref cross" href="#ref-6">[6]</a><a class="cref verified" href="#ref-1">[1]</a></td></tr>
+      <tr><td>7. 投入成本与营收推算（C 级）</td><td>营收与成本均<b>零公开披露</b>：无融资信息、无财务数据、无收购传闻的可核验记录。可核验的变现结构仅三种：SaaS 按量付费、iOS 内购、企业版询价。个人业余起步（开发者 2016 年注册 GitHub、以「code just for fun」自述），基建成本低（开源社区承担研发大头）；按 3M 自述活跃用户与按量付费口径粗略推算存在数十万美元级年收入的可能，但无任何信源支撑，<b>本报告不予采信具体数值</b>，营收结论按「未检索到公开信息」处理。<a class="cref partial" href="#ref-5">[5]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref verified" href="#ref-7">[7]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 维护活跃度与安全响应（截至 2026-11-13 检索）</div>
+    ① 迭代停滞：最后一个正式版本 v2.16.1 发布于 2025-07-29，此后 16 个月无发版，仅代码仓有零星 push（最近 2026-10-20）；② 漏洞响应迟滞记录：Horizon3 于 2023-11-25 私下报告 CVSS 9.1 的高危 SSRF（CVE-2023-49785），厂商接受报告后 90 天无修复无回复，安全方于 2024-03-11 公开披露——对一款公网部署量巨大的客户端，这是实质性的信誉损耗<a class="cref cross" href="#ref-6">[6]</a>；③ 866 个开放 issue 积压；④ iOS 版评分仅 2.45/5（11 条样本，仅作参考）<a class="cref verified" href="#ref-7">[7]</a>。
+  </div>
+  <div class="box note">
+    <div class="bt">📌 口径留白与「一人公司」属性边界</div>
+    ① 「3M+ 活跃用户」「82K+ Star」均为官网自述、无第三方交叉，按部分映证处理<a class="cref partial" href="#ref-5">[5]</a>；② 营收、付费转化、SaaS 经营数据零披露，未检索到公开信息；③ 一人属性存在折让：仓库已由个人账号迁移至组织 ChatGPTNextWeb，iOS 版上架主体为公司实体 GPTsMotion Tech LLC（与个人作者的关联仅以 README 官方链接为据），近期维护者构成未检索到公开信息——本案更准确的表述是「由个人开发者开创并长期主导、后经组织化的开源项目」，其个人主导期集中在 2023-2024 年<a class="cref verified" href="#ref-1">[1]</a><a class="cref verified" href="#ref-7">[7]</a>；④ 创业者教育与职业背景、团队规模均未检索到公开信息。
+  </div>
+  <div class="card"><div class="ct">本案的样本价值</div><div class="cb">NextChat 展示了产品型 OPC 的「极限起点」：一个人、业余时间、零投放，仅凭对需求窗口的判断与产品化能力，就能做出全球部署最广的开源 AI 客户端之一（安全研究机构的独立口径可证）<a class="cref cross" href="#ref-6">[6]</a>。它同样展示了该模式的阴影面：爆火不等于收入，开源客户端天然受 BYOK 上游依赖与官方替代的双重挤压；当红利窗口关闭、个人精力稀释（组织化/多项目）后，项目便滑入长尾维护。对后来者，NextChat 的可复制部分是「把部署成本压到零」的产品直觉；不可复制的部分，是 2023 年 3 月那扇只开了一次的时间窗口。</div><div class="cm"><a class="cref cross" href="#ref-6">[6]</a> <a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 13 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 C 级信源）。GitHub 侧数据均为 2026-11-13 API 一手实测。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx verified">[1]</span><span class="rt">A</span><span class="st">一手 · GitHub API/仓库</span></div><div class="ti">ChatGPTNextWeb/NextChat 仓库元数据（星标/Fork/创建时间/版本/提交）</div><div class="mt"><b>来源：</b>GitHub API（api.github.com）　<b>实测日期：</b>2026-11-13<br><a href="https://github.com/ChatGPTNextWeb/NextChat" target="_blank" rel="noopener">https://github.com/ChatGPTNextWeb/NextChat</a></div><div class="note">事实核查：原地址 github.com/Yidadaa/ChatGPT-Next-Web 经 API 实测 301 重定向至组织仓库 ChatGPTNextWeb/NextChat（repositories/612344730）；实测值：星标 88,951、Fork 58,534、创建 2023-03-10、最近 push 2026-10-20、最新 release v2.16.1（2025-07-29）、MIT、homepage nextchat.club。星标量级与 [4][5] 交叉。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx cross">[2]</span><span class="rt">A</span><span class="st">一手 · 官方 README</span></div><div class="ti">NextChat README：功能清单、部署方式、多模型支持、企业版入口</div><div class="mt"><b>来源：</b>GitHub raw（ChatGPTNextWeb/NextChat main 分支）　<b>核验日期：</b>2026-11-13<br><a href="https://raw.githubusercontent.com/ChatGPTNextWeb/NextChat/main/README.md" target="_blank" rel="noopener">https://raw.githubusercontent.com/ChatGPTNextWeb/NextChat/main/README.md</a></div><div class="note">事实核查：Vercel 一键部署（不到一分钟）、约 5MB 客户端、十余家模型环境变量、14 语言 i18n、mask/插件/MCP/Artifacts/Realtime 路线图、iOS 与企业版（business@nextchat.dev）入口均出自此一手文件。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx cross">[3]</span><span class="rt">A</span><span class="st">一手 · GitHub 用户 API</span></div><div class="ti">Yidadaa 用户档案（Yifei Zhang）</div><div class="mt"><b>来源：</b>GitHub API（api.github.com/users/Yidadaa）　<b>实测日期：</b>2026-11-13<br><a href="https://github.com/Yidadaa" target="_blank" rel="noopener">https://github.com/Yidadaa</a></div><div class="note">事实核查：name=Yifei Zhang、location=China、blog=simplenaive.cn、bio「Man on the moon, code just for fun.」、注册 2016-01-30、粉丝 5419 均为一手实测；个人职业背景无公开信息。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx cross">[4]</span><span class="rt">B+</span><span class="st">开源社区收录</span></div><div class="ti">HelloGitHub：NextChat 项目详情（第 87 期收录）</div><div class="mt"><b>来源：</b>hellogithub.com　<b>核验日期：</b>2026-11-13<br><a href="https://hellogithub.com/repository/ChatGPTNextWeb/NextChat" target="_blank" rel="noopener">https://hellogithub.com/repository/ChatGPTNextWeb/NextChat</a></div><div class="note">事实核查：88.8k 星数（时点值）、305 贡献者、6w Fork、850 issues、MIT、TypeScript、组织化「是」、评分 10.0、收录于第 87 期；与 [1] 双口径交叉（88.8k→88,951、305→306）。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx partial">[5]</span><span class="rt">B</span><span class="st">一手 · 官网自述</span></div><div class="ti">NextChat 官网 nextchat.club（SaaS 入口与自述数据）</div><div class="mt"><b>来源：</b>nextchat.club　<b>核验日期：</b>2026-11-13<br><a href="https://nextchat.club" target="_blank" rel="noopener">https://nextchat.club</a></div><div class="note">事实核查：「2025 Github Best」「82K+ Star Collect」「3M+ Active User」「All AI Model, No Subscription No Tricks」均为官网自述、无精确时点与第三方交叉，按部分映证处理。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx cross">[6]</span><span class="rt">B+</span><span class="st">安全研究报告</span></div><div class="ti">Horizon3.ai：NextChat, An AI Chatbot That Lets You Talk To Anyone You Want To（CVE-2023-49785 披露）</div><div class="mt"><b>来源：</b>Horizon3.ai 攻击研究（Naveen Sunkavally）　<b>发布日期：</b>2024-03-11<br><a href="https://www.horizon3.ai/attack-research/disclosures/nextchat-an-ai-chatbot-that-lets-you-talk-to-anyone-you-want-to/" target="_blank" rel="noopener">https://www.horizon3.ai/attack-research/disclosures/nextchat-an-ai-chatbot-that-lets-you-talk-to-anyone-you-want-to/</a></div><div class="note">事实核查：「最广泛部署的独立 GenAI 聊天应用」、63K+ stars/52K+ forks（2024-03 时点）、Shodan 7500+ 暴露实例（主要在中美）、CVE-2023-49785（CVSS 9.1，2023-09 引入 /api/cors、2023-11-25 报告、2024-03-11 公开披露）均出自此一手研究。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx verified">[7]</span><span class="rt">B+</span><span class="st">一手 · App Store/iTunes API</span></div><div class="ti">NextChat AI（iOS）App Store 元数据</div><div class="mt"><b>来源：</b>iTunes Lookup API（id6743085599）与 App Store 页　<b>实测日期：</b>2026-11-13<br><a href="https://apps.apple.com/us/app/nextchat-ai/id6743085599" target="_blank" rel="noopener">https://apps.apple.com/us/app/nextchat-ai/id6743085599</a></div><div class="note">事实核查：首发 2025-04-18、上架主体 GPTsMotion Tech LLC、免费+内购、v0.0.7（2025-05-19）、效率类；该 App 链接为官方 README [2] 挂载入口，双源交叉。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx partial">[8]</span><span class="rt">C+</span><span class="st">技术社区</span></div><div class="ti">腾讯云开发者社区：ChatGPT+Vercel，无需服务器，部署你的 Web 网页应用</div><div class="mt"><b>来源：</b>腾讯云开发者社区　<b>发布日期：</b>2023 年（原文未精确标注）<br><a href="https://cloud.tencent.com/developer/news/1126726" target="_blank" rel="noopener">https://cloud.tencent.com/developer/news/1126726</a></div><div class="note">事实核查：确认项目为「GitHub 用户 Yidadaa 创建」、跨平台（Web/PWA/Linux/Windows/MacOS）、Vercel 一键免费部署不到一分钟；作为 2023 年部署教程潮的佐证（C+ 级）。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx partial">[9]</span><span class="rt">C+</span><span class="st">技术社区</span></div><div class="ti">掘金：56K star！一键拥有跨平台 AI 助手：ChatGPT-Next-Web</div><div class="mt"><b>来源：</b>掘金（juejin.cn）　<b>发布日期：</b>约 2024-01<br><a href="https://juejin.cn/post/7320288262400180261" target="_blank" rel="noopener">https://juejin.cn/post/7320288262400180261</a></div><div class="note">事实核查：56K+ 星标时点值（2024 年初）；「用过最好的 ChatGPT 应用」为作者主观评价，仅采信星标与在线地址信息。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx partial">[10]</span><span class="rt">C+</span><span class="st">技术社区</span></div><div class="ti">阿里云开发者社区：使用 Docker 一键免费部署 63.8k 的私人 ChatGPT 网页应用</div><div class="mt"><b>来源：</b>阿里云开发者社区（developer.aliyun.com）　<b>发布日期：</b>约 2024<br><a href="https://developer.aliyun.com/article/1637872" target="_blank" rel="noopener">https://developer.aliyun.com/article/1637872</a></div><div class="note">事实核查：63.8k 星标时点值与 Docker 自托管路径；为增长轨迹提供中间时点佐证。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx partial">[11]</span><span class="rt">C</span><span class="st">技术社区（时序佐证）</span></div><div class="ti">掘金：人人实现 ChatGPT 自由，手把手教你零撸部署自己聊天私服</div><div class="mt"><b>来源：</b>掘金（juejin.cn）　<b>发布日期：</b>约 2023-04<br><a href="https://juejin.cn/post/7209102613345042440760" target="_blank" rel="noopener">https://juejin.cn/post/7209102613345042440760</a></div><div class="note">事实核查：以「chatgpt next 免费开源项目」为骨架的部署教程（约 2023-04 发布，由帖子 ID 时序推定），佐证 2023 上半年部署教程热潮与项目早期引爆节点。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx partial">[12]</span><span class="rt">C+</span><span class="st">技术社区榜单</span></div><div class="ti">CSDN 每日指数（2023-06-19）：chatgpt-next-web 列热门开源项目</div><div class="mt"><b>来源：</b>CSDN 社区（bbs.csdn.net）　<b>发布日期：</b>2023-06-19<br><a href="https://bbs.csdn.net/topics/616072380" target="_blank" rel="noopener">https://bbs.csdn.net/topics/616072380</a></div><div class="note">事实核查：2023-06-19 CSDN 每日热门开源项目榜收录 chatgpt-next-web，佐证 2023 年中期的持续热度。</div></li>
+  <li id="ref-13" class="src"><div class="sh"><span class="idx partial">[13]</span><span class="rt">C+</span><span class="st">行业全景图</span></div><div class="ti">AI 原生全景图：NextChat 条目</div><div class="mt"><b>来源：</b>landscape.jimmysong.io　<b>核验日期：</b>2026-11-13<br><a href="https://landscape.jimmysong.io/zh/projects/nextchat/" target="_blank" rel="noopener">https://landscape.jimmysong.io/zh/projects/nextchat/</a></div><div class="note">事实核查：「轻量且快速的开源跨平台 AI 聊天助手，支持自托管与多云端模型接入」的定位描述与 [1][2] 一致；仅作生态定位佐证。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 13 条。核验标签分布：🟢 已核验（verified）2 条、🔵 多源印证（cross）4 条、🟡 部分映证（partial）7 条。信源评级分布：A 级 3 条（GitHub API/README/用户 API 一手实测，全部回溯完成）、B+/B 级 4 条（安全研究、HelloGitHub、官网、iTunes API）、C+/C 级 6 条（技术社区与教程文章，仅采信可交叉的时点数据）。GitHub 星标以 2026-11-13 API 实测 88,951 为准（案例墙底稿 88.8k 为更早时点值）；「3M+ 活跃用户」为官网自述；营收数据零披露按「未检索到公开信息」处理。<b>核验失败 URL 共 1 条</b>：segmentfault.com/a/1190000044516724（HTTP 410 已失效，其 56K 星标时点改由掘金 [9] 承担）；vercel.com 模板页 404，Vercel 生态证据改以官方 README 的 Deploy 按钮 [2] 为据。对标行中 Cherry Studio/ChatNio/ChatWise/gpt_academic 数据为案例墙既有核验值 + 本次 API 复测（复测值：53,470★ / 9,346★（已更名 coaidev/coai）/ 官网 200 / 71,656★）。未发现伪造链接；全部 URL 为检索过程实际命中页面。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  GitHub 数据检索截止：2026-11-13 · 营收推算一律不予采信具体数值，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

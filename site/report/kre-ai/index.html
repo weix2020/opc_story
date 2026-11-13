@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · Kre.ai——前 Meta 员工武培文的 AI 智能体流水线一人公司 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · Kre.ai 智能体流水线">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="Kre.ai 深度案例报告：前 Meta 员工武培文在杭州以 4 条 AI 智能体流水线（Minion/Sage/Quill/执行体）为跨境电商卖家优化广告投放，自动化率超 90%。年营收「超百万」与「月营收 200 万+」双口径并列核查，12 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>Kre.ai 深度案例报告</h1>
+    <h2>前 Meta 员工武培文：4 条 AI 智能体流水线跑通跨境电商广告投放<br>自动化率超 90% —— 「年营收超百万」与「月营收 200 万+」双口径并列核查 · 12 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">服务型 OPC</span>
+      <span class="tag">跨境营销</span>
+      <span class="tag">智能体流水线</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">200 万元</div><div class="k">大单 / 年初签约项目（南都 × 学习强国交叉）</div></div>
+  <div class="stat"><div class="v neutral">超百万</div><div class="k">年营收（南都实名口径；另有月营收 200 万口径存疑）</div></div>
+  <div class="stat"><div class="v up">90%+</div><div class="k">业务自动化率（36氪口径）</div></div>
+  <div class="stat"><div class="v neutral">3000 元级</div><div class="k">月成本（服务器 + AI 调用费）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">Kre.ai 是 2026 年「一人公司」（OPC）报道潮中被主流媒体反复引用的服务型样本：前 Meta 员工武培文在杭州以一人之身「指挥」四条 AI 智能体流水线，为跨境电商卖家提供全流程营销服务——从竞品情报、投放策略到多语种文案与自动客服，自动化率超过 90%<sup class="cite cross">[4]</sup>。它也是本案例墙中少见的「大厂履历 + 流水线工程化」双重专业背景案例。</p>
+  <div class="two">
+    <div class="card"><div class="ct">项目</div><div class="cb">面向中小型跨境品牌 / 海外中小电商的全流程 AI 营销服务：智能广告投放与优化、多语言内容生成、用户分析与数据复盘、7×24h 自动客服，整体自动化率超 90%；人工仅介入定方向、拆解任务与验收结果。媒体报道中以「Kre.ai」指称其一人公司，产品/官网形态未检索到公开信息。</div><div class="cm">信源：<a class="cref cross" href="#ref-4">[4]</a> <a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">武培文，杭州。前 Meta 员工、8 年跨境营销经验，熟悉海外平台规则与流量（「Meta 硅谷工程师 / 硅谷团队」之说出自京报网与自媒体稿）；新华网口径为「拥有多年跨境营销平台开发经验及创业经历」。</div><div class="cm">信源：<a class="cref cross" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-5">[5]</a> <a class="cref verified" href="#ref-2">[2]</a></div></div>
+    <div class="card blue"><div class="ct">工作方式</div><div class="cb">每天仅做「定方向、验成果」两件事，约 90% 工作由 AI 完成；自称「公司的『大脑』，指挥所有的 AI 打工」。入驻杭州上城区鸿鹄汇一人独角兽创业加速社区（该社区自 2025 年 9 月创建，累计收到超 2000 份申请、引进项目 51 个）。</div><div class="cm">信源：<a class="cref partial" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-10">[10]</a></div></div>
+    <div class="card"><div class="ct">公司 / 融资状态</div><div class="cb">京报网稿称其为「零员工、零社保」的纯一人公司；公司注册主体、创办时间、融资信息、团队现状均未检索到公开信息。南方都市报实名报道确认其为「Kre.ai 的唯一创始人」。</div><div class="cm">信源：<a class="cref partial" href="#ref-5">[5]</a> <a class="cref verified" href="#ref-1">[1]</a></div></div>
+  </div>
+  <div class="two">
+    <div class="card blue"><div class="ct">媒体身份</div><div class="cb">2026 年 3-6 月被三类信源接力收录：新华网财经观察将其列为鸿鹄汇 OPC 创业者代表；大象新闻稿使其登上热搜「男子靠 AI 开一人公司年营收达 150 万」，360 创始人周鸿祎借其案例公开点评 AI 用法；南方都市报「词元经济」系列第三期以其开篇并实名报道。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-6">[6]</a> <a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="card green"><div class="ct">在本案例墙中的定位</div><div class="cb">案例墙「营销电商」类目第 19 号（锚点 2026-05-06 ▲），与星织科技、戴森云、炘扬贸易、沪咪科技同属「AI + 跨境营销 / 电商」象限；本案例的差异化标签是「Meta 背景 + 四条命名智能体流水线」，即把个人行业认知工程化为可复用的智能体规则库。</div><div class="cm">参见：<a href="../../index.html" style="color:#2980b9">案例墙 index.html</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">Meta 时期 → 创业前</div><div class="tx">前 Meta 员工，8 年跨境营销积累</div><div class="td">36氪口径「前 Meta 员工、8 年跨境营销经验、熟悉海外平台规则与流量」；「Meta 硅谷工程师」「年薪超 20 万美元」仅见京报网与自媒体拆解稿，属单一转载链口径。具体任职时段与离职时间未检索到公开信息。<a class="cref cross" href="#ref-4">[4]</a><a class="cref partial" href="#ref-5">[5]</a><a class="cref partial" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2025-09 之后</div><div class="tx">入驻杭州鸿鹄汇 OPC 社区</div><div class="td">鸿鹄汇自 2025 年 9 月创建，截至 2026 年 3 月收到 1300+ 申请、聚集 32 家「一人公司」；武培文为其对外介绍的典型案例之一，具体入驻时间未检索到。<a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-10">[10]</a></div></div>
+    <div class="node"><div class="dt">2026 年初（春节前后）</div><div class="tx">签约项目 200 多万元，春节无休</div><div class="td">学习强国稿：「年初的时候，签约的项目有 200 多万元，春节假期正是忙的时候」；与南都后续报道的「两百万元大单」量级互证。<a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2026-03-16</div><div class="tx">36氪转扬帆出海稿：月收入约 200 万、净利率超 65%</div><div class="td">首次集中披露商业模式数字：客单价 3000-5000 美元、月成本 3000-8000 元、90% 营收来自 15 个长期客户、自动化率超 90%。<a class="cref cross" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2026-03-21</div><div class="tx">新华网财经观察收录为 OPC 典型样本</div><div class="td">以「指挥 AI 员工」表述其模式；同稿经京报网、中国科技网等多方转载，成为「一人公司」现象报道的标配引用。<a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-7">[7]</a></div></div>
+    <div class="node"><div class="dt">2026-04-01</div><div class="tx">登上热搜「年营收达 150 万」，周鸿祎下场点评</div><div class="td">大象新闻稿引爆传播；同日两家自媒体跟进拆解（含「Meta 年薪 20 万美元」「日均接单 8-10 单」等未经一手确认的细节）。<a class="cref cross" href="#ref-6">[6]</a><a class="cref partial" href="#ref-8">[8]</a><a class="cref partial" href="#ref-9">[9]</a></div></div>
+    <div class="node"><div class="dt">2026-04-10</div><div class="tx">京报网转稿首次完整披露四条智能体流水线</div><div class="td">Minion / Sage / Quill / 执行体的命名分工、「月营收稳定 200 万+、净利率超 65%、月成本 3000 元」出自此稿；该稿来源标注「网络」，与 36氪稿数据高度一致，按单一转载链从严处理。<a class="cref partial" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2026-05-06 ▲</div><div class="tx">南方都市报「词元经济」系列实名报道（锚点）</div><div class="td">GA05 版，南都大数据研究院出品，研究员孔令旖执笔：「Kre.ai 的唯一创始人……拿下两百万元大单，年营收超百万元，成本仅包含服务器费和 AI 调用费」——本案例墙的收录锚点。<a class="cref verified" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-06-24</div><div class="tx">第三方深度拆解出现（自媒体）</div><div class="td">「AI 创业内参」发布工具栈级拆解（四条流水线月成本估算约 3100 元、执行体周报自动化流程等），内容含大量推测性还原，仅作参考不作事实依据。<a class="cref partial" href="#ref-12">[12]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：8 年跨境营销经验 = 流水线的「规则库」</div><div class="cb">武培文模式的护城河不在「会用 AI」，而在把行业认知写成机器可执行的规则——36氪点出其「熟悉海外平台规则与流量」<sup class="cite cross">[4]</sup>；自媒体拆解稿举例的「广告 ROI 低于 1:3 自动暂停」这类投放规则、Quill 的多语种本地化改写（而非直译），都只有踩过跨境投放坑的人才写得出来<sup class="cite partial" href="#ref-8">[8]</sup><sup class="cite partial">[12]</sup>。学习强国稿引述的鸿鹄汇调研亦印证这一路径：一人创业者普遍将代码生成交给 AI（80%-90%），创始人转向规格定义、逻辑判断与最终验收<sup class="cite cross">[3]</sup>。</div><div class="cm">信源：<a class="cref cross" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-8">[8]</a> <a class="cref partial" href="#ref-12">[12]</a> <a class="cref cross" href="#ref-3">[3]</a></div></div>
+  <div class="card"><div class="ct">转折二：从「指挥 AI 员工」到四条命名流水线</div><div class="cb">媒体报道呈现出清晰的能力升级轨迹：3 月新华网稿的表述还是「指挥」AI 员工完成市场分析、文案、设计、剪辑、客服<sup class="cite verified" href="#ref-2">[2]</sup>；到 4 月京报网稿，已升级为四条有名字、有分工、有效率指标的智能体流水线（Minion 情报 / Sage 军师 / Quill 文案 / 执行体投放与客服）<sup class="cite partial" href="#ref-5">[5]</sup>。从「人指挥工具」到「流水线自转、人只验收」，正是服务型 OPC 与「AI 工具重度用户」的分水岭——但后者细节目前仅锚定在单一转载链上，需留意（见捌）。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref partial" href="#ref-5">[5]</a></div></div>
+  <div class="card blue"><div class="ct">转折三：杭州 OPC 政策与社区杠杆</div><div class="cb">武培文是杭州 OPC 政策包的直接受益者：上城区设立 10 亿元专项基金，为 OPC 创业者提供低成本工位、算力补助、融资支持<sup class="cite verified" href="#ref-2">[2]</sup>；自媒体拆解稿列举「中国数谷」OPC 社区前 6 个月免租、上城 5 万美元创业基金、滨江算力补贴等（自媒体口径，待证）<sup class="cite partial" href="#ref-9">[9]</sup>。宏观层面，杭州已发布《打造全国「AI+OPC」创业新高地行动计划（2026-2028 年）》，并试点 OPC「沙盒监管」（1-3 年观察期以行政指导为主）——为一人公司承接跨境合规业务提供了制度缓冲<sup class="cite cross" href="#ref-10">[10]</sup>。</div><div class="cm">信源：<a class="cref verified" href="#ref-2">[2]</a> <a class="cref partial" href="#ref-9">[9]</a> <a class="cref cross" href="#ref-10">[10]</a></div></div>
+  <div class="quote">
+    <p>每个人的知识储备和技能储备可能都不均衡，哪怕是十几个人的创业团队也会遇到各类问题。现在可以通过 AI 工具补齐能力短板、拉平执行水准，即使是一个人，也能让业务推进过程和交付标准保持统一且稳定的水平。</p>
+    <span class="src">—— 武培文，新华网财经观察（2026-03-21），<a class="cref verified" href="#ref-2">[2]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <p class="lead">面向客群为跨境电商卖家（中小型跨境品牌 / 海外中小电商）：武培文以四条 AI 智能体流水线替代传统营销公司的「策略 + 文案 + 投放 + 客服」多岗位协作，自动化率超 90%<sup class="cite cross" href="#ref-4">[4]</sup>。四条流水线的命名分工如下（效率数值均为京报网转载链口径，36氪稿仅印证职能框架）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>流水线</th><th>角色</th><th>职能分工</th><th>效率口径（京报网稿）</th><th>解决痛点</th><th>职能印证</th></tr></thead>
+    <tbody>
+      <tr><td><b>Minion</b></td><td>情报员 AI</td><td>24 小时抓取竞品数据与市场动态、预测爆款</td><td>效率超人工 10 倍</td><td>跨境卖家缺乏本地市场情报，人工盯盘成本高</td><td><a class="cref cross" href="#ref-4">[4]</a><a class="cref partial" href="#ref-9">[9]</a></td></tr>
+      <tr><td><b>Sage</b></td><td>军师 AI</td><td>制定投放策略、分析效果、自动优化预算</td><td>10 分钟输出投放策略</td><td>多平台多站点广告预算调配依赖资深优化师</td><td><a class="cref cross" href="#ref-4">[4]</a><a class="cref partial" href="#ref-9">[9]</a></td></tr>
+      <tr><td><b>Quill</b></td><td>文案手 AI</td><td>日产出 50 套多语种广告文案与设计素材</td><td>日产出 50 套</td><td>多语种本地化改写（非直译）是中小卖家最大瓶颈之一</td><td><a class="cref cross" href="#ref-4">[4]</a><a class="cref partial" href="#ref-12">[12]</a></td></tr>
+      <tr><td><b>执行体</b></td><td>执行 AI</td><td>自动投放广告、跨时区 7×24h 客服回复、周报生成</td><td>—（自动化交付）</td><td>时差客服与例行报表占用人力</td><td><a class="cref cross" href="#ref-4">[4]</a><a class="cref partial" href="#ref-12">[12]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h4>商业模式要点</h4>
+  <ul class="bl">
+    <li><b>服务形态：</b>订阅/项目制 AI 营销服务（服务型 OPC），非 SaaS 标品；交付主体是智能体流水线，人是规则制定者与验收者<sup class="cite cross">[4]</sup>；</li>
+    <li><b>客单价：</b>3000-5000 美元（36氪口径；自媒体拆解稿同口径）<sup class="cite cross">[4]</sup><sup class="cite partial">[9]</sup>；</li>
+    <li><b>客户结构：</b>90% 营收来自 15 个长期稳定客户——高留存、高复购的服务生意，而非流量生意<sup class="cite cross">[4]</sup>；</li>
+    <li><b>成本结构：</b>月成本约 3000 元（服务器 + AI API 调用费；36氪口径 3000-8000 元），人力成本趋近于零；第三方拆解估算四条流水线 API + 云服务月支出约 3100 元，与披露口径吻合（含推测）<sup class="cite partial" href="#ref-5">[5]</sup><sup class="cite cross" href="#ref-4">[4]</sup><sup class="cite partial" href="#ref-12">[12]</sup>；</li>
+    <li><b>人机分工：</b>AI 承担市场调研、内容生产、投放执行与客户沟通；武培文仅保留战略决策、规则设定与结果验收，每天投入约 3 小时调试工作流以防「模型漂移」（自媒体口径）<sup class="cite cross" href="#ref-4">[4]</sup><sup class="cite partial" href="#ref-9">[9]</sup>。</li>
+  </ul>
+  <div class="box insight">
+    <div class="bt">🔍 模式本质</div>
+    把「跨境营销」这门典型的人力密集型专业服务，重构成「行业认知规则库 + 词元消耗」的自动化交付——南方都市报将其提炼为「词元已经成为公司最核心的生产资料」<sup class="cite verified" href="#ref-1">[1]</sup>。与传统营销公司约 20% 的净利率口径相比，其披露的超 65% 净利率几乎全部来自人力成本的消失<sup class="cite partial" href="#ref-5">[5]</sup>。
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <p class="lead">本案最大的事实核查议题是营收口径冲突：<b>实名报道的「年营收」口径与转载链的「月营收」口径相差 20 倍以上</b>。下表双口径并列，以南方都市报实名报道为基线：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>口径一：实名报道基线</th><th>口径二：转载链 / 自媒体</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>大单 / 签约</td><td class="hl">拿下 200 万元大单（南都 5-06 实名报道）</td><td>年初签约项目 200 多万元（学习强国 2-14，独立交叉印证）</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td>年营收</td><td class="hl">超 100 万元（南都）</td><td>150 万元（大象新闻热搜口径 4-01）</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td>月营收</td><td>—（实名报道未提月营收）</td><td class="hl">约 200 万元（36氪 3-16）／稳定 200 万+（京报网 4-10）</td><td><a class="cref cross" href="#ref-4">[4]</a><a class="cref partial" href="#ref-5">[5]</a></td></tr>
+      <tr><td>净利率</td><td>—</td><td>超 65%（对比传统营销公司约 20%）</td><td><a class="cref cross" href="#ref-4">[4]</a><a class="cref partial" href="#ref-5">[5]</a></td></tr>
+      <tr><td>月成本</td><td>仅服务器费 + AI 调用费（南都定性）</td><td>3000 元（京报网）／3000-8000 元（36氪）</td><td><a class="cref verified" href="#ref-1">[1]</a><a class="cref partial" href="#ref-5">[5]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td>客单价</td><td>—</td><td>3000-5000 美元</td><td><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td>客户结构</td><td>—</td><td>15 个长期客户贡献 90% 营收</td><td><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td>自动化率</td><td>—</td><td class="pos">超 90%（36氪）；90% 工作由 AI 完成（京报网）</td><td><a class="cref cross" href="#ref-4">[4]</a><a class="cref partial" href="#ref-5">[5]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 口径冲突说明</div>
+    「200 万」在南都 / 学习强国语境中是<b>大单与签约项目金额</b>（两独立信源互证，可信度高）；而「月营收 200 万」仅见于 36氪转扬帆出海稿与京报网转「网络」稿——两条转载链数据逐项高度一致（月营收 200 万、净利率 65%、月成本 3000 元、「单人抵 10 人团队、响应快 6 倍」），疑为同一自媒体稿的转载扩散。若月营收 200 万为真，年化约 2400 万，与南都「年营收超百万」相差 20 倍以上。三种可能（均为分析假设，未获当事人确认）：①「月营收」实为月流水 / 合同额口径混淆；②自媒体传播链数字放大；③南都「年营收」为保守或早期口径。引用时建议以<b>「200 万大单 + 年营收超百万」</b>为事实基线。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将 Kre.ai 放入案例墙「AI + 跨境营销 / 电商」象限（对标数据均为案例墙既有核验值，详见各案例独立报告）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>模式</th><th>团队形态</th><th>数据表现（案例墙核验值）</th></tr></thead>
+    <tbody>
+      <tr><td><b>Kre.ai</b>（本案）</td><td>武培文（前 Meta，杭州）</td><td>AI 智能体流水线代运营跨境广告投放</td><td>1 人（零员工口径）</td><td>200 万元大单、年营收超百万（南都实名）</td></tr>
+      <tr><td><a href="../xingzhi-tech/" style="color:#2980b9">星织科技</a></td><td>Kevin Li</td><td>自研智能体做「数字员工」，一人运营 8 个亚马逊品牌</td><td>1 人</td><td>亚马逊全球开店官方白皮书收录 OPC 典型（GMV 未披露）</td></tr>
+      <tr><td><a href="../daisen-cloud/" style="color:#2980b9">戴森云</a></td><td>田志雄（武汉）</td><td>大模型驱动直播电商 + AI 定制开发</td><td>1 人 + 全外包</td><td>直播年流水数千万、技术服务营收超千万（极目新闻实地）</td></tr>
+      <tr><td><a href="../xinyang-trade/" style="color:#2980b9">炘扬贸易</a></td><td>张乾超（95 后，丽水）</td><td>个人 + AI 智能体（阿里国际 Accio）跑通选品/设计/交付</td><td>1 人 + 智能体矩阵</td><td>开业当月回本、首单 3600 美元；智能体数 8/80 双口径</td></tr>
+      <tr><td><a href="../humi-tech/" style="color:#2980b9">沪咪科技</a></td><td>陈子顺（00 后，上海临港）</td><td>AI 短视频 + 达人建联卖爆日本 TikTok</td><td>一人创始主导 + 核心 3 人</td><td>TikTok 日本家纺/全品类第一；年营收破千万（双口径）</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Kre.ai 在象限中的位置独特：<b>唯一兼具大厂海外履历（Meta）与「命名流水线」工程化能力的案例</b>。星织科技、炘扬贸易走「自研/配置智能体替代运营岗位」路线，沪咪科技走「AI 内容 + 达人分发」流量路线，戴森云走「直播电商 + 技术外包」混合路线——而 Kre.ai 是纯服务型输出：它不卖货、不做自有品牌，而是把跨境投放能力本身商品化，客户即卖家同行。这也意味着其天花板取决于「人验收」的产能上限与客户信任，而非供应链或流量库存<sup class="cite cross" href="#ref-4">[4]</sup>。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:14%">维度</th><th>分析与事实</th><th style="width:16%">口径</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品功能</b></td><td>全流程 AI 营销代运营：竞品情报（Minion）→ 投放策略（Sage）→ 多语种素材（Quill）→ 自动投放与客服（执行体），覆盖「市场分析—文案创作—视觉设计—视频剪辑—客服回复」完整链路；交付以流水线自动运转为主，人工仅验收<sup class="cite cross">[4]</sup><sup class="cite verified">[2]</sup></td><td>多源交叉</td></tr>
+      <tr><td><b>2. 面向客群</b></td><td>中小型跨境品牌 / 海外中小电商卖家：无力雇佣全职跨境投放团队的出海商家；新华网表述为「中小电商企业」，京报网表述为「海外中小电商」，指向一致<sup class="cite cross">[4]</sup><sup class="cite verified">[2]</sup><sup class="cite partial">[5]</sup></td><td>多源交叉</td></tr>
+      <tr><td><b>3. 解决痛点</b></td><td>跨境营销三高：人力成本高（传统团队需策略+文案+投放+客服多岗）、多语种本地化门槛高、时差响应慢；流水线以约 3000 元级月成本替代多人团队，宣称「单人抵 10 人团队、响应快 6 倍」（后者仅转载链口径）<sup class="cite verified">[1]</sup><sup class="cite partial">[5]</sup></td><td>双口径</td></tr>
+      <tr><td><b>4. 预估年化营收（推算，置信度 C）</b></td><td>按实名报道基线：年营收超 100 万元（另有热搜口径 150 万元）；若采信转载链「月营收 200 万」则年化约 2400 万元——两说差距过大，本报告按从严原则取「年营收超百万」为推算基线，月口径存疑待证。收入结构健康度（90% 来自 15 个长期客户）为转载链口径<sup class="cite verified">[1]</sup><sup class="cite cross">[6]</sup><sup class="cite cross">[4]</sup></td><td>基线 C 级</td></tr>
+      <tr><td><b>5. 融资进展</b></td><td>未检索到任何融资、投资方公开信息；自媒体拆解稿提及的「上城区 5 万美元创业基金」属政府扶持而非股权融资（单一自媒体口径，待证）；新华网所述上城区 10 亿元专项基金为面向 OPC 群体的政策池，非对本案的定向投资<sup class="cite verified">[2]</sup><sup class="cite partial">[9]</sup></td><td>留白</td></tr>
+      <tr><td><b>6. 市场评价</b></td><td>权威正评价：新华网将其列为 OPC 典型创业者并直接引用其「AI 补齐能力短板」论述；南都词元经济系列以其开篇树立「词元=生产资料」样本；周鸿祎借其案例公开论述「把 AI 当专家、只定义结果不干预路径」的高阶用法。负评价/冷思考集中于自媒体：其一，模式难复制——成功依赖稀缺的硅谷履历与客户资源，「AI 是放大器，不是起点」；其二，「0 基础 AI 年入百万」课程乱象借势营销，部分已被警方通报为诈骗，幸存者偏差显著<sup class="cite verified">[2]</sup><sup class="cite verified">[1]</sup><sup class="cite cross">[6]</sup><sup class="cite partial">[8]</sup></td><td>正评价多源 / 负评价 C 级</td></tr>
+      <tr><td><b>7. 投入成本与合规风险</b></td><td><b>成本：</b>月成本约 3000 元级（服务器 + API），几乎无人力与租金成本（共享办公 + 社区免租补贴口径待证）<sup class="cite verified">[1]</sup><sup class="cite partial">[9]</sup>。<b>广告投放合规：</b>跨境广告受各国广告法规与广告平台审核双重约束，文案投放前需对照各平台广告政策预审（第三方拆解口径，含推测）<sup class="cite partial">[12]</sup>；税务申报与跨境数据合规（GDPR 与《个人信息保护法》）为持续性义务（自媒体口径）<sup class="cite partial">[9]</sup>。<b>AI 素材的平台政策：</b>Meta、TikTok 等广告平台对 AI 生成素材与自动化投放均有政策约束且持续变动；同时平台自身正密集上线 AI 投放工具（亚马逊广告智能助理、TikTok GMV Max 全球上线等），Kre.ai 所处的「代运营优化」层面临<b>平台政策收紧 + 平台工具挤压</b>的双重结构性风险——此为本报告基于行业公开信息的分析判断<sup class="cite cross">[11]</sup>。<b>监管环境：</b>杭州对 OPC 试点「沙盒监管」（1-3 年观察期，以行政指导、风险提示为主），为个人承接业务提供缓冲<sup class="cite cross">[10]</sup></td><td>成本多源 / 合规部分 C 级</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 一处重大口径冲突与四处留白（截至 2026-11-12 检索）</div>
+    ① <b>营收口径冲突（重大）：</b>「年营收超百万」（南都实名）vs「月营收稳定 200 万+」（36氪/京报网转载链），差 20 倍以上；后者两源数据逐项一致、疑同链传播，且 36氪稿本身标注「据公开信息报道」未注明原始出处——按从严原则以年口径为基线。② <b>京报网 4-10 稿来源标注「网络」</b>：四条流水线的全部效率数值（10 倍、10 分钟、50 套）仅锚定此单一转载链，无一手访谈佐证。③ <b>「Meta 硅谷工程师、年薪超 20 万美元」</b>仅见自媒体拆解稿，未见一手确认。④ <b>Kre.ai 公司注册主体、创办时间、融资信息均未检索到公开信息。</b>⑤ <b>日均接单 8-10 单、中国数谷免租、5 万美元创业基金</b>等细节均为自媒体口径，未经权威信源印证。
+  </div>
+  <div class="box note">
+    <div class="bt">📌 自媒体拆解稿的使用原则</div>
+    2026-04-01 热搜当天出现的两篇拆解稿（腾讯新闻「AI可可AI生活」、网易号「叶初七」）与 6 月的「AI 创业内参」长文，均为「官方稿数据 + 自行推演」的混合体：其中与权威信源重合的部分（客单价、月成本、净利率、Meta 背景）可作旁证，其余细节（年薪、接单量、工具栈造价、政策补贴明细）含明显推测成分。本报告仅将其标注为 partial/C 级旁证，不作为独立事实来源。
+  </div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">Kre.ai 与《归墟》等作品型 OPC 构成互补的两极：作品型以「内容爆款」为成功迹象，而 Kre.ai 代表的是更可复制讨论、也更依赖行业积累的<b>服务型 OPC</b>——它的核心资产不是流量，而是「把 8 年跨境投放认知写成智能体规则库」的工程化能力。它同时是口径治理的典型样本：从 36氪到京报网再到南都，同一案例的数字在传播链上发生了量级漂移，最终只有实名一手报道（南都）可作为锚点。对研究者而言，这恰是「AI 一人公司」报道潮需要逐条核验的原因。</div><div class="cm"><a class="cref verified" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-5">[5]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 12 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx verified">[1]</span><span class="rt">A</span><span class="st">主流媒体实名报道（一手）</span></div><div class="ti">建AI智能体流水线 一人公司年收超百万（南方都市报「词元经济」系列第三期）</div><div class="mt"><b>来源：</b>南方都市报 GA05 版（南都大数据研究院出品，文字：南都研究员 孔令旖）　<b>发布日期：</b>2026-05-06<br><a href="https://epaper.oeeee.com/epaper/A/html/2026-05/06/content_3652.htm" target="_blank" rel="noopener">https://epaper.oeeee.com/epaper/A/html/2026-05/06/content_3652.htm</a><br>辅链（搜狐转载）：https://www.sohu.com/a/1018665346_161795</div><div class="note">事实核查：epaper 原版面直读成功；「Kre.ai 唯一创始人」「两百万元大单」「年营收超百万元」「成本仅含服务器费和 AI 调用费」「单人抵 10 人团队、响应快 6 倍」均出自此稿；与学习强国稿 [3] 的「年初签约 200 多万」独立交叉。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx verified">[2]</span><span class="rt">A</span><span class="st">央媒报道（一手）</span></div><div class="ti">新华网财经观察丨「一人公司」的那些事</div><div class="mt"><b>来源：</b>新华网（策划万方、主笔赵宇娇）　<b>发布日期：</b>2026-03-21<br><a href="https://www.news.cn/fortune/20260321/943f6293dbe14f918ef29a481d12a6d0/c.html" target="_blank" rel="noopener">https://www.news.cn/fortune/20260321/943f6293dbe14f918ef29a481d12a6d0/c.html</a><br>辅链（京报网转载）：https://news.bjd.com.cn/2026/03/21/11643967.shtml</div><div class="note">事实核查：新华网原文直读成功；武培文背景表述、AI 员工指挥模式、本人引语、鸿鹄汇数据（1300+ 申请、32 家）、上城区 10 亿元基金均出自此稿；与京报网 3-21 转载、科技日报 3-22 转载 [7] 多源一致。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx cross">[3]</span><span class="rt">B+</span><span class="st">党媒平台（门户转载）</span></div><div class="ti">「一人公司」，何以成为可能？</div><div class="mt"><b>来源：</b>新浪财经（转自学习强国）　<b>发布日期：</b>2026-02-14<br><a href="https://finance.sina.com.cn/wm/2026-02-14/doc-inhmupep9245426.shtml" target="_blank" rel="noopener">https://finance.sina.com.cn/wm/2026-02-14/doc-inhmupep9245426.shtml</a></div><div class="note">事实核查：直读成功；「年初签约项目 200 多万元」「公司的大脑，指挥所有的 AI 打工」、鸿鹄汇调研（代码生成 80-90%、创始人转向验收）均出自此稿；与南都 [1] 独立印证 200 万签约量级。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx cross">[4]</span><span class="rt">B</span><span class="st">行业门户（公众号授权稿）</span></div><div class="ti">「一人公司」有多猛？被社交巨头收购、前Meta员工月入200万、95后狂做120款出海APP</div><div class="mt"><b>来源：</b>36氪（原发微信公众号「扬帆出海」，作者子墨、编辑火狐狸）　<b>发布日期：</b>2026-03-16<br><a href="https://m.36kr.com/p/3724964231952776" target="_blank" rel="noopener">https://m.36kr.com/p/3724964231952776</a></div><div class="note">事实核查：直读成功；前 Meta 员工、8 年跨境营销经验、服务内容四件套、自动化率超 90%、客单价 3000-5000 美元、月成本 3000-8000 元、「月收入约 200 万元」「90% 营收来自 15 个长期客户」「净利率超 65%」均出自此稿；注意该稿标注「据公开信息报道」，未注明原始出处，月营收数字按转载链处理。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx partial">[5]</span><span class="rt">B+</span><span class="st">党媒转载（来源标注「网络」）</span></div><div class="ti">一人公司：AI时代的创业新范式与个体价值觉醒</div><div class="mt"><b>来源：</b>京报网（作者魏颖，来源标注「网络」）　<b>发布日期：</b>2026-04-10<br><a href="https://news.bjd.com.cn/2026/04/10/11680566.shtml" target="_blank" rel="noopener">https://news.bjd.com.cn/2026/04/10/11680566.shtml</a></div><div class="note">事实核查：直读成功；四条流水线命名分工（Minion/Sage/Quill/执行体）及效率数值、「Meta 硅谷工程师」「月营收稳定 200 万+」「净利润率超 65%」「月成本仅 3000 元」「零员工、零社保」均出自此稿；因转载源不明且与 [4] 数据逐项高度一致（疑同链传播），按 partial 从严处理。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx cross">[6]</span><span class="rt">B+</span><span class="st">门户转省级媒体</span></div><div class="ti">「男子靠AI开一人公司年营收达150万」冲上热搜，周鸿祎：用不好AI是因为控制欲太强</div><div class="mt"><b>来源：</b>新浪财经（原发大象新闻，记者王礴舒）　<b>发布日期：</b>2026-04-01<br><a href="https://finance.sina.com.cn/roll/2026-04-01/doc-inhsysmc5026953.shtml" target="_blank" rel="noopener">https://finance.sina.com.cn/roll/2026-04-01/doc-inhsysmc5026953.shtml</a></div><div class="note">事实核查：直读成功；热搜词条「年营收达 150 万」与周鸿祎点评内容出自此稿；150 万与南都「超百万」口径兼容。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">B+</span><span class="st">央媒行业报转载</span></div><div class="ti">「一人公司」的那些事（中国科技网转载新华网稿）</div><div class="mt"><b>来源：</b>中国科技网（科技日报，转新华网）　<b>发布日期：</b>2026-03-22<br><a href="https://www.stdaily.com/web/gdxw/2026-03/22/content_489978.html" target="_blank" rel="noopener">https://www.stdaily.com/web/gdxw/2026-03/22/content_489978.html</a></div><div class="note">事实核查：检索命中全文与 [2] 一致，作为新华网原发的独立转载佐证（武培文段落多源一致）。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx partial">[8]</span><span class="rt">C</span><span class="st">自媒体拆解</span></div><div class="ti">AI一人公司年入150万，但门槛比你想的高得多</div><div class="mt"><b>来源：</b>腾讯新闻（自媒体「AI可可AI生活」）　<b>发布日期：</b>2026-04-01<br><a href="https://news.qq.com/rain/a/20260401A02PNC00" target="_blank" rel="noopener">https://news.qq.com/rain/a/20260401A02PNC00</a></div><div class="note">事实核查：直读成功；「Meta 硅谷团队年薪超 20 万美元」「日均接单 8-10 单」「广告 ROI 低于 1:3 自动暂停」「AI 是放大器不是起点」「0 基础课程已被警方通报为诈骗」均出自此稿——自媒体口径，仅作旁证。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx partial">[9]</span><span class="rt">C</span><span class="st">自媒体拆解</span></div><div class="ti">关注：男子靠AI开一人公司年营收150万——</div><div class="mt"><b>来源：</b>网易号（自媒体「叶初七」）　<b>发布日期：</b>2026-04-01<br><a href="https://www.163.com/dy/article/KPEKJFTP0556IYVO.html" target="_blank" rel="noopener">https://www.163.com/dy/article/KPEKJFTP0556IYVO.html</a></div><div class="note">事实核查：直读成功；「中国数谷」OPC 社区前 6 个月免租、上城区 5 万美元创业基金、滨江算力补贴、每日 3 小时调试防模型漂移、GDPR 与《个保法》合规义务均出自此稿——自媒体口径，待证，仅作旁证。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx cross">[10]</span><span class="rt">A</span><span class="st">央媒报道（一手）</span></div><div class="ti">杭州：「一人公司」风乍起（新华每日电讯）</div><div class="mt"><b>来源：</b>新华网（原发新华每日电讯，记者邬焕庆、张璇）　<b>发布日期：</b>2026-06-28<br><a href="https://www.news.cn/local/20260628/00f56b42570b421dbe6eb8ab285f6515/c.html" target="_blank" rel="noopener">https://www.news.cn/local/20260628/00f56b42570b421dbe6eb8ab285f6515/c.html</a></div><div class="note">事实核查：直读成功；杭州 OPC 政策包（一址多照、工位注册、专利绿色通道、沙盒监管 1-3 年、信用账户）、《杭州行动计划（2026-2028）》目标、鸿鹄汇累计 2000+ 申请 / 51 项目均出自此稿；该稿未提及武培文，仅作政策与社区背景引用。</div></li>
+  <li id="ref-11" class="src"><div class="sh"><span class="idx cross">[11]</span><span class="rt">B</span><span class="st">财经科技媒体</span></div><div class="ti">我一个人，用AI，把生意做到了海外</div><div class="mt"><b>来源：</b>钛媒体　<b>发布日期：</b>约 2026 年（页面未标注确切日期）<br><a href="https://www.tmtpost.com/7938434.html" target="_blank" rel="noopener">https://www.tmtpost.com/7938434.html</a></div><div class="note">事实核查：检索命中全文；AI 跨境电商渗透率（2024 年 72% → 2026 年初 78%）、亚马逊广告智能助理、TikTok GMV Max 全球上线、阿里「悟空」等平台工具动态出自此稿；未提及武培文，仅作「AI 素材的平台政策」维度的行业背景引用，发布日期缺失已注明。</div></li>
+  <li id="ref-12" class="src"><div class="sh"><span class="idx partial">[12]</span><span class="rt">C</span><span class="st">自媒体深度拆解（含推测）</span></div><div class="ti">武培文：1人+3个AI智能体，年营收150万的海外营销一人公司深度拆解 | AI创业内参</div><div class="mt"><b>来源：</b>AI 创业内参（xopcx.com）　<b>发布日期：</b>2026-06-24<br><a href="https://xopcx.com/articles/article-2026-06-24-wupeiwen-ai-marketing" target="_blank" rel="noopener">https://xopcx.com/articles/article-2026-06-24-wupeiwen-ai-marketing</a></div><div class="note">事实核查：检索命中；Quill 多语种本地化改写、执行体周报自动化流程、四条流水线月成本估算约 3100 元（与披露的「月成本 3000 元」吻合）出自此稿——文中大量「可以用」「如果用到」式推演，明确按推测性拆解处理，仅作参考不作事实依据；其标题「年营收 150 万」为转载热搜口径。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 12 条。核验标签分布：🟢 已核验（verified）2 条、🔵 多源印证（cross）6 条、🟡 部分映证（partial）4 条。信源评级分布：A 级 3 条（南都 epaper 原版面、新华网、新华每日电讯，原文直读全部完成）、B+/B 级 6 条（含钛媒体 1 条，其发布日期页面未标注，已注明）、C 级 3 条（均为热搜跟进的自媒体拆解稿，已明确标注旁证属性）。任务书指定信源核验结果：南方都市报 epaper 原链 ✅ 直读成功；京报网两条 ✅ 直读成功（3-21 条为新华网转载辅链，4-10 条来源标注「网络」已降级 partial）；36氪 ✅；新浪财经 ✅。全部 12 条 URL 均为检索过程实际命中页面，无伪造链接；无不可达 URL。一处重大口径冲突（年营收 vs 月营收，20 倍级）与四处留白（公司注册、融资、Meta 年薪、接单量/补贴细节）已在正文与捌章显式标注。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-12 · 营收双口径已并列标注，推算值置信口径为 C 级，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>
