@@ -7,86 +7,86 @@
 
 ## 案例清单（按时间锚点降序）
 
-- [AI 短剧《归墟》（report/guixu/）](https://opc-story.pages.dev/report/guixu/index.html): 12 集末世科幻 AI 短剧：即梦 Seedance + Suno 全流程一人制作，周更连载。 成功迹象：全网播放破亿（年末口径破 2 亿），红果热度 4400 万+
-- [《我在现代当幽差》AI 动画剧（report/youchai/）](https://opc-story.pages.dev/report/youchai/index.html): 「地府打工人」原创 AI 动画剧：一人扛编剧/导演/剪辑，签约 B 站 UP 动画剧场获算力补贴与专项激励。 成功迹象：上线 3 集播放破 1100 万（澎湃口径，EP01 超 700 万间接交叉），连续入选 B 站「每周必看」；单集成本 6000 元→3.38 万两口径
-- [我和我的 AI 男友：樱时叙归途（report/sakura-journey/）](https://opc-story.pages.dev/report/sakura-journey/index.html): 一人用字节系 AI 工具完成 60 集 2D 纯爱漫剧，小说-漫剧-小游戏 IP 联动。 成功迹象：红果热度 1200 万（上线 5 天）
-- [咱家剑宗团宠小师妹（report/sword-sect/）](https://opc-story.pages.dev/report/sword-sect/index.html): 修仙题材 AI 漫剧，剧本/分镜/生成/剪辑一人独立制作，长季连载。 成功迹象：红果漫剧热播榜第三，规划超 1000 集
-- [栖光（AI 中式天庭短视频）（report/qiguang/）](https://opc-story.pages.dev/report/qiguang/index.html): 眼镜店老板自学 AI 两年，副业创作 AI 国风「中式天庭」系列短视频出海。 成功迹象：海外播放 500 万+（4 信源交叉），获外交部发言人毛宁转发；抖音粉丝 50 万+
-- [肖天乐 AI 漫剧工作室（report/xiaotianle/）](https://opc-story.pages.dev/report/xiaotianle/index.html): 宿舍手搓 AI 漫剧：2026-08 注册吴江个人独资企业（100% 持股），初期 5 人执行小组协作。 成功迹象：不到一年营收超 300 万（5 信源交叉），爆款播放 15 亿、单剧创收 200 万+
-- [《发配边关，罪妻开荒养出战神》（report/fapei-bianguan/）](https://opc-story.pages.dev/report/fapei-bianguan/index.html): 534 集 AI 漫剧连载：夫妻二人用 AI 工具链完成剧本/绘制/配音全流程，已更新至第九季。 成功迹象：抖音播放破 41 亿（≥5 信源交叉）、系列 6 部进红果百强榜 TOP15（第六季热度 8251 万·榜内第二，DataEye 回溯口径）
-- [《不正经妖界》AI 喜剧动画（report/buzhengjing-yaojie/）](https://opc-story.pages.dev/report/buzhengjing-yaojie/index.html): 下班碎片时间用 Seedance 2.0 + 剪映独立完成国风 AI 喜剧动画：编剧到成片一人包办。 成功迹象：第一季播放破 3000 万（九派/中国经济网双源交叉），入选抖音精选；另获瓦卡奖 AI 真实叙事优秀奖
-- [易经图卦系列（report/yijing-cards/）](https://opc-story.pages.dev/report/yijing-cards/index.html): AI 转译易经卦象的情绪卡牌 + AI 生成小程序，一人包揽产品全流程。 成功迹象：年销售额破百万，月营收稳定 6 万+
-- [红墨 RedInk（report/redink/）](https://opc-story.pages.dev/report/redink/index.html): 一句话生成整套小红书图文笔记：标题/正文/封面配图可直发。 成功迹象：GitHub 5.7k★，会员 68 元/月起
-- [Sitesfy AI（report/sitesfy/）](https://opc-story.pages.dev/report/sitesfy/index.html): AI 获客系统：自动生成面向搜索引擎的多语言获客网站与内容。 成功迹象：自述月收入近 100 万元（自述口径）
-- [MuMuAINovel（report/mumu-ainovel/）](https://opc-story.pages.dev/report/mumu-ainovel/index.html): 可自部署的 AI 长篇小说工作台：角色卡/伏笔追踪/批量挂机写作。 成功迹象：GitHub 3.3k★，网文圈自部署社区
-- [作文说（report/zuowenshuo/）](https://opc-story.pages.dev/report/zuowenshuo/index.html): AI 作文批改：拍照上传生成可打印批改报告，支持班级批量精批。 成功迹象：4 个月用户 1.5 万，月入近 5 万（自述）
-- [无事AI（report/wushi-ai/）](https://opc-story.pages.dev/report/wushi-ai/index.html): AI 小额纠纷解决：免费诊断案情/测算赔偿，按结果收费。 成功迹象：两月 40 余单付费、营收约 6 万元（36氪渠道为创始人投稿口径，已标注）
-- [星织科技（report/xingzhi-tech/）](https://opc-story.pages.dev/report/xingzhi-tech/index.html): AI 智能体做「数字员工」，一人同时运营多个亚马逊品牌。 成功迹象：亚马逊官方白皮书收录 OPC 典型（「8 品牌」出自品牌传播稿，口径已标注）
-- [戴森云（report/daisen-cloud/）](https://opc-story.pages.dev/report/daisen-cloud/index.html): 大模型驱动直播电商：话术生成/生命周期预测/智能运营。 成功迹象：直播年流水数千万、技术营收超千万
-- [《砚边青梅》国风历史 AI 漫剧（report/yanbian-qingmei/）](https://opc-story.pages.dev/report/yanbian-qingmei/index.html): 自学 AI 两个月的作者一人包办小说/剧本/分镜/建模/配音/剪辑，两季 48 集连载带动「历史热」。 成功迹象：两季 48 集播放破亿（4 信源交叉）、热度超 4000 万；抖音话题量 2 亿/2.4 亿双口径并列
-- [AI 短片《丧尸清道夫》（report/zombie-cleaner/）](https://opc-story.pages.dev/report/zombie-cleaner/index.html): 3 分 34 秒原子朋克 AI 科幻短片，全流程一人 10 天完成。 成功迹象：播放 6000 万至破亿，获好莱坞制作人盛赞
-- [Kre.ai（report/kre-ai/）](https://opc-story.pages.dev/report/kre-ai/index.html): AI 智能体流水线为跨境电商优化广告投放与素材复盘。 成功迹象：200 万元大单，年营收超百万（另有「月营收 200 万+」口径，双口径并列）
-- [音行三界（report/yinxing-sanjie/）](https://opc-story.pages.dev/report/yinxing-sanjie/index.html): AI 音乐公司：AI 生成多风格歌曲 + 音乐数据标注 + AI 虚拟偶像 IP 运营，两人运营。 成功迹象：虚拟偶像全网粉丝 20 万+、播放 3000 万+，与山西文旅等机构合作
-- [碳基圈（report/tanjiquan/）](https://opc-story.pages.dev/report/tanjiquan/index.html): AI 社交平台：「仅 AI 可见」匿名树洞 + AI 歌曲生成，用 Claude Code 独立开发。 成功迹象：用户 4 万+、日访问 100 万+，AI 音乐上线 2 天即产生收入
-- [WAI 工作室《纸手机》AI 短片（report/wai-paper-phone/）](https://opc-story.pages.dev/report/wai-paper-phone/index.html): 两人 AI 视频工作室：三天成片的 AI 短片《纸手机》全网刷屏。 成功迹象：播放 2000 万（央视）→ 4000 万（北京日报）→ 破亿/曝光 2.3 亿（新榜）多口径并列；入围北影节 AIGC 单元最佳短片
-- [《一掌熊猫》AI 动画长片（report/yizhang-panda/）](https://opc-story.pages.dev/report/yizhang-panda/index.html): 42 分钟 AI 动画长片：28 天、约 3 万元成本一人主导完成，一人公司（持股 95%）承制 AIGC 视频。 成功迹象：全网播放破百万（新华网/澎湃交叉），入围北京国际电影节，推进院线项目《字圣仓颉》
-- [聪明钱监控（report/smart-money/）](https://opc-story.pages.dev/report/smart-money/index.html): 开源智能体手搓的 AI 股市投研系统，日报推送，200 元/年。 成功迹象：半月 90 个付费用户、收入超 1 万元
-- [声序智能（AI 曲谱智能体）（report/shengxu-ai/）](https://opc-story.pages.dev/report/shengxu-ai/index.html): 五线谱↔简谱 1 分钟互转的 AI 曲谱智能体（OMR），订阅收费，服务传统民乐行业。 成功迹象：上线半年多用户超 6000（新华/新京报实探交叉），成立约 3 个月现金流回正进入盈利
-- [炘扬贸易（AI 棒球帽出海）（report/xinyang-trade/）](https://opc-story.pages.dev/report/xinyang-trade/index.html): 个人 + 8 个 AI 智能体（阿里国际 Accio）跑通选品/设计/交付全链的定制棒球帽跨境电商。 成功迹象：开业当月即回本、首单 3600 美元；智能体数两口径并列：8 个（潮新闻）/ 80 个（新华每日电讯）
-- [采了么 × 聚身之家（AI 运营双品牌）（report/caileme/）](https://opc-story.pages.dev/report/caileme/index.html): 不会代码的厂二代用 AI 一人运营两个品牌：机器人对接 + 数据采集撮合平台。 成功迹象：2 个月 3 笔订单、营收超 20 万（3 订单人民网印证、金额澎湃口径）；曾拒 5000 万投资（单源自述）
-- [hupoCADNet（report/hupocad/）](https://opc-story.pages.dev/report/hupocad/index.html): AI 彩平图生成引擎：CAD 平面图 3 分钟生成可商用彩色平面图。 成功迹象：半年 1740 位付费设计师、营收 5.1 万元
-- [天之灵AI（report/tianzhiling/）](https://opc-story.pages.dev/report/tianzhiling/index.html): AI 哀伤陪伴小程序：亲人照片生成数字形象陪对话疗愈。 成功迹象：用户 11.1 万、付费会员 2000+、已盈利
-- [AI 短剧《安徽小木匠》（report/anhui-xiaomujiang/）](https://opc-story.pages.dev/report/anhui-xiaomujiang/index.html): 一人用豆包改编番茄小说 IP 剧本 + Seedance 生成的 AI 仿真人短剧：约 2900 元成本、7 天制作。 成功迹象：全网播放 3.5 亿、分账收益 50 万+（≥4 信源交叉）；成本 2900/3000 元两口径；后续三部未过审
-- [沪咪科技（TikTok 日本家纺出海）（report/humi-tech/）](https://opc-story.pages.dev/report/humi-tech/index.html): AI 短视频 + 达人建联把中国家纺卖爆日本 TikTok：宿舍起步、一人创始主导（核心 3 人协作）。 成功迹象：TikTok 日本家纺/全品类第一（新华/新民晚报/临港管委会三源交叉）；年营收破千万，单月 500 万 vs 单季 1 亿日元双口径
-- [BettaFish（微舆）（report/bettafish/）](https://opc-story.pages.dev/report/bettafish/index.html): 多智能体舆情分析系统：自动分析 30+ 社媒平台数百万条评论并预测走向，10 天 Vibe Coding 完成。 成功迹象：GitHub 42.7k★（2026-11 API 实测），两度登顶 GitHub 趋势榜第一，获 3000 万元注资
-- [互动内容产品（Rochat，双口径认定）（report/ye-chunjun/）](https://opc-story.pages.dev/report/ye-chunjun/index.html): AI 驱动的互动内容与情感陪伴产品，90% 代码由 AI Agent 编写。 成功迹象：全球百万用户、月收入 2-3 万美元
-- [《明末：欲火重生》（report/late-ming-reborn/）](https://opc-story.pages.dev/report/late-ming-reborn/index.html): 8 个月 AI 辅助独立开发的 2D 开放世界视觉小说，Steam EA 上线，开发/发行均为单人署名。 成功迹象：首月收入约 6 万元（GameLook 报道口径，单源）；Steam 评价 449/551 双口径佐证商业落地
-- [NuxtPro 等 AI 工具矩阵（report/nuxtpro/）](https://opc-story.pages.dev/report/nuxtpro/index.html): 一人多产品：SaaS 模板/API 中转/视频去水印等工具站矩阵。 成功迹象：自述月额外收入 1 万美元+（自述口径）
-- [Raphael AI（report/raphael-ai/）](https://opc-story.pages.dev/report/raphael-ai/index.html): 基于 Flux.1 的免费无限制 AI 文生图出海站，免注册打法。 成功迹象：上线一月月活破 100 万
-- [AI 音乐生成出海站（AiMakeSong，旁证口径）（report/lsaiah-music/）](https://opc-story.pages.dev/report/lsaiah-music/index.html): AI 音乐生成 API 包装的订阅站，SEO 获自然流量，Stripe 收款。 成功迹象：自述月收入 1.2 万美元+（自述口径）
-- [PaywallPro（report/paywallpro/）](https://opc-story.pages.dev/report/paywallpro/index.html): iOS 订阅付费墙与 Onboarding 数据的分析 Agent，辅助定价决策。 成功迹象：自述单款营收 $200k+（自述口径）
-- [AI 效率小程序矩阵（report/chenyuming/）](https://opc-story.pages.dev/report/chenyuming/index.html): 面向短视频创作者的 AI 配音/写作小程序矩阵，订阅+按量付费。 成功迹象：200 万+ 用户、连续 12 个月盈利
-- [星境引擎（AI 短剧承制）（report/xingjing-engine/）](https://opc-story.pages.dev/report/xingjing-engine/index.html): 全球首部神话题材 AI 短剧《众神之战》主创：注册一人公司，AI 承制短剧/视频业务。 成功迹象：《众神之战》平台热度近 2000 万（天下网商/杭州日报交叉）、海外上亿流量、总成本约 10 万元
-- [AIClient-2-API（report/aiclient-2-api/）](https://opc-story.pages.dev/report/aiclient-2-api/index.html): 把 Gemini CLI/Codex 等客户端协议反代为本地 OpenAI 兼容 API。 成功迹象：GitHub 8.9k★（2026-11 API 实测）、Docker 下载 10 万+
-- [Chat Memo（report/chat-memo/）](https://opc-story.pages.dev/report/chat-memo/index.html): 跨 AI 平台「记忆中枢」插件：自动存档 ChatGPT/Claude/豆包等对话并全库检索。 成功迹象：20000+ 用户，Chrome 商店 4.9 分获 Google 精选认证
-- [求职精灵（report/qiuzhi-jingling/）](https://opc-story.pages.dev/report/qiuzhi-jingling/index.html): Agent 化 AI 求职全链路：规划/简历逐字改/全真语音模拟面试。 成功迹象：用户将破 100 万、年化收益千万级（自述）
-- [江苏梧桐 AI（大学生就业平台）（report/wutong-ai/）](https://opc-story.pages.dev/report/wutong-ai/index.html): AI 大学生就业服务平台 +「OPC×AI」供需对接平台：简历匹配/企业对接，一人公司运营。 成功迹象：月活近 60 万人次、48 万份简历、13 万家企业（新华网/园区管委会交叉）
-- [EmoEase（AI 情绪疗愈 App）（report/emoease/）](https://opc-story.pages.dev/report/emoease/index.html): 16 岁高中生用 Cursor/Trae 零基础 20 天开发的 AI 情绪记录疗愈 App，另有「牛马时钟」工资计算器。 成功迹象：上线即冲 App Store 付费工具榜第 5（4 信源交叉）；获苹果 SSC 全球杰出获奖者并受邀 WWDC25
-- [胃之书（report/weizhishu/）](https://opc-story.pages.dev/report/weizhishu/index.html): 拍照记录饮食 AI App：大模型生成热量与代谢分析。 成功迹象：9 万用户、收入 1.2 万美元（5 个月累计/每月两口径并存）；小红书独立开发大赛最佳 AI 项目
-- [猜盐 / 猜病（report/caiyanguess/）](https://opc-story.pages.dev/report/caiyanguess/index.html): 大模型游戏化矩阵：AI 模拟病人供问诊推理、街景定位等玩法。 成功迹象：用户 160 万、2025 年营收同比增 3 倍
-- [张sir 弹幕游戏矩阵（report/zhang-sir/）](https://opc-story.pages.dev/report/zhang-sir/index.html): 抖音弹幕互动游戏：AI 工具链承担约 70% 美术与代码，15 天/款。 成功迹象：总流水近 2000 万（自述口径）
-- [Simen AI（猴子说话）（report/simen-ai/）](https://opc-story.pages.dev/report/simen-ai/index.html): 本地办公智能体「师门」：聊天即完成发票合并/工资表拆分，联动 Word/Excel；延伸 OpenClaw AI 数字员工工具。 成功迹象：产品未正式发布即获字节跳动近 4000 万元投资（长江日报/央视网交叉）+ 奇绩创坛 200 余万元天使轮
-- [claude-code-router（report/claude-code-router/）](https://opc-story.pages.dev/report/claude-code-router/index.html): 让 Claude Code 路由到任意大模型的开源网关，支持按任务类型分流供应商。 成功迹象：GitHub 38.1k★（2026-11 API 实测），Kimi 曾为内置 provider 及赞助方
-- [Leadmore AI（report/leadmore-ai/）](https://opc-story.pages.dev/report/leadmore-ai/index.html): AI 驱动的 Reddit 营销自动化 SaaS：智能匹配社区、合规发帖、挖掘潜在客户。 成功迹象：上线 4 个月 $30K MRR、突破 $1M ARR（自述口径）
-- [庞昊洋 AI 影视工作室（一人剧组）（report/panghaoyang/）](https://opc-story.pages.dev/report/panghaoyang/index.html): 单枪匹马办 AI 影视公司：「一人剧组」+ 十几个 AI 硅基员工做短片/广告/AI 漫剧。 成功迹象：成立一年营收 100 多万（新华社/人民网多源）vs「一年挣二三十万」（央视财经自述）两口径并列；北影节 AIGC 优秀奖、电影频道 AI 影像优选三等奖
-- [王腾工业机械出海（Accio Work）（report/wangteng-export/）](https://opc-story.pages.dev/report/wangteng-export/index.html): 大四英语专业一人起步做工业机械 B2B 出海：AI Agent 管选品/询盘/客服，店铺进行业前 1%（现有 3 名同学协作）。 成功迹象：一年销售额破 300 万（环球网/政府官网双源交叉）；8 个月 200 万（演进口径）；起步 2025-01/03 两口径
-- [PodLM / ShipAny / ThinkAny 产品组合（report/idoubi/）](https://opc-story.pages.dev/report/idoubi/index.html): AI 播客生成器 + AI 搜索引擎 + MCP 市场 + SaaS 开发框架等 11+ 产品。 成功迹象：ShipAny 预售 4 小时破 1 万美元
-- [供春AI（report/gongchun/）](https://opc-story.pages.dev/report/gongchun/index.html): 国内首款陶瓷 AIGC 辅助设计软件：数十秒生成紫砂壶等工艺美术方案并对接 3D 打印。 成功迹象：用户 3 万+，走进近 30 所高校，落地全国首个 AI+手工艺 OPC 创业基地
-- [ChatWise（report/chatwise/）](https://opc-story.pages.dev/report/chatwise/index.html): 多模型桌面 AI 客户端：多模态 + MCP，BYOK 买断制。 成功迹象：Pro $29 买断持续销售
-- [敲敲门童话（Knock AI）（report/knock-ai/）](https://opc-story.pages.dev/report/knock-ai/index.html): AI 原生儿童互动童话平台：孩子引导 AI 续写专属绘本/儿歌/卡通，三端上线。 成功迹象：累计读者 10 万+ 人次，获 300 万元融资（含 Google Cloud 25 万美元）
-- [HivisionIDPhotos（report/hivision-idphotos/）](https://opc-story.pages.dev/report/hivision-idphotos/index.html): 轻量 AI 证件照工具：抠图/多规格生成/排版，可离线自部署。 成功迹象：GitHub 21.7k★（2026-11 实测），登 GitHub 热榜第一
-- [PDFMathTranslate（pdf2zh）（report/pdf2zh/）](https://opc-story.pages.dev/report/pdf2zh/index.html): 保留排版的 PDF 学术文档 AI 全文双语翻译，CLI/GUI/Zotero。 成功迹象：GitHub 38.3k★，入选 EMNLP 2025 Demo
-- [new-api（report/new-api/）](https://opc-story.pages.dev/report/new-api/index.html): 开源大模型网关：GPT/Claude/Midjourney/Suno 统一封装为 OpenAI 格式并带计费。 成功迹象：GitHub 51.8k★（2026-11 实测），大量商用 API 中转站的底座
-- [MoneyPrinterTurbo（report/moneyprinter-turbo/）](https://opc-story.pages.dev/report/moneyprinter-turbo/index.html): 输入主题自动完成文案/素材/字幕/配音的短视频生成器。 成功迹象：GitHub 143k★（2026-11 实测），AI 视频类最高星之一
-- [VideoLingo（report/videolingo/）](https://opc-story.pages.dev/report/videolingo/index.html): 一键 Netflix 级视频本地化：字幕切割/上下文翻译/克隆配音。 成功迹象：GitHub 19k★
-- [小猫补光灯（Pro）（report/xiaomao-light/）](https://opc-story.pages.dev/report/xiaomao-light/index.html): 拍照补光 App：可调色温背光板，用 Cursor 一小时完成 MVP。 成功迹象：下载 30-50 万、Pro 收入 30-40 万元
-- [Cherry Studio（report/cherry-studio/）](https://opc-story.pages.dev/report/cherry-studio/index.html): 开源多模型 AI 桌面客户端：300+ 模型/知识库/智能体/MCP。 成功迹象：GitHub 53.4k★（2026-11 实测）；已公司化（千彗科技），一人属性边界见深度报告
-- [AI选校鸟（report/aixuanxiaoniao/）](https://opc-story.pages.dev/report/aixuanxiaoniao/index.html): AI 留学选校：99 元/次输出保底/匹配/冲刺三梯度院校推荐。 成功迹象：3000+ 用户（人民日报海外版报道）
-- [GPT-SoVITS（report/gpt-sovits/）](https://opc-story.pages.dev/report/gpt-sovits/index.html): 5 秒音频克隆音色的少样本 TTS/语音转换，多语言。 成功迹象：GitHub 64k★，中文语音克隆事实标准
-- [哄哄模拟器 / 6pen（report/honghong/）](https://opc-story.pages.dev/report/honghong/index.html): 哄女友情景对话 AI 游戏 + 开源模型 AI 绘画平台。 成功迹象：上线 24 小时 60 万用户/2000 万次对话
-- [Copilot for Obsidian（report/obsidian-copilot/）](https://opc-story.pages.dev/report/obsidian-copilot/index.html): Obsidian 笔记库 AI 副驾插件：全库问答/检索/改写，支持本地模型，付费订阅。 成功迹象：下载突破 100 万（2026-02），GitHub 7.8k★
-- [沉浸式翻译（report/immersive-translate/）](https://opc-story.pages.dev/report/immersive-translate/index.html): AI 双语对照网页/PDF/视频字幕/漫画翻译，聚合 10+ 引擎。 成功迹象：全球激活用户破 3000 万，Chrome 年度精选
-- [ChatNio（report/chatnio/）](https://opc-story.pages.dev/report/chatnio/index.html): 多模型对话 + API 中转计费一站式开源平台。 成功迹象：2024 年被七位数收购，月活近 10 万
-- [Easydict（report/easydict/）](https://opc-story.pages.dev/report/easydict/index.html): macOS 词典翻译应用：OpenAI/Gemini/DeepL 与离线 OCR 查词。 成功迹象：GitHub 15.2k★
-- [chatGPTBox（report/chatgptbox/）](https://opc-story.pages.dev/report/chatgptbox/index.html): 把 ChatGPT 深度集成进浏览器：划词翻译/网页总结/视频对话。 成功迹象：GitHub 10.7k★，Chrome 用户约 3 万
-- [one-api（report/one-api/）](https://opc-story.pages.dev/report/one-api/index.html): LLM API 网关：统一适配多模型，密钥管理与二次分发。 成功迹象：GitHub 37.3k★，中转站生态事实标准
-- [NextChat（report/nextchat/）](https://opc-story.pages.dev/report/nextchat/index.html): 一键免费部署的私人 ChatGPT 跨平台客户端，多模型。 成功迹象：GitHub 88.8k★
-- [GPT 学术优化（report/gpt-academic/）](https://opc-story.pages.dev/report/gpt-academic/index.html): 学术场景 LLM 工具：论文润色/翻译/代码解析，插件化。 成功迹象：GitHub 71.6k★
-- [openai-translator + avante.nvim（report/avante-nvim/）](https://opc-story.pages.dev/report/avante-nvim/index.html): 划词翻译插件 + Neovim 里的 Cursor 式 AI 编程插件。 成功迹象：avante.nvim 17.8k★
-- [BibiGPT（AI 课代表）（report/bibigpt/）](https://opc-story.pages.dev/report/bibigpt/index.html): 粘贴 B站/YouTube/播客链接生成结构化摘要与脑图，可追问。 成功迹象：累计 100 万+ 用户（官网自述）
-- [chatgpt-on-wechat + LinkAI（report/chatgpt-on-wechat/）](https://opc-story.pages.dev/report/chatgpt-on-wechat/index.html): 微信生态大模型机器人：公众号/企微/飞书接入 + 知识库客服。 成功迹象：GitHub 47.8k★（2026-11 实测，现名 CowAgent），事实标准方案
-- [Umi-OCR（report/umi-ocr/）](https://opc-story.pages.dev/report/umi-ocr/index.html): 开源离线 OCR 软件：截图/批量图片/PDF 识别，解压即用。 成功迹象：GitHub 48.4k★，免费 OCR 标杆
-- [Bob（report/bob-translate/）](https://opc-story.pages.dev/report/bob-translate/index.html): macOS 划词翻译/截图 OCR，接入 OpenAI/DeepSeek/豆包等。 成功迹象：Pro ¥58 买断持续销售，GitHub 9.7k★
+- [AI 短剧《归墟》（report/guixu/）](https://opc-story.pages.dev/report/guixu/): 12 集末世科幻 AI 短剧：即梦 Seedance + Suno 全流程一人制作，周更连载。 成功迹象：全网播放破亿（年末口径破 2 亿），红果热度 4400 万+
+- [《我在现代当幽差》AI 动画剧（report/youchai/）](https://opc-story.pages.dev/report/youchai/): 「地府打工人」原创 AI 动画剧：一人扛编剧/导演/剪辑，签约 B 站 UP 动画剧场获算力补贴与专项激励。 成功迹象：上线 3 集播放破 1100 万（澎湃口径，EP01 超 700 万间接交叉），连续入选 B 站「每周必看」；单集成本 6000 元→3.38 万两口径
+- [我和我的 AI 男友：樱时叙归途（report/sakura-journey/）](https://opc-story.pages.dev/report/sakura-journey/): 一人用字节系 AI 工具完成 60 集 2D 纯爱漫剧，小说-漫剧-小游戏 IP 联动。 成功迹象：红果热度 1200 万（上线 5 天）
+- [咱家剑宗团宠小师妹（report/sword-sect/）](https://opc-story.pages.dev/report/sword-sect/): 修仙题材 AI 漫剧，剧本/分镜/生成/剪辑一人独立制作，长季连载。 成功迹象：红果漫剧热播榜第三，规划超 1000 集
+- [栖光（AI 中式天庭短视频）（report/qiguang/）](https://opc-story.pages.dev/report/qiguang/): 眼镜店老板自学 AI 两年，副业创作 AI 国风「中式天庭」系列短视频出海。 成功迹象：海外播放 500 万+（4 信源交叉），获外交部发言人毛宁转发；抖音粉丝 50 万+
+- [肖天乐 AI 漫剧工作室（report/xiaotianle/）](https://opc-story.pages.dev/report/xiaotianle/): 宿舍手搓 AI 漫剧：2026-08 注册吴江个人独资企业（100% 持股），初期 5 人执行小组协作。 成功迹象：不到一年营收超 300 万（5 信源交叉），爆款播放 15 亿、单剧创收 200 万+
+- [《发配边关，罪妻开荒养出战神》（report/fapei-bianguan/）](https://opc-story.pages.dev/report/fapei-bianguan/): 534 集 AI 漫剧连载：夫妻二人用 AI 工具链完成剧本/绘制/配音全流程，已更新至第九季。 成功迹象：抖音播放破 41 亿（≥5 信源交叉）、系列 6 部进红果百强榜 TOP15（第六季热度 8251 万·榜内第二，DataEye 回溯口径）
+- [《不正经妖界》AI 喜剧动画（report/buzhengjing-yaojie/）](https://opc-story.pages.dev/report/buzhengjing-yaojie/): 下班碎片时间用 Seedance 2.0 + 剪映独立完成国风 AI 喜剧动画：编剧到成片一人包办。 成功迹象：第一季播放破 3000 万（九派/中国经济网双源交叉），入选抖音精选；另获瓦卡奖 AI 真实叙事优秀奖
+- [易经图卦系列（report/yijing-cards/）](https://opc-story.pages.dev/report/yijing-cards/): AI 转译易经卦象的情绪卡牌 + AI 生成小程序，一人包揽产品全流程。 成功迹象：年销售额破百万，月营收稳定 6 万+
+- [红墨 RedInk（report/redink/）](https://opc-story.pages.dev/report/redink/): 一句话生成整套小红书图文笔记：标题/正文/封面配图可直发。 成功迹象：GitHub 5.7k★，会员 68 元/月起
+- [Sitesfy AI（report/sitesfy/）](https://opc-story.pages.dev/report/sitesfy/): AI 获客系统：自动生成面向搜索引擎的多语言获客网站与内容。 成功迹象：自述月收入近 100 万元（自述口径）
+- [MuMuAINovel（report/mumu-ainovel/）](https://opc-story.pages.dev/report/mumu-ainovel/): 可自部署的 AI 长篇小说工作台：角色卡/伏笔追踪/批量挂机写作。 成功迹象：GitHub 3.3k★，网文圈自部署社区
+- [作文说（report/zuowenshuo/）](https://opc-story.pages.dev/report/zuowenshuo/): AI 作文批改：拍照上传生成可打印批改报告，支持班级批量精批。 成功迹象：4 个月用户 1.5 万，月入近 5 万（自述）
+- [无事AI（report/wushi-ai/）](https://opc-story.pages.dev/report/wushi-ai/): AI 小额纠纷解决：免费诊断案情/测算赔偿，按结果收费。 成功迹象：两月 40 余单付费、营收约 6 万元（36氪渠道为创始人投稿口径，已标注）
+- [星织科技（report/xingzhi-tech/）](https://opc-story.pages.dev/report/xingzhi-tech/): AI 智能体做「数字员工」，一人同时运营多个亚马逊品牌。 成功迹象：亚马逊官方白皮书收录 OPC 典型（「8 品牌」出自品牌传播稿，口径已标注）
+- [戴森云（report/daisen-cloud/）](https://opc-story.pages.dev/report/daisen-cloud/): 大模型驱动直播电商：话术生成/生命周期预测/智能运营。 成功迹象：直播年流水数千万、技术营收超千万
+- [《砚边青梅》国风历史 AI 漫剧（report/yanbian-qingmei/）](https://opc-story.pages.dev/report/yanbian-qingmei/): 自学 AI 两个月的作者一人包办小说/剧本/分镜/建模/配音/剪辑，两季 48 集连载带动「历史热」。 成功迹象：两季 48 集播放破亿（4 信源交叉）、热度超 4000 万；抖音话题量 2 亿/2.4 亿双口径并列
+- [AI 短片《丧尸清道夫》（report/zombie-cleaner/）](https://opc-story.pages.dev/report/zombie-cleaner/): 3 分 34 秒原子朋克 AI 科幻短片，全流程一人 10 天完成。 成功迹象：播放 6000 万至破亿，获好莱坞制作人盛赞
+- [Kre.ai（report/kre-ai/）](https://opc-story.pages.dev/report/kre-ai/): AI 智能体流水线为跨境电商优化广告投放与素材复盘。 成功迹象：200 万元大单，年营收超百万（另有「月营收 200 万+」口径，双口径并列）
+- [音行三界（report/yinxing-sanjie/）](https://opc-story.pages.dev/report/yinxing-sanjie/): AI 音乐公司：AI 生成多风格歌曲 + 音乐数据标注 + AI 虚拟偶像 IP 运营，两人运营。 成功迹象：虚拟偶像全网粉丝 20 万+、播放 3000 万+，与山西文旅等机构合作
+- [碳基圈（report/tanjiquan/）](https://opc-story.pages.dev/report/tanjiquan/): AI 社交平台：「仅 AI 可见」匿名树洞 + AI 歌曲生成，用 Claude Code 独立开发。 成功迹象：用户 4 万+、日访问 100 万+，AI 音乐上线 2 天即产生收入
+- [WAI 工作室《纸手机》AI 短片（report/wai-paper-phone/）](https://opc-story.pages.dev/report/wai-paper-phone/): 两人 AI 视频工作室：三天成片的 AI 短片《纸手机》全网刷屏。 成功迹象：播放 2000 万（央视）→ 4000 万（北京日报）→ 破亿/曝光 2.3 亿（新榜）多口径并列；入围北影节 AIGC 单元最佳短片
+- [《一掌熊猫》AI 动画长片（report/yizhang-panda/）](https://opc-story.pages.dev/report/yizhang-panda/): 42 分钟 AI 动画长片：28 天、约 3 万元成本一人主导完成，一人公司（持股 95%）承制 AIGC 视频。 成功迹象：全网播放破百万（新华网/澎湃交叉），入围北京国际电影节，推进院线项目《字圣仓颉》
+- [聪明钱监控（report/smart-money/）](https://opc-story.pages.dev/report/smart-money/): 开源智能体手搓的 AI 股市投研系统，日报推送，200 元/年。 成功迹象：半月 90 个付费用户、收入超 1 万元
+- [声序智能（AI 曲谱智能体）（report/shengxu-ai/）](https://opc-story.pages.dev/report/shengxu-ai/): 五线谱↔简谱 1 分钟互转的 AI 曲谱智能体（OMR），订阅收费，服务传统民乐行业。 成功迹象：上线半年多用户超 6000（新华/新京报实探交叉），成立约 3 个月现金流回正进入盈利
+- [炘扬贸易（AI 棒球帽出海）（report/xinyang-trade/）](https://opc-story.pages.dev/report/xinyang-trade/): 个人 + 8 个 AI 智能体（阿里国际 Accio）跑通选品/设计/交付全链的定制棒球帽跨境电商。 成功迹象：开业当月即回本、首单 3600 美元；智能体数两口径并列：8 个（潮新闻）/ 80 个（新华每日电讯）
+- [采了么 × 聚身之家（AI 运营双品牌）（report/caileme/）](https://opc-story.pages.dev/report/caileme/): 不会代码的厂二代用 AI 一人运营两个品牌：机器人对接 + 数据采集撮合平台。 成功迹象：2 个月 3 笔订单、营收超 20 万（3 订单人民网印证、金额澎湃口径）；曾拒 5000 万投资（单源自述）
+- [hupoCADNet（report/hupocad/）](https://opc-story.pages.dev/report/hupocad/): AI 彩平图生成引擎：CAD 平面图 3 分钟生成可商用彩色平面图。 成功迹象：半年 1740 位付费设计师、营收 5.1 万元
+- [天之灵AI（report/tianzhiling/）](https://opc-story.pages.dev/report/tianzhiling/): AI 哀伤陪伴小程序：亲人照片生成数字形象陪对话疗愈。 成功迹象：用户 11.1 万、付费会员 2000+、已盈利
+- [AI 短剧《安徽小木匠》（report/anhui-xiaomujiang/）](https://opc-story.pages.dev/report/anhui-xiaomujiang/): 一人用豆包改编番茄小说 IP 剧本 + Seedance 生成的 AI 仿真人短剧：约 2900 元成本、7 天制作。 成功迹象：全网播放 3.5 亿、分账收益 50 万+（≥4 信源交叉）；成本 2900/3000 元两口径；后续三部未过审
+- [沪咪科技（TikTok 日本家纺出海）（report/humi-tech/）](https://opc-story.pages.dev/report/humi-tech/): AI 短视频 + 达人建联把中国家纺卖爆日本 TikTok：宿舍起步、一人创始主导（核心 3 人协作）。 成功迹象：TikTok 日本家纺/全品类第一（新华/新民晚报/临港管委会三源交叉）；年营收破千万，单月 500 万 vs 单季 1 亿日元双口径
+- [BettaFish（微舆）（report/bettafish/）](https://opc-story.pages.dev/report/bettafish/): 多智能体舆情分析系统：自动分析 30+ 社媒平台数百万条评论并预测走向，10 天 Vibe Coding 完成。 成功迹象：GitHub 42.7k★（2026-11 API 实测），两度登顶 GitHub 趋势榜第一，获 3000 万元注资
+- [互动内容产品（Rochat，双口径认定）（report/ye-chunjun/）](https://opc-story.pages.dev/report/ye-chunjun/): AI 驱动的互动内容与情感陪伴产品，90% 代码由 AI Agent 编写。 成功迹象：全球百万用户、月收入 2-3 万美元
+- [《明末：欲火重生》（report/late-ming-reborn/）](https://opc-story.pages.dev/report/late-ming-reborn/): 8 个月 AI 辅助独立开发的 2D 开放世界视觉小说，Steam EA 上线，开发/发行均为单人署名。 成功迹象：首月收入约 6 万元（GameLook 报道口径，单源）；Steam 评价 449/551 双口径佐证商业落地
+- [NuxtPro 等 AI 工具矩阵（report/nuxtpro/）](https://opc-story.pages.dev/report/nuxtpro/): 一人多产品：SaaS 模板/API 中转/视频去水印等工具站矩阵。 成功迹象：自述月额外收入 1 万美元+（自述口径）
+- [Raphael AI（report/raphael-ai/）](https://opc-story.pages.dev/report/raphael-ai/): 基于 Flux.1 的免费无限制 AI 文生图出海站，免注册打法。 成功迹象：上线一月月活破 100 万
+- [AI 音乐生成出海站（AiMakeSong，旁证口径）（report/lsaiah-music/）](https://opc-story.pages.dev/report/lsaiah-music/): AI 音乐生成 API 包装的订阅站，SEO 获自然流量，Stripe 收款。 成功迹象：自述月收入 1.2 万美元+（自述口径）
+- [PaywallPro（report/paywallpro/）](https://opc-story.pages.dev/report/paywallpro/): iOS 订阅付费墙与 Onboarding 数据的分析 Agent，辅助定价决策。 成功迹象：自述单款营收 $200k+（自述口径）
+- [AI 效率小程序矩阵（report/chenyuming/）](https://opc-story.pages.dev/report/chenyuming/): 面向短视频创作者的 AI 配音/写作小程序矩阵，订阅+按量付费。 成功迹象：200 万+ 用户、连续 12 个月盈利
+- [星境引擎（AI 短剧承制）（report/xingjing-engine/）](https://opc-story.pages.dev/report/xingjing-engine/): 全球首部神话题材 AI 短剧《众神之战》主创：注册一人公司，AI 承制短剧/视频业务。 成功迹象：《众神之战》平台热度近 2000 万（天下网商/杭州日报交叉）、海外上亿流量、总成本约 10 万元
+- [AIClient-2-API（report/aiclient-2-api/）](https://opc-story.pages.dev/report/aiclient-2-api/): 把 Gemini CLI/Codex 等客户端协议反代为本地 OpenAI 兼容 API。 成功迹象：GitHub 8.9k★（2026-11 API 实测）、Docker 下载 10 万+
+- [Chat Memo（report/chat-memo/）](https://opc-story.pages.dev/report/chat-memo/): 跨 AI 平台「记忆中枢」插件：自动存档 ChatGPT/Claude/豆包等对话并全库检索。 成功迹象：20000+ 用户，Chrome 商店 4.9 分获 Google 精选认证
+- [求职精灵（report/qiuzhi-jingling/）](https://opc-story.pages.dev/report/qiuzhi-jingling/): Agent 化 AI 求职全链路：规划/简历逐字改/全真语音模拟面试。 成功迹象：用户将破 100 万、年化收益千万级（自述）
+- [江苏梧桐 AI（大学生就业平台）（report/wutong-ai/）](https://opc-story.pages.dev/report/wutong-ai/): AI 大学生就业服务平台 +「OPC×AI」供需对接平台：简历匹配/企业对接，一人公司运营。 成功迹象：月活近 60 万人次、48 万份简历、13 万家企业（新华网/园区管委会交叉）
+- [EmoEase（AI 情绪疗愈 App）（report/emoease/）](https://opc-story.pages.dev/report/emoease/): 16 岁高中生用 Cursor/Trae 零基础 20 天开发的 AI 情绪记录疗愈 App，另有「牛马时钟」工资计算器。 成功迹象：上线即冲 App Store 付费工具榜第 5（4 信源交叉）；获苹果 SSC 全球杰出获奖者并受邀 WWDC25
+- [胃之书（report/weizhishu/）](https://opc-story.pages.dev/report/weizhishu/): 拍照记录饮食 AI App：大模型生成热量与代谢分析。 成功迹象：9 万用户、收入 1.2 万美元（5 个月累计/每月两口径并存）；小红书独立开发大赛最佳 AI 项目
+- [猜盐 / 猜病（report/caiyanguess/）](https://opc-story.pages.dev/report/caiyanguess/): 大模型游戏化矩阵：AI 模拟病人供问诊推理、街景定位等玩法。 成功迹象：用户 160 万、2025 年营收同比增 3 倍
+- [张sir 弹幕游戏矩阵（report/zhang-sir/）](https://opc-story.pages.dev/report/zhang-sir/): 抖音弹幕互动游戏：AI 工具链承担约 70% 美术与代码，15 天/款。 成功迹象：总流水近 2000 万（自述口径）
+- [Simen AI（猴子说话）（report/simen-ai/）](https://opc-story.pages.dev/report/simen-ai/): 本地办公智能体「师门」：聊天即完成发票合并/工资表拆分，联动 Word/Excel；延伸 OpenClaw AI 数字员工工具。 成功迹象：产品未正式发布即获字节跳动近 4000 万元投资（长江日报/央视网交叉）+ 奇绩创坛 200 余万元天使轮
+- [claude-code-router（report/claude-code-router/）](https://opc-story.pages.dev/report/claude-code-router/): 让 Claude Code 路由到任意大模型的开源网关，支持按任务类型分流供应商。 成功迹象：GitHub 38.1k★（2026-11 API 实测），Kimi 曾为内置 provider 及赞助方
+- [Leadmore AI（report/leadmore-ai/）](https://opc-story.pages.dev/report/leadmore-ai/): AI 驱动的 Reddit 营销自动化 SaaS：智能匹配社区、合规发帖、挖掘潜在客户。 成功迹象：上线 4 个月 $30K MRR、突破 $1M ARR（自述口径）
+- [庞昊洋 AI 影视工作室（一人剧组）（report/panghaoyang/）](https://opc-story.pages.dev/report/panghaoyang/): 单枪匹马办 AI 影视公司：「一人剧组」+ 十几个 AI 硅基员工做短片/广告/AI 漫剧。 成功迹象：成立一年营收 100 多万（新华社/人民网多源）vs「一年挣二三十万」（央视财经自述）两口径并列；北影节 AIGC 优秀奖、电影频道 AI 影像优选三等奖
+- [王腾工业机械出海（Accio Work）（report/wangteng-export/）](https://opc-story.pages.dev/report/wangteng-export/): 大四英语专业一人起步做工业机械 B2B 出海：AI Agent 管选品/询盘/客服，店铺进行业前 1%（现有 3 名同学协作）。 成功迹象：一年销售额破 300 万（环球网/政府官网双源交叉）；8 个月 200 万（演进口径）；起步 2025-01/03 两口径
+- [PodLM / ShipAny / ThinkAny 产品组合（report/idoubi/）](https://opc-story.pages.dev/report/idoubi/): AI 播客生成器 + AI 搜索引擎 + MCP 市场 + SaaS 开发框架等 11+ 产品。 成功迹象：ShipAny 预售 4 小时破 1 万美元
+- [供春AI（report/gongchun/）](https://opc-story.pages.dev/report/gongchun/): 国内首款陶瓷 AIGC 辅助设计软件：数十秒生成紫砂壶等工艺美术方案并对接 3D 打印。 成功迹象：用户 3 万+，走进近 30 所高校，落地全国首个 AI+手工艺 OPC 创业基地
+- [ChatWise（report/chatwise/）](https://opc-story.pages.dev/report/chatwise/): 多模型桌面 AI 客户端：多模态 + MCP，BYOK 买断制。 成功迹象：Pro $29 买断持续销售
+- [敲敲门童话（Knock AI）（report/knock-ai/）](https://opc-story.pages.dev/report/knock-ai/): AI 原生儿童互动童话平台：孩子引导 AI 续写专属绘本/儿歌/卡通，三端上线。 成功迹象：累计读者 10 万+ 人次，获 300 万元融资（含 Google Cloud 25 万美元）
+- [HivisionIDPhotos（report/hivision-idphotos/）](https://opc-story.pages.dev/report/hivision-idphotos/): 轻量 AI 证件照工具：抠图/多规格生成/排版，可离线自部署。 成功迹象：GitHub 21.7k★（2026-11 实测），登 GitHub 热榜第一
+- [PDFMathTranslate（pdf2zh）（report/pdf2zh/）](https://opc-story.pages.dev/report/pdf2zh/): 保留排版的 PDF 学术文档 AI 全文双语翻译，CLI/GUI/Zotero。 成功迹象：GitHub 38.3k★，入选 EMNLP 2025 Demo
+- [new-api（report/new-api/）](https://opc-story.pages.dev/report/new-api/): 开源大模型网关：GPT/Claude/Midjourney/Suno 统一封装为 OpenAI 格式并带计费。 成功迹象：GitHub 51.8k★（2026-11 实测），大量商用 API 中转站的底座
+- [MoneyPrinterTurbo（report/moneyprinter-turbo/）](https://opc-story.pages.dev/report/moneyprinter-turbo/): 输入主题自动完成文案/素材/字幕/配音的短视频生成器。 成功迹象：GitHub 143k★（2026-11 实测），AI 视频类最高星之一
+- [VideoLingo（report/videolingo/）](https://opc-story.pages.dev/report/videolingo/): 一键 Netflix 级视频本地化：字幕切割/上下文翻译/克隆配音。 成功迹象：GitHub 19k★
+- [小猫补光灯（Pro）（report/xiaomao-light/）](https://opc-story.pages.dev/report/xiaomao-light/): 拍照补光 App：可调色温背光板，用 Cursor 一小时完成 MVP。 成功迹象：下载 30-50 万、Pro 收入 30-40 万元
+- [Cherry Studio（report/cherry-studio/）](https://opc-story.pages.dev/report/cherry-studio/): 开源多模型 AI 桌面客户端：300+ 模型/知识库/智能体/MCP。 成功迹象：GitHub 53.4k★（2026-11 实测）；已公司化（千彗科技），一人属性边界见深度报告
+- [AI选校鸟（report/aixuanxiaoniao/）](https://opc-story.pages.dev/report/aixuanxiaoniao/): AI 留学选校：99 元/次输出保底/匹配/冲刺三梯度院校推荐。 成功迹象：3000+ 用户（人民日报海外版报道）
+- [GPT-SoVITS（report/gpt-sovits/）](https://opc-story.pages.dev/report/gpt-sovits/): 5 秒音频克隆音色的少样本 TTS/语音转换，多语言。 成功迹象：GitHub 64k★，中文语音克隆事实标准
+- [哄哄模拟器 / 6pen（report/honghong/）](https://opc-story.pages.dev/report/honghong/): 哄女友情景对话 AI 游戏 + 开源模型 AI 绘画平台。 成功迹象：上线 24 小时 60 万用户/2000 万次对话
+- [Copilot for Obsidian（report/obsidian-copilot/）](https://opc-story.pages.dev/report/obsidian-copilot/): Obsidian 笔记库 AI 副驾插件：全库问答/检索/改写，支持本地模型，付费订阅。 成功迹象：下载突破 100 万（2026-02），GitHub 7.8k★
+- [沉浸式翻译（report/immersive-translate/）](https://opc-story.pages.dev/report/immersive-translate/): AI 双语对照网页/PDF/视频字幕/漫画翻译，聚合 10+ 引擎。 成功迹象：全球激活用户破 3000 万，Chrome 年度精选
+- [ChatNio（report/chatnio/）](https://opc-story.pages.dev/report/chatnio/): 多模型对话 + API 中转计费一站式开源平台。 成功迹象：2024 年被七位数收购，月活近 10 万
+- [Easydict（report/easydict/）](https://opc-story.pages.dev/report/easydict/): macOS 词典翻译应用：OpenAI/Gemini/DeepL 与离线 OCR 查词。 成功迹象：GitHub 15.2k★
+- [chatGPTBox（report/chatgptbox/）](https://opc-story.pages.dev/report/chatgptbox/): 把 ChatGPT 深度集成进浏览器：划词翻译/网页总结/视频对话。 成功迹象：GitHub 10.7k★，Chrome 用户约 3 万
+- [one-api（report/one-api/）](https://opc-story.pages.dev/report/one-api/): LLM API 网关：统一适配多模型，密钥管理与二次分发。 成功迹象：GitHub 37.3k★，中转站生态事实标准
+- [NextChat（report/nextchat/）](https://opc-story.pages.dev/report/nextchat/): 一键免费部署的私人 ChatGPT 跨平台客户端，多模型。 成功迹象：GitHub 88.8k★
+- [GPT 学术优化（report/gpt-academic/）](https://opc-story.pages.dev/report/gpt-academic/): 学术场景 LLM 工具：论文润色/翻译/代码解析，插件化。 成功迹象：GitHub 71.6k★
+- [openai-translator + avante.nvim（report/avante-nvim/）](https://opc-story.pages.dev/report/avante-nvim/): 划词翻译插件 + Neovim 里的 Cursor 式 AI 编程插件。 成功迹象：avante.nvim 17.8k★
+- [BibiGPT（AI 课代表）（report/bibigpt/）](https://opc-story.pages.dev/report/bibigpt/): 粘贴 B站/YouTube/播客链接生成结构化摘要与脑图，可追问。 成功迹象：累计 100 万+ 用户（官网自述）
+- [chatgpt-on-wechat + LinkAI（report/chatgpt-on-wechat/）](https://opc-story.pages.dev/report/chatgpt-on-wechat/): 微信生态大模型机器人：公众号/企微/飞书接入 + 知识库客服。 成功迹象：GitHub 47.8k★（2026-11 实测，现名 CowAgent），事实标准方案
+- [Umi-OCR（report/umi-ocr/）](https://opc-story.pages.dev/report/umi-ocr/): 开源离线 OCR 软件：截图/批量图片/PDF 识别，解压即用。 成功迹象：GitHub 48.4k★，免费 OCR 标杆
+- [Bob（report/bob-translate/）](https://opc-story.pages.dev/report/bob-translate/): macOS 划词翻译/截图 OCR，接入 OpenAI/DeepSeek/豆包等。 成功迹象：Pro ¥58 买断持续销售，GitHub 9.7k★
 
 ## 站点说明
 
