@@ -1,12 +1,22 @@
 # OPC Story · 国内 AI 一人公司案例墙
 
 > https://opc-story.pages.dev/ 为本站首页。
-> 收录 80 个以 AI 为核心生产力的中国一人公司（OPC，One-Person Company）成功案例，
+> 收录 90 个以 AI 为核心生产力的中国一人公司（OPC，One-Person Company）成功案例，
 > 覆盖 AI 短剧/漫剧、开发者工具、垂直行业应用、内容创作、营销电商等赛道。
 > 每个案例附逐条信源核验的深度报告（≥5 信源、≥1 一手、关键数字交叉验证、冲突双口径并列）。
 
 ## 案例清单（按时间锚点降序）
 
+- [《重生螳螂，觉醒无限吞噬进化》AI 短剧（report/chongsheng-tanglang/）](https://opc-story.pages.dev/report/chongsheng-tanglang/): 96 集 AI 短剧：投入 4000 余元、一个半月一人完成剧本/生成/剪辑全流程。 成功迹象：红果热度 6042 万、播放破 6 亿（4 信源交叉）、增收 6 万元；微博热搜第一
+- [张正谦 AI 末世短剧（report/zhang-zhengqian/）](https://opc-story.pages.dev/report/zhang-zhengqian/): 一人完成写剧本/拆镜头/人物建模/配音剪辑的 AI 短剧创作。 成功迹象：全网播放 8000 万+（本人称近 1 亿）、月入 1 万余元、月成本约 800 元
+- [胡萝卜须儿（B 站 AI 名人演唱会）（report/huluobo-xuer/）](https://opc-story.pages.dev/report/huluobo-xuer/): Seedance 2.0 等工具一人生成名人唱跳画面与梗词的 AI 演唱会系列。 成功迹象：《元首世界巡演》播放 330 万→372 万（B 站一手），流量分成覆盖生成成本
+- [ka殿《Re:0 异世界学园生活·序》AI 同人短片（report/ka-dian-rezero/）](https://opc-story.pages.dev/report/ka-dian-rezero/): 个人手搓近 3 分钟 AI 同人短片：画风模仿/生成/剪辑一人完成，以假乱真。 成功迹象：B 站 222.9 万播放、X 1 天破 500 万观看，引发日本业界「个人长篇动画时代」讨论
+- [JustAI「小加同学」AI 内容营销 Agent（report/justai-xiaojia/）](https://opc-story.pages.dev/report/justai-xiaojia/): 商家上传产品图+一句话，1 分钟生成推广图文/标题/封面的内容营销 Agent。 成功迹象：上线一年注册用户 400 万、1 万付费客户（南都专访），登 WAIC 2026 OPC 展区
+- [《妹居物语》AI 原生陪伴游戏（report/meiju-wuyu/）](https://opc-story.pages.dev/report/meiju-wuyu/): Claude 开发的 AI 陪伴游戏：AI 既是开发主力也是核心体验（长期记忆/自写日记）。 成功迹象：Demo 上架 3 天 DAU 破万、TapTap 预约 66 万评分 9.5、成本七八千元
+- [白袋子《零号档案》AI 科幻剧（report/baidaizi/）](https://opc-story.pages.dev/report/baidaizi/): 抖音 AIGC 科幻剧：世界观构建/画面生成/更新一人完成。 成功迹象：6 集累计播放 1.9 亿（3 信源交叉）、粉丝 126 万→161 万（账号一手）
+- [「酷哥看世界」《回到远古》AI 古生物科普（report/kuge-kanworld/）](https://opc-story.pages.dev/report/kuge-kanworld/): 即梦 Seedance 2.0 独立创作 25 集 98 分钟人类进化史长片，无团队无外包。 成功迹象：抖音播放破亿、微博热搜第七，粉丝 316 万+（飞瓜），B 站合集 4307 万播放
+- [TATA·Pose 助手（AI 拍照姿势小程序）（report/tata-pose/）](https://opc-story.pages.dev/report/tata-pose/): 百度秒哒零代码开发的 AI 姿势引导拍照小程序：摄像头叠加 AI 蒙版。 成功迹象：数十万用户浏览，月入 2 万多元（商单+奖金混合口径，已标注）；百度世界大会现场演示
+- [贺沐 TikTok AI 跨境电商（report/hemu-tiktok/）](https://opc-story.pages.dev/report/hemu-tiktok/): 「一个人一台电脑」AI 批量生成 100-200 条测品短视频做 TikTok 小物件出海。 成功迹象：店铺粉丝 1000+，月稳定收益 1 万-2 万元（新华日报一手采访）
 - [AI 短剧《归墟》（report/guixu/）](https://opc-story.pages.dev/report/guixu/): 12 集末世科幻 AI 短剧：即梦 Seedance + Suno 全流程一人制作，周更连载。 成功迹象：全网播放破亿（年末口径破 2 亿），红果热度 4400 万+
 - [《我在现代当幽差》AI 动画剧（report/youchai/）](https://opc-story.pages.dev/report/youchai/): 「地府打工人」原创 AI 动画剧：一人扛编剧/导演/剪辑，签约 B 站 UP 动画剧场获算力补贴与专项激励。 成功迹象：上线 3 集播放破 1100 万（澎湃口径，EP01 超 700 万间接交叉），连续入选 B 站「每周必看」；单集成本 6000 元→3.38 万两口径
 - [我和我的 AI 男友：樱时叙归途（report/sakura-journey/）](https://opc-story.pages.dev/report/sakura-journey/): 一人用字节系 AI 工具完成 60 集 2D 纯爱漫剧，小说-漫剧-小游戏 IP 联动。 成功迹象：红果热度 1200 万（上线 5 天）
@@ -87,11 +97,3 @@
 - [chatgpt-on-wechat + LinkAI（report/chatgpt-on-wechat/）](https://opc-story.pages.dev/report/chatgpt-on-wechat/): 微信生态大模型机器人：公众号/企微/飞书接入 + 知识库客服。 成功迹象：GitHub 47.8k★（2026-11 实测，现名 CowAgent），事实标准方案
 - [Umi-OCR（report/umi-ocr/）](https://opc-story.pages.dev/report/umi-ocr/): 开源离线 OCR 软件：截图/批量图片/PDF 识别，解压即用。 成功迹象：GitHub 48.4k★，免费 OCR 标杆
 - [Bob（report/bob-translate/）](https://opc-story.pages.dev/report/bob-translate/): macOS 划词翻译/截图 OCR，接入 OpenAI/DeepSeek/豆包等。 成功迹象：Pro ¥58 买断持续销售，GitHub 9.7k★
-
-## 站点说明
-
-- 排序：按项目时间锚点降序（其次按阅读量）。
-- 信源口径：每例 ≥5 条信源、≥1 条一手信源；自述数据标注「自述口径」，冲突数据双口径并列。
-- 深度报告结构：案例档案/时间线/创业路径复盘/产品与商业模式/数据表现/同类对标/七维分析（产品功能、面向客群、解决痛点、预估年化营收、融资进展、市场评价、投入成本与合规风险）/争议与不确定性/资料来源与事实核查。
-- 引用规范：文中上标与文末资料来源一一对应，标注 A+/A/B+/B/C+/C 信源评级与 verified/cross/partial 三级核验标签。
-- 联系与更新：案例墙数据随检索持续增补，最近更新 2026-11-14。

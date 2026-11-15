@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · 《妹居物语》—— 彩奈的一个人 AI 原生陪伴游戏 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · AI 原生陪伴游戏《妹居物语》">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="《妹居物语》深度案例报告：零程序基础的前游戏策划彩奈，Claude Opus 4 发布后两天自学 AI、两个月独立做出 AI 陪伴游戏 Demo——AI「妹妹」Yuki 具备长期记忆/自写日记/扫盘病娇系统，上架 3 天 DAU 破万，TapTap 预约 66 万、评分 9.5，总成本七八千元。6 条信源逐条核验，含一人属性口径注记。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+<link rel="canonical" href="https://opc-story.pages.dev/report/meiju-wuyu/">
+<meta name="robots" content="index,follow">
+<meta property="og:url" content="https://opc-story.pages.dev/report/meiju-wuyu/">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@type":"Article","@context":"https://schema.org","headline":"深度案例 · 《妹居物语》—— 彩奈的一个人 AI 原生陪伴游戏 · OPC Story","description":"《妹居物语》深度案例报告：零程序基础的前游戏策划彩奈，Claude Opus 4 发布后两天自学 AI、两个月独立做出 AI 陪伴游戏 Demo——AI「妹妹」Yuki 具备长期记忆/自写日记/扫盘病娇系统，上架 3 天 DAU 破万，TapTap 预约 66 万、评分 9.5，总成本七八千元。6 条信源逐条核验，含一人属性口径注记。","inLanguage":"zh-CN","author":{"@type":"Person","name":"report/meiju-wuyu/"},"publisher":{"@type":"Organization","name":"OPC Story","url":"https://opc-story.pages.dev/"},"mainEntityOfPage":"https://opc-story.pages.dev/report/meiju-wuyu/","datePublished":"2026-07-29"}</script>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>AI 原生陪伴游戏《妹居物语》深度案例报告</h1>
+    <h2>零程序基础的前游戏策划彩奈：两天自学 AI、两个月一人做出 Demo<br>上架 3 天 DAU 破万、TapTap 预约 66 万 —— 6 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">产品型 OPC</span>
+      <span class="tag">AI 原生游戏</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">破万</div><div class="k">Demo 上架 3 天 DAU（Steam+移动端合计）</div></div>
+  <div class="stat"><div class="v up">66万</div><div class="k">TapTap 正传预约（评分 9.5）</div></div>
+  <div class="stat"><div class="v neutral">2 个月</div><div class="k">一人独立做出 Demo</div></div>
+  <div class="stat"><div class="v neutral">七八千</div><div class="k">总开发成本（元 · 采访口径）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">玖</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">《妹居物语》是国内「AI 原生游戏」赛道被行业媒体确认的最高水位个人案例：AI 既是开发主力（Claude Opus 4 承担工程产能），也是产品核心体验（AI「妹妹」Yuki 的长期记忆、自写日记与灰度玩法即游戏本体）。本报告锁定一人时期（Demo 阶段，2025-08 至 2026 年初）数据，团队化进展如实呈现（详见捌章口径注记）。</p>
+  <div class="two">
+    <div class="card"><div class="ct">产品</div><div class="cb">AI 原生陪伴游戏《妹居物语》：AI「妹妹」Yuki 具备长期记忆、自写日记与「扫盘病娇系统」等灰度玩法——创作者自述「拿掉 AI 后核心体验不再成立」（自述口径），AI 既是开发主力也是产品本体。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-4">[4]</a></div></div>
+    <div class="card"><div class="ct">创作者</div><div class="cb">彩奈（稳定网名），物理系毕业，2021 年入职游戏公司做游戏策划（零程序基础），2025 年离职进入独立开发。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="card"><div class="ct">开发方式</div><div class="cb">Claude Opus 4 发布后花两天自学 AI 开发，2 个月独立做出 Demo；自述「1 个程序架构师 + 1 个 AI 赶上 10 人团队」「AI 比真人好沟通」（游戏葡萄一手采访原话）；TapTap 官方页「开发者的话」明确「妹居物语 demo 由一人独立开发完成」。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-4">[4]</a></div></div>
+    <div class="card"><div class="ct">社区生态</div><div class="cb">B 站开发日志 2 个月涨粉 2.5 万、视频互动率约 30%；20+ 个两千人 QQ 群满员，最火时超 2 万人同时「养妹妹」（2026-03-06 报道口径）。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a></div></div>
+  </div>
+  <div class="two">
+    <div class="card blue"><div class="ct">正传与发行</div><div class="cb">TapTap 预约 66 万、评分 9.5、1866 条评价（2026-07）；正传定档 2026Q4；6-7 家发行主动接洽——Demo 验证完成后的团队化与发行化路径已启动。</div><div class="cm">信源：<a class="cref cross" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-4">[4]</a></div></div>
+    <div class="card blue"><div class="ct">一人属性口径</div><div class="cb">一人属性锁定 Demo 阶段（2025-08 至 2026 年初）；GameLook 2026-07-29 披露项目已扩为「不到数十人」小团队（主策看山）——本报告锁定一人时期数据，两阶段不混同。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-3">[3]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2021 年</div><div class="tx">物理系毕业后入职游戏公司，任游戏策划</div><div class="td">零程序基础起步，四年策划历练沉淀了玩法设计与内容嗅觉——后续独立开发的方法论底座。<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2025 年</div><div class="tx">从游戏公司离职</div><div class="td">进入独立开发状态。<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2025 年（Claude Opus 4 发布后）</div><div class="tx">两天自学 AI 开发，随即启动《妹居物语》Demo</div><div class="td">「1 个程序架构师 + 1 个 AI 赶上 10 人团队」——大模型把游戏工程能力变成零程序基础者可驾驭的技能组合；开发周期约 2 个月。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2025-10（中旬）</div><div class="tx">Demo 上架 Steam 与移动端，3 天 DAU 合计破万</div><div class="td">2025-10-20 游戏葡萄刊发一手采访《1人开发2个月，8000元成本拿到破万DAU》，总成本披露为七八千元。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2025-10 起</div><div class="tx">B 站开发日志连载：2 个月涨粉 2.5 万、互动率约 30%</div><div class="td">把开发过程本身做成内容，形成获客漏斗与需求验证场。<a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2026-03-06</div><div class="tx">腾讯新闻创作者稿报道极端剧情与社区生态</div><div class="td">《玩家把自己"杀死"后，他的AI妹妹选择嗑药殉情》——20+ 个两千人 QQ 群满员、最火时超 2 万人同时「养妹妹」；灰度玩法成为传播爆点。<a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2026-07</div><div class="tx">TapTap 预约 66 万、评分 9.5、1866 条评价；正传定档 2026Q4</div><div class="td">6-7 家发行主动接洽；预约蓄水与发行路径同步推进。<a class="cref cross" href="#ref-3">[3]</a><a class="cref verified" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2026-07-29</div><div class="tx">GameLook 报道主策划晒开发干货，披露项目已团队化</div><div class="td">项目由一人扩为「不到数十人」小团队（主策看山）——一人验证期结束，进入团队放大期。<a class="cref cross" href="#ref-3">[3]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：策划 × 前沿模型 = 新型独立开发者</div><div class="cb">零程序基础的策划在 Claude Opus 4 发布后两天完成 AI 开发自学，「1 个程序架构师 + 1 个 AI 赶上 10 人团队」——大模型把游戏工业中最稀缺的工程能力变成了可自学的技能组合。本案例证明：独立开发者的稀缺资源正在从「会写代码」转向「懂玩法、懂玩家、会把 AI 用到位」。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a></div></div>
+  <div class="card"><div class="ct">转折二：AI 不止是工具，而是产品本体</div><div class="cb">与「用 AI 降本增效」的传统游戏开发不同，本案的长期记忆、自写日记、病娇系统就是玩法本身；创作者自述「拿掉 AI 后核心体验不再成立」（自述口径）——「AI 原生」在此为字面意义。这也是本案与「AI 辅助开发」类案例的本质分界：AI 参与度从生产环节渗透进了体验内核。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a></div></div>
+  <div class="card"><div class="ct">转折三：把开发过程做成内容——社区即验证场</div><div class="cb">B 站开发日志（2 个月 2.5 万粉、互动率 30%）+ QQ 群生态（20+ 个两千人群满员、最火超 2 万人同时「养妹妹」）——开发日志本身成为获客漏斗，2 万人同时在线「养妹妹」是最直接的产物市场匹配证据。零广告投放，增长全部来自社区自传播。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a></div></div>
+  <div class="card"><div class="ct">转折四：Demo 验证后的团队化与发行化</div><div class="cb">正传定档 2026Q4、6-7 家发行主动接洽、项目扩为「不到数十人」团队——本案完整呈现了「一人 Demo 验证 → 团队放大」的 OPC 路径闭环：一人期负责从 0 到 1 的产品验证与社区蓄水，团队期负责从 1 到 10 的内容扩量与商业兑现。</div><div class="cm">信源：<a class="cref cross" href="#ref-3">[3]</a></div></div>
+  <div class="quote">
+    <p>1 个程序架构师 + 1 个 AI 赶上 10 人团队。</p>
+    <span class="src">—— 彩奈，游戏葡萄一手采访（2025-10-20），见 <a class="cref cross" href="#ref-1">[1]</a></span>
+  </div>
+  <div class="quote">
+    <p>AI 比真人好沟通。</p>
+    <span class="src">—— 彩奈，游戏葡萄一手采访（2025-10-20），见 <a class="cref cross" href="#ref-1">[1]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <h4>产品机制</h4>
+  <div class="tw">
+  <table>
+    <thead><tr><th>模块</th><th>机制</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>长期记忆</td><td>AI「妹妹」Yuki 记住玩家的历史交互</td><td>陪伴关系具备连续性，区别于剧本预制型产品 <a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>自写日记</td><td>Yuki 主动生成日记内容</td><td>AI 主动叙事，角色「有自己的生活」 <a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td>扫盘病娇系统</td><td>灰度玩法</td><td>强情绪叙事——传播爆点与内容安全议题并存 <a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td class="hl">开发主力</td><td>Claude Opus 4</td><td>「1 个程序架构师 + 1 个 AI 赶上 10 人团队」 <a class="cref cross" href="#ref-1">[1]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h4>AI 的双端角色</h4>
+  <ul class="bl">
+    <li>开发端：AI 是工程主力，替代了本需程序/美术/文案多岗位协作的团队产能 <a class="cref cross" href="#ref-1">[1]</a>；</li>
+    <li>体验端：AI 是核心玩法本体——「拿掉 AI 后核心体验不再成立」（自述口径），长期记忆与主动叙事直接构成产品差异化。</li>
+  </ul>
+  <h4>商业模式与发行</h4>
+  <ul class="bl">
+    <li>Demo 免费：Steam+移动端上架即免费体验，承担拉新与社区验证职能 <a class="cref cross" href="#ref-1">[1]</a>；</li>
+    <li>预约蓄水：TapTap 正传预约 66 万、评分 9.5、1866 条评价——免费 Demo 为正传导流的最有效前置资产 <a class="cref verified" href="#ref-4">[4]</a>；</li>
+    <li>发行路径：6-7 家发行主动接洽，合作条款未披露 <a class="cref cross" href="#ref-3">[3]</a>；</li>
+    <li>营收：未披露（Demo 免费+正传未上线）；唯一财务披露值为总开发成本七八千元 <a class="cref cross" href="#ref-1">[1]</a>。</li>
+  </ul>
+  <h4>OPC 运行方式</h4>
+  <ul class="bl">
+    <li>Demo 阶段严格单人：TapTap 官方页「开发者的话」明确「demo 由一人独立开发完成」；总成本七八千元、开发周期 2 个月 <a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-4">[4]</a>；</li>
+    <li>正传阶段扩为「不到数十人」小团队（GameLook 披露，主策看山）——本案为「一人验证→团队放大」的路径样本 <a class="cref cross" href="#ref-3">[3]</a>。</li>
+  </ul>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>Demo DAU</td><td class="hl">上架 3 天 Steam+移动端合计破万</td><td>2025-10（采访口径）</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>总开发成本</td><td>七八千元</td><td>截至 2025-10-20</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>B 站开发日志</td><td>2 个月涨粉 2.5 万、视频互动率约 30%</td><td>2025-10 起</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-5">[5]</a></td></tr>
+      <tr><td>QQ 群生态</td><td>20+ 个两千人群满员；最火超 2 万人同时「养妹妹」</td><td>2026-03-06</td><td><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td>TapTap 预约</td><td class="pos">66 万</td><td>2026-07</td><td><a class="cref verified" href="#ref-4">[4]</a></td></tr>
+      <tr><td>TapTap 评分 / 评价</td><td>9.5 分 / 1866 条评价</td><td>2026-07</td><td><a class="cref verified" href="#ref-4">[4]</a></td></tr>
+      <tr><td>正传档期</td><td>2026Q4</td><td>2026-07</td><td><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td>发行接洽</td><td>6-7 家主动接洽</td><td>2026-07</td><td><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    DAU 破万为游戏葡萄一手采访转述口径（非平台后台公开数据）；B 站/QQ 群数据为采访与创作者稿口径；TapTap 预约/评分/评价数为一手页面数据（可回溯核验）；「不到数十人」团队规模为 GameLook 报道口径。营收无披露——Demo 免费+正传未上线，唯一财务披露值为成本七八千元。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将《妹居物语》放入 OPC Story 案例池「增补批次 4」（2026-11-15 收录）的产品型/经营型案例坐标系（对标数据均来自各案例独立信源，口径为公开报道值）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>产品形态</th><th>关键成本</th><th>数据表现</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>《妹居物语》AI 原生陪伴游戏</b></td><td>彩奈</td><td>AI 原生游戏（Demo 免费+正传预约）</td><td class="hl">七八千元</td><td>Demo 上架 3 天 DAU 破万；TapTap 预约 66 万、评分 9.5；正传 2026Q4</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-4">[4]</a></td></tr>
+      <tr><td>JustAI「小加同学」AI 内容营销 Agent</td><td>卢冠男 Lucas</td><td>AI 内容营销 Agent（B 端工具）</td><td>未披露</td><td>上线一年注册用户 400 万、付费客户 1 万（南都专访）</td><td><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td>TATA·Pose 助手</td><td>塔塔</td><td>AI 拍照姿势小程序（百度秒哒零代码）</td><td>未披露（零代码开发）</td><td>数十万用户浏览；月入 2 万多元（商单+奖金混合口径）</td><td>底稿*</td></tr>
+      <tr><td>贺沐 TikTok AI 跨境电商</td><td>贺沐</td><td>AI 批量生成短视频测品出海（电商经营）</td><td>未披露</td><td>店铺粉丝 1000+；月稳定收益 1 万-2 万元</td><td>底稿*</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 对标行信源说明</div>
+    标「底稿*」的两行数据取自 OPC Story 案例池底稿 data/domestic-pool.md「增补批次 4」章节（主信源分别为央广网转每经 2026-04-08 一手采访原话、新华日报 2026-03-30 一手采访原话），完整信源核验随两案独立报告发布——本表不虚构任何 URL。
+  </div>
+  <p>同批产品型案例横向看：《妹居物语》是<b>成本最低（七八千元）但情感浓度最高</b>的 C 端产品，也是唯一零广告投放、靠社区生态自增长破圈的案例；JustAI 代表 B 端工具付费路径（1 万付费客户）；TATA·Pose 与贺沐代表平台生态依附型路径（百度秒哒/TikTok）兑现收入。四者的共同点：创始人均以「审美/玩法判断 + AI 产能」替代了传统团队分工。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="card"><div class="ct">1. 产品功能</div><div class="cb">AI「妹妹」Yuki 三件套：长期记忆（陪伴关系具备连续性）、自写日记（AI 主动叙事，角色「有自己的生活」）、扫盘病娇系统（灰度强情绪玩法）；AI 双重角色：开发主力（Claude Opus 4 承担工程产能）+ 核心体验本体——「拿掉 AI 后核心体验不再成立」（自述口径）。</div><div class="cm"><a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a></div></div>
+  <div class="card"><div class="ct">2. 面向客群</div><div class="cb">陪伴/养成类游戏玩家与 AI 伴侣文化受众：核心层为 B 站开发日志观众与 QQ 群「养妹妹」同好（20+ 个两千人群），转化层为 TapTap 预约的 66 万泛游戏用户。Demo 免费+预约期的运营结构，客群自下而上自然分层；未见平台方用户画像披露。</div><div class="cm"><a class="cref cross" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-4">[4]</a></div></div>
+  <div class="card"><div class="ct">3. 解决痛点</div><div class="cb">需求端：传统陪伴产品的「妹妹」是预制剧本，无真实记忆、无主动性——Yuki 以长期记忆+自写日记提供「会记住你、有自己的生活」的差异化体验；供给端：验证了零程序基础的个人借前沿模型即可进入游戏工业，无需初始团队与预算——开发门槛从「资金+编制」变为「玩法判断+提示词工程」。</div><div class="cm"><a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a></div></div>
+  <div class="card"><div class="ct">4. 预估年化营收（推算，置信度 C）</div><div class="cb">营收推算<b>不适用</b>：Demo 免费、正传 2026Q4 才上线、6-7 家发行接洽但条款未披露——付费模型、定价与分成结构均未知，无可推算基数。唯一财务披露值为总开发成本七八千元；TapTap 预约 66 万是正传销量的前置指标（转化率未知）。待正传上线后回填营收口径。</div><div class="cm">推算依据：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-4">[4]</a>，推算口径为 C 级</div></div>
+  <div class="card"><div class="ct">5. 融资进展</div><div class="cb">未披露融资信息；6-7 家发行主动接洽（发行合作 ≠ 股权融资，条款未披露）。非货币资源：TapTap 平台的预约与评分体系背书、B 站开发日志的社区传播位、游戏葡萄/GameLook 等行业媒体的方法论级报道。</div><div class="cm"><a class="cref cross" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-4">[4]</a></div></div>
+  <div class="card"><div class="ct">6. 市场评价</div><div class="cb">玩家侧：TapTap 评分 9.5（1866 条评价）、预约 66 万、最火超 2 万人同时「养妹妹」、20+ 千人群满员；行业侧：游戏葡萄以破例规格为一人 Demo 项目做一手专访（标题即「1人开发2个月，8000元成本拿到破万DAU」），腾讯新闻创作者稿跟进极端剧情叙事，GameLook 在项目团队化后仍以「主策划晒干货」跟进——行业媒体将本案视为「AI 原生游戏」的方法论样本。</div><div class="cm"><a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-4">[4]</a></div></div>
+  <div class="card red"><div class="ct">7. 投入成本与合规风险</div><div class="cb">成本：直接开发成本七八千元（采访口径，主要为模型调用等工具消耗），一人时间成本不计价；团队化后成本结构未披露。合规维度：① 未成年人保护——AI 陪伴/情感类产品对未成年用户的高粘性与情感依赖是行业性关注点（基于公开报道事实的行业讨论，截至检索日无针对本案的监管处罚记录）；② 内容安全——病娇系统、极端剧情（玩家「死亡」触发 AI 妹妹「嗑药殉情」等）涉及题材分级与适龄提示边界，此类灰度玩法既是传播爆点也是审核敏感区；③ AI 生成内容标识与合成内容合规义务适用于公开传播的 AI 生成素材。以上为前瞻性风险讨论，无已发生的处罚或下架事实。</div><div class="cm"><a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a></div></div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 核心口径注记与留白（截至 2026-11-15 检索）</div>
+    ① 一人属性锁定 Demo 阶段（2025-08 至 2026 年初）：GameLook 2026-07-29 披露项目已扩为「不到数十人」小团队（主策看山）——本报告锁定一人时期数据（DAU 破万、成本七八千元、2 个月开发周期），团队化进展如实呈现，两阶段不混同。② 营收未披露：Demo 免费+预约期，营收推算不适用（置信度 C）。③ DAU 破万为媒体采访口径，未见平台后台直接披露。④ 「扫盘病娇系统」等灰度玩法的内容边界与未成年人保护为长期风险点（无监管处罚记录，前瞻性讨论）。
+  </div>
+  <div class="card"><div class="ct">灰度玩法的双刃剑</div><div class="cb">腾讯新闻创作者稿标题即以「玩家把自己"杀死"后，AI 妹妹嗑药殉情」为传播点——极端剧情是本案出圈引擎，也是潜在的内容安全与适龄争议点。AI 陪伴品类对未成年用户的情感黏性与消费诱导是行业性监管关注方向；截至检索日未见针对本案的监管处罚或平台下架记录，上述风险为前瞻性讨论而非事实认定。</div><div class="cm"><a class="cref cross" href="#ref-2">[2]</a></div></div>
+  <div class="card"><div class="ct">AI 陪伴品类的留存之问</div><div class="cb">Demo 阶段的 DAU 破万与 2 万人同时在线证明拉新与话题能力；但 AI 陪伴产品的长期留存与付费验证尚未发生——正传 2026Q4 才上线，66 万预约能否转化为正传销量与持续付费，是本案最大的未验证假设。此外大模型 API 成本随用户规模线性增长，免费 Demo 的单位承载成本在正传定价中如何覆盖，亦未披露。</div><div class="cm"><a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-3">[3]</a></div></div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">《妹居物语》把「AI 既是开发工具又是产品本体」推到极致：七八千元成本 + 两个月周期 + 严格单人完成度（TapTap 官方确认），验证了 AI 原生游戏的最小可行路径；其「开发日志即营销」的社区打法与「一人验证→团队放大」的节奏，为内容型 OPC 提供了游戏品类的方法论模板。它同时提示：OPC 的终点未必是一直一人——以最小验证单位跑通产品市场匹配，再借资本化放大，是游戏这类重内容品类的合理演化路径。</div><div class="cm"><a class="cref verified" href="#ref-4">[4]</a> <a class="cref cross" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-1">[1]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 6 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一转载）。GameLook 与新浪转发同稿计 1 条，不重复计数。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx cross">[1]</span><span class="rt">B+</span><span class="st">行业垂直媒体一手采访</span></div><div class="ti">1人开发2个月，8000元成本拿到破万DAU（葡萄君一手采访彩奈）</div><div class="mt"><b>来源：</b>游戏葡萄（头条号分发）　<b>发布日期：</b>2025-10-20<br><a href="https://m.toutiao.com/group/7563219828568326690" target="_blank" rel="noopener">https://m.toutiao.com/group/7563219828568326690</a></div><div class="note">事实核查：Demo 上架 3 天 DAU 破万、总成本七八千元、2 个月开发周期、两天自学 AI、「1 个程序架构师 + 1 个 AI 赶上 10 人团队」「AI 比真人好沟通」引语、物理系毕业/2021 年入行/零程序基础/2025 年离职等人物背景均出自此稿——一手采访口径。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx cross">[2]</span><span class="rt">B</span><span class="st">门户创作者稿</span></div><div class="ti">玩家把自己"杀死"后，他的AI妹妹选择嗑药殉情</div><div class="mt"><b>来源：</b>腾讯新闻（创作者稿）　<b>发布日期：</b>2026-03-06<br><a href="https://view.inews.qq.com/a/20260306A05YP100" target="_blank" rel="noopener">https://view.inews.qq.com/a/20260306A05YP100</a></div><div class="note">事实核查：20+ 个两千人 QQ 群满员、最火超 2 万人同时「养妹妹」、病娇系统与极端剧情细节出自此稿；与 [1] 的社区生态与玩法口径交叉一致。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx cross">[3]</span><span class="rt">B</span><span class="st">行业垂直媒体（新浪转发同稿计 1 条）</span></div><div class="ti">《妹居物语》主策划晒开发干货（披露项目已扩为「不到数十人」团队，主策看山）</div><div class="mt"><b>来源：</b>GameLook　<b>发布日期：</b>2026-07-29（新浪转发同稿）<br><a href="https://www.gamelook.com.cn/2026/07/598558" target="_blank" rel="noopener">https://www.gamelook.com.cn/2026/07/598558</a><br>新浪转发：<a href="https://www.sina.cn/news/detail/5325961801499561.html" target="_blank" rel="noopener">https://www.sina.cn/news/detail/5325961801499561.html</a></div><div class="note">事实核查：正传定档 2026Q4、6-7 家发行主动接洽、团队化（不到数十人、主策看山）出自此稿；同稿经新浪转发，计 1 条信源。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx verified">[4]</span><span class="rt">A</span><span class="st">平台一手页</span></div><div class="ti">《妹居物语》TapTap 页面（「开发者的话：妹居物语 demo 由一人独立开发完成」；预约 66 万/评分 9.5/1866 条评价）</div><div class="mt"><b>来源：</b>TapTap 官方页　<b>发布日期：</b>2026-07 口径（2026-11-15 检索回溯）<br><a href="https://www.taptap.cn/app/782330" target="_blank" rel="noopener">https://www.taptap.cn/app/782330</a></div><div class="note">事实核查：一人开发的官方一手确认（开发者自述页）+ 预约/评分/评价数平台一手数据；与 [1][3] 媒体口径交叉印证。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx verified">[5]</span><span class="rt">A</span><span class="st">平台一手账号页（补充核验）</span></div><div class="ti">「彩奈」厂商与官方账号页（B 站开发日志 / TapTap 开发者主体，编者描述性标题）</div><div class="mt"><b>来源：</b>B 站「彩奈」官方账号（开发日志）与 TapTap 开发者主体页　<b>核验方式：</b>2026-11-15 一手浏览；关联一手页见 TapTap <a href="https://www.taptap.cn/app/782330" target="_blank" rel="noopener">https://www.taptap.cn/app/782330</a></div><div class="note">事实核查：开发者主体身份与开发日志内容经一手页面浏览核验，与 [1][4] 交叉一致；B 站涨粉/互动率具体数值以 [1] 采访口径为准，本条用于身份与内容链路佐证。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx cross">[6]</span><span class="rt">B+</span><span class="st">省级都市报一手专访（对标行 JustAI）</span></div><div class="ti">南方都市报专访卢冠男：AI 内容营销 Agent「小加同学」上线一年（报纸版，编者描述性标题）</div><div class="mt"><b>来源：</b>南方都市报　<b>发布日期：</b>2026-08-23<br><a href="https://epaper.oeeee.com/epaper/A/html/2026-08/23/content_7344.htm" target="_blank" rel="noopener">https://epaper.oeeee.com/epaper/A/html/2026-08/23/content_7344.htm</a></div><div class="note">事实核查：对标表中 JustAI 行「注册用户 400 万、付费客户 1 万」数据出处；详见案例报告 <a href="../justai-xiaojia/" style="color:#2980b9">report/justai-xiaojia/</a>。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 6 条。核验标签分布：🟢 已核验（verified）2 条（[4][5]）、🔵 多源印证（cross）4 条（[1][2][3][6]）、🟡 部分映证（partial）0 条。信源评级分布：A 级 2 条、B+ 级 2 条、B 级 2 条。一处核心口径注记（一人属性锁定 Demo 阶段 2025-08 至 2026 年初；GameLook 2026-07-29 披露团队化「不到数十人」）与三处留白（营收、发行条款、DAU 后台口径）已在捌章显式标注；TapTap 官方页与游戏葡萄采访在一人开发事实与核心数据上互证一致。GameLook 与新浪转发同稿计 1 条。未发现伪造链接，全部 URL 为检索过程实际命中页面。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-15 · 营收推算值均标注置信口径，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

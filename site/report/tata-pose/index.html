@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · TATA·Pose 助手—— 95 后宝妈零代码开发的 AI 拍照姿势小程序 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · TATA·Pose 助手">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="TATA·Pose 助手深度案例报告：95 后前 UI 设计师、全职宝妈塔塔，用百度秒哒零代码开发 AI 拍照姿势小程序，数十万人浏览、月入 2 万多元（商单+奖金混合口径）。6 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+<link rel="canonical" href="https://opc-story.pages.dev/report/tata-pose/">
+<meta name="robots" content="index,follow">
+<meta property="og:url" content="https://opc-story.pages.dev/report/tata-pose/">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@type":"Article","@context":"https://schema.org","headline":"深度案例 · TATA·Pose 助手—— 95 后宝妈零代码开发的 AI 拍照姿势小程序 · OPC Story","description":"TATA·Pose 助手深度案例报告：95 后前 UI 设计师、全职宝妈塔塔，用百度秒哒零代码开发 AI 拍照姿势小程序，数十万人浏览、月入 2 万多元（商单+奖金混合口径）。6 条信源逐条核验。","inLanguage":"zh-CN","author":{"@type":"Person","name":"report/tata-pose/"},"publisher":{"@type":"Organization","name":"OPC Story","url":"https://opc-story.pages.dev/"},"mainEntityOfPage":"https://opc-story.pages.dev/report/tata-pose/","datePublished":"2026-04-08"}</script>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>TATA·Pose 助手深度案例报告</h1>
+    <h2>95 后全职宝妈塔塔：零代码平台自学开发 AI 拍照姿势小程序<br>数十万人浏览、月入 2 万多元（商单+奖金混合口径）—— 6 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">垂直应用型 OPC</span>
+      <span class="tag">零代码开发</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">数十万</div><div class="k">用户浏览量（后台数据经记者转述，非注册量）</div></div>
+  <div class="stat"><div class="v up">2 万+</div><div class="k">月收入（元 · 商单+黑客松奖金混合口径）</div></div>
+  <div class="stat"><div class="v neutral">0 行代码</div><div class="k">百度秒哒零代码/AI 生成应用平台开发</div></div>
+  <div class="stat"><div class="v neutral">95 后宝妈</div><div class="k">前 UI 设计师 · 自媒体博主 · 一人开发运营</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">玖</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">TATA·Pose 助手是 2026 年「普通人 + 零代码 AI」赛道被央地媒体共同确认的垂直应用型样本：一款调用摄像头、实时叠加 AI 姿势蒙版、动态引导用户摆姿拍照的微信小程序，由 95 后前 UI 设计师、全职宝妈塔塔以稳定网名一人开发运营，后台数据显示数十万用户浏览，2026 年 4 月被大众网与央广网（转每日经济新闻）相继报道其「月入 2 万多元」。<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-3">[3]</a></p>
+  <div class="two">
+    <div class="card"><div class="ct">产品</div><div class="cb">微信小程序「TATA·Pose 助手」：调用手机摄像头，在取景画面上叠加 AI 姿势蒙版，动态引导用户摆出适合的拍照姿势拍美照；基于百度秒哒（零代码/AI 生成应用平台）开发，无代码团队参与。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="card"><div class="ct">创业者</div><div class="cb">塔塔（稳定网名），95 后，前 UI 设计师，生育后成为全职宝妈，同时经营自媒体账号；自学百度秒哒完成小程序开发——UI 设计功底迁移到产品的界面与交互设计，自媒体身份承担内容分发。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="card blue"><div class="ct">收入结构（混合口径，须显式区分）</div><div class="cb">月入 2 万多元，本人对央广网（转每日经济新闻）直接说明：「主要来源为商单、黑客松奖金」——即自媒体商单收入与赛事奖金的混合口径，<b>并非小程序产品本身的营收</b>；商单与奖金的占比未披露。</div><div class="cm">信源：<a class="cref cross" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="card blue"><div class="ct">用户规模口径</div><div class="cb">「数十万用户浏览」来自其小程序后台数据、经记者转述——是「浏览使用」口径而非注册用户数；本报告未检索到可独立访问的产品官网或小程序详情页佐证，用户量无法一手复核。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a></div></div>
+  </div>
+  <div class="two">
+    <div class="card"><div class="ct">平台与荣誉</div><div class="cb">百度秒哒黑客松获奖（2025 年 8-10 月赛期）；2025-11-12 在百度世界大会、李彦宏面前现场演示该产品；大众网系媒体在 2026 年 4 月初以一手采访及「主播说」栏目两度跟进报道。</div><div class="cm">信源：<a class="cref cross" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-4">[4]</a> <a class="cref verified" href="#ref-5">[5]</a></div></div>
+    <div class="card"><div class="ct">公司 / 融资状态</div><div class="cb">未检索到公司注册、融资或团队的公开信息；开发者社区转载分析文将其定位为「产品 + 自媒体」双线并行的个人创作者样本，与媒体混合口径互证。</div><div class="cm">信源：<a class="cref partial" href="#ref-6">[6]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">前史（95 后）</div><div class="tx">UI 设计师 → 全职宝妈 → 自媒体博主</div><div class="td">本职为 UI 设计；生育后职业中断转入全职带娃，同期经营自媒体账号——三段身份为后来的「产品审美 + 碎片时间 + 自带分发渠道」埋下伏笔。<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2025 年（开发期）</div><div class="tx">自学百度秒哒，零代码做出 TATA·Pose 助手</div><div class="td">以宝妈的碎片时间自学秒哒平台，无需代码团队即完成「摄像头 + AI 姿势蒙版」小程序的开发与上线。<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2025 年 8-10 月</div><div class="tx">参加百度秒哒黑客松并获奖</div><div class="td">赛期三个月的秒哒黑客松为平台侧重点赛事（赛制与奖金机制见秒哒官网一手佐证）；塔塔在该赛事中获奖，成为后续收入与曝光的起点之一。<a class="cref verified" href="#ref-5">[5]</a><a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2025-11-12</div><div class="tx">登上百度世界大会，在李彦宏面前演示产品</div><div class="td">作为零代码开发的普通人代表登上百度世界大会舞台演示；此节点后媒体开始关注其「宝妈变开发者」叙事。<a class="cref cross" href="#ref-3">[3]</a></div></div>
+    <div class="node"><div class="dt">2026-04-05</div><div class="tx">大众网·海报新闻一手采访：「月入 2 万+」「数十万用户浏览」</div><div class="td">同日发布两稿：调查稿（一手采访+引其复盘文章）与新闻稿（月入 2 万+）；「数十万用户浏览」的后台数据经记者转述首次进入公开报道。<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2026-04-08</div><div class="tx">央广网转每日经济新闻：直接采访原话坐实收入口径</div><div class="td">「每月有 2 万多元收入，主要来源为商单、黑客松奖金」——混合口径的原话出自此稿；同日大众网「主播说」栏目跟进评述。<a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2026-10-23</div><div class="tx">开发者社区转载分析：确认「产品 + 自媒体」混合口径</div><div class="td">「AI 宇宙狂想家」分析文经阿里云开发者社区与腾讯云开发者社区双平台分发，将本案归纳为「产品收入与自媒体收入并行」的混合结构，与 [3] 原话互证（转载性质）。<a class="cref partial" href="#ref-6">[6]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：职业中断不是审美中断——UI 设计功底成为产品底座</div><div class="cb">生育带来的职业空窗，在本案中并未清空她的职业资产：UI 设计训练出的界面、交互与视觉判断力，直接迁移到「拍照姿势引导」这一强视觉、强交互的产品形态上。姿势蒙版画在哪、怎么引导、如何不违和——正是设计师的判断域；而「宝妈」身份又让她对自拍场景的用户需求有一手体感。两个身份的叠加构成了产品的准入壁垒。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-3">[3]</a></div></div>
+  <div class="card"><div class="ct">转折二：零代码平台抹平开发门槛，碎片时间成为可支配产能</div><div class="cb">传统路径下，一个小程序需要前端开发、后端与算法能力，全职宝妈的时间结构无法承载。百度秒哒以「零代码/AI 生成应用」把开发动作压缩为描述—生成—调试，塔塔自学完成全部开发——工具平权让她把「碎片时间」变成了可交付产能。这是本案例区别于程序员创业样本的关键：开发能力的获取方式变了。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-5">[5]</a></div></div>
+  <div class="card"><div class="ct">转折三：平台赛事与大会舞台，充当个人的冷启动杠杆</div><div class="cb">黑客松奖金提供了第一笔可计量的货币回报；百度世界大会「在李彦宏面前演示」则提供了个人开发者最难获得的信任背书与曝光位。随后大众网、央广网/每经的报道接力，把平台叙事转译为公共叙事——赛事、大会、媒体三级杠杆逐级放大，均不依赖投放预算。</div><div class="cm">信源：<a class="cref verified" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-3">[3]</a> <a class="cref cross" href="#ref-4">[4]</a></div></div>
+  <div class="quote">
+    <p>每月有 2 万多元收入，主要来源为商单、黑客松奖金。</p>
+    <span class="src">—— 塔塔，央广网转每日经济新闻直接采访原话（2026-04-08），见 <a class="cref cross" href="#ref-3">[3]</a></span>
+  </div>
+  <div class="box insight">
+    <div class="bt">💡 路径启示</div>
+    本案的收入结构必须如实拆解：2 万多元/月是「自媒体商单 + 黑客松奖金」的混合口径，小程序产品本身的直接营收（内购/广告/订阅）未见披露。它证明的是「零代码工具让个人做出可用的产品并获得平台级曝光」，尚不能证明「AI 小程序本身已能稳定月入 2 万」——这正是转载分析文 [6] 所强调的「产品 + 自媒体」双线结构。
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>环节</th><th>内容</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>产品形态</td><td class="hl">微信小程序「TATA·Pose 助手」</td><td>调用摄像头实时取景，叠加 AI 姿势蒙版，动态引导摆姿拍美照 <a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>开发方式</td><td>百度秒哒零代码/AI 生成应用平台</td><td>自学开发，无代码团队；平台侧黑客松为官方赛事通道 <a class="cref cross" href="#ref-3">[3]</a><a class="cref verified" href="#ref-5">[5]</a></td></tr>
+      <tr><td>收入结构</td><td>商单 + 黑客松奖金（混合口径）</td><td>月 2 万多元为两条来源合计，非小程序产品营收；占比未披露 <a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td>分发与曝光</td><td>自媒体内容渠道 + 平台大会舞台</td><td>博主身份自带内容分发；百度世界大会提供信任背书 <a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td>产品变现</td><td>未披露</td><td>小程序内付费/广告/订阅等直接变现方式未见公开信息（留白）</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h4>为什么「拍照姿势」是个好切口</h4>
+  <p>「想拍美照但不会摆姿势」是高频、低决策成本、即用即走的小痛点——工具价值在按下快门前的几十秒内即可兑现，天然适配小程序「轻、快、场景化」的形态，也天然适配 AI 视觉能力的展示位。相比需要持续供给的重内容产品，姿势引导是典型的「薄工具」：开发量可控、迭代以模板扩充为主，与一人运营的时间预算匹配。<a class="cref cross" href="#ref-1">[1]</a></p>
+  <h4>「产品 + 自媒体」双轮结构</h4>
+  <p>本案的商业模式本质是双轮：小程序提供「产品叙事」与用户触点，自媒体提供「商单收入」与流量池，两者互为放大器——产品的平台荣誉（黑客松、大会演示）反哺自媒体账号的专业人设，自媒体的传播又为小程序拉新。开发者社区转载分析将此归纳为混合口径的个人创作者样本，与本人原话一致。<a class="cref cross" href="#ref-3">[3]</a><a class="cref partial" href="#ref-6">[6]</a></p>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>用户浏览量</td><td class="hl">数十万（浏览使用口径，非注册量；后台数据经记者转述）</td><td>2026-04 报道</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-6">[6]</a></td></tr>
+      <tr><td>月收入</td><td class="hl">2 万多元（商单 + 黑客松奖金混合口径）</td><td>2026-04-08 直接采访</td><td><a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td>赛事荣誉</td><td>百度秒哒黑客松获奖</td><td>2025-08 ~ 10 赛期</td><td><a class="cref verified" href="#ref-5">[5]</a><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td>平台曝光</td><td>百度世界大会现场演示（李彦宏在场）</td><td>2025-11-12</td><td><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td>媒体跟进</td><td>大众网两稿 + 央广网转每经 + 主播说评述</td><td>2026-04-05 / 04-08</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    ① 「数十万用户浏览」为小程序后台数据、经记者转述，本报告未找到可独立访问的产品页面或小程序码佐证，无法一手复核；② 「月入 2 万多元」为受访者自述、央媒级渠道直接采访记录，但属「商单+奖金」混合口径，不可直接等同于产品营收；③ 注册用户数、留存、付费转化等运营指标均无披露。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将本案放入「垂直应用型 AI 一人公司」坐标系，对标均取自案例池增补批次数据（口径为公开报道值）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>冷启动杠杆</th><th>数据表现</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>TATA·Pose 助手</b></td><td>塔塔（95 后宝妈，前 UI 设计师）</td><td>AI 拍照姿势微信小程序（零代码开发）</td><td>黑客松奖金 + 百度世界大会演示</td><td>数十万用户浏览；月入 2 万多元（商单+奖金混合口径）</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td>JustAI「小加同学」</td><td>卢冠男 Lucas（95 后，前腾讯工程师）</td><td>AI 内容营销 Agent：产品图+一句话，1 分钟生成推广图文/标题/封面</td><td>大厂履历 + 产品化 + WAIC 2026 OPC 展区</td><td>上线一年注册用户 400 万、1 万付费客户（南都 2026-08-23）</td><td><a href="../../report/justai-xiaojia/" style="color:#2980b9">案例报告页</a>（南都专访，批次 4 底稿主信源）</td></tr>
+      <tr><td>《妹居物语》</td><td>彩奈（前游戏策划，零程序基础）</td><td>AI 原生陪伴游戏：AI「妹妹」长期记忆/自写日记，Claude Opus 4 为开发主力</td><td>B 站开发日志 + Steam/TapTap 社区</td><td>Demo 上架 3 天 DAU 合计破万、TapTap 预约 66 万、总成本七八千元（游戏葡萄 2026-07）</td><td><a href="../../report/meiju-wuyu/" style="color:#2980b9">案例报告页</a>（游戏葡萄一手采访，批次 4 底稿主信源）</td></tr>
+      <tr><td>声序智能</td><td>王钰博（前字节风控算法工程师）</td><td>AI 曲谱智能体：五线谱↔简谱 1 分钟互转（OMR），订阅制</td><td>海淀 OPC 政策 + 民乐社区地推</td><td>上线半年多用户超 6000，成立约 3 个月现金流回正进入盈利（中国经营报 2026-04-22）</td><td><a href="https://finance.sina.com.cn/jjxw/2026-04-22/doc-inhvkuqa4285003.shtml" target="_blank" rel="noopener">新浪财经转中国经营报</a></td></tr>
+      <tr><td>EmoEase</td><td>冼星朗（05 后高中生）</td><td>AI 情绪记录疗愈 App（Cursor/Trae 20 天开发）</td><td>App Store 榜单 + 苹果 SSC 获奖背书</td><td>上线即冲 App Store 付费工具榜第 5；月入过万（南都 2025-04-21，自述口径）</td><td><a href="https://view.inews.qq.com/a/20250421A06J1Y00" target="_blank" rel="noopener">腾讯新闻转南方都市报</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>五案同为「垂直小切口 + 个人技能迁移」路线，差异集中在<b>分发杠杆</b>：TATA·Pose 靠平台赛事与大会舞台，JustAI 靠行业展会与产品化能力，妹居物语靠社区开发日志，声序智能靠政策区位与行业社区，EmoEase 靠应用商店榜单。收入量级上，本案「月 2 万多元」介于 EmoEase（自述月入过万）与声序智能（3 个月现金流转正）之间，但须再次强调其混合口径——四例对标中仅 JustAI 的付费客户数为产品直接营收口径。另注：JustAI 与妹居物语两行的底稿主信源（南方都市报 2026-08-23、游戏葡萄 2026-07）已由案例池批次 4 底稿收录，详情见各自案例报告页。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="card"><div class="ct">1. 产品功能</div><div class="cb">核心功能单点锐利：打开摄像头 → AI 在取景框上叠加姿势蒙版 → 动态引导用户站位与姿态 → 拍出构图与体态更好的照片。产品价值链极短，无内容供给负担；基于百度秒哒零代码平台生成与迭代，个人即可完成开发、上线与维护。<a class="cref cross" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-5">[5]</a></div></div>
+  <div class="card"><div class="ct">2. 面向客群</div><div class="cb">直接客群为微信生态内有拍照美化需求的 C 端用户——爱拍照但缺乏姿势灵感的普通用户（以年轻女性为主的自拍/旅拍场景，符合产品定位与开发者审美背景的合理推断，媒体未披露用户画像数据）；间接客群为百度秒哒生态（开发者案例样本）与赛事/大会主办方。</div><div class="cm"><a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-5">[5]</a></div></div>
+  <div class="card"><div class="ct">3. 解决痛点</div><div class="cb">「面对镜头不知道手脚往哪放」是拍照场景的高频尴尬：普通人缺的不是设备与滤镜，而是姿势审美。AI 姿势蒙版把「审美知识」编码为可视化引导层，零学习成本即用即走——工具薄、痛点真、频次随拍照场景自然发生。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+  <div class="card"><div class="ct">4. 预估年化营收（推算，置信度 C）</div><div class="cb">产品直接营收<b>零披露</b>。可核验的财务事实仅一条：月入 2 万多元，来源为商单与黑客松奖金（混合口径）。若按 2026-04 报道口径线性外推，全口径年收入约 24-27 万元/年（推算，置信度 C），其中：黑客松奖金属赛事性、一次性收入，不可线性外推；商单属自媒体收入而非产品收入——<b>小程序产品本身的年化营收无法估算</b>。收入可持续性取决于商单稳定性与奖金能否复现。</div><div class="cm">推算依据：<a class="cref cross" href="#ref-3">[3]</a> <a class="cref partial" href="#ref-6">[6]</a>，推算口径为 C 级</div></div>
+  <div class="card"><div class="ct">5. 融资进展</div><div class="cb">未检索到任何融资信息；也无团队扩张或公司注册的公开披露。非货币资源：百度秒哒黑客松奖金、百度世界大会演示位（信任背书+流量）、央地媒体报道带来的个人品牌资产。<a class="cref cross" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-5">[5]</a></div></div>
+  <div class="card"><div class="ct">6. 市场评价</div><div class="cb">央地媒体正面评价密集：大众网以一手采访与「主播说」两度呈现，将其作为「普通人用 AI 工具创业」的样本；央广网转每经的报道坐实收入口径，叙事重心是「宝妈 + 零代码 + AI」的身份突破而非产品数据本身。开发者社区转载分析则提供了「产品+自媒体混合口径」的冷静解读。未检索到批评性报道或用户负评的系统性记录（样本小、报道周期短，属正常留白）。<a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-4">[4]</a> <a class="cref partial" href="#ref-6">[6]</a></div></div>
+  <div class="card red"><div class="ct">7. 投入成本与合规风险</div><div class="cb">成本：开发与运营的具体投入（秒哒平台费用、时间成本）均未披露——零代码路径大幅压低的是固定开发成本，但未形成可引用的数字。风险（一般性提示，本报告未检索到针对该产品的处罚或纠纷记录）：① <b>平台双重依赖</b>——产品依附微信小程序生态、开发依附百度秒哒生态，任一侧规则变化（审核、接口、分成）都直接作用于个人；② <b>收入非经常性</b>——奖金为赛事性收入，商单受自媒体流量波动影响；③ <b>合规基线</b>——拍照类工具涉及用户生成内容，需遵循小程序个人主体资质边界与平台内容规范；④ 荣誉与数据均来自平台侧叙事，独立第三方数据缺位。</div><div class="cm"><a class="cref cross" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-5">[5]</a> <a class="cref partial" href="#ref-6">[6]</a></div></div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 三处关键口径注记与四处留白（截至 2026-11-15 检索）</div>
+    ① <b>收入为混合口径</b>：「月入 2 万多元」明确包含自媒体商单与黑客松奖金两条来源（本人原话 [3]），<b>非小程序产品营收</b>——引用时不可简化为「小程序月入 2 万」；② <b>用户量为「浏览使用」口径</b>：「数十万」是后台浏览数据而非注册用户数，且经记者转述；③ <b>无独立一手产品页佐证</b>：本报告未检索到可公开访问的产品官网、小程序详情页或应用市场条目，用户量与产品现状均无法一手复核。留白：注册用户数、产品直接营收、商单/奖金占比、开发与运营成本均未披露。
+  </div>
+  <div class="card"><div class="ct">叙事与事实的距离（如实标注）</div><div class="cb">媒体叙事的核心是「95 后宝妈零代码开发、月入 2 万」的身份突破故事，宣传语境（百度世界大会、秒哒黑客松）与报道语境（大众网/央广网）都天然倾向正面呈现。本报告确认的部分：产品存在、收入原话、荣誉与时间线均有信源支撑；本报告不能确认的部分：产品真实活跃规模（浏览≠留存）、收入可持续性（奖金一次性）、以及「产品本身赚钱」与否。读者应把本案理解为「平台生态型个人开发者」样本，而非已验证的独立产品公司样本。</div><div class="cm"><a class="cref cross" href="#ref-3">[3]</a> <a class="cref partial" href="#ref-6">[6]</a></div></div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">TATA·Pose 的意义不在收入量级，而在结构：<b>当开发被零代码平台平权，创业的瓶颈从「会不会写代码」移回「懂不懂用户与审美」</b>。UI 设计师 × 全职宝妈 × 自媒体博主的身份组合，恰是AI 时代个人公司最典型的资源拼装方式——既有技能（审美）、受限时间（碎片化）、自有渠道（账号）三者由 AI 工具焊接成产品。它是「垂直应用型 OPC」的最小可行样本，边界与不确定性同样清晰。</div><div class="cm"><a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-3">[3]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 6 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx cross">[1]</span><span class="rt">B+</span><span class="st">省级媒体一手采访</span></div><div class="ti">大众网·海报新闻调查稿：95 后宝妈自学 AI 零代码开发小程序（一手采访+引其复盘文章）</div><div class="mt"><b>来源：</b>大众网·海报新闻（独立调查）　<b>发布日期：</b>2026-04-05<br><a href="https://www.dzwww.com/xinwen/shehuixinwen/202604/t20260405_17609210.htm" target="_blank" rel="noopener">https://www.dzwww.com/xinwen/shehuixinwen/202604/t20260405_17609210.htm</a></div><div class="note">事实核查：产品形态（摄像头+AI 姿势蒙版）、95 后/前 UI 设计师/全职宝妈/自媒体博主身份、自学秒哒开发、「数十万用户浏览」（后台数据经记者转述）及复盘文章细节出自此稿；与 [3] 交叉一致。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx cross">[2]</span><span class="rt">B+</span><span class="st">省级媒体新闻稿</span></div><div class="ti">大众网：宝妈用 AI 开发小程序月入 2 万+</div><div class="mt"><b>来源：</b>大众网　<b>发布日期：</b>2026-04-05<br><a href="https://www.dzwww.com/news/hbsx/202604/t20260405_17609303.htm" target="_blank" rel="noopener">https://www.dzwww.com/news/hbsx/202604/t20260405_17609303.htm</a></div><div class="note">事实核查：「月入 2 万多元」见于此稿，与 [1] 同日同源发布、与 [3] 直接采访口径交叉；收入混合口径的完整表述以 [3] 原话为准。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx cross">[3]</span><span class="rt">B+</span><span class="st">央媒转财经媒体（一手原话）</span></div><div class="ti">央广网转每日经济新闻：宝妈零代码开发 AI 拍照小程序，月入 2 万多元（直接采访原话）</div><div class="mt"><b>来源：</b>央广网（转每日经济新闻）　<b>发布日期：</b>2026-04-08<br><a href="https://news.cnr.cn/native/gd/20260408/t20260408_527577031.shtml" target="_blank" rel="noopener">https://news.cnr.cn/native/gd/20260408/t20260408_527577031.shtml</a></div><div class="note">事实核查：核心引语「每月有 2 万多元收入，主要来源为商单、黑客松奖金」为本稿直接采访原话；2025-11-12 百度世界大会李彦宏面前演示、黑客松获奖亦出自此稿；与 [1][2] 多源交叉。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx cross">[4]</span><span class="rt">B</span><span class="st">省级媒体评述栏目</span></div><div class="ti">大众网「主播说」：点评宝妈 AI 开发小程序案例</div><div class="mt"><b>来源：</b>大众网「主播说」栏目　<b>发布日期：</b>2026-04-08<br><a href="https://www.dzwww.com/news/hbsx/202604/t20260408_17617609.htm" target="_blank" rel="noopener">https://www.dzwww.com/news/hbsx/202604/t20260408_17617609.htm</a></div><div class="note">事实核查：大众网系对本案的跟进评述，佐证报道热度与媒体关注度；主体事实与 [1][3] 一致，评述观点按栏目属性收录。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx verified">[5]</span><span class="rt">A</span><span class="st">平台官方（一手佐证）</span></div><div class="ti">百度秒哒官网：黑客松活动规则页</div><div class="mt"><b>来源：</b>百度秒哒官网（miaoda.cn 社区）　<b>发布日期：</b>平台官方页面<br><a href="https://miaoda.cn/community/questions/10010000000000516" target="_blank" rel="noopener">https://miaoda.cn/community/questions/10010000000000516</a></div><div class="note">事实核查：黑客松赛制、赛期（2025 年 8-10 月）与奖金机制的一手平台佐证；与媒体报道 [3] 的赛事叙事交叉，故标 verified；「塔塔获奖」本身以 [3] 报道为准。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx partial">[6]</span><span class="rt">C+</span><span class="st">开发者社区（转载分析）</span></div><div class="ti">「AI 宇宙狂想家」：宝妈 AI 小程序案例分析（确认产品+自媒体混合口径）</div><div class="mt"><b>来源：</b>阿里云开发者社区 / 腾讯云开发者社区（同文双平台分发）　<b>发布日期：</b>2026-10-23<br><a href="https://developer.aliyun.com/article/1774229" target="_blank" rel="noopener">https://developer.aliyun.com/article/1774229</a> ｜ <a href="https://developer.cloud.tencent.com/article/2767347" target="_blank" rel="noopener">https://developer.cloud.tencent.com/article/2767347</a></div><div class="note">事实核查：转载性质分析文（非独立采访），将本案归纳为「产品收入与自媒体收入并行」的混合结构，与 [3] 原话互证；按 partial 收录，仅用于口径归纳，不作为独立事实来源。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 6 条。核验标签分布：🟢 已核验（verified）1 条（秒哒官网黑客松规则，平台一手）、🔵 多源印证（cross）4 条（大众网系 3 条 + 央广网转每经 1 条，核心事实「产品形态/身份/月入 2 万/大会演示」多源交叉一致）、🟡 部分映证（partial）1 条（开发者社区转载分析）。信源评级分布：A 级 1 条、B+ 级 3 条、B 级 1 条、C+ 级 1 条。三处关键口径（收入混合口径、浏览非注册口径、无一手产品页佐证）已在正文与捌节显式标注；商单/奖金占比、注册用户数、产品直接营收、开发成本四处留白如实呈现。未发现伪造链接；全部 URL 为检索过程实际命中页面；「塔塔」为稳定网名，本报告不推测真实身份。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-15 · 营收推算值均标注置信口径，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

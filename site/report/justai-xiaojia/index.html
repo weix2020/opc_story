@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · JustAI「小加同学」—— 卢冠男的一个人 AI 内容营销公司 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · JustAI「小加同学」">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="JustAI「小加同学」深度案例报告：95 后前腾讯工程师卢冠男（Lucas）2025 年中辞职，在深圳南山以 OPC 模式做 AI 内容营销 Agent——商家一张产品图+一句话，约 1 分钟生成全套推广物料，上线一年注册用户 400 万、付费客户 1 万。8 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+<link rel="canonical" href="https://opc-story.pages.dev/report/justai-xiaojia/">
+<meta name="robots" content="index,follow">
+<meta property="og:url" content="https://opc-story.pages.dev/report/justai-xiaojia/">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@type":"Article","@context":"https://schema.org","headline":"深度案例 · JustAI「小加同学」—— 卢冠男的一个人 AI 内容营销公司 · OPC Story","description":"JustAI「小加同学」深度案例报告：95 后前腾讯工程师卢冠男（Lucas）2025 年中辞职，在深圳南山以 OPC 模式做 AI 内容营销 Agent——商家一张产品图+一句话，约 1 分钟生成全套推广物料，上线一年注册用户 400 万、付费客户 1 万。8 条信源逐条核验。","inLanguage":"zh-CN","author":{"@type":"Person","name":"report/justai-xiaojia/"},"publisher":{"@type":"Organization","name":"OPC Story","url":"https://opc-story.pages.dev/"},"mainEntityOfPage":"https://opc-story.pages.dev/report/justai-xiaojia/","datePublished":"2026-08-23"}</script>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>JustAI「小加同学」深度案例报告</h1>
+    <h2>95 后前腾讯工程师卢冠男（Lucas）：大厂七年后辞职，一张产品图+一句话约 1 分钟生成全套推广物料<br>上线一年注册用户 400 万、付费客户 1 万 —— 8 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">产品型 OPC</span>
+      <span class="tag">AI Agent</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">400万</div><div class="k">注册用户（上线一年 · 南都口径）</div></div>
+  <div class="stat"><div class="v up">1万</div><div class="k">付费客户（南都口径）</div></div>
+  <div class="stat"><div class="v neutral">约 1 分钟</div><div class="k">生成一套推广物料</div></div>
+  <div class="stat"><div class="v neutral">WAIC 2026</div><div class="k">登 OPC 专属展区（2026-07）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">玖</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">JustAI 的「小加同学」是国内「AI 一人公司」叙事中被主流媒体确认的 B 端工具型代表：一款面向中小商家与本地门店的 AI 内容营销 Agent——商家上传产品图+一句产品描述，约 1 分钟生成推广图文、标题、封面与种草物料，上线一年注册用户达 400 万。本案例按 OPC 双口径收录：一人属性为「创始人主导+少量协作」（详见捌章口径注记）。</p>
+  <div class="two">
+    <div class="card"><div class="ct">产品</div><div class="cb">AI 内容营销 Agent「小加同学」：商家上传产品图+一句产品描述，约 1 分钟生成推广图文、标题、封面与种草物料；定位中小商家与本地门店的内容营销产能工具。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-4">[4]</a></div></div>
+    <div class="card"><div class="ct">创始人</div><div class="cb">卢冠男 Lucas，95 后，东南大学软件工程专业；曾在腾讯等大厂工作约七年；2025 年中辞职，在深圳南山以 OPC 模式创立 JustAI。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a> <a class="cref verified" href="#ref-4">[4]</a></div></div>
+    <div class="card"><div class="ct">用户与商业化</div><div class="cb">上线一年注册用户 400 万、付费客户 1 万（南都 2026-08 口径）；官网口径另有「上万商家」。注册用户官网时序：300 万 → 350 万+ → 400 万。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-4">[4]</a></div></div>
+    <div class="card"><div class="ct">行业亮相</div><div class="cb">2026 年 7 月登 WAIC 2026 世界人工智能大会「OPC 专属展区」——官网发布预告与收官两条记录，行业会展侧确认其 OPC 身份。</div><div class="cm">信源：<a class="cref verified" href="#ref-5">[5]</a></div></div>
+  </div>
+  <div class="two">
+    <div class="card blue"><div class="ct">团队口径（双口径）</div><div class="cb">南都专访口径：「全职员工 4 人，加上他自己，再加几个实习生」；官网原文：「Lucas 带领 JustAI」；行业定义口径（每经/灼识，经案例池底稿收录）：「1 名核心创始人+AI 数字员工，可含少量成员」。媒体一致以一人公司框架报道——本案按 OPC 双口径收录，与严格单人案例区分。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-4">[4]</a></div></div>
+    <div class="card"><div class="ct">公司与融资</div><div class="cb">品牌主体 JustAI（官网 justailab.com）；公司注册细节与融资信息未检索到公开披露；无公开投资方信息。</div><div class="cm">信源：<a class="cref verified" href="#ref-4">[4]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">大厂七年</div><div class="tx">东南大学软件工程毕业后入职腾讯等大厂</div><div class="td">约七年工程履历，AI 技术与产品能力在此完成积累——后续一个人做 Agent 产品的技术底座。<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2025 年中</div><div class="tx">辞职，深圳南山以 OPC 模式创立 JustAI</div><div class="td">从大厂工程师切换为独立创业者，选择「AI 内容营销」作为切入点。<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2025 年（具体月份未披露）</div><div class="tx">AI 内容营销 Agent「小加同学」上线</div><div class="td">主打中小商家与本地门店；南都 2026-08 报道时称「上线一年」，据此上线时点约在 2025 年下半年，精确月份未见披露。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">官网时序 · 第一档</div><div class="tx">深圳卫视报道期：注册用户 300 万</div><div class="td">官网新闻页收录的深圳卫视报道期口径（页面未标注精确时点）——官网自述口径。<a class="cref verified" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2026-06-03</div><div class="tx">官网发布「Lucas OPC AI 创业媒体报道」页：350 万+ 注册、上万商家</div><div class="td">官网自述口径，主动整理媒体报道合集，将 OPC 身份作为品牌资产经营。<a class="cref verified" href="#ref-4">[4]</a></div></div>
+    <div class="node"><div class="dt">2026-07</div><div class="tx">登 WAIC 2026 世界人工智能大会「OPC 专属展区」</div><div class="td">官网 2026-07-23 发布预告文，另有 WAIC 收官记录——一人公司叙事首次进入顶级 AI 行业会展的专属展区。<a class="cref verified" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2026-08-19</div><div class="tx">南方+N（南方报业）发布一手采访视频</div><div class="td">省级党报集团新媒体的一手视频采访。<a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2026-08-23</div><div class="tx">南方都市报专访刊发：注册用户 400 万、付费客户 1 万</div><div class="td">「全职员工 4 人+他自己+几个实习生」的团队口径进入公共传播；400 万注册用户与官网时序衔接一致。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-08 前后</div><div class="tx">头条号等平台转载南都报道，「一人公司」叙事扩散</div><div class="td">报道经转载链进一步传播，本案成为国内 AI 一人公司讨论的常用样本。<a class="cref partial" href="#ref-6">[6]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：七年大厂工程履历，是 OPC 模式的技术底气</div><div class="cb">科班软件工程 + 腾讯等大厂约七年，意味着产品架构、工程实现、AI 技术集成可以由创始人独立完成——「一个人做 Agent 产品」首先是一个工程能力命题。这是本案例与「零代码搭工具」型独立开发者的本质区别：JustAI 交付的是持续运行、面向 B 端的完整 Agent 服务。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a></div></div>
+  <div class="card"><div class="ct">转折二：赛道选择——中小商家的内容营销产能缺口</div><div class="cb">电商与本地门店需要高频产出图文/种草物料，但请不起文案与设计团队；「产品图+一句话 → 约 1 分钟全套物料」把专业内容产能平民化。上线一年 400 万注册用户的规模，从需求侧验证了这个切口真实存在——选「高频、低价、标准化」的内容生产环节，是 Agent 产品能快速起量的关键。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-4">[4]</a></div></div>
+  <div class="card"><div class="ct">转折三：免费获客 + 付费变现的漏斗</div><div class="cb">注册 400 万、付费客户 1 万——按披露数字直接推算，免费→付费转化率约 2.5%（推算口径，见柒章）。低门槛免费生成承担获客，付费层承接有稳定内容产能需求的商家；客单价与付费结构未披露，是本案商业化评估的最大留白。</div><div class="cm">信源：<a class="cref cross" href="#ref-1">[1]</a></div></div>
+  <div class="card"><div class="ct">转折四：把「一人公司」身份本身当作品牌资产经营</div><div class="cb">从官网媒体合集页（2026-06）到 WAIC 2026 OPC 专属展区（2026-07）再到南都专访（2026-08），创始人系统性地把 OPC 叙事产品化：对获客而言，「一个人做出 400 万用户的产品」本身就是最强传播点——身份即营销。</div><div class="cm">信源：<a class="cref verified" href="#ref-4">[4]</a> <a class="cref verified" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-1">[1]</a></div></div>
+  <div class="box insight">
+    <div class="bt">📌 引语说明</div>
+    本案例信源包中未收录卢冠男可直接核验的逐字原话引语。为遵守「引语不虚构」红线，本报告不呈现直接引语，相关表述均以报道转述口径呈现并标注信源；若后续检索获得可回溯原话，将按事实核查流程补录。
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <h4>产品工作流</h4>
+  <div class="tw">
+  <table>
+    <thead><tr><th>环节</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>输入</td><td>产品图 + 一句产品描述（把使用门槛压到最低）</td></tr>
+      <tr><td>生成</td><td class="hl">约 1 分钟产出推广图文、标题、封面、种草物料</td></tr>
+      <tr><td>客群</td><td>中小商家、本地门店</td></tr>
+      <tr><td>交付</td><td>直接用于电商详情页、种草平台、本地推广的内容素材</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h4>商业模式</h4>
+  <ul class="bl">
+    <li>免费注册获客 + 增值付费变现：注册 400 万、付费客户 1 万（南都口径）；付费方式（订阅/按次/套餐）与客单价未披露 <a class="cref cross" href="#ref-1">[1]</a>；</li>
+    <li>官网「上万商家」与南都「1 万付费客户」为两个并行口径——商家数与付费客户数的包含关系未披露，引用时应保留各自限定词 <a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-4">[4]</a>；</li>
+    <li>无公开融资信息，商业模式依赖自身造血；营收数字零披露（推算评估见柒章）<a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-4">[4]</a>。</li>
+  </ul>
+  <h4>OPC 运行方式</h4>
+  <ul class="bl">
+    <li>南都口径：全职员工 4 人 + 卢冠男本人 + 几个实习生——人力结构远小于同等用户量级传统 SaaS 团队 <a class="cref cross" href="#ref-1">[1]</a>；</li>
+    <li>官网口径：「Lucas 带领 JustAI」，AI 数字员工承担核心产能 <a class="cref verified" href="#ref-4">[4]</a>；</li>
+    <li>行业定义口径（每经/灼识，经案例池底稿收录）：1 名核心创始人 + AI 数字员工，可含少量成员——JustAI 被纳入该框架报道 <a class="cref partial" href="#ref-6">[6]</a>；</li>
+    <li>WAIC 2026 OPC 专属展区参展，行业会展侧对 OPC 身份的确认 <a class="cref verified" href="#ref-5">[5]</a>。</li>
+  </ul>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>注册用户（时序）</td><td class="hl">300 万（深圳卫视报道期）→ 350 万+（2026-06-03 官网）→ 400 万（2026-08 南都）</td><td>2025-2026</td><td><a class="cref verified" href="#ref-4">[4]</a><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>付费客户</td><td>1 万</td><td>2026-08-23</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>商家口径</td><td>上万商家</td><td>2026-06-03（官网）</td><td><a class="cref verified" href="#ref-4">[4]</a></td></tr>
+      <tr><td>生成时效</td><td>约 1 分钟/套物料</td><td>产品口径</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-4">[4]</a></td></tr>
+      <tr><td>免费→付费转化率</td><td class="pos">约 2.5%（1 万 ÷ 400 万，推算）</td><td>2026-08 口径推演</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>行业亮相</td><td>WAIC 2026 OPC 专属展区</td><td>2026-07</td><td><a class="cref verified" href="#ref-5">[5]</a></td></tr>
+      <tr><td>媒体链</td><td>南都专访 → 南方+N 视频 → 广州网信办转发 → 头条转载</td><td>2026-08</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref partial" href="#ref-6">[6]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    注册用户三个时点中，300 万、350 万+ 两档为官网自述口径（深圳卫视报道期档位未标注精确日期），400 万档获南都独立报道印证，时序单调一致；付费客户 1 万与「全职员工 4 人」出自南都单一专访，未见第二独立信源；DAU/MAU、留存、客单价、年化营收均未披露——引用「400 万」时应保留「注册」限定词。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将 JustAI 放入 OPC Story 案例池「增补批次 4」（2026-11-15 收录）的产品型/经营型案例坐标系（对标数据均来自各案例独立信源，口径为公开报道值）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>产品形态</th><th>关键成本</th><th>数据表现</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>JustAI「小加同学」</b></td><td>卢冠男 Lucas</td><td>AI 内容营销 Agent（B 端工具）</td><td>未披露（团队：创始人+4 全职+实习生，南都口径）</td><td>注册 400 万、付费 1 万；官网时序 300 万→350 万+→400 万</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-4">[4]</a></td></tr>
+      <tr><td>《妹居物语》AI 原生陪伴游戏</td><td>彩奈</td><td>AI 原生游戏（Demo 免费+正传预约）</td><td class="hl">七八千元</td><td>Demo 上架 3 天 DAU 破万；TapTap 预约 66 万、评分 9.5</td><td><a class="cref cross" href="#ref-7">[7]</a><a class="cref verified" href="#ref-8">[8]</a></td></tr>
+      <tr><td>TATA·Pose 助手</td><td>塔塔</td><td>AI 拍照姿势小程序（百度秒哒零代码）</td><td>未披露（零代码开发）</td><td>数十万用户浏览；月入 2 万多元（商单+奖金混合口径）</td><td>底稿*</td></tr>
+      <tr><td>贺沐 TikTok AI 跨境电商</td><td>贺沐</td><td>AI 批量生成短视频测品出海（电商经营）</td><td>未披露</td><td>店铺粉丝 1000+；月稳定收益 1 万-2 万元</td><td>底稿*</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 对标行信源说明</div>
+    标「底稿*」的两行数据取自 OPC Story 案例池底稿 data/domestic-pool.md「增补批次 4」章节（主信源分别为央广网转每经 2026-04-08 一手采访原话、新华日报 2026-03-30 一手采访原话），完整信源核验随两案独立报告发布——本表不虚构任何 URL。
+  </div>
+  <p>四个案例呈现三条路径：JustAI 是其中<b>唯一切入 B 端付费逻辑的工具</b>（1 万付费客户），《妹居物语》是<b>唯一 C 端情感体验产品</b>（社区自增长、零投放痕迹），TATA·Pose 与贺沐则是<b>平台生态依附型</b>（百度秒哒/TikTok）。共同点在于：AI 承担了传统上需要团队分工的专业产能——内容生成、工程实现、素材批量生产——而创始人保留选品、审美与判断的把关位。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="card"><div class="ct">1. 产品功能</div><div class="cb">AI 内容营销 Agent「小加同学」：商家上传产品图+一句产品描述，约 1 分钟生成推广图文、标题、封面与种草物料——覆盖中小商家线上营销最高频的内容生产环节，交付物可直接投放使用。</div><div class="cm"><a class="cref cross" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-4">[4]</a></div></div>
+  <div class="card"><div class="ct">2. 面向客群</div><div class="cb">中小商家与本地门店——缺乏专业文案/设计人手、需要高频产出投放素材但对成本极度敏感的长尾商家。B 端长尾客群决策轻、单价低但基数大，与「免费生成+付费增值」的漏斗模型匹配；用户画像细分数据未披露。</div><div class="cm"><a class="cref cross" href="#ref-1">[1]</a></div></div>
+  <div class="card"><div class="ct">3. 解决痛点</div><div class="cb">传统内容营销需要文案+设计+运营多人协作，小商家请不起团队、外包成本高、周期长；「产品图+一句话 → 1 分钟全套物料」把专业内容产能平民化，用 Agent 替代一个小型内容团队——400 万注册量级从需求侧验证痛点真实存在。</div><div class="cm"><a class="cref cross" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-4">[4]</a></div></div>
+  <div class="card"><div class="ct">4. 预估年化营收（推算，置信度 C）</div><div class="cb">年化营收<b>零披露</b>：付费客户 1 万（南都口径），但客单价、付费方式（订阅/按次/买断）与续费率均未公开。可由披露数字直接推算的仅有免费→付费转化率约 2.5%（1 万 ÷ 400 万，算术推演）；若引入外部客单价假设即可得出营收区间，但在无任何定价披露前，本报告不引入外部假设数字。营收量级待官网披露或融资信息回填。</div><div class="cm">推算依据：<a class="cref cross" href="#ref-1">[1]</a>，推算口径为 C 级</div></div>
+  <div class="card"><div class="ct">5. 融资进展</div><div class="cb">融资信息未披露：未检索到任何公开的融资轮次、投资方或金额信息；商业模式依赖自身造血。非货币资源：WAIC 2026 OPC 专属展区的行业曝光位、南方都市报/南方+N 等主流媒体的一手报道背书。</div><div class="cm"><a class="cref cross" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-4">[4]</a> <a class="cref verified" href="#ref-5">[5]</a> <a class="cref partial" href="#ref-6">[6]</a></div></div>
+  <div class="card"><div class="ct">6. 市场评价</div><div class="cb">媒体评价正面且层级高：南方都市报以一手专访将其作为 AI 一人公司样本报道；南方报业旗下南方+N 视频跟进一手采访；广州网信办（政府官网）转发南方日报系报道；WAIC 2026 设 OPC 专属展区收录本案——「一人公司+AI 数字员工」模式获行业会展与主流媒体双重确认。用户侧评价（应用商店评分、社交媒体口碑）未检索到系统性数据。</div><div class="cm"><a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-2">[2]</a> <a class="cref cross" href="#ref-3">[3]</a> <a class="cref verified" href="#ref-5">[5]</a></div></div>
+  <div class="card red"><div class="ct">7. 投入成本与合规风险</div><div class="cb">成本：团队为创始人+全职员工 4 人+实习生（南都口径），人力结构远小于同等用户量级的传统团队；具体投入金额、算力与模型 API 成本未披露。合规维度：① AI 生成的营销素材在公开传播场景下负有内容标识与合规义务（适用国家网信部门 AIGC 生成合成内容标识相关规定）；② 生成内容用于商业推广时受广告法真实性要求约束——生成图文与真实商品的一致性由商家把关，平台方需在服务协议中界定责任；③ 商家上传产品图涉及商业信息与图片版权处理，数据安全与授权链条是 B 端工具的长期合规项。以上为行业通识性风险讨论，未检索到针对本案的监管处罚记录。</div><div class="cm"><a class="cref cross" href="#ref-1">[1]</a> <a class="cref verified" href="#ref-4">[4]</a></div></div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 核心口径注记与三处留白（截至 2026-11-15 检索）</div>
+    ① 团队规模双口径并存：南都报道「全职员工 4 人，加上他自己，再加几个实习生」；官网原文「Lucas 带领 JustAI」；每经/灼识 OPC 定义口径「1 名核心创始人+AI 数字员工，可含少量成员」。媒体一致以一人公司框架报道——本报告按 OPC 双口径收录，一人属性标注为「创始人主导+少量协作」，与严格单人案例区分。② 营收黑箱：付费客户 1 万但客单价/付费结构/年化营收均未披露。③ 融资未披露：无任何公开融资信息。④ 注册用户时序中 300 万、350 万+ 两档为官网自述口径（时点未完全标注），400 万档获南都独立报道印证。
+  </div>
+  <div class="card"><div class="ct">「400 万注册用户」如何解读</div><div class="cb">注册 ≠ 活跃 ≠ 付费：本案未披露 DAU/MAU 与留存数据；免费注册的低门槛工具品类中，注册量通常显著高于活跃量级——引用该数字时应保留「注册」限定词，避免与活跃用户混同。1 万付费客户（转化率约 2.5%，推算）是更接近商业实质的指标，但其客单价与续费数据仍属留白。此为解读提示，不构成对本案数据真实性的质疑。</div><div class="cm"><a class="cref cross" href="#ref-1">[1]</a></div></div>
+  <div class="card green"><div class="ct">本案的样本价值</div><div class="cb">JustAI 是国内「AI 一人公司」叙事中 B 端工具型的代表：以 Agent 承担内容产能、以创始人工程能力替代技术团队、以少量协作补足运营。其 OPC 身份已获行业会展（WAIC 2026 OPC 专属展区）与主流媒体（南都专访、政府官网转发）双重确认——提示「创始人主导+少量协作」正成为国内一人公司的主流形态之一，与严格单人创作型案例（如泫九《归墟》）共同构成 OPC 光谱的两端。</div><div class="cm"><a class="cref verified" href="#ref-5">[5]</a> <a class="cref cross" href="#ref-1">[1]</a> <a class="cref cross" href="#ref-3">[3]</a></div></div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">玖</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 8 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一转载）。部分条目标题为按页面主题拟写的描述性标题，原题以链接页面为准。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx cross">[1]</span><span class="rt">B+</span><span class="st">一手专访（省级都市报）</span></div><div class="ti">南方都市报专访卢冠男：AI 内容营销 Agent「小加同学」上线一年（报纸版，编者描述性标题）</div><div class="mt"><b>来源：</b>南方都市报（一手专访）　<b>发布日期：</b>2026-08-23<br><a href="https://epaper.oeeee.com/epaper/A/html/2026-08/23/content_7344.htm" target="_blank" rel="noopener">https://epaper.oeeee.com/epaper/A/html/2026-08/23/content_7344.htm</a></div><div class="note">事实核查：注册用户 400 万、付费客户 1 万、「全职员工 4 人，加上他自己，再加几个实习生」团队口径、95 后/东南大学软件工程/腾讯等大厂七年/2025 年中辞职/深圳南山等人物背景均出自此稿；400 万与官网时序 [4] 衔接一致。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx cross">[2]</span><span class="rt">A</span><span class="st">省级党媒集团新媒体（视频）</span></div><div class="ti">南方+N：JustAI 创始人卢冠男一手采访视频（编者描述性标题）</div><div class="mt"><b>来源：</b>南方+N（南方报业）　<b>发布日期：</b>2026-08-19<br><a href="https://www.nfnews.com/content/LozB5NWmon.html" target="_blank" rel="noopener">https://www.nfnews.com/content/LozB5NWmon.html</a></div><div class="note">事实核查：一手视频采访；人物背景与创业节点与 [1] 交叉一致，与官网 [4] 自述口径互证。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx cross">[3]</span><span class="rt">A</span><span class="st">政府官网（转载南方日报系）</span></div><div class="ti">广州网信办转载南方日报系报道：JustAI「小加同学」与 AI 一人公司（编者描述性标题）</div><div class="mt"><b>来源：</b>广州市委网信办官网　<b>发布日期：</b>2026-08（转载南方日报系报道）<br><a href="https://www.gzwxb.gov.cn/context/contextId/216136" target="_blank" rel="noopener">https://www.gzwxb.gov.cn/context/contextId/216136</a></div><div class="note">事实核查：政府官网转发构成对南方日报系报道的官方背书链路；内容与 [1][2] 同源体系，交叉一致。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx verified">[4]</span><span class="rt">A</span><span class="st">企业官网（一手自述）</span></div><div class="ti">Lucas OPC AI 创业媒体报道合集（350 万+ 注册、上万商家、「Lucas 带领 JustAI」）</div><div class="mt"><b>来源：</b>JustAI 官网　<b>发布日期：</b>2026-06-03<br><a href="https://www.justailab.com/news/lucas-opc-ai-entrepreneurship-media-reports" target="_blank" rel="noopener">https://www.justailab.com/news/lucas-opc-ai-entrepreneurship-media-reports</a></div><div class="note">事实核查：一手自述口径——350 万+ 注册、上万商家出自此页；官网时序（深圳卫视报道期 300 万 → 350 万+）与南都 2026-08 的 400 万档单调衔接；「Lucas 带领 JustAI」为官网原文。标注为自述口径使用。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx verified">[5]</span><span class="rt">A</span><span class="st">企业官网（一手，两条同源页计 1 条）</span></div><div class="ti">OPC to WAIC：JustAI 创始人 Lucas 登 WAIC 2026 OPC 专属展区（预告+收官两条记录）</div><div class="mt"><b>来源：</b>JustAI 官网　<b>发布日期：</b>2026-07-23（预告文；另有 WAIC 收官文）<br><a href="https://www.justailab.com/news/opc-to-waic-justai-founder-lucas" target="_blank" rel="noopener">https://www.justailab.com/news/opc-to-waic-justai-founder-lucas</a><br><a href="https://www.justailab.com/news/justai-xiaojia-waic-2026-recap" target="_blank" rel="noopener">https://www.justailab.com/news/justai-xiaojia-waic-2026-recap</a></div><div class="note">事实核查：两条官网一手记录互证 WAIC 2026 OPC 专属展区参展事实；2026-07 参展时点与 [4] 媒体合集页时间线衔接一致。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx partial">[6]</span><span class="rt">C+</span><span class="st">门户转载</span></div><div class="ti">头条号转载南都报道：AI 一人公司 JustAI（转载页，编者描述性标题）</div><div class="mt"><b>来源：</b>今日头条（转载南方都市报）　<b>发布日期：</b>2026-08（转载）<br><a href="https://m.toutiao.com/group/7676995528424489478" target="_blank" rel="noopener">https://m.toutiao.com/group/7676995528424489478</a></div><div class="note">事实核查：转载链信源，内容溯源自南都 [1]；仅用于佐证传播扩散与每经/灼识 OPC 定义口径的行业背景（该定义经案例池底稿收录，未随本报告单列信源链接），不作为独立事实来源。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">B+</span><span class="st">行业垂直媒体一手采访（对标行《妹居物语》）</span></div><div class="ti">1人开发2个月，8000元成本拿到破万DAU（葡萄君一手采访）</div><div class="mt"><b>来源：</b>游戏葡萄（头条号分发）　<b>发布日期：</b>2025-10-20<br><a href="https://m.toutiao.com/group/7563219828568326690" target="_blank" rel="noopener">https://m.toutiao.com/group/7563219828568326690</a></div><div class="note">事实核查：对标表中《妹居物语》行「Demo 上架 3 天 DAU 破万、成本七八千元」数据出处；详见案例报告 <a href="../meiju-wuyu/" style="color:#2980b9">report/meiju-wuyu/</a>。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx verified">[8]</span><span class="rt">A</span><span class="st">平台一手页（对标行《妹居物语》）</span></div><div class="ti">《妹居物语》TapTap 页面（预约 66 万 / 评分 9.5 / 1866 条评价；「demo 由一人独立开发完成」）</div><div class="mt"><b>来源：</b>TapTap 官方页　<b>发布日期：</b>2026-11-15 检索（2026-07 口径见案例报告）<br><a href="https://www.taptap.cn/app/782330" target="_blank" rel="noopener">https://www.taptap.cn/app/782330</a></div><div class="note">事实核查：对标表中《妹居物语》行 TapTap 数据出处，平台一手页面可回溯；详见案例报告 <a href="../meiju-wuyu/" style="color:#2980b9">report/meiju-wuyu/</a>。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 8 条。核验标签分布：🟢 已核验（verified）3 条（[4][5][8]）、🔵 多源印证（cross）4 条（[1][2][3][7]）、🟡 部分映证（partial）1 条（[6]）。信源评级分布：A/A+ 级 5 条、B+ 级 2 条、C+ 级 1 条。一处核心口径注记（团队规模双口径：南都「全职员工 4 人+本人+实习生」 vs 官网「Lucas 带领」 vs 每经/灼识 OPC 定义）与三处留白（营收、融资、活跃数据）已在捌章显式标注；官网时序与南都报道在 400 万档互证一致。未发现伪造链接，全部 URL 为检索过程实际命中页面。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-15 · 营收与转化率推算值均标注置信口径，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>
