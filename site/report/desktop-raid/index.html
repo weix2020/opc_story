@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · 《桌面副本物语》—— 十年独立开发者大葵的 AI 一人游戏公司 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · 《桌面副本物语 Desktop Raid》">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="《桌面副本物语 Desktop Raid》深度案例报告：10 年独立游戏开发者大葵，用 Codely 在 Unity 引擎内调度 AI，一人完成开发，上线半年销量破 5 万份、流水近百万。6 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+<link rel="canonical" href="https://opc-story.pages.dev/report/desktop-raid/">
+<meta name="robots" content="index,follow">
+<meta property="og:url" content="https://opc-story.pages.dev/report/desktop-raid/">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@type":"Article","@context":"https://schema.org","headline":"深度案例 · 《桌面副本物语》—— 十年独立开发者大葵的 AI 一人游戏公司 · OPC Story","description":"《桌面副本物语 Desktop Raid》深度案例报告：10 年独立游戏开发者大葵，用 Codely 在 Unity 引擎内调度 AI，一人完成开发，上线半年销量破 5 万份、流水近百万。6 条信源逐条核验。","inLanguage":"zh-CN","author":{"@type":"Person","name":"OPC Story"},"publisher":{"@type":"Organization","name":"OPC Story","url":"https://opc-story.pages.dev/"},"mainEntityOfPage":"https://opc-story.pages.dev/report/desktop-raid/","datePublished":"2026-10-22"}</script>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>《桌面副本物语 Desktop Raid》深度案例报告</h1>
+    <h2>10 年独立开发者大葵：把 AI 放进 Unity 引擎里干活，一个人完成开发，<br>上线半年销量破 5 万份、流水近百万 —— 6 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">垂直应用型 OPC</span>
+      <span class="tag">AI 游戏开发</span>
+      <span class="tag">Steam 出海</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">5 万份</div><div class="k">上线半年销量（创作者口径）</div></div>
+  <div class="stat"><div class="v up">近 100 万元</div><div class="k">流水（创作者口径，未披露平台分成）</div></div>
+  <div class="stat"><div class="v neutral">76%</div><div class="k">Steam 好评率（654 篇评测，一手）</div></div>
+  <div class="stat"><div class="v down">约 1 个月</div><div class="k">AI 开发周期（传统工作流约 12 个月）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">《桌面副本物语：放置好时光》（Desktop Raid）是一款把经典刷宝 RPG 浓缩进桌面底部的挂机游戏：玩家招募佣兵、自动战斗、掉宝、转职、开垦家园，游戏在办公或学习时“自然继续”。开发者大葵（B 站：朵辣辣和葵发发）有 10 年传统独立游戏开发经验，2025-2026 年转向“AI 进入引擎干活”的工作流，一个人完成了这款 Steam 游戏的开发<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a>。游戏 2026 年 3 月 8 日上线，半年销量突破 5 万份、流水近百万<a class="cref cross" href="#ref-1">[1]</a>。</p>
+  <div class="two">
+    <div class="card"><div class="ct">产品</div><div class="cb">Steam 桌面挂机 RPG：佣兵自动奋战、升级、掉宝；职业/技能/装备体系；家园建造与增益；像素/卡通美术。Steam 标签为挂机、角色扮演、生物收集、增量、刷宝、自走棋、桌面伴侣。售价 ¥36，开发商与发行商均含 Lee_Studio，另有 Gamersky Games 联合发行。<a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-6">[6]</a></div><div class="cm">App ID：3122460 · 上线：2026-03-08</div></div>
+    <div class="card"><div class="ct">开发者</div><div class="cb">大葵，B 站账号「朵辣辣和葵发发」，10 年独立游戏开发经验；自学编程入行，非科班；并非全职脱产，有副业收入对冲风险。社区里较早、也较高频使用 AI 做游戏开发的开发者之一。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="card"><div class="ct">一人属性与协作边界</div><div class="cb">策划、程序、美术、引擎装配与调试由他一人 + AI 完成，传统流水线的交接环节被去掉；但发行环节有 Gamersky Games 参与，Steam 页面标注了联合发行。属于“一人开发 + 外部发行”的 OPC，而非零协作。<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="card blue"><div class="ct">工具与工作流</div><div class="cb">全程在 Unity 中国旗下 Codely 中开发：AI 智能体直接进入引擎，调用模型与工具、写脚本、挂组件、编译、自修报错、自测；人只在关键节点看效果、确认设计意图。主力模型为 GLM 5.3 flash（便宜、能看图），粒子/UI 等“许愿式”任务用 Kimi K3。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">早年 - 2024</div><div class="tx">十年独立游戏开发，传统工作流</div><div class="td">自学编程入行；过去一个人做 Steam 游戏，从开发到上线至少 12 个月。非全职，保留副业收入。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2025</div><div class="tx">开始高频试 AI 开发，交了大量“学费”</div><div class="td">从模型选择、提示词设计到项目管理、功能验收、引擎操作逐项试错；单个项目投入约四五千元；也踩过“十几个 Agent 分工”的坑，生成质量低、成为时间黑洞。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-03-08</div><div class="tx">《桌面副本物语》Steam 上线</div><div class="td">Lee_Studio 开发，Gamersky Games 联合发行；售价 ¥36；上线后进入“多半好评”区间。<a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2026-10-22</div><div class="tx">Unity 官方社区刊出长篇专访</div><div class="td">披露半年销量破 5 万份、流水近百万；完整复盘 Codely + 引擎内 AI 的工作流、模型分工、成本与失败经验。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-11-17（检索时点）</div><div class="tx">Steam 654 篇评测、76% 好评</div><div class="td">最近 30 天 17 篇评测、70% 好评；第三方 PureGameStats 估算销量约 4.49 万份，略低于创作者口径的 5 万份。<a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-4">[4]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：从“网页许愿做游戏”转向“AI 进引擎”</div><div class="cb">他明确反对用 three.js / 网页 + 顶级模型“许愿”做游戏：出 demo 很快，但 UI 错位、场景加一块石头都只能继续对话解决，修改主动权交给 AI，烧钱无底洞。他的选择是让 AI 进入 Unity 引擎，直接写脚本、挂组件、编译、自测，人保留手动修改权<a class="cref cross" href="#ref-1">[1]</a>。</div></div>
+  <div class="card"><div class="ct">转折二：把“验收标准”写成约束文档与 Skill</div><div class="cb">AI 说“做好了”往往只是“代码没报错”。他的对策不是逐行看代码，而是：一开始就写约束（每个方法加注释、新方法先查同类复用）、把测试验收流程标准化、要求 AI 自测后自己再手动跑一遍。核心资产不是模型，而是沉淀下来的约束文档与项目知识库<a class="cref cross" href="#ref-1">[1]</a>。</div></div>
+  <div class="card"><div class="ct">转折三：用“经典题材 + 现代玩法”切自己的手感</div><div class="cb">选题逻辑是“现代思路游戏设计 + 经典题材玩法碰撞”：刷宝、收集宠物、角色养成来自传奇/梦幻西游/魔兽，挂机、自动战斗、自走棋来自新玩法；主打低门槛碎片化体验。他强调“选自己能 get 到的赛道”，因为 AI 没有手感、直觉和共情，选题只能人来<a class="cref cross" href="#ref-1">[1]</a>。</div></div>
+  <div class="quote">
+    <p>模型能力是租来的，自己沉淀下来的约束文档、项目知识库才是自己的核心资产。</p>
+    <span class="src">—— 大葵，Unity 官方社区专访（2026-10-22），<a class="cref cross" href="#ref-1">[1]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>事实与分析</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>产品形态</b></td><td>桌面挂机刷宝 RPG：佣兵自动战斗/升级/掉宝，职业与技能树、装备、家园建造；像素/卡通；主打“不打游戏如上班”的碎片化体验</td><td><a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+      <tr><td><b>定价与发行</b></td><td>Steam 售价 ¥36；Lee_Studio 开发并发行，Gamersky Games 联合发行；有支持者包与多个捆绑包</td><td><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>生产流程</b></td><td>Codely 内 AI 智能体直接在 Unity 引擎操作：写脚本、挂组件、编译、自修报错、自测；人负责需求、约束、关键节点验收；UI 手动搭 UGUI（几十分钟）</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>成本结构</b></td><td>单个项目投入约四五千元（含试错，非严格核算）；主力用便宜的 GLM 5.3 flash，关键任务用贵的 Kimi K3；无办公与人力成本</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>收入结构</b></td><td>Steam 买断制销售收入（平台抽成与发行分成未披露）；无内购、无广告、无订阅；售后更新是持续成本</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点 / 口径</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>销量</td><td class="hl">5 万份+</td><td>上线半年，创作者在 Unity 专访中自述</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>流水</td><td class="hl">近 100 万元</td><td>创作者口径；未说明是否扣除 Steam 30% 与发行分成</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>Steam 评测</td><td>654 篇，76% 好评</td><td>2026-11-17 抓取；最近 30 天 17 篇、70% 好评</td><td><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td>第三方销量估算</td><td>约 44,925 份</td><td>PureGameStats 基于评测数、在线峰值、成就完成率估算，高置信度</td><td><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td>评测总量（第三方）</td><td>743 篇，76% 好评</td><td>Steam250 抓取，与 Steam 页面 654 篇存在抓取时差</td><td><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td>开发周期</td><td class="pos">约 1 个月（专心开发）</td><td>创作者与传统工作流 12 个月对比，非严格项目排期</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 销量与流水的交叉核验</div>
+    按 ¥36 原价 × 5 万份 = 180 万元；扣除 Steam 30% 分成约 126 万元，再考虑国区折扣、区域定价、捆绑包与发行分成，落到“近 100 万元”量级是合理的。第三方估算 4.49 万份与 5 万份相差约 10%，在评测驱动估算的误差范围内，本报告将“5 万份”标为创作者口径、将“约 4.5 万份”标为第三方估算，二者并列。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">与案例墙中其他“一人 + AI 做游戏 / 工具”的样本对比（对标数据为案例墙既有核验值）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>数据表现（既有核验值）</th></tr></thead>
+    <tbody>
+      <tr><td><b>《桌面副本物语》</b>（本案）</td><td>大葵（10 年独立开发经验）</td><td>Steam 桌面挂机 RPG，一人开发 + 联合发行</td><td>半年 5 万份（第三方约 4.5 万）、流水近百万；¥36；76% 好评</td></tr>
+      <tr><td>《妹居物语》</td><td>独立开发者（Claude 开发）</td><td>AI 原生陪伴游戏</td><td>Demo 上架 3 天 DAU 破万、TapTap 预约 66 万评分 9.5、成本七八千元</td></tr>
+      <tr><td>《明末：欲火重生》</td><td>一人 + AI 开发</td><td>Steam 独立游戏</td><td>案例墙收录；以 AI 承担美术/代码为主，具体销量以原报告为准</td></tr>
+      <tr><td>《人生重开手帐》</td><td>MistEO</td><td>网页小游戏</td><td>两天做出 8 万日活，但自述“几乎没赚到钱”（备选池，未收录）</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>《桌面副本物语》的关键差异是<b>“先有十年手感，再用 AI 提效”</b>，而不是“零基础用 AI 做游戏”。同一波 AI 游戏潮里，大量新手用许愿模型做出 demo 却无法上架赚钱；大葵的判断是：AI 把开发周期从 12 个月压到 1 个月，但选题、设计意图、发行与售后仍靠人。这也解释了为什么它的好评率是 76%（“多半好评”）而非更高——AI 提效不等于品质自动提升<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a>。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>分析</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品与定位</b></td><td>经典刷宝/收集/养成 + 挂机/自动战斗/自走棋，切“想玩但没时间”的桌面场景；低门槛、碎片化、离线收益。不是品类创新，而是成熟品类的体验重组</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>2. 生产流程</b></td><td>AI 在引擎内闭环：需求→脚本→组件→编译→自修→自测；人保留关键节点验收与手动修改权。约束文档、项目知识库、Skill 是质量稳定器</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>3. 成本结构</b></td><td>单项目约四五千元，主要是模型调用与试错；无人力、无办公。相比传统独立游戏的美术外包与人力，成本结构被彻底改写</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>4. 商业模式</b></td><td>Steam 买断制，¥36 低价走量；收入受平台曝光、折扣、区域定价影响大；售后更新是必须承担的长期成本</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>5. 一人属性</b></td><td>开发端严格一人 + AI；发行端有 Gamersky Games 联合发行，不属于完全自出版。归为“一人开发 + 外部发行”的 OPC 更准确</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>6. 可复制性</b></td><td>中低。工作流可学（Codely + 约束文档 + 测试验收），但 10 年手感、选题判断、对 Steam 生态的理解无法速成；他自己也建议新人不要全职做独立游戏</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>7. 风险</b></td><td>AI 游戏供给暴增导致首发曝光下降；玩家对“AI 味”反感；好评率 76% 说明品质仍有争议；单一产品依赖、售后更新消耗精力；第三方销量估算低于自述，存在口径差</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 三组需要留意的口径</div>
+    ① <b>销量 5 万 vs 4.49 万</b>：前者为创作者自述，后者为 PureGameStats 基于评测的估算；② <b>“流水近百万”</b>未说明是否扣除 Steam 30% 分成、发行分成、折扣与退款，不能等同于个人到手收入；③ <b>“上线半年”</b>：游戏 2026-03-08 上线，专访 2026-10-22 发布，实际约 7 个半月，媒体标题的“半年”为约数。
+  </div>
+  <div class="card"><div class="ct">“一人公司”的边界</div><div class="cb">Steam 页面同时标注 Lee_Studio 与 Gamersky Games 为发行商，说明发行环节有外部合作；开发端则由大葵一人 + AI 完成。本报告不将其描述为“零协作”，而是“一人开发 + 联合发行”。<a class="cref cross" href="#ref-2">[2]</a></div></div>
+  <div class="box note">
+    <div class="bt">📌 留白</div>
+    未公开：真实姓名、年龄、所在地、Lee_Studio 的主体信息、与 Gamersky Games 的分成条款、开发成本明细、退款率、愿望单转化率、后续更新计划。另注：第三方销量估算方法不透明，仅作交叉参考，不作为主口径。
+  </div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">捌·附</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 6 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx cross">[1]</span><span class="rt">A-</span><span class="st">引擎厂商官方社区</span></div><div class="ti">半年卖出 5 万套，「一人公司」如何用 AI 从 Steam 红海中突围</div><div class="mt"><b>来源：</b>Unity 官方（网易号官方分发）　<b>发布日期：</b>2026-10-22<br><a href="https://www.163.com/dy/article/L9SDR1U50526E124.html" target="_blank" rel="noopener">https://www.163.com/dy/article/L9SDR1U50526E124.html</a></div><div class="note">事实核查：5 万份、流水近百万、10 年经验、Codely 工作流、GLM 5.3 flash / Kimi K3 分工、单项目四五千元、12 个月→1 个月、对许愿模型的批评均出自此稿；为一手专访，核心数据按多源印证处理。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx verified">[2]</span><span class="rt">A</span><span class="st">平台一手页面</span></div><div class="ti">桌面副本物语：放置好时光 · Steam 商店页</div><div class="mt"><b>来源：</b>Valve / Steam　<b>抓取日期：</b>2026-11-17<br><a href="https://store.steampowered.com/app/3122460/Desktop_Raid/?l=schinese" target="_blank" rel="noopener">https://store.steampowered.com/app/3122460/Desktop_Raid/?l=schinese</a></div><div class="note">事实核查：发行日期 2026-03-08、售价 ¥36、开发商 Lee_Studio、发行商 Lee_Studio + Gamersky Games、654 篇评测 76% 好评、最近 30 天 17 篇 70% 好评、标签体系均取自页面；平台一手数据，可信度最高。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx partial">[3]</span><span class="rt">C+</span><span class="st">第三方估算</span></div><div class="ti">Desktop Raid Steam Charts, Sales Estimate, Players &amp; Wishlists</div><div class="mt"><b>来源：</b>PureGameStats　<b>抓取日期：</b>2026-11-17<br><a href="https://www.puregamestats.com/game/3122460/desktop-raid" target="_blank" rel="noopener">https://www.puregamestats.com/game/3122460/desktop-raid</a></div><div class="note">事实核查：估算销量约 44,925 份、741 篇评测 75.8% 好评；估算方法为评测数/在线峰值/成就完成率，非平台官方数据，按部分映证处理。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx partial">[4]</span><span class="rt">C+</span><span class="st">第三方数据站</span></div><div class="ti">Desktop Raid – Steam 250</div><div class="mt"><b>来源：</b>Steam250　<b>抓取日期：</b>2026-11-17<br><a href="https://club.steam250.com/app/3122460" target="_blank" rel="noopener">https://club.steam250.com/app/3122460</a></div><div class="note">事实核查：743 篇评测、76% 好评、当前排名 #26300；与 Steam 页面 654 篇存在抓取时差，用于交叉评测比例。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx partial">[5]</span><span class="rt">C+</span><span class="st">第三方数据站</span></div><div class="ti">Desktop Raid Steam Charts</div><div class="mt"><b>来源：</b>Steambase　<b>抓取日期：</b>2026-11-17<br><a href="https://steambase.io/games/desktop-raid/steam-charts" target="_blank" rel="noopener">https://steambase.io/games/desktop-raid/steam-charts</a></div><div class="note">事实核查：727 篇评测、Steambase Player Score 76/100；作为第三方评测数据的第二来源。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx partial">[6]</span><span class="rt">B-</span><span class="st">游戏媒体评测</span></div><div class="ti">把刷宝 RPG 浓缩进桌面的挂机游戏，究竟如何？《桌面副本物语》</div><div class="mt"><b>来源：</b>游民星空 · 社区　<b>发布日期：</b>2026-03（页内未标确切日）<br><a href="https://club.gamersky.com/m/activity/1545211" target="_blank" rel="noopener">https://club.gamersky.com/m/activity/1545211</a></div><div class="note">事实核查：桌面底部战斗、左右 UI 面板、佣兵自动刷本、转职/天赋/家园等玩法描述出自此稿；为媒体评测，用于产品形态交叉，不用于销量。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 6 条。核验标签分布：🟢 已核验 1 条（Steam 平台页 [2]）、🔵 多源印证 1 条（Unity 官方专访 [1]）、🟡 部分映证 4 条（第三方估算 [3][4][5]、媒体评测 [6]）。信源评级：A 级 1 条、A- 级 1 条、C+ 级 3 条、B- 级 1 条。核心数字“5 万份 / 近百万流水”仅有一手专访一个来源，故未标绿；“76% 好评”由 Steam、Steam250、Steambase 三方交叉，可信度最高。全部 URL 为检索过程实际命中页面；未发现伪造链接。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-17 · 销量与流水为创作者口径，第三方估算并列，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · 刀仔 —— 骨折卧床 70 天，用 AI 遥控 4 家网店 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · 刀仔 AI 电商一人公司">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="刀仔深度案例报告：35 岁河南电商创业者，骨折卧床 70 天，用 AI 决策、Coze 工作流与一件代发遥控 12 家网店，优化到 4 家主力店，单店月净利 2.5-3 万元、运营成本仅 2000 元。5 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+<link rel="canonical" href="https://opc-story.pages.dev/report/daozai-ecommerce/">
+<meta name="robots" content="index,follow">
+<meta property="og:url" content="https://opc-story.pages.dev/report/daozai-ecommerce/">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@type":"Article","@context":"https://schema.org","headline":"深度案例 · 刀仔 —— 骨折卧床 70 天，用 AI 遥控 4 家网店 · OPC Story","description":"刀仔深度案例报告：35 岁河南电商创业者，骨折卧床 70 天，用 AI 决策、Coze 工作流与一件代发遥控 12 家网店，优化到 4 家主力店，单店月净利 2.5-3 万元、运营成本仅 2000 元。5 条信源逐条核验。","inLanguage":"zh-CN","author":{"@type":"Person","name":"OPC Story"},"publisher":{"@type":"Organization","name":"OPC Story","url":"https://opc-story.pages.dev/"},"mainEntityOfPage":"https://opc-story.pages.dev/report/daozai-ecommerce/","datePublished":"2026-03-23"}</script>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>刀仔 · AI 电商一人公司 深度案例报告</h1>
+    <h2>35 岁河南电商创业者：骨折卧床 70 天，用 AI 决策 + Coze 工作流 + 一件代发遥控 12 家网店，<br>优化到 4 家主力店，单店月净利 2.5-3 万元、月运营成本仅 2000 元 —— 5 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">营销电商型 OPC</span>
+      <span class="tag">AI + 一件代发</span>
+      <span class="tag">逆境创业</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">2.5-3 万元</div><div class="k">单店月净利（非 4 店合计）</div></div>
+  <div class="stat"><div class="v down">2000 元</div><div class="k">月运营成本（传统团队至少 2 万）</div></div>
+  <div class="stat"><div class="v neutral">4 家</div><div class="k">主力店铺（前后开过 12 家）</div></div>
+  <div class="stat"><div class="v down">2-3 小时</div><div class="k">每天工作时长（自述）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">刀仔，35 岁，河南电商创业者。此前在直播行业做了五年多，从游戏主播做到直播经纪公司，累计孵化过万名主播，挣到 8 位数。2024 年中判断直播风口已过，计划租库房、组 10 人团队做跨境电商；考察供应链时被货车掉落的货物砸断腿，卧床 70 多天<a class="cref cross" href="#ref-1">[1]</a>。他选择用 AI 替代原计划的 10 人团队：工厂一件代发、客服外包 + AI 自动回复、AI 做选品/文案/配图/经营日报，在病床上遥控 12 家网店；后优化到 4 家主力店，2026 年 1 月单店平均销售额 5-8 万元、单店月净利 2.5-3 万元，月运营成本约 2000 元<a class="cref cross" href="#ref-1">[1]</a>。</p>
+  <div class="two">
+    <div class="card"><div class="ct">创业者</div><div class="cb">刀仔，35 岁，河南。5 年多直播行业经验（游戏主播 → 直播经纪公司，孵化过万名主播，挣到 8 位数）；2024 年中转向电商，考察供应链时骨折，卧床 70 多天。不是“零基础小白”，懂流量、懂投流、懂选品。<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-4">[4]</a></div></div>
+    <div class="card"><div class="ct">业务模式</div><div class="cb">冬季鞋为主，工厂一件代发（每双鞋多加几块钱、品控风险上升，但不租库房、不压库存）；在 1688、淘宝、抖音、拼多多开店，前后 12 家、优化掉 8 家、保留 4 家主力店；客服外包 1000 元/月 + 几十元 AI 自动回复覆盖后半夜。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="card"><div class="ct">一人属性与协作边界</div><div class="cb">没有雇员、没有店长、没有仓库；运营由他一人 + AI 完成，客服与发货外包。属于“一人决策 + AI 执行 + 外包履约”的 OPC；不是完全无外部协作，但组织成本被压到极低。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="card blue"><div class="ct">AI 用法</div><div class="cb">两层：① 决策——投流预算、结合天气与过去五年数据的冬季鞋需求趋势，AI 给建议、他拍板；② 提效——分析头部店铺关键词与详情页逻辑，批量生成文案与配图；用扣子（Coze）搭工作流，每天抓销售数据、天气、竞品价格，生成经营日报与优化建议。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2019-2024</div><div class="tx">直播行业五年，从主播到经纪公司</div><div class="td">累计孵化过万名主播，挣到 8 位数；2024 年中判断直播风口已过，决定转跨境电商。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2024 年中</div><div class="tx">考察供应链时骨折，卧床 70 多天</div><div class="td">原计划租库房、组 10 人团队；受伤后要么等腿好、要么用 AI 替代 10 个人先跑起来，他选后者。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">卧床期间</div><div class="tx">搭起“一件代发 + AI 运营”的最小闭环</div><div class="td">工厂一件代发解决发货；客服外包 1000 元/月 + AI 自动回复；AI 做选品、文案、配图；Coze 工作流每天生成经营日报。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2025</div><div class="tx">12 家店跑量，优化到 4 家主力店</div><div class="td">在 1688、淘宝、抖音、拼多多多平台试品，关掉 8 家，保留 4 家；形成冬季鞋为主的品类结构。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-01</div><div class="tx">单店月销 5-8 万、净利 2.5-3 万</div><div class="td">剔除所有开支并均摊后，单店月净利 2.5-3 万元；月运营成本约 2000 元；每天工作 2-3 小时。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-03-23</div><div class="tx">界面新闻 AIX 财经刊出六人访谈</div><div class="td">刀仔作为“骨折卧床用 AI 开 12 家网店”的样本出现；同篇还有 SaaS、AI 视频、AI 炒股、AI 教培、AI 音乐五个样本。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">后续计划</div><div class="tx">优化冬季鞋模式、尝试跨境、把方法论做成服务</div><div class="td">国内季节性太强，跨境可全年运营；考虑把“一人公司”方法论沉淀为服务，明确“不卖课，只做服务”。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：把“10 人团队”拆成三个可替代模块</div><div class="cb">他没有试图让 AI 干所有事，而是把原计划的团队拆成：发货（工厂一件代发）、客服（1000 元/月外包 + AI 自动回复）、运营（AI 决策 + 内容生成 + Coze 日报）。每个模块都用最低成本的外部资源替代，自己只保留决策权<a class="cref cross" href="#ref-1">[1]</a>。</div></div>
+  <div class="card"><div class="ct">转折二：让 AI 做“参谋”，不做“老板”</div><div class="cb">投流预算怎么定、冬季鞋需求趋势如何，AI 给建议，他拍板；他不认为 AI 能替代商业判断。这种分工让他在卧床期间仍能保持决策质量，而不是把生意交给模型赌博<a class="cref cross" href="#ref-1">[1]</a>。</div></div>
+  <div class="card"><div class="ct">转折三：用“最小成本验证”替代“重资产押注”</div><div class="cb">不租库房、不压库存、不养团队，先开多家店试品，跑不出来的关掉；12 家优化到 4 家。他把这套方法总结为：用 AI 思考和决策、用外包解决人力、用最小成本验证模式<a class="cref cross" href="#ref-1">[1]</a>。</div></div>
+  <div class="quote">
+    <p>AI 只是工具，如果没有商业逻辑，再好的工具也没用。我这次能成，七成是运气——刚好在那个时间点选对了品类。</p>
+    <span class="src">—— 刀仔，界面新闻 · AIX 财经（2026-03-23），<a class="cref cross" href="#ref-1">[1]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>事实与分析</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>品类</b></td><td>冬季鞋为主；明星同款/头部店铺为对标，AI 分析关键词与详情页逻辑后批量生成文案与配图</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>渠道</b></td><td>1688、淘宝、抖音、拼多多四平台；前后 12 家店，优化掉 8 家，保留 4 家主力店</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>履约</b></td><td>工厂一件代发：每双鞋多加几块钱、品控风险上升，但零库存、零库房、资金压力几乎为零</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>成本结构</b></td><td>月运营成本约 2000 元：客服外包 1000 元 + AI 自动回复几十元 + 工具订阅；传统电商团队每月至少 2 万元</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>收入结构</b></td><td>单店月销 5-8 万元、净利 2.5-3 万元（单店口径，非 4 店合计）；无自有品牌、无订阅、无课程收入</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点 / 口径</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>单店月销售额</td><td class="hl">5-8 万元</td><td>2026-01，单店平均</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>单店月净利</td><td class="hl">2.5-3 万元</td><td>剔除所有开支并均摊后；单店口径，非 4 店合计</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>月运营成本</td><td class="pos">约 2000 元</td><td>主要是客服外包，其他几乎为零</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>店铺数量</td><td>12 家 → 4 家</td><td>前后开过 12 家，优化掉 8 家</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>每天工作时长</td><td>2-3 小时</td><td>早上填表、晚上看推广数据；自述</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>卧床时长</td><td>70 多天</td><td>2024 年中骨折</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 “单店净利”不是“总净利”</div>
+    这是本案最容易被误读的数字。刀仔的原话是“单店平均销售额 5-8 万”“单月净利在 2.5-3 万左右”，并明确“把费用均摊后”。4 家主力店若都达到单店水平，合计净利会更高；但他未披露 4 店合计数据，也未说明是否所有店都达到该水平。本报告按“单店口径”收录，不推算总数。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>路径</th><th>成本</th><th>数据表现</th><th>差异</th></tr></thead>
+    <tbody>
+      <tr><td><b>刀仔 AI 电商</b>（本案）</td><td>一件代发 + AI 运营 + 多平台试品</td><td>2000 元/月</td><td>单店月销 5-8 万、净利 2.5-3 万；4 家主力店</td><td>有 5 年直播与投流经验，非零基础</td></tr>
+      <tr><td>贺沐 TikTok AI 跨境电商</td><td>AI 选品/内容/投放，做 TikTok 出海</td><td>以原报告核验值为准</td><td>TikTok 跨境，具体数据见对应报告</td><td>出海平台，内容驱动</td></tr>
+      <tr><td>炘扬贸易（AI 棒球帽出海）</td><td>AI + 外贸，单品出海</td><td>以原报告核验值为准</td><td>AI 棒球帽出海，具体数据见对应报告</td><td>单品供应链深耕</td></tr>
+      <tr><td>沪咪科技（TikTok 日本家纺）</td><td>AI + TikTok 日本家纺</td><td>以原报告核验值为准</td><td>日本家纺出海，具体数据见对应报告</td><td>区域市场深耕</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>刀仔与其他出海案例的差异在于<b>“逆境触发 + 国内多平台试品”</b>：他不是主动选择 AI，而是卧床后被迫用 AI 替代团队；不是做单一平台，而是在四个平台试品、快速关店。这套打法的核心不是 AI 技术，而是<b>把固定成本变成可变成本</b>——不租库房、不养团队、不压库存，用外包和模型按需付费。代价是品控与履约体验不稳定，且高度依赖平台流量与品类季节。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>分析</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品与定位</b></td><td>冬季鞋、明星同款平替，面向价格敏感人群；不做品牌、不做设计，靠选品与投放效率取胜</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>2. 生产/履约流程</b></td><td>工厂一件代发，零库存；客服外包 + AI 自动回复；AI 生成文案/配图；Coze 工作流生成日报；他每天只填表、看数据</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>3. 成本结构</b></td><td>2000 元/月 vs 传统团队 2 万元/月；固定成本几乎为零，成本随订单变动；但品控与售后风险由自己承担</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>4. 商业模式</b></td><td>平台电商差价，单店月净利 2.5-3 万；无品牌溢价、无复购壁垒；可复制到跨境，但需重新解决物流与合规</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>5. 一人属性</b></td><td>一人决策 + AI 执行 + 外包履约；没有雇员，但有客服外包与工厂合作；属于“轻组织 OPC”，不是字面意义的一个人干完所有环节</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>6. 可复制性</b></td><td>中低。AI 工具与 Coze 工作流可复制，但 5 年直播经验带来的选品、投流、流量判断无法速成；他自己也说“七成是运气”</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-4">[4]</a></td></tr>
+      <tr><td><b>7. 风险</b></td><td>品类季节性强、平台规则变化、一件代发品控不可控、AI 建议可能错误、单店模型未必能放大到多店/跨境</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 三个容易误读的点</div>
+    ① <b>“12 家网店”</b>是前后开过、后来优化到 4 家，不是同时运营 12 家；② <b>“单月净利 2.5-3 万”</b>是单店口径，不是 4 店合计；③ <b>“每天工作 2-3 小时”</b>是运营稳定后的状态，卧床期间与起店阶段投入远高于此。另有信源将其描述为“零基础”，与“5 年直播、8 位数收入”的原始自述冲突，本报告不采信“零基础”说法。
+  </div>
+  <div class="card"><div class="ct">“一人公司”的边界</div><div class="cb">没有雇员，但有客服外包、工厂代发、平台流量与 AI 模型四类外部依赖；更准确的描述是“一人决策 + 外包履约”的轻组织，而非完全自给自足。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+  <div class="box note">
+    <div class="bt">📌 留白</div>
+    未公开：真实姓名、店铺名称与链接、品类毛利率、退货率、投流 ROI、4 店合计营收、跨境进展、AI 工具具体型号与订阅成本。另注：腾讯云开发者社区的 OPC 案例拆解为二手加工，仅用于交叉“2000 元成本/单店口径”等表述，不作为主信源。
+  </div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">捌·附</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 5 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx cross">[1]</span><span class="rt">A-</span><span class="st">财经媒体一手访谈</span></div><div class="ti">我的“一人公司”，是怎么搞钱的？</div><div class="mt"><b>来源：</b>界面新闻 · AIX 财经（文 | 金玙璠 雷晶 陈丹 王汉星 王璐 李梦冉）　<b>发布日期：</b>2026-03-23<br><a href="https://www.jiemian.com/article/14150960.html" target="_blank" rel="noopener">https://www.jiemian.com/article/14150960.html</a></div><div class="note">事实核查：35 岁河南、5 年直播、8 位数收入、骨折卧床 70 天、12 家店优化到 4 家、单店月销 5-8 万、净利 2.5-3 万、2000 元成本、Coze 工作流、每天 2-3 小时均出自此稿；为第一人称自述 + 记者整理，按多源印证处理。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx partial">[2]</span><span class="rt">B+</span><span class="st">科技媒体转载</span></div><div class="ti">我的“一人公司”，是怎么搞钱的？</div><div class="mt"><b>来源：</b>钛媒体（头条号分发）　<b>发布日期：</b>2026-03（页内未标确切日）<br><a href="http://m.toutiao.com/group/7620403408981230115/" target="_blank" rel="noopener">http://m.toutiao.com/group/7620403408981230115/</a></div><div class="note">事实核查：与 [1] 同一稿件，用于确认原文表述未被改写；不构成独立信源。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx partial">[3]</span><span class="rt">B</span><span class="st">科技媒体</span></div><div class="ti">碳基和“悟空”组队烧 token，炸出新物种</div><div class="mt"><b>来源：</b>定焦 One（头条号分发）　<b>发布日期：</b>2026-03（页内未标确切日）<br><a href="http://m.toutiao.com/group/7618790201107923491/" target="_blank" rel="noopener">http://m.toutiao.com/group/7618790201107923491/</a></div><div class="note">事实核查：35 岁河南、卧床 70 天、遥控 12 家网店、每天 2-3 小时、单月净利近 3 万、运营成本 2000 元均与 [1] 一致；为独立媒体转述，构成第二来源。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx partial">[4]</span><span class="rt">C+</span><span class="st">开发者社区拆解</span></div><div class="ti">卧床 70 天，AI 替 10 人打工：一件代发单店月入 3 万</div><div class="mt"><b>来源：</b>腾讯云开发者社区（OPC 案例 040）　<b>发布日期：</b>2026（页内未标确切日）<br><a href="https://cloud.tencent.com/developer/article/2765654" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/2765654</a></div><div class="note">事实核查：明确指出“2.5-3 万是单店口径，不是 12 店合计”“不是从零开始的小白，有 5 年直播经验”；为二手拆解，但口径提示有价值，按部分映证处理。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx partial">[5]</span><span class="rt">C+</span><span class="st">自媒体解读</span></div><div class="ti">解读 OPC：一人公司的真正玩法是什么？</div><div class="mt"><b>来源：</b>搜狐号　<b>发布日期：</b>2026（页内未标确切日）<br><a href="https://m.sohu.com/a/1080475180_120583833/" target="_blank" rel="noopener">https://m.sohu.com/a/1080475180_120583833/</a></div><div class="note">事实核查：复述“12 家店优化到 4 家、单店月销 5-8 万、净利 2.5-3 万、成本 2000 元”，与 [1] 一致；为二手复述，仅作旁证。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 5 条，其中 [1][2] 为同一稿件，实质独立来源 4 个（界面 AIX 财经、定焦 One、腾讯云社区、搜狐号）。核验标签分布：🔵 多源印证 1 条（界面 [1]）、🟡 部分映证 4 条。信源评级：A- 级 1 条、B+ 级 1 条、B 级 1 条、C+ 级 2 条。核心数字“单店净利 2.5-3 万、成本 2000 元”由 [1][3][4][5] 四条交叉，但均源自同一受访者自述，故不标绿。全部 URL 为检索过程实际命中页面；未发现伪造链接。未采信“零基础小白”表述。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-17 · 净利为单店口径，收入为受访者自述，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

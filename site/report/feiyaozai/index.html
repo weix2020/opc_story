@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · 《非妖哉》—— 90 后客家创作者一人手搓 AI 志怪短剧 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · 《非妖哉》AI 志怪短剧">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="《非妖哉》深度案例报告：90 后客家创作者「不吃榨菜AIGC」除真人配音外一人完成剧本、分镜、生成与剪辑，三集播放破亿、单集成本约 1 万元。7 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+<link rel="canonical" href="https://opc-story.pages.dev/report/feiyaozai/">
+<meta name="robots" content="index,follow">
+<meta property="og:url" content="https://opc-story.pages.dev/report/feiyaozai/">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@type":"Article","@context":"https://schema.org","headline":"深度案例 · 《非妖哉》—— 90 后客家创作者一人手搓 AI 志怪短剧 · OPC Story","description":"《非妖哉》深度案例报告：90 后客家创作者「不吃榨菜AIGC」除真人配音外一人完成剧本、分镜、生成与剪辑，三集播放破亿、单集成本约 1 万元。7 条信源逐条核验。","inLanguage":"zh-CN","author":{"@type":"Person","name":"OPC Story"},"publisher":{"@type":"Organization","name":"OPC Story","url":"https://opc-story.pages.dev/"},"mainEntityOfPage":"https://opc-story.pages.dev/report/feiyaozai/","datePublished":"2026-10-01"}</script>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>《非妖哉》深度案例报告</h1>
+    <h2>90 后客家创作者「不吃榨菜AIGC」：除真人配音外，剧本、分镜、生成、剪辑一人完成，<br>三集播放破亿、单集成本约 1 万元 —— 7 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">作品型 OPC</span>
+      <span class="tag">AI 志怪短剧</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">1 亿+</div><div class="k">三集累计播放（2026-09-16）</div></div>
+  <div class="stat"><div class="v up">600 万+</div><div class="k">累计点赞（澎湃口径；南方+ 为 525 万）</div></div>
+  <div class="stat"><div class="v up">70 万+</div><div class="k">账号粉丝（9 月，起点约 1000-2000）</div></div>
+  <div class="stat"><div class="v neutral">约 1 万元</div><div class="k">单集制作成本（第一集近 2 万元）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">《非妖哉》是 2026 年夏天在抖音与 LibTV 社区走红的 AI 志怪单元短剧。创作者「不吃榨菜AIGC」是 90 后广东河源客家人，曾给抖音近 300 万粉丝账号 @江问渔 做摄影剪辑；转型 AI 创作后，他除请真人配音外，剧本、分镜、画面生成、精修与剪辑全部一人完成<a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-5">[5]</a>。截至 9 月 16 日上线三集，播放量破亿、累计点赞超 600 万，账号粉丝从一两千涨到 70 万+<a class="cref cross" href="#ref-5">[5]</a>；单集成本约 1 万元、制作周期约 10 天，在 AI 漫剧行业里属于“高成本慢工”<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a>。</p>
+  <div class="two">
+    <div class="card"><div class="ct">作品</div><div class="cb">《非妖哉》为单元剧：第一集《哑女小荷》讲琵琶女被四位“正气书生”害死后反被污为妖；第二集《阿牛》讲被全村嘲笑的大龄未婚男子与画中女子；第三集《少年永痣》讲因额头无痣被霸凌的少年。每集 6-7 分钟，借狐妖、画皮、符水等聊斋元素讲现实人心。<a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-5">[5]</a></div><div class="cm">发布平台：抖音 / LibTV 社区</div></div>
+    <div class="card"><div class="ct">创作者</div><div class="cb">「不吃榨菜AIGC」，90 后，广东河源客家人，在深圳工作生活 8 年；此前长期给女性向抖音账号 @江问渔 做摄影和剪辑，第一支 AI 短片为《衡水模式》。他自称“不是编剧”，却拿下抖音 AI 创作大赛最佳剧本奖。<a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-5">[5]</a></div></div>
+    <div class="card"><div class="ct">一人属性与协作边界</div><div class="cb">多家媒体表述一致：整部片子“除了请人配音，剩下的都是他一个人靠 AI 来完成”<a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-7">[7]</a>。分镜图大量由他本人一张张制作，超现实画面也由他逐点构思；AI 承担的是“把脑中画面实现出来”，而非替代判断<a class="cref cross" href="#ref-5">[5]</a>。</div></div>
+    <div class="card blue"><div class="ct">工具与工作流</div><div class="cb">核心生产工具为 LibTV：无限画布 + 节点式工作流，把剧本、分镜、镜头、剪辑放在同一空间，任意节点可回溯重生成；集成可灵 3.0、Seedance 2.0、Wan 2.6 等视频模型，可按镜头切换模型<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-5">[5]</a>。</div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2010 年代 · 幕后八年</div><div class="tx">从客家山村到深圳，做摄影剪辑</div><div class="td">长期为抖音女性向账号 @江问渔 做摄影和剪辑；这段经历被他称为导演判断力的来源——“怎么把文本在剪辑或摄影层面再往上拉”。<a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2025 年 · 转型期</div><div class="tx">第一支 AI 短片《衡水模式》</div><div class="td">开始以个人账号做 AIGC 创作，粉丝基数仅一两千。<a class="cref cross" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2026-08</div><div class="tx">《非妖哉》第一集上线</div><div class="td">第一集单集点赞即超过百万，“一下打响了名头”；单集制作 10 天左右，第一集成本更高。<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2026-09-05</div><div class="tx">中新网报道“一集 1 万元”</div><div class="td">披露单集周期约 10 天、成本约 1 万元；第一集首张定稿图消耗 10 万 LibTV 积分、约合 6000 多元、耗时 5 天。<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-7">[7]</a></div></div>
+    <div class="node"><div class="dt">2026-09-16 / 17</div><div class="tx">三集播放破亿，粉丝涨到 70 万+</div><div class="td">澎湃口径三集破亿、点赞 600 万+、粉丝 70 万+；南方+ 口径点赞 525 万、粉丝 65.1 万；深圳特区报在“两集”时点记录 400 万赞、50 万粉。<a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2026-10-01</div><div class="tx">澎湃刊出深度专访，创作方法完整披露</div><div class="td">“不写完整剧本、先定隐喻内核、边做边推”；第三集 12-13 天、每天 11:30 工作到凌晨两三点；第四集转向“诈骗”主题。<a class="cref cross" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2026-11 底 → 12 初（计划）</div><div class="tx">六集完结，再谈商业化与下一个 IP</div><div class="td">截至专访时尚未与任何方谈影视化或 IP 授权，“先把《非妖哉》更完”。<a class="cref cross" href="#ref-5">[5]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：从“给别人的文本做加法”到自己造文本</div><div class="cb">他的核心能力不是写剧本，而是剪辑与摄影的判断力：看文本时“可能感觉不到它的力量”，但在制作时知道什么时候该说台词、什么时候该有困境<a class="cref cross" href="#ref-5">[5]</a>。这套判断力让他在 AI 内容普遍“快消”的环境里，选择用 10 天做 6-7 分钟一集，而不是两个月上十几部。</div></div>
+  <div class="card"><div class="ct">转折二：用“反叙事”把志怪题材变成现实议题</div><div class="cb">传统聊斋里女性往往是女鬼或女妖，他一开始就决定“把这个东西摘除”——三集反复讲同一个母题：谁被这个社会定义成了“妖”<a class="cref cross" href="#ref-5">[5]</a>。第一集反写女鬼女妖，第二集讲拐卖与女性自救，第三集聚焦霸凌与异类标签；第四集转向诈骗。借古装志怪规避现实题材的舆论风险，同时保留表达锋利度<a class="cref cross" href="#ref-5">[5]</a>。</div></div>
+  <div class="card red"><div class="ct">转折三：高成本“慢工”在快消行业里的反向选择</div><div class="cb">行业主流是模板化量产，他却单集投入约 1 万元、10 天，第一集接近 2 万元；仅首张决定风格的关键图就用掉 10 万 LibTV 积分（约 6000 多元）、5 天、最多生成 40-50 次<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-7">[7]</a>。这种投入换来的不是产能，而是“去 AI 味”的质感：人物表演更克制、镜头运动更弱、美术服务剧情<a class="cref cross" href="#ref-5">[5]</a>。</div></div>
+  <div class="quote">
+    <p>我不能让一个男子去救一个被困的女性。他要救也是出于物理层面上的救，但真正的自救必须得是她们自己本身。</p>
+    <span class="src">—— 不吃榨菜，澎湃号·湃客 / 极客电影专访（2026-10-01），<a class="cref cross" href="#ref-5">[5]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>事实与分析</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>内容形态</b><br>（单元志怪短剧）</td><td>每集 6-7 分钟、独立故事、统一母题；古装志怪 + 现实议题；画面追求上世纪 80 年代老版《聊斋》的质朴国风，研读线描稿、拆解嵌螺钿与中式雕花</td><td><a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-5">[5]</a></td></tr>
+      <tr><td><b>生产流程</b><br>（一人 + 多模型）</td><td>剧本/分镜/生成/精修/剪辑一人；LibTV 无限画布节点式工作流，脚本、分镜、镜头、剪辑同空间；按镜头调用可灵 3.0、Seedance 2.0、Wan 2.6；配音外包</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-5">[5]</a><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>成本结构</b></td><td>单集约 1 万元、第一集近 2 万元；主要开销是算力；首张关键图 10 万 LibTV 积分 ≈ 6000 多元；单镜头最多生成 40-50 次</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>收入来源</b></td><td>平台流量分成 + 抖音 AI 创作大赛奖金（最佳剧本奖）；截至 2026-10 未谈影视化、未谈 IP 授权，收入规模未披露；创作者明确表示“先把手上事情一件件做好”</td><td><a class="cref cross" href="#ref-5">[5]</a></td></tr>
+      <tr><td><b>可持续性</b><br>（产能与题材）</td><td>单集 10-13 天、每天 11:30-凌晨 2-3 点；计划 6 集完结后休整，再考虑商业化或下一个 IP；第四集已转向诈骗题材，选题尺度受平台规则约束</td><td><a class="cref cross" href="#ref-5">[5]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点 / 口径</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>累计播放</td><td class="hl">破 1 亿</td><td>2026-09-16，三集；平台未披露具体统计方式</td><td><a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-5">[5]</a></td></tr>
+      <tr><td>累计点赞</td><td class="hl">600 万+ / 525 万 / 400 万</td><td>分别为 9-16 三集、9-17 三集、两集时点口径</td><td><a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-5">[5]</a></td></tr>
+      <tr><td>账号粉丝</td><td class="hl">70 万+ / 65.1 万 / 50 万+</td><td>2026-09 不同时点；起点约 1000-2000</td><td><a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-5">[5]</a></td></tr>
+      <tr><td>单集时长</td><td>6-7 分钟</td><td>2026-09 报道</td><td><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td>单集成本</td><td class="hl">约 1 万元；第一集近 2 万元</td><td>创作者自述，经中新网、南方+、九派交叉</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td>制作周期</td><td>约 10 天；第三集 12-13 天</td><td>2026-09 / 2026-10 口径</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-5">[5]</a></td></tr>
+      <tr><td>奖项</td><td class="pos">抖音 AI 创作大赛最佳剧本奖</td><td>2026 年，具体日期未披露</td><td><a class="cref cross" href="#ref-5">[5]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    播放量、点赞、粉丝均为平台前台或媒体转述口径，未见抖音官方数据后台截图或第三方监测报告；三个数字随时点变化，正文并列而非取单一值。成本为创作者自述并称“主要开销花在算力上”，未披露具体模型单价与积分兑换明细；“1 万元/集”与“第一集近 2 万元”不矛盾，前者为集均、后者为特殊集。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">将《非妖哉》放入案例墙“AI 短剧 / 漫剧”坐标系（对标数据均为案例墙既有核验值，详见 <a href="../../index.html" style="color:#2980b9">案例墙 index.html</a> 及对应深度报告）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>数据表现（既有核验值）</th><th>锚点</th></tr></thead>
+    <tbody>
+      <tr><td><b>《非妖哉》</b>（本案）</td><td>不吃榨菜AIGC（90 后，深圳）</td><td>AI 志怪单元短剧，一人 + 配音外包</td><td>三集播放破亿、点赞 600 万+、粉丝 70 万+；单集约 1 万元、10 天</td><td>2026-10-01 ▲</td></tr>
+      <tr><td>《重生螳螂，觉醒无限吞噬进化》</td><td>白非空（40 岁，四川家居 3D 设计师）</td><td>96 集 AI 短剧，一人完成剧本/生成/剪辑</td><td>红果热度 6042 万、播放破 6 亿（4 信源交叉）、增收 6 万元；成本 4000 余元、一个半月</td><td>2026-11-13 ▲</td></tr>
+      <tr><td>张正谦 AI 末世短剧</td><td>张正谦（35 岁，武汉，中专学历）</td><td>一人完成写剧本/拆镜头/建模/配音剪辑</td><td>全网播放 8000 万+（本人称近 1 亿）、月入 1 万余元、月成本约 800 元</td><td>2026-11-02 ▲</td></tr>
+      <tr><td>白袋子《零号档案》</td><td>白袋子（广州插画师）</td><td>抖音 AIGC 科幻剧</td><td>6 集累计播放 1.9 亿（3 信源交叉）、粉丝 126 万→161 万</td><td>2026-07-22 ▲</td></tr>
+      <tr><td>许飞 AI 漫剧流水线</td><td>许飞（苏州，草根创业者）</td><td>一人批量做 AI 漫剧，追求短平快</td><td>近十部总播放十几亿、单部最高上亿、爆款分成近百万；单部算力 600 元 + 抽卡 800 元</td><td>2026-11-04 ▲</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>《非妖哉》在这组样本里是<b>成本最高、产能最低、单集口碑最集中</b>的一个：许飞用 2-3 千元一部、批量生产换分成，白非空用 4000 余元做 96 集，张正谦月成本约 800 元；不吃榨菜则用约 1 万元、10 天做 6-7 分钟一集。两条路径的分野不是“谁更会 AI”，而是<b>把 AI 当产能还是当表达工具</b>：前者拼更新速度与平台规则，后者拼审美判断与叙事密度。前者天花板由平台分成系数决定，后者天花板由 IP 价值决定——但后者的产能与身体负荷也明显更重<a class="cref cross" href="#ref-5">[5]</a>。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>分析</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 内容与定位</b></td><td>不是“AI 版聊斋”，而是用志怪壳讲“谁被定义成妖”：反写女鬼女妖、拐卖与自救、霸凌与异类标签。单元剧结构降低单集理解成本，统一母题保证系列辨识度；古装 + 志怪同时解决实拍成本与题材风险</td><td><a class="cref cross" href="#ref-5">[5]</a></td></tr>
+      <tr><td><b>2. 生产流程</b></td><td>“不写完整剧本”是方法而非偷懒：先定每集隐喻内核，再在生成与剪辑中边做边推，让故事随画面生长；代价是返工率高（第二、三集均推翻原结尾），收益是角色动机与细节更自然</td><td><a class="cref cross" href="#ref-5">[5]</a></td></tr>
+      <tr><td><b>3. 成本结构</b></td><td>约 1 万元/集在 AI 漫剧中属高成本，主要花在算力与反复抽卡；首图 6000 多元、5 天、40-50 次生成，说明“去 AI 味”是用钱和时间换的，不是模型升级自动解决</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>4. 商业模式</b></td><td>目前只有平台分成与大赛奖金，IP 授权、影视化均未启动；这意味着收入上限暂时由平台规则决定，但也保留了议价空间——先把作品口碑做厚，再谈商业化</td><td><a class="cref cross" href="#ref-5">[5]</a></td></tr>
+      <tr><td><b>5. 一人属性</b></td><td>除配音外全流程一人，属于严格意义上的 OPC；但“一人”不是零协作：LibTV 提供工作流与多模型，配音演员提供声音表演，平台提供分发。AI 降低的是执行门槛，不是判断门槛</td><td><a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-5">[5]</a><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>6. 可复制性</b></td><td>低。工具与方法可学，但“幕后八年”的剪辑判断、对 80 年代《聊斋》审美的研究、对身边人处境的观察无法速成；他自己也说 AI 是“大数据”，不可能生成从未有过的东西</td><td><a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-5">[5]</a></td></tr>
+      <tr><td><b>7. 风险和可持续性</b></td><td>三重风险：题材尺度（现实议题借古装壳，仍可能触碰平台红线）、产能与健康（10-13 天高强度、昼夜颠倒）、爆款不可续（第一集即巅峰，后续需证明稳定性）。计划 6 集完结是主动控制风险，而非无限连载</td><td><a class="cref cross" href="#ref-5">[5]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 四组口径差异（截至 2026-11-17 检索）</div>
+    ① <b>集数时点</b>：深圳特区报记“两集”、南方+ 与澎湃记“三集”，对应 8 月至 9 月中旬不同发布节点，非矛盾；② <b>点赞/粉丝</b>：600 万+/70 万+（澎湃 9-16）、525 万/65.1 万（南方+ 9-17）、400 万/50 万+（深圳特区报两集时点），均为平台前台滚动值；③ <b>单集成本</b>：约 1 万元（中新网、南方+、九派）与“第一集近 2 万元”（南方+）并存，前者为集均、后者为特殊集；④ <b>制作周期</b>：约 10 天（中新网）与 11-12 天、第三集 12-13 天（澎湃）并存，属不同集的实际耗时。
+  </div>
+  <div class="card"><div class="ct">“一人”属性的边界</div><div class="cb">严格说不是“零协作”：配音为外包，LibTV 提供工作流与模型，平台提供分发与流量。多家媒体的表述是“除了请人配音，剩下的都是他一个人靠 AI 来完成”<a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-7">[7]</a>，本报告按“一人主导 + 配音外包”收录，不将其等同于“完全无外部依赖”。</div></div>
+  <div class="box note">
+    <div class="bt">📌 留白与未采信信息</div>
+    留白（未检索到公开信息）：真实姓名、出生年份、此前任职机构与收入、LibTV 合作条款、平台分成金额、抖音播放量的统计口径、后续六集的实际表现。未采信：部分自媒体将《非妖哉》描述为“零成本”或“几天做完”，与创作者自述的“1 万元/集、10 天”冲突，按一手采访口径为准。另注：播放量“破亿”为媒体转述，未见平台官方战报。
+  </div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">捌·附</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 7 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx cross">[1]</span><span class="rt">A-</span><span class="st">央媒</span></div><div class="ti">一集花 1 万元、一个镜头试四五十次，这部爆火 AI 短剧是怎么做出来的？</div><div class="mt"><b>来源：</b>中国新闻网　<b>发布日期：</b>2026-09-05<br><a href="https://www.chinanews.com/cul/2026/09-05/10691104.shtml" target="_blank" rel="noopener">https://www.chinanews.com/cul/2026/09-05/10691104.shtml</a></div><div class="note">事实核查：单集约 10 天、成本约 1 万元、第一集更贵、LibTV 多模型集成、无限画布与节点式工作流均出自此稿；成本为创作者自述，央媒转述，按多源印证处理。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx cross">[2]</span><span class="rt">B+</span><span class="st">共青团中央主管媒体</span></div><div class="ti">深圳小伙手搓 AI 国风短剧爆火</div><div class="mt"><b>来源：</b>中国青年网　<b>发布日期：</b>2026-09-09<br><a href="http://t.m.youth.cn/transfer/index/url/fun.youth.cn/gnzx/202609/t20260909_16859688.htm" target="_blank" rel="noopener">http://t.m.youth.cn/transfer/index/url/fun.youth.cn/gnzx/202609/t20260909_16859688.htm</a></div><div class="note">事实核查：单集整体投入超 1 万元、主要开销在算力、研读 80 年代老版《聊斋》线描稿、拆解嵌螺钿与中式雕花均出自此稿；与 [1] 构成两条独立媒体交叉。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx cross">[3]</span><span class="rt">B+</span><span class="st">省级主流媒体</span></div><div class="ti">播放过亿，“90 后”河源小伙如何一人手搓爆款 AI 短剧《非妖哉》？</div><div class="mt"><b>来源：</b>南方+ 客户端（南方新闻网）　<b>发布日期：</b>2026-09-17<br><a href="https://www.nfnews.com/content/5yppDdAZyp.html" target="_blank" rel="noopener">https://www.nfnews.com/content/5yppDdAZyp.html</a></div><div class="note">事实核查：三集破亿、点赞 525 万、粉丝 65.1 万、单集 6-7 分钟、集均成本万元、第一集近 2 万元、首图 10 万 LibTV 积分均出自此稿；与 [5] 构成三集数据的双源交叉。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx partial">[4]</span><span class="rt">B+</span><span class="st">城市党报</span></div><div class="ti">深圳创作者单人手搓 AI 志怪爆款短剧 两集揽赞超 400 万、播放量破亿</div><div class="mt"><b>来源：</b>深圳特区报（头条号官方分发）　<b>发布日期：</b>2026-09（页内未标确切日）<br><a href="http://m.toutiao.com/group/7680340356851974698/" target="_blank" rel="noopener">http://m.toutiao.com/group/7680340356851974698/</a></div><div class="note">事实核查：两集 400 万赞、粉丝从千粉到 50 万+、曾为 @江问渔 做摄影剪辑均出自此稿；为“两集”时点口径，按部分映证处理。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx cross">[5]</span><span class="rt">B+</span><span class="st">澎湃号 · 影视行业自媒体</span></div><div class="ti">三集播放量破亿，《非妖哉》导演用“聊斋”壳子讲现实人心</div><div class="mt"><b>来源：</b>澎湃新闻 · 湃客（来源：FoST 未来叙事 / 极客电影，文/七七）　<b>发布日期：</b>2026-10-01<br><a href="https://m.thepaper.cn/newsDetail_forward_34180407" target="_blank" rel="noopener">https://m.thepaper.cn/newsDetail_forward_34180407</a></div><div class="note">事实核查：三集破亿、600 万赞、70 万+ 粉、创作方法（不写完整剧本、边做边推）、LibTV 工作流、第三集 12-13 天、第四集诈骗主题、未谈 IP 授权、最佳剧本奖均出自此稿；为本案最完整的一手专访。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx cross">[6]</span><span class="rt">B</span><span class="st">澎湃号 · 行业观察</span></div><div class="ti">《非妖哉》出圈启示：AI 短剧正在迎来内容能力的较量</div><div class="mt"><b>来源：</b>澎湃新闻 · 湃客　<b>发布日期：</b>2026-09（页内未标确切日）<br><a href="https://m.thepaper.cn/newsDetail_forward_34001566" target="_blank" rel="noopener">https://m.thepaper.cn/newsDetail_forward_34001566</a></div><div class="note">事实核查：一人制作模式、从剧本分镜到生成精修剪辑深度参与、单集成本约 1 万元、平均 10 天均出自此稿；与 [1][3] 互证成本与周期。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx partial">[7]</span><span class="rt">B-</span><span class="st">媒体官方微博</span></div><div class="ti">九派新闻：《非妖哉》主创谈单集成本与首图生成</div><div class="mt"><b>来源：</b>九派新闻官方微博　<b>发布日期：</b>2026-09（微博页未标确切日）<br><a href="https://m.weibo.cn/detail/5336548245509228" target="_blank" rel="noopener">https://m.weibo.cn/detail/5336548245509228</a></div><div class="note">事实核查：每集约万元、除配音外一人完成、首图 10 万积分约 6000 多元、5 天、最多 40-50 次生成均出自此条；为微博短稿，按部分映证处理。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 7 条。核验标签分布：🔵 多源印证（cross）5 条（中新网 [1]、中国青年网 [2]、南方+ [3]、澎湃专访 [5]、澎湃观察 [6]）、🟡 部分映证（partial）2 条（深圳特区报两集口径 [4]、九派微博 [7]）。信源评级：A- 级 1 条、B+ 级 4 条、B/B- 级 2 条。核心数字“单集约 1 万元、10 天”由 [1][3][6][7] 四条独立来源交叉；“三集破亿”由 [3][5] 交叉；“600 万赞 / 70 万粉”与“525 万 / 65.1 万”并存，为不同时点前台值，正文并列。未发现伪造链接；全部 URL 为检索过程实际命中页面。未采信“零成本”“几天做完”等与一手采访冲突的自媒体表述。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-17 · 播放、点赞、粉丝与成本均标注口径与置信等级，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

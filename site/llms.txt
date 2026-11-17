@@ -1,16 +1,19 @@
 # OPC Story · 国内 AI 一人公司案例墙
 
 > https://opc-story.pages.dev/ 为本站首页。
-> 收录 90 个以 AI 为核心生产力的中国一人公司（OPC，One-Person Company）成功案例，
+> 收录 100 个以 AI 为核心生产力的中国一人公司（OPC，One-Person Company）成功案例，
 > 覆盖 AI 短剧/漫剧、开发者工具、垂直行业应用、内容创作、营销电商等赛道。
 > 每个案例附逐条信源核验的深度报告（≥5 信源、≥1 一手、关键数字交叉验证、冲突双口径并列）。
 
 ## 案例清单（按时间锚点降序）
 
 - [《重生螳螂，觉醒无限吞噬进化》AI 短剧（report/chongsheng-tanglang/）](https://opc-story.pages.dev/report/chongsheng-tanglang/): 96 集 AI 短剧：投入 4000 余元、一个半月一人完成剧本/生成/剪辑全流程。 成功迹象：红果热度 6042 万、播放破 6 亿（4 信源交叉）、增收 6 万元；微博热搜第一
+- [啾儿啾儿 Snowie AI（AI 情感助手）（report/snowie-ai/）](https://opc-story.pages.dev/report/snowie-ai/): 识别 33 类 PUA 的 AI 情感助手：MIRIX + A-MEM 记忆机制 + CBT 框架，国内 App 与海外版并行。 成功迹象：海内外注册用户 20 万+（2026-11）、累计获投 229 万港币、估值破千万；5 人团队，非严格一人公司
+- [许飞 AI 漫剧流水线（report/xu-fei-manju/）](https://opc-story.pages.dev/report/xu-fei-manju/): 一人批量生产 AI 漫剧：单部 50 分钟算力约 600 元 + 抽卡 800 元，月产约 120 分钟。 成功迹象：近十部总播放十几亿、单部最高上亿、爆款分成近 80 万元（创作者口径，实质独立信源 2 个）
 - [张正谦 AI 末世短剧（report/zhang-zhengqian/）](https://opc-story.pages.dev/report/zhang-zhengqian/): 一人完成写剧本/拆镜头/人物建模/配音剪辑的 AI 短剧创作。 成功迹象：全网播放 8000 万+（本人称近 1 亿）、月入 1 万余元、月成本约 800 元
 - [胡萝卜须儿（B 站 AI 名人演唱会）（report/huluobo-xuer/）](https://opc-story.pages.dev/report/huluobo-xuer/): Seedance 2.0 等工具一人生成名人唱跳画面与梗词的 AI 演唱会系列。 成功迹象：《元首世界巡演》播放 330 万→372 万（B 站一手），流量分成覆盖生成成本
 - [ka殿《Re:0 异世界学园生活·序》AI 同人短片（report/ka-dian-rezero/）](https://opc-story.pages.dev/report/ka-dian-rezero/): 个人手搓近 3 分钟 AI 同人短片：画风模仿/生成/剪辑一人完成，以假乱真。 成功迹象：B 站 222.9 万播放、X 1 天破 500 万观看，引发日本业界「个人长篇动画时代」讨论
+- [《非妖哉》AI 国风志怪短剧（report/feiyaozai/）](https://opc-story.pages.dev/report/feiyaozai/): 除真人配音外一人完成剧本/分镜/生成/剪辑的 AI 国风志怪短剧，单集约 1 万元、10 天。 成功迹象：三集播放破亿（2026-09-16）、点赞 600 万+（澎湃；南方+ 525 万）、粉丝 70 万+
 - [JustAI「小加同学」AI 内容营销 Agent（report/justai-xiaojia/）](https://opc-story.pages.dev/report/justai-xiaojia/): 商家上传产品图+一句话，1 分钟生成推广图文/标题/封面的内容营销 Agent。 成功迹象：上线一年注册用户 400 万、1 万付费客户（南都专访），登 WAIC 2026 OPC 展区
 - [《妹居物语》AI 原生陪伴游戏（report/meiju-wuyu/）](https://opc-story.pages.dev/report/meiju-wuyu/): Claude 开发的 AI 陪伴游戏：AI 既是开发主力也是核心体验（长期记忆/自写日记）。 成功迹象：Demo 上架 3 天 DAU 破万、TapTap 预约 66 万评分 9.5、成本七八千元
 - [白袋子《零号档案》AI 科幻剧（report/baidaizi/）](https://opc-story.pages.dev/report/baidaizi/): 抖音 AIGC 科幻剧：世界观构建/画面生成/更新一人完成。 成功迹象：6 集累计播放 1.9 亿（3 信源交叉）、粉丝 126 万→161 万（账号一手）
@@ -37,10 +40,17 @@
 - [AI 短片《丧尸清道夫》（report/zombie-cleaner/）](https://opc-story.pages.dev/report/zombie-cleaner/): 3 分 34 秒原子朋克 AI 科幻短片，全流程一人 10 天完成。 成功迹象：播放 6000 万至破亿，获好莱坞制作人盛赞
 - [Kre.ai（report/kre-ai/）](https://opc-story.pages.dev/report/kre-ai/): AI 智能体流水线为跨境电商优化广告投放与素材复盘。 成功迹象：200 万元大单，年营收超百万（另有「月营收 200 万+」口径，双口径并列）
 - [音行三界（report/yinxing-sanjie/）](https://opc-story.pages.dev/report/yinxing-sanjie/): AI 音乐公司：AI 生成多风格歌曲 + 音乐数据标注 + AI 虚拟偶像 IP 运营，两人运营。 成功迹象：虚拟偶像全网粉丝 20 万+、播放 3000 万+，与山西文旅等机构合作
+- [「羽言」AI 语音助手（脑瘫无障碍）（report/min-denghua/）](https://opc-story.pages.dev/report/min-denghua/): 每月约 200 元 AI 编程订阅，2 个月为自己与脑瘫群体开发语音输入助手。 成功迹象：主流语音识别对其非标发音识别率不足 20%，「羽言」自测近 100%（仅本人单样本）；已入驻成都 OPC 社区
 - [碳基圈（report/tanjiquan/）](https://opc-story.pages.dev/report/tanjiquan/): AI 社交平台：「仅 AI 可见」匿名树洞 + AI 歌曲生成，用 Claude Code 独立开发。 成功迹象：用户 4 万+、日访问 100 万+，AI 音乐上线 2 天即产生收入
+- [瓦博科技（消费级脑机接口）（report/wabo-tech/）](https://opc-story.pages.dev/report/wabo-tech/): 4 名真人 + 16 只 AI「龙虾」数字员工，5 个月做出单通道脑机接口与 15g 无感穿戴。 成功迹象：2026-03 至 07 完成种子轮到天使轮三轮融资，估值过亿（公司提供投资资料口径）
 - [WAI 工作室《纸手机》AI 短片（report/wai-paper-phone/）](https://opc-story.pages.dev/report/wai-paper-phone/): 两人 AI 视频工作室：三天成片的 AI 短片《纸手机》全网刷屏。 成功迹象：播放 2000 万（央视）→ 4000 万（北京日报）→ 破亿/曝光 2.3 亿（新榜）多口径并列；入围北影节 AIGC 单元最佳短片
 - [《一掌熊猫》AI 动画长片（report/yizhang-panda/）](https://opc-story.pages.dev/report/yizhang-panda/): 42 分钟 AI 动画长片：28 天、约 3 万元成本一人主导完成，一人公司（持股 95%）承制 AIGC 视频。 成功迹象：全网播放破百万（新华网/澎湃交叉），入围北京国际电影节，推进院线项目《字圣仓颉》
+- [刀仔 AI 电商（12 店→4 家主力店）（report/daozai-ecommerce/）](https://opc-story.pages.dev/report/daozai-ecommerce/): 骨折卧床 70 天，用 AI 选品/文案/配图 + Coze 经营日报 + 一件代发遥控网店。 成功迹象：12 家店优化到 4 家；单店月销 5-8 万、月净利 2.5-3 万、月运营成本约 2000 元（自述，单店口径）
+- [查莉娜 · 职业咨询 + AI 数字员工（report/chali-na/）](https://opc-story.pages.dev/report/chali-na/): 10 年职业规划咨询，用 AI 补技术短板：访谈录音喂助手、产品设计、文案与小程序开发。 成功迹象：300+ 例个案、近 5000 小时一对一；正开发「个人事业孵化教练」小程序（未披露营收）
 - [聪明钱监控（report/smart-money/）](https://opc-story.pages.dev/report/smart-money/): 开源智能体手搓的 AI 股市投研系统，日报推送，200 元/年。 成功迹象：半月 90 个付费用户、收入超 1 万元
+- [中欣数通（AI 智能呼叫）（report/zhongxin-shutong/）](https://opc-story.pages.dev/report/zhongxin-shutong/): 大模型接入呼叫系统：AI 售后呼入 + 电销机器人 + CRM，一人公司运营。 成功迹象：2025 年营收近百万元（标题「年入百万」按正文口径）、客户 500 家+，售后响应 1 天→10 余分钟
+- [华睿数联（一人软件公司）（report/sifengrui/）](https://opc-story.pages.dev/report/sifengrui/): 一人 + AI 集群（Cursor/豆包/WPS AI/即梦）承接企业软件项目，工位在朋友公司与咖啡馆。 成功迹象：2025 年交付 4 个项目、合同总额超 60 万元；2026-01 第五单 ERP 预计两个多月交付
+- [《桌面副本物语 Desktop Raid》（report/desktop-raid/）](https://opc-story.pages.dev/report/desktop-raid/): 一人 + AI（Codely 内 AI 直接操作 Unity）开发的 Steam 游戏，售价 ¥36。 成功迹象：上线半年销量破 5 万份、流水近百万（创作者口径）；Steam 654 篇评测 76% 好评
 - [声序智能（AI 曲谱智能体）（report/shengxu-ai/）](https://opc-story.pages.dev/report/shengxu-ai/): 五线谱↔简谱 1 分钟互转的 AI 曲谱智能体（OMR），订阅收费，服务传统民乐行业。 成功迹象：上线半年多用户超 6000（新华/新京报实探交叉），成立约 3 个月现金流回正进入盈利
 - [炘扬贸易（AI 棒球帽出海）（report/xinyang-trade/）](https://opc-story.pages.dev/report/xinyang-trade/): 个人 + 8 个 AI 智能体（阿里国际 Accio）跑通选品/设计/交付全链的定制棒球帽跨境电商。 成功迹象：开业当月即回本、首单 3600 美元；智能体数两口径并列：8 个（潮新闻）/ 80 个（新华每日电讯）
 - [采了么 × 聚身之家（AI 运营双品牌）（report/caileme/）](https://opc-story.pages.dev/report/caileme/): 不会代码的厂二代用 AI 一人运营两个品牌：机器人对接 + 数据采集撮合平台。 成功迹象：2 个月 3 笔订单、营收超 20 万（3 订单人民网印证、金额澎湃口径）；曾拒 5000 万投资（单源自述）

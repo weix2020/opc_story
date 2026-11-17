@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · 许飞 —— 一人 AI 漫剧流水线，近十部剧十几亿播放 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · 许飞 AI 漫剧流水线">
+<meta property="og:image" content="../../og-default.svg">
+<meta name="description" content="许飞深度案例报告：14 岁辍学的草根创业者，用一人流水线批量生产 AI 漫剧，单部成本约 1400-3000 元，近十部总播放十几亿、爆款分成近 80 万。6 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+<link rel="canonical" href="https://opc-story.pages.dev/report/xu-fei-manju/">
+<meta name="robots" content="index,follow">
+<meta property="og:url" content="https://opc-story.pages.dev/report/xu-fei-manju/">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@type":"Article","@context":"https://schema.org","headline":"深度案例 · 许飞 —— 一人 AI 漫剧流水线，近十部剧十几亿播放 · OPC Story","description":"许飞深度案例报告：14 岁辍学的草根创业者，用一人流水线批量生产 AI 漫剧，单部成本约 1400-3000 元，近十部总播放十几亿、爆款分成近 80 万。6 条信源逐条核验。","inLanguage":"zh-CN","author":{"@type":"Person","name":"OPC Story"},"publisher":{"@type":"Organization","name":"OPC Story","url":"https://opc-story.pages.dev/"},"mainEntityOfPage":"https://opc-story.pages.dev/report/xu-fei-manju/","datePublished":"2026-11-04"}</script>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>许飞 · 一人 AI 漫剧流水线 深度案例报告</h1>
+    <h2>14 岁辍学、做过上百个营销号矩阵的草根创业者：用 2-3 千元一部的成本批量生产 AI 漫剧，<br>近十部总播放十几亿、爆款分成近 80 万 —— 6 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">内容创作型 OPC</span>
+      <span class="tag">AI 漫剧流水线</span>
+      <span class="tag">红果生态</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">十几亿</div><div class="k">近十部短剧累计播放（创作者口径）</div></div>
+  <div class="stat"><div class="v up">近 80 万元</div><div class="k">单部爆款分成（创作者口径）</div></div>
+  <div class="stat"><div class="v neutral">约 1400 元</div><div class="k">单部 50 分钟算力 600 + 抽卡 800</div></div>
+  <div class="stat"><div class="v down">2166 万</div><div class="k">红果短剧 App 日活（2026-08，媒体引平台数据）</div></div>
+</div>
+
+<div class="wrap">
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">许飞是苏州相城区一名 AI 漫剧创作者。14 岁初中没毕业就出门打工，20 岁做互联网，靠上百个短视频营销号矩阵在二十出头做到月入百万；后来炒股赔光积蓄、房子买在高点，重新从小成本生意起步<a class="cref cross" href="#ref-1">[1]</a>。2026 年入行 AI 漫剧后，他用“一个人 + 一台主机 + 三台显示屏”的流水线，每天晚 8 点工作到早 8 点，批量生产红果短剧；单部 50 分钟剧的算力成本约 600 元、抽卡约 800 元，平均制作成本 2-3 千元<a class="cref cross" href="#ref-1">[1]</a>。近十部剧总播放十几亿，单部最高上亿，一部爆款分成近 80 万元<a class="cref cross" href="#ref-1">[1]</a>。</p>
+  <div class="two">
+    <div class="card"><div class="ct">创业者</div><div class="cb">许飞，草根出身，14 岁初中未毕业打工，在北京电影节做过日结保安；20 岁做互联网，做过 IP、写文章，最终锚定短视频营销号，靠上百个矩阵账号吃流量，二十出头月入百万。此后炒股四年赔光、房子买在高点，重新创业。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="card"><div class="ct">业务模式</div><div class="cb">从番茄小说选取开放版权剧本，写分镜提示词 → AI 生成视频 → 剪辑 → 红果上线；按平台流量与小说作者比例分成。单部找人投资、别人出钱他干活；第一部剧 5000 元启动，平台激励仅 500 元。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="card"><div class="ct">一人属性与协作边界</div><div class="cb">选题、分镜、生成、剪辑、上线由他一人完成；曾尝试招助理，招聘信息挂了几个月无响应。没有团队、没有外包制作，属于严格的“一人流水线”；但依赖平台（红果/番茄）提供剧本、流量与分成，依赖模型提供生成能力。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="card blue"><div class="ct">核心方法</div><div class="cb">“跟着平台走”：看平台每隔一段时间发什么通告、建议创作者怎么做，据此调整题材与时长；前 3 秒下钩子、用剪辑控制节奏，是他做营销号的基本功。他不追求质感与代表作，只追求最短、最快、最直接地击中受众。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2000 年代</div><div class="tx">14 岁辍学打工，北京电影节日结保安</div><div class="td">唯一与影视制作相关的经历，是在北京电影节做日结保安。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2010 年代</div><div class="tx">上百个营销号矩阵，二十出头月入百万</div><div class="td">做 IP、写文章，最终锚定短视频营销号；每天打开手机就能看到流量收益一万元。随后炒股四年赔光积蓄，几套房子买在最高点。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026 年上半年</div><div class="tx">零基础入行 AI 漫剧</div><div class="td">听同行说做沙雕漫能挣百万，看到上市公司在抖音投流，判断有利润；在家附近 3500 元/月合租工作室，拉了一台主机开始；花两三天学会 AI 制作全流程。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">入行第 1 个月</div><div class="tx">第一部剧只拿到 500 元平台激励</div><div class="td">5000 元启动资金，第一部剧收益仅 500 元；随后 19 天做出三部，开始批量生产。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026 年中</div><div class="tx">建立流水线，单部成本压到 2-3 千元</div><div class="td">50 分钟剧算力 600 元 + 抽卡 800 元；近十部剧总播放十几亿，单部最高上亿，爆款分成近 80 万。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-08</div><div class="tx">红果短剧 App 日活 2166 万、月活 4.11 亿</div><div class="td">人均单日使用 156.9 分钟；平台每天上线成千上万新剧集。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-11-01</div><div class="tx">红果新规生效，激励偏向 90-180 分钟完结剧</div><div class="td">300 分钟以上长剧与高速更新长连载不再有优势；许飞需重新调整产能结构。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2026-11-04</div><div class="tx">36 氪刊出长篇特写</div><div class="td">披露其收入、成本、工作强度与“被困住”的状态。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：把“流量手艺”迁移到 AI 漫剧</div><div class="cb">他不会画画、不会建模，但懂网感、懂剪辑、懂下沉市场喜欢看什么。AI 把“制作”这一步抹平后，他过去做营销号积累的“前 3 秒留人、剪辑讲明白故事”的能力，反而成了稀缺项。这也是他反复强调“不建议零经验小白盲目入行”的原因<a class="cref cross" href="#ref-1">[1]</a>。</div></div>
+  <div class="card"><div class="ct">转折二：用“别人出钱、他干活”把启动成本降到 5000 元</div><div class="cb">每部剧找一个人投资，自己负责制作与上线；第一部剧只赚 500 元平台激励，但跑通了全流程。随后 19 天做三部，靠数量摊薄学习成本，再用“算力 600 + 抽卡 800”的标准化成本结构复制<a class="cref cross" href="#ref-1">[1]</a>。</div></div>
+  <div class="card red"><div class="ct">转折三：主动选择“短平快”，放弃质感竞争</div><div class="cb">传统影视人转做 AI 漫剧，容易在前 20 秒铺氛围、讲镜头；他判断红果用户没有耐心，不如上来就一句“雷霆之语”。他不追求艺术与代表作，只追求数据与收益——“故事是别人的，制作是靠模型的，我只是帮别人的故事转化成视频”<a class="cref cross" href="#ref-1">[1]</a>。</div></div>
+  <div class="quote">
+    <p>OPC 是做成了，但我被困在这了，我可能没办法把我的能力复制给别人。</p>
+    <span class="src">—— 许飞，36 氪 / 温度纪（2026-11-04），<a class="cref cross" href="#ref-1">[1]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>事实与分析</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>内容形态</b></td><td>红果竖屏 AI 漫剧，单部约 50 分钟；题材偏都市、剧情、明理型，面向下沉市场与中老年观众；更新速度优先于制作精度</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>生产流程</b></td><td>番茄小说开放版权剧本 → 选品 → 写分镜提示词 → AI 生成视频 → 剪辑 → 红果上线；人和场景被理解为“图层”，台词与动作是“指令”</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>成本结构</b></td><td>单部 50 分钟：算力约 600 元 + 抽卡约 800 元；平均制作成本 2-3 千元/部；工作室月租 3500 元；第一部剧生成成本约 2 元/秒</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>收入结构</b></td><td>平台按流量给创作者与小说作者比例分成；爆款单部分成近 80 万元；平台激励早期仅 500 元；无广告、无付费订阅、无 IP 授权收入</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>平台依赖</b></td><td>高度依赖红果：剧本来自番茄、流量来自红果、规则由红果调整；2026-11-01 新规直接改变激励结构；创作者称“我们都是为平台打工”</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点 / 口径</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>累计播放</td><td class="hl">十几亿</td><td>近十部剧合计，创作者口径</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>单部最高播放</td><td class="hl">上亿</td><td>创作者口径</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>爆款分成</td><td class="hl">近 80 万元</td><td>单部；未说明税前/税后、是否含投资方分成</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>单部成本</td><td>约 1400 元（算力 600 + 抽卡 800）；平均 2-3 千元</td><td>50 分钟剧；创作者口径</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>产能</td><td>每天至少 5 集；每月保证 120 分钟</td><td>2026-11 特写时点</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>工作时长</td><td>晚 8 点 - 早 8 点，昼夜颠倒</td><td>创作者自述</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>红果大盘</td><td>DAU 2166 万 / MAU 4.11 亿 / 日均 156.9 分钟</td><td>2026-08，媒体引平台数据</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 数据口径说明</div>
+    所有作品数据与收入均为创作者在单一深度采访中的自述，未见红果后台截图或第三方监测；《2026-11-04》多平台转载（36 氪、新浪财经、钛媒体、蓝鲸）均源自同一篇“温度纪”稿件，属于同一信源的多渠道分发，不构成独立交叉。红果 DAU/MAU 为媒体引用的平台数据，未经平台财报二次确认。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>路径</th><th>成本</th><th>数据表现</th><th>核心差异</th></tr></thead>
+    <tbody>
+      <tr><td><b>许飞 AI 漫剧流水线</b>（本案）</td><td>番茄剧本 + 批量生成 + 红果分成</td><td>约 1400-3000 元/部</td><td>近十部十几亿播放、单部最高上亿、分成近 80 万</td><td>拼速度、拼产量、拼平台规则理解</td></tr>
+      <tr><td>《非妖哉》不吃榨菜</td><td>原创剧本 + 多模型精修 + 抖音</td><td>约 1 万元/集、10 天</td><td>三集破亿、点赞 600 万+、粉丝 70 万+</td><td>拼审美、拼叙事密度、拼 IP 潜力</td></tr>
+      <tr><td>《重生螳螂》白非空</td><td>96 集一人完成</td><td>4000 余元、一个半月</td><td>红果热度 6042 万、播放破 6 亿、增收 6 万元</td><td>低成本 + 高集数，收入绝对值不高</td></tr>
+      <tr><td>张正谦 AI 末世短剧</td><td>一人全流程</td><td>月成本约 800 元</td><td>全网 8000 万+、月入 1 万余元</td><td>成本极低，收入天花板明显</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>许飞是这组样本里<b>最接近“工业化个体户”</b>的一个：他不追求单部作品的口碑，而是把 AI 漫剧拆成可复制的成本结构（算力 + 抽卡 + 剪辑），用产量和平台规则套利。代价是收入高度依赖平台政策——2026-11-01 红果新规把激励转向 90-180 分钟完结剧，他的“高速更新长连载”优势被削弱<a class="cref cross" href="#ref-1">[1]</a>。与《非妖哉》的“作品逻辑”相比，许飞是“流量逻辑”的极端样本：前者把 AI 当表达工具，后者把 AI 当产能。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>分析</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 内容与定位</b></td><td>都市/明理型下沉题材，50 分钟一部，前 3 秒下钩子；不做修仙、快穿等拥挤赛道，靠差异化与更新速度取胜</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>2. 生产流程</b></td><td>番茄开放版权剧本 → 分镜提示词 → AI 生成 → 剪辑 → 上线；两三天学会全流程；每天 5 集、每月 120 分钟的节奏</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>3. 成本结构</b></td><td>算力 600 + 抽卡 800，平均 2-3 千/部；成本几乎只剩模型调用与房租，人力成本为零；但时间成本极高（昼夜颠倒）</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>4. 商业模式</b></td><td>平台流量分成，单部爆款近 80 万；本质是“为平台打工”，规则、剧本、分发都不在自己手里；无 IP 沉淀、无品牌溢价</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>5. 一人属性</b></td><td>严格一人完成全流程，招助理数月无果；但“一人”是产能组织方式，不是能力壁垒——他的壁垒是网感与剪辑，而非 AI 技术</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>6. 可复制性</b></td><td>中。成本结构与流程可复制，但“前 3 秒留人”的剪辑判断、对下沉市场的理解、对平台通告的敏感度无法速成；他明确只建议做过自媒体/小说推文/电影解说的人入行</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>7. 风险</b></td><td>平台规则风险（新规改变激励）、版权风险（AI 融脸导致废片）、竞争风险（番茄剧本开源、同行第二天可生成千集）、健康风险（昼夜颠倒）</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 收入与播放的四个不确定点</div>
+    ① <b>“近 80 万分红”</b>是平台分成总额还是个人到手，是否含投资方分成，未披露；② <b>“十几亿播放”</b>为近十部累计，单部数据未逐项列出；③ <b>“平均 2-3 千元/部”</b>与“算力 600 + 抽卡 800”之间存在差额，可能含房租、工具订阅、废片成本；④ <b>“OPC 做成了”</b>是创作者自我认定，其业务依赖平台与投资人，不是完全自给自足。
+  </div>
+  <div class="card"><div class="ct">“一人公司”的边界</div><div class="cb">制作端确实一人，但每部剧有外部投资人出钱，平台提供剧本版权与流量，模型提供生成能力。更准确的描述是“一人制作 + 外部投资 + 平台分发”的微型工作室，而非零外部依赖的独立公司。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+  <div class="box note">
+    <div class="bt">📌 留白</div>
+    未公开：真实姓名之外的年龄、具体作品名单、单部播放明细、与投资人的分成比例、税务与合规安排、红果后台数据、助理招聘失败的原因。另注：本文多平台版本（36 氪、新浪财经、钛媒体、蓝鲸）为同一稿件转载，不构成独立信源交叉。
+  </div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">捌·附</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 6 条信源，按文中首次出现顺序连续编号。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx partial">[1]</span><span class="rt">B+</span><span class="st">科技商业媒体</span></div><div class="ti">做 AI 漫剧闷声赚钱，我在“大红果时代”拿下百万大结果</div><div class="mt"><b>来源：</b>36 氪（授权发布，原载微信公众号“温度纪”，作者：肆夕）　<b>发布日期：</b>2026-11-04<br><a href="https://36kr.com/p/4054823534007175" target="_blank" rel="noopener">https://36kr.com/p/4054823534007175</a></div><div class="note">事实核查：14 岁辍学、营销号矩阵月入百万、炒股赔光、5000 元启动、19 天三部、算力 600 + 抽卡 800、近十部十几亿播放、单部最高上亿、分成近 80 万、红果 DAU 2166 万、11-01 新规均出自此稿；为单一深度采访，核心收入数据按部分映证处理。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx partial">[2]</span><span class="rt">B+</span><span class="st">财经媒体转载</span></div><div class="ti">做 AI 漫剧闷声赚钱，我在“大红果时代”拿下百万大结果</div><div class="mt"><b>来源：</b>新浪财经　<b>发布日期：</b>2026-11-04<br><a href="https://finance.sina.com.cn/jjxw/2026-11-04/doc-inixqaaw6224263.shtml" target="_blank" rel="noopener">https://finance.sina.com.cn/jjxw/2026-11-04/doc-inixqaaw6224263.shtml</a></div><div class="note">事实核查：与 [1] 同一稿件，用于确认原文未被 36 氪编辑改动；不构成独立信源。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx partial">[3]</span><span class="rt">B</span><span class="st">科技媒体转载</span></div><div class="ti">做 AI 漫剧闷声赚钱，我在“大红果时代”拿下百万大结果</div><div class="mt"><b>来源：</b>钛媒体（头条号分发）　<b>发布日期：</b>2026-11（页内未标确切日）<br><a href="http://m.toutiao.com/group/7707103816029667874/" target="_blank" rel="noopener">http://m.toutiao.com/group/7707103816029667874/</a></div><div class="note">事实核查：同一稿件转载，用于第三方平台留存对照。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx partial">[4]</span><span class="rt">B</span><span class="st">财经媒体转载</span></div><div class="ti">做 AI 漫剧闷声赚钱，我在“大红果时代”拿下百万大结果</div><div class="mt"><b>来源：</b>蓝鲸新闻（头条号分发）　<b>发布日期：</b>2026-11（页内未标确切日）<br><a href="http://m.toutiao.com/group/7708663444873953828/" target="_blank" rel="noopener">http://m.toutiao.com/group/7708663444873953828/</a></div><div class="note">事实核查：同一稿件转载，用于确认“算力 600 + 抽卡 800”等数字在不同平台一致。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx cross">[5]</span><span class="rt">A-</span><span class="st">央媒</span></div><div class="ti">AI 漫剧，何以狂奔</div><div class="mt"><b>来源：</b>央广网　<b>发布日期：</b>2026-04-29<br><a href="https://www.cnr.cn/lvyou/dsywzl/20260429/t20260429_527604464.shtml" target="_blank" rel="noopener">https://www.cnr.cn/lvyou/dsywzl/20260429/t20260429_527604464.shtml</a></div><div class="note">事实核查：红果将 AI 仿真人漫剧分成系数定为最高 60、上线独立漫剧 App、腾讯火龙漫剧分账 200%、七猫投 1 亿元扶持等行业背景出自此稿；用于解释许飞所处平台激励环境，不用于其个人数据。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx partial">[6]</span><span class="rt">B+</span><span class="st">原文公众号</span></div><div class="ti">做 AI 漫剧闷声赚钱，我在“大红果时代”拿下百万大结果（原文）</div><div class="mt"><b>来源：</b>微信公众号“温度纪”　<b>发布日期：</b>2026-11（页内未标确切日）<br><a href="https://mp.weixin.qq.com/s/IN_3MwpLNM1Fctso0M4Nvw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/IN_3MwpLNM1Fctso0M4Nvw</a></div><div class="note">事实核查：36 氪页面标注的原文出处；用于溯源，不构成独立信源。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 6 条，但 [1][2][3][4][6] 为同一篇“温度纪”稿件的多平台分发，实质独立信源只有 2 个（温度纪采访 + 央广网行业背景）。核验标签分布：🔵 多源印证 1 条（央广网 [5]）、🟡 部分映证 5 条。信源评级：A- 级 1 条、B+ 级 3 条、B 级 2 条。所有个人收入、播放、成本数据均来自创作者自述，未经平台后台或第三方审计；本报告选择如实标注“自述口径”，不将其包装为已核验事实。全部 URL 为检索过程实际命中页面；未发现伪造链接。
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-17 · 播放、分成、成本均为创作者自述口径，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>
