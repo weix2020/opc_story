@@ -40,19 +40,6 @@
   ]
 }
 </script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type": "Question", "name": "OPC Story 是什么网站？", "acceptedAnswer": {"@type": "Answer", "text": "OPC Story 收录 90 个以 AI 为核心生产力的中国一人公司（One-Person Company，OPC）成功案例，覆盖 AI 短剧/漫剧、开发者工具、垂直行业应用、营销电商等赛道，每个案例附逐条信源核验的深度报告。"}},
-    {"@type": "Question", "name": "案例数据可信吗？", "acceptedAnswer": {"@type": "Answer", "text": "每个案例经至少 5 条信源、至少 1 条一手信源交叉核验；关键数字均标注口径与时点，自述数据显式标注「自述口径」，冲突数据双口径并列不调和。"}},
-    {"@type": "Question", "name": "案例如何排序？", "acceptedAnswer": {"@type": "Answer", "text": "按项目时间锚点降序排列（其次按阅读量），其中 2026 年 41 个、2025 年 22 个、2024 年 14 个、2023 年 11 个、2022 年 2 个。"}},
-    {"@type": "Question", "name": "深度报告在哪里看？", "acceptedAnswer": {"@type": "Answer", "text": "点击案例标题右侧的「深度」徽章，报告全文会在当前页右侧抽屉中展开，无需跳转新页面；每份报告含案例档案、时间线、七维深度分析与逐条信源核查。"}},
-    {"@type": "Question", "name": "什么是 AI 一人公司（OPC）？", "acceptedAnswer": {"@type": "Answer", "text": "指一人或两人主导、以 AI 为产品核心能力或核心生产力（AI 承担交付/运营主体工作）的独立创业形态，公开信源可证个人独立开发运营，并有可查的营收、用户量或关注度等成功迹象。"}}
-  ]
-}
-</script>
 <style>
 /* ===== OPC CASE WALL · 方案 B 暗黑终端风 ===== */
 :root{--bg:#0a0e14;--card:#111823;--line:#1e2a3a;--line2:#26334a;--txt:#e6edf3;--sub:#9fb0c5;--dim:#7d8ca3;--faint:#5a6a80;--cyan:#58a6ff;--gold:#c9a961;--green:#3fd68f;--red:#ff6b63;--mono:ui-monospace,Menlo,"SF Mono",Consolas,monospace}
@@ -196,19 +183,6 @@ thead th,tbody td{padding:8px 10px}
   </div>
   <div class="opc-grid" id="opcGrid"></div>
   <p class="empty-state" id="opcEmpty">没有匹配的案例，换个关键词或筛选条件试试。</p>
-
-  <div class="box insight">
-    <div class="bt">💡 分布观察</div>
-    按锚点年份统计：2026 年 41 个、2025 年 22 个、2024 年 14 个、2023 年 11 个、2022 年 2 个——AI 一人创业的供给在 2023 年（大模型应用元年）与 2026 年（AI 内容工业化年）出现两个峰值。赛道分布：作品型 15、开发者工具/客户端 23、内容创作 19、垂直行业应用 22、营销/电商/生态 11。</div>
-
-  <div class="box insight" id="faq">
-    <div class="bt">📌 关于本站 · 常见问题</div>
-    <p><b>这是什么网站？</b>OPC Story 收录 90 个以 AI 为核心生产力的中国一人公司（One-Person Company）成功案例，覆盖 AI 短剧/漫剧、开发者工具、垂直行业应用、营销电商等赛道，每例附逐条信源核验的深度报告。</p>
-    <p><b>案例数据可信吗？</b>每例经 ≥5 条信源、≥1 条一手信源交叉核验；关键数字均标注口径与时点，自述数据显式标注「自述口径」，冲突数据双口径并列不调和。</p>
-    <p><b>案例如何排序？</b>默认按项目收入降序（可查口径的年化/累计营收，自述数据已标注），未披露收入的案例排在末尾并按用户数、时间锚点兜底；也可切换按用户、按时间、按阅读/点赞/分享排序。</p>
-    <p><b>深度报告在哪看？</b>点击案例标题右侧的「深度」徽章，报告全文在当前页右侧抽屉中展开，无需跳转新页面。</p>
-    <p><b>什么是一人公司（OPC）？</b>一人或两人主导、以 AI 为产品核心能力或核心生产力的独立创业形态，公开信源可证个人独立开发运营，并有可查的营收/用户量/关注度等成功迹象。</p>
-  </div>
 </section>
 
 <!-- 深度报告浮层（置于脚本之前，保证脚本执行时可取到节点） -->
@@ -459,8 +433,38 @@ function bindActions() {
 /* ===== 分享菜单：微信 / 朋友圈 / 小红书 / 微博 ===== */
 const shareDataOf = r => {
   const c = CASES.find(x => x.r === Number(r));
-  return { c, title: `OPC 案例墙 · ${c.n}（${c.f}）`, url: location.href.split('#')[0] + '#case-' + r };
+  return { c, url: location.href.split('#')[0] + '#case-' + r };
 };
+/* 收入口径：rv 为元（月收入已年化），无 rv 时如实标注未披露 */
+const revText = (c) => {
+  if (!c.rv) return '营收未披露';
+  const parts = (c.rn || '营收').split('·');
+  const main = parts.shift();
+  const note = parts.length ? `（${parts.join('·')}）` : '';
+  if (c.rv >= 10000) {
+    const w = c.rv / 10000;
+    return `${main}约 ${w >= 100 ? Math.round(w) : Math.round(w * 10) / 10} 万元${note}`;
+  }
+  return `${main}约 ${c.rv} 元${note}`;
+};
+const cut = (s, n) => (s.length > n ? s.slice(0, n) + '…' : s);
+/* 小红书：多行结构化文案，含项目/创业者/产品/收入 */
+const xhsText = (c, url) => [
+  `📕 一人公司案例｜${c.n}`,
+  '',
+  `👤 创业者：${c.f}`,
+  `🧩 产品：${c.d}`,
+  `💰 收入：${revText(c)}`,
+  c.u ? `📈 用户：${c.u.toLocaleString('en-US')} ${c.un || ''}` : '',
+  '',
+  '📖 完整拆解（含信源核验）：',
+  url,
+  '',
+  '#AI创业 #一人公司 #OPC #独立开发 #副业',
+].filter(Boolean).join('\n');
+/* 微博：单行紧凑版，含项目/创业者/产品/收入；链接由 share.php 的 url 参数单独渲染，避免重复 */
+const weiboText = (c) =>
+  `【${cut(c.n, 26)}】创业者：${cut(c.f, 18)}｜产品：${cut(c.d, 34)}｜收入：${revText(c)}`;
 const shMenu = document.getElementById('shMenu');
 const shToast = document.getElementById('shToast');
 let shToastTimer = null;
@@ -497,7 +501,7 @@ shMenu.addEventListener('click', (e) => {
   const item = e.target.closest('button[data-ch]');
   if (!item) return;
   const r = shMenu.dataset.r;
-  const { title, url } = shareDataOf(r);
+  const { c, url } = shareDataOf(r);
   const enc = encodeURIComponent;
   const ch = item.dataset.ch;
   if (ch === 'wechat' || ch === 'moments') {
@@ -512,13 +516,13 @@ shMenu.addEventListener('click', (e) => {
     qr.hidden = false;
     incShare(r);
   } else if (ch === 'xhs') {
-    navigator.clipboard?.writeText(`${title}\n${url}`)
-      .then(() => showToast('小红书文案已复制，打开小红书 App 粘贴发布即可'))
+    navigator.clipboard?.writeText(xhsText(c, url))
+      .then(() => showToast('小红书文案已复制（含项目/创业者/产品/收入）'))
       .catch(() => showToast('复制失败，请手动复制链接'));
     incShare(r);
     shMenu.hidden = true;
   } else if (ch === 'weibo') {
-    window.open(`https://service.weibo.com/share/share.php?title=${enc(title)}&url=${enc(url)}`, '_blank', 'noopener');
+    window.open(`https://service.weibo.com/share/share.php?title=${enc(weiboText(c))}&url=${enc(url)}`, '_blank', 'noopener');
     incShare(r);
     shMenu.hidden = true;
   } else if (ch === 'copy') {
