@@ -1,0 +1,11 @@
+# Cloudflare Pages 配置（wrangler pages deploy 会读取本文件）
+name = "opc-wall"
+pages_build_output_dir = "site"
+compatibility_date = "2026-01-01"
+
+# 全站互动计数用的 D1 数据库
+# 步骤：wrangler d1 create opc-counts → 把返回的 database_id 填到下面
+[[d1_databases]]
+binding = "DB"
+database_name = "opc-counts"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
