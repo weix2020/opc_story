@@ -30,25 +30,26 @@ wrangler.toml               # Pages + D1 绑定配置
 > 拖拽上传不支持 Pages Functions，启用全站计数后此方式只能发布页面、`/api/count` 会 404（前端自动降级为本地计数）。需要计数请用方式二或方式三。
 
 1. 打开 [dash.cloudflare.com](https://dash.cloudflare.com) → **Workers & Pages** → **Create** → **Pages** → **Upload assets**
-2. 项目名填 `opc-wall`（即访问域名 `opc-wall.pages.dev`）
+2. 项目名填 `opc-story`（即访问域名 `opc-story.pages.dev`，仓库已对应此项目）
 3. 把整个 `site/` 文件夹拖入 → **Deploy**
-4. 完成，访问 `https://opc-wall.pages.dev`
+4. 完成，访问 `https://opc-story.pages.dev`
 
-## 方式二：Wrangler CLI（推荐，含 Functions + D1）
+## 方式二：Wrangler CLI（含 Functions + D1，手动发布）
 
 ```bash
 npm i -g wrangler          # 首次安装（Node ≥18）
-wrangler login             # 浏览器授权
-wrangler pages deploy      # 读取 wrangler.toml：输出 site/、上传 functions/、绑定 D1
+wrangler login             # 浏览器授权，凭据存在 ~/.wrangler/config/default.toml
+CI=false wrangler pages deploy --commit-dirty=true   # 输出 site/、上传 functions/、按 wrangler.toml 绑定 D1
 ```
 
-之后每次更新内容，重跑最后一条命令即可。首次使用前需按「全站互动计数」一节创建 D1 库并填入 `database_id`。
+注意 `CI=false`：终端里若 `CI=true`，wrangler 会判定为非交互环境并拒绝使用 OAuth 凭据，报 “no credentials were found”。
 
-## 方式三：Git 自动化（推荐长期）
+## 方式三：Git 自动化（当前使用）
 
-1. 把本仓库推送到 GitHub → Cloudflare Pages → **Connect to Git**
-2. 构建配置：**Build command 留空**，**Build output directory** 填 `site`
-3. 以后 `git push` 即自动发布
+仓库已连接 GitHub，推送到 `main` 即自动构建发布 `https://opc-story.pages.dev`。
+
+- 构建配置：**Build command 留空**，**Build output directory** 填 `site`
+- Functions 与 D1 绑定由仓库根目录的 `wrangler.toml` 提供，所以 `database_id` 必须提交进仓库，否则 Git 构建出的版本无法读写计数
 
 ## 绑定自定义域名
 

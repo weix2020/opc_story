@@ -1,5 +1,5 @@
 # Cloudflare Pages 配置（wrangler pages deploy 会读取本文件）
-name = "opc-wall"
+name = "opc-story"
 pages_build_output_dir = "site"
 compatibility_date = "2026-01-01"
 
@@ -8,4 +8,4 @@ compatibility_date = "2026-01-01"
 [[d1_databases]]
 binding = "DB"
 database_name = "opc-counts"
-database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+database_id = "d46f001e-3e23-4f04-b8c1-8bf2ba7854cf"
