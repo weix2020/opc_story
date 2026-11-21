@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>数据口径说明：收入、用户与时间锚点怎么读 · OPC Story</title>
+<meta name="description" content="OPC Story 的数据口径约定：月收入如何年化、合同额与营收的区别、流水与净利的区别、注册用户与日活的区别，以及 7 个典型口径冲突案例的处理方式。">
+<link rel="canonical" href="https://opc-story.top/data-notes/">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="数据口径说明：收入、用户与时间锚点怎么读 · OPC Story">
+<meta property="og:description" content="OPC Story 的数据口径约定：月收入如何年化、合同额与营收的区别、流水与净利的区别、注册用户与日活的区别，以及 7 个典型口径冲突案例的处理方式。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://opc-story.top/data-notes/">
+<meta property="og:image" content="https://opc-story.top/og/data-notes.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="数据口径说明图文封面">
+<meta property="og:site_name" content="OPC Story">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://opc-story.top/og/data-notes.jpg">
+<link rel="icon" href="../favicon.svg">
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X58DBX1NCM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag("js", new Date());
+gtag("config", "G-X58DBX1NCM");
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Article","headline":"数据口径说明：收入、用户与时间锚点怎么读 · OPC Story","description":"OPC Story 的数据口径约定：月收入如何年化、合同额与营收的区别、流水与净利的区别、注册用户与日活的区别，以及 7 个典型口径冲突案例的处理方式。","inLanguage":"zh-CN","author":{"@type":"Organization","name":"OPC Story"},"publisher":{"@type":"Organization","name":"OPC Story","url":"https://opc-story.top/"},"mainEntityOfPage":"https://opc-story.top/data-notes/","datePublished":"2026-11-21","dateModified":"2026-11-21","articleSection":"方法论"},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"案例墙","item":"https://opc-story.top/"},{"@type":"ListItem","position":2,"name":"全部案例","item":"https://opc-story.top/all"},{"@type":"ListItem","position":3,"name":"数据口径说明：收入、用户与时间锚点怎么读 · OPC Story","item":"https://opc-story.top/data-notes/"}]}
+]}
+</script>
+<style>*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"PingFang SC","Microsoft YaHei",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.85;font-size:15.5px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 54px;text-align:center}
+.hero .m{font-size:12px;letter-spacing:3px;opacity:.8;margin-bottom:18px}
+.hero h1{font-size:40px;font-weight:800;line-height:1.3;margin-bottom:14px;letter-spacing:.5px}
+.hero p{font-size:16px;opacity:.9;max-width:760px;margin:0 auto}
+.wrap{max-width:860px;margin:0 auto;padding:0 24px 70px}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 30px}
+.crumb a{color:#2980b9;text-decoration:none}
+.lead{font-size:17px;color:#3c4c5e;border-left:4px solid #c9a961;padding-left:18px;margin-bottom:30px}
+h2{font-size:25px;color:#1e3a5f;margin:44px 0 16px;padding-bottom:10px;border-bottom:2px solid #e3e8ef;font-weight:800}
+h3{font-size:18px;color:#1e3a5f;margin:26px 0 10px;font-weight:700}
+p{margin-bottom:14px}
+ul,ol{margin:0 0 16px 22px}
+li{margin-bottom:8px}
+a{color:#1e6ba8}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:18px 0;background:#fff}
+th{background:#1e3a5f;color:#fff;text-align:left;padding:10px 12px;font-size:13.5px;font-weight:600}
+td{padding:9px 12px;border-bottom:1px solid #edf0f4;vertical-align:top}
+tr:nth-child(even) td{background:#f7f9fb}
+.box{border-left:4px solid;border-radius:4px;padding:16px 20px;margin:20px 0;font-size:14.8px}
+.box.note{background:#fdf9ef;border-color:#c9a961}
+.box.warn{background:#fdf1f0;border-color:#c0392b}
+.box.info{background:#f0f7fb;border-color:#2980b9}
+.box b{color:#1e3a5f}
+.stat{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border:1px solid #e3e8ef;margin:24px 0;border-radius:4px;overflow:hidden}
+.stat div{background:#fff;padding:16px 10px;text-align:center}
+.stat .v{font-size:24px;font-weight:800;color:#1e3a5f;line-height:1.3}
+.stat .k{font-size:12px;color:#6b7a8c;margin-top:4px}
+.more{background:#f4f6f9;border-radius:6px;padding:20px 24px;margin:36px 0 0}
+.more h3{margin-top:0}
+.more a{display:block;padding:6px 0;text-decoration:none;font-weight:600}
+footer{border-top:2px solid #1e3a5f;margin-top:44px;padding-top:22px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer a{color:#2980b9;text-decoration:none}
+@media(max-width:720px){.hero h1{font-size:27px}.hero{padding:44px 18px 38px}.wrap{padding:0 16px 50px}.stat{grid-template-columns:repeat(2,1fr)}h2{font-size:21px}table{font-size:13px}}</style>
+</head>
+<body>
+<div class="hero">
+  <div class="m">OPC STORY · GUIDE</div>
+  <h1>数据口径说明</h1>
+  <p>同一个数字，换个口径可能就是另一个故事</p>
+</div>
+<div class="wrap">
+  <div class="crumb"><a href="/">案例墙</a> / <a href="/all">全部案例</a> / 数据口径</div>
+  <p class="lead">案例墙最容易误导人的地方不是假数据，而是<b>真数据被放在错误的口径里比较</b>。这一页把我们所有的换算规则、标记含义和已知冲突一次讲清楚。</p>
+<h2 id="why">为什么单列一页口径</h2>
+<p>「月入 10 万」可能是营收、流水、毛利或净利；「20 万用户」可能是注册、日活、粉丝或播放量。如果不说明，读者会把不同东西放在一起排队。本站的做法是：每个数字都带口径标签，冲突时并列，不替读者做四舍五入。</p>
+
+<h2 id="revenue">收入口径</h2>
+<table>
+<thead><tr><th>口径</th><th>含义</th><th>本站处理</th></tr></thead>
+<tbody>
+<tr><td>年化收入</td><td>把披露的月收入乘以 12</td><td>统一折算，标注「年化」</td></tr>
+<tr><td>合同额</td><td>签约金额，未必已回款</td><td>标注「合同额」，不与营收混排</td></tr>
+<tr><td>流水 / GMV</td><td>交易总额，未扣退款与成本</td><td>标注「流水」，不与净利比较</td></tr>
+<tr><td>净利</td><td>扣除成本后的利润</td><td>标注「净利」，注明是单店还是全公司</td></tr>
+<tr><td>单店口径</td><td>一家店的数据</td><td>标注「单店」，不乘以店数推算总营收</td></tr>
+</tbody>
+</table>
+<p>站内 100 例中，明确披露年化收入的有 33 例，中位数 85.2 万元，最高 1200 万元，最低 1 万元。这个跨度本身就说明：跨案例排名只在同一口径下才有意义。</p>
+
+<h2 id="users">用户口径</h2>
+<ul>
+<li><b>注册用户</b>：累计注册，通常包含沉默账户，数值最大。</li>
+<li><b>月活 / 日活</b>：特定周期内有行为的用户，更接近真实使用。</li>
+<li><b>粉丝</b>：内容平台关注数，不等于产品用户。</li>
+<li><b>播放 / 阅读</b>：内容消费次数，可重复计算，不能当人数。</li>
+</ul>
+<p>28 例披露了用户规模，最高为 3000 万（内容平台粉丝口径）。当同一案例同时存在「国内 App 注册」与「海内外合计注册」两个数字时，本站会分别标注，不做合并。</p>
+
+<h2 id="time">时间锚点</h2>
+<p>每个案例都有一个时间锚点，取首次公开报道或关键数据披露的日期。它回答的是「这个数字是什么时候的」，而不是「现在是多少」。站内用两种符号区分：</p>
+<ul>
+<li><b>✓</b>：有明确日期的一手或权威来源。</li>
+<li><b>▲</b>：时间来自报道中的相对表述（如「上线半年」），为推算值。</li>
+</ul>
+
+<h2 id="cases">七个典型口径冲突</h2>
+<table>
+<thead><tr><th>案例</th><th>冲突</th><th>本站处理</th></tr></thead>
+<tbody>
+<tr><td>中欣数通</td><td>标题「年入百万」 vs 正文「营收近百万元」</td><td>采用正文，标「近百万元」</td></tr>
+<tr><td>瓦博科技</td><td>「估值过亿」仅来自企业提供的投资资料</td><td>标「企业口径」，不写成既成事实</td></tr>
+<tr><td>啾儿啾儿</td><td>1.2 万（国内 App 两月） vs 20 万+（海内外合计）</td><td>并列两个数字，说明统计范围不同</td></tr>
+<tr><td>闵登华「羽言」</td><td>「接近 100%」仅在其本人单样本上测得</td><td>明确标注不可外推</td></tr>
+<tr><td>刀仔 AI 电商</td><td>月销 5-8 万、净利 2.5-3 万是单店口径</td><td>标注「单店」，不乘 4 家店推算</td></tr>
+<tr><td>许飞 AI 漫剧</td><td>「分成近 80 万」与「总播放十几亿」不是同一指标</td><td>分别呈现，不换算成收入</td></tr>
+<tr><td>司丰瑞 华睿数联</td><td>「合同总额 60 万+」为签约额</td><td>标「合同额」，不称营收</td></tr>
+</tbody>
+</table>
+
+<h2 id="rate">汇率与折算</h2>
+<p>涉及外币的案例，按报道发布时的汇率折算为人民币，并在正文注明原始币种与金额。涉及订阅制的，按披露的付费用户数与单价估算区间时，会明确标「估算」而非「披露」。</p>
+
+<h2 id="bias">三个必须知道的偏差</h2>
+<ul>
+<li><b>幸存者偏差</b>：能被报道的案例本身已经过筛选，失败者不可见。</li>
+<li><b>向上偏差</b>：媒体偏好高收入、强反差的故事，中位数比平均值更能代表样本。</li>
+<li><b>未披露 ≠ 没有</b>：67 例未披露收入，不代表没有收入，只代表没有公开可回溯的数字。</li>
+</ul>
+<div class="box warn"><b>引用提醒：</b>引用本站数据时，请同时引用口径与时间锚点。例如「某案例年化收入 85 万元（2026 年报道，自述口径）」比「某案例年入 85 万」更准确，也更不容易被误读。</div>
+
+<h2 id="update">更新与纠错</h2>
+<p>数据会过期，口径也可能随报道补充而变化。本站会在以下情况更新报告：出现新的一手信源、原链接失效、发现计算或转述错误、案例进入新阶段。更新时保留修订说明，不静默改数字。</p>
+<p>发现问题的读者可通过站点仓库提交 issue。我们更愿意被指出错误，也不愿意让一个错误数字长期挂在案例墙上。</p>
+  <div class="more">
+    <h3>继续阅读</h3>
+    <a href="/what-is-opc/">什么是 OPC？AI 一人公司的定义与判定标准</a>
+    <a href="/method/">信源核验标准：我们如何验证一个案例</a>
+    <a href="/all">全部 100 个案例索引</a>
+  </div>
+  <footer>
+    <a href="/">← 返回「国内 AI 一人公司案例墙」</a><br>
+    OPC Story · 收录 100 例 · 更新于 2026-11-21 · 所有数据标注口径，不构成投资建议
+  </footer>
+</div>
+</body>
+</html>

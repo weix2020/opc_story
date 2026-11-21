@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>信源核验标准：我们如何验证一个 OPC 案例 · OPC Story</title>
+<meta name="description" content="OPC Story 的信源分级（A-/B+/B）、三色核验标记、五步核验流程、冲突口径处理方式与禁止事项。100 个案例平均 11.8 条信源，最少 4 条，逐条列出可回溯链接。">
+<link rel="canonical" href="https://opc-story.top/method/">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="信源核验标准：我们如何验证一个 OPC 案例 · OPC Story">
+<meta property="og:description" content="OPC Story 的信源分级（A-/B+/B）、三色核验标记、五步核验流程、冲突口径处理方式与禁止事项。100 个案例平均 11.8 条信源，最少 4 条，逐条列出可回溯链接。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://opc-story.top/method/">
+<meta property="og:image" content="https://opc-story.top/og/method.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="信源核验标准图文封面">
+<meta property="og:site_name" content="OPC Story">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://opc-story.top/og/method.jpg">
+<link rel="icon" href="../favicon.svg">
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X58DBX1NCM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag("js", new Date());
+gtag("config", "G-X58DBX1NCM");
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Article","headline":"信源核验标准：我们如何验证一个 OPC 案例 · OPC Story","description":"OPC Story 的信源分级（A-/B+/B）、三色核验标记、五步核验流程、冲突口径处理方式与禁止事项。100 个案例平均 11.8 条信源，最少 4 条，逐条列出可回溯链接。","inLanguage":"zh-CN","author":{"@type":"Organization","name":"OPC Story"},"publisher":{"@type":"Organization","name":"OPC Story","url":"https://opc-story.top/"},"mainEntityOfPage":"https://opc-story.top/method/","datePublished":"2026-11-21","dateModified":"2026-11-21","articleSection":"方法论"},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"案例墙","item":"https://opc-story.top/"},{"@type":"ListItem","position":2,"name":"全部案例","item":"https://opc-story.top/all"},{"@type":"ListItem","position":3,"name":"信源核验标准：我们如何验证一个 OPC 案例 · OPC Story","item":"https://opc-story.top/method/"}]}
+]}
+</script>
+<style>*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"PingFang SC","Microsoft YaHei",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.85;font-size:15.5px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 54px;text-align:center}
+.hero .m{font-size:12px;letter-spacing:3px;opacity:.8;margin-bottom:18px}
+.hero h1{font-size:40px;font-weight:800;line-height:1.3;margin-bottom:14px;letter-spacing:.5px}
+.hero p{font-size:16px;opacity:.9;max-width:760px;margin:0 auto}
+.wrap{max-width:860px;margin:0 auto;padding:0 24px 70px}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 30px}
+.crumb a{color:#2980b9;text-decoration:none}
+.lead{font-size:17px;color:#3c4c5e;border-left:4px solid #c9a961;padding-left:18px;margin-bottom:30px}
+h2{font-size:25px;color:#1e3a5f;margin:44px 0 16px;padding-bottom:10px;border-bottom:2px solid #e3e8ef;font-weight:800}
+h3{font-size:18px;color:#1e3a5f;margin:26px 0 10px;font-weight:700}
+p{margin-bottom:14px}
+ul,ol{margin:0 0 16px 22px}
+li{margin-bottom:8px}
+a{color:#1e6ba8}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:18px 0;background:#fff}
+th{background:#1e3a5f;color:#fff;text-align:left;padding:10px 12px;font-size:13.5px;font-weight:600}
+td{padding:9px 12px;border-bottom:1px solid #edf0f4;vertical-align:top}
+tr:nth-child(even) td{background:#f7f9fb}
+.box{border-left:4px solid;border-radius:4px;padding:16px 20px;margin:20px 0;font-size:14.8px}
+.box.note{background:#fdf9ef;border-color:#c9a961}
+.box.warn{background:#fdf1f0;border-color:#c0392b}
+.box.info{background:#f0f7fb;border-color:#2980b9}
+.box b{color:#1e3a5f}
+.stat{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border:1px solid #e3e8ef;margin:24px 0;border-radius:4px;overflow:hidden}
+.stat div{background:#fff;padding:16px 10px;text-align:center}
+.stat .v{font-size:24px;font-weight:800;color:#1e3a5f;line-height:1.3}
+.stat .k{font-size:12px;color:#6b7a8c;margin-top:4px}
+.more{background:#f4f6f9;border-radius:6px;padding:20px 24px;margin:36px 0 0}
+.more h3{margin-top:0}
+.more a{display:block;padding:6px 0;text-decoration:none;font-weight:600}
+footer{border-top:2px solid #1e3a5f;margin-top:44px;padding-top:22px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer a{color:#2980b9;text-decoration:none}
+@media(max-width:720px){.hero h1{font-size:27px}.hero{padding:44px 18px 38px}.wrap{padding:0 16px 50px}.stat{grid-template-columns:repeat(2,1fr)}h2{font-size:21px}table{font-size:13px}}</style>
+</head>
+<body>
+<div class="hero">
+  <div class="m">OPC STORY · GUIDE</div>
+  <h1>信源核验标准</h1>
+  <p>每一个数字，都要能追到一句话、一个页面、一个日期</p>
+</div>
+<div class="wrap">
+  <div class="crumb"><a href="/">案例墙</a> / <a href="/all">全部案例</a> / 信源核验标准</div>
+  <p class="lead">AI 让内容生产变便宜，也让「看起来像真的」变便宜。本站的核心差异不是案例数量，而是<b>每条数据都能回溯到具体信源，并标明口径与核验等级</b>。</p>
+<h2 id="why">为什么需要一套标准</h2>
+<p>一人公司题材有三个天然的信息陷阱：</p>
+<ul>
+<li><b>自述偏差</b>：收入、用户数多由创业者本人提供，缺少第三方审计。</li>
+<li><b>转载放大</b>：一篇采访被多个平台换标题转载，看起来像「多家媒体报道」，实际只有一个采访源。</li>
+<li><b>口径混用</b>：流水与净利、GMV 与营收、注册用户与日活，常被放在同一句话里比较。</li>
+</ul>
+<p>如果不做区分，案例墙就会变成「谁的故事更夸张谁排前面」。所以本站采用分级 + 标记 + 留痕的方式，把不确定性显式写出来。</p>
+
+<h2 id="levels">信源分级：A- / B+ / B</h2>
+<table>
+<thead><tr><th>等级</th><th>定义</th><th>典型例子</th></tr></thead>
+<tbody>
+<tr><td><b>A-</b></td><td>可回溯的一手记录：官方披露、工商与备案信息、平台公开数据、当事人完整访谈原文</td><td>成都高新区官网通报、Steam 商店页与评测数、天眼查工商页、媒体署名深度访谈</td></tr>
+<tr><td><b>B+</b></td><td>主流媒体一手采访，或两个及以上相互独立的来源交叉印证</td><td>央媒/党媒记者署名报道 + 另一家独立采访</td></tr>
+<tr><td><b>B</b></td><td>二手转述、平台榜单、单一来源、无法独立验证的第三方估算</td><td>转载稿、自媒体拆解、销量估算站</td></tr>
+</tbody>
+</table>
+<p>为什么最高是 A- 而不是 A：一人公司的经营数据几乎不存在审计级公开记录，任何「A」都可能是过度自信。A- 表示「目前能达到的最高可回溯程度」。</p>
+
+<h2 id="colors">三色标记：verified / cross / partial</h2>
+<ul>
+<li><b style="color:#1e7a3c">verified（绿）</b>：已核验，或至少两个独立来源一致。</li>
+<li><b style="color:#1e6ba8">cross（蓝）</b>：多源印证，或存在单一权威来源且可回溯。</li>
+<li><b style="color:#a67c14">partial（黄）</b>：部分映证、自述、转述，或存在口径冲突尚未解决。</li>
+</ul>
+<p>标记出现在两个位置：正文引用角标，以及文末信源列表的编号色块。点角标可跳到对应信源，看到原始标题、媒体、日期、链接和核查说明。</p>
+<p>当前 100 个案例的分布是：verified 23 例、cross 54 例、partial 23 例。黄色并不等于不可信，而是提醒读者：这条信息需要你带着保留意见阅读。</p>
+
+<h2 id="flow">五步核验流程</h2>
+<h3>第一步：检索，先找一手</h3>
+<p>优先找当事人署名的访谈、官方通报、平台原始页面。搜索引擎结果里排在前面的往往是转载与聚合，需要继续往下找原始出处。</p>
+<h3>第二步：锁定原始页面</h3>
+<p>确认标题、作者、媒体、发布时间、原文链接。转载稿不作为独立信源计数，即使它出现在十家平台上。</p>
+<h3>第三步：交叉关键数字</h3>
+<p>收入、用户、融资、销量这四类数字至少要有两个来源，或一个可回溯的原始记录。只有单一自述的，标 partial 并在正文写明「自述口径」。</p>
+<h3>第四步：对齐口径</h3>
+<p>把「月收入 / 年收入 / 合同额 / 流水 / 净利 / 单店 / 全公司」拆开，写清楚每个数字的统计对象与时间范围。不同媒体的口径冲突时，并列呈现，不取平均。</p>
+<h3>第五步：留痕与复核</h3>
+<p>每条信源保留编号、评级、类型、标题、来源、日期、链接与核查说明；文末用一段小结说明「实质独立信源有几个」。数据随时间变化，重要案例会定期回看。</p>
+
+<h2 id="conflict">口径冲突怎么处理</h2>
+<p>举个站内真实例子：某 AI 呼叫系统创业者的报道，标题写「年入百万」，正文写「营收近百万元」。标题是编辑提炼，正文是受访者原话，两者不一致。本站采用正文口径，并在报告中单设说明，而不是直接引用更吸引眼球的标题。</p>
+<p>类似地，估值「过亿」若只来自企业提供的投资资料，就标注为企业口径；「准确率接近 100%」若只在单一样本上成立，就明确说明不可外推。处理原则只有一条：<b>宁可写得保守，也不把不确定写成确定。</b></p>
+
+<h2 id="forbidden">明确不做的事</h2>
+<ul>
+<li>不编造信源、链接、记者姓名或发布日期。</li>
+<li>不把第三方估算写成官方披露，例如把销量估算站的数据当成实际销量。</li>
+<li>不替未公开姓名的当事人编名字，改用「00 后脑瘫博士」这类可核验的描述。</li>
+<li>不把创始人自述包装成第三方证实，正文必须出现「自述」二字。</li>
+<li>不用转载数量冒充独立信源数量。</li>
+</ul>
+
+<h2 id="limits">局限与纠错</h2>
+<p>这套标准解决的是「可回溯」，解决不了「绝对真实」。仍有三类风险：平台数据可以刷、媒体采访可能带有宣传目的、时间会让数据过期。因此每篇报告都标注时间锚点，读者应把它理解为「某个时点的公开记录」，而不是实时状态。</p>
+<p>如果你发现事实错误、链接失效或口径误读，欢迎通过站点仓库提交 issue，我们会核对后更新，并在报告中保留修订说明。</p>
+  <div class="more">
+    <h3>继续阅读</h3>
+    <a href="/what-is-opc/">什么是 OPC？AI 一人公司的定义与判定标准</a>
+    <a href="/data-notes/">数据口径说明：收入、用户与时间锚点怎么读</a>
+    <a href="/all">全部 100 个案例索引</a>
+  </div>
+  <footer>
+    <a href="/">← 返回「国内 AI 一人公司案例墙」</a><br>
+    OPC Story · 收录 100 例 · 更新于 2026-11-21 · 所有数据标注口径，不构成投资建议
+  </footer>
+</div>
+</body>
+</html>
