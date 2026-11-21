@@ -140,6 +140,18 @@ body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-sys
 /* Hero 上的锚点跳转链接（归墟标题等） */
 .opc-card a{color:inherit}
 
+/* 侧面指南导航 */
+.side-guides{position:fixed;right:16px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:80}
+.side-guides a{display:block;width:128px;padding:11px 13px;background:#fff;border:1px solid #e3e8ef;border-left:3px solid #c9a961;border-radius:4px;text-decoration:none;color:#1e3a5f;font-size:12.5px;line-height:1.45;box-shadow:0 3px 12px rgba(30,58,95,.07);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.side-guides a b{display:block;font-size:9.5px;letter-spacing:1.5px;color:#c9a961;font-weight:700;margin-bottom:3px}
+.side-guides a:hover{transform:translateX(-4px);border-left-color:#1e3a5f;box-shadow:0 6px 18px rgba(30,58,95,.12)}
+
+@media(max-width:1179px){
+.side-guides{position:static;transform:none;flex-direction:row;flex-wrap:wrap;justify-content:center;gap:8px;padding:0 16px;margin:22px auto 0;max-width:1080px}
+.side-guides a{width:auto;padding:7px 14px;border:1px solid #d5dce5;border-left-width:3px}
+.side-guides a b{display:none}
+}
+
 @media(max-width:768px){
 .wrap{padding:0 16px 60px}
 .hero{padding:44px 18px 40px}
@@ -170,13 +182,14 @@ gtag("config", "G-X58DBX1NCM");
       <span class="tag">作品与工具并重</span>
       <span class="tag">案例深度挖掘</span>
     </div>
-    <div class="tags" style="margin-top:12px">
-      <a class="tag" href="what-is-opc/" style="text-decoration:none">什么是 OPC？</a>
-      <a class="tag" href="method/" style="text-decoration:none">信源核验标准</a>
-      <a class="tag" href="data-notes/" style="text-decoration:none">数据口径</a>
-    </div>
   </div>
 </div>
+
+<nav class="side-guides" aria-label="指南">
+  <a href="what-is-opc/"><b>GUIDE 01</b>什么是 OPC？</a>
+  <a href="method/"><b>GUIDE 02</b>信源核验标准</a>
+  <a href="data-notes/"><b>GUIDE 03</b>数据口径</a>
+</nav>
 
 <div class="wrap">
 
