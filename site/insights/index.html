@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>数据洞察：100 个 AI 一人公司的收入、赛道与口径 · OPC Story</title>
+<meta name="description" content="用 100 个国内 AI 一人公司案例做数据画像：赛道分布、时间趋势、收入分布与口径构成、Top 10、核验强度。全部图表可筛选、可导出，缺失值不补零。">
+<link rel="canonical" href="https://opc-story.top/insights/">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="数据洞察：100 个 AI 一人公司的收入、赛道与口径">
+<meta property="og:description" content="赛道分布、时间趋势、收入分布与口径构成、Top 10、核验强度。支持筛选、CSV 与 PNG 导出。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://opc-story.top/insights/">
+<meta property="og:site_name" content="OPC Story">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://opc-story.top/og/insights.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="OPC Story 数据洞察：100 个 AI 一人公司的数据画像">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="数据洞察：100 个 AI 一人公司的收入、赛道与口径">
+<meta name="twitter:description" content="赛道分布、时间趋势、收入分布与口径构成、Top 10、核验强度。">
+<meta name="twitter:image" content="https://opc-story.top/og/insights.jpg">
+<link rel="icon" href="../favicon.svg">
+<script src="../vendor/echarts.min.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Dataset",
+      "name": "国内 AI 一人公司案例数据集（OPC Story）",
+      "description": "100 个以 AI 为核心生产力的中国一人公司案例，包含赛道、时间锚点、年化收入、用户规模、信源数量与核验等级。收入按口径分为严格可比与不可横比两类。",
+      "url": "https://opc-story.top/insights/",
+      "sameAs": "https://opc-story.top/data/cases.json",
+      "creator": {"@type": "Organization", "name": "OPC Story", "url": "https://opc-story.top/"},
+      "publisher": {"@type": "Organization", "name": "OPC Story", "url": "https://opc-story.top/"},
+      "dateModified": "2026-11-22",
+      "isAccessibleForFree": true,
+      "keywords": ["AI 一人公司", "OPC", "独立开发者", "AI 创业", "案例研究"],
+      "spatialCoverage": "中国",
+      "temporalCoverage": "2022/2026",
+      "variableMeasured": ["年化收入", "用户规模", "赛道", "信源数量", "核验等级"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "案例墙", "item": "https://opc-story.top/"},
+        {"@type": "ListItem", "position": 2, "name": "全部案例", "item": "https://opc-story.top/all"},
+        {"@type": "ListItem", "position": 3, "name": "数据洞察", "item": "https://opc-story.top/insights/"}
+      ]
+    }
+  ]
+}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.7;font-size:15px}
+a{color:#2980b9;text-decoration:none}
+a:hover{text-decoration:underline}
+.nav{background:#0a1f3d;color:#fff;padding:14px 24px}
+.nav-inner{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.brand{font-weight:800;letter-spacing:.5px;color:#fff;font-size:16px}
+.brand span{color:#c9a961}
+.nav a.nl{color:rgba(255,255,255,.78);font-size:13.5px}
+.nav a.nl:hover{color:#c9a961;text-decoration:none}
+.nav a.nl.active{color:#c9a961;font-weight:700}
+.nav .spacer{margin-left:auto}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 60%,#8c7434 100%);color:#fff;padding:52px 24px 42px}
+.hero-inner{max-width:1180px;margin:0 auto}
+.eyebrow{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;opacity:.8;margin-bottom:14px}
+.hero h1{font-size:36px;line-height:1.3;font-weight:800;letter-spacing:.5px;margin-bottom:12px}
+.hero p{font-size:15px;opacity:.9;max-width:760px}
+.hero .meta{margin-top:16px;font-size:12.5px;opacity:.75}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px 70px}
+.crumb{font-size:13px;color:#8b97a6;margin:22px 0 0}
+.crumb a{color:#6b7a8c}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:26px 0 18px}
+.kpi{background:#fff;border:1px solid #e3e8ef;border-top:3px solid #c9a961;border-radius:5px;padding:16px 16px 14px}
+.kpi .v{font-size:27px;font-weight:800;color:#1e3a5f;line-height:1.2;letter-spacing:.3px}
+.kpi .k{font-size:12.5px;color:#6b7a8c;margin-top:5px}
+.kpi .s{font-size:11.5px;color:#9aa7b6;margin-top:3px}
+.controls{position:sticky;top:0;z-index:20;background:rgba(250,251,252,.96);backdrop-filter:blur(6px);border:1px solid #e3e8ef;border-radius:6px;padding:12px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.controls .lab{font-size:12.5px;color:#8b97a6;letter-spacing:.5px}
+.seg{display:flex;gap:4px;flex-wrap:wrap}
+.seg button{border:1px solid #dbe2ea;background:#fff;color:#4a5b6e;font-size:13px;padding:5px 11px;border-radius:14px;cursor:pointer;font-family:inherit}
+.seg button:hover{border-color:#c9a961}
+.seg button.on{background:#1e3a5f;border-color:#1e3a5f;color:#fff}
+select{font-family:inherit;font-size:13px;padding:6px 9px;border:1px solid #dbe2ea;border-radius:5px;background:#fff;color:#3c4c5e}
+.switch{display:flex;align-items:center;gap:7px;font-size:13px;color:#4a5b6e;cursor:pointer;user-select:none}
+.switch input{width:15px;height:15px;accent-color:#1e3a5f}
+.btn{border:1px solid #dbe2ea;background:#fff;color:#4a5b6e;font-size:13px;padding:6px 11px;border-radius:5px;cursor:pointer;font-family:inherit}
+.btn:hover{border-color:#c9a961;color:#1e3a5f}
+.btn.primary{background:#1e3a5f;border-color:#1e3a5f;color:#fff}
+.btn.primary:hover{background:#16304e;color:#fff}
+.summary{border-left:4px solid #c9a961;background:#fdf9ef;border-radius:0 4px 4px 0;padding:13px 17px;font-size:14px;color:#4a5b6e;margin-bottom:22px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:#fff;border:1px solid #e3e8ef;border-radius:6px;padding:17px 18px 14px;min-width:0}
+.card h3{font-size:16px;color:#1e3a5f;font-weight:700;display:flex;align-items:baseline;gap:8px}
+.card h3 .en{font-size:10.5px;color:#a8b4c2;letter-spacing:1.2px;text-transform:uppercase;font-weight:600;margin-left:auto}
+.chart{width:100%;height:310px;margin-top:6px}
+.cap{font-size:12.5px;color:#6b7a8c;line-height:1.65;margin-top:6px;border-top:1px dashed #edf0f4;padding-top:8px}
+.cap b{color:#c0392b}
+.span2{grid-column:span 2}
+.tbl-card{margin-top:16px}
+.tbl-tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:10px 0 12px}
+.tbl-tools input[type=search]{flex:1;min-width:180px;font-family:inherit;font-size:13.5px;padding:7px 11px;border:1px solid #dbe2ea;border-radius:5px}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+thead th{background:#1e3a5f;color:#fff;text-align:left;padding:10px 11px;font-weight:600;font-size:13px;white-space:nowrap;cursor:pointer;user-select:none}
+thead th:hover{color:#c9a961}
+thead th .ar{opacity:.55;font-size:10px;margin-left:3px}
+tbody td{padding:9px 11px;border-bottom:1px solid #edf0f4;color:#3c4c5e;vertical-align:top}
+tbody tr:nth-child(even){background:#f9fbfd}
+tbody tr:hover{background:#eef2f7}
+td.nw{white-space:nowrap}
+td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.badge-v{display:inline-block;font-size:11px;padding:1px 6px;border-radius:3px;white-space:nowrap}
+.badge-v.verified{background:#e6f4ec;color:#1e7a3c}
+.badge-v.cross{background:#e8f1fb;color:#1e6ba8}
+.badge-v.partial{background:#fdf3e0;color:#a67c14}
+.pager{display:flex;align-items:center;gap:10px;justify-content:flex-end;margin-top:12px;font-size:13px;color:#6b7a8c}
+.pager button{border:1px solid #dbe2ea;background:#fff;border-radius:4px;padding:4px 10px;cursor:pointer;font-family:inherit;font-size:13px;color:#4a5b6e}
+.pager button:disabled{opacity:.4;cursor:not-allowed}
+.empty{padding:26px;text-align:center;color:#8b97a6;font-size:14px}
+.notes{margin-top:30px;border:1px solid #e3e8ef;background:#fff;border-radius:6px;padding:18px 20px;font-size:13.5px;color:#4a5b6e;line-height:1.85}
+.notes h3{font-size:15px;color:#1e3a5f;margin-bottom:8px}
+.notes ul{margin-left:18px}
+.notes li{margin-bottom:4px}
+.notes code{background:#f0f3f7;padding:1px 5px;border-radius:3px;font-size:12.5px}
+footer{border-top:2px solid #1e3a5f;margin-top:40px;padding:22px 0 0;text-align:center;color:#8b97a6;font-size:12.5px;line-height:1.9}
+.err{display:none;background:#fdf1f0;border:1px solid #f3c9c5;color:#c0392b;padding:14px 16px;border-radius:5px;font-size:14px;margin:18px 0}
+@media(max-width:980px){
+.kpis{grid-template-columns:repeat(2,1fr)}
+.grid{grid-template-columns:1fr}
+.span2{grid-column:span 1}
+.hero h1{font-size:27px}
+.chart{height:290px}
+}
+@media(max-width:560px){
+.wrap{padding:0 15px 50px}
+.hero{padding:38px 16px 32px}
+.hero h1{font-size:24px;line-height:1.38}
+.kpis{grid-template-columns:1fr 1fr}
+.kpi .v{font-size:23px}
+.card{padding:14px}
+.card h3{font-size:15px}
+.chart{height:270px}
+.controls{position:static;gap:8px;padding:10px}
+.controls .seg{flex:1 1 100%}
+.controls .switch{flex:1 1 100%}
+#btn-csv{flex:1 1 100%}
+.nav-inner{gap:10px 14px}
+.nav a.nl{font-size:12.5px}
+}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../">OPC <span>Story</span></a>
+    <a class="nl" href="../">案例墙</a>
+    <a class="nl" href="../all">全部案例</a>
+    <a class="nl active" href="./">数据洞察</a>
+    <a class="nl" href="../method/">核验标准</a>
+    <a class="nl" href="../data-notes/">口径说明</a>
+    <span class="spacer"></span>
+    <a class="nl" href="../data/cases.json">JSON 数据</a>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">OPC Story · Data Insights</div>
+    <h1>100 个 AI 一人公司，数据上长什么样</h1>
+    <p>把案例墙的结构化数据摊开：赛道怎么分布、什么时候集中出现、收入落在哪个区间、哪些数字其实不能互相比较，以及每个案例背后的信源强度。</p>
+    <div class="meta">数据截止 2026-11-22 · 100 例 · 33 例披露收入 · 28 例披露用户 · 平均 11.8 条信源</div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="crumb"><a href="../">案例墙</a> / <a href="../all">全部案例</a> / 数据洞察</div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="v" id="k-count">100</div><div class="k">当前筛选案例</div><div class="s">全量 100 例</div></div>
+    <div class="kpi"><div class="v" id="k-rev">33</div><div class="k">披露收入</div><div class="s">含不可横比口径</div></div>
+    <div class="kpi"><div class="v" id="k-median">85.2万</div><div class="k">年化收入中位</div><div class="s" id="k-median-sub">披露样本 n=33</div></div>
+    <div class="kpi"><div class="v" id="k-users">28</div><div class="k">披露用户</div><div class="s">注册/日活/粉丝等</div></div>
+    <div class="kpi"><div class="v" id="k-src">11.8</div><div class="k">平均信源数</div><div class="s">每篇报告条目</div></div>
+  </div>
+
+  <div class="controls">
+    <span class="lab">赛道</span>
+    <div class="seg" id="seg-track"></div>
+    <span class="lab">年份</span>
+    <select id="sel-year"><option value="all">全部</option></select>
+    <label class="switch"><input type="checkbox" id="chk-comp">仅严格可比收入</label>
+    <button class="btn" id="btn-reset">重置</button>
+    <button class="btn primary" id="btn-csv">导出 CSV</button>
+  </div>
+
+  <div class="summary" id="summary">正在加载数据…</div>
+  <div class="err" id="err">数据加载失败，请刷新页面重试。图表所需的 <code>/data/bi.json</code> 未返回。</div>
+
+  <div class="grid">
+    <div class="card">
+      <h3>赛道分布<span class="en">Track mix</span></h3>
+      <div class="chart" id="c-track" role="img" aria-label="各赛道案例数量条形图"></div>
+      <div class="cap" id="cap-track">点击条形可按赛道筛选。垂直应用与开发者工具合计超过一半。</div>
+    </div>
+
+    <div class="card">
+      <h3>时间趋势<span class="en">By year</span></h3>
+      <div class="chart" id="c-year" role="img" aria-label="按年份与赛道堆叠的案例数量柱状图"></div>
+      <div class="cap">2026 年为不完整年度（截至 11 月），柱高不代表全年总量。</div>
+    </div>
+
+    <div class="card">
+      <h3>收入分布<span class="en">Revenue buckets</span></h3>
+      <div class="chart" id="c-rev" role="img" aria-label="年化收入区间分布柱状图"></div>
+      <div class="cap" id="cap-rev">仅统计披露收入的案例，缺失值不补零。</div>
+    </div>
+
+    <div class="card">
+      <h3>收入口径构成<span class="en">Metric types</span></h3>
+      <div class="chart" id="c-type" role="img" aria-label="披露收入的口径类型条形图"></div>
+      <div class="cap">只有「年营收/年化/ARR」可横向比较；累计、单月、合同额、单店、分账均不可直接对比。</div>
+    </div>
+
+    <div class="card span2">
+      <h3>年化收入 Top 10<span class="en">Top 10 by revenue</span></h3>
+      <div class="chart" id="c-top" role="img" aria-label="年化收入最高的十个案例条形图"></div>
+      <div class="cap" id="cap-top">深色为严格可比口径，浅色为含自述或折算的口径。点击条形打开对应报告。</div>
+    </div>
+
+    <div class="card">
+      <h3>赛道 × 收入<span class="en">Revenue by track</span></h3>
+      <div class="chart" id="c-scatter" role="img" aria-label="各赛道案例收入散点图，纵轴为对数"></div>
+      <div class="cap">纵轴为对数刻度。每点一个案例，菱形为该赛道收入中位；组内样本少时中位仅供参考。</div>
+    </div>
+
+    <div class="card">
+      <h3>信源数量分布<span class="en">Sources per report</span></h3>
+      <div class="chart" id="c-src" role="img" aria-label="每篇报告信源数量分布柱状图"></div>
+      <div class="cap">信源条目包含一手采访、官方页面、工商信息与转载；转载不计为独立信源。</div>
+    </div>
+
+    <div class="card span2">
+      <h3>核验等级 × 赛道<span class="en">Verification</span></h3>
+      <div class="chart" id="c-verify" role="img" aria-label="各赛道核验等级堆叠条形图" style="height:260px"></div>
+      <div class="cap">verified 表示已核验或 ≥2 个独立来源交叉；cross 表示多源印证或单一权威可回溯；partial 表示部分映证、自述或转述。</div>
+    </div>
+  </div>
+
+  <div class="card tbl-card">
+    <h3>案例明细<span class="en">Case table</span></h3>
+    <div class="tbl-tools">
+      <input type="search" id="q" placeholder="搜索项目、创业者、简介或成功迹象…" aria-label="搜索案例">
+      <span style="font-size:12.5px;color:#8b97a6" id="tbl-count"></span>
+    </div>
+    <div class="tw">
+      <table id="tbl">
+        <thead>
+          <tr>
+            <th data-k="name">案例<span class="ar">↕</span></th>
+            <th data-k="track">赛道<span class="ar">↕</span></th>
+            <th data-k="year">时间<span class="ar">↕</span></th>
+            <th data-k="revenue" class="num">年化收入<span class="ar">↕</span></th>
+            <th data-k="revenue_note">口径</th>
+            <th data-k="users" class="num">用户<span class="ar">↕</span></th>
+            <th data-k="verification">核验<span class="ar">↕</span></th>
+            <th data-k="source_count" class="num">信源<span class="ar">↕</span></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+    <div class="pager">
+      <span id="pg-info"></span>
+      <button id="pg-prev">上一页</button>
+      <button id="pg-next">下一页</button>
+    </div>
+  </div>
+
+  <div class="notes">
+    <h3>怎么读这些图</h3>
+    <ul>
+      <li><b>收入是年化折算值</b>：月收入 × 12。合同额、累计流水、单店销售额、分账收益不等于年营收，所以单列「口径构成」。</li>
+      <li><b>只有 15 例严格可比</b>：勾选「仅严格可比收入」后，分布、Top 10、散点都会切换到这 15 例，中位约 100 万元。</li>
+      <li><b>缺失值不补零</b>：未披露收入或用户的案例保留为缺失，不参与对应图表的统计，也不做估算。</li>
+      <li><b>样本偏差</b>：案例来自公开报道，存在幸存者偏差和向上偏差；「未披露」不等于「没有」。</li>
+      <li>完整字段见 <a href="../data/cases.json">/data/cases.json</a>，口径定义见 <a href="../data-notes/">数据口径说明</a>，核验规则见 <a href="../method/">信源核验标准</a>。</li>
+    </ul>
+  </div>
+
+  <footer>
+    <div>OPC Story · 国内 AI 一人公司案例库</div>
+    <div><a href="../">返回案例墙</a> · <a href="../all">全部案例</a> · <a href="../llms.txt">llms.txt</a> · <a href="../feed.json">feed.json</a></div>
+  </footer>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (s) { return document.querySelector(s); };
+  var state = { track: 'all', year: 'all', comparable: false, q: '', sortKey: 'revenue', sortDir: 'desc', page: 1, size: 20 };
+  var ALL = [], META = null, charts = {};
+  var TRACK_COLORS = { '垂直应用': '#1e3a5f', '开发者工具': '#2980b9', '内容创作': '#c9a961', '作品型': '#27ae60', '营销电商': '#c0392b' };
+  var V_COLORS = { verified: '#27ae60', cross: '#2980b9', partial: '#c9a961' };
+  var V_LABEL = { verified: '已核验', cross: '多源印证', partial: '部分映证' };
+  var FONT = '"PingFang SC","Microsoft YaHei",-apple-system,sans-serif';
+
+  function fmtWan(v) {
+    if (v == null) return '—';
+    if (v >= 100000000) return (v / 100000000).toFixed(2).replace(/\.00$/, '') + '亿';
+    var w = v / 10000;
+    return (w >= 100 ? w.toFixed(0) : w.toFixed(1).replace(/\.0$/, '')) + '万';
+  }
+  function fmtNum(v) {
+    if (v == null) return '—';
+    if (v >= 10000) return (v / 10000).toFixed(v >= 100000 ? 0 : 1).replace(/\.0$/, '') + '万';
+    return String(v);
+  }
+  function median(arr) {
+    if (!arr.length) return null;
+    var a = arr.slice().sort(function (x, y) { return x - y; });
+    var m = Math.floor(a.length / 2);
+    return a.length % 2 ? a[m] : (a[m - 1] + a[m]) / 2;
+  }
+  function uniq(a) { return a.filter(function (v, i) { return a.indexOf(v) === i; }); }
+
+  function filtered() {
+    var q = state.q.trim().toLowerCase();
+    return ALL.filter(function (c) {
+      if (state.track !== 'all' && c.track !== state.track) return false;
+      if (state.year !== 'all' && c.year !== +state.year) return false;
+      if (state.comparable && !c.comparable) return false;
+      if (q) {
+        var hay = (c.name + ' ' + c.founder + ' ' + c.summary + ' ' + c.evidence + ' ' + c.track).toLowerCase();
+        if (hay.indexOf(q) === -1) return false;
+      }
+      return true;
+    });
+  }
+
+  function initCharts() {
+    ['c-track', 'c-year', 'c-rev', 'c-type', 'c-top', 'c-scatter', 'c-src', 'c-verify'].forEach(function (id) {
+      charts[id] = echarts.init(document.getElementById(id), null, { renderer: 'canvas' });
+    });
+    charts['c-track'].on('click', function (p) {
+      state.track = state.track === p.name ? 'all' : p.name;
+      syncTrackButtons(); render();
+    });
+    charts['c-top'].on('click', function (p) {
+      if (p.data && p.data.url) window.location.href = p.data.url;
+    });
+    charts['c-scatter'].on('click', function (p) {
+      if (p.data && p.data.url) window.location.href = p.data.url;
+    });
+    window.addEventListener('resize', function () {
+      Object.keys(charts).forEach(function (k) { charts[k].resize(); });
+    });
+  }
+
+  var BASE_TEXT = { fontFamily: FONT, fontSize: 12, color: '#4a5b6e' };
+  var AXIS = {
+    axisLine: { lineStyle: { color: '#dbe2ea' } },
+    axisTick: { show: false },
+    axisLabel: { color: '#6b7a8c', fontSize: 11.5 },
+    splitLine: { lineStyle: { color: '#edf0f4' } }
+  };
+  function tooltip(extra) {
+    var t = { trigger: 'item', confine: true, backgroundColor: 'rgba(10,31,61,.94)', borderWidth: 0, textStyle: { color: '#fff', fontSize: 12.5, fontFamily: FONT } };
+    if (extra) for (var k in extra) t[k] = extra[k];
+    return t;
+  }
+  function toolbox() {
+    return { right: 2, top: 0, itemSize: 13, iconStyle: { borderColor: '#a8b4c2' }, feature: { saveAsImage: { title: '保存图片', pixelRatio: 2, backgroundColor: '#fff' } } };
+  }
+  function grid(o) {
+    var g = { left: 8, right: 20, top: 26, bottom: 6, containLabel: true };
+    if (o) for (var k in o) g[k] = o[k];
+    return g;
+  }
+
+  function renderTrack(list) {
+    var counts = {};
+    list.forEach(function (c) { counts[c.track] = (counts[c.track] || 0) + 1; });
+    var arr = Object.keys(counts).map(function (k) { return { name: k, value: counts[k] }; }).sort(function (a, b) { return a.value - b.value; });
+    charts['c-track'].setOption({
+      textStyle: BASE_TEXT,
+      tooltip: tooltip({ formatter: function (p) { return p.name + '：<b>' + p.value + '</b> 例'; } }),
+      toolbox: toolbox(),
+      grid: grid({ right: 34 }),
+      xAxis: { type: 'value', minInterval: 1, axisLabel: AXIS.axisLabel, splitLine: AXIS.splitLine, axisLine: { show: false } },
+      yAxis: { type: 'category', data: arr.map(function (d) { return d.name; }), axisLine: AXIS.axisLine, axisTick: { show: false }, axisLabel: { color: '#3c4c5e', fontSize: 12.5 } },
+      series: [{
+        type: 'bar', barWidth: 17,
+        data: arr.map(function (d) { return { value: d.value, name: d.name, itemStyle: { color: TRACK_COLORS[d.name] || '#8b97a6', borderRadius: [0, 3, 3, 0] } }; }),
+        label: { show: true, position: 'right', color: '#4a5b6e', fontSize: 12, formatter: '{c}' }
+      }]
+    }, true);
+  }
+
+  function renderYear(list) {
+    var years = META.years.slice().sort(function (a, b) { return a - b; });
+    var tracks = state.track === 'all' ? META.tracks : [state.track];
+    var series = tracks.map(function (t) {
+      return {
+        name: t, type: 'bar', stack: 'y', barMaxWidth: 34,
+        itemStyle: { color: TRACK_COLORS[t] || '#8b97a6' },
+        emphasis: { focus: 'series' },
+        data: years.map(function (y) { return list.filter(function (c) { return c.year === y && c.track === t; }).length; })
+      };
+    });
+    charts['c-year'].setOption({
+      textStyle: BASE_TEXT,
+      tooltip: tooltip({ trigger: 'axis', axisPointer: { type: 'shadow' } }),
+      legend: { top: 0, right: 0, itemWidth: 9, itemHeight: 9, textStyle: { fontSize: 11, color: '#6b7a8c' } },
+      toolbox: toolbox(),
+      grid: grid({ top: 40 }),
+      xAxis: { type: 'category', data: years.map(function (y) { return y + (y === 2026 ? '*' : ''); }), axisLine: AXIS.axisLine, axisTick: { show: false }, axisLabel: AXIS.axisLabel },
+      yAxis: { type: 'value', minInterval: 1, axisLabel: AXIS.axisLabel, splitLine: AXIS.splitLine },
+      series: series
+    }, true);
+  }
+
+  function renderRev(list) {
+    var revs = list.filter(function (c) { return c.revenue; });
+    var buckets = META.buckets;
+    var counts = buckets.map(function (b) { return revs.filter(function (c) { return c.revenue_bucket === b; }).length; });
+    var med = median(revs.map(function (c) { return c.revenue; }));
+    charts['c-rev'].setOption({
+      textStyle: BASE_TEXT,
+      tooltip: tooltip({ formatter: function (p) { return p.name + '：<b>' + p.value + '</b> 例'; } }),
+      toolbox: toolbox(),
+      grid: grid({ right: 14 }),
+      xAxis: { type: 'category', data: buckets, axisLine: AXIS.axisLine, axisTick: { show: false }, axisLabel: { color: '#6b7a8c', fontSize: 11 } },
+      yAxis: { type: 'value', minInterval: 1, axisLabel: AXIS.axisLabel, splitLine: AXIS.splitLine },
+      series: [{
+        type: 'bar', barMaxWidth: 46,
+        data: counts.map(function (v) { return { value: v, itemStyle: { color: '#1e3a5f', borderRadius: [3, 3, 0, 0] } }; }),
+        label: { show: true, position: 'top', color: '#4a5b6e', fontSize: 12 }
+      }]
+    }, true);
+    $('#cap-rev').innerHTML = 'n = <b>' + revs.length + '</b> · 中位 <b>' + fmtWan(med) + '</b> · 最高 <b>' + fmtWan(revs.length ? Math.max.apply(null, revs.map(function (c) { return c.revenue; })) : null) + '</b>。仅统计披露收入的案例，缺失值不补零。';
+  }
+
+  function renderType(list) {
+    var revs = list.filter(function (c) { return c.revenue; });
+    var types = META.revenue_types.map(function (t) { return { name: t, value: revs.filter(function (c) { return c.revenue_type === t; }).length }; }).filter(function (d) { return d.value > 0; }).sort(function (a, b) { return a.value - b.value; });
+    charts['c-type'].setOption({
+      textStyle: BASE_TEXT,
+      tooltip: tooltip({ formatter: function (p) { return p.name + '：<b>' + p.value + '</b> 例'; } }),
+      toolbox: toolbox(),
+      grid: grid({ right: 34 }),
+      xAxis: { type: 'value', minInterval: 1, axisLabel: AXIS.axisLabel, splitLine: AXIS.splitLine, axisLine: { show: false } },
+      yAxis: { type: 'category', data: types.map(function (d) { return d.name; }), axisLine: AXIS.axisLine, axisTick: { show: false }, axisLabel: { color: '#3c4c5e', fontSize: 12 } },
+      series: [{
+        type: 'bar', barWidth: 15,
+        data: types.map(function (d) {
+          return { value: d.value, itemStyle: { color: d.name === '年营收/年化/ARR' ? '#1e3a5f' : '#c9a961', borderRadius: [0, 3, 3, 0] } };
+        }),
+        label: { show: true, position: 'right', color: '#4a5b6e', fontSize: 12 }
+      }]
+    }, true);
+  }
+
+  function renderTop(list) {
+    var revs = list.filter(function (c) { return c.revenue; }).sort(function (a, b) { return b.revenue - a.revenue; }).slice(0, 10).reverse();
+    charts['c-top'].setOption({
+      textStyle: BASE_TEXT,
+      tooltip: tooltip({
+        formatter: function (p) {
+          var d = p.data;
+          return '<b>' + d.name + '</b><br>年化收入：' + fmtWan(d.value) + '<br>口径：' + (d.note || '—') + '<br>核验：' + (V_LABEL[d.v] || d.v) + ' · 信源 ' + d.src + ' 条';
+        }
+      }),
+      toolbox: toolbox(),
+      grid: grid({ left: 8, right: 62, top: 10 }),
+      xAxis: { type: 'value', axisLabel: { color: '#6b7a8c', fontSize: 11, formatter: function (v) { return v / 10000 + '万'; } }, splitLine: AXIS.splitLine },
+      yAxis: { type: 'category', data: revs.map(function (c) { return c.name.length > 16 ? c.name.slice(0, 16) + '…' : c.name; }), axisLine: AXIS.axisLine, axisTick: { show: false }, axisLabel: { color: '#3c4c5e', fontSize: 11.5 } },
+      series: [{
+        type: 'bar', barWidth: 14,
+        data: revs.map(function (c) {
+          return { value: c.revenue, name: c.name, url: c.url, note: c.revenue_note, v: c.verification, src: c.source_count, itemStyle: { color: c.comparable ? '#1e3a5f' : '#c9a961', borderRadius: [0, 3, 3, 0] } };
+        }),
+        label: { show: true, position: 'right', color: '#4a5b6e', fontSize: 11.5, formatter: function (p) { return fmtWan(p.value); } }
+      }]
+    }, true);
+  }
+
+  function renderScatter(list) {
+    var revs = list.filter(function (c) { return c.revenue; });
+    var tracks = META.tracks.filter(function (t) { return revs.some(function (c) { return c.track === t; }); });
+    var buckets = {};
+    var data = revs.map(function (c) {
+      var i = tracks.indexOf(c.track);
+      var n = (buckets[c.track] = (buckets[c.track] || 0) + 1);
+      var jitter = ((n % 5) - 2) * 0.13;
+      return { value: [i + jitter, c.revenue], name: c.name, url: c.url, note: c.revenue_note, track: c.track, v: c.verification };
+    });
+    var meds = [];
+    tracks.forEach(function (t, i) {
+      var vals = revs.filter(function (c) { return c.track === t; }).map(function (c) { return c.revenue; });
+      if (vals.length >= 3) meds.push({ value: [i, median(vals)], name: t, itemStyle: { color: '#c0392b' } });
+    });
+    charts['c-scatter'].setOption({
+      textStyle: BASE_TEXT,
+      tooltip: tooltip({
+        formatter: function (p) {
+          if (p.seriesName === '赛道中位') return p.name + ' 中位：<b>' + fmtWan(p.value[1]) + '</b>';
+          var d = p.data;
+          return '<b>' + d.name + '</b><br>' + d.track + ' · ' + fmtWan(d.value[1]) + '<br>口径：' + (d.note || '—') + '<br>核验：' + (V_LABEL[d.v] || d.v);
+        }
+      }),
+      legend: { top: 0, right: 0, itemWidth: 9, itemHeight: 9, textStyle: { fontSize: 11, color: '#6b7a8c' }, data: ['案例', '赛道中位'] },
+      toolbox: toolbox(),
+      grid: grid({ top: 36, right: 18 }),
+      xAxis: {
+        type: 'value', min: -0.5, max: tracks.length - 0.5, interval: 1,
+        axisLabel: { color: '#3c4c5e', fontSize: 11, formatter: function (v) { return tracks[Math.round(v)] || ''; } },
+        axisLine: AXIS.axisLine, axisTick: { show: false }, splitLine: { show: false }
+      },
+      yAxis: {
+        type: 'log', min: 8000, max: 20000000,
+        axisLabel: { color: '#6b7a8c', fontSize: 11, formatter: function (v) { return v >= 10000 ? (v / 10000) + '万' : v; } },
+        splitLine: AXIS.splitLine
+      },
+      series: [
+        { name: '案例', type: 'scatter', symbolSize: 11, data: data, itemStyle: { color: '#2980b9', opacity: .72, borderColor: '#fff', borderWidth: 1 }, emphasis: { itemStyle: { opacity: 1 } } },
+        { name: '赛道中位', type: 'scatter', symbol: 'diamond', symbolSize: 15, data: meds, tooltip: { show: true }, label: { show: true, position: 'right', color: '#c0392b', fontSize: 10.5, formatter: function (p) { return '中位 ' + fmtWan(p.value[1]); } } }
+      ]
+    }, true);
+  }
+
+  function renderSrc(list) {
+    var bins = [[4, 6], [7, 9], [10, 12], [13, 15], [16, 18], [19, 21], [22, 24], [25, 27]];
+    var counts = bins.map(function (b) { return list.filter(function (c) { return c.source_count >= b[0] && c.source_count <= b[1]; }).length; });
+    charts['c-src'].setOption({
+      textStyle: BASE_TEXT,
+      tooltip: tooltip({ formatter: function (p) { return p.name + ' 条：<b>' + p.value + '</b> 例'; } }),
+      toolbox: toolbox(),
+      grid: grid({ right: 14 }),
+      xAxis: { type: 'category', data: bins.map(function (b) { return b[0] + '-' + b[1]; }), axisLine: AXIS.axisLine, axisTick: { show: false }, axisLabel: { color: '#6b7a8c', fontSize: 10.5 } },
+      yAxis: { type: 'value', minInterval: 1, axisLabel: AXIS.axisLabel, splitLine: AXIS.splitLine },
+      series: [{
+        type: 'bar', barMaxWidth: 40,
+        data: counts.map(function (v) { return { value: v, itemStyle: { color: '#c9a961', borderRadius: [3, 3, 0, 0] } }; }),
+        label: { show: true, position: 'top', color: '#4a5b6e', fontSize: 11.5 }
+      }]
+    }, true);
+  }
+
+  function renderVerify(list) {
+    var tracks = META.tracks.filter(function (t) { return list.some(function (c) { return c.track === t; }); });
+    var levels = ['verified', 'cross', 'partial'];
+    var series = levels.map(function (lv) {
+      return {
+        name: V_LABEL[lv], type: 'bar', stack: 'v', barMaxWidth: 26,
+        itemStyle: { color: V_COLORS[lv] },
+        label: { show: true, color: '#fff', fontSize: 11, formatter: function (p) { return p.value ? p.value : ''; } },
+        data: tracks.map(function (t) { return list.filter(function (c) { return c.track === t && c.verification === lv; }).length; })
+      };
+    });
+    charts['c-verify'].setOption({
+      textStyle: BASE_TEXT,
+      tooltip: tooltip({ trigger: 'axis', axisPointer: { type: 'shadow' } }),
+      legend: { top: 0, right: 0, itemWidth: 9, itemHeight: 9, textStyle: { fontSize: 11, color: '#6b7a8c' } },
+      toolbox: toolbox(),
+      grid: grid({ top: 34, right: 20 }),
+      xAxis: { type: 'value', minInterval: 1, axisLabel: AXIS.axisLabel, splitLine: AXIS.splitLine },
+      yAxis: { type: 'category', data: tracks, axisLine: AXIS.axisLine, axisTick: { show: false }, axisLabel: { color: '#3c4c5e', fontSize: 12 } },
+      series: series
+    }, true);
+  }
+
+  function renderKPIs(list) {
+    var revs = list.filter(function (c) { return c.revenue; }).map(function (c) { return c.revenue; });
+    var med = median(revs);
+    $('#k-count').textContent = list.length;
+    $('#k-rev').textContent = revs.length;
+    $('#k-median').textContent = fmtWan(med);
+    $('#k-median-sub').textContent = revs.length ? ('披露样本 n=' + revs.length + (state.comparable ? ' · 严格可比' : '')) : '当前筛选无披露样本';
+    $('#k-users').textContent = list.filter(function (c) { return c.users; }).length;
+    var srcs = list.map(function (c) { return c.source_count; }).filter(function (v) { return v; });
+    $('#k-src').textContent = srcs.length ? (srcs.reduce(function (a, b) { return a + b; }, 0) / srcs.length).toFixed(1) : '—';
+  }
+
+  function renderSummary(list) {
+    if (!list.length) { $('#summary').textContent = '当前筛选没有匹配的案例，试试重置筛选条件。'; return; }
+    var counts = {};
+    list.forEach(function (c) { counts[c.track] = (counts[c.track] || 0) + 1; });
+    var top = Object.keys(counts).sort(function (a, b) { return counts[b] - counts[a]; })[0];
+    var revs = list.filter(function (c) { return c.revenue; }).map(function (c) { return c.revenue; });
+    var med = median(revs);
+    $('#summary').innerHTML = '当前筛选 <b>' + list.length + '</b> 例，' + top + '最多（' + counts[top] + ' 例）；' +
+      '<b>' + revs.length + '</b> 例披露收入' + (revs.length ? ('，中位 <b>' + fmtWan(med) + '</b>') : '') +
+      (state.comparable ? '（严格可比口径）' : '') + '。';
+  }
+
+  function sortVal(c, k) {
+    var v = c[k];
+    if (k === 'verification') { var order = { verified: 3, cross: 2, partial: 1 }; return order[v] || 0; }
+    return v == null ? null : v;
+  }
+  function renderTable(list) {
+    var sorted = list.slice().sort(function (a, b) {
+      var av = sortVal(a, state.sortKey), bv = sortVal(b, state.sortKey);
+      if (av == null && bv == null) return 0;
+      if (av == null) return 1;
+      if (bv == null) return -1;
+      var r = av < bv ? -1 : av > bv ? 1 : 0;
+      return state.sortDir === 'asc' ? r : -r;
+    });
+    var pages = Math.max(1, Math.ceil(sorted.length / state.size));
+    if (state.page > pages) state.page = pages;
+    var rows = sorted.slice((state.page - 1) * state.size, state.page * state.size);
+    var html = rows.map(function (c) {
+      return '<tr>' +
+        '<td><a href="' + c.url + '">' + c.name + '</a><div style="font-size:11.5px;color:#9aa7b6">' + c.founder + '</div></td>' +
+        '<td class="nw">' + c.track + '</td>' +
+        '<td class="nw">' + c.time_anchor + '</td>' +
+        '<td class="num">' + fmtWan(c.revenue) + '</td>' +
+        '<td style="font-size:12px;color:#6b7a8c">' + (c.revenue_note || '—') + '</td>' +
+        '<td class="num">' + fmtNum(c.users) + '</td>' +
+        '<td class="nw"><span class="badge-v ' + c.verification + '">' + (V_LABEL[c.verification] || c.verification) + '</span></td>' +
+        '<td class="num">' + (c.source_count || '—') + '</td>' +
+        '<td class="nw"><a href="' + c.url + '" style="font-size:12px">报告 →</a></td>' +
+        '</tr>';
+    }).join('');
+    $('#tbody').innerHTML = html || '<tr><td colspan="9" class="empty">没有匹配的案例</td></tr>';
+    $('#tbl-count').textContent = '共 ' + sorted.length + ' 例';
+    $('#pg-info').textContent = '第 ' + state.page + ' / ' + pages + ' 页';
+    $('#pg-prev').disabled = state.page <= 1;
+    $('#pg-next').disabled = state.page >= pages;
+  }
+
+  function render() {
+    var list = filtered();
+    renderSummary(list);
+    renderKPIs(list);
+    renderTrack(list);
+    renderYear(list);
+    renderRev(list);
+    renderType(list);
+    renderTop(list);
+    renderScatter(list);
+    renderSrc(list);
+    renderVerify(list);
+    renderTable(list);
+  }
+
+  function syncTrackButtons() {
+    document.querySelectorAll('#seg-track button').forEach(function (b) {
+      b.classList.toggle('on', b.dataset.track === state.track);
+    });
+  }
+
+  function buildControls() {
+    var seg = $('#seg-track');
+    var opts = [{ k: 'all', n: '全部' }].concat(META.tracks.map(function (t) { return { k: t, n: t }; }));
+    seg.innerHTML = opts.map(function (o) { return '<button type="button" data-track="' + o.k + '">' + o.n + '</button>'; }).join('');
+    seg.addEventListener('click', function (e) {
+      var b = e.target.closest('button');
+      if (!b) return;
+      state.track = b.dataset.track;
+      syncTrackButtons(); render();
+    });
+    var sel = $('#sel-year');
+    META.years.slice().sort(function (a, b) { return b - a; }).forEach(function (y) {
+      var o = document.createElement('option'); o.value = y; o.textContent = y + ' 年'; sel.appendChild(o);
+    });
+    sel.addEventListener('change', function () { state.year = sel.value; state.page = 1; render(); });
+    $('#chk-comp').addEventListener('change', function (e) { state.comparable = e.target.checked; state.page = 1; render(); });
+    $('#btn-reset').addEventListener('click', function () {
+      state.track = 'all'; state.year = 'all'; state.comparable = false; state.q = ''; state.page = 1;
+      $('#sel-year').value = 'all'; $('#chk-comp').checked = false; $('#q').value = '';
+      syncTrackButtons(); render();
+    });
+    var timer = null;
+    $('#q').addEventListener('input', function (e) {
+      clearTimeout(timer);
+      var v = e.target.value;
+      timer = setTimeout(function () { state.q = v; state.page = 1; render(); }, 180);
+    });
+    document.querySelectorAll('thead th[data-k]').forEach(function (th) {
+      th.addEventListener('click', function () {
+        var k = th.dataset.k;
+        if (state.sortKey === k) state.sortDir = state.sortDir === 'desc' ? 'asc' : 'desc';
+        else { state.sortKey = k; state.sortDir = (k === 'name' || k === 'track' || k === 'verification' || k === 'revenue_note') ? 'asc' : 'desc'; }
+        state.page = 1; render();
+      });
+    });
+    $('#pg-prev').addEventListener('click', function () { if (state.page > 1) { state.page--; render(); } });
+    $('#pg-next').addEventListener('click', function () { state.page++; render(); });
+    $('#btn-csv').addEventListener('click', function () {
+      var rows = [['序号', '案例', '创业者', '赛道', '时间锚点', '年化收入(元)', '收入口径', '严格可比', '用户', '用户口径', '核验等级', '信源数', '报告链接']];
+      filtered().forEach(function (c) {
+        rows.push([c.id, c.name, c.founder, c.track, c.time_anchor, c.revenue == null ? '' : c.revenue, c.revenue_note || '', c.comparable ? '是' : '否', c.users == null ? '' : c.users, c.users_note || '', c.verification, c.source_count || '', c.url]);
+      });
+      var csv = '\ufeff' + rows.map(function (r) { return r.map(function (v) { var s = String(v).replace(/"/g, '""'); return /[",\n]/.test(s) ? '"' + s + '"' : s; }).join(','); }).join('\n');
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+      a.download = 'opc-cases-' + new Date().toISOString().slice(0, 10) + '.csv';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+    });
+  }
+
+  function boot() {
+    fetch('../data/bi.json')
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (d) {
+        ALL = d.cases; META = d.meta;
+        buildControls();
+        initCharts();
+        render();
+      })
+      .catch(function (e) {
+        console.error(e);
+        $('#err').style.display = 'block';
+        $('#summary').textContent = '数据加载失败。';
+      });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();
+</script>
+</body>
+</html>
