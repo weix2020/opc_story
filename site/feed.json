@@ -1,0 +1,1710 @@
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": "OPC Story · 国内 AI 一人公司案例",
+  "home_page_url": "https://opc-story.top/",
+  "feed_url": "https://opc-story.top/feed.json",
+  "description": "100 个以 AI 为核心生产力的中国一人公司案例，每例附逐条信源核验的深度报告。",
+  "language": "zh-CN",
+  "items": [
+    {
+      "id": "https://opc-story.top/report/chongsheng-tanglang/",
+      "url": "https://opc-story.top/report/chongsheng-tanglang/",
+      "title": "《重生螳螂，觉醒无限吞噬进化》AI 短剧",
+      "summary": "96 集 AI 短剧：投入 4000 余元、一个半月一人完成剧本/生成/剪辑全流程。",
+      "content_text": "96 集 AI 短剧：投入 4000 余元、一个半月一人完成剧本/生成/剪辑全流程。\n\n创业者：白非空（40 岁，四川家居 3D 设计师）\n赛道：作品型\n时间锚点：2026-11-13\n关键结果：红果热度 6042 万、播放破 6 亿（4 信源交叉）、增收 6 万元；微博热搜第一\n规模：年化收入 60000 元（增收）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/chongsheng-tanglang/",
+      "date_published": "2026-11-13T00:00:00+08:00",
+      "tags": [
+        "作品型",
+        "verified"
+      ],
+      "authors": [
+        {
+          "name": "白非空（40 岁，四川家居 3D 设计师）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/snowie-ai/",
+      "url": "https://opc-story.top/report/snowie-ai/",
+      "title": "啾儿啾儿 Snowie AI（AI 情感助手）",
+      "summary": "识别 33 类 PUA 的 AI 情感助手：MIRIX + A-MEM 记忆机制 + CBT 框架，国内 App 与海外版并行。",
+      "content_text": "识别 33 类 PUA 的 AI 情感助手：MIRIX + A-MEM 记忆机制 + CBT 框架，国内 App 与海外版并行。\n\n创业者：王诗琪（CEO，帝国理工硕士）等 5 人团队\n赛道：垂直应用\n时间锚点：2026-11-06\n关键结果：海内外注册用户 20 万+（2026-11）、累计获投 229 万港币、估值破千万；5 人团队，非严格一人公司\n规模：用户 200000（注册用户）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/snowie-ai/",
+      "date_published": "2026-11-06T00:00:00+08:00",
+      "tags": [
+        "垂直应用",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "王诗琪（CEO，帝国理工硕士）等 5 人团队"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/xu-fei-manju/",
+      "url": "https://opc-story.top/report/xu-fei-manju/",
+      "title": "许飞 AI 漫剧流水线",
+      "summary": "一人批量生产 AI 漫剧：单部 50 分钟算力约 600 元 + 抽卡 800 元，月产约 120 分钟。",
+      "content_text": "一人批量生产 AI 漫剧：单部 50 分钟算力约 600 元 + 抽卡 800 元，月产约 120 分钟。\n\n创业者：许飞（14 岁辍学，苏州相城，月租 3500 元合租工作室）\n赛道：内容创作\n时间锚点：2026-11-04\n关键结果：近十部总播放十几亿、单部最高上亿、爆款分成近 80 万元（创作者口径，实质独立信源 2 个）\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/xu-fei-manju/",
+      "date_published": "2026-11-04T00:00:00+08:00",
+      "tags": [
+        "内容创作",
+        "partial"
+      ],
+      "authors": [
+        {
+          "name": "许飞（14 岁辍学，苏州相城，月租 3500 元合租工作室）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/zhang-zhengqian/",
+      "url": "https://opc-story.top/report/zhang-zhengqian/",
+      "title": "张正谦 AI 末世短剧",
+      "summary": "一人完成写剧本/拆镜头/人物建模/配音剪辑的 AI 短剧创作。",
+      "content_text": "一人完成写剧本/拆镜头/人物建模/配音剪辑的 AI 短剧创作。\n\n创业者：张正谦（35 岁，武汉，中专学历）\n赛道：内容创作\n时间锚点：2026-11-02\n关键结果：全网播放 8000 万+（本人称近 1 亿）、月入 1 万余元、月成本约 800 元\n规模：年化收入 120000 元（年化收入）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/zhang-zhengqian/",
+      "date_published": "2026-11-02T00:00:00+08:00",
+      "tags": [
+        "内容创作",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "张正谦（35 岁，武汉，中专学历）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/huluobo-xuer/",
+      "url": "https://opc-story.top/report/huluobo-xuer/",
+      "title": "胡萝卜须儿（B 站 AI 名人演唱会）",
+      "summary": "Seedance 2.0 等工具一人生成名人唱跳画面与梗词的 AI 演唱会系列。",
+      "content_text": "Seedance 2.0 等工具一人生成名人唱跳画面与梗词的 AI 演唱会系列。\n\n创业者：胡萝卜须儿（27 岁，全职 UP 主）\n赛道：内容创作\n时间锚点：2026-10-22\n关键结果：《元首世界巡演》播放 330 万→372 万（B 站一手），流量分成覆盖生成成本\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/huluobo-xuer/",
+      "date_published": "2026-10-22T00:00:00+08:00",
+      "tags": [
+        "内容创作",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "胡萝卜须儿（27 岁，全职 UP 主）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/ka-dian-rezero/",
+      "url": "https://opc-story.top/report/ka-dian-rezero/",
+      "title": "ka殿《Re:0 异世界学园生活·序》AI 同人短片",
+      "summary": "个人手搓近 3 分钟 AI 同人短片：画风模仿/生成/剪辑一人完成，以假乱真。",
+      "content_text": "个人手搓近 3 分钟 AI 同人短片：画风模仿/生成/剪辑一人完成，以假乱真。\n\n创业者：ka殿（B 站 UP 主，updream 特约导演）\n赛道：作品型\n时间锚点：2026-09-19\n关键结果：B 站 222.9 万播放、X 1 天破 500 万观看，引发日本业界「个人长篇动画时代」讨论\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/ka-dian-rezero/",
+      "date_published": "2026-09-19T00:00:00+08:00",
+      "tags": [
+        "作品型",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "ka殿（B 站 UP 主，updream 特约导演）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/feiyaozai/",
+      "url": "https://opc-story.top/report/feiyaozai/",
+      "title": "《非妖哉》AI 国风志怪短剧",
+      "summary": "除真人配音外一人完成剧本/分镜/生成/剪辑的 AI 国风志怪短剧，单集约 1 万元、10 天。",
+      "content_text": "除真人配音外一人完成剧本/分镜/生成/剪辑的 AI 国风志怪短剧，单集约 1 万元、10 天。\n\n创业者：不吃榨菜AIGC（90 后，广东河源客家人，深圳工作 8 年）\n赛道：作品型\n时间锚点：2026-09-05\n关键结果：三集播放破亿（2026-09-16）、点赞 600 万+（澎湃；南方+ 525 万）、粉丝 70 万+\n规模：用户 700000（粉丝）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/feiyaozai/",
+      "date_published": "2026-09-05T00:00:00+08:00",
+      "tags": [
+        "作品型",
+        "verified"
+      ],
+      "authors": [
+        {
+          "name": "不吃榨菜AIGC（90 后，广东河源客家人，深圳工作 8 年）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/youchai/",
+      "url": "https://opc-story.top/report/youchai/",
+      "title": "《我在现代当幽差》AI 动画剧",
+      "summary": "「地府打工人」原创 AI 动画剧：一人扛编剧/导演/剪辑，签约 B 站 UP 动画剧场获算力补贴与专项激励。",
+      "content_text": "「地府打工人」原创 AI 动画剧：一人扛编剧/导演/剪辑，签约 B 站 UP 动画剧场获算力补贴与专项激励。\n\n创业者：红豆稀饭中（前中石化员工 / B 站百大 UP 主）\n赛道：作品型\n时间锚点：2026-09\n关键结果：上线 3 集播放破 1100 万（澎湃口径，EP01 超 700 万间接交叉），连续入选 B 站「每周必看」；单集成本 6000 元→3.38 万两口径\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/youchai/",
+      "date_published": "2026-09T00:00:00+08:00",
+      "tags": [
+        "作品型",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "红豆稀饭中（前中石化员工 / B 站百大 UP 主）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/guixu/",
+      "url": "https://opc-story.top/report/guixu/",
+      "title": "AI 短剧《归墟》",
+      "summary": "12 集末世科幻 AI 短剧：即梦 Seedance + Suno 全流程一人制作，周更连载。",
+      "content_text": "12 集末世科幻 AI 短剧：即梦 Seedance + Suno 全流程一人制作，周更连载。\n\n创业者：泫九（江澜）\n赛道：作品型\n时间锚点：2026-08-29\n关键结果：全网播放破亿（年末口径破 2 亿），红果热度 4400 万+\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/guixu/",
+      "date_published": "2026-08-29T00:00:00+08:00",
+      "tags": [
+        "作品型",
+        "verified"
+      ],
+      "authors": [
+        {
+          "name": "泫九（江澜）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/justai-xiaojia/",
+      "url": "https://opc-story.top/report/justai-xiaojia/",
+      "title": "JustAI「小加同学」AI 内容营销 Agent",
+      "summary": "商家上传产品图+一句话，1 分钟生成推广图文/标题/封面的内容营销 Agent。",
+      "content_text": "商家上传产品图+一句话，1 分钟生成推广图文/标题/封面的内容营销 Agent。\n\n创业者：卢冠男 Lucas（95 后，前腾讯工程师）\n赛道：营销电商\n时间锚点：2026-08-23\n关键结果：上线一年注册用户 400 万、1 万付费客户（南都专访），登 WAIC 2026 OPC 展区\n规模：用户 4000000（注册用户）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/justai-xiaojia/",
+      "date_published": "2026-08-23T00:00:00+08:00",
+      "tags": [
+        "营销电商",
+        "verified"
+      ],
+      "authors": [
+        {
+          "name": "卢冠男 Lucas（95 后，前腾讯工程师）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/sakura-journey/",
+      "url": "https://opc-story.top/report/sakura-journey/",
+      "title": "我和我的 AI 男友：樱时叙归途",
+      "summary": "一人用字节系 AI 工具完成 60 集 2D 纯爱漫剧，小说-漫剧-小游戏 IP 联动。",
+      "content_text": "一人用字节系 AI 工具完成 60 集 2D 纯爱漫剧，小说-漫剧-小游戏 IP 联动。\n\n创业者：李四姑娘\n赛道：作品型\n时间锚点：2026-08-20\n关键结果：红果热度 1200 万（上线 5 天）\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/sakura-journey/",
+      "date_published": "2026-08-20T00:00:00+08:00",
+      "tags": [
+        "作品型",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "李四姑娘"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/sword-sect/",
+      "url": "https://opc-story.top/report/sword-sect/",
+      "title": "咱家剑宗团宠小师妹",
+      "summary": "修仙题材 AI 漫剧，剧本/分镜/生成/剪辑一人独立制作，长季连载。",
+      "content_text": "修仙题材 AI 漫剧，剧本/分镜/生成/剪辑一人独立制作，长季连载。\n\n创业者：六爻\n赛道：作品型\n时间锚点：2026-08-04\n关键结果：红果漫剧热播榜第三，规划超 1000 集\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/sword-sect/",
+      "date_published": "2026-08-04T00:00:00+08:00",
+      "tags": [
+        "作品型",
+        "partial"
+      ],
+      "authors": [
+        {
+          "name": "六爻"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/qiguang/",
+      "url": "https://opc-story.top/report/qiguang/",
+      "title": "栖光（AI 中式天庭短视频）",
+      "summary": "眼镜店老板自学 AI 两年，副业创作 AI 国风「中式天庭」系列短视频出海。",
+      "content_text": "眼镜店老板自学 AI 两年，副业创作 AI 国风「中式天庭」系列短视频出海。\n\n创业者：陈爱军（90 后成都眼镜店老板）\n赛道：内容创作\n时间锚点：2026-08\n关键结果：海外播放 500 万+（4 信源交叉），获外交部发言人毛宁转发；抖音粉丝 50 万+\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/qiguang/",
+      "date_published": "2026-08T00:00:00+08:00",
+      "tags": [
+        "内容创作",
+        "verified"
+      ],
+      "authors": [
+        {
+          "name": "陈爱军（90 后成都眼镜店老板）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/xiaotianle/",
+      "url": "https://opc-story.top/report/xiaotianle/",
+      "title": "肖天乐 AI 漫剧工作室",
+      "summary": "宿舍手搓 AI 漫剧：2026-08 注册吴江个人独资企业（100% 持股），初期 5 人执行小组协作。",
+      "content_text": "宿舍手搓 AI 漫剧：2026-08 注册吴江个人独资企业（100% 持股），初期 5 人执行小组协作。\n\n创业者：肖天乐（苏州大学机械电子大三）\n赛道：作品型\n时间锚点：2026-08\n关键结果：不到一年营收超 300 万（5 信源交叉），爆款播放 15 亿、单剧创收 200 万+\n规模：年化收入 3000000 元（年营收）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/xiaotianle/",
+      "date_published": "2026-08T00:00:00+08:00",
+      "tags": [
+        "作品型",
+        "verified"
+      ],
+      "authors": [
+        {
+          "name": "肖天乐（苏州大学机械电子大三）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/meiju-wuyu/",
+      "url": "https://opc-story.top/report/meiju-wuyu/",
+      "title": "《妹居物语》AI 原生陪伴游戏",
+      "summary": "Claude 开发的 AI 陪伴游戏：AI 既是开发主力也是核心体验（长期记忆/自写日记）。",
+      "content_text": "Claude 开发的 AI 陪伴游戏：AI 既是开发主力也是核心体验（长期记忆/自写日记）。\n\n创业者：彩奈（前游戏策划，零程序基础）\n赛道：垂直应用\n时间锚点：2026-07-29\n关键结果：Demo 上架 3 天 DAU 破万、TapTap 预约 66 万评分 9.5、成本七八千元\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/meiju-wuyu/",
+      "date_published": "2026-07-29T00:00:00+08:00",
+      "tags": [
+        "垂直应用",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "彩奈（前游戏策划，零程序基础）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/baidaizi/",
+      "url": "https://opc-story.top/report/baidaizi/",
+      "title": "白袋子《零号档案》AI 科幻剧",
+      "summary": "抖音 AIGC 科幻剧：世界观构建/画面生成/更新一人完成。",
+      "content_text": "抖音 AIGC 科幻剧：世界观构建/画面生成/更新一人完成。\n\n创业者：白袋子（广州插画师）\n赛道：作品型\n时间锚点：2026-07-22\n关键结果：6 集累计播放 1.9 亿（3 信源交叉）、粉丝 126 万→161 万（账号一手）\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/baidaizi/",
+      "date_published": "2026-07-22T00:00:00+08:00",
+      "tags": [
+        "作品型",
+        "verified"
+      ],
+      "authors": [
+        {
+          "name": "白袋子（广州插画师）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/fapei-bianguan/",
+      "url": "https://opc-story.top/report/fapei-bianguan/",
+      "title": "《发配边关，罪妻开荒养出战神》",
+      "summary": "534 集 AI 漫剧连载：夫妻二人用 AI 工具链完成剧本/绘制/配音全流程，已更新至第九季。",
+      "content_text": "534 集 AI 漫剧连载：夫妻二人用 AI 工具链完成剧本/绘制/配音全流程，已更新至第九季。\n\n创业者：何杰 / 张芬（夫妻二人）\n赛道：作品型\n时间锚点：2026-07-17\n关键结果：抖音播放破 41 亿（≥5 信源交叉）、系列 6 部进红果百强榜 TOP15（第六季热度 8251 万·榜内第二，DataEye 回溯口径）\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/fapei-bianguan/",
+      "date_published": "2026-07-17T00:00:00+08:00",
+      "tags": [
+        "作品型",
+        "verified"
+      ],
+      "authors": [
+        {
+          "name": "何杰 / 张芬（夫妻二人）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/yijing-cards/",
+      "url": "https://opc-story.top/report/yijing-cards/",
+      "title": "易经图卦系列",
+      "summary": "AI 转译易经卦象的情绪卡牌 + AI 生成小程序，一人包揽产品全流程。",
+      "content_text": "AI 转译易经卦象的情绪卡牌 + AI 生成小程序，一人包揽产品全流程。\n\n创业者：刘健\n赛道：垂直应用\n时间锚点：2026-07-15\n关键结果：年销售额破百万，月营收稳定 6 万+\n规模：年化收入 1000000 元（年销售额）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/yijing-cards/",
+      "date_published": "2026-07-15T00:00:00+08:00",
+      "tags": [
+        "垂直应用",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "刘健"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/buzhengjing-yaojie/",
+      "url": "https://opc-story.top/report/buzhengjing-yaojie/",
+      "title": "《不正经妖界》AI 喜剧动画",
+      "summary": "下班碎片时间用 Seedance 2.0 + 剪映独立完成国风 AI 喜剧动画：编剧到成片一人包办。",
+      "content_text": "下班碎片时间用 Seedance 2.0 + 剪映独立完成国风 AI 喜剧动画：编剧到成片一人包办。\n\n创业者：肖琦（泰州姜堰区融媒体中心后期岗）\n赛道：作品型\n时间锚点：2026-07\n关键结果：第一季播放破 3000 万（九派/中国经济网双源交叉），入选抖音精选；另获瓦卡奖 AI 真实叙事优秀奖\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/buzhengjing-yaojie/",
+      "date_published": "2026-07T00:00:00+08:00",
+      "tags": [
+        "作品型",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "肖琦（泰州姜堰区融媒体中心后期岗）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/zuowenshuo/",
+      "url": "https://opc-story.top/report/zuowenshuo/",
+      "title": "作文说",
+      "summary": "AI 作文批改：拍照上传生成可打印批改报告，支持班级批量精批。",
+      "content_text": "AI 作文批改：拍照上传生成可打印批改报告，支持班级批量精批。\n\n创业者：李雲帆\n赛道：垂直应用\n时间锚点：2026-06-24\n关键结果：4 个月用户 1.5 万，月入近 5 万（自述）\n规模：年化收入 600000 元（年化营收·自述）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/zuowenshuo/",
+      "date_published": "2026-06-24T00:00:00+08:00",
+      "tags": [
+        "垂直应用",
+        "verified"
+      ],
+      "authors": [
+        {
+          "name": "李雲帆"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/wushi-ai/",
+      "url": "https://opc-story.top/report/wushi-ai/",
+      "title": "无事AI",
+      "summary": "AI 小额纠纷解决：免费诊断案情/测算赔偿，按结果收费。",
+      "content_text": "AI 小额纠纷解决：免费诊断案情/测算赔偿，按结果收费。\n\n创业者：佟晨\n赛道：垂直应用\n时间锚点：2026-06-15\n关键结果：两月 40 余单付费、营收约 6 万元（36氪渠道为创始人投稿口径，已标注）\n规模：年化收入 60000 元（累计营收）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/wushi-ai/",
+      "date_published": "2026-06-15T00:00:00+08:00",
+      "tags": [
+        "垂直应用",
+        "partial"
+      ],
+      "authors": [
+        {
+          "name": "佟晨"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/xingzhi-tech/",
+      "url": "https://opc-story.top/report/xingzhi-tech/",
+      "title": "星织科技",
+      "summary": "AI 智能体做「数字员工」，一人同时运营多个亚马逊品牌。",
+      "content_text": "AI 智能体做「数字员工」，一人同时运营多个亚马逊品牌。\n\n创业者：Kevin Li\n赛道：营销电商\n时间锚点：2026-06-11\n关键结果：亚马逊官方白皮书收录 OPC 典型（「8 品牌」出自品牌传播稿，口径已标注）\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/xingzhi-tech/",
+      "date_published": "2026-06-11T00:00:00+08:00",
+      "tags": [
+        "营销电商",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "Kevin Li"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/daisen-cloud/",
+      "url": "https://opc-story.top/report/daisen-cloud/",
+      "title": "戴森云",
+      "summary": "大模型驱动直播电商：话术生成/生命周期预测/智能运营。",
+      "content_text": "大模型驱动直播电商：话术生成/生命周期预测/智能运营。\n\n创业者：田志雄\n赛道：营销电商\n时间锚点：2026-06-05\n关键结果：直播年流水数千万、技术营收超千万\n规模：年化收入 10000000 元（技术营收）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/daisen-cloud/",
+      "date_published": "2026-06-05T00:00:00+08:00",
+      "tags": [
+        "营销电商",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "田志雄"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/yanbian-qingmei/",
+      "url": "https://opc-story.top/report/yanbian-qingmei/",
+      "title": "《砚边青梅》国风历史 AI 漫剧",
+      "summary": "自学 AI 两个月的作者一人包办小说/剧本/分镜/建模/配音/剪辑，两季 48 集连载带动「历史热」。",
+      "content_text": "自学 AI 两个月的作者一人包办小说/剧本/分镜/建模/配音/剪辑，两季 48 集连载带动「历史热」。\n\n创业者：晚晚（85 后，真名未公开；张馨允系主创团队负责人）\n赛道：作品型\n时间锚点：2026-06\n关键结果：两季 48 集播放破亿（4 信源交叉）、热度超 4000 万；抖音话题量 2 亿/2.4 亿双口径并列\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/yanbian-qingmei/",
+      "date_published": "2026-06T00:00:00+08:00",
+      "tags": [
+        "作品型",
+        "verified"
+      ],
+      "authors": [
+        {
+          "name": "晚晚（85 后，真名未公开；张馨允系主创团队负责人）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/zombie-cleaner/",
+      "url": "https://opc-story.top/report/zombie-cleaner/",
+      "title": "AI 短片《丧尸清道夫》",
+      "summary": "3 分 34 秒原子朋克 AI 科幻短片，全流程一人 10 天完成。",
+      "content_text": "3 分 34 秒原子朋克 AI 科幻短片，全流程一人 10 天完成。\n\n创业者：刘梓瑜\n赛道：作品型\n时间锚点：2026-05-24\n关键结果：播放 6000 万至破亿，获好莱坞制作人盛赞\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/zombie-cleaner/",
+      "date_published": "2026-05-24T00:00:00+08:00",
+      "tags": [
+        "作品型",
+        "verified"
+      ],
+      "authors": [
+        {
+          "name": "刘梓瑜"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/kuge-kanworld/",
+      "url": "https://opc-story.top/report/kuge-kanworld/",
+      "title": "「酷哥看世界」《回到远古》AI 古生物科普",
+      "summary": "即梦 Seedance 2.0 独立创作 25 集 98 分钟人类进化史长片，无团队无外包。",
+      "content_text": "即梦 Seedance 2.0 独立创作 25 集 98 分钟人类进化史长片，无团队无外包。\n\n创业者：李志能（95 后，职高学历，2023 裸辞）\n赛道：内容创作\n时间锚点：2026-05-20\n关键结果：抖音播放破亿、微博热搜第七，粉丝 316 万+（飞瓜），B 站合集 4307 万播放\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/kuge-kanworld/",
+      "date_published": "2026-05-20T00:00:00+08:00",
+      "tags": [
+        "内容创作",
+        "verified"
+      ],
+      "authors": [
+        {
+          "name": "李志能（95 后，职高学历，2023 裸辞）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/kre-ai/",
+      "url": "https://opc-story.top/report/kre-ai/",
+      "title": "Kre.ai",
+      "summary": "AI 智能体流水线为跨境电商优化广告投放与素材复盘。",
+      "content_text": "AI 智能体流水线为跨境电商优化广告投放与素材复盘。\n\n创业者：武培文\n赛道：营销电商\n时间锚点：2026-05-06\n关键结果：200 万元大单，年营收超百万（另有「月营收 200 万+」口径，双口径并列）\n规模：年化收入 1000000 元（年营收）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/kre-ai/",
+      "date_published": "2026-05-06T00:00:00+08:00",
+      "tags": [
+        "营销电商",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "武培文"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/yinxing-sanjie/",
+      "url": "https://opc-story.top/report/yinxing-sanjie/",
+      "title": "音行三界",
+      "summary": "AI 音乐公司：AI 生成多风格歌曲 + 音乐数据标注 + AI 虚拟偶像 IP 运营，两人运营。",
+      "content_text": "AI 音乐公司：AI 生成多风格歌曲 + 音乐数据标注 + AI 虚拟偶像 IP 运营，两人运营。\n\n创业者：陶雯煜\n赛道：内容创作\n时间锚点：2026-04-29\n关键结果：虚拟偶像全网粉丝 20 万+、播放 3000 万+，与山西文旅等机构合作\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/yinxing-sanjie/",
+      "date_published": "2026-04-29T00:00:00+08:00",
+      "tags": [
+        "内容创作",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "陶雯煜"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/min-denghua/",
+      "url": "https://opc-story.top/report/min-denghua/",
+      "title": "「羽言」AI 语音助手（脑瘫无障碍）",
+      "summary": "每月约 200 元 AI 编程订阅，2 个月为自己与脑瘫群体开发语音输入助手。",
+      "content_text": "每月约 200 元 AI 编程订阅，2 个月为自己与脑瘫群体开发语音输入助手。\n\n创业者：闵登华（2000 年生，安徽安庆，金融科技博士生）\n赛道：垂直应用\n时间锚点：2026-04-27\n关键结果：主流语音识别对其非标发音识别率不足 20%，「羽言」自测近 100%（仅本人单样本）；已入驻成都 OPC 社区\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/min-denghua/",
+      "date_published": "2026-04-27T00:00:00+08:00",
+      "tags": [
+        "垂直应用",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "闵登华（2000 年生，安徽安庆，金融科技博士生）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/tanjiquan/",
+      "url": "https://opc-story.top/report/tanjiquan/",
+      "title": "碳基圈",
+      "summary": "AI 社交平台：「仅 AI 可见」匿名树洞 + AI 歌曲生成，用 Claude Code 独立开发。",
+      "content_text": "AI 社交平台：「仅 AI 可见」匿名树洞 + AI 歌曲生成，用 Claude Code 独立开发。\n\n创业者：杨平（Yapie程序员哥）\n赛道：垂直应用\n时间锚点：2026-04-16\n关键结果：用户 4 万+、日访问 100 万+，AI 音乐上线 2 天即产生收入\n规模：用户 40000（用户）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/tanjiquan/",
+      "date_published": "2026-04-16T00:00:00+08:00",
+      "tags": [
+        "垂直应用",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "杨平（Yapie程序员哥）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/wabo-tech/",
+      "url": "https://opc-story.top/report/wabo-tech/",
+      "title": "瓦博科技（消费级脑机接口）",
+      "summary": "4 名真人 + 16 只 AI「龙虾」数字员工，5 个月做出单通道脑机接口与 15g 无感穿戴。",
+      "content_text": "4 名真人 + 16 只 AI「龙虾」数字员工，5 个月做出单通道脑机接口与 15g 无感穿戴。\n\n创业者：张星智（1990 年生，前 SAP/联想/腾讯，曾任上市公司副总裁）\n赛道：垂直应用\n时间锚点：2026-04-16\n关键结果：2026-03 至 07 完成种子轮到天使轮三轮融资，估值过亿（公司提供投资资料口径）\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/wabo-tech/",
+      "date_published": "2026-04-16T00:00:00+08:00",
+      "tags": [
+        "垂直应用",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "张星智（1990 年生，前 SAP/联想/腾讯，曾任上市公司副总裁）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/tata-pose/",
+      "url": "https://opc-story.top/report/tata-pose/",
+      "title": "TATA·Pose 助手（AI 拍照姿势小程序）",
+      "summary": "百度秒哒零代码开发的 AI 姿势引导拍照小程序：摄像头叠加 AI 蒙版。",
+      "content_text": "百度秒哒零代码开发的 AI 姿势引导拍照小程序：摄像头叠加 AI 蒙版。\n\n创业者：塔塔（95 后前 UI 设计师、全职宝妈）\n赛道：垂直应用\n时间锚点：2026-04-08\n关键结果：数十万用户浏览，月入 2 万多元（商单+奖金混合口径，已标注）；百度世界大会现场演示\n规模：年化收入 240000 元（年化收入）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/tata-pose/",
+      "date_published": "2026-04-08T00:00:00+08:00",
+      "tags": [
+        "垂直应用",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "塔塔（95 后前 UI 设计师、全职宝妈）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/wai-paper-phone/",
+      "url": "https://opc-story.top/report/wai-paper-phone/",
+      "title": "WAI 工作室《纸手机》AI 短片",
+      "summary": "两人 AI 视频工作室：三天成片的 AI 短片《纸手机》全网刷屏。",
+      "content_text": "两人 AI 视频工作室：三天成片的 AI 短片《纸手机》全网刷屏。\n\n创业者：杨选 / 李婷（两人主创，深圳）\n赛道：作品型\n时间锚点：2026-04\n关键结果：播放 2000 万（央视）→ 4000 万（北京日报）→ 破亿/曝光 2.3 亿（新榜）多口径并列；入围北影节 AIGC 单元最佳短片\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/wai-paper-phone/",
+      "date_published": "2026-04T00:00:00+08:00",
+      "tags": [
+        "作品型",
+        "verified"
+      ],
+      "authors": [
+        {
+          "name": "杨选 / 李婷（两人主创，深圳）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/hemu-tiktok/",
+      "url": "https://opc-story.top/report/hemu-tiktok/",
+      "title": "贺沐 TikTok AI 跨境电商",
+      "summary": "「一个人一台电脑」AI 批量生成 100-200 条测品短视频做 TikTok 小物件出海。",
+      "content_text": "「一个人一台电脑」AI 批量生成 100-200 条测品短视频做 TikTok 小物件出海。\n\n创业者：贺沐（动画专业 2025 届毕业生）\n赛道：营销电商\n时间锚点：2026-03-30\n关键结果：店铺粉丝 1000+，月稳定收益 1 万-2 万元（新华日报一手采访）\n规模：年化收入 180000 元（年化收入）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/hemu-tiktok/",
+      "date_published": "2026-03-30T00:00:00+08:00",
+      "tags": [
+        "营销电商",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "贺沐（动画专业 2025 届毕业生）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/yizhang-panda/",
+      "url": "https://opc-story.top/report/yizhang-panda/",
+      "title": "《一掌熊猫》AI 动画长片",
+      "summary": "42 分钟 AI 动画长片：28 天、约 3 万元成本一人主导完成，一人公司（持股 95%）承制 AIGC 视频。",
+      "content_text": "42 分钟 AI 动画长片：28 天、约 3 万元成本一人主导完成，一人公司（持股 95%）承制 AIGC 视频。\n\n创业者：秦文山（苏州画宗智能）\n赛道：内容创作\n时间锚点：2026-03-24\n关键结果：全网播放破百万（新华网/澎湃交叉），入围北京国际电影节，推进院线项目《字圣仓颉》\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/yizhang-panda/",
+      "date_published": "2026-03-24T00:00:00+08:00",
+      "tags": [
+        "内容创作",
+        "verified"
+      ],
+      "authors": [
+        {
+          "name": "秦文山（苏州画宗智能）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/daozai-ecommerce/",
+      "url": "https://opc-story.top/report/daozai-ecommerce/",
+      "title": "刀仔 AI 电商（12 店→4 家主力店）",
+      "summary": "骨折卧床 70 天，用 AI 选品/文案/配图 + Coze 经营日报 + 一件代发遥控网店。",
+      "content_text": "骨折卧床 70 天，用 AI 选品/文案/配图 + Coze 经营日报 + 一件代发遥控网店。\n\n创业者：刀仔（35 岁，河南）\n赛道：营销电商\n时间锚点：2026-03-23\n关键结果：12 家店优化到 4 家；单店月销 5-8 万、月净利 2.5-3 万、月运营成本约 2000 元（自述，单店口径）\n规模：年化收入 780000 元（年化·单店销售额）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/daozai-ecommerce/",
+      "date_published": "2026-03-23T00:00:00+08:00",
+      "tags": [
+        "营销电商",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "刀仔（35 岁，河南）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/chali-na/",
+      "url": "https://opc-story.top/report/chali-na/",
+      "title": "查莉娜 · 职业咨询 + AI 数字员工",
+      "summary": "10 年职业规划咨询，用 AI 补技术短板：访谈录音喂助手、产品设计、文案与小程序开发。",
+      "content_text": "10 年职业规划咨询，用 AI 补技术短板：访谈录音喂助手、产品设计、文案与小程序开发。\n\n创业者：查莉娜（娜里跑，同济毕业，前公务员/教培）\n赛道：垂直应用\n时间锚点：2026-03-16\n关键结果：300+ 例个案、近 5000 小时一对一；正开发「个人事业孵化教练」小程序（未披露营收）\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/chali-na/",
+      "date_published": "2026-03-16T00:00:00+08:00",
+      "tags": [
+        "垂直应用",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "查莉娜（娜里跑，同济毕业，前公务员/教培）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/smart-money/",
+      "url": "https://opc-story.top/report/smart-money/",
+      "title": "聪明钱监控",
+      "summary": "开源智能体手搓的 AI 股市投研系统，日报推送，200 元/年。",
+      "content_text": "开源智能体手搓的 AI 股市投研系统，日报推送，200 元/年。\n\n创业者：许洋\n赛道：垂直应用\n时间锚点：2026-03-15\n关键结果：半月 90 个付费用户、收入超 1 万元\n规模：年化收入 10000 元（半月营收）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/smart-money/",
+      "date_published": "2026-03-15T00:00:00+08:00",
+      "tags": [
+        "垂直应用",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "许洋"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/zhongxin-shutong/",
+      "url": "https://opc-story.top/report/zhongxin-shutong/",
+      "title": "中欣数通（AI 智能呼叫）",
+      "summary": "大模型接入呼叫系统：AI 售后呼入 + 电销机器人 + CRM，一人公司运营。",
+      "content_text": "大模型接入呼叫系统：AI 售后呼入 + 电销机器人 + CRM，一人公司运营。\n\n创业者：刘强（7 年软件开发，2022 年近 30 岁创业）\n赛道：垂直应用\n时间锚点：2026-03-13\n关键结果：2025 年营收近百万元（标题「年入百万」按正文口径）、客户 500 家+，售后响应 1 天→10 余分钟\n规模：年化收入 1000000 元（年营收）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/zhongxin-shutong/",
+      "date_published": "2026-03-13T00:00:00+08:00",
+      "tags": [
+        "垂直应用",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "刘强（7 年软件开发，2022 年近 30 岁创业）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/sifengrui/",
+      "url": "https://opc-story.top/report/sifengrui/",
+      "title": "华睿数联（一人软件公司）",
+      "summary": "一人 + AI 集群（Cursor/豆包/WPS AI/即梦）承接企业软件项目，工位在朋友公司与咖啡馆。",
+      "content_text": "一人 + AI 集群（Cursor/豆包/WPS AI/即梦）承接企业软件项目，工位在朋友公司与咖啡馆。\n\n创业者：司丰瑞（85 后，IT 从业十多年）\n赛道：垂直应用\n时间锚点：2026-03-11\n关键结果：2025 年交付 4 个项目、合同总额超 60 万元；2026-01 第五单 ERP 预计两个多月交付\n规模：年化收入 600000 元（年合同额）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/sifengrui/",
+      "date_published": "2026-03-11T00:00:00+08:00",
+      "tags": [
+        "垂直应用",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "司丰瑞（85 后，IT 从业十多年）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/desktop-raid/",
+      "url": "https://opc-story.top/report/desktop-raid/",
+      "title": "《桌面副本物语 Desktop Raid》",
+      "summary": "一人 + AI（Codely 内 AI 直接操作 Unity）开发的 Steam 游戏，售价 ¥36。",
+      "content_text": "一人 + AI（Codely 内 AI 直接操作 Unity）开发的 Steam 游戏，售价 ¥36。\n\n创业者：大葵（B 站「朵辣辣和葵发发」，10 年独立开发经验）\n赛道：垂直应用\n时间锚点：2026-03-08\n关键结果：上线半年销量破 5 万份、流水近百万（创作者口径）；Steam 654 篇评测 76% 好评\n规模：年化收入 1000000 元（累计流水·自述）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/desktop-raid/",
+      "date_published": "2026-03-08T00:00:00+08:00",
+      "tags": [
+        "垂直应用",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "大葵（B 站「朵辣辣和葵发发」，10 年独立开发经验）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/shengxu-ai/",
+      "url": "https://opc-story.top/report/shengxu-ai/",
+      "title": "声序智能（AI 曲谱智能体）",
+      "summary": "五线谱↔简谱 1 分钟互转的 AI 曲谱智能体（OMR），订阅收费，服务传统民乐行业。",
+      "content_text": "五线谱↔简谱 1 分钟互转的 AI 曲谱智能体（OMR），订阅收费，服务传统民乐行业。\n\n创业者：王钰博（前字节风控算法工程师）\n赛道：垂直应用\n时间锚点：2026-03\n关键结果：上线半年多用户超 6000（新华/新京报实探交叉），成立约 3 个月现金流回正进入盈利\n规模：用户 6000（用户）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/shengxu-ai/",
+      "date_published": "2026-03T00:00:00+08:00",
+      "tags": [
+        "垂直应用",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "王钰博（前字节风控算法工程师）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/xinyang-trade/",
+      "url": "https://opc-story.top/report/xinyang-trade/",
+      "title": "炘扬贸易（AI 棒球帽出海）",
+      "summary": "个人 + 8 个 AI 智能体（阿里国际 Accio）跑通选品/设计/交付全链的定制棒球帽跨境电商。",
+      "content_text": "个人 + 8 个 AI 智能体（阿里国际 Accio）跑通选品/设计/交付全链的定制棒球帽跨境电商。\n\n创业者：张乾超（95 后，丽水云和）\n赛道：营销电商\n时间锚点：2026-03\n关键结果：开业当月即回本、首单 3600 美元；智能体数两口径并列：8 个（潮新闻）/ 80 个（新华每日电讯）\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/xinyang-trade/",
+      "date_published": "2026-03T00:00:00+08:00",
+      "tags": [
+        "营销电商",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "张乾超（95 后，丽水云和）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/caileme/",
+      "url": "https://opc-story.top/report/caileme/",
+      "title": "采了么 × 聚身之家（AI 运营双品牌）",
+      "summary": "不会代码的厂二代用 AI 一人运营两个品牌：机器人对接 + 数据采集撮合平台。",
+      "content_text": "不会代码的厂二代用 AI 一人运营两个品牌：机器人对接 + 数据采集撮合平台。\n\n创业者：祝鹤槐（97 年厂二代，杭州上城）\n赛道：垂直应用\n时间锚点：2026-03\n关键结果：2 个月 3 笔订单、营收超 20 万（3 订单人民网印证、金额澎湃口径）；曾拒 5000 万投资（单源自述）\n规模：年化收入 200000 元（两月营收）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/caileme/",
+      "date_published": "2026-03T00:00:00+08:00",
+      "tags": [
+        "垂直应用",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "祝鹤槐（97 年厂二代，杭州上城）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/hupocad/",
+      "url": "https://opc-story.top/report/hupocad/",
+      "title": "hupoCADNet",
+      "summary": "AI 彩平图生成引擎：CAD 平面图 3 分钟生成可商用彩色平面图。",
+      "content_text": "AI 彩平图生成引擎：CAD 平面图 3 分钟生成可商用彩色平面图。\n\n创业者：何思康\n赛道：垂直应用\n时间锚点：2026-01-31\n关键结果：半年 1740 位付费设计师、营收 5.1 万元\n规模：年化收入 51000 元（累计营收）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/hupocad/",
+      "date_published": "2026-01-31T00:00:00+08:00",
+      "tags": [
+        "垂直应用",
+        "partial"
+      ],
+      "authors": [
+        {
+          "name": "何思康"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/tianzhiling/",
+      "url": "https://opc-story.top/report/tianzhiling/",
+      "title": "天之灵AI",
+      "summary": "AI 哀伤陪伴小程序：亲人照片生成数字形象陪对话疗愈。",
+      "content_text": "AI 哀伤陪伴小程序：亲人照片生成数字形象陪对话疗愈。\n\n创业者：张翼\n赛道：垂直应用\n时间锚点：2026-01-15\n关键结果：用户 11.1 万、付费会员 2000+、已盈利\n规模：用户 111000（用户）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/tianzhiling/",
+      "date_published": "2026-01-15T00:00:00+08:00",
+      "tags": [
+        "垂直应用",
+        "partial"
+      ],
+      "authors": [
+        {
+          "name": "张翼"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/anhui-xiaomujiang/",
+      "url": "https://opc-story.top/report/anhui-xiaomujiang/",
+      "title": "AI 短剧《安徽小木匠》",
+      "summary": "一人用豆包改编番茄小说 IP 剧本 + Seedance 生成的 AI 仿真人短剧：约 2900 元成本、7 天制作。",
+      "content_text": "一人用豆包改编番茄小说 IP 剧本 + Seedance 生成的 AI 仿真人短剧：约 2900 元成本、7 天制作。\n\n创业者：小果哥哥（前婚庆摄像，初中没毕业）\n赛道：作品型\n时间锚点：2026-01\n关键结果：全网播放 3.5 亿、分账收益 50 万+（≥4 信源交叉）；成本 2900/3000 元两口径；后续三部未过审\n规模：年化收入 500000 元（分账收益）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/anhui-xiaomujiang/",
+      "date_published": "2026-01T00:00:00+08:00",
+      "tags": [
+        "作品型",
+        "verified"
+      ],
+      "authors": [
+        {
+          "name": "小果哥哥（前婚庆摄像，初中没毕业）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/humi-tech/",
+      "url": "https://opc-story.top/report/humi-tech/",
+      "title": "沪咪科技（TikTok 日本家纺出海）",
+      "summary": "AI 短视频 + 达人建联把中国家纺卖爆日本 TikTok：宿舍起步、一人创始主导（核心 3 人协作）。",
+      "content_text": "AI 短视频 + 达人建联把中国家纺卖爆日本 TikTok：宿舍起步、一人创始主导（核心 3 人协作）。\n\n创业者：陈子顺（00 后，上海临港）\n赛道：营销电商\n时间锚点：2026-01\n关键结果：TikTok 日本家纺/全品类第一（新华/新民晚报/临港管委会三源交叉）；年营收破千万，单月 500 万 vs 单季 1 亿日元双口径\n规模：年化收入 10000000 元（年营收）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/humi-tech/",
+      "date_published": "2026-01T00:00:00+08:00",
+      "tags": [
+        "营销电商",
+        "verified"
+      ],
+      "authors": [
+        {
+          "name": "陈子顺（00 后，上海临港）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/redink/",
+      "url": "https://opc-story.top/report/redink/",
+      "title": "红墨 RedInk",
+      "summary": "一句话生成整套小红书图文笔记：标题/正文/封面配图可直发。",
+      "content_text": "一句话生成整套小红书图文笔记：标题/正文/封面配图可直发。\n\n创业者：默子（HisMax）\n赛道：内容创作\n时间锚点：2026\n关键结果：GitHub 5.7k★，会员 68 元/月起\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/redink/",
+      "date_published": "2026T00:00:00+08:00",
+      "tags": [
+        "内容创作",
+        "partial"
+      ],
+      "authors": [
+        {
+          "name": "默子（HisMax）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/sitesfy/",
+      "url": "https://opc-story.top/report/sitesfy/",
+      "title": "Sitesfy AI",
+      "summary": "AI 获客系统：自动生成面向搜索引擎的多语言获客网站与内容。",
+      "content_text": "AI 获客系统：自动生成面向搜索引擎的多语言获客网站与内容。\n\n创业者：王喆（Steve Wang）\n赛道：营销电商\n时间锚点：2026\n关键结果：自述月收入近 100 万元（自述口径）\n规模：年化收入 12000000 元（年化营收·自述）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/sitesfy/",
+      "date_published": "2026T00:00:00+08:00",
+      "tags": [
+        "营销电商",
+        "partial"
+      ],
+      "authors": [
+        {
+          "name": "王喆（Steve Wang）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/mumu-ainovel/",
+      "url": "https://opc-story.top/report/mumu-ainovel/",
+      "title": "MuMuAINovel",
+      "summary": "可自部署的 AI 长篇小说工作台：角色卡/伏笔追踪/批量挂机写作。",
+      "content_text": "可自部署的 AI 长篇小说工作台：角色卡/伏笔追踪/批量挂机写作。\n\n创业者：xiamuceer-j\n赛道：内容创作\n时间锚点：2026\n关键结果：GitHub 3.3k★，网文圈自部署社区\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/mumu-ainovel/",
+      "date_published": "2026T00:00:00+08:00",
+      "tags": [
+        "内容创作",
+        "partial"
+      ],
+      "authors": [
+        {
+          "name": "xiamuceer-j"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/bettafish/",
+      "url": "https://opc-story.top/report/bettafish/",
+      "title": "BettaFish（微舆）",
+      "summary": "多智能体舆情分析系统：自动分析 30+ 社媒平台数百万条评论并预测走向，10 天 Vibe Coding 完成。",
+      "content_text": "多智能体舆情分析系统：自动分析 30+ 社媒平台数百万条评论并预测走向，10 天 Vibe Coding 完成。\n\n创业者：郭航江（BaiFu）\n赛道：开发者工具\n时间锚点：2025-12-15\n关键结果：GitHub 42.7k★（2026-11 API 实测），两度登顶 GitHub 趋势榜第一，获 3000 万元注资\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/bettafish/",
+      "date_published": "2025-12-15T00:00:00+08:00",
+      "tags": [
+        "开发者工具",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "郭航江（BaiFu）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/ye-chunjun/",
+      "url": "https://opc-story.top/report/ye-chunjun/",
+      "title": "互动内容产品（Rochat，双口径认定）",
+      "summary": "AI 驱动的互动内容与情感陪伴产品，90% 代码由 AI Agent 编写。",
+      "content_text": "AI 驱动的互动内容与情感陪伴产品，90% 代码由 AI Agent 编写。\n\n创业者：叶纯俊\n赛道：垂直应用\n时间锚点：2025-11-15\n关键结果：全球百万用户、月收入 2-3 万美元\n规模：年化收入 2130000 元（年化营收）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/ye-chunjun/",
+      "date_published": "2025-11-15T00:00:00+08:00",
+      "tags": [
+        "垂直应用",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "叶纯俊"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/late-ming-reborn/",
+      "url": "https://opc-story.top/report/late-ming-reborn/",
+      "title": "《明末：欲火重生》",
+      "summary": "8 个月 AI 辅助独立开发的 2D 开放世界视觉小说，Steam EA 上线，开发/发行均为单人署名。",
+      "content_text": "8 个月 AI 辅助独立开发的 2D 开放世界视觉小说，Steam EA 上线，开发/发行均为单人署名。\n\n创业者：阿拉丁巴图（43 岁前上海美术设计师）\n赛道：作品型\n时间锚点：2025-11-14\n关键结果：首月收入约 6 万元（GameLook 报道口径，单源）；Steam 评价 449/551 双口径佐证商业落地\n规模：年化收入 60000 元（首月营收）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/late-ming-reborn/",
+      "date_published": "2025-11-14T00:00:00+08:00",
+      "tags": [
+        "作品型",
+        "partial"
+      ],
+      "authors": [
+        {
+          "name": "阿拉丁巴图（43 岁前上海美术设计师）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/nuxtpro/",
+      "url": "https://opc-story.top/report/nuxtpro/",
+      "title": "NuxtPro 等 AI 工具矩阵",
+      "summary": "一人多产品：SaaS 模板/API 中转/视频去水印等工具站矩阵。",
+      "content_text": "一人多产品：SaaS 模板/API 中转/视频去水印等工具站矩阵。\n\n创业者：IndieMakerKevin\n赛道：开发者工具\n时间锚点：2025-11-10\n关键结果：自述月额外收入 1 万美元+（自述口径）\n规模：年化收入 852000 元（年化收入·自述）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/nuxtpro/",
+      "date_published": "2025-11-10T00:00:00+08:00",
+      "tags": [
+        "开发者工具",
+        "partial"
+      ],
+      "authors": [
+        {
+          "name": "IndieMakerKevin"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/aiclient-2-api/",
+      "url": "https://opc-story.top/report/aiclient-2-api/",
+      "title": "AIClient-2-API",
+      "summary": "把 Gemini CLI/Codex 等客户端协议反代为本地 OpenAI 兼容 API。",
+      "content_text": "把 Gemini CLI/Codex 等客户端协议反代为本地 OpenAI 兼容 API。\n\n创业者：justlovemaki（GitHub 显示名「何夕2077」，武汉）\n赛道：开发者工具\n时间锚点：2025-07-20\n关键结果：GitHub 8.9k★（2026-11 API 实测）、Docker 下载 10 万+\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/aiclient-2-api/",
+      "date_published": "2025-07-20T00:00:00+08:00",
+      "tags": [
+        "开发者工具",
+        "partial"
+      ],
+      "authors": [
+        {
+          "name": "justlovemaki（GitHub 显示名「何夕2077」，武汉）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/chat-memo/",
+      "url": "https://opc-story.top/report/chat-memo/",
+      "title": "Chat Memo",
+      "summary": "跨 AI 平台「记忆中枢」插件：自动存档 ChatGPT/Claude/豆包等对话并全库检索。",
+      "content_text": "跨 AI 平台「记忆中枢」插件：自动存档 ChatGPT/Claude/豆包等对话并全库检索。\n\n创业者：一泽 Eze\n赛道：开发者工具\n时间锚点：2025-06-30\n关键结果：20000+ 用户，Chrome 商店 4.9 分获 Google 精选认证\n规模：用户 20000（用户）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/chat-memo/",
+      "date_published": "2025-06-30T00:00:00+08:00",
+      "tags": [
+        "开发者工具",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "一泽 Eze"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/qiuzhi-jingling/",
+      "url": "https://opc-story.top/report/qiuzhi-jingling/",
+      "title": "求职精灵",
+      "summary": "Agent 化 AI 求职全链路：规划/简历逐字改/全真语音模拟面试。",
+      "content_text": "Agent 化 AI 求职全链路：规划/简历逐字改/全真语音模拟面试。\n\n创业者：奕甫（有见求职孵化项目，口径已标注）\n赛道：垂直应用\n时间锚点：2025-06-15\n关键结果：用户将破 100 万、年化收益千万级（自述）\n规模：年化收入 10000000 元（年化收益·自述）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/qiuzhi-jingling/",
+      "date_published": "2025-06-15T00:00:00+08:00",
+      "tags": [
+        "垂直应用",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "奕甫（有见求职孵化项目，口径已标注）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/wutong-ai/",
+      "url": "https://opc-story.top/report/wutong-ai/",
+      "title": "江苏梧桐 AI（大学生就业平台）",
+      "summary": "AI 大学生就业服务平台 +「OPC×AI」供需对接平台：简历匹配/企业对接，一人公司运营。",
+      "content_text": "AI 大学生就业服务平台 +「OPC×AI」供需对接平台：简历匹配/企业对接，一人公司运营。\n\n创业者：何汕杉（苏州工业园区，唯一全职员工）\n赛道：垂直应用\n时间锚点：2025-05\n关键结果：月活近 60 万人次、48 万份简历、13 万家企业（新华网/园区管委会交叉）\n规模：用户 600000（月活用户）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/wutong-ai/",
+      "date_published": "2025-05T00:00:00+08:00",
+      "tags": [
+        "垂直应用",
+        "verified"
+      ],
+      "authors": [
+        {
+          "name": "何汕杉（苏州工业园区，唯一全职员工）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/emoease/",
+      "url": "https://opc-story.top/report/emoease/",
+      "title": "EmoEase（AI 情绪疗愈 App）",
+      "summary": "16 岁高中生用 Cursor/Trae 零基础 20 天开发的 AI 情绪记录疗愈 App，另有「牛马时钟」工资计算器。",
+      "content_text": "16 岁高中生用 Cursor/Trae 零基础 20 天开发的 AI 情绪记录疗愈 App，另有「牛马时钟」工资计算器。\n\n创业者：冼星朗（05 后香港高中生）\n赛道：垂直应用\n时间锚点：2025-04-17\n关键结果：上线即冲 App Store 付费工具榜第 5（4 信源交叉）；获苹果 SSC 全球杰出获奖者并受邀 WWDC25\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/emoease/",
+      "date_published": "2025-04-17T00:00:00+08:00",
+      "tags": [
+        "垂直应用",
+        "verified"
+      ],
+      "authors": [
+        {
+          "name": "冼星朗（05 后香港高中生）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/weizhishu/",
+      "url": "https://opc-story.top/report/weizhishu/",
+      "title": "胃之书",
+      "summary": "拍照记录饮食 AI App：大模型生成热量与代谢分析。",
+      "content_text": "拍照记录饮食 AI App：大模型生成热量与代谢分析。\n\n创业者：赵纯想\n赛道：垂直应用\n时间锚点：2025-04-16\n关键结果：9 万用户、收入 1.2 万美元（5 个月累计/每月两口径并存）；小红书独立开发大赛最佳 AI 项目\n规模：年化收入 85200 元（累计营收）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/weizhishu/",
+      "date_published": "2025-04-16T00:00:00+08:00",
+      "tags": [
+        "垂直应用",
+        "partial"
+      ],
+      "authors": [
+        {
+          "name": "赵纯想"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/caiyanguess/",
+      "url": "https://opc-story.top/report/caiyanguess/",
+      "title": "猜盐 / 猜病",
+      "summary": "大模型游戏化矩阵：AI 模拟病人供问诊推理、街景定位等玩法。",
+      "content_text": "大模型游戏化矩阵：AI 模拟病人供问诊推理、街景定位等玩法。\n\n创业者：张月\n赛道：垂直应用\n时间锚点：2025-04-15\n关键结果：用户 160 万、2025 年营收同比增 3 倍\n规模：用户 1600000（用户）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/caiyanguess/",
+      "date_published": "2025-04-15T00:00:00+08:00",
+      "tags": [
+        "垂直应用",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "张月"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/zhang-sir/",
+      "url": "https://opc-story.top/report/zhang-sir/",
+      "title": "张sir 弹幕游戏矩阵",
+      "summary": "抖音弹幕互动游戏：AI 工具链承担约 70% 美术与代码，15 天/款。",
+      "content_text": "抖音弹幕互动游戏：AI 工具链承担约 70% 美术与代码，15 天/款。\n\n创业者：张sir（化名）\n赛道：垂直应用\n时间锚点：2025-03-15\n关键结果：总流水近 2000 万（自述口径）\n规模：年化收入 1000000 元（个人到手·自述）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/zhang-sir/",
+      "date_published": "2025-03-15T00:00:00+08:00",
+      "tags": [
+        "垂直应用",
+        "partial"
+      ],
+      "authors": [
+        {
+          "name": "张sir（化名）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/simen-ai/",
+      "url": "https://opc-story.top/report/simen-ai/",
+      "title": "Simen AI（猴子说话）",
+      "summary": "本地办公智能体「师门」：聊天即完成发票合并/工资表拆分，联动 Word/Excel；延伸 OpenClaw AI 数字员工工具。",
+      "content_text": "本地办公智能体「师门」：聊天即完成发票合并/工资表拆分，联动 Word/Excel；延伸 OpenClaw AI 数字员工工具。\n\n创业者：雷圳鹏（27 岁，武汉光谷）\n赛道：垂直应用\n时间锚点：2025-03-14\n关键结果：产品未正式发布即获字节跳动近 4000 万元投资（长江日报/央视网交叉）+ 奇绩创坛 200 余万元天使轮\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/simen-ai/",
+      "date_published": "2025-03-14T00:00:00+08:00",
+      "tags": [
+        "垂直应用",
+        "verified"
+      ],
+      "authors": [
+        {
+          "name": "雷圳鹏（27 岁，武汉光谷）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/claude-code-router/",
+      "url": "https://opc-story.top/report/claude-code-router/",
+      "title": "claude-code-router",
+      "summary": "让 Claude Code 路由到任意大模型的开源网关，支持按任务类型分流供应商。",
+      "content_text": "让 Claude Code 路由到任意大模型的开源网关，支持按任务类型分流供应商。\n\n创业者：musistudio\n赛道：开发者工具\n时间锚点：2025-02-26\n关键结果：GitHub 38.1k★（2026-11 API 实测），Kimi 曾为内置 provider 及赞助方\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/claude-code-router/",
+      "date_published": "2025-02-26T00:00:00+08:00",
+      "tags": [
+        "开发者工具",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "musistudio"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/leadmore-ai/",
+      "url": "https://opc-story.top/report/leadmore-ai/",
+      "title": "Leadmore AI",
+      "summary": "AI 驱动的 Reddit 营销自动化 SaaS：智能匹配社区、合规发帖、挖掘潜在客户。",
+      "content_text": "AI 驱动的 Reddit 营销自动化 SaaS：智能匹配社区、合规发帖、挖掘潜在客户。\n\n创业者：Richard Wang\n赛道：营销电商\n时间锚点：2025-01-15\n关键结果：上线 4 个月 $30K MRR、突破 $1M ARR（自述口径）\n规模：年化收入 7100000 元（ARR·自述）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/leadmore-ai/",
+      "date_published": "2025-01-15T00:00:00+08:00",
+      "tags": [
+        "营销电商",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "Richard Wang"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/panghaoyang/",
+      "url": "https://opc-story.top/report/panghaoyang/",
+      "title": "庞昊洋 AI 影视工作室（一人剧组）",
+      "summary": "单枪匹马办 AI 影视公司：「一人剧组」+ 十几个 AI 硅基员工做短片/广告/AI 漫剧。",
+      "content_text": "单枪匹马办 AI 影视公司：「一人剧组」+ 十几个 AI 硅基员工做短片/广告/AI 漫剧。\n\n创业者：庞昊洋（2001 年生，杭州良渚）\n赛道：内容创作\n时间锚点：2025-01\n关键结果：成立一年营收 100 多万（新华社/人民网多源）vs「一年挣二三十万」（央视财经自述）两口径并列；北影节 AIGC 优秀奖、电影频道 AI 影像优选三等奖\n规模：年化收入 1000000 元（年营收）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/panghaoyang/",
+      "date_published": "2025-01T00:00:00+08:00",
+      "tags": [
+        "内容创作",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "庞昊洋（2001 年生，杭州良渚）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/wangteng-export/",
+      "url": "https://opc-story.top/report/wangteng-export/",
+      "title": "王腾工业机械出海（Accio Work）",
+      "summary": "大四英语专业一人起步做工业机械 B2B 出海：AI Agent 管选品/询盘/客服，店铺进行业前 1%（现有 3 名同学协作）。",
+      "content_text": "大四英语专业一人起步做工业机械 B2B 出海：AI Agent 管选品/询盘/客服，店铺进行业前 1%（现有 3 名同学协作）。\n\n创业者：王腾（2004 年生，郑州）\n赛道：营销电商\n时间锚点：2025-01\n关键结果：一年销售额破 300 万（环球网/政府官网双源交叉）；8 个月 200 万（演进口径）；起步 2025-01/03 两口径\n规模：年化收入 3000000 元（年销售额）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/wangteng-export/",
+      "date_published": "2025-01T00:00:00+08:00",
+      "tags": [
+        "营销电商",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "王腾（2004 年生，郑州）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/raphael-ai/",
+      "url": "https://opc-story.top/report/raphael-ai/",
+      "title": "Raphael AI",
+      "summary": "基于 Flux.1 的免费无限制 AI 文生图出海站，免注册打法。",
+      "content_text": "基于 Flux.1 的免费无限制 AI 文生图出海站，免注册打法。\n\n创业者：刘小排\n赛道：内容创作\n时间锚点：2025\n关键结果：上线一月月活破 100 万\n规模：用户 1000000（月活用户）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/raphael-ai/",
+      "date_published": "2025T00:00:00+08:00",
+      "tags": [
+        "内容创作",
+        "partial"
+      ],
+      "authors": [
+        {
+          "name": "刘小排"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/lsaiah-music/",
+      "url": "https://opc-story.top/report/lsaiah-music/",
+      "title": "AI 音乐生成出海站（AiMakeSong，旁证口径）",
+      "summary": "AI 音乐生成 API 包装的订阅站，SEO 获自然流量，Stripe 收款。",
+      "content_text": "AI 音乐生成 API 包装的订阅站，SEO 获自然流量，Stripe 收款。\n\n创业者：lsaiah\n赛道：内容创作\n时间锚点：2025\n关键结果：自述月收入 1.2 万美元+（自述口径）\n规模：年化收入 1022400 元（年化收入·自述）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/lsaiah-music/",
+      "date_published": "2025T00:00:00+08:00",
+      "tags": [
+        "内容创作",
+        "partial"
+      ],
+      "authors": [
+        {
+          "name": "lsaiah"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/paywallpro/",
+      "url": "https://opc-story.top/report/paywallpro/",
+      "title": "PaywallPro",
+      "summary": "iOS 订阅付费墙与 Onboarding 数据的分析 Agent，辅助定价决策。",
+      "content_text": "iOS 订阅付费墙与 Onboarding 数据的分析 Agent，辅助定价决策。\n\n创业者：鱼总聊AI\n赛道：开发者工具\n时间锚点：2025\n关键结果：自述单款营收 $200k+（自述口径）\n规模：年化收入 1420000 元（累计营收·自述）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/paywallpro/",
+      "date_published": "2025T00:00:00+08:00",
+      "tags": [
+        "开发者工具",
+        "partial"
+      ],
+      "authors": [
+        {
+          "name": "鱼总聊AI"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/chenyuming/",
+      "url": "https://opc-story.top/report/chenyuming/",
+      "title": "AI 效率小程序矩阵",
+      "summary": "面向短视频创作者的 AI 配音/写作小程序矩阵，订阅+按量付费。",
+      "content_text": "面向短视频创作者的 AI 配音/写作小程序矩阵，订阅+按量付费。\n\n创业者：陈宇明（码个蛋）\n赛道：营销电商\n时间锚点：2025\n关键结果：200 万+ 用户、连续 12 个月盈利\n规模：用户 2000000（用户）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/chenyuming/",
+      "date_published": "2025T00:00:00+08:00",
+      "tags": [
+        "营销电商",
+        "partial"
+      ],
+      "authors": [
+        {
+          "name": "陈宇明（码个蛋）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/xingjing-engine/",
+      "url": "https://opc-story.top/report/xingjing-engine/",
+      "title": "星境引擎（AI 短剧承制）",
+      "summary": "全球首部神话题材 AI 短剧《众神之战》主创：注册一人公司，AI 承制短剧/视频业务。",
+      "content_text": "全球首部神话题材 AI 短剧《众神之战》主创：注册一人公司，AI 承制短剧/视频业务。\n\n创业者：彭青云（前品牌设计师，两人团队）\n赛道：内容创作\n时间锚点：2025\n关键结果：《众神之战》平台热度近 2000 万（天下网商/杭州日报交叉）、海外上亿流量、总成本约 10 万元\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/xingjing-engine/",
+      "date_published": "2025T00:00:00+08:00",
+      "tags": [
+        "内容创作",
+        "verified"
+      ],
+      "authors": [
+        {
+          "name": "彭青云（前品牌设计师，两人团队）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/idoubi/",
+      "url": "https://opc-story.top/report/idoubi/",
+      "title": "PodLM / ShipAny / ThinkAny 产品组合",
+      "summary": "AI 播客生成器 + AI 搜索引擎 + MCP 市场 + SaaS 开发框架等 11+ 产品。",
+      "content_text": "AI 播客生成器 + AI 搜索引擎 + MCP 市场 + SaaS 开发框架等 11+ 产品。\n\n创业者：艾逗笔（idoubi）\n赛道：开发者工具\n时间锚点：2024-12-24\n关键结果：ShipAny 预售 4 小时破 1 万美元\n规模：年化收入 71000 元（预售收入）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/idoubi/",
+      "date_published": "2024-12-24T00:00:00+08:00",
+      "tags": [
+        "开发者工具",
+        "verified"
+      ],
+      "authors": [
+        {
+          "name": "艾逗笔（idoubi）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/gongchun/",
+      "url": "https://opc-story.top/report/gongchun/",
+      "title": "供春AI",
+      "summary": "国内首款陶瓷 AIGC 辅助设计软件：数十秒生成紫砂壶等工艺美术方案并对接 3D 打印。",
+      "content_text": "国内首款陶瓷 AIGC 辅助设计软件：数十秒生成紫砂壶等工艺美术方案并对接 3D 打印。\n\n创业者：张雨航\n赛道：垂直应用\n时间锚点：2024-11-29\n关键结果：用户 3 万+，走进近 30 所高校，落地全国首个 AI+手工艺 OPC 创业基地\n规模：用户 30000（用户）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/gongchun/",
+      "date_published": "2024-11-29T00:00:00+08:00",
+      "tags": [
+        "垂直应用",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "张雨航"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/chatwise/",
+      "url": "https://opc-story.top/report/chatwise/",
+      "title": "ChatWise",
+      "summary": "多模型桌面 AI 客户端：多模态 + MCP，BYOK 买断制。",
+      "content_text": "多模型桌面 AI 客户端：多模态 + MCP，BYOK 买断制。\n\n创业者：egoist\n赛道：开发者工具\n时间锚点：2024-11-15\n关键结果：Pro $29 买断持续销售\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/chatwise/",
+      "date_published": "2024-11-15T00:00:00+08:00",
+      "tags": [
+        "开发者工具",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "egoist"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/knock-ai/",
+      "url": "https://opc-story.top/report/knock-ai/",
+      "title": "敲敲门童话（Knock AI）",
+      "summary": "AI 原生儿童互动童话平台：孩子引导 AI 续写专属绘本/儿歌/卡通，三端上线。",
+      "content_text": "AI 原生儿童互动童话平台：孩子引导 AI 续写专属绘本/儿歌/卡通，三端上线。\n\n创业者：Chris & Tony Lai\n赛道：垂直应用\n时间锚点：2024-09-26\n关键结果：累计读者 10 万+ 人次，获 300 万元融资（含 Google Cloud 25 万美元）\n规模：用户 100000（读者）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/knock-ai/",
+      "date_published": "2024-09-26T00:00:00+08:00",
+      "tags": [
+        "垂直应用",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "Chris & Tony Lai"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/hivision-idphotos/",
+      "url": "https://opc-story.top/report/hivision-idphotos/",
+      "title": "HivisionIDPhotos",
+      "summary": "轻量 AI 证件照工具：抠图/多规格生成/排版，可离线自部署。",
+      "content_text": "轻量 AI 证件照工具：抠图/多规格生成/排版，可离线自部署。\n\n创业者：林泽毅（Zeyi-Lin）\n赛道：内容创作\n时间锚点：2024-09-15\n关键结果：GitHub 21.7k★（2026-11 实测），登 GitHub 热榜第一\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/hivision-idphotos/",
+      "date_published": "2024-09-15T00:00:00+08:00",
+      "tags": [
+        "内容创作",
+        "partial"
+      ],
+      "authors": [
+        {
+          "name": "林泽毅（Zeyi-Lin）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/pdf2zh/",
+      "url": "https://opc-story.top/report/pdf2zh/",
+      "title": "PDFMathTranslate（pdf2zh）",
+      "summary": "保留排版的 PDF 学术文档 AI 全文双语翻译，CLI/GUI/Zotero。",
+      "content_text": "保留排版的 PDF 学术文档 AI 全文双语翻译，CLI/GUI/Zotero。\n\n创业者：Byaidu\n赛道：开发者工具\n时间锚点：2024-09-15\n关键结果：GitHub 38.3k★，入选 EMNLP 2025 Demo\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/pdf2zh/",
+      "date_published": "2024-09-15T00:00:00+08:00",
+      "tags": [
+        "开发者工具",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "Byaidu"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/new-api/",
+      "url": "https://opc-story.top/report/new-api/",
+      "title": "new-api",
+      "summary": "开源大模型网关：GPT/Claude/Midjourney/Suno 统一封装为 OpenAI 格式并带计费。",
+      "content_text": "开源大模型网关：GPT/Claude/Midjourney/Suno 统一封装为 OpenAI 格式并带计费。\n\n创业者：Calcium-Ion\n赛道：开发者工具\n时间锚点：2024-07-24\n关键结果：GitHub 51.8k★（2026-11 实测），大量商用 API 中转站的底座\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/new-api/",
+      "date_published": "2024-07-24T00:00:00+08:00",
+      "tags": [
+        "开发者工具",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "Calcium-Ion"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/gpt-sovits/",
+      "url": "https://opc-story.top/report/gpt-sovits/",
+      "title": "GPT-SoVITS",
+      "summary": "5 秒音频克隆音色的少样本 TTS/语音转换，多语言。",
+      "content_text": "5 秒音频克隆音色的少样本 TTS/语音转换，多语言。\n\n创业者：花儿不哭（RVC-Boss）\n赛道：内容创作\n时间锚点：2024-01-15\n关键结果：GitHub 64k★，中文语音克隆事实标准\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/gpt-sovits/",
+      "date_published": "2024-01-15T00:00:00+08:00",
+      "tags": [
+        "内容创作",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "花儿不哭（RVC-Boss）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/honghong/",
+      "url": "https://opc-story.top/report/honghong/",
+      "title": "哄哄模拟器 / 6pen",
+      "summary": "哄女友情景对话 AI 游戏 + 开源模型 AI 绘画平台。",
+      "content_text": "哄女友情景对话 AI 游戏 + 开源模型 AI 绘画平台。\n\n创业者：王登科（DK）\n赛道：内容创作\n时间锚点：2024-01-15\n关键结果：上线 24 小时 60 万用户/2000 万次对话\n规模：用户 600000（用户）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/honghong/",
+      "date_published": "2024-01-15T00:00:00+08:00",
+      "tags": [
+        "内容创作",
+        "partial"
+      ],
+      "authors": [
+        {
+          "name": "王登科（DK）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/moneyprinter-turbo/",
+      "url": "https://opc-story.top/report/moneyprinter-turbo/",
+      "title": "MoneyPrinterTurbo",
+      "summary": "输入主题自动完成文案/素材/字幕/配音的短视频生成器。",
+      "content_text": "输入主题自动完成文案/素材/字幕/配音的短视频生成器。\n\n创业者：harry0703\n赛道：内容创作\n时间锚点：2024\n关键结果：GitHub 143k★（2026-11 实测），AI 视频类最高星之一\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/moneyprinter-turbo/",
+      "date_published": "2024T00:00:00+08:00",
+      "tags": [
+        "内容创作",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "harry0703"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/videolingo/",
+      "url": "https://opc-story.top/report/videolingo/",
+      "title": "VideoLingo",
+      "summary": "一键 Netflix 级视频本地化：字幕切割/上下文翻译/克隆配音。",
+      "content_text": "一键 Netflix 级视频本地化：字幕切割/上下文翻译/克隆配音。\n\n创业者：Huanshere\n赛道：内容创作\n时间锚点：2024\n关键结果：GitHub 19k★\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/videolingo/",
+      "date_published": "2024T00:00:00+08:00",
+      "tags": [
+        "内容创作",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "Huanshere"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/xiaomao-light/",
+      "url": "https://opc-story.top/report/xiaomao-light/",
+      "title": "小猫补光灯（Pro）",
+      "summary": "拍照补光 App：可调色温背光板，用 Cursor 一小时完成 MVP。",
+      "content_text": "拍照补光 App：可调色温背光板，用 Cursor 一小时完成 MVP。\n\n创业者：陈云飞\n赛道：内容创作\n时间锚点：2024\n关键结果：下载 30-50 万、Pro 收入 30-40 万元\n规模：年化收入 350000 元（累计营收）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/xiaomao-light/",
+      "date_published": "2024T00:00:00+08:00",
+      "tags": [
+        "内容创作",
+        "verified"
+      ],
+      "authors": [
+        {
+          "name": "陈云飞"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/cherry-studio/",
+      "url": "https://opc-story.top/report/cherry-studio/",
+      "title": "Cherry Studio",
+      "summary": "开源多模型 AI 桌面客户端：300+ 模型/知识库/智能体/MCP。",
+      "content_text": "开源多模型 AI 桌面客户端：300+ 模型/知识库/智能体/MCP。\n\n创业者：亢奋猫（kangfenmao）\n赛道：开发者工具\n时间锚点：2024\n关键结果：GitHub 53.4k★（2026-11 实测）；已公司化（千彗科技），一人属性边界见深度报告\n规模：用户 10000000（下载量）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/cherry-studio/",
+      "date_published": "2024T00:00:00+08:00",
+      "tags": [
+        "开发者工具",
+        "partial"
+      ],
+      "authors": [
+        {
+          "name": "亢奋猫（kangfenmao）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/aixuanxiaoniao/",
+      "url": "https://opc-story.top/report/aixuanxiaoniao/",
+      "title": "AI选校鸟",
+      "summary": "AI 留学选校：99 元/次输出保底/匹配/冲刺三梯度院校推荐。",
+      "content_text": "AI 留学选校：99 元/次输出保底/匹配/冲刺三梯度院校推荐。\n\n创业者：李涛\n赛道：垂直应用\n时间锚点：2024\n关键结果：3000+ 用户（人民日报海外版报道）\n规模：用户 3000（用户）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/aixuanxiaoniao/",
+      "date_published": "2024T00:00:00+08:00",
+      "tags": [
+        "垂直应用",
+        "verified"
+      ],
+      "authors": [
+        {
+          "name": "李涛"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/one-api/",
+      "url": "https://opc-story.top/report/one-api/",
+      "title": "one-api",
+      "summary": "LLM API 网关：统一适配多模型，密钥管理与二次分发。",
+      "content_text": "LLM API 网关：统一适配多模型，密钥管理与二次分发。\n\n创业者：songquanpeng（justsong）\n赛道：开发者工具\n时间锚点：2023-04-15\n关键结果：GitHub 37.3k★，中转站生态事实标准\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/one-api/",
+      "date_published": "2023-04-15T00:00:00+08:00",
+      "tags": [
+        "开发者工具",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "songquanpeng（justsong）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/nextchat/",
+      "url": "https://opc-story.top/report/nextchat/",
+      "title": "NextChat",
+      "summary": "一键免费部署的私人 ChatGPT 跨平台客户端，多模型。",
+      "content_text": "一键免费部署的私人 ChatGPT 跨平台客户端，多模型。\n\n创业者：Yidadaa\n赛道：开发者工具\n时间锚点：2023-03-15\n关键结果：GitHub 88.8k★\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/nextchat/",
+      "date_published": "2023-03-15T00:00:00+08:00",
+      "tags": [
+        "开发者工具",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "Yidadaa"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/gpt-academic/",
+      "url": "https://opc-story.top/report/gpt-academic/",
+      "title": "GPT 学术优化",
+      "summary": "学术场景 LLM 工具：论文润色/翻译/代码解析，插件化。",
+      "content_text": "学术场景 LLM 工具：论文润色/翻译/代码解析，插件化。\n\n创业者：binary-husky\n赛道：开发者工具\n时间锚点：2023-03-15\n关键结果：GitHub 71.6k★\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/gpt-academic/",
+      "date_published": "2023-03-15T00:00:00+08:00",
+      "tags": [
+        "开发者工具",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "binary-husky"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/avante-nvim/",
+      "url": "https://opc-story.top/report/avante-nvim/",
+      "title": "openai-translator + avante.nvim",
+      "summary": "划词翻译插件 + Neovim 里的 Cursor 式 AI 编程插件。",
+      "content_text": "划词翻译插件 + Neovim 里的 Cursor 式 AI 编程插件。\n\n创业者：yetone\n赛道：开发者工具\n时间锚点：2023-03-15\n关键结果：avante.nvim 17.8k★\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/avante-nvim/",
+      "date_published": "2023-03-15T00:00:00+08:00",
+      "tags": [
+        "开发者工具",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "yetone"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/bibigpt/",
+      "url": "https://opc-story.top/report/bibigpt/",
+      "title": "BibiGPT（AI 课代表）",
+      "summary": "粘贴 B站/YouTube/播客链接生成结构化摘要与脑图，可追问。",
+      "content_text": "粘贴 B站/YouTube/播客链接生成结构化摘要与脑图，可追问。\n\n创业者：吕立青（JimmyLv）\n赛道：内容创作\n时间锚点：2023-02-15\n关键结果：累计 100 万+ 用户（官网自述）\n规模：用户 1000000（累计用户）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/bibigpt/",
+      "date_published": "2023-02-15T00:00:00+08:00",
+      "tags": [
+        "内容创作",
+        "partial"
+      ],
+      "authors": [
+        {
+          "name": "吕立青（JimmyLv）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/chatgpt-on-wechat/",
+      "url": "https://opc-story.top/report/chatgpt-on-wechat/",
+      "title": "chatgpt-on-wechat + LinkAI",
+      "summary": "微信生态大模型机器人：公众号/企微/飞书接入 + 知识库客服。",
+      "content_text": "微信生态大模型机器人：公众号/企微/飞书接入 + 知识库客服。\n\n创业者：查雨捷（zhayujie）\n赛道：开发者工具\n时间锚点：2023-02-15\n关键结果：GitHub 47.8k★（2026-11 实测，现名 CowAgent），事实标准方案\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/chatgpt-on-wechat/",
+      "date_published": "2023-02-15T00:00:00+08:00",
+      "tags": [
+        "开发者工具",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "查雨捷（zhayujie）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/obsidian-copilot/",
+      "url": "https://opc-story.top/report/obsidian-copilot/",
+      "title": "Copilot for Obsidian",
+      "summary": "Obsidian 笔记库 AI 副驾插件：全库问答/检索/改写，支持本地模型，付费订阅。",
+      "content_text": "Obsidian 笔记库 AI 副驾插件：全库问答/检索/改写，支持本地模型，付费订阅。\n\n创业者：Logan Yang\n赛道：开发者工具\n时间锚点：2023\n关键结果：下载突破 100 万（2026-02），GitHub 7.8k★\n规模：用户 1000000（下载量）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/obsidian-copilot/",
+      "date_published": "2023T00:00:00+08:00",
+      "tags": [
+        "开发者工具",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "Logan Yang"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/immersive-translate/",
+      "url": "https://opc-story.top/report/immersive-translate/",
+      "title": "沉浸式翻译",
+      "summary": "AI 双语对照网页/PDF/视频字幕/漫画翻译，聚合 10+ 引擎。",
+      "content_text": "AI 双语对照网页/PDF/视频字幕/漫画翻译，聚合 10+ 引擎。\n\n创业者：Owen Young\n赛道：开发者工具\n时间锚点：2023\n关键结果：全球激活用户破 3000 万，Chrome 年度精选\n规模：用户 30000000（激活用户）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/immersive-translate/",
+      "date_published": "2023T00:00:00+08:00",
+      "tags": [
+        "开发者工具",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "Owen Young"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/chatnio/",
+      "url": "https://opc-story.top/report/chatnio/",
+      "title": "ChatNio",
+      "summary": "多模型对话 + API 中转计费一站式开源平台。",
+      "content_text": "多模型对话 + API 中转计费一站式开源平台。\n\n创业者：zmh（Kairo）\n赛道：开发者工具\n时间锚点：2023\n关键结果：2024 年被七位数收购，月活近 10 万\n规模：用户 100000（月活用户）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/chatnio/",
+      "date_published": "2023T00:00:00+08:00",
+      "tags": [
+        "开发者工具",
+        "partial"
+      ],
+      "authors": [
+        {
+          "name": "zmh（Kairo）"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/easydict/",
+      "url": "https://opc-story.top/report/easydict/",
+      "title": "Easydict",
+      "summary": "macOS 词典翻译应用：OpenAI/Gemini/DeepL 与离线 OCR 查词。",
+      "content_text": "macOS 词典翻译应用：OpenAI/Gemini/DeepL 与离线 OCR 查词。\n\n创业者：tisfeng\n赛道：开发者工具\n时间锚点：2023\n关键结果：GitHub 15.2k★\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/easydict/",
+      "date_published": "2023T00:00:00+08:00",
+      "tags": [
+        "开发者工具",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "tisfeng"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/chatgptbox/",
+      "url": "https://opc-story.top/report/chatgptbox/",
+      "title": "chatGPTBox",
+      "summary": "把 ChatGPT 深度集成进浏览器：划词翻译/网页总结/视频对话。",
+      "content_text": "把 ChatGPT 深度集成进浏览器：划词翻译/网页总结/视频对话。\n\n创业者：josStorer\n赛道：开发者工具\n时间锚点：2023\n关键结果：GitHub 10.7k★，Chrome 用户约 3 万\n规模：用户 30000（Chrome 用户）\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/chatgptbox/",
+      "date_published": "2023T00:00:00+08:00",
+      "tags": [
+        "开发者工具",
+        "partial"
+      ],
+      "authors": [
+        {
+          "name": "josStorer"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/umi-ocr/",
+      "url": "https://opc-story.top/report/umi-ocr/",
+      "title": "Umi-OCR",
+      "summary": "开源离线 OCR 软件：截图/批量图片/PDF 识别，解压即用。",
+      "content_text": "开源离线 OCR 软件：截图/批量图片/PDF 识别，解压即用。\n\n创业者：hiroi-sora\n赛道：开发者工具\n时间锚点：2022-11-15\n关键结果：GitHub 48.4k★，免费 OCR 标杆\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/umi-ocr/",
+      "date_published": "2022-11-15T00:00:00+08:00",
+      "tags": [
+        "开发者工具",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "hiroi-sora"
+        }
+      ]
+    },
+    {
+      "id": "https://opc-story.top/report/bob-translate/",
+      "url": "https://opc-story.top/report/bob-translate/",
+      "title": "Bob",
+      "summary": "macOS 划词翻译/截图 OCR，接入 OpenAI/DeepSeek/豆包等。",
+      "content_text": "macOS 划词翻译/截图 OCR，接入 OpenAI/DeepSeek/豆包等。\n\n创业者：ripperhe\n赛道：开发者工具\n时间锚点：2022-07-15\n关键结果：Pro ¥58 买断持续销售，GitHub 9.7k★\n规模：营收与用户未披露\n\n完整报告（含逐条信源核验）：https://opc-story.top/report/bob-translate/",
+      "date_published": "2022-07-15T00:00:00+08:00",
+      "tags": [
+        "开发者工具",
+        "cross"
+      ],
+      "authors": [
+        {
+          "name": "ripperhe"
+        }
+      ]
+    }
+  ]
+}

@@ -6,6 +6,8 @@
 > 每个案例附逐条信源核验的深度报告（≥5 信源、≥1 一手、关键数字交叉验证、冲突双口径并列）。
 > 全量文字索引（无 JS、按赛道归档）：https://opc-story.top/all
 > 全量结构化数据集（每案摘要、关键数据、口径与来源）：https://opc-story.top/llms-full.txt
+> 机器可读数据集（JSON，含字段说明、统计与口径警示）：https://opc-story.top/data/cases.json
+> 更新订阅（JSON Feed 1.1）：https://opc-story.top/feed.json
 >
 > 方法论（建议优先阅读）：
 > - 什么是 OPC（定义与判定标准）：https://opc-story.top/what-is-opc/
