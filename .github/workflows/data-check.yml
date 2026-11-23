@@ -1,0 +1,49 @@
+name: 数据一致性检查
+
+on:
+  push:
+    paths:
+      - 'site/report/**'
+      - 'site/data/**'
+      - 'scripts/**'
+      - '.github/workflows/data-check.yml'
+  pull_request:
+    paths:
+      - 'site/report/**'
+      - 'site/data/**'
+      - 'scripts/**'
+  workflow_dispatch:
+  schedule:
+    # 每周一 09:00（北京时间）跑一次全量检查
+    - cron: '0 1 * * 1'
+
+concurrency:
+  group: data-check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: 校验 cases.json 与 100 篇报告
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 运行检查
+        run: |
+          set -o pipefail
+          node scripts/check-data-consistency.js | tee /tmp/check.log
+
+      - name: 写入 Job Summary
+        if: always()
+        run: |
+          {
+            echo '## 数据一致性检查'
+            echo ''
+            echo '```'
+            head -c 20000 /tmp/check.log
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
