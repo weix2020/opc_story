@@ -8,6 +8,7 @@
 > 全量结构化数据集（每案摘要、关键数据、口径与来源）：https://opc-story.top/llms-full.txt
 > 机器可读数据集（JSON，含字段说明、统计与口径警示）：https://opc-story.top/data/cases.json
 > 更新订阅（JSON Feed 1.1）：https://opc-story.top/feed.json
+> 信源台账（1,184 条信源的可回溯元数据、正文引用句与 Wayback 存档，JSON）：https://opc-story.top/data/sources.json
 > 数据洞察（赛道分布、时间趋势、收入分布与口径构成、Top 10、核验强度，可筛选导出）：https://opc-story.top/insights/
 >
 > 方法论（建议优先阅读）：

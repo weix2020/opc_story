@@ -16,9 +16,11 @@
 
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
 const ROOT = path.resolve(__dirname, '..');
 const CASES_FILE = path.join(ROOT, 'site/data/cases.json');
+const LEDGER_FILE = path.join(ROOT, 'site/data/sources.json');
 const REPORT_DIR = path.join(ROOT, 'site/report');
 const TRACKS = ['作品型', '内容创作', '垂直应用', '营销电商', '开发者工具'];
 const VERIFICATIONS = ['verified', 'cross', 'partial'];
@@ -54,6 +56,13 @@ function norm(s) {
 
 function escapeRe(s) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+/** 与 build-source-ledger.js 保持一致的信源区块哈希 */
+function sourcesHash(html) {
+  const blocks = (html.match(/<li id="ref-\d+" class="src">[\s\S]*?<\/li>/g) || [])
+    .map(function (b) { return b.replace(/\s+/g, ' ').trim(); });
+  return crypto.createHash('sha1').update(blocks.join('\n')).digest('hex').slice(0, 16);
 }
 
 /** 判断某个金额（元）是否以常见中文格式出现在正文中 */
@@ -131,6 +140,17 @@ function main() {
     if (!dataSlugs.has(d)) err(d, 'orphan', '报告目录存在但 cases.json 无对应条目');
   });
 
+  // 2.5 信源台账
+  const ledgerBySlug = {};
+  let ledger = null;
+  if (fs.existsSync(LEDGER_FILE)) {
+    ledger = JSON.parse(fs.readFileSync(LEDGER_FILE, 'utf8'));
+    (ledger.cases || []).forEach(function (e) { ledgerBySlug[e.slug] = e; });
+  } else {
+    warn('*', 'ledger', '未找到 site/data/sources.json，跳过信源台账校验（运行 node scripts/build-source-ledger.js 生成）');
+  }
+  const uncited = [];
+
   cases.forEach(function (c) {
     const slug = c.slug;
     const urlSlug = (String(c.url || '').split('/report/')[1] || '').replace(/\/$/, '');
@@ -169,6 +189,24 @@ function main() {
       err(slug, 'sources', 'source_count=' + c.source_count + '，报告实际信源条目=' + refs.size);
     }
 
+    // 5.5 台账是否与报告同步
+    if (ledger) {
+      const entry = ledgerBySlug[c.slug];
+      if (!entry) {
+        err(slug, 'ledger', '信源台账缺少该案例');
+      } else {
+        if (entry.sources_hash !== sourcesHash(html)) {
+          err(slug, 'ledger', '信源台账已过期，请运行 node scripts/build-source-ledger.js');
+        }
+        if (entry.source_count !== refs.size) {
+          err(slug, 'ledger', '台账信源数 ' + entry.source_count + ' 与报告 ' + refs.size + ' 不一致');
+        }
+        (entry.sources || []).forEach(function (s) {
+          if (!s.cited) uncited.push(c.slug + '[ref-' + s.ref + ']');
+        });
+      }
+    }
+
     // 6. 枚举与年份
     if (!TRACKS.includes(c.track)) err(slug, 'track', '未知赛道：' + c.track);
     if (!VERIFICATIONS.includes(c.verification)) err(slug, 'verification', '未知核验等级：' + c.verification);
@@ -198,6 +236,17 @@ function main() {
       warn(slug, 'date', 'JSON-LD datePublished(' + published + ') 与 time_anchor(' + c.time_anchor + ') 年份不一致');
     }
   });
+
+  // 7.5 台账聚合校验
+  if (ledger) {
+    const sum = (ledger.cases || []).reduce(function (n, e) { return n + (e.source_count || 0); }, 0);
+    if (ledger.meta && ledger.meta.total_sources != null && ledger.meta.total_sources !== sum) {
+      err('*', 'ledger-meta', '台账 meta.total_sources=' + ledger.meta.total_sources + '，各案例合计=' + sum);
+    }
+    if (uncited.length) {
+      warn('*', 'uncited', '共 ' + uncited.length + ' 条信源未被正文引用：' + uncited.slice(0, 5).join('、') + (uncited.length > 5 ? ' 等' : ''));
+    }
+  }
 
   // 8. 汇总输出
   const byCheck = function (list) {
