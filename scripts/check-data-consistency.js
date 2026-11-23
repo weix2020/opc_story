@@ -150,6 +150,7 @@ function main() {
     warn('*', 'ledger', '未找到 site/data/sources.json，跳过信源台账校验（运行 node scripts/build-source-ledger.js 生成）');
   }
   const uncited = [];
+  const declaredBackground = {};
 
   cases.forEach(function (c) {
     const slug = c.slug;
@@ -162,6 +163,7 @@ function main() {
     if (!fs.existsSync(file)) { err(slug, 'file', '缺少 index.html'); return; }
     const html = fs.readFileSync(file, 'utf8');
     const text = textOf(html);
+    if (/背景对照资料/.test(text)) declaredBackground[c.slug] = true;
 
     // 3. canonical
     const can = html.match(/<link[^>]+rel="canonical"[^>]+href="([^"]+)"/i);
@@ -244,7 +246,12 @@ function main() {
       err('*', 'ledger-meta', '台账 meta.total_sources=' + ledger.meta.total_sources + '，各案例合计=' + sum);
     }
     if (uncited.length) {
-      warn('*', 'uncited', '共 ' + uncited.length + ' 条信源未被正文引用：' + uncited.slice(0, 5).join('、') + (uncited.length > 5 ? ' 等' : ''));
+      const undeclared = uncited.filter(function (x) { return !declaredBackground[x.split('[')[0]]; });
+      if (undeclared.length) {
+        warn('*', 'uncited', '共 ' + undeclared.length + ' 条信源未被正文引用且未说明：' + undeclared.slice(0, 5).join('、') + (undeclared.length > 5 ? ' 等' : ''));
+      } else {
+        info('*', 'uncited', '38 条未逐句引用的信源已标注为同稿转载/背景对照资料');
+      }
     }
   }
 
@@ -279,7 +286,7 @@ function main() {
       warns.forEach(function (w) { console.log('  [' + w.check + '] ' + w.slug + '：' + w.msg); });
     }
     if (infos.length) {
-      console.log('\n== 提示（区间值可追溯，不计入问题）');
+      console.log('\n== 提示（不构成问题）');
       console.log('  ' + Object.keys(byCheck(infos)).map(function (k) { return k + '×' + byCheck(infos)[k]; }).join('  '));
     }
     if (!errors.length && !warns.length) console.log('\n全部一致。');

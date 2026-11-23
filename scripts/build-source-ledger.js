@@ -143,29 +143,34 @@ async function checkWayback(urls) {
   if (fs.existsSync(CACHE_FILE)) {
     try { cache = JSON.parse(fs.readFileSync(CACHE_FILE, 'utf8')); } catch (e) { cache = {}; }
   }
+  const cachedCount = urls.filter(function (u) { return u in cache; }).length;
   const todo = urls.filter(function (u) { return !(u in cache); }).slice(0, LIMIT);
-  console.log('Wayback 查询：待查 ' + todo.length + ' 条（缓存命中 ' + (urls.length - todo.length) + ' 条）');
+  console.log('Wayback 查询：待查 ' + todo.length + ' 条（已有缓存 ' + cachedCount + ' 条）');
 
   let done = 0;
   let found = 0;
+  let failed = 0;
   const queue = todo.slice();
   async function worker() {
     while (queue.length) {
       const url = queue.shift();
-      let result = null;
+      let checked = false;
       try {
         const ctrl = new AbortController();
-        const timer = setTimeout(function () { ctrl.abort(); }, 12000);
+        const timer = setTimeout(function () { ctrl.abort(); }, 10000);
         const res = await fetch('https://archive.org/wayback/available?url=' + encodeURIComponent(url), { signal: ctrl.signal });
         clearTimeout(timer);
         if (res.ok) {
           const j = await res.json();
           const snap = j && j.archived_snapshots && j.archived_snapshots.closest;
-          if (snap && snap.available) result = snap.url.replace(/^http:/, 'https:');
+          cache[url] = snap && snap.available ? snap.url.replace(/^http:/, 'https:') : null;
+          checked = true;
+          if (cache[url]) found++;
         }
-      } catch (e) { /* 网络失败按无存档处理 */ }
-      cache[url] = result;
-      if (result) found++;
+      } catch (e) {
+        /* 网络失败：不计入缓存 */
+      }
+      if (!checked) failed++;
       done++;
       if (done % 50 === 0) console.log('  已查 ' + done + '/' + todo.length + '，命中 ' + found);
     }
@@ -173,7 +178,7 @@ async function checkWayback(urls) {
   await Promise.all(Array.from({ length: 4 }, worker));
   fs.mkdirSync(path.dirname(CACHE_FILE), { recursive: true });
   fs.writeFileSync(CACHE_FILE, JSON.stringify(cache, null, 1));
-  console.log('Wayback 查询完成：命中 ' + found + ' 条，缓存已更新');
+  console.log('Wayback 查询完成：命中 ' + found + ' 条，失败 ' + failed + ' 条（失败项未写入缓存）');
   return cache;
 }
 
