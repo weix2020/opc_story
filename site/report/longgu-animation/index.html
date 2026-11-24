@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · 《龙骨动画 DragonBones / LoongBones》—— 苏魁的一人骨骼动画工具公司 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · 《龙骨动画 DragonBones / LoongBones》">
+<meta property="og:image" content="https://opc-story.top/og/longgu-animation.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="深度案例 · 《龙骨动画 DragonBones / LoongBones》AI 一人公司案例报告">
+<meta name="description" content="《龙骨动画 LoongBones》深度案例报告：苏魁一人开发的 AI 辅助 2D 骨骼动画创作平台，注册用户约 7000、付费近 500 人、累计收入近万元、年运营成本不足 5000 元，获「创业北京」OPC 特色赛一等奖。10 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+h4{font-size:17px;color:#1e3a5f;margin:26px 0 12px;font-weight:700;padding-left:12px;border-left:3px solid #c9a961}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.green{border-left-color:#27ae60}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+sup.cite{display:inline-block;font-family:Georgia,"Times New Roman",serif;font-size:11px;font-weight:700;padding:1px 5px;border:0;border-radius:3px;margin-left:2px;cursor:pointer;vertical-align:super;text-decoration:none;line-height:1.4;transition:filter .15s ease}
+sup.cite.verified{background:#e6f4ec;color:#1e7a3c}
+sup.cite.cross{background:#e8f1fb;color:#1e6ba8}
+sup.cite.partial{background:#fdf3e0;color:#a67c14}
+sup.cite:hover{filter:brightness(.94)}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed #e3e8ef;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#6b7a8c;flex-shrink:0}
+.kv .v{color:#2c3e50;font-weight:600;text-align:right}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two,.three{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+<link rel="canonical" href="https://opc-story.top/report/longgu-animation/">
+<meta name="robots" content="index,follow">
+<meta property="og:url" content="https://opc-story.top/report/longgu-animation/">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://opc-story.top/og/longgu-animation.jpg">
+<meta name="twitter:image:alt" content="深度案例 · 《龙骨动画 DragonBones / LoongBones》AI 一人公司案例报告">
+<script type="application/ld+json">
+{"@type":"Article","@context":"https://schema.org","headline":"深度案例 · 《龙骨动画 DragonBones / LoongBones》—— 苏魁的一人骨骼动画工具公司 · OPC Story","description":"《龙骨动画 LoongBones》深度案例报告：苏魁一人开发的 AI 辅助 2D 骨骼动画创作平台，注册用户约 7000、付费近 500 人、累计收入近万元、年运营成本不足 5000 元，获「创业北京」OPC 特色赛一等奖。10 条信源逐条核验。","inLanguage":"zh-CN","author":{"@type":"Person","name":"OPC Story"},"publisher":{"@type":"Organization","name":"OPC Story","url":"https://opc-story.top/"},"mainEntityOfPage":"https://opc-story.top/report/longgu-animation/","datePublished":"2026-11-23","dateModified":"2026-11-23","articleSection":"开发者工具"}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X58DBX1NCM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag("js", new Date());
+gtag("config", "G-X58DBX1NCM");
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"案例墙","item":"https://opc-story.top/"},{"@type":"ListItem","position":2,"name":"全部案例","item":"https://opc-story.top/all"},{"@type":"ListItem","position":3,"name":"《龙骨动画 DragonBones / LoongBones》","item":"https://opc-story.top/report/longgu-animation/"}]}</script>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>《龙骨动画 DragonBones / LoongBones》深度案例报告</h1>
+    <h2>苏魁的一人骨骼动画工具公司：注册约 7000、付费近 500、累计收入近万元，<br>年运营成本不足 5000 元 —— 10 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">开发者工具型 OPC</span>
+      <span class="tag">2D 骨骼动画</span>
+      <span class="tag">订阅制微收入</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">约 7000</div><div class="k">注册用户总量（国内近 6000 + 海外超 1000）</div></div>
+  <div class="stat"><div class="v neutral">近 500 人</div><div class="k">付费用户（累计收入近万元）</div></div>
+  <div class="stat"><div class="v down">不足 5000 元</div><div class="k">年运营成本（受访者口径，不含人力）</div></div>
+  <div class="stat"><div class="v up">一等奖</div><div class="k">「创业北京」OPC 特色赛（政府/赛事公开信息）</div></div>
+</div>
+
+<div class="wrap">
+  <div class="box insight" id="takeaways">
+    <div class="bt">可引用要点</div>
+    <ul class="bl">
+      <li><b>主体</b>：苏魁，北京哪吒互娱科技有限公司创始人兼唯一员工（持股 99%），产品为「龙骨动画」（DragonBones / LoongBones），AI 辅助的 2D 骨骼动画创作平台，赛道为开发者工具。</li>
+      <li><b>结果</b>：国内注册近 6000、海外超 1000（2026-04 受访者口径）；付费用户近 500 人；累计收入近万元；获「创业北京」OPC 特色赛一等奖。</li>
+      <li><b>规模</b>：年运营成本<b>不足 5000 元</b>（注册 2000 多元 + 代理记账 1000 多元 + 可忽略的服务器与 token），本质是<b>「成本极低、收入极小」</b>的一人开发者典型样本，而非规模化爆款。</li>
+    </ul>
+    <div style="font-size:12.5px;color:#8b97a6;margin-top:8px">数据口径：本报告基于 10 条公开信源（绿=已核验 4 条 / 蓝=多源印证 5 条 / 黄=部分映证 1 条），引用请注明来源与口径。注册与付费为受访者口径，收入为受访者口径累计值，赛事为政府/赛事公开信息。</div>
+  </div>
+
+  <div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+  <div class="toc">
+    <h3>CONTENTS · 目录</h3>
+    <div class="toc-grid">
+      <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+      <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+      <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+      <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+      <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+      <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+      <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+      <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+      <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+    </div>
+  </div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">「龙骨动画」（DragonBones / LoongBones）是 AI 辅助的 2D 骨骼动画创作平台：浏览器里给图片绑定骨架后，用一句自然语言指令让模型生成关键帧动画，再在时间轴上调曲线、绑权重、做 IK 与网格变形，导出骨骼数据、序列帧或 Spine 格式，兼容 Pixi、Cocos、Unity、Unreal。创始人苏魁是北京哪吒互娱科技有限公司的<b>唯一员工</b>与实际控制人（持股 99%）；产品 2025 年 3 月上线，国内注册近 6000、海外超 1000<a class="cref verified" href="#ref-2">[2]</a>，付费近 500 人，累计收入近万元<a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a>，年运营成本不足 5000 元<a class="cref cross" href="#ref-1">[1]</a>。2026 年 7 月获「创业北京」OPC 特色赛一等奖<a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-4">[4]</a><a class="cref verified" href="#ref-5">[5]</a>。</p>
+  <div class="two">
+    <div class="card"><div class="ct">产品</div><div class="cb">AI 增强的云端 2D 骨骼动画创作工具。核心能力：骨骼操作、AI 生成动画（已接入 DeepSeek）、时间轴与曲线编辑器、网格自由变形、IK 约束、权重与蒙皮、洋葱皮、骨架嵌套、路径约束、矢量形状、遮罩、物理约束，以及 psd/图片/纹理集/Spine 等格式的导入导出。<a class="cref cross" href="#ref-7">[7]</a><a class="cref cross" href="#ref-8">[8]</a></div><div class="cm">双域名：dragonbones.cn（官网）· loongbones.com（发布日志）</div></div>
+    <div class="card"><div class="ct">开发者与主体</div><div class="cb">苏魁，程序员出身，创业前在高途、趣加游戏、昆仑万维任高级工程师和技术专家<a class="cref cross" href="#ref-1">[1]</a>；2023 年 ChatGPT 的冲击让他开始思考「一人能否完成一个小团队的工作」，2024 年启动项目，用 AI 写代码、查 Bug、生成动画，甚至构思宣传文案。工商主体：北京哪吒互娱科技有限公司，法定代表人苏魁，注册资本 100 万元，成立 2024-11-15，实缴 3.01 万元，苏魁持股 99%、宋伟玉 1%，苏魁一人兼任经理、董事、财务负责人，参保 0 人。<a class="cref cross" href="#ref-6">[6]</a></div><div class="cm">同时是 B 站教程 UP 主（16 期内容、420+ 粉丝）</div></div>
+    <div class="card blue"><div class="ct">一人属性与协作边界</div><div class="cb">工商与媒体口径一致：公司仅苏魁一名员工。他每天在程序员、UP 主、客服、营销、法务、财务多个角色间切换；注册资质与代理记账外包，会计托管一年 1000 多元；曾为资质代理纠纷打官司并胜诉（法院调解全额退款），另有一家企业照搬其网站内容，维权赔偿「连成本都没覆盖」，仍在上诉。<a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a></div><div class="cm">属「一人 + 外部专业服务」的 OPC</div></div>
+    <div class="card blue"><div class="ct">工具与 IP 资产</div><div class="cb">开发侧以 AI 写代码、查 Bug、生成动画与宣传文案，辅助工具为 Cloud Studio、DeepSeek、豆包等，苏魁称这些免费工具多数可替代月费 15～20 美元的国外同类；产品侧已接入 DeepSeek 做「一句话生成动画」。商标 2 件、发明专利 1 件（CN202610201765.4）、作品著作权 2 件；运行时库以 DragonBones 名义开源在 GitHub，海外用户「很多人通过开源库了解到了我的产品」。<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-6">[6]</a><a class="cref cross" href="#ref-7">[7]</a></div><div class="cm">开源运行时 = 海外低成本获客通道</div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2023 → 2024</div><div class="tx">ChatGPT 冲击 → 立项自研</div><div class="td">自述「让它写代码，几乎无法判断对方是人还是 AI，甚至比我写得还好」，由此思考一人能否完成一个小团队的工作；2024 年启动项目，用 AI 写代码、查 Bug、生成动画，甚至构思宣传文案。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2024-11-15</div><div class="tx">北京哪吒互娱科技有限公司成立</div><div class="td">工商登记成立日；苏魁决定创业，办公地点就在自己家中，团队仅他一人。<a class="cref cross" href="#ref-6">[6]</a><a class="cref verified" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2025-03-02</div><div class="tx">LoongBones v1.0.0 上线，产品正式对外</div><div class="td">发布日志：「新版 Loongbones 上线，支持原 DragonbonesPro 所有功能」，同日上线物理约束；媒体口径亦为「2025 年 3 月正式上线」。<a class="cref cross" href="#ref-9">[9]</a><a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2025-05 起</div><div class="tx">B 站教程成为主宣推阵地</div><div class="td">因「出镜焦虑」选择从知识传播做起，自 2025 年 5 月起每周更新教程；截至 2026-03 已出 16 期、420 多个粉丝。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+    <div class="node"><div class="dt">2025-11 → 2025-12</div><div class="tx">听说「一人公司」，入驻中关村 AI 北纬社区</div><div class="td">11 月首次听说 OPC 概念并发现自己符合入驻要求；12 月申请入驻，获免费办公场所与政策、媒体、投资对接、培训等支持。「此前他一个人在家创业，心态不稳，总怀疑是不是走错路了」。<a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2026-03-02 / 04-04</div><div class="tx">两篇独立采访先后刊出</div><div class="td">中新经纬走进中关村 AI 北纬社区，记录上午 10 点到岗、后台显示国内 4700 多名与海外 1000 多名注册用户、每天审核作品库投稿的日常，同文于 03-04 在北京商报「财富通」版面转载；一个月后红星资本局采访披露国内近 6000、海外超 1000、近 500 名付费用户，并引出「OPC 一年的存活率只有 10%」的自述。<a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-10">[10]</a><a class="cref verified" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2026-06-23</div><div class="tx">v1.2.0 上线智能体：可用对话操作软件</div><div class="td">可通过对话操作软件并进行骨骼动画知识问答；测试期注册用户每天 10 万 Token、VIP 用户每天 30 万 Token、每月 300 万 Token，可选模型范围亦分注册/VIP 两档。<a class="cref cross" href="#ref-9">[9]</a></div></div>
+    <div class="node"><div class="dt">2026-07-02 至 11-11</div><div class="tx">获 OPC 特色赛一等奖，产品扩张至 v1.3.3</div><div class="td">北京市首次推出「全球 OPC 共创节」，海淀携 30 余家 OPC 亮相，苏魁获「创业北京」OPC 特色赛一等奖；v1.3.1 增加龙鳞编辑器，v1.3.3 增加消耗「龙币」的 AI 换皮功能。<a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-4">[4]</a><a class="cref verified" href="#ref-5">[5]</a><a class="cref cross" href="#ref-9">[9]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：从大厂技术专家到「自己写一整条产品线」</div><div class="cb">具备把复杂工程拆开重写的能力，加上 ChatGPT 的冲击，他意识到「一个人 + AI」可能顶一个小团队，2024 年不再等公司给需求，而是自己立项做产品：写代码、查 Bug、生成动画、想宣传文案全部自己来。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+  <div class="card"><div class="ct">转折二：不与 Spine 抢存量，先做「便宜 + AI 提效」的增量位</div><div class="cb">用户大多是专业骨骼动画从业者，很多人已付费使用买断制的 Spine，改变习惯困难。他承认这一点后，先把产品做成「一句话生成动画」的低价订阅（国内月费 20 元 / 年费 200 元），并计划更多面向小白用户和入门者宣传。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+  <div class="card"><div class="ct">转折三：从「一个人在家干」到「一个人 + 园区 + 渠道」</div><div class="cb">入驻中关村 AI 北纬社区后，他拿到免费工位、政策宣讲与资源对接，还遇见一位做动画软件销售的资深从业者，双方初步达成合作意向：按时间授权或做私有化部署，把软件卖给高校等机构。这是从「卖订阅」迈向「卖方案」的关键一步。<a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a></div></div>
+  <div class="card"><div class="ct">转折四：把「出海」当作免费获客而非收入来源</div><div class="cb">海外版本当前免费，已有黑山共和国、俄罗斯、加拿大等国的用户注册，用户多通过开源运行库了解到产品。逻辑是：海外独立游戏开发者更多、更倾向寻找降低成本的工具，先用免费版本把量做起来，2026 年重点之一是在海外社交媒体发力并接入支付实现变现。<a class="cref cross" href="#ref-1">[1]</a></div></div>
+  <div class="quote">
+    <p>OPC 一年的存活率只有 10%，至少我现在是这 10% 了。希望三年后还能存在。</p>
+    <span class="src">—— 苏魁，红星资本局专访（2026-04-04），<a class="cref verified" href="#ref-2">[2]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>事实与分析</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>产品形态</b></td><td>浏览器即用的云端 2D 骨骼动画创作工具。流程：绑骨架 → 贴图 → 一句指令「AI 生成」关键帧动画 → 时间轴调参 → 导出。官方定位「让一张或几张图片优雅地动起来，只需几分钟」</td><td><a class="cref cross" href="#ref-7">[7]</a><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td><b>产品线扩展</b></td><td>主线 LoongBones（骨骼动画编辑器）+ 龙鳞 LoongScales（浏览器分层图片编辑器，内置 AI 生图/去背景/拆图，与龙骨素材双向同步）+ 内置智能体（对话操作软件）；版本从 v1.0.0（2025-03-02）迭代至 v1.3.3（2026-11-11），发布日志累计 41 个版本节点</td><td><a class="cref cross" href="#ref-9">[9]</a><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td><b>定价与变现</b></td><td>国内版订阅制：<b>月费 20 元 / 年费 200 元</b>。海外版当前免费、未接支付；AI 换皮等增值能力以平台虚拟币「龙币」计费，形成第二层潜在变现</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-9">[9]</a></td></tr>
+      <tr><td><b>目标用户</b></td><td>付费主力是专业骨骼动画从业者（多已付费使用买断制的 Spine）；下一步明确转向小白用户与入门者。智能体对注册用户与 VIP 用户提供不同 Token 额度与模型可选范围，已具备分层权益雏形</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-9">[9]</a></td></tr>
+      <tr><td><b>成本结构</b></td><td>现金成本极低：公司注册 2000 多元 + 代理记账一年 1000 多元 + 服务器可忽略不计 + AI token 一个月几十元；年运营成本<b>不足 5000 元</b>，且不含苏魁本人劳动</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>收入结构与渠道</b></td><td>收入几乎全部来自订阅；未公开广告、增值服务收入。B 端方向（时间授权 / 私有化部署卖给高校）仅停留在「初步达成合作意向」，尚未形成收入。若合作顺利，苏魁估算年销售额可能达百万元级别——属个人预估，非既成事实</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点 / 口径</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>注册用户总量</td><td class="hl">约 7000 人</td><td>国内近 6000 + 海外超 1000；2026-04-04 受访者口径</td><td><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td>注册用户（上一时点）</td><td>国内 4700+ / 海外 1000+</td><td>2026-03-02 受访者口径，早于上表约一个月</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>付费用户</td><td class="hl">近 500 人</td><td>2026-04-04 受访者口径；「已积累的付费用户」累计值</td><td><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td>付费用户（上一时点）</td><td>约 300 人</td><td>2026-03-02 受访者口径</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>累计总收入</td><td class="hl">近 1 万元</td><td>自 2025-03 上线起累计；受访者口径，未说明是否已扣退款</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>定价</td><td>月费 20 元 / 年费 200 元</td><td>国内版订阅制，2026-03 受访者口径</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>年运营成本</td><td class="pos">不足 5000 元</td><td>2026-03 受访者口径；不含本人劳动，仅现金支出</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>赛事荣誉</td><td class="hl">「创业北京」OPC 特色赛一等奖</td><td>2026-07，政府/赛事公开信息</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-4">[4]</a><a class="cref verified" href="#ref-5">[5]</a></td></tr>
+      <tr><td>B 站内容</td><td>16 期 / 420+ 粉丝</td><td>2026-03-02 受访者口径，自 2025-05 起每周更新</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>年度目标</td><td>注册用户 10 万</td><td>苏魁自定，2026 年度目标（受访者口径）</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>版本迭代</td><td>41 个版本节点</td><td>v1.0.0（2025-03-02）至 v1.3.3（2026-11-11），官方发布日志一手可查</td><td><a class="cref cross" href="#ref-9">[9]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 注册量 → 付费量 → 收入：一次漏斗交叉分析</div>
+    按 2026-03-02 的同一时点口径：注册 4700 + 1000 ≈ <b>5700 人</b>，其中付费约 <b>300 人</b>，付费转化率约 <b>5.3%</b>；累计收入<b>近万元</b>（自 2025-03 上线起累计约一年），折合 ARPU 约 <b>33 元/人</b>。按「月费 20 元 / 年费 200 元」的定价，ARPU 33 元意味着<b>人均只付费了约 1.5 个月</b>（若以年费为主，ARPU 应接近 200 元）——绝大多数付费用户并未续订到年费。到 2026-04-04，注册约 7000、付费近 500，付费率升至约 <b>7.1%</b>。<br><br>
+    交叉结论：<b>注册量与付费量是真实增长曲线，但收入曲线几乎是平的</b>。「近万元」累计收入与 300～500 付费者之间的巨大落差，说明<b>短周期付费与订阅流失是常态</b>——这是一家<b>收入规模很小、但成本极低</b>的一人开发者典型样本，而不是规模化爆款。把「约 7000 注册」直接读成「一家成功的 AI 工具公司」是误读。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">与案例墙中其他「一人 + AI 做开发者工具 / 独立软件出海」方向的样本对比（对标数据为案例墙既有核验值，具体以各案例原报告为准）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态 / 出海路径</th><th>数据表现（既有核验值）</th></tr></thead>
+    <tbody>
+      <tr><td><b>龙骨动画</b>（本案）</td><td>苏魁（唯一员工，持股 99%）</td><td>2D 骨骼动画创作工具；云端订阅 + 开源运行库引流，海外版免费</td><td>注册约 7000、付费近 500、累计收入近万元；年成本不足 5000 元；获 OPC 特色赛一等奖</td></tr>
+      <tr><td>Umi-OCR</td><td>hiroi-sora</td><td>开源离线 OCR 桌面软件，解压即用</td><td>GitHub 48.4k★，免费标杆；营收未披露</td></tr>
+      <tr><td>ChatWise</td><td>egoist</td><td>多模型桌面 AI 客户端，多模态 + MCP</td><td>Pro $29 买断持续销售；营收未披露</td></tr>
+      <tr><td>沉浸式翻译</td><td>Owen Young</td><td>AI 双语对照翻译，聚合 10+ 引擎</td><td>全球激活用户破 3000 万，Chrome 年度精选</td></tr>
+      <tr><td>《桌面副本物语 Desktop Raid》</td><td>大葵（10 年独立开发经验）</td><td>Steam 挂机 RPG，一人 + 引擎内 AI</td><td>上线半年 5 万份、流水近百万（创作者口径）</td></tr>
+      <tr><td>Cherry Studio</td><td>亢奋猫（已公司化）</td><td>开源多模型 AI 桌面客户端，300+ 模型</td><td>GitHub 53.4k★（2026-11 实测）；一人属性边界见其深度报告</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>关键差异有三点。<b>其一，它走的是「订阅 + 开源运行时」而非纯开源或纯买断</b>：免费海外版 + 开源运行库负责拉量，国内订阅负责收钱，这与 Umi-OCR 的纯开源免费、ChatWise 的 BYOK 买断都不同。<b>其二，它选了一个「专业度高但用户池窄」的垂直品类</b>——2D 骨骼动画的工具用户本来就是从业者，规模天花板明显小于通用 AI 客户端。<b>其三，也是最关键的：它的绝对数字在整组对标里最小</b>——约 7000 注册、近 500 付费、近万元累计收入，远低于《桌面副本物语》的半年近百万流水、沉浸式翻译的 3000 万激活用户。这恰恰说明<b>OPC 样本的真实分布是极度长尾的</b>：一人公司能跑通商业模式，但「跑通」和「做大」之间隔着巨大的量级差<a class="cref cross" href="#ref-1">[1]</a>。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>分析</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品与定位</b></td><td>「AI 辅助的 2D 骨骼动画创作平台」。差异化不在 AI 本身——骨骼动画编辑器（Spine 模式）已是成熟形态——而是<b>把 AI 塞进专业生产环节</b>：绑完骨架贴完图后一句「AI 生成」直接产出关键帧动画，把专业工具最耗时的一步压掉。定位上刻意避开与 Spine 的正面竞争</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>2. 生产流程</b></td><td>典型「一人 + AI」闭环：AI 写代码、查 Bug、生成动画、构思宣传文案，人负责产品定义、验收与运营。<b>迭代节奏是硬指标</b>：v1.0.0 → v1.3.3 累计 41 个版本节点、约 20 个月，v1.2.0 把智能体做进产品，v1.3.x 又长出龙鳞编辑器与 AI 换皮。成本侧诀窍是全用免费国产模型与工具替代月费 15～20 美元的国外同类</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-9">[9]</a></td></tr>
+      <tr><td><b>3. 成本结构</b></td><td>年现金支出<b>不足 5000 元</b>：注册 2000 多元 + 代理记账一年 1000 多元 + 服务器可忽略 + token 每月几十元。这是 AI 把工具型软件的边际成本压到近零的直接结果。真实成本被隐性化了——<b>苏魁本人的时间才是最大成本项</b>，且未被计入</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>4. 商业模式</b></td><td>C 端订阅（月 20 / 年 200）+ 海外免费 + 潜在 B 端授权（时间授权 / 私有化部署，面向高校，仅意向阶段）+ 潜在虚拟币（龙币）增值。收入来源单一、客单价低、<b>续订是最大不确定性</b>（ARPU 约 33 元指向短周期付费为主）</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-9">[9]</a></td></tr>
+      <tr><td><b>5. 一人属性</b></td><td>工商口径与媒体口径完全一致：<b>唯一员工</b>，参保 0 人，苏魁一人兼任经理、董事、财务负责人，持股 99%。外部依赖集中在三处：代理记账与资质代办（财务/合规）、AI 模型与工具供应商（能力）、园区与销售渠道（资源与订单）。「一人」的准确含义是<b>内部没有雇佣关系，但并非零外部依赖</b></td><td><a class="cref cross" href="#ref-6">[6]</a><a class="cref verified" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>6. 可复制性</b></td><td>中低。<b>可复制的部分</b>：一人 + 国产免费 AI 工具 + 低成本云服务的组合拳，以及「开源运行时换海外用户、订阅收国内钱」的获客模型。<b>不可速成的部分</b>：2D 骨骼动画引擎本身的工程复杂度（41 个版本仍在持续补 bug）、专业用户信任的建立，以及苏魁在游戏引擎与在线教育领域积累的技术判断力——「不与 Spine 抢存量」这个定位是领域经验而非通用方法论</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-9">[9]</a></td></tr>
+      <tr><td><b>7. 风险</b></td><td>①<b>收入天花板</b>：近万元累计收入与不足 5000 元年成本之间的「利润」完全来自创始人自我剥削，不具可扩张性；②<b>续订</b>：ARPU 仅约 33 元，订阅制尚未形成稳定现金流；③<b>品类规模</b>：2D 骨骼动画的用户池天然窄，10 万注册目标与 7000 实际值差一个量级；④<b>竞争</b>：Spine 生态成熟、免费 AI 生图工具不断侵蚀专业动效需求；⑤<b>单点</b>：产品、代码、账号、用户关系集中于一人，已出现维权成本无法覆盖的案例；⑥<b>合规</b>：工商档案显示行政处罚 2 条、司法案件 0 条，行政处罚具体事由未公开</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a><a class="cref cross" href="#ref-6">[6]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 四组需要留意的口径</div>
+    ① <b>注册量口径不一致</b>：2026-03-02 报道为「国内 4700 多名 + 海外 1000 多名」，2026-04-04 报道为「国内近 6000 + 国外超 1000」。两数相隔约一个月，量级一致但不能混用；statbar 与数据表以较晚的 2026-04 口径为准，漏斗分析用 2026-03 口径以保证分子分母同期。<br>
+    ② <b>收入规模是否可持续</b>：「近万元」是自 2025-03 上线起的<b>累计</b>收入，不是年收入，也不是月度经常性收入。按 300～500 付费者折算，人均付费仅约 1.5 个月，说明订阅尚未形成留存；《桌面副本物语》式的「半年近百万流水」在本案中<b>完全不存在</b>，两者不可类比。<br>
+    ③ <b>目标与现实的差距</b>：年度目标注册 10 万，2026-04 实际约 7000，完成度约 7%。苏魁自述「OPC 一年的存活率只有 10%」，说明他对差距并非没有认知，但目标本身尚未见公开的调整说明。<br>
+    ④ <b>股权与主体结构</b>：苏魁持股 99%、宋伟玉 1%，注册资本 100 万元而实缴仅 3.01 万元，苏魁一人兼任经理、董事、财务负责人，参保 0 人。「一人公司」在法律上是<b>有限责任公司</b>而非「一人有限责任公司」，仍存在一名 1% 股东；一人兼三职也意味着<b>公司治理上的自我交易风险</b>。工商档案另显示行政处罚 2 条、司法案件 0 条。
+  </div>
+  <div class="card"><div class="ct">「B 端年销售额百万级」是估算，不是收入</div><div class="cb">苏魁提到，若与那位动画软件销售从业者的合作顺利，「公司年销售额可能达到百万元级别，将回到我之前的年薪水平」。这是<b>基于合作意向的条件性预估</b>，合作仍处于「初步达成合作意向」阶段，未见签约、报价或到账证据。本报告不将其计入收入口径<a class="cref cross" href="#ref-1">[1]</a>。</div></div>
+  <div class="card"><div class="ct">「唯一员工」但并非「零协作」</div><div class="cb">苏魁同时具备三重身份：唯一员工、创始人、以及中关村 AI 北纬社区里 14 家纯 1 人公司之一的成员。园区提供了工位、政策宣讲、媒体与投资对接、创业培训，以及最重要的<b>销售渠道搭线</b>——这也解释了一个没有专职销售的产品为何能接触到高校采购线索。归类上更准确的表述是「一人 + 园区 + 外部专业服务」<a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-2">[2]</a>。</div></div>
+  <div class="box note">
+    <div class="bt">📌 留白</div>
+    未公开：苏魁的年龄、籍贯、毕业院校、现居地、家庭状况；DragonBones 老版本与 LoongBones 的产品沿革关系、开源许可协议与 GitHub 仓库的 star / issue 数据；海外 1000+ 用户的国家分布明细与免费用户向付费的转化率；日活跃用户、作品库上传量、付费用户分布结构与退款率；「龙币」的定价规则与消耗场景全貌；智能体功能中大模型的供应商构成与自付成本；B 端合作的报价、合同与到账情况；年度目标 10 万注册的分解与完成计划；2025 与 2026 年年报的营业收入与净利润；行政处罚 2 条的具体事由；融资情况（工商档案显示融资信息 0 条）。
+  </div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">捌·附</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">本深度报告共引用 10 条信源，编号与文末清单一致；其中 1 条为同源转载，仅佐证纸媒同文刊发，不参与交叉验证。上标颜色与文末徽章同色同义：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威一手信源可回溯），黄 = 部分映证（自述/转述或单一 B 级以下信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx cross">[1]</span><span class="rt">A-</span><span class="st">财经媒体一手采访</span></div><div class="ti">「一人公司」火了，老板每天都干啥？</div><div class="mt"><b>来源：</b>中新经纬（36 氪经授权发布），记者谢婧雯　<b>发布日期：</b>2026-03-02<br><a href="https://36kr.com/p/3705517920825736" target="_blank" rel="noopener">https://36kr.com/p/3705517920825736</a></div><div class="note">事实核查：本案<b>最核心的一手信源</b>。注册量 4700+/1000+、定价、付费约 300 人、累计收入近万元、年成本及四项拆分、B 站 16 期教程与 420 粉、年度目标 10 万、前雇主、Spine 迁移困难、海外免费与开源引流、B 端意向与「年销售额百万级」预估均出自此稿，数字均为受访者自述。局限：单一媒体单一受访人，无第三方财务或后台佐证，故标蓝不标绿。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx verified">[2]</span><span class="rt">A-</span><span class="st">财经媒体一手采访</span></div><div class="ti">「一人公司」创业者「用AI雇人类」，公司估值已超3000万！</div><div class="mt"><b>来源：</b>红星资本局 / 成都商报（澎湃新闻号转载），记者周怡　<b>发布日期：</b>2026-04-04<br><a href="https://m.thepaper.cn/newsDetail_forward_32906404" target="_blank" rel="noopener">https://m.thepaper.cn/newsDetail_forward_32906404</a></div><div class="note">事实核查：国内近 6000 + 国外超 1000 用户、近 500 名付费用户、2024-11 创办且办公在家中、「OPC 存活率只有 10%」原话、两次打官司经过、2025-12 入驻园区决策均出自此稿。与 [1] 相互独立（不同媒体、记者、间隔一月）且注册量与付费量方向一致，构成交叉印证，故标绿。局限：仍为受访者自述。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx verified">[3]</span><span class="rt">A</span><span class="st">政府公开信息</span></div><div class="ti">来海淀，让一个人的梦想拥有世界级的舞台</div><div class="mt"><b>来源：</b>北京市海淀区人民政府网站「创业北京」OPC 专题（来源：海淀报，作者王萌）　<b>发布日期：</b>2026-07-06<br><a href="https://www.bjhd.gov.cn/ztzx/2026/opc/cccf/202607/t20260706_4820943.shtml" target="_blank" rel="noopener">https://www.bjhd.gov.cn/ztzx/2026/opc/cccf/202607/t20260706_4820943.shtml</a></div><div class="note">事实核查：「创业北京」OPC 特色赛一等奖、「全球首个 AI 驱动 2D 骨骼动画工具」的官方表述、全球数字经济大会与 OPC 共创节、海淀 OPC 八条政策均出自此稿。与 [4][5] 交叉印证赛事事实，故标绿。局限：「全球首个」为政府报道用语，未见独立第三方评测佐证。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx verified">[4]</span><span class="rt">A-</span><span class="st">中央级媒体报道</span></div><div class="ti">北京海淀区「超级个体」创新活力汹涌（30余家OPC创业代表亮相数字经济产业博览会）</div><div class="mt"><b>来源：</b>央广网 · 北京频道（来源：北京日报，记者孙奇茹）　<b>发布日期：</b>2026-07-03<br><a href="http://www.cnr.cn/bj/gstjbj/20260703/t20260703_527687395.shtml" target="_blank" rel="noopener">http://www.cnr.cn/bj/gstjbj/20260703/t20260703_527687395.shtml</a></div><div class="note">事实核查：「一句话就能生成 2D 骨骼动画」与「获『创业北京』OPC 特色赛一等奖」两句表述，用于交叉印证赛事与产品定位；其余段落为同场活动的其他 OPC 项目，未用于本报告结论。与 [3][5] 构成三方交叉，故标绿。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx verified">[5]</span><span class="rt">A-</span><span class="st">官方机构转载</span></div><div class="ti">中央及市属主流媒体广泛报道 海淀「一人公司」组团亮相全球数字经济大会</div><div class="mt"><b>来源：</b>北京市科学技术委员会、中关村科技园区管理委员会网站（信息来源：中关村科学城微信公众号，含人民网北京 7 月 3 日电，记者董兆瑞）　<b>发布日期：</b>2026-07-08<br><a href="https://www.ncsti.gov.cn/kjdt/scyq/zgckxc/zgcdt/202607/t20260708_250961.html" target="_blank" rel="noopener">https://www.ncsti.gov.cn/kjdt/scyq/zgckxc/zgcdt/202607/t20260708_250961.html</a></div><div class="note">事实核查：大会 7 月 2 日开幕、北京市首次推出「全球 OPC 共创节」、海淀携 30 余家 OPC 亮相，以及「苏魁一人开发的『龙骨动画』平台，可一句话生成 2D 骨骼动画，近日获『创业北京』OPC 特色赛一等奖」。用于第三重交叉印证赛事事实。局限：属对人民网等同日报道的汇编转载，非独立采编。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx cross">[6]</span><span class="rt">A-</span><span class="st">工商登记信息</span></div><div class="ti">北京哪吒互娱科技有限公司 · 企业档案</div><div class="mt"><b>来源：</b>企查查　<b>数据更新时间：</b>2026-11-05<br><a href="https://m.qcc.com/firm/17c82eb0574e88cbf4f6803a4f94492e.html" target="_blank" rel="noopener">https://m.qcc.com/firm/17c82eb0574e88cbf4f6803a4f94492e.html</a></div><div class="note">事实核查：法定代表人苏魁、注册资本 100 万元、成立 2024-11-15、实缴 3.01 万元、苏魁 99%/宋伟玉 1%、苏魁兼经理/董事/财务负责人、参保 0 人、统一社会信用代码 91110113MAE3RJNN93、经营范围、商标 2 件、发明专利 1 件（CN202610201765.4）、作品著作权 2 件、行政处罚 2 条、司法案件 0 条、融资 0 条均取自档案页。权威一手可回溯，但为聚合平台转录，标蓝。局限：行政处罚事由未展开。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx cross">[7]</span><span class="rt">A</span><span class="st">产品官网一手页面</span></div><div class="ti">龙骨动画 · 官网首页（智启动画新次元）</div><div class="mt"><b>来源：</b>龙骨动画官方站　<b>抓取日期：</b>2026-11-23<br><a href="https://www.dragonbones.cn/" target="_blank" rel="noopener">https://www.dragonbones.cn/</a></div><div class="note">事实核查：产品定位「AI 增强的云端骨骼动画创作工具」、「已接入 DeepSeek」、功能清单（骨骼操作、时间轴、网格与自由变形、IK、权重与蒙皮、曲线编辑器、洋葱皮、骨架嵌套、网格变形器、自动生成网格、路径约束、矢量形状、遮罩、物理、变换约束、导入导出）、导入 Spine 等第三方格式、跨平台运行时（Pixi / Cocos / Unity / Unreal）与 GitHub 运行库入口均取自页面。属产品方自述，一手可回溯，标蓝。局限：功能宣称未经第三方实测。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx cross">[8]</span><span class="rt">A-</span><span class="st">官方文档站</span></div><div class="ti">龙骨动画 · 文档站</div><div class="mt"><b>来源：</b>龙骨动画官方文档　<b>抓取日期：</b>2026-11-23<br><a href="https://www.dragonbones.cn/doc/" target="_blank" rel="noopener">https://www.dragonbones.cn/doc/</a></div><div class="note">事实核查：「全球知名的 2D 骨骼动画解决方案」定位、在线编辑器与高级特性、插件与导入导出、跨平台运行时，以及「龙鳞 LoongScales：浏览器里的分层图片编辑器，内置 AI 生图 / 去背景 / 拆图，与龙骨动画素材双向同步」这一第二产品线描述均取自页面，一手可回溯，标蓝。局限：与 [7] 同属产品方信源，二者不相互独立。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx cross">[9]</span><span class="rt">A</span><span class="st">官方版本日志</span></div><div class="ti">LoongBones · 版本更新日志</div><div class="mt"><b>来源：</b>LoongBones 官方　<b>抓取日期：</b>2026-11-23<br><a href="https://www.loongbones.com/releaseNote" target="_blank" rel="noopener">https://www.loongbones.com/releaseNote</a></div><div class="note">事实核查：v1.0.0（2025-03-02）「新版 Loongbones 上线，支持原 Dragonbones Pro 所有功能」；v1.2.0（2026-06-23）智能体与注册用户每天 10 万 Token、VIP 每天 30 万 Token/每月 300 万 Token 的分层额度；v1.3.1（2026-10-10）龙鳞编辑器；v1.3.3（2026-11-11）AI 换皮「需要消耗龙币」；全站共 41 个版本节点。一手可回溯，标蓝。局限：与 [7][8] 同属产品方信源；不披露商业数据。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx partial">[10]</span><span class="rt">B+</span><span class="st">纸媒同源转载</span></div><div class="ti">「一人公司」火了！老板每天都干啥？（财富通版面）</div><div class="mt"><b>来源：</b>北京商报「财富通」版面（2026-03-04 第 07 版）　<b>发布日期：</b>2026-03-04<br><a href="https://e.cdsb.com/page/1/2026-03/04/07/2026030407_pdf.pdf" target="_blank" rel="noopener">https://e.cdsb.com/page/1/2026-03/04/07/2026030407_pdf.pdf</a></div><div class="note">事实核查：与 [1] 为<b>同一篇中新经纬稿件</b>的纸媒版面转载（正文逐段一致）。仅佐证该组数据在纸媒同文刊发，<b>不作为独立信源参与交叉验证</b>，故标黄。局限：非独立采编，不能提高任何数据的可信度。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：本深度报告共引用信源 <b>10 条</b>。核验标签分布：🟢 已核验 <b>4 条</b>（[2][3][4][5]）、🔵 多源印证 <b>5 条</b>（[1][6][7][8][9]）、🟡 部分映证 <b>1 条</b>（[10]）。信源评级：A 级 <b>3 条</b>（[3][7][9]）、A- 级 <b>6 条</b>（[1][2][4][5][6][8]）、B+ 级 <b>1 条</b>（[10]）。<b>哪些核心数字只有单一来源</b>：注册量与付费量的两个时点值分别只出自 [1] 与 [2]（两者相互独立但数字不同，本报告并列呈现）；「付费约 300 人 / 总收入近万元 / 年成本不足 5000 元 / 定价月费 20 年费 200 / B 站 16 期与 420 粉 / 年度目标 10 万」<b>仅 [1] 一个来源</b>（[10] 为同源转载，不构成第二来源），故这些数字均未标绿，正文中一律按「受访者口径」处理；「获『创业北京』OPC 特色赛一等奖」由 [3][4][5] 三方交叉，故标绿。<b>全部 URL 均为本次检索实际命中页面</b>，未发现伪造、失效或跳转到无关内容的链接。
+  </div>
+</section>
+
+</div>
+
+<section id="related">
+  <div class="sec-head"><div class="badge">◎</div><h3>相关案例</h3><span class="en">RELATED CASES</span></div>
+  <div class="two">
+    <a class="card" href="../../report/immersive-translate/" style="text-decoration:none;color:inherit;display:block">
+      <div class="ct">沉浸式翻译</div>
+      <div class="cb">AI 双语对照网页/PDF/视频字幕/漫画翻译，聚合 10+ 引擎。</div>
+      <div class="cm">Owen Young · 全球激活用户破 3000 万，Chrome 年度精选</div>
+    </a>
+    <a class="card" href="../../report/chatwise/" style="text-decoration:none;color:inherit;display:block">
+      <div class="ct">ChatWise</div>
+      <div class="cb">多模型桌面 AI 客户端：多模态 + MCP，BYOK 买断制。</div>
+      <div class="cm">egoist · Pro $29 买断持续销售</div>
+    </a>
+    <a class="card" href="../../report/umi-ocr/" style="text-decoration:none;color:inherit;display:block">
+      <div class="ct">Umi-OCR</div>
+      <div class="cb">开源离线 OCR 软件：截图/批量图片/PDF 识别，解压即用。</div>
+      <div class="cm">hiroi-sora · GitHub 48.4k★，免费 OCR 标杆</div>
+    </a>
+    <a class="card" href="../../report/desktop-raid/" style="text-decoration:none;color:inherit;display:block">
+      <div class="ct">《桌面副本物语 Desktop Raid》</div>
+      <div class="cb">一人 + AI 在 Unity 引擎内做 Steam 挂机 RPG，从开发到上线全流程自持。</div>
+      <div class="cm">大葵 · 上线半年 5 万份、流水近百万（创作者口径）</div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-23 · 注册、付费、收入与成本均为受访者口径，赛事为政府/赛事公开信息，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

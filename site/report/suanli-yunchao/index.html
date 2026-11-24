@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · 算力云巢 PowerNest —— 给 OPC 创业者“卖铲子”的 AI 工程化服务商 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · 算力云巢 PowerNest">
+<meta property="og:image" content="https://opc-story.top/og/suanli-yunchao.jpg">
+<meta name="description" content="算力云巢 PowerNest 深度案例：施云飞为传统行业转型的 OPC 创业者提供 AI 工程化落地一站式方案，8 个月服务 150 余家 OPC、交付 2400 余套工作站并已盈利（创始人口径），拟在桐乡开 OPC 社区。3 条信源核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+<link rel="canonical" href="https://opc-story.top/report/suanli-yunchao/">
+<meta name="robots" content="index,follow">
+<meta property="og:url" content="https://opc-story.top/report/suanli-yunchao/">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://opc-story.top/og/suanli-yunchao.jpg">
+<script type="application/ld+json">
+{"@type":"Article","@context":"https://schema.org","headline":"深度案例 · 算力云巢 PowerNest · OPC Story","description":"算力云巢 PowerNest 深度案例：施云飞为传统行业转型的 OPC 创业者提供 AI 工程化落地一站式方案，8 个月服务 150 余家 OPC、交付 2400 余套工作站并已盈利（创始人口径），拟在桐乡开 OPC 社区。3 条信源核验。","inLanguage":"zh-CN","author":{"@type":"Person","name":"OPC Story"},"publisher":{"@type":"Organization","name":"OPC Story","url":"https://opc-story.top/"},"mainEntityOfPage":"https://opc-story.top/report/suanli-yunchao/","datePublished":"2026-11-23","dateModified":"2026-11-23","articleSection":"OPC 服务生态"}</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X58DBX1NCM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag("js", new Date());
+gtag("config", "G-X58DBX1NCM");
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"案例墙","item":"https://opc-story.top/"},{"@type":"ListItem","position":2,"name":"全部案例","item":"https://opc-story.top/all"},{"@type":"ListItem","position":3,"name":"算力云巢 PowerNest","item":"https://opc-story.top/report/suanli-yunchao/"}]}</script>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>算力云巢 PowerNest 深度案例报告</h1>
+    <h2>给 OPC 卖“铲子”：算力、AI 工作站与工程化交付<br>8 个月服务 150 余家主体 —— 3 条信源核验</h2>
+    <div class="tags">
+      <span class="tag">OPC 服务生态</span>
+      <span class="tag">AI 工程化交付</span>
+      <span class="tag">算力与工作站</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v neutral">150 余家</div><div class="k">服务的 OPC 主体（受访口径）</div></div>
+  <div class="stat"><div class="v neutral">2,400 余套</div><div class="k">交付 AI 工作站（受访口径）</div></div>
+  <div class="stat"><div class="v neutral">8 个月</div><div class="k">2026-02 上线至报道</div></div>
+  <div class="stat"><div class="v neutral">已盈利</div><div class="k">受访口径，无财务明细</div></div>
+</div>
+
+<div class="wrap">
+  <div class="box insight" id="takeaways">
+    <div class="bt">可引用要点</div>
+    <ul class="bl">
+      <li><b>主体</b>：算力云巢 PowerNest，创始人施云飞（OPC 创业者），2026-02 上线。</li>
+      <li><b>定位</b>：为传统行业转型的 OPC 创业者提供 AI 工程化落地一站式方案<a class="cref cross" href="#ref-1">[1]</a>。</li>
+      <li><b>结果（受访口径）</b>：8 个月服务 150 余家 OPC、交付 2400 余套工作站、已盈利<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a>。</li>
+      <li><b>节点</b>：进入“直通乌镇”OPC 特色赛数字服务赋能组决赛；拟在桐乡开社区<a class="cref cross" href="#ref-1">[1]</a>。</li>
+    </ul>
+    <div style="font-size:12.5px;color:#8b97a6;margin-top:8px">经营数据为创始人口径，无审计与第三方复核。</div>
+  </div>
+
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">算力云巢 PowerNest 由施云飞创立，2026 年 2 月上线。它不做终端 AI 产品，而是把“AI 工程化落地”做成标准化交付：客户是从传统行业转型的 OPC 创业者，交付物是各类 AI 工作站。其判断是这类创业者普遍欠缺工程化能力<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a>。</p>
+  <div class="two">
+    <div class="card"><div class="ct">主体与客户</div><div class="cb">施云飞创立；客群为传统行业转型者，团队与融资未披露<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a>。</div></div>
+    <div class="card blue"><div class="ct">交付物</div><div class="cb">AI 工作站，打包工具链与配置，8 个月 2400 余套<a class="cref cross" href="#ref-1">[1]</a>。</div></div>
+    <div class="card"><div class="ct">外部节点</div><div class="cb">“直通乌镇”OPC 特色赛数字服务赋能组决赛<a class="cref cross" href="#ref-1">[1]</a>。</div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2026-02</div><div class="tx">算力云巢上线</div><div class="td">以“AI 工程化落地一站式方案”切入<a class="cref cross" href="#ref-1">[1]</a>。</div></div>
+    <div class="node"><div class="dt">2026-02 至 11（约 8 个月）</div><div class="tx">150 余家主体、2400 余套工作站</div><div class="td">自述已服务 150 余家、交付 2400 余套并盈利<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a>。</div></div>
+    <div class="node"><div class="dt">2026（报道前）</div><div class="tx">进入 OPC 特色赛决赛</div><div class="td">三组之一；共 31 个国家和地区 1347 个项目报名；2026-11-05 新华网报道使数据首次公开<a class="cref cross" href="#ref-1">[1]</a>。</div></div>
+    <div class="node"><div class="dt">下一步（规划）</div><div class="tx">从交付商转向社区运营者</div><div class="td">桐乡社区 + “乌镇之光”超算，助力孵化规上 OPC<a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-3">[3]</a>。</div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：从“自己会用”到“替别人用成系统”</div><div class="cb">缺口不在模型，而在落地；客群换成转型者，避开与工具厂商正面竞争<a class="cref cross" href="#ref-1">[1]</a>。</div></div>
+  <div class="card"><div class="ct">转折二：把非标咨询压成标准品</div><div class="cb">以工作站固化配置与实施经验，同一方案反复出货<a class="cref cross" href="#ref-1">[1]</a>。</div></div>
+  <div class="card"><div class="ct">转折三：借大赛与地方算力生态延伸</div><div class="cb">大赛被视为替“超级个体”织资源网络的机制，社区 + 超算指向“场地 + 算力 + 服务”<a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-3">[3]</a>。</div></div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>事实与分析</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>目标客户</b></td><td>转型中的 OPC 创业者，缺工程化落地能力</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>核心交付</b></td><td>一站式方案；工作站为单元，8 个月 2400 余套</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>价值主张（分析）</b></td><td>把“会用工具”升级为“能稳定交付”，卖确定性</td><td>本报告分析</td></tr>
+      <tr><td><b>收入结构（分析）</b></td><td>工作站为主、服务为辅；订阅与算力转售未披露</td><td>本报告分析</td></tr>
+      <tr><td><b>毛利结构（分析）</b></td><td>硬件易被成本与比价压缩；服务毛利更高；算力价差随上游波动</td><td>本报告分析</td></tr>
+      <tr><td><b>扩张路径</b></td><td>桐乡社区 + 国家超算，转向“场地 + 算力 + 孵化”</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-3">[3]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box insight">
+    <div class="bt">💡 “卖铲子”的经济学</div>
+    淘金成败不确定，卖铲子的收入却发生在淘金之前：先收款、后交付。代价是必须持续证明“铲子比自建划算”——工具链一旦傻瓜化，中间层价值就被挤压。
+  </div>
+</section>
+
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点 / 口径</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>运营时长</td><td>8 个月</td><td>2026-02 上线至报道</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>服务的 OPC 主体</td><td class="hl">150 余家</td><td>受访口径，未分累计/活跃</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td>累计交付工作站</td><td class="hl">2400 余套</td><td>受访口径，“各类”未拆</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td>盈利状态</td><td class="pos">已实现盈利</td><td>受访口径，无利润口径</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 口径说明</div>
+    三项核心数据均为创始人受访，未见审计或第三方复核；折算值只用于理解量级，<b>不可当作公司披露指标</b>。营收、客单价、毛利率、复购与退款率未公开。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标案例</th><th>角色</th><th>交付形态</th><th>关键数据</th></tr></thead>
+    <tbody>
+      <tr><td><b>算力云巢</b>（本案）</td><td>OPC 服务商（卖铲子）</td><td>AI 工作站 + 工程化方案</td><td>150 余家、2400 余套、已盈利（受访口径）</td></tr>
+      <tr><td>中欣数通</td><td>企业服务商</td><td>AI 呼叫 + 电销 + CRM</td><td>2025 年营收近百万元、客户 500 家+</td></tr>
+      <tr><td>华睿数联</td><td>项目制服务商</td><td>一人 + AI 集群接企业软件</td><td>2025 年 4 个项目、合同额超 60 万元</td></tr>
+      <tr><td>瓦博科技</td><td>硬件产品公司</td><td>4 名真人 + 16 只 AI 数字员工</td><td>三轮融资、估值过亿（公司口径）</td></tr>
+      <tr><td>刀仔 AI 电商</td><td>自己下场经营</td><td>AI 选品/文案 + 一件代发</td><td>单店月销 5-8 万（自述）</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>分析</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 需求与定位</b></td><td>切的不是“不会用 AI”，而是“不会用成工程”</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>2. 交付模式</b></td><td>标品出货、经验固化为配置；规模取决于供应链与售后</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>3. 毛利结构</b></td><td>硬件受成本与比价约束，服务毛利高但难计量，算力价差随上游波动</td><td>本报告分析</td></tr>
+      <tr><td><b>4. 可复制性</b></td><td>中；“懂行业 + 懂工程”难批量培养，社区模式依赖地方资源</td><td>本报告分析</td></tr>
+      <tr><td><b>5. 一人属性</b></td><td>创始人是 OPC，但业务是组织化交付，团队规模未披露</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>6. 第二曲线</b></td><td>转向社区：收入变为场地、算力与孵化，黏性强但重资产</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-3">[3]</a></td></tr>
+      <tr><td><b>7. 风险</b></td><td>客户生命周期短；库存与售后占现金；工具平民化削弱中间层；算力价格冲击成本</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 三组需要留意的口径</div>
+    ① <b>“已盈利”</b>：未说明是毛利、净利还是现金流，未排除补贴；② <b>“2400 余套”</b>：未定义单套边界，未区分新客与复购；③ <b>“150 余家”</b>：未区分累计与活跃，未说明是否含关联主体。
+  </div>
+  <div class="card red"><div class="ct">重资产与客户生命周期</div><div class="cb">交付硬件带来备货、账期与售后；客户处于验证期，退出后运维收入中断、服务责任仍在<a class="cref cross" href="#ref-1">[1]</a>。</div></div>
+  <div class="card red"><div class="ct">算力价格波动</div><div class="cb">降价收窄转售价差、促使客户直采；涨价推高交付成本<a class="cref partial" href="#ref-3">[3]</a>。</div></div>
+  <div class="box note">
+    <div class="bt">📌 留白</div>
+    未公开：营收与利润、客单价、毛利率、团队规模、融资、留存、退款率、工作站构成、算力采购成本、社区投资与时间表。
+  </div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">捌·附</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx cross">[1]</span><span class="rt">A</span><span class="st">国家通讯社</span></div><div class="ti">首设 OPC 特色赛 乌镇看见“一个人”的力量</div><div class="mt"><b>来源：</b>新华网　<b>发布日期：</b>2026-11-05<br><a href="http://www3.xinhuanet.com/tech/20261105/b76fdbbccff1433585c95867c4436513/c.html" target="_blank" rel="noopener">http://www3.xinhuanet.com/tech/20261105/b76fdbbccff1433585c95867c4436513/c.html</a></div><div class="note">事实核查：上线时间、8 个月、150 余家、2400 余套、已盈利、桐乡社区、大赛规模均出自此稿。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx cross">[2]</span><span class="rt">B</span><span class="st">行业媒体</span></div><div class="ti">一人成军、AI 为伴，OPC 创业新形态在乌镇与北京同步生长</div><div class="mt"><b>来源：</b>中国文化视窗网　<b>发布日期：</b>2026-11<br><a href="https://www.cctvwenhua.tv/archives/65983" target="_blank" rel="noopener">https://www.cctvwenhua.tv/archives/65983</a></div><div class="note">事实核查：150 余家、2400 余套、已盈利的第二来源，并补充“转型者缺工程化能力”。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx partial">[3]</span><span class="rt">B-</span><span class="st">地方政府官网（背景）</span></div><div class="ti">桐乡全力构建“算力之城”</div><div class="mt"><b>来源：</b>嘉兴市人民政府　<b>发布日期：</b>2026<br><a href="http://www.jiaxing.gov.cn/col/col1578787/art/2026/art_9282d94251dc4cb4b8670cfde5010afe.html" target="_blank" rel="noopener">http://www.jiaxing.gov.cn/col/col1578787/art/2026/art_9282d94251dc4cb4b8670cfde5010afe.html</a></div><div class="note">事实核查：乌镇之光国家超算中心、桐乡算力产业背景；仅作背景对照。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：共 3 条信源，实质独立信源 2 个（新华网 [1]、中国文化视窗 [2]），1 条为背景资料（嘉兴市政府 [3]）。🔵 多源印证 2 条、🟡 部分映证 1 条；A 级 1 条、B 级 1 条、B- 级 1 条。<b>经营数据均为创始人口径，无审计与第三方复核</b>。
+  </div>
+</section>
+
+</div>
+
+<section id="related">
+  <div class="sec-head"><div class="badge">◎</div><h3>相关案例</h3><span class="en">RELATED CASES</span></div>
+  <div class="two">
+    <a class="card" href="../../report/zhongxin-shutong/" style="text-decoration:none;color:inherit;display:block">
+      <div class="ct">中欣数通（AI 智能呼叫）</div>
+      <div class="cm">刘强 · 2025 年营收近百万元、客户 500 家+</div>
+    </a>
+    <a class="card" href="../../report/sifengrui/" style="text-decoration:none;color:inherit;display:block">
+      <div class="ct">华睿数联（一人软件公司）</div>
+      <div class="cm">司丰瑞 · 2025 年 4 个项目、合同额超 60 万元</div>
+    </a>
+    <a class="card" href="../../report/daozai-ecommerce/" style="text-decoration:none;color:inherit;display:block">
+      <div class="ct">刀仔 AI 电商</div>
+      <div class="cm">刀仔 · 单店月销 5-8 万、月净利 2.5-3 万（自述）</div>
+    </a>
+    <a class="card" href="../../report/wabo-tech/" style="text-decoration:none;color:inherit;display:block">
+      <div class="ct">瓦博科技（消费级脑机接口）</div>
+      <div class="cm">张星智 · 三轮融资，估值过亿（公司口径）</div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-23 · 经营数据为创始人口径，无审计与第三方复核，<b>本报告不构成投资建议</b>。
+</footer>
+
+</body>
+</html>

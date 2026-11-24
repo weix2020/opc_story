@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · 手亿科技（深圳市手亿计算机）—— 清华博士许展玮的腕带式手部动捕硬件 + 算法 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · 手亿科技（深圳市手亿计算机）">
+<meta property="og:image" content="https://opc-story.top/og/shouyi-compute.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="深度案例 · 手亿科技：清华博士许展玮的腕带式「视觉 + IMU」手部动捕硬件 + 算法">
+<meta name="description" content="手亿科技深度案例报告：清华博士许展玮 2025 年 7 月南下深圳创立深圳市手亿计算机有限责任公司，以腕带式「视觉 + IMU」手部动捕方案切入具身智能数据采集，四个月完成三轮融资、产品迭代至第三代、团队从 1 人到近 10 人。10 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){.wrap{padding:0 16px 60px}.hero{padding:44px 18px 40px}.hero h1{font-size:28px}.hero h2{font-size:15px}.statbar{grid-template-columns:repeat(2,1fr)}.stat .v{font-size:23px}.toc-grid{grid-template-columns:1fr}.sec-head h3{font-size:20px}.two{grid-template-columns:1fr}table{font-size:13px}thead th,tbody td{padding:8px 10px}}
+</style>
+<link rel="canonical" href="https://opc-story.top/report/shouyi-compute/">
+<meta name="robots" content="index,follow">
+<meta property="og:url" content="https://opc-story.top/report/shouyi-compute/">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://opc-story.top/og/shouyi-compute.jpg">
+<meta name="twitter:image:alt" content="深度案例 · 手亿科技：清华博士许展玮的腕带式「视觉 + IMU」手部动捕硬件 + 算法">
+<script type="application/ld+json">
+{"@type":"Article","@context":"https://schema.org","headline":"深度案例 · 手亿科技（深圳市手亿计算机）—— 清华博士许展玮的腕带式手部动捕硬件 + 算法 · OPC Story","description":"清华博士许展玮 2025 年 7 月南下深圳创立深圳市手亿计算机有限责任公司，以腕带式「视觉 + IMU」手部动捕方案切入具身智能数据采集，四个月完成三轮融资、产品迭代至第三代、团队从 1 人到近 10 人。10 条信源逐条核验。","inLanguage":"zh-CN","author":{"@type":"Person","name":"OPC Story"},"publisher":{"@type":"Organization","name":"OPC Story","url":"https://opc-story.top/"},"mainEntityOfPage":"https://opc-story.top/report/shouyi-compute/","datePublished":"2026-11-23","dateModified":"2026-11-23","articleSection":"垂直应用"}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X58DBX1NCM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments)};
+gtag("js", new Date());
+gtag("config", "G-X58DBX1NCM");
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"案例墙","item":"https://opc-story.top/"},{"@type":"ListItem","position":2,"name":"全部案例","item":"https://opc-story.top/all"},{"@type":"ListItem","position":3,"name":"手亿科技（深圳市手亿计算机）","item":"https://opc-story.top/report/shouyi-compute/"}]}</script>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>手亿科技深度案例报告</h1>
+    <h2>清华博士许展玮南下深圳，腕带式「视觉 + IMU」手部动捕切入具身智能数据采集：<br>四个月三轮融资、产品迭代至第三代、团队从 1 人到近 10 人 —— 10 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">垂直应用型 OPC</span>
+      <span class="tag">硬件 + 算法</span>
+      <span class="tag">具身智能数据采集</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">超千万元</div><div class="k">融资规模（累计口径 · 2026-04 受访者口径）</div></div>
+  <div class="stat"><div class="v neutral">1 人 → 近 10 人</div><div class="k">团队规模（2026-04 · 受访者口径）</div></div>
+  <div class="stat"><div class="v neutral">第三代</div><div class="k">产品迭代代次（2026-04 · 受访者口径）</div></div>
+  <div class="stat"><div class="v down">2025-07-02</div><div class="k">公司成立日期（工商登记信息）</div></div>
+</div>
+
+<div class="wrap">
+  <div class="box insight" id="takeaways">
+    <div class="bt">可引用要点</div>
+    <ul class="bl">
+      <li><b>主体</b>：深圳市手亿计算机有限责任公司（对外品牌「手亿科技 Showee」），创始人许展玮，清华大学自动化系博士，赛道为硬件 + 算法的垂直应用，时间锚点 2026-04-08。</li>
+      <li><b>结果</b>：创业不到一年完成三轮融资、累计融资超千万元；产品迭代至第三代；2026 年 3 月已拿到两个大订单、第一笔开始出货。</li>
+      <li><b>规模</b>：注册资本 <b>153.85 万元</b>（工商登记信息）；团队由 1 人增至近 10 人（2026-04 受访者口径）。</li>
+    </ul>
+    <div style="font-size:12.5px;color:#8b97a6;margin-top:8px">口径说明：本报告基于 10 条公开信源（verified / cross / partial 三档），引用请注明来源与口径。本案为「起于一人、当前已非严格一人公司」，详见第壹节与第捌节。</div>
+  </div>
+
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">手亿科技（品牌 Showee）是位于深圳南山的具身智能数据采集硬件公司，工商主体「深圳市手亿计算机有限责任公司」，法定代表人、创始人兼 CEO 均为许展玮——清华大学自动化系博士，研究方向为模式识别与手部重建算法<a class="cref verified" href="#ref-5">[5]</a><a class="cref cross" href="#ref-8">[8]</a>。产品是腕带式「视觉 + IMU」高精度手部运动捕捉系统：腕带内侧集成微型传感器阵列，配合头戴式摄像头做多模态融合，目标毫米级手部姿态重建精度<a class="cref cross" href="#ref-3">[3]</a><a class="cref partial" href="#ref-6">[6]</a>。公司定位「具身智能时代的数据与模型基础设施」<a class="cref cross" href="#ref-8">[8]</a>。</p>
+  <div class="two">
+    <div class="card"><div class="ct">主体与工商信息</div><div class="cb">统一社会信用代码 91440300MAENW1QB67，成立 2025-07-02，注册资本 153.8462 万元，登记机关深圳市市场监督管理局，状态存续；注册地址在深圳市南山区西丽街道松坪山社区高新北六道 9 号清华信息港科研楼 309。股东 15 名，许展玮任法定代表人、董事；对外投资手亿科技（北京）有限责任公司（注册资本 100 万元）。公开专利 2 项，含「一种基于多模态传感的手部姿态估计方法」。<a class="cref verified" href="#ref-5">[5]</a></div><div class="cm">工商登记信息 · 抓取时点 2026-11-23</div></div>
+    <div class="card"><div class="ct">核心团队</div><div class="cb">创始人兼 CEO 许展玮：清华自动化系博士（2014 年入学），人机交互方向顶会 CHI 与 Nature 子刊作者，Google Scholar 引用超 2000 次，清华「未来学者」、入选「思源计划」，开源 AI 项目「在问」创始人。CTO 于进洋：清华自动化系博士，人机交互领域顶级会议期刊作者，5 年海外研发经验，主导「视觉 + IMU」融合算法开发与优化。媒体称核心研发覆盖软件、硬件、算法，仅一名行政综合岗员工。<a class="cref partial" href="#ref-6">[6]</a><a class="cref verified" href="#ref-5">[5]</a><a class="cref partial" href="#ref-9">[9]</a></div></div>
+    <div class="card red"><div class="ct">「一人公司」属性的真实边界</div><div class="cb"><b>本案不是严格意义上的一人公司。</b>许展玮 2025 年 7 月以自然人股东身份单人注册，公司成立后「好几个月都只有我一个人」<a class="cref partial" href="#ref-10">[10]</a>；但截至 2026 年 4 月，团队已从 1 人增长到近 10 人，产品迭代至第三代，并完成三轮融资、引入 15 名股东与专业投资机构<a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-5">[5]</a>。按法律定义，有 2 名以上股东的有限责任公司已非「一人有限责任公司」；更准确的归类是「<b>起于一人、现已演化为 3–10 人精英小团队</b>」的硬科技 OPC。</div></div>
+    <div class="card blue"><div class="ct">AI 在其中扮演的角色</div><div class="cb">AI 覆盖算法开发、数据标注、模型训练、财务记账与合同审核：许展玮称用 AI 编程助手加速算法开发「效率提升 50% 以上」，用 AI 辅助数据标注和模型训练，「原本需要团队完成的工作一人可搞定」，使 80% 精力聚焦核心技术攻关。他把 OPC 解读为 One Project——「在 AI 的加持下，人很容易去做自己想法的验证……再以一个很小的团队把这个 project 做得很好」。<a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-1">[1]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">2014 - 2025 春</div><div class="tx">清华自动化系本科到博士，研究手部重建与模式识别</div><div class="td">2014 年以 703 分从山东平度考入清华大学自动化系，产出人机交互顶会 CHI、Nature 子刊论文，Google Scholar 引用超 2000 次，入选清华「未来学者」与「思源计划」。<a class="cref partial" href="#ref-9">[9]</a><a class="cref partial" href="#ref-6">[6]</a></div></div>
+    <div class="node"><div class="dt">2025-03</div><div class="tx">确立方向：机器人「动手能力」缺数据</div><div class="td">即将博士毕业时投向具身智能痛点——机器人「动手能力」缺失，传统手部操作数据采集成本过高、难以规模化；随后只身南下深圳，并开始做面向 AR 眼镜的腕带式手势交互设备。<a class="cref partial" href="#ref-9">[9]</a><a class="cref cross" href="#ref-8">[8]</a></div></div>
+    <div class="node"><div class="dt">2025-07-02</div><div class="tx">深圳市手亿计算机有限责任公司成立</div><div class="td">工商登记成立日期；许展玮自述「一个人背着书包就过来了」，看中的是深圳的供应链管理与迭代速度。10 月入驻深圳模力营 AI 生态社区（南山）。<a class="cref verified" href="#ref-5">[5]</a><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></div></div>
+    <div class="node"><div class="dt">2025-10</div><div class="tx">入驻模力营，获两年免租场地与生态资源</div><div class="td">模力营是南山首批 OPC 社区，提供算力、数据、合规、场景、硬件、人才、开源七大平台，公司获两年低成本办公空间；办公室 8 个工位。<a class="cref cross" href="#ref-2">[2]</a><a class="cref partial" href="#ref-10">[10]</a></div></div>
+    <div class="node"><div class="dt">2026-01 - 03</div><div class="tx">从技术验证走向商业化：试产、两笔大订单、首轮融资</div><div class="td">计划一季度启动小批量试产并实现首批订单交付；2026 年 3 月受访时称已拿到两个大订单、第一笔开始出货，第二、三轮融资基本谈妥；同期完成天使轮融资（2026-02-10，1000 万元，英诺基金与力合科创领投）。<a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-2">[2]</a><a class="cref verified" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2026-04-08</div><div class="tx">央广网等央媒集中报道：融资超千万、产品第三代、团队近 10 人</div><div class="td">央广网深圳频道以「AI 成 OPC 超级员工」为题采访许展玮，他披露创业不到一年融资超千万、产品迭代至第三代、团队从 1 人增长到近 10 人；同期计划在深圳物流场景率先落地智能腕带。<a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-9">[9]</a></div></div>
+    <div class="node"><div class="dt">2026-06-03</div><div class="tx">完成天使++轮：四个月三轮融资</div><div class="td">数千万元天使++轮，千乘资本领投，南山战新投、力合创投、楹辉创投等跟投，英诺天使、Atom Capital 持续超额加注；为 2026 年以来第三轮，投后估值较天使轮增长数倍，资金用于研发攻关、产品量产、高质量数据采集系统研发及供应链与交付能力建设。<a class="cref partial" href="#ref-6">[6]</a><a class="cref partial" href="#ref-7">[7]</a><a class="cref verified" href="#ref-5">[5]</a></div></div>
+    <div class="node"><div class="dt">2026-11-09</div><div class="tx">新华社「新华深读」回看：从一人到「一人成团」</div><div class="td">新华每日电讯探访时，记者在南山模力营见到许展玮正戴着最新生产的智能腕带向合作伙伴演示；报道评价他「从一个人自掏腰包创业，到搭建团队完成产品的迭代升级，获得多轮数千万元融资，许展玮仅用了一年多时间」。<a class="cref cross" href="#ref-4">[4]</a></div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：把切入点从「更好的手部重建算法」换成「机器人缺手的操作数据」</div><div class="cb">学术背景是手部姿态估计，但商业切口不在卖算法，而在替机器人买数据。触发点很具体：请师傅上门清洗空调时他想到，机器人究竟该向谁学习与物理世界交互的能力——熟练工人拆装、清洗的动作背后包含对工具、空间和不同机型的理解，这是固定场地搬物体学不到的。这条「从真实工种反向定义数据需求」的思路是产品形态的原点。<a class="cref cross" href="#ref-8">[8]</a><a class="cref partial" href="#ref-9">[9]</a></div></div>
+  <div class="card"><div class="ct">转折二：从 AR 手势交互转向具身智能数据采集，押注「无感」路线</div><div class="cb">公司最初研发面向 AR 眼镜的腕带式手势交互设备，随后拓展到具身智能数据采集。技术选型借用自动驾驶思路：在正常行驶的汽车上加传感器，前提是不能影响司机驾驶；同理，采集设备一旦影响人的操作，采到的就不再是自然熟练的动作。于是从会限制动作的手套等方案转向类似手表的轻量化腕带，并用腕带解决纯视觉方案中 tracking 与 ReID 的难题——手会离开画面再回来，怎么确认还是原来那只手。最终形成「视觉 + IMU」多模态融合 + 毫米级姿态重建方案。<a class="cref cross" href="#ref-8">[8]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref partial" href="#ref-6">[6]</a></div></div>
+  <div class="card"><div class="ct">转折三：把 AI 用在「非核心但耗时」的环节，而不是核心算法上</div><div class="cb">AI 有两层用法：开发提效——用 AI 编程助手加速算法开发，效率提升 50% 以上，用 AI 辅助数据标注与模型训练；运营提效——公司运营涉及研发、商务、财税，与专业人士对接前先用 AI 了解流程与知识，原本「两个人要花费一周时间完成的事情，现在可能两个人配合一两天就能完成」。他的判断是「AI 降低的是执行门槛，而非认知门槛」——门槛降了，壁垒没降。<a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a></div></div>
+  <div class="card"><div class="ct">转折四：接受「从一人到小团队」，并把 OPC 重新定义为 One Project</div><div class="cb">这是本案最关键也最易被误读的转折。创业大半年公司确实只有他一人运作，但他在央广网采访中主动强调「我始终不觉得只有我一个人在为这个公司出力」——深圳政府、孵化社区、产业对接方、培训课程构成一个外部支持网络。他把 OPC 解读为 One Project：先用 AI 快速验证想法、把单个项目做到专业，再用很小的团队做好，最后接入更大的产业链。他进一步预判：一些「一人公司」不会停留在「一人」，而会演化为「精英小团队」模式的孵化器。<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-3">[3]</a><a class="cref cross" href="#ref-2">[2]</a></div></div>
+  <div class="quote">
+    <p>AI 降低的是「执行门槛」，而非「认知门槛」——创业者必须知道要做什么、怎么判断 AI 输出的对错，真正的壁垒依然是对行业痛点的深刻洞察，以及核心技术的原创突破。</p>
+    <span class="src">—— 许展玮，经济参考报《智能经济如何重塑创业生态》（2026-03-26），<a class="cref cross" href="#ref-3">[3]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>事实与分析</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>产品形态</b></td><td>手亿智能腕带 + 头戴式摄像头的轻量化采集方案；腕带形似运动手表，内侧为微型传感器阵列，融合视觉与 IMU 两种信号；支持超 90 种自定义手势识别与全键盘盲打，实时转化为数据传输至后台（演示中的数据平台名为 Dexwise_Hub）</td><td><a class="cref partial" href="#ref-6">[6]</a><a class="cref partial" href="#ref-9">[9]</a><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td><b>核心技术指标</b></td><td>毫米级手部姿态重建精度、稳定毫米级手部追踪精度、亚度级姿态估计；公司称首创「眼-手」协同数据采集架构，同时捕捉操作者视角的全场景感知与手部精细动作，形成「采集 → 真值验证 → 模型进化」的持续优化闭环</td><td><a class="cref partial" href="#ref-6">[6]</a><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td><b>生产流程</b></td><td>硬件侧：模组对接依托深圳供应链，「硬件更新可以达到一周一个版本」；软件侧：AI 编程助手加速算法开发，AI 辅助数据标注与模型训练；产品侧从一代迭代至第三代</td><td><a class="cref partial" href="#ref-9">[9]</a><a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>交付与商业模式</b></td><td>不只卖设备，也不只按小时打包卖数据。方式包括：设备 + 后续能力；端到端「交钥匙」方案（设备、采集、平台、模型验证一起解决）；按场景交付特定数据。数据做分层与检索，客户可按场景购买与组合，而非整体打包</td><td><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td><b>客户结构</b></td><td>在推进的包括大型产业生态公司（有自有场景，把具身智能当作新增长方向）、具身模型公司、机器人本体公司；也在与制造业企业、大型数据集团推进合作，涉及数据基础设施、平台与交易建设</td><td><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td><b>成本结构</b></td><td>与纯软件 OPC 完全不同：需物料采购、模具开发、小批量试产的资金投入；供应链试错成本高——他明言「找到『靠谱且愿意接小单』的供应商仍需大量试错」；同时享有深圳政策补贴（模型券按上季度实际投入最高 50% 补贴、场地两年免租等）</td><td><a class="cref cross" href="#ref-3">[3]</a><a class="cref partial" href="#ref-10">[10]</a><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>落地场景</b></td><td>短期目标是在物流场景率先落地智能腕带并完成交付；已接触包装、质检、缠线圈等实际工种；共同点是让操作者正常做事、数据切片与标注交给后台，不把额外工作压给工人</td><td><a class="cref partial" href="#ref-9">[9]</a><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点 · 口径</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>累计融资规模</td><td class="hl">超千万元</td><td>2026-04 · 受访者口径（累计）</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>最新一轮融资</td><td class="hl">数千万元（天使++轮）</td><td>2026-06-03 · 企业通稿口径（单轮）</td><td><a class="cref partial" href="#ref-6">[6]</a><a class="cref partial" href="#ref-7">[7]</a><a class="cref verified" href="#ref-5">[5]</a></td></tr>
+      <tr><td>天使轮</td><td>1000 万元人民币</td><td>2026-02-10 · 工商登记融资历程口径</td><td><a class="cref verified" href="#ref-5">[5]</a></td></tr>
+      <tr><td>团队规模</td><td class="pos">1 人 → 近 10 人</td><td>2026-04 · 受访者口径</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>团队人数（更早时点）</td><td>5 人</td><td>2026-02 · 媒体现场观察口径</td><td><a class="cref partial" href="#ref-10">[10]</a></td></tr>
+      <tr><td>产品迭代代次</td><td>第三代</td><td>2026-04 · 受访者口径</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>公司成立日期</td><td>2025-07-02</td><td>工商登记信息</td><td><a class="cref verified" href="#ref-5">[5]</a></td></tr>
+      <tr><td>注册资本</td><td>153.8462 万元</td><td>工商登记信息（2026-09-01 变更后）</td><td><a class="cref verified" href="#ref-5">[5]</a></td></tr>
+      <tr><td>股东人数 / 登记高管</td><td>15 名 / 仅许展玮 1 人</td><td>工商登记信息</td><td><a class="cref verified" href="#ref-5">[5]</a></td></tr>
+      <tr><td>公开专利</td><td>2 项</td><td>工商登记信息</td><td><a class="cref verified" href="#ref-5">[5]</a></td></tr>
+      <tr><td>手部姿态重建精度</td><td>毫米级（追踪）· 亚度级（姿态估计）</td><td>企业通稿口径，无第三方测评</td><td><a class="cref partial" href="#ref-6">[6]</a><a class="cref partial" href="#ref-7">[7]</a></td></tr>
+      <tr><td>设备成本 / 重量 / 连续作业</td><td>约为竞品十分之一 · 腕带 &lt;100g · 单日 6 小时以上</td><td>2026-06 · 企业通稿口径</td><td><a class="cref partial" href="#ref-7">[7]</a></td></tr>
+      <tr><td>在手订单</td><td>两个大订单，第一笔开始出货</td><td>2026-03 · 受访者口径</td><td><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 关键数字的交叉核验</div>
+    <b>① 融资的两套口径。</b>「超千万元」是 2026-04 受访时点的<b>累计</b>口径，「数千万元」是 2026-06-03 天使++轮的<b>单轮</b>口径——不是同一笔钱的两种说法。启信宝融资历程记录天使轮 2026-02-10 为 1000 万元、天使++轮为「数千万人民币」，与「四个月融三轮」互相印证；通稿称「投后估值较天使轮增长数倍」但<b>从未披露估值绝对值</b>，本报告因此不给出任何估值数字。<br>
+    <b>② 「1 人到近 10 人」与「一人公司」标签的张力。</b>2026-02 媒体现场观察为「团队不过 5 人」，2026-04 受访口径为「从 1 人增长到近 10 人」。工商登记显示<b>主要人员仅许展玮 1 人</b>、股东 15 名：法律意义上的「一人有限责任公司」在 2025 年 7 月成立时成立，引入 15 名股东后已不再符合；业务意义上的「一人 + AI + 小 N」仍然成立。<br>
+    <b>③ 精度与成本指标全部为企业自述。</b>毫米级、亚度级、成本为竞品十分之一等均出自投资方官网转载的企业公众号通稿，<b>无第三方测评机构报告</b>，一律按 partial 处理。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+  <p class="lead">与案例墙中其他「一人 + AI 做硬件 / 工具 / 垂直应用」的样本对比（对标数据为<b>案例墙既有核验值</b>，来自各案例报告已核验口径，非本报告重新采信）：</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>数据表现（既有核验值）</th></tr></thead>
+    <tbody>
+      <tr><td><b>手亿科技</b>（本案）</td><td>许展玮（清华自动化系博士）</td><td>腕带式「视觉 + IMU」手部动捕硬件 + 算法</td><td>累计融资超千万元（受访者口径）；团队 1 人 → 近 10 人；产品迭代至第三代</td></tr>
+      <tr><td><b>瓦博科技</b></td><td>张星智（清华工程管理硕士 + 创新领军工程博士，曾任 SAP/联想/腾讯、上市公司副总裁）</td><td>消费级脑机接口硬件，4 人真人团队 + 16 只 AI「龙虾」</td><td>估值 1 亿元+（公司提供投资资料口径）；3 轮融资（2026-03 至 07）；5 个月两款产品</td></tr>
+      <tr><td><b>艾逗笔 idoubi</b></td><td>中文独立开发圈网名 idoubi</td><td>一人多产品开发者基建（ThinkAny / MCP.so / ShipAny / PodLM）</td><td>两年上线 20+ 款 AI 产品（官网口径）；MCP.so 峰值月访问 270 万（2025-05 自述）</td></tr>
+      <tr><td><b>炘扬贸易</b></td><td>张乾超（95 后，新华社深读开篇案例）</td><td>一人 + AI 智能体做定制棒球帽出海</td><td>开店不到两月售出 3000+ 顶（央媒口径）；冲 500 万全年 GMV（自述）</td></tr>
+      <tr><td><b>中欣数通</b></td><td>刘强（7 年软件开发经验）</td><td>AI 智能呼叫垂直应用（售后呼入 + 电销机器人 + CRM）</td><td>2025 年营收近百万（较创业之初翻 4 倍）；合作客户 500 家+</td></tr>
+      <tr><td><b>沪咪科技</b></td><td>陈子顺等 00 后团队</td><td>AI 短视频内容 + AI 代理达人建联，跨境电商</td><td>累计营收破千万（临港管委会口径）；单月销售额峰值 500 万（央媒口径）</td></tr>
+      <tr><td><b>王腾工业机械</b></td><td>王腾（2004 年生，英语专业大四女生）</td><td>一人 + AI 做工业机械品类出海</td><td>一年销售额 300 万+（双源交叉）；2026 年营收目标 900-1000 万（自述）</td></tr>
+      <tr><td><b>Chat Memo</b></td><td>一泽 Eze（AI 领域作者）</td><td>开发者工具：AI 对话自动存档为个人记忆资产的浏览器插件</td><td>用户 20000+（官网口径 · 2026-11）；Chrome 商店评分 4.9/5.0；100% 本地存储</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>关键差异在<b>「硬件 + 算法」这一组合</b>。瓦博科技同样做硬件，但落在脑机接口（电极贴片），成本与交付周期更接近消费电子；本案的手部动捕腕带需同时解决硬件小型化、多模态时间对齐与算法精度三层问题，公开精度口径达毫米级，是本组中唯一同时披露「眼-手协同采集架构」与「采集 → 真值验证 → 模型进化」闭环的项目。与艾逗笔、Chat Memo 这类纯软件路线相比，本案现金成本结构完全不同：需物料采购、模具开发与<b>小批量试产</b>的前置投入——这正是迭代周期被拉长到「一周一个版本」而非「一天出一个版本」的原因<a class="cref partial" href="#ref-9">[9]</a>。相对地它也更接近产业：客户是大型产业生态公司与具身模型公司，而非 C 端用户<a class="cref cross" href="#ref-8">[8]</a>。共同点则是<b>政策与社区的托底</b>：三家都落在深圳 OPC 社区体系内，享受模型券、场地免租与产业链资源<a class="cref partial" href="#ref-10">[10]</a><a class="cref cross" href="#ref-1">[1]</a>——这既解释了样本浓度，也意味着部分数字是政策口径而非纯市场结果。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>分析</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品与定位</b></td><td>腕带 + 头戴摄像头的「视觉 + IMU」轻量化采集方案，定位「具身智能时代的数据与模型基础设施」。差异化不在硬件形态而在采集架构——首创「眼-手」协同，同时捕捉操作者视角的全场景感知与手部精细动作，形成「采集 → 真值验证 → 模型进化」闭环。是从 AR 眼镜交互外设转向具身数据基础设施的第二次创业</td><td><a class="cref partial" href="#ref-6">[6]</a><a class="cref partial" href="#ref-7">[7]</a><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td><b>2. 生产流程</b></td><td>硬件侧模组对接依托深圳供应链，「硬件更新可以达到一周一个版本」；软件侧 AI 编程助手加速算法开发，AI 辅助数据标注与模型训练；产品侧从一代迭代至第三代。流程上是「软硬件由同一支小团队闭环」而非外包分工——既是速度来源，也是瓶颈所在</td><td><a class="cref partial" href="#ref-9">[9]</a><a class="cref cross" href="#ref-4">[4]</a><a class="cref cross" href="#ref-3">[3]</a></td></tr>
+      <tr><td><b>3. 成本结构</b></td><td>与纯软件 OPC 根本不同：物料采购、模具开发、小批量试产均需前置资金投入，供应链试错成本高——他明言「找到『靠谱且愿意接小单』的供应商仍需大量试错」；对冲项是深圳政策补贴（模型券按上季度实际投入最高 50% 补贴、场地两年免租）。设备端宣称成本约为竞品十分之一，但无对比基准</td><td><a class="cref cross" href="#ref-3">[3]</a><a class="cref partial" href="#ref-10">[10]</a><a class="cref partial" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>4. 商业模式</b></td><td>不只卖设备，也不只按小时打包卖数据：设备 + 后续能力、端到端「交钥匙」方案（设备、采集、平台、模型验证一起解决）、按场景交付特定数据；数据做分层与检索，客户可按场景购买与组合。客群为大型产业生态公司、具身模型公司、机器人本体公司，并推进制造业与大型数据集团的数据基础设施与平台交易合作</td><td><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+      <tr><td><b>5. 一人属性</b></td><td><b>起于一人，现已非严格意义的一人公司。</b>2025 年 7 月以自然人股东身份单人注册，成立后「好几个月都只有我一个人」；至 2026 年 4 月团队增至近 10 人、引入 15 名股东与投资机构，工商登记主要人员仅许展玮 1 人。更准确的归类是「起于一人、已演化为 3–10 人精英小团队」的硬科技 OPC</td><td><a class="cref partial" href="#ref-10">[10]</a><a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-5">[5]</a></td></tr>
+      <tr><td><b>6. 可复制性</b></td><td>中等。「眼-手协同」架构可被复制，但门槛在清华自动化系近 20 年的手部姿态估计积累与实验室技术沉淀，而非商业模式本身；资本可复制性高（四个月三轮），技术不可复制性高。同期拿到同类融资的团队众多（千乘资本领投，英诺天使、Atom Capital 连续加注），说明资本端认可度并不构成排他性壁垒</td><td><a class="cref partial" href="#ref-7">[7]</a><a class="cref partial" href="#ref-6">[6]</a></td></tr>
+      <tr><td><b>7. 风险</b></td><td>① <b>硬件交付</b>：小批量试产与供应商试错叠加「一周一个版本」的迭代承诺，产能爬坡与质量一致性压力随订单上升而放大；② <b>口径</b>：精度、亚度级、成本十分之一等指标全为企业自述，无第三方测评；③ <b>客户集中</b>：客户是少数大型产业生态公司与模型公司，单一大客户节奏变化会直接传导；④ <b>转型</b>：成立之初做 AR 眼镜交互外设，被客户询问后才转向具身数据采集，该路径曾被本人公开质疑；⑤ <b>标签</b>：以「一人公司」叙事融资，实际已是 10 人团队、15 名股东，沿用 OPC 政策而实质是否符合条件存在不确定性</td><td><a class="cref cross" href="#ref-3">[3]</a><a class="cref partial" href="#ref-7">[7]</a><a class="cref cross" href="#ref-8">[8]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 三组需要留意的口径</div>
+    ① <b>「超千万元」与「数千万元」不是同一笔钱</b>：前者是累计融资规模，后者是天使++轮单轮金额，相加或互相替代均为误读。② <b>团队人数两个时点两个数</b>：2026-02 现场观察为 5 人，2026-04 受访口径为「近 10 人」；两者可并存（三个月内扩员），但「近 10 人」未给出在岗/在册口径。③ <b>精度与成本全为企业自述</b>：毫米级、亚度级姿态估计、设备成本为竞品十分之一、腕带 &lt;100g、单日作业 6 小时，均出自企业公众号通稿，无第三方测评机构报告，不构成可独立验证的技术结论。
+  </div>
+  <div class="card"><div class="ct">「一人公司」的边界讨论</div><div class="cb"><b>本案不是严格意义上的一人公司。</b>2025 年 7 月许展玮以自然人股东身份单人注册，公司成立后「好几个月都只有我一个人」<a class="cref partial" href="#ref-10">[10]</a>；但截至 2026 年 4 月，团队已从 1 人增长到近 10 人，产品迭代至第三代，并完成三轮融资、引入 15 名股东与投资机构<a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-5">[5]</a>。按法律定义，有 2 名以上股东的有限责任公司已非「一人有限责任公司」——工商登记显示股东 15 名、主要人员仅许展玮 1 人<a class="cref verified" href="#ref-5">[5]</a>。本报告因此不将本案描述为「一人公司」，而归为「<b>起于一人、现已演化为 3–10 人精英小团队</b>」的硬科技 OPC，这与许展玮本人「OPC 不会停留在一人，而会演化为精英小团队模式」的预判一致<a class="cref cross" href="#ref-3">[3]</a>。同时应保留另一半事实：即便扩至近 10 人，团队架构仍被描述为核心研发覆盖软件、硬件、算法，仅一名行政综合岗员工<a class="cref partial" href="#ref-9">[9]</a>——「一人」指的是<b>决策与核心技术的集中度</b>，而非人头数。</div></div>
+  <div class="box note">
+    <div class="bt">📌 留白</div>
+    未公开：投后估值绝对值（仅「较天使轮增长数倍」的相对表述）、两个大订单的金额与客户名称、累计融资超千万元的逐轮加总明细、设备成本「竞品十分之一」的对比基准与测算方式、毫米级与亚度级精度的测试条件与第三方测评报告、量产良率与产能、员工总数与岗位配比、注册用户数与在手数据量。另注：品牌名「手亿科技 / Showee」与工商主体「深圳市手亿计算机有限责任公司」为两个名称，公开信源中该主体另有一家「手亿科技（北京）有限责任公司」（注册资本 100 万元，法定代表人许展玮）<a class="cref verified" href="#ref-5">[5]</a>，集团架构未公开。
+  </div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">捌·附</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">共引用 10 条信源，编号与文末清单一致；6 条为媒体一手采访或平台一手页面，4 条为企业通稿或机构转载稿，全部在正文逐条标注上标。颜色含义同文末徽章：绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证（自述/转述/单一 B 级信源）。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx cross">[1]</span><span class="rt">A-</span><span class="st">央媒一手采访</span></div><div class="ti">10天1.7万申请！深圳「一人公司」为何这么火？</div><div class="mt"><b>来源：</b>央广网 · 深圳频道（记者 孔明，见习记者 钟金秀）　<b>发布日期：</b>2026-04-08<br><a href="http://sz.cnr.cn/wqyq/20260408/t20260408_527577228.shtml" target="_blank" rel="noopener">http://sz.cnr.cn/wqyq/20260408/t20260408_527577228.shtml</a></div><div class="note">事实核查：支持「团队从 1 人增长到近 10 人、融资超千万、产品迭代至第三代」（原文「超千万，产品迭代至第三代，团队也从1人增长到了近10人」）；支持「把 OPC 解读为 One Project」引语、「我始终不觉得只有我一个人在为这个公司出力」、模力营两年免租。央媒现场采访，时点明确。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx cross">[2]</span><span class="rt">A-</span><span class="st">央媒深度报道</span></div><div class="ti">深圳：一人敢闯，全城托举</div><div class="mt"><b>来源：</b>中国青年报 · 中青网 / 中国青年网（记者 刘芳）　<b>发布日期：</b>2026-03-31<br><a href="https://df.youth.cn/dfzl/202603/t20260331_16583832.htm" target="_blank" rel="noopener">https://df.youth.cn/dfzl/202603/t20260331_16583832.htm</a></div><div class="note">事实核查：支持「2025 年 7 月初注册、10 月入驻模力营」时间线；支持「已拿到两个大订单、第一笔订单已开始出货」「融资超千万元」；支持模力营七大服务平台与两年低成本办公空间；并提供深圳市工信局 OPC 行动计划原文依据。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx cross">[3]</span><span class="rt">A-</span><span class="st">央媒深度报道</span></div><div class="ti">智能经济如何重塑创业生态</div><div class="mt"><b>来源：</b>经济参考报（新华社经济参考报社）· 经光明网转载　<b>发布日期：</b>2026-03-26<br><a href="https://digital.gmw.cn/2026-03/26/content_38671905.htm" target="_blank" rel="noopener">https://digital.gmw.cn/2026-03/26/content_38671905.htm</a></div><div class="note">事实核查：支持「腕带式『视觉+IMU』高精度手部运动捕捉系统」产品定性与「一季度启动小批量试产、首批订单交付」；支持「AI 降低的是『执行门槛』，而非『认知门槛』」原话（正文第叁节引语即出自此稿）；支持物料采购、模具开发、小批量试产的投入与供应商试错表述。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx cross">[4]</span><span class="rt">A-</span><span class="st">央媒一手采访</span></div><div class="ti">新华深读丨「一人公司」潮起</div><div class="mt"><b>来源：</b>新华每日电讯 / 新华网深圳频道　<b>发布日期：</b>2026-11-09<br><a href="http://www3.xinhuanet.com/local/20261109/8cb15d512b944667b167740df1bb9a56/c.html" target="_blank" rel="noopener">http://www3.xinhuanet.com/local/20261109/8cb15d512b944667b167740df1bb9a56/c.html</a></div><div class="note">事实核查：支持正文 2026-11-09 节点——记者见许展玮正戴着最新生产的智能腕带向合作伙伴演示产品；支持「从一个人自掏腰包创业……获得多轮数千万元融资，许展玮仅用了一年多时间」；支持「效率提升50%以上……80%的精力聚焦在不可替代的核心技术攻关上」，为正文「AI 角色」卡片出处。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx verified">[5]</span><span class="rt">A</span><span class="st">工商登记 / 平台一手数据</span></div><div class="ti">深圳市手亿计算机有限责任公司 · 企业档案（启信宝）</div><div class="mt"><b>来源：</b>启信宝　<b>抓取日期：</b>2026-11-23<br><a href="https://m.qixin.com/company/99c5cc42-c29b-4d2f-9dec-ade3a5c9fd54" target="_blank" rel="noopener">https://m.qixin.com/company/99c5cc42-c29b-4d2f-9dec-ade3a5c9fd54</a></div><div class="note">事实核查：支持正文全部工商登记信息——统一社会信用代码、成立日期、注册资本 153.8462 万元（2026-09-01 变更后）、股东 15 名、主要人员仅许展玮 1 人、对外投资手亿科技（北京）、公开专利 2 项；支持核心团队简介与两轮融资金额、投资方。一手可回溯，与天眼查、企查查一致，故标绿。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx partial">[6]</span><span class="rt">B+</span><span class="st">融资通稿（投资界 / 新浪财经转载）</span></div><div class="ti">四个月融三轮，手亿科技完成数千万元天使++轮融资</div><div class="mt"><b>来源：</b>投资界（ID：pedaily2012）· 经新浪财经转载　<b>发布日期：</b>2026-06-03<br><a href="http://m.toutiao.com/group/7647084059159495209/" target="_blank" rel="noopener">http://m.toutiao.com/group/7647084059159495209/</a></div><div class="note">事实核查：支持融资结构原文（千乘资本领投，南山战新投等跟投，英诺天使、Atom Capital 持续超额加注，「自2026年以来完成的第三轮」「投后估值较天使轮增长数倍」）；支持定位「打造具身智能时代的数据与模型基础设施」；支持「毫米级」「亚度级姿态估计」「首创『眼-手』协同采集架构」「采集→真值验证→模型进化」原文。局限：企业通稿转载。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx partial">[7]</span><span class="rt">B+</span><span class="st">投资方官网转载企业通稿</span></div><div class="ti">已投企业 | 四个月融三轮，手亿科技完成数千万元天使++轮融资</div><div class="mt"><b>来源：</b>深圳市南山战略新兴产业投资有限公司官网 · 已投企业栏目（转载自「手亿科技 Showee」公众号）　<b>发布日期：</b>2026-06-03<br><a href="https://www.nsseii.com/CaseStd_892.html" target="_blank" rel="noopener">https://www.nsseii.com/CaseStd_892.html</a></div><div class="note">事实核查：投资方官网转载的企业通稿全文，支持正文引用的四大核心能力——数据密度（多模态信息微秒级同步）、生产成本（设备成本仅为竞品十分之一）、毫米级精度、工业级稳定（单日 6 小时以上，腕带 &lt;100g、头戴 &lt;200g）；支持技术来自清华自动化系冯建江实验室近 20 年积累；「数万台设备」「千万级数据集」属规划而非已实现。局限：单一 B 级信源。</div></li>
+  <li id="ref-8" class="src"><div class="sh"><span class="idx cross">[8]</span><span class="rt">B+</span><span class="st">创业垂直媒体一手对话</span></div><div class="ti">做具身智能的「卖铲人」，这位清华博士盯上熟练工人的双手</div><div class="mt"><b>来源：</b>创业邦（作者 漫地，编辑 子钺）· 经创业邦官方网易号发布　<b>发布日期：</b>2026-10-28<br><a href="https://c.m.163.com/news/a/LABK120R05119C3G.html" target="_blank" rel="noopener">https://c.m.163.com/news/a/LABK120R05119C3G.html</a></div><div class="note">事实核查：支持正文的商业模式与客户结构——「不只卖设备，也不只按小时打包卖数据」，方式含设备 + 后续能力、端到端「交钥匙」方案、按场景交付，数据做分层与检索；支持「借用了自动驾驶的思路」与 tracking / ReID 难题；支持包装、质检、缠线圈等工种；记载平台名 Dexwise_Hub。为 DEMO CHINA 期间直接对话实录。</div></li>
+  <li id="ref-9" class="src"><div class="sh"><span class="idx partial">[9]</span><span class="rt">B</span><span class="st">地方媒体专版特稿</span></div><div class="ti">送你当老板！深圳有个模力营</div><div class="mt"><b>来源：</b>深圳晚报 · 深圳报业集团（记者 马骥远），《封面故事》专版　<b>发布日期：</b>2026-04-03（专版刊发日，页内未标该篇确切日）<br><a href="http://m.toutiao.com/group/7624181301477753396/" target="_blank" rel="noopener">http://m.toutiao.com/group/7624181301477753396/</a></div><div class="note">事实核查：支持「2014 年以 703 的高分从山东平度老家考入清华大学自动化系」；支持 2025 年 3 月投向具身智能痛点与「传统手部操作数据采集技术成本过高，且难以规模化」；支持「2025 年 7 月……正式成立，从『一人公司』起步」；支持产品形态、「一周一个版本」迭代与「核心研发团队覆盖软件、硬件、算法，仅一名行政综合岗员工」。局限：含较多自述。</div></li>
+  <li id="ref-10" class="src"><div class="sh"><span class="idx partial">[10]</span><span class="rt">B+</span><span class="st">财经媒体一手特稿</span></div><div class="ti">万亿城区，「小力出奇迹」</div><div class="mt"><b>来源：</b>21世纪经济报道 · 21财经（记者 陈思琦，「观深圳」栏目）　<b>发布日期：</b>2026-02-04<br><a href="https://m.21jingji.com/article/20260204/herald/b0849ce86b322cd682d3fb26f5ecc637.html" target="_blank" rel="noopener">https://m.21jingji.com/article/20260204/herald/b0849ce86b322cd682d3fb26f5ecc637.html</a></div><div class="note">事实核查：支持「公司成立后，好几个月都只有我一个人」；支持较早时点口径「手亿计算机团队不过 5 人，却已完成一轮千万级别融资」（与 2026-04「近 10 人」形成时点对照）；支持「8 个工位」「超 90 种手势及全键盘盲打」；支持「模型券」按不超过上季度实际投入 50% 补贴的口径。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：共引用信源 <b>10 条</b>（ref-1 至 ref-10，编号连续）。核验标签分布：🟢 已核验 <b>1 条</b>（[5] 启信宝工商登记档案，与天眼查、企查查显示一致）、🔵 多源印证 <b>5 条</b>（[1] 央广网、[2] 中国青年报·中青网、[3] 经济参考报、[4] 新华每日电讯、[8] 创业邦对话实录）、🟡 部分映证 <b>4 条</b>（[6] 投资界融资通稿、[7] 南山战新投官网转载企业通稿、[9] 深圳晚报专版、[10] 21世纪经济报道特稿）。信源评级分布：A 级 <b>1 条</b>、A- 级 <b>4 条</b>（[1][2][3][4]）、B+ 级 <b>4 条</b>（[6][7][8][10]）、B 级 <b>1 条</b>（[9]）。<b>关于绿色标注</b>：仅工商登记类数据（成立日期、注册资本、股东人数、专利项数、核心团队履历、历轮融资金额与投资方）标绿，因其来自一手登记档案且可多平台交叉。<b>「融资超千万元」「团队近 10 人」「产品迭代至第三代」虽为央媒受访者口径，但均只有单一来源（[1]），故未标绿</b>；<b>「毫米级 / 亚度级精度」「设备成本为竞品十分之一」「腕带 &lt;100g」「单日作业 6 小时」全部只有企业通稿单一来源（[6][7]）且无第三方测评，故未标绿</b>；<b>「两个大订单、第一笔开始出货」仅有 [2] 一处受访者口径，未标绿</b>；<b>「8 个工位」「模型券 50% 补贴」仅有 [10] 一处来源，未标绿</b>。全部 URL 为检索过程实际命中页面（正文引用编号与清单编号一一对应，锚点可回跳），未发现伪造链接；本报告不引用任何无法回溯到页面的二手转述。
+  </div>
+</section>
+
+</div>
+
+<section id="related">
+  <div class="sec-head"><div class="badge">◎</div><h3>相关案例</h3><span class="en">RELATED CASES</span></div>
+  <div class="two">
+    <a class="card" href="../../report/wabo-tech/" style="text-decoration:none;color:inherit;display:block">
+      <div class="ct">瓦博科技（消费级脑机接口）</div>
+      <div class="cb">同为「硬科技 + 一人公司」样本：4 人真人团队用 16 只 AI「龙虾」做消费级脑机接口，5 个月推出两款产品。</div>
+      <div class="cm">张星智（清华 · SAP/联想/腾讯 · 曾任上市公司副总裁） · 估值 1 亿元+（公司提供投资资料口径）、3 轮融资（2026-03 至 07）</div>
+    </a>
+    <a class="card" href="../../report/idoubi/" style="text-decoration:none;color:inherit;display:block">
+      <div class="ct">艾逗笔 idoubi（开发者基建矩阵）</div>
+      <div class="cb">一人多产品的软件路线对照组：ThinkAny / MCP.so / ShipAny / PodLM 两年密集上线 20+ 款 AI 产品。</div>
+      <div class="cm">独立开发者 idoubi · MCP.so 峰值月访问 270 万（2025-05 自述口径）、ShipAny 预售 4 小时 $1 万+</div>
+    </a>
+    <a class="card" href="../../report/xinyang-trade/" style="text-decoration:none;color:inherit;display:block">
+      <div class="ct">炘扬贸易（AI 棒球帽出海）</div>
+      <div class="cb">同为新华社「新华深读」收录的 OPC 样本：两台电脑 + 一组 AI 智能体，把定制帽型卖到欧美和非洲。</div>
+      <div class="cm">张乾超（95 后） · 开店不到两月售出 3000+ 顶（央媒口径）、冲 500 万全年 GMV（自述口径）</div>
+    </a>
+    <a class="card" href="../../report/humi-tech/" style="text-decoration:none;color:inherit;display:block">
+      <div class="ct">沪咪科技（AI 跨境电商）</div>
+      <div class="cb">硬件之外的轻资产对照：AI 短视频内容 + AI 代理达人建联，入驻临港 OPC 社区约 4 个月冲上类目第一。</div>
+      <div class="cm">陈子顺等 00 后团队 · 累计营收破千万（临港管委会口径）、单月销售额峰值 500 万（央媒口径）、核心团队 3 人</div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-23 · 融资额、团队人数、精度与成本均为受访者或企业通稿口径，工商登记信息与第三方查档并列，<b>本报告不构成投资建议</b>。引用请以信源链接的原始内容为准。
+</footer>
+
+</body>
+</html>

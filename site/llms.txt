@@ -1,14 +1,14 @@
 # OPC Story · 国内 AI 一人公司案例墙
 
 > https://opc-story.top/ 为本站首页。
-> 收录 100 个以 AI 为核心生产力的中国一人公司（OPC，One-Person Company）成功案例，
+> 收录 110 个以 AI 为核心生产力的中国一人公司（OPC，One-Person Company）成功案例，
 > 覆盖 AI 短剧/漫剧、开发者工具、垂直行业应用、内容创作、营销电商等赛道。
 > 每个案例附逐条信源核验的深度报告（≥5 信源、≥1 一手、关键数字交叉验证、冲突双口径并列）。
 > 全量文字索引（无 JS、按赛道归档）：https://opc-story.top/all
 > 全量结构化数据集（每案摘要、关键数据、口径与来源）：https://opc-story.top/llms-full.txt
 > 机器可读数据集（JSON，含字段说明、统计与口径警示）：https://opc-story.top/data/cases.json
 > 更新订阅（JSON Feed 1.1）：https://opc-story.top/feed.json
-> 信源台账（1,184 条信源的可回溯元数据、正文引用句与 Wayback 存档，JSON）：https://opc-story.top/data/sources.json
+> 信源台账（1,247 条信源的可回溯元数据、正文引用句与 Wayback 存档，JSON）：https://opc-story.top/data/sources.json
 > 数据洞察（赛道分布、时间趋势、收入分布与口径构成、Top 10、核验强度，可筛选导出）：https://opc-story.top/insights/
 >
 > 方法论（建议优先阅读）：
@@ -17,6 +17,16 @@
 > - 数据口径说明（收入、用户、时间锚点）：https://opc-story.top/data-notes/
 
 ## 案例清单（按时间锚点降序）
+- [张金慧与「和艺」（report/heyi-manju/）](https://opc-story.top/report/heyi-manju/): AI 漫剧流水线：自研智能体「和艺」承担逐帧绘制与光影渲染。 成功迹象：一周产出一部 42 集短剧、近千万播放；累计 200 多部、总播放近 1 亿（媒体转述）；预计 2026 年底营收超 1000 万元（自述口径）
+- [葱花投研（report/conghua-touyan/）](https://opc-story.top/report/conghua-touyan/): 无金融科班、无技术团队，用内容获客 + AI Agent 搭出公募 REITs 垂类投研系统。 成功迹象：两年积累 40 余家（另口径 42 家）大型 B 端机构客户，含国寿、中信等；2026 年营收预计约 400 万元（媒体口径，未经审计）；获 2026 WAIC Future Tech OPC 创业赛金奖
+- [算力云巢 PowerNest（report/suanli-yunchao/）](https://opc-story.top/report/suanli-yunchao/): 给 OPC 创业者「卖铲子」：AI 工程化落地一站式方案与工作站交付。 成功迹象：8 个月服务 150 余家 OPC、交付 2400 余套 AI 工作站并已盈利（创始人口径）；进入「直通乌镇」OPC 特色赛数字服务赋能组决赛；拟在桐乡开社区
+- [MarsWave 火星电波（report/mars-wave/）](https://opc-story.top/report/mars-wave/): 前 MiniMax 海螺 AI 产品负责人创业：ListenHub 音频工具起家，扩展为 ColaOS Agent 平台。 成功迹象：ARR 300 万美元、付费率 5%（2026-01）；央视口径年度营收约 2000 万元；2026-01 完成 200 万美元天使+轮；团队从 2 人扩至十几人，非严格一人公司
+- [张顺与 5 个 AI 员工（report/chaishao-kuajing/）](https://opc-story.top/report/chaishao-kuajing/): 公司只有 1 名真人员工、5 个 AI 虚拟员工，单人运营两家 eBay 汽摩配件店。 成功迹象：创业不到 2 个月、单店月营收超 2 万美元（受访者/媒体口径）；1 名真人员工 + 5 个 AI 虚拟员工，单人运营 2 家 eBay 店铺；公司注册于 2024-10-14
+- [《壁球包 · 周睿》（report/wall-ball-bag/）](https://opc-story.top/report/wall-ball-bag/): 给球队挑不到球包，于是自己设计、委托工厂加工，壁球包已迭代 4 次。 成功迹象：2025 年公司营收近 150 万元（受访者口径·媒体转述，单一来源未独立验证）；产品迭代 4 次；工商状态「吊销，未注销」，股东 2 人，非严格一人公司
+- [模数 OPC 社区 · 郭浩（report/shuoshu-community/）](https://opc-story.top/report/shuoshu-community/): 前 UI 设计师借 AI 转型，形成「1 个老板 + 多名 AI 员工」的 OPC 形态。 成功迹象：年营收约 100–200 万元（受访者/媒体口径）；1 个老板 + 多名 AI 员工，本人只保留判断权；模数 OPC 社区落地北京亦庄，两个多月入驻 50+ 家 OPC
+- [手亿科技（report/shouyi-compute/）](https://opc-story.top/report/shouyi-compute/): 腕带式「视觉 + IMU」手部动捕方案，切入具身智能数据采集赛道。 成功迹象：四个月完成三轮融资、累计融资超千万元（最新轮数千万元天使++轮）；产品迭代至第三代；2026-03 拿到两个大订单；团队从 1 人增至近 10 人，非严格一人公司
+- [爱穿搭 AI 试衣魔镜（report/aichu-dai/）](https://opc-story.top/report/aichu-dai/): 2 人团队把 AI 穿搭推荐装进 43 英寸智能魔镜，落地服装产业重镇。 成功迹象：魔镜上线 3 个月营收 10 万元（创始人口径）；4 月计划量产 200 台、全年目标 1000 万元；订单做到泰国与中东；核心团队 2 人，估值 5000 万元（单一媒体口径）
+- [《龙骨动画 DragonBones / LoongBones》（report/longgu-animation/）](https://opc-story.top/report/longgu-animation/): 一人开发的 AI 辅助 2D 骨骼动画创作平台，注册约 7000、付费近 500。 成功迹象：国内注册近 6000、海外超 1000、付费近 500 人、累计收入近万元（受访者口径）；年运营成本不足 5000 元；获「创业北京」OPC 特色赛一等奖
 
 - [《重生螳螂，觉醒无限吞噬进化》AI 短剧（report/chongsheng-tanglang/）](https://opc-story.top/report/chongsheng-tanglang/): 96 集 AI 短剧：投入 4000 余元、一个半月一人完成剧本/生成/剪辑全流程。 成功迹象：红果热度 6042 万、播放破 6 亿（4 信源交叉）、增收 6 万元；微博热搜第一
 - [啾儿啾儿 Snowie AI（AI 情感助手）（report/snowie-ai/）](https://opc-story.top/report/snowie-ai/): 识别 33 类 PUA 的 AI 情感助手：MIRIX + A-MEM 记忆机制 + CBT 框架，国内 App 与海外版并行。 成功迹象：海内外注册用户 20 万+（2026-11）、累计获投 229 万港币、估值破千万；5 人团队，非严格一人公司

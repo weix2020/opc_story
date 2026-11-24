@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · MarsWave 火星电波 —— 前 MiniMax 产品负责人冯雷的 AI 音频与 Agent 创业 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · MarsWave 火星电波">
+<meta property="og:image" content="https://opc-story.top/og/mars-wave.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="深度案例 · MarsWave 火星电波">
+<meta name="description" content="MarsWave（火星电波）深度案例：冯雷 2024 年离职创业，做出 ListenHub 与 ColaOS；ARR 300 万美元、付费率 5%，团队从 2 人扩至十几人。5 条信源核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.red{border-left-color:#c0392b}.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+.hl{color:#c0392b;font-weight:700}.pos{color:#27ae60;font-weight:700}
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+<link rel="canonical" href="https://opc-story.top/report/mars-wave/">
+<meta name="robots" content="index,follow">
+<meta property="og:url" content="https://opc-story.top/report/mars-wave/">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://opc-story.top/og/mars-wave.jpg">
+<meta name="twitter:image:alt" content="深度案例 · MarsWave 火星电波">
+<script type="application/ld+json">
+{"@type":"Article","@context":"https://schema.org","headline":"深度案例 · MarsWave 火星电波 —— 前 MiniMax 产品负责人冯雷的 AI 音频与 Agent 创业 · OPC Story","description":"MarsWave（火星电波）深度案例：冯雷 2024 年离职创业，做出 ListenHub 与 ColaOS；ARR 300 万美元、付费率 5%，团队从 2 人扩至十几人。5 条信源核验。","inLanguage":"zh-CN","author":{"@type":"Person","name":"OPC Story"},"publisher":{"@type":"Organization","name":"OPC Story","url":"https://opc-story.top/"},"mainEntityOfPage":"https://opc-story.top/report/mars-wave/","datePublished":"2026-11-23","dateModified":"2026-11-23","articleSection":"AI 音频与 Agent"}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X58DBX1NCM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag("js", new Date());
+gtag("config", "G-X58DBX1NCM");
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"案例墙","item":"https://opc-story.top/"},{"@type":"ListItem","position":2,"name":"全部案例","item":"https://opc-story.top/all"},{"@type":"ListItem","position":3,"name":"MarsWave 火星电波","item":"https://opc-story.top/report/mars-wave/"}]}</script>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>MarsWave 火星电波 深度案例报告</h1>
+    <h2>前 MiniMax 海螺 AI 产品负责人冯雷：从「一句话生成播客」的 ListenHub，<br>到面向全球的 Agent 服务 ColaOS</h2>
+    <div class="tags">
+      <span class="tag">工具型 → 平台型</span>
+      <span class="tag">AI 音频</span>
+      <span class="tag">订阅出海</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">300 万美元</div><div class="k">ARR（2026-01）</div></div>
+  <div class="stat"><div class="v neutral">约 2000 万元</div><div class="k">年度营收（央视口径）</div></div>
+  <div class="stat"><div class="v up">5%</div><div class="k">付费率（2026-01）</div></div>
+  <div class="stat"><div class="v down">2 → 十几人</div><div class="k">团队规模：2 人起步</div></div>
+</div>
+
+<div class="wrap">
+<div class="box insight" id="takeaways">
+  <div class="bt">可引用要点</div>
+  <ul class="bl">
+    <li><b>主体</b>：MarsWave（北京火星电波科技有限公司，2024-12-04 成立，注册资本 102 万元），创始人冯雷，前 MiniMax 海螺 AI 产品负责人<a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-5">[5]</a>。</li>
+    <li><b>产品与结果</b>：ListenHub、FlowSpeech、ColaOS 均已商业化；2026-01 完成 200 万美元天使+轮，ARR 300 万美元<a class="cref partial" href="#ref-4">[4]</a><a class="cref cross" href="#ref-2">[2]</a>。</li>
+    <li><b>口径</b>：本案「起于一人、现已十几人」，<b>不是严格一人公司</b>；央视年营收约 2000 万元与 ARR 300 万美元口径不同，并列不换算。</li>
+  </ul>
+</div>
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+<div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+<p class="lead">MarsWave（火星电波）2024 年底成立于北京，创始人冯雷曾任 MiniMax 海螺 AI 产品负责人，更早在 BOSS 直聘、兰亭集势、三星电子做产品<a class="cref cross" href="#ref-1">[1]</a>。公司 2024-12-04 注册、注册资本 102 万元<a class="cref partial" href="#ref-5">[5]</a>，起步 2 人，2026-06 已十几人<a class="cref cross" href="#ref-1">[1]</a>；2025-08 上线 Pro 套餐<a class="cref partial" href="#ref-4">[4]</a>。</p>
+<div class="two">
+  <div class="card"><div class="ct">产品矩阵</div><div class="cb">ListenHub 生成双人对谈播客，FlowSpeech 负责自然朗读，ColaOS 提供全球 Agent 服务<a class="cref partial" href="#ref-4">[4]</a><a class="cref cross" href="#ref-1">[1]</a>。</div></div>
+  <div class="card blue"><div class="ct">创始人</div><div class="cb">冯雷，前 MiniMax 海螺 AI 产品负责人；BOSS 直聘、兰亭集势、三星电子产品履历；个人自媒体「Orange AI / 橘子汽水铺」<a class="cref cross" href="#ref-1">[1]</a>。</div></div>
+</div>
+</section>
+
+<section id="sec-2">
+<div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+<div class="tl">
+  <div class="node"><div class="dt">2024-12-04</div><div class="tx">离职创业，公司成立</div><div class="td">北京火星电波科技有限公司成立，注册资本 102 万元，起步 2 人<a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-5">[5]</a>。</div></div>
+  <div class="node"><div class="dt">2025-05</div><div class="tx">ListenHub 上线</div><div class="td">一句话、文件或链接生成双人对谈播客；当天过万，随后日活 500<a class="cref partial" href="#ref-4">[4]</a>。</div></div>
+  <div class="node"><div class="dt">2025 年中 - 08</div><div class="tx">FlowSpeech 与 Pro 套餐</div><div class="td">FlowSpeech 承接朗读需求，活跃度 3 倍；8 月 Pro 后月收 1 万美元，提前完成目标<a class="cref partial" href="#ref-4">[4]</a>。</div></div>
+  <div class="node"><div class="dt">2026</div><div class="tx">融资、ARR 与央视报道</div><div class="td">01 月完成 200 万美元天使+轮，ARR 300 万美元、月度盈亏平衡<a class="cref cross" href="#ref-2">[2]</a>；06 月央视报道年营收约 2000 万元、团队十几人<a class="cref cross" href="#ref-1">[1]</a>。</div></div>
+</div>
+</section>
+
+<section id="sec-3">
+<div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+<div class="card"><div class="ct">转折一：先做一件窄事</div><div class="cb">ListenHub 只做「输入即播客」，一句话说清、上线可验证；代价是天花板明确<a class="cref partial" href="#ref-4">[4]</a>。</div></div>
+<div class="card"><div class="ct">转折二：用第二场景承接留存</div><div class="cb">上线当天过万、随后日活 500，发布流量不等于留存；FlowSpeech 承接朗读，3 倍<a class="cref partial" href="#ref-4">[4]</a>。</div></div>
+<div class="card"><div class="ct">转折三：用订阅指标证明 PMF</div><div class="cb">Pro 套餐后月收 1 万美元；ARR 300 万美元、付费率 5%、月流失低于 3%、月度盈亏平衡<a class="cref cross" href="#ref-2">[2]</a><a class="cref partial" href="#ref-3">[3]</a>。</div></div>
+<div class="card"><div class="ct">转折四：从工具到平台，从个人到团队</div><div class="cb">ColaOS 面向全球提供 Agent 服务；团队扩至十几人并引入投资人，OPC 属性让渡<a class="cref cross" href="#ref-1">[1]</a>。</div></div>
+</section>
+
+<section id="sec-4">
+<div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+<div class="tw">
+<table>
+<thead><tr><th>产品线</th><th>形态与用法</th><th>商业化与节点</th><th>信源</th></tr></thead>
+<tbody>
+<tr><td><b>ListenHub</b></td><td>一句话、文件或链接生成双人对谈播客；FlowSpeech 负责自然朗读</td><td>2025-05 上线；8 月 Pro；月访问约 3 万、月订阅 1 万多美元</td><td><a class="cref partial" href="#ref-4">[4]</a></td></tr>
+<tr><td><b>ColaOS</b></td><td>为全球用户提供 Agent 服务</td><td>已商业化；形态与收入拆分未公开</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+<tr><td><b>收入结构</b></td><td>订阅制，Pro 套餐为付费入口</td><td>ARR 300 万美元、付费率 5%、月流失低于 3%</td><td><a class="cref cross" href="#ref-2">[2]</a><a class="cref partial" href="#ref-3">[3]</a></td></tr>
+<tr><td><b>市场选择</b></td><td>面向全球，以美元计价披露</td><td>ColaOS 服务全球用户</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+</tbody>
+</table>
+</div>
+<p>订阅制 + 出海的生意：按使用付费，靠付费率与低流失率滚雪球，代价是模型调用成本。定价与毛利率未公开<a class="cref cross" href="#ref-2">[2]</a>。</p>
+</section>
+
+<section id="sec-5">
+<div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+<div class="tw">
+<table>
+<thead><tr><th>指标</th><th>数值</th><th>时点 / 口径</th><th>信源</th></tr></thead>
+<tbody>
+<tr><td>访问曲线</td><td class="hl">过万 → 500</td><td>2025-05 上线当天过万，随后回落至日活 500</td><td><a class="cref partial" href="#ref-4">[4]</a></td></tr>
+<tr><td>月访问与订阅收入</td><td>约 3 万；1 万多美元</td><td>2025 年下半年</td><td><a class="cref partial" href="#ref-4">[4]</a></td></tr>
+<tr><td>ARR</td><td class="hl">300 万美元+</td><td>2026-01 公司披露，年度经常性收入</td><td><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+<tr><td>付费率与月流失</td><td class="pos">5%；低于 3%</td><td>2026-01 披露</td><td><a class="cref partial" href="#ref-3">[3]</a></td></tr>
+<tr><td>融资</td><td>200 万美元</td><td>天使+轮，天际资本领投、王川跟投</td><td><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+<tr><td>年度营收与团队</td><td>约 2000 万元；2 → 十几人</td><td>央视 2026-06-01，与 ARR 不同口径</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+</tbody>
+</table>
+</div>
+<p>ARR 是月订阅收入乘 12 的年化值，年度营收是已实现收入；定义与区间不同，汇率折算还有偏差，两个数字只并列、不互证<a class="cref cross" href="#ref-2">[2]</a><a class="cref cross" href="#ref-1">[1]</a>。</p>
+</section>
+
+<section id="sec-6">
+<div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+<div class="tw">
+<table>
+<thead><tr><th>对标项目</th><th>创业者</th><th>形态</th><th>商业化与规模</th></tr></thead>
+<tbody>
+<tr><td><b>MarsWave</b>（本案）</td><td>冯雷</td><td>AI 音频工具 + Agent 平台，订阅出海</td><td>ARR 300 万美元、付费率 5%；200 万美元天使+轮；团队 2 → 十几人</td></tr>
+<tr><td>Bob</td><td>ripperhe</td><td>macOS 划词翻译 / OCR</td><td>¥58 终身买断；GitHub 9,759★</td></tr>
+<tr><td>BibiGPT</td><td>吕立青（JimmyLv）</td><td>覆盖 30+ 平台的 AI 音视频助理</td><td>四年独立 SaaS，订阅制</td></tr>
+<tr><td>chatgpt-on-wechat</td><td>查雨捷（zhayujie）</td><td>开源框架 CowAgent + 平台 LinkAI</td><td>GitHub 47.8k★；开源转平台化</td></tr>
+</tbody>
+</table>
+</div>
+<p>差异在于<b>组织与资本结构</b>：其余三家是个人或开源长跑，MarsWave 是唯一早期融资、团队十几人的样本，更像「OPC 起步、公司化运营」的过渡案例<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a>。</p>
+</section>
+
+<section id="sec-7">
+<div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+<div class="tw">
+<table>
+<thead><tr><th>维度</th><th>分析</th><th>信源</th></tr></thead>
+<tbody>
+<tr><td><b>1. 产品与定位</b></td><td>把播客生产压缩为一次输入，服务「听一遍」的长尾需求；窄切口降低成本，也限定上限</td><td><a class="cref partial" href="#ref-4">[4]</a></td></tr>
+<tr><td><b>2. 增长路径</b></td><td>发布流量与留存是两件事；FlowSpeech 用第二场景把活跃度拉高 3 倍</td><td><a class="cref partial" href="#ref-4">[4]</a></td></tr>
+<tr><td><b>3. 商业化</b></td><td>订阅制 + Pro；ARR 300 万美元、付费率 5%、月流失低于 3%，付费用户规模未披露</td><td><a class="cref cross" href="#ref-2">[2]</a><a class="cref partial" href="#ref-3">[3]</a></td></tr>
+<tr><td><b>4. 出海</b></td><td>ColaOS 面向全球，ARR 以美元披露；订阅制适配跨境支付，也要直面全球竞争</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+<tr><td><b>5. 组织形态</b></td><td>2 人到十几人并引入投资人；分工后决策速度与人力成本上升，OPC 属性被稀释</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+<tr><td><b>6. 可复制性</b></td><td>中低。工具形态可学，但产品判断来自大厂经验，音频生成还叠加工程成本</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+<tr><td><b>7. 风险</b></td><td>播客与朗读工具同质化；模型厂商与内容平台可能向下整合；流量依赖外部平台</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section id="sec-8">
+<div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+<div class="box risk">
+  <div class="bt">⚠️ 三组需要留意的口径</div>
+  ① <b>ARR 300 万美元 vs 年营收约 2000 万元</b>：前者是 2026-01 披露的年化值，后者是央视 2026-06 报道的年度营收，定义与区间不同，不可等同；② <b>「一人公司」标签</b>：央视同稿明确团队已从 2 人扩至十几人，只是「起于一人」；③ <b>时点不一</b>：日活 500 来自 2025 年复盘，ARR 与付费率来自 2026-01，年营收来自 2026-06。
+</div>
+<div class="card"><div class="ct">OPC 属性的边界</div><div class="cb">起步 2 人、创始人主导产品，符合「极小团队 + AI 放大产能」；但融资后扩至十几人，已有分工与外部股东，价值在于观察「OPC 如何长成公司」<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a>。</div></div>
+<div class="card red"><div class="ct">竞争与平台依赖</div><div class="cb">播客生成与朗读是模型能力外溢最快的赛道之一：模型厂商与内容平台都可能向下整合；流量与支付也依赖外部平台（分析判断）<a class="cref partial" href="#ref-4">[4]</a>。</div></div>
+</section>
+
+<section id="sec-9">
+<div class="sec-head"><div class="badge">捌·附</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+<p class="lead">共 5 条信源，编号与文末清单一致：蓝 = 多源印证，黄 = 部分映证。</p>
+<ul>
+<li id="ref-1" class="src"><div class="sh"><span class="idx cross">[1]</span><span class="rt">A</span><span class="st">中央媒体</span></div><div class="ti">“一人公司”刷屏：拆解 OPC 三个字母</div><div class="mt"><b>来源：</b>央视新闻（中新网转载）　<b>发布日期：</b>2026-06-01<br><a href="http://m.chinanews.com/wap/detail/chs/zw/10632243.shtml" target="_blank" rel="noopener">http://m.chinanews.com/wap/detail/chs/zw/10632243.shtml</a></div><div class="note">事实核查：履历、离职创业、两款产品、年营收约 2000 万元、团队规模均出自此稿。</div></li>
+<li id="ref-2" class="src"><div class="sh"><span class="idx cross">[2]</span><span class="rt">A-</span><span class="st">科技商业媒体</span></div><div class="ti">ListenHub 完成 200 万美元融资，ARR 300 万美元进军北美</div><div class="mt"><b>来源：</b>36 氪　<b>发布日期：</b>2026-01<br><a href="https://36kr.com/newsflashes/3620283612300549" target="_blank" rel="noopener">https://36kr.com/newsflashes/3620283612300549</a></div><div class="note">事实核查：融资、领投方、跟投方、ARR 与盈亏平衡均出自此稿。</div></li>
+<li id="ref-3" class="src"><div class="sh"><span class="idx partial">[3]</span><span class="rt">B+</span><span class="st">创投媒体</span></div><div class="ti">ListenHub 完成 200 万美元天使+轮融资，天际资本领投</div><div class="mt"><b>来源：</b>投资界　<b>发布日期：</b>2026-01<br><a href="https://news.pedaily.cn/202601/559376.shtml" target="_blank" rel="noopener">https://news.pedaily.cn/202601/559376.shtml</a></div><div class="note">事实核查：付费率、流失率与官网 2.0；与 36 氪同源，非独立采访。</div></li>
+<li id="ref-4" class="src"><div class="sh"><span class="idx partial">[4]</span><span class="rt">B</span><span class="st">人物专访</span></div><div class="ti">也许是最懂声音的 CEO｜100 个 AI 创业者</div><div class="mt"><b>来源：</b>晚点 LatePost（头条号转载）　<b>发布日期：</b>2025 年（转载页未标确切日）<br><a href="http://m.toutiao.com/group/7574331113742320155/" target="_blank" rel="noopener">http://m.toutiao.com/group/7574331113742320155/</a></div><div class="note">事实核查：上线时间、日活 500、3 倍、Pro 套餐与月收 1 万美元。</div></li>
+<li id="ref-5" class="src"><div class="sh"><span class="idx partial">[5]</span><span class="rt">B</span><span class="st">工商数据</span></div><div class="ti">北京火星电波科技有限公司</div><div class="mt"><b>来源：</b>企查查　<b>抓取日期：</b>2026-11<br><a href="https://m.qcc.com/firm/78b27c82e4c3a2c6e7dc4ef0ca1dae72.html" target="_blank" rel="noopener">https://m.qcc.com/firm/78b27c82e4c3a2c6e7dc4ef0ca1dae72.html</a></div><div class="note">事实核查：法定代表人、注册资本与成立日期；仅用于主体核验。</div></li>
+</ul>
+<div class="ref-summary">
+  <b>事实核查小结</b>：共 5 条信源，实质独立 3 个；多源印证 2 条（[1][2]）、部分映证 3 条（[3][4][5]）。评级：A 级 1、A- 级 1、B+ 级 1、B 级 2。[2] 与 [3] 同源，非独立采访。<b>ARR 300 万美元与年营收约 2000 万元口径不同</b>，并列不换算。
+</div>
+</section>
+
+</div>
+
+<section id="related">
+<div class="sec-head"><div class="badge">◎</div><h3>相关案例</h3><span class="en">RELATED CASES</span></div>
+<div class="two">
+  <a class="card" href="../../report/snowie-ai/" style="text-decoration:none;color:inherit;display:block">
+    <div class="ct">啾儿啾儿 / Snowie AI</div>
+    <div class="cm">帝国理工「00 后」团队 · 两个月 1.2 万用户</div>
+  </a>
+  <a class="card" href="../../report/bob-translate/" style="text-decoration:none;color:inherit;display:block">
+    <div class="ct">Bob 划词翻译 / OCR</div>
+    <div class="cm">ripperhe · 七年打磨，¥58 买断</div>
+  </a>
+  <a class="card" href="../../report/bibigpt/" style="text-decoration:none;color:inherit;display:block">
+    <div class="ct">BibiGPT（AI 课代表）</div>
+    <div class="cm">吕立青（JimmyLv） · 四年独立 SaaS</div>
+  </a>
+  <a class="card" href="../../report/chatgpt-on-wechat/" style="text-decoration:none;color:inherit;display:block">
+    <div class="ct">chatgpt-on-wechat</div>
+    <div class="cm">查雨捷（zhayujie） · GitHub 47.8k★</div>
+  </a>
+</div>
+</section>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，全部结论标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11 · ARR 与年营收口径不同，<b>本报告不构成投资建议</b>。
+</footer>
+
+</body>
+</html>

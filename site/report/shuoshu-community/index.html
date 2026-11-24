@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深度案例 · 模数 OPC 社区 —— 郭浩的「1 个老板 + 多名 AI 员工」与社区型 OPC 实验 · OPC Story</title>
+<link rel="icon" href="../../favicon.svg">
+<meta property="og:title" content="深度案例 · 模数 OPC 社区与郭浩的 AI 一人公司">
+<meta property="og:image" content="https://opc-story.top/og/shuoshu-community.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="深度案例 · 模数 OPC 社区与郭浩的「1 个老板 + 多名 AI 员工」">
+<meta name="description" content="模数 OPC 社区深度案例：前 UI 设计师郭浩借 AI 转型为自媒体创作者与效率工具开发者，形成「1 个老板 + 多名 AI 员工」的 OPC 形态，年营收约 100–200 万元；所在社区两个多月入驻 50+ 家 OPC。7 条信源逐条核验。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans CN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:64px 24px 56px;text-align:center}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero .meta{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;opacity:.82;margin-bottom:20px}
+.hero h1{font-size:42px;font-weight:800;letter-spacing:1px;line-height:1.25;margin-bottom:14px}
+.hero h2{font-size:18px;font-weight:400;opacity:.9;letter-spacing:.5px;margin-bottom:26px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:5px 16px;font-size:12.5px;opacity:.95}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border-bottom:1px solid #e3e8ef}
+.stat{background:#fff;padding:22px 18px;text-align:center}
+.stat .v{font-size:29px;font-weight:800;letter-spacing:.5px;line-height:1.2}
+.stat .k{font-size:12.5px;color:#6b7a8c;margin-top:7px;letter-spacing:.3px}
+.v.up{color:#c0392b}.v.down{color:#27ae60}.v.neutral{color:#c9a961}
+.toc{background:#f4f6f9;border:1px solid #e3e8ef;border-radius:6px;padding:26px 30px;margin:36px 0 44px}
+.toc h3{font-size:13px;letter-spacing:2px;color:#8b97a6;margin-bottom:16px;font-weight:600}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px}
+.toc a{color:#1e3a5f;text-decoration:none;font-size:14.5px;display:flex;gap:10px;align-items:baseline}
+.toc a:hover{color:#c9a961}
+.toc .num{font-weight:800;color:#c9a961;font-size:15px;min-width:22px}
+section{margin-bottom:52px;scroll-margin-top:16px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #1e3a5f}
+.badge{width:38px;height:38px;border-radius:50%;background:#1e3a5f;color:#c9a961;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-head h3{font-size:24px;font-weight:800;color:#1e3a5f;letter-spacing:.5px}
+.sec-head .en{font-size:12px;color:#a0acba;margin-left:auto;text-transform:uppercase;letter-spacing:1.5px}
+p{margin-bottom:13px}
+.lead{font-size:15.5px;color:#4a5b6e}
+.card{background:#fff;border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:18px 20px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.09)}
+.card.blue{border-left-color:#2980b9}
+.card .ct{font-weight:700;color:#1e3a5f;font-size:15.5px;margin-bottom:7px}
+.card .cb{font-size:14px;color:#4a5b6e}
+.card .cm{font-size:12.5px;color:#8b97a6;margin-top:6px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+thead th{background:#1e3a5f;color:#fff;padding:11px 13px;text-align:left;font-weight:600;font-size:13.5px;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:10px 13px;border-bottom:1px solid #edf0f4;color:#3c4c5e}
+tbody tr:nth-child(even){background:#f7f9fb}
+tbody tr:hover{background:#eef2f7}
+
+.tl{margin:20px 0 20px 36px;padding-left:26px;border-left:2px solid rgba(201,169,97,.35)}
+.tl .node{position:relative;margin-bottom:20px}
+.tl .node:before{content:"";position:absolute;left:-30px;top:6px;width:11px;height:11px;border-radius:50%;background:#c9a961;border:2px solid #fff;box-shadow:0 0 0 2px #c9a961}
+.tl .dt{font-size:12.5px;color:#c9a961;font-weight:700;letter-spacing:.5px}
+.tl .tx{font-size:14.5px;color:#3c4c5e;font-weight:600;margin:2px 0 3px}
+.tl .td{font-size:13.5px;color:#6b7a8c}
+.quote{background:#f4f6f9;border-left:3px solid #2980b9;padding:18px 22px;margin:18px 0;border-radius:0 4px 4px 0;position:relative}
+.quote:before{content:"❝";position:absolute;left:10px;top:-6px;font-size:34px;color:#c9a961;line-height:1}
+.quote p{margin:0;font-size:14.5px;color:#3c4c5e;padding-left:22px}
+.quote .src{display:block;margin-top:10px;padding-left:22px;font-size:12.5px;color:#8b97a6}
+.box{border-radius:4px;padding:17px 20px;margin:18px 0;border-left:4px solid;font-size:14.5px}
+.box .bt{font-weight:800;margin-bottom:7px;font-size:15px}
+.box.risk{background:#fdf1f0;border-left-color:#c0392b}.box.risk .bt{color:#c0392b}
+.box.insight{background:#f0f7fb;border-left-color:#2980b9}.box.insight .bt{color:#1e6ba8}
+.box.note{background:#fdf9ef;border-left-color:#c9a961}.box.note .bt{color:#9a7b28}
+a.cref{font-family:Georgia,serif;font-weight:700;font-size:13px;text-decoration:none;transition:filter .15s ease}
+a.cref:hover{filter:brightness(.88)}
+a.cref.verified{color:#1e7a3c}
+a.cref.cross{color:#1e6ba8}
+a.cref.partial{color:#a67c14}
+.src{border:1px solid #e3e8ef;border-left:4px solid #c9a961;border-radius:4px;padding:16px 18px;margin-bottom:12px;background:#fff;list-style:none;scroll-margin-top:16px}
+.src:target{background:#fdf9ef;border-left-color:#c9a961}
+.src .sh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.src .idx{font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:2px 8px;border-radius:3px;color:#fff}
+.src .idx.verified{background:#27ae60}.src .idx.cross{background:#2980b9}.src .idx.partial{background:#c9a961}
+.src .st{font-size:11.5px;border-radius:3px;padding:2px 7px;border:1px solid #d5dce5;color:#6b7a8c}
+.src .rt{font-size:11.5px;border-radius:3px;padding:2px 7px;background:#f0f3f7;color:#1e3a5f;font-weight:700}
+.src .ti{font-weight:700;color:#1e3a5f;font-size:14.5px;margin-bottom:6px}
+.src .mt{font-size:13px;color:#6b7a8c;line-height:1.7}
+.src .mt b{color:#4a5b6e}
+.src .mt a{color:#2980b9;word-break:break-all;text-decoration:none}
+.src .mt a:hover{text-decoration:underline}
+.src .note{font-size:12.5px;color:#8b97a6;margin-top:6px;font-style:italic}
+.ref-summary{background:#f4f6f9;border-radius:4px;padding:16px 20px;margin-top:18px;font-size:13.5px;color:#4a5b6e;line-height:1.9}
+ul.bl{list-style:none;margin:12px 0}
+ul.bl li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;color:#3c4c5e}
+ul.bl li:before{content:"▪";position:absolute;left:2px;color:#c9a961;font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 0}
+.crumb a{color:#2980b9;text-decoration:none}
+footer{border-top:2px solid #1e3a5f;margin-top:56px;padding-top:26px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer .fin{font-size:14px;color:#6b7a8c;margin-bottom:12px}
+@media(max-width:768px){
+.wrap{padding:0 16px 60px}
+.hero{padding:44px 18px 40px}
+.hero h1{font-size:28px}
+.hero h2{font-size:15px}
+.statbar{grid-template-columns:repeat(2,1fr)}
+.stat .v{font-size:23px}
+.toc-grid{grid-template-columns:1fr}
+.sec-head h3{font-size:20px}
+.two{grid-template-columns:1fr}
+table{font-size:13px}
+thead th,tbody td{padding:8px 10px}
+}
+</style>
+<link rel="canonical" href="https://opc-story.top/report/shuoshu-community/">
+<meta name="robots" content="index,follow">
+<meta property="og:url" content="https://opc-story.top/report/shuoshu-community/">
+<meta property="og:type" content="article">
+<script type="application/ld+json">
+{"@type":"Article","@context":"https://schema.org","headline":"深度案例 · 模数 OPC 社区 —— 郭浩的「1 个老板 + 多名 AI 员工」与社区型 OPC 实验 · OPC Story","description":"模数 OPC 社区深度案例：前 UI 设计师郭浩借 AI 转型为自媒体创作者与效率工具开发者，形成「1 个老板 + 多名 AI 员工」的 OPC 形态，年营收约 100–200 万元；所在社区两个多月入驻 50+ 家 OPC。7 条信源逐条核验。","inLanguage":"zh-CN","author":{"@type":"Person","name":"OPC Story"},"publisher":{"@type":"Organization","name":"OPC Story","url":"https://opc-story.top/"},"mainEntityOfPage":"https://opc-story.top/report/shuoshu-community/","datePublished":"2026-11-23","dateModified":"2026-11-23","articleSection":"内容创作"}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X58DBX1NCM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag("js", new Date());
+gtag("config", "G-X58DBX1NCM");
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"案例墙","item":"https://opc-story.top/"},{"@type":"ListItem","position":2,"name":"全部案例","item":"https://opc-story.top/all"},{"@type":"ListItem","position":3,"name":"模数 OPC 社区 · 郭浩","item":"https://opc-story.top/report/shuoshu-community/"}]}</script>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="meta">OPC STORY · DEEP CASE REPORT · 2026</div>
+    <h1>模数 OPC 社区 · 郭浩 深度案例报告</h1>
+    <h2>前 UI 设计师郭浩：把查资料、策划选题、剪辑全部交给「AI 员工」，年营收约 100–200 万元；<br>他所处的模数 OPC 社区运营两个多月已入驻 50+ 家 OPC —— 7 条信源逐条核验</h2>
+    <div class="tags">
+      <span class="tag">内容型 OPC</span>
+      <span class="tag">AI 员工工作流</span>
+      <span class="tag">OPC 社区形态</span>
+      <span class="tag">信源核验报告</span>
+    </div>
+  </div>
+</div>
+
+<div class="statbar">
+  <div class="stat"><div class="v up">100–200 万元</div><div class="k">年营收规模（受访者／媒体口径）</div></div>
+  <div class="stat"><div class="v neutral">1 + N</div><div class="k">团队形态：1 个老板 + 多名 AI 员工</div></div>
+  <div class="stat"><div class="v up">50+ 家</div><div class="k">社区入驻 OPC 数（2026-06-01）</div></div>
+  <div class="stat"><div class="v neutral">北京亦庄</div><div class="k">社区落地地点（2026-04-08 启航）</div></div>
+</div>
+
+<div class="wrap">
+  <div class="box insight" id="takeaways">
+    <div class="bt">可引用要点</div>
+    <ul class="bl">
+      <li><b>主体</b>：郭浩，曾任 UI 设计师，借助 AI 工具转型为自媒体创作者与效率工具开发者；其 OPC 形态为「1 个老板 + 多名 AI 员工」，执行层工作全交给 AI<a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-7">[7]</a>。</li>
+      <li><b>结果</b>：年营收约 100–200 万元（受访者／媒体口径）；日程为「早看 AI 动态 → 上午开发产品、处理客户 → 下午健身后继续 → 晚上处理琐事」，本人只保留判断权<a class="cref cross" href="#ref-1">[1]</a>。</li>
+      <li><b>规模</b>：模数 OPC 社区位于北京亦庄，2026-04-08 启航、由 WaytoAGI 负责运营，两个多月已吸引 50 多家 OPC 入驻<a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-4">[4]</a>。</li>
+    </ul>
+    <div style="font-size:12.5px;color:#8b97a6;margin-top:8px">口径说明：本报告基于 7 条公开信源（verified / cross / partial），全部数字标注口径与时点。郭浩的一手信息只出现在央视专题稿 [1] 一处，相关数字标 cross／partial、不标绿；社区数字由管委会官网与北京日报交叉印证，标 verified。</div>
+  </div>
+
+<div class="crumb"><a href="../../index.html">← 返回「国内 AI 一人公司案例墙」</a></div>
+
+<div class="toc">
+  <h3>CONTENTS · 目录</h3>
+  <div class="toc-grid">
+    <a href="#sec-1"><span class="num">壹</span>案例档案</a>
+    <a href="#sec-2"><span class="num">贰</span>来龙去脉 · 时间线</a>
+    <a href="#sec-3"><span class="num">叁</span>创业路径复盘</a>
+    <a href="#sec-4"><span class="num">肆</span>产品与商业模式</a>
+    <a href="#sec-5"><span class="num">伍</span>数据表现</a>
+    <a href="#sec-6"><span class="num">陆</span>同期同类案例横向对标</a>
+    <a href="#sec-7"><span class="num">柒</span>七维深度分析</a>
+    <a href="#sec-8"><span class="num">捌</span>争议与不确定性</a>
+    <a href="#sec-9"><span class="num">捌·附</span>资料来源与事实核查</a>
+  </div>
+</div>
+
+<section id="sec-1">
+  <div class="sec-head"><div class="badge">壹</div><h3>案例档案</h3><span class="en">Case Profile</span></div>
+  <p class="lead">郭浩是「一人 + AI」在内容赛道的清晰样本：此前是 UI 设计师，借助 AI 转型为自媒体创作者与效率工具开发者，创办的 OPC「只有他一个老板，再加上多名『AI 员工』」，年营收约 100–200 万元<a class="cref cross" href="#ref-1">[1]</a>。他所在的模数 OPC 社区落地北京经开区，2026-04-08 启航、由 WaytoAGI 运营，两个多月已吸引 50 多家 OPC 入驻<a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-3">[3]</a>。</p>
+  <div class="two">
+    <div class="card"><div class="ct">主体与转型路径</div><div class="cb">曾任 UI 设计师，借助 AI 转型为自媒体创作者与效率工具开发者；除本名与「前 UI 设计师」外，履历与转型时间均未公开<a class="cref cross" href="#ref-1">[1]</a>。</div></div>
+    <div class="card"><div class="ct">团队形态：1 个老板 + 多名 AI 员工</div><div class="cb">其 OPC 只有他一个老板，再加多名「AI 员工」；查资料、策划选题、剪辑交给 AI，他本人只做判断<a class="cref cross" href="#ref-1">[1]</a>。这是「1 人 + N 个 AI 智能体」，不是法律上「一人有限责任公司」的同义词。</div></div>
+    <div class="card blue"><div class="ct">产品与营收</div><div class="cb">两条业务线：自媒体内容创作 + 效率工具开发。年营收约 100–200 万元（受访者／媒体口径；未披露税前税后、是否扣除工具与算力成本，也未拆分两条线占比）<a class="cref cross" href="#ref-1">[1]</a>。</div></div>
+    <div class="card blue"><div class="ct">所处生态：模数 OPC 社区</div><div class="cb">国家信创园 A 区 5 号楼，首期 3000 平方米，由 WaytoAGI 运营；内置 AI 视频工坊与绿幕影棚；每年券投放最高 3 亿元、导入订单不少于 100 个<a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-4">[4]</a><a class="cref verified" href="#ref-5">[5]</a>。</div></div>
+  </div>
+</section>
+
+<section id="sec-2">
+  <div class="sec-head"><div class="badge">贰</div><h3>来龙去脉 · 时间线</h3><span class="en">Timeline</span></div>
+  <div class="tl">
+    <div class="node"><div class="dt">早年与转型期（时点未公开）</div><div class="tx">UI 设计师 → 自媒体创作者与效率工具开发者</div><div class="td">AI 工具把原本需要技术能力的执行环节接过去，使设计背景的人也能跑完全流程；产品名与账号均未公开<a class="cref cross" href="#ref-1">[1]</a>。</div></div>
+    <div class="node"><div class="dt">2026-04-08</div><div class="tx">模数 OPC 社区在北京亦庄正式启航</div><div class="td">由 WaytoAGI 运营，目标是全球最大 OPC 社区，两年内培育 1 万名 AI 独立开发者与 100 家超级个体公司；首批 20 家入驻<a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-4">[4]</a>。4 月 10 日北京日报报道，距社区不足 50 米处亮相全国首个超级个体全周期服务站<a class="cref verified" href="#ref-4">[4]</a>。</div></div>
+    <div class="node"><div class="dt">2026-05-19 晚</div><div class="tx">「模数 OPC 之夜」在亦庄举办</div><div class="td">150 余名 OPC 企业代表参与；同期披露 Way to AGI 全面入驻并深度参与运营，「数字生命卡兹克」等近 40 家 OPC 签约<a class="cref verified" href="#ref-5">[5]</a>。</div></div>
+    <div class="node"><div class="dt">2026-06-01</div><div class="tx">央视专题首次披露郭浩个案</div><div class="td">央视《「一人公司」刷屏：拆解 OPC 三个字母》刊出：社区 8 层独栋楼里灵活工位、绿幕影棚分区而设，两个多月已吸引 50 多家 OPC 入驻<a class="cref cross" href="#ref-1">[1]</a>。</div></div>
+    <div class="node"><div class="dt">2026-08-19</div><div class="tx">「模数世界·氪创未来社区」点亮</div><div class="td">亦庄释放 1000 万元 10 项 AI 场景订单、首批 19 家企业入驻；园区称其为「继模数 OPC 社区之后的另一重点载体」，亦庄同期为 10 家 OPC 社区授牌<a class="cref cross" href="#ref-6">[6]</a>。</div></div>
+    <div class="node"><div class="dt">2026-11-09 / 11-23</div><div class="tx">新华社写成行业全景；郭浩本人无新增信息</div><div class="td">《新华深读丨「一人公司」潮起》走访多地社区，给出行业数据但未点名郭浩或模数社区；至检索时点仍无其第二来源报道或企业登记信息<a class="cref cross" href="#ref-2">[2]</a><a class="cref partial" href="#ref-7">[7]</a>。</div></div>
+  </div>
+</section>
+
+<section id="sec-3">
+  <div class="sec-head"><div class="badge">叁</div><h3>创业路径复盘</h3><span class="en">Key Turns</span></div>
+  <div class="card"><div class="ct">转折一：从 UI 设计师到「一个人也能跑完全流程」</div><div class="cb">央视的判断是「AI 打破技术壁垒，让非技术人员也能『跑』完全流程」——郭浩先用 AI 补上写代码、搭后端的缺口，再把设计经验迁移到内容与工具上<a class="cref cross" href="#ref-1">[1]</a>。</div></div>
+  <div class="card"><div class="ct">转折二：把执行层整体交给 AI，只留判断权给自己</div><div class="cb">查资料、策划选题、剪辑全部交给 AI，他只做判断；日程固定为早上看 AI 动态，上午开发产品、处理客户问题，下午健身后继续，晚上处理琐事<a class="cref cross" href="#ref-1">[1]</a>。他把自己重新定义成「产品与审美决策者」。</div></div>
+  <div class="card"><div class="ct">转折三：接受「1 个老板 + N 个 AI 员工」的不对称组织</div><div class="cb">他没有雇人，而是用 AI 智能体替代岗位<a class="cref cross" href="#ref-1">[1]</a>。代价是产能上限绑死在「一个人的注意力 + 模型稳定性」上：人力成本近乎归零，却没有岗位冗余兜住 AI 的一次幻觉。</div></div>
+  <div class="card"><div class="ct">转折四：把自己放进社区型 OPC 网络</div><div class="cb">社区的价值不是工位，而是把「一个人接不了的大订单」变成可接的单：复杂订单拆成「原子化」任务，由社区提供信用背书与兜底<a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-4">[4]</a>；对内容与工具双线的个体，还提供视频工坊与算力券。</div></div>
+  <div class="quote">
+    <p>AI 写出来的文案行不行，剪辑的视频合不合审美，这些决定必须由我来做。</p>
+    <span class="src">—— 郭浩，央视新闻《「一人公司」刷屏：拆解 OPC 三个字母》（2026-06-01），<a class="cref cross" href="#ref-1">[1]</a></span>
+  </div>
+</section>
+
+<section id="sec-4">
+  <div class="sec-head"><div class="badge">肆</div><h3>产品与商业模式</h3><span class="en">Product &amp; Business</span></div>
+  <p class="lead">本案商业模式公开信息极不完整：可确认业务方向与营收区间，无法确认产品名、定价、收入拆分与利润率。下表分开列出「已核实」与「未公开」。</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>事实与分析</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>业务形态</b></td><td>自媒体内容创作（AI 参与选题、资料与剪辑）+ 效率工具开发；未披露产品名</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>组织形态</b></td><td>1 个老板 + 多名「AI 员工」；无雇员、无办公场所、无融资披露</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-7">[7]</a></td></tr>
+      <tr><td><b>收入构成</b></td><td><b>未公开</b>。只给出总额区间，未说明内容与工具比例，也未说明是否扣除平台分成</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      
+      <tr><td><b>社区赋能</b></td><td>每年最高 3 亿元券、≥100 个优质订单、开源平台与高潜项目最高 100 万元/200 万元支持、三年最高 50 万元人才奖励、首年办公全免、原子化订单平台与兜底</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-4">[4]</a><a class="cref verified" href="#ref-5">[5]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+<section id="sec-5">
+  <div class="sec-head"><div class="badge">伍</div><h3>数据表现</h3><span class="en">Metrics</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>指标</th><th>数值</th><th>时点 / 口径</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td>年营收规模</td><td class="hl">约 100–200 万元</td><td>受访者／媒体口径；未说明年份、税前税后、是否扣除工具与算力成本</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref partial" href="#ref-7">[7]</a></td></tr>
+      <tr><td>团队规模</td><td class="hl">1 个老板 + 多名 AI 员工</td><td>受访者口径；「多名」无具体数字，AI 员工为拟人化表述</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>社区入驻 OPC 数</td><td class="hl">50 多家</td><td>2026-06-01 央视口径，正式运营仅两个多月</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>社区落地地点</td><td>北京经开区（亦庄）· 国家信创园 A 区 5 号楼</td><td>2026-04-08 启航，两源一致</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-4">[4]</a></td></tr>
+      <tr><td>社区首批入驻</td><td>20 家 OPC</td><td>2026-04-08 启航时点，两源一致</td><td><a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-4">[4]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note">
+    <div class="bt">📌 社区入驻数的交叉核验</div>
+    入驻规模随时间单调上升：4/8 启航 20 家<a class="cref verified" href="#ref-3">[3]</a> → 5/20 近 40 家签约<a class="cref verified" href="#ref-5">[5]</a> → 6/1 已有 50 多家入驻<a class="cref cross" href="#ref-1">[1]</a>，三者自洽但统计对象不同。行业层面可对照：截至 2025-06，全国一人有限责任公司 1600 万家、占 27.4%，2025 上半年新注册 286 万户、同比 +47%<a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a>。
+  </div>
+</section>
+
+<section id="sec-6">
+  <div class="sec-head"><div class="badge">陆</div><h3>同期同类案例横向对标</h3><span class="en">Peer Benchmark</span></div>
+    <div class="tw">
+  <table>
+    <thead><tr><th>对标项目</th><th>主体</th><th>形态</th><th>数据表现（口径）</th></tr></thead>
+    <tbody>
+      <tr><td><b>模数 OPC 社区 · 郭浩</b>（本案）</td><td>郭浩，前 UI 设计师</td><td>1 个老板 + 多名 AI 员工；自媒体 + 效率工具双线</td><td>年营收约 100–200 万元（受访者／媒体口径）；社区 50+ 家入驻<a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td>张金慧与「和艺」AI 漫剧</td><td>张金慧，95 后美术生</td><td>自研智能体承担逐帧绘制与光影渲染</td><td>一周一部 42 集短剧；累计 200 多部、近 1 亿次播放；预计年底营收超 1000 万元<a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td>炘扬贸易 · AI 棒球帽出海</td><td>张乾超，95 后</td><td>智能体矩阵跑通选品、设计、跨境交付</td><td>上线不足两月获欧美订单，单月产出 2000 多款帽型<a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td>MarsWave 火星电波</td><td>冯雷，前大模型公司 AI 产品负责人</td><td>ListenHub 播客工具 + ColaOS Agent 服务</td><td>年度营收约 2000 万元（央视口径）；团队 2 人扩至十几人<a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      
+      <tr><td>云梦引擎（同社区样本）</td><td>何奕、许恒、孔令军</td><td>基于大模型与 Agent 的企业智能协同平台</td><td>2026-05 底在模数 OPC 社区审批业务指导工作站领营业执照；营收未公开<a class="cref cross" href="#ref-1">[1]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>放入这张表，位置清楚：年营收 100–200 万元折合月均约 8–17 万元，属于「已跑通闭环、尚未进入头部」的中位区间——远低于 MarsWave 的约 2000 万元，也低于张金慧预计的 1000 万元级，但明显高于仍停留在市场验证阶段的大多数样本（鸿鹄汇调研：52.4% 停留市场验证，仅 10.5% 月营收 70 万元左右）<a class="cref cross" href="#ref-2">[2]</a>。差异在打法：他不是先找热门赛道，而是把<b>原有设计能力</b>平移到内容与效率工具上，正合央视稿总结的共性——「很多 OPC 创业者的业务是从之前擅长或者爱好的领域中成长起来的」<a class="cref cross" href="#ref-1">[1]</a>；差异在环境：模数社区赛道中 AIGC 内容占 50%、软件 25%、硬件 25%<a class="cref cross" href="#ref-1">[1]</a>，他所在的正是占比最高的一类。</p>
+</section>
+
+<section id="sec-7">
+  <div class="sec-head"><div class="badge">柒</div><h3>七维深度分析</h3><span class="en">Seven Dimensions</span></div>
+  <div class="tw">
+  <table>
+    <thead><tr><th>维度</th><th>分析</th><th>信源</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. 产品与定位</b></td><td>自媒体内容 + 效率工具双轨，共享同一套 AI 执行链；但无产品名、账号与定价的公开信息</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>2. 生产流程</b></td><td>以单个大脑为调度器，切换成本极低；但无流程冗余，单点判断失误直接落到交付</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>3. 成本结构</b></td><td>人力成本近乎归零，成本几乎全是模型调用 / Token 与平台分成；算力支出已取代人力成为第一大固定开支。本案未披露 Token 成本与利润率，营收≠净利</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>4. 商业模式</b></td><td>内容与工具双轮收入，结构未公开；社区配套的订单机制是：复杂订单拆成「原子化」任务，由社区提供信用背书与交付兜底</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref verified" href="#ref-3">[3]</a></td></tr>
+      <tr><td><b>5. 一人属性</b></td><td>需分层说明：① 组织层是「1 个老板 + N 个 AI 员工」，人工雇员数未披露；② AI 员工非法律意义上的劳动者，不产生劳动关系与社保；③ 主体仍是公司，不必然是法律上的「一人有限责任公司」</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+      <tr><td><b>6. 可复制性</b></td><td>路径可复制性中高：设计/内容背景转 AI 内容与工具有共性路径，社区还提供券与订单；但审美判断与终审不可复制</td><td><a class="cref cross" href="#ref-1">[1]</a></td></tr>
+      <tr><td><b>7. 风险</b></td><td>① 单点依赖，产能与判断集中于一人；② 算力成本随调用量上升；③ 模型迭代可能打断工作流；④ 平台分发规则变动风险；⑤ 收入结构不透明；⑥ 社区的券、订单与兜底依赖政府供给，政策退坡即退坡</td><td><a class="cref cross" href="#ref-1">[1]</a><a class="cref cross" href="#ref-2">[2]</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec-8">
+  <div class="sec-head"><div class="badge">捌</div><h3>争议与不确定性</h3><span class="en">Open Questions</span></div>
+  <div class="box risk">
+    <div class="bt">⚠️ 四组需要留意的口径</div>
+    ① <b>「年营收约 100–200 万元」是区间而非精确值</b>：未说明年份、是否含工具与算力成本、是否税前，折算月均仅约 8–17 万元；② <b>「多名 AI 员工」无具体数字</b>，是比喻表述，不能按人头核算产能；③ <b>「50 多家入驻」</b>与「首批 20 家」「签约近 40 家」分属不同时点、不同统计对象；④ <b>郭浩与模数 OPC 社区的关系</b>存在公开信息出入，详见下方卡片。
+  </div>
+  <div class="card"><div class="ct">「AI 员工」的边界：本报告不接受字面理解</div><div class="cb">「AI 员工」是对一组执行型 AI 智能体的拟人化说法，不是雇佣关系：AI 不具备劳动者主体资格，也不承担劳动合同义务。央视稿里未具名创业者的抱怨恰好说明「员工」只是修辞——AI 会偷懒、会敷衍，需要人来终审<a class="cref cross" href="#ref-1">[1]</a>。故本报告把主体表述为「1 个老板 + 一组 AI 智能体」，而非按「雇了几个人」理解其营收与成本结构。另一层边界同样要讲清：「1 个老板」意味着背后仍是公司主体，新华社引中关村 AI 北纬社区负责人观点称「一人公司不是法律概念而是创业范式，规模也不一定是一个人」<a class="cref cross" href="#ref-2">[2]</a>。</div></div>
+  
+  <div class="card blue"><div class="ct">郭浩与模数 OPC 社区的关系：三种公开表述</div><div class="cb">① 官方稿件写明社区由 <b>WaytoAGI 负责运营</b>、2026-04-08 启航，郭浩未出现在官方稿件中<a class="cref verified" href="#ref-3">[3]</a><a class="cref verified" href="#ref-4">[4]</a>；② 央视专题把他作为社区内的 OPC 创业者报道<a class="cref cross" href="#ref-1">[1]</a>；③ 一篇二次整理文章称其为「北京模数 OPC 社区的一位创业者郭浩」<a class="cref partial" href="#ref-7">[7]</a>。据此，本报告将郭浩定位为<b>模数 OPC 社区内的 OPC 创业者、社区生态的一个样本</b>，不称其为社区创设者——坊间「某某创办了模数社区」一类说法与官方一手稿件不符。</div></div>
+  <div class="box note">
+    <div class="bt">📌 留白</div>
+    <b>未公开</b>：郭浩姓名全称、年龄、籍贯；OPC 的公司主体名称与注册信息；两条业务线的产品名、定价与上线状态；自媒体账号与粉丝量；工具的用户数与付费；「多名 AI 员工」的数量、模型栈与 Token 成本；100–200 万元营收的年份、税前税后与业务拆分；客户类型与复购；以及他与社区、WaytoAGI、亦庄管委会的关系。<br><b>另注</b>：郭浩的一手信息仅见于央视专题稿一次披露，检索未找到第二来源，相关数字一律不标绿。
+  </div>
+</section>
+
+<section id="sec-9">
+  <div class="sec-head"><div class="badge">捌·附</div><h3>资料来源与事实核查</h3><span class="en">Sources &amp; Fact-check</span></div>
+  <p class="lead">共 7 条信源，编号与文末清单一致。绿 = 已核验（≥2 独立信源交叉），蓝 = 多源印证（单一权威信源可回溯），黄 = 部分映证。</p>
+  <ul>
+  <li id="ref-1" class="src"><div class="sh"><span class="idx cross">[1]</span><span class="rt">A-</span><span class="st">央视专题</span></div><div class="ti">「一人公司」刷屏：拆解 OPC 三个字母</div><div class="mt"><b>来源：</b>央视新闻／中新网　<b>发布日期：</b>2026-06-01<br><a href="https://m.chinanews.com/wap/detail/chs/zw/10632243.shtml" target="_blank" rel="noopener">https://m.chinanews.com/wap/detail/chs/zw/10632243.shtml</a></div><div class="note">事实核查：郭浩全部一手事实与社区 50 多家入驻均出自此稿；未标注公司名与年份，单一信源故标 cross。</div></li>
+  <li id="ref-2" class="src"><div class="sh"><span class="idx cross">[2]</span><span class="rt">A-</span><span class="st">新华社专题</span></div><div class="ti">新华深读丨「一人公司」潮起</div><div class="mt"><b>来源：</b>新华每日电讯／新华网　<b>发布日期：</b>2026-11-09<br><a href="http://www.xinhuanet.com/fortune/20261109/956dafd44bdf458bbaf4acf7755b077e/c.html" target="_blank" rel="noopener">http://www.xinhuanet.com/fortune/20261109/956dafd44bdf458bbaf4acf7755b077e/c.html</a></div><div class="note">事实核查：仅用于行业背景与第陆节对标；未点名郭浩与模数社区，不能交叉本案主体数据。</div></li>
+  <li id="ref-3" class="src"><div class="sh"><span class="idx verified">[3]</span><span class="rt">A</span><span class="st">管委会官网</span></div><div class="ti">模数 OPC 社区在北京亦庄正式启航</div><div class="mt"><b>来源：</b>经开区管委会官网　<b>发布日期：</b>2026-04-13<br><a href="https://kfqgw.beijing.gov.cn/ywdt/tt/cxfw/202604/t20260413_4580305.html" target="_blank" rel="noopener">https://kfqgw.beijing.gov.cn/ywdt/tt/cxfw/202604/t20260413_4580305.html</a></div><div class="note">事实核查：启航日期地点、WaytoAGI 运营、3 亿元券、≥100 个订单、首批 20 家入驻均与 [4][5] 一致，标已核验。</div></li>
+  <li id="ref-4" class="src"><div class="sh"><span class="idx verified">[4]</span><span class="rt">A-</span><span class="st">党媒</span></div><div class="ti">亦庄谋划打造全球最大「一人公司」社区</div><div class="mt"><b>来源：</b>北京日报／首都之窗　<b>发布日期：</b>2026-04-10<br><a href="https://www.beijing.gov.cn/gate/big5/www.beijing.gov.cn/fuwu/lqfw/gggs/202604/t20260410_4578452.html" target="_blank" rel="noopener">https://www.beijing.gov.cn/gate/big5/www.beijing.gov.cn/fuwu/lqfw/gggs/202604/t20260410_4578452.html</a></div><div class="note">事实核查：独立交叉验证 [3] 的启航日期、3000 平方米、20 家入驻与兜底；独有信息为全国首个超级个体全周期服务站。</div></li>
+  <li id="ref-5" class="src"><div class="sh"><span class="idx verified">[5]</span><span class="rt">A-</span><span class="st">管委会官网</span></div><div class="ti">北京亦庄第 883 次网络发布：2026 AI Partner·AI+ 产业大会启幕</div><div class="mt"><b>来源：</b>经开区管委会官网　<b>发布日期：</b>2026-05-20<br><a href="https://kfqgw.beijing.gov.cn/ywdt/tt/cxcg/202605/t20260520_4659052.html" target="_blank" rel="noopener">https://kfqgw.beijing.gov.cn/ywdt/tt/cxcg/202605/t20260520_4659052.html</a></div><div class="note">事实核查：模数 OPC 之夜 150 余人、Way to AGI 入驻、近 40 家 OPC 签约与 [3][4] 一致，标已核验；该稿「60 余家」指另一载体「模数世界」社区。</div></li>
+  <li id="ref-6" class="src"><div class="sh"><span class="idx cross">[6]</span><span class="rt">B+</span><span class="st">园区通稿</span></div><div class="ti">模数世界·氪创未来社区正式点亮！</div><div class="mt"><b>来源：</b>经开区管委会·招商　<b>发布日期：</b>页面标注 2026-08-21<br><a href="https://kfqgw.beijing.gov.cn/zwgkkfq/ztzl/lqztkfq/lqzx/zsdt/202608/t20260827_4838964.html" target="_blank" rel="noopener">https://kfqgw.beijing.gov.cn/zwgkkfq/ztzl/lqztkfq/lqzx/zsdt/202608/t20260827_4838964.html</a></div><div class="note">事实核查：用于时间线后期节点（8/19 氪创未来社区点亮、1000 万元订单、首批 19 家）；属活动通稿，标多源印证。</div></li>
+  <li id="ref-7" class="src"><div class="sh"><span class="idx partial">[7]</span><span class="rt">C</span><span class="st">自媒体</span></div><div class="ti">苏小兵：一人公司正在爆发，一个人加上 AI 能干掉一家公司吗？</div><div class="mt"><b>来源：</b>美篇个人号　<b>发布日期：</b>2026-11-03<br><a href="https://www.meipian.cn/5qpm49ku" target="_blank" rel="noopener">https://www.meipian.cn/5qpm49ku</a></div><div class="note">事实核查：对央视稿 [1] 的二次整理，不构成独立交叉验证；仅用于印证「社区创业者」这一定性表述。</div></li>
+  </ul>
+  <div class="ref-summary">
+    <b>事实核查小结</b>：共 7 条信源。🟢 已核验 3 条（[3][4][5]）、🔵 多源印证 3 条（[1][2][6]）、🟡 部分映证 1 条（[7]）；评级 A 级 1、A- 级 4、B+ 级 1、C 级 1。「年营收 100–200 万元」「1 个老板 + 多名 AI 员工」「入驻 50 多家」仅出自 [1]，故未标绿；社区的启航日期、3000 平方米、首批 20 家、3 亿元券、≥100 个订单由 [3][4][5] 交叉一致，标绿。全部 URL 为检索命中页面。</div>
+</section>
+
+</div>
+
+<section id="related">
+  <div class="sec-head"><div class="badge">◎</div><h3>相关案例</h3><span class="en">RELATED CASES</span></div>
+  <div class="two">
+    <a class="card" href="../../report/heyi-manju/" style="text-decoration:none;color:inherit;display:block">
+      <div class="ct">张金慧与「和艺」AI 漫剧</div>
+      <div class="cb">95 后美术生，自研智能体承担逐帧绘制与光影渲染，一周产出一部 42 集短剧。</div>
+      <div class="cm">张金慧 · 累计 200+ 部短剧、总播放近 1 亿次（转述／自述口径）</div>
+    </a>
+    <a class="card" href="../../report/mars-wave/" style="text-decoration:none;color:inherit;display:block">
+      <div class="ct">MarsWave 火星电波</div>
+      <div class="cb">前大模型公司 AI 产品负责人冯雷，做 ListenHub 与 ColaOS，从 2 人扩到十几人。</div>
+      <div class="cm">冯雷 · 年度营收约 2000 万元（央视口径）· 已获千万元融资</div>
+    </a>
+      </div>
+</section>
+
+<footer>
+  <div class="fin">— 本报告为公开资料整理型案例研究，结论均标注信源与核验等级 —</div>
+  <a href="../../index.html" style="color:#2980b9">← 返回「国内 AI 一人公司案例墙」</a><br>
+  数据检索截止：2026-11-23 · 郭浩的年营收与团队形态为受访者／媒体口径，社区数据为政府/园区公开信息，<b>本报告不构成投资建议</b>。
+</footer>
+
+</body>
+</html>
