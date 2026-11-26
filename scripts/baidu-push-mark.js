@@ -13,13 +13,14 @@ const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 const STATE_FILE = path.join(ROOT, '.baidu-push-state.json');
 
+/** 配额日切基准日（北京时间），与 baidu-push.js 保持一致 */
 function today() {
-  return new Date().toISOString().slice(0, 10);
+  return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
 }
 
 const state = fs.existsSync(STATE_FILE)
   ? JSON.parse(fs.readFileSync(STATE_FILE, 'utf8'))
-  : { pushed: [], dates: {} };
+  : { pushed: [], dates: {}, invalid: [] };
 
 const urls = process.argv.slice(2);
 if (!urls.length) {

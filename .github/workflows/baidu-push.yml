@@ -66,4 +66,10 @@ jobs:
             echo '```'
             head -c 20000 /tmp/push.log
             echo '```'
+            echo ''
+            echo '### 当前进度'
+            echo ''
+            echo '```'
+            node scripts/baidu-push.js --status || echo '(状态读取失败)'
+            echo '```'
           } >> "$GITHUB_STEP_SUMMARY"

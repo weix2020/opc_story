@@ -103,11 +103,15 @@ function prioritize(urls, xml) {
 
 /* ---------- 状态 ---------- */
 function loadState() {
-  if (!fs.existsSync(STATE_FILE)) return { pushed: [], dates: {} };
+  if (!fs.existsSync(STATE_FILE)) return { pushed: [], dates: {}, invalid: [] };
   try {
-    return JSON.parse(fs.readFileSync(STATE_FILE, 'utf8'));
+    const s = JSON.parse(fs.readFileSync(STATE_FILE, 'utf8'));
+    if (!Array.isArray(s.pushed)) s.pushed = [];
+    if (!s.dates) s.dates = {};
+    if (!Array.isArray(s.invalid)) s.invalid = [];
+    return s;
   } catch (e) {
-    return { pushed: [], dates: {} };
+    return { pushed: [], dates: {}, invalid: [] };
   }
 }
 
@@ -115,8 +119,14 @@ function saveState(state) {
   fs.writeFileSync(STATE_FILE, JSON.stringify(state, null, 2) + '\n');
 }
 
+/**
+ * 配额日切基准日（北京时间）。
+ * 百度站长的每日配额按北京时间 00:00 重置，而 new Date().toISOString()
+ * 取的是 UTC 日期：在北京时间 00:00–08:00 区间两者相差一天，会误判
+ * “今日配额已用尽” 而空跑。故统一用 UTC+8 的日期作为配额日。
+ */
 function today() {
-  return new Date().toISOString().slice(0, 10);
+  return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
 }
 
 /* ---------- 推送 ---------- */
@@ -169,7 +179,11 @@ async function main() {
   const ordered = prioritize(all, xml);
   const state = loadState();
   const pushedSet = new Set(state.pushed);
-  const pending = ordered.filter(function (u) { return !pushedSet.has(u); });
+  /* 已被判非法的 URL 不再重复提交，避免每天白耗配额 */
+  const invalidSet = new Set(state.invalid || []);
+  const pending = ordered.filter(function (u) {
+    return !pushedSet.has(u) && !invalidSet.has(u);
+  });
 
   const t = today();
   const pushedToday = (state.dates[t] || []).length;
@@ -216,33 +230,43 @@ async function main() {
   batch.forEach(function (u) { console.log('  ' + u); });
   console.log('---');
 
-  let successCount = 0;
+  let accepted = [];
   let remain = null;
   let notValid = [];
   let attempts = 0;
   let quotaExhausted = false;
+  let cursor = 0;
+  let batchSize = Math.min(limit, remainToday);
 
-  while (batch.length && attempts < 6) {
+  while (cursor < pending.length && attempts < 20) {
     attempts++;
+    if (batchSize < 1) {
+      quotaExhausted = true;
+      break;
+    }
+    const batch = pending.slice(cursor, cursor + batchSize);
+
     const res = await push(batch);
     console.log('HTTP ' + res.status + ' ' + res.body);
 
     let j = null;
     try { j = JSON.parse(res.body); } catch (e) {
-      console.log('响应无法解析，终止重试。');
+      console.log('响应不会解析，终止重试。');
       break;
     }
 
     if (j.error === 400 && /over quota/i.test(j.message || '')) {
-      /* 批量超过服务端剩余配额 → 减半重试 */
-      const smaller = Math.floor(batch.length / 2);
-      console.log('配额不足（over quota），降批至 ' + smaller + ' 条重试…');
-      if (smaller < 1) {
-        console.log('今日配额已用完，明日再推。');
+      /* 批量超过服务端剩余配额。
+         over quota 的请求不会被受理、不消耗配额。
+         降批到 1 条探一次：成功则响应里的 remain 就是服务端真实余额，
+         下一轮按 remain 精确推完；仍 over quota 则余额为 0。 */
+      if (batchSize <= 1) {
+        console.log('服务端已无剩余配额，明日再推。');
         quotaExhausted = true;
         break;
       }
-      batch = batch.slice(0, smaller);
+      batchSize = 1;
+      console.log('配额不足（over quota），降批至 1 条探测服务端余额…');
       continue;
     }
     if (j.error) {
@@ -250,31 +274,47 @@ async function main() {
       break;
     }
 
-    successCount = typeof j.success === 'number' ? j.success : 0;
+    const successCount = typeof j.success === 'number' ? j.success : 0;
     remain = j.remain !== undefined ? j.remain : null;
     notValid = j.not_valid || [];
+
+    /* 受理条目 = 本批去掉被判非法的条目（而非简单取前 N 个） */
+    const invalidSet = new Set(notValid);
+    const ok = batch.filter(function (u) { return !invalidSet.has(u); }).slice(0, successCount);
+    accepted = accepted.concat(ok);
+
+    /* 非法条目记录下来，后续不再重复提交（去重，避免状态文件膨胀） */
+    if (notValid.length) {
+      const seen = new Set(state.invalid || []);
+      notValid.forEach(function (u) { seen.add(u); });
+      state.invalid = Array.from(seen);
+    }
+
+    cursor += batch.length;
+    console.log('本批受理 ' + ok.length + ' 条，服务端剩余配额 ' + remain + '。');
+
+    /* 服务端还有余额且仍有待推条目 → 继续推，直到配额见底 */
+    if (remain !== null && remain > 0 && cursor < pending.length) {
+      batchSize = Math.min(remain, pending.length - cursor);
+      continue;
+    }
     break;
   }
 
-  if (remain !== null) console.log('接口返回剩余配额：' + remain);
   if (notValid.length) {
     console.log('被判定非法的条目（' + notValid.length + ' 条）：');
     notValid.slice(0, 10).forEach(function (v) { console.log('  ' + v); });
   }
 
-  if (successCount > 0) {
-    /* 只记录成功受理的条目；失败条目留在待推队列下次重试 */
-    const accepted = batch.slice(0, successCount);
+  if (accepted.length) {
     state.pushed = state.pushed.concat(accepted);
     state.dates[t] = (state.dates[t] || []).concat(accepted);
     saveState(state);
-    console.log('成功受理 ' + successCount + ' 条，已记录（累计 ' + state.pushed.length + ' 条）。');
-    if (successCount < batch.length) {
-      console.log('未受理 ' + (batch.length - successCount) + ' 条，将于下次重试。');
-    }
+    console.log('成功受理 ' + accepted.length + ' 条，已记录（累计 ' + state.pushed.length + ' 条）。');
   } else if (quotaExhausted) {
     /* 配额用尽属于正常状态，不应让 CI 报红 */
     console.log('今日配额已用尽，本次未推送任何条目；明日自动继续。');
+    saveState(state);
   } else {
     console.log('本次无条目被受理，不写入状态（可重试）。');
     process.exitCode = 1;
