@@ -5,12 +5,26 @@ on:
     paths:
       - 'site/report/**'
       - 'site/data/**'
+      - 'site/index.html'
+      - 'site/all.html'
+      - 'site/llms.txt'
+      - 'site/llms-full.txt'
+      - 'site/feed.json'
+      - 'site/sitemap.xml'
+      - 'site/insights/**'
       - 'scripts/**'
       - '.github/workflows/data-check.yml'
   pull_request:
     paths:
       - 'site/report/**'
       - 'site/data/**'
+      - 'site/index.html'
+      - 'site/all.html'
+      - 'site/llms.txt'
+      - 'site/llms-full.txt'
+      - 'site/feed.json'
+      - 'site/sitemap.xml'
+      - 'site/insights/**'
       - 'scripts/**'
   workflow_dispatch:
   schedule:
@@ -23,7 +37,7 @@ concurrency:
 
 jobs:
   check:
-    name: 校验 cases.json 与 100 篇报告
+    name: 校验 cases.json 与全部案例报告
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -32,10 +46,24 @@ jobs:
         with:
           node-version: '20'
 
+      - name: 重建派生数据（bi.json / feed.json / 信源台账）
+        run: |
+          node scripts/build-source-ledger.js
+          node scripts/build-bi.js
+          node scripts/build-feed.js
+
+      - name: 校验派生数据无漂移
+        run: |
+          set -o pipefail
+          git diff --exit-code -- site/data/bi.json site/data/sources.json site/feed.json || {
+            echo '::error::派生数据与源数据不一致，请重新运行 build-bi.js / build-source-ledger.js / build-feed.js'
+            exit 1
+          }
+
       - name: 运行检查
         run: |
           set -o pipefail
-          node scripts/check-data-consistency.js | tee /tmp/check.log
+          node scripts/check-data-consistency.js --strict | tee /tmp/check.log
 
       - name: 写入 Job Summary
         if: always()

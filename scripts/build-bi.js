@@ -108,5 +108,28 @@ const result = {
   cases: out,
 };
 
-fs.writeFileSync(OUT_FILE, JSON.stringify(result, null, 2) + '\n');
-console.log('已生成 ' + OUT_FILE + '（' + out.length + ' 例）');
+/**
+ * generated_at 只在内容实际变化时更新。
+ * 否则每天重跑都会产生一处 diff，导致 CI 的「派生数据无漂移」检查误报。
+ */
+function finalize(meta) {
+  const body = { meta: meta, cases: out };
+  if (fs.existsSync(OUT_FILE)) {
+    try {
+      const prev = JSON.parse(fs.readFileSync(OUT_FILE, 'utf8'));
+      const strip = function (o) {
+        const c = JSON.parse(JSON.stringify(o));
+        if (c && c.meta) delete c.meta.generated_at;
+        return JSON.stringify(c);
+      };
+      if (strip(prev) === strip(body) && prev.meta && prev.meta.generated_at) {
+        body.meta.generated_at = prev.meta.generated_at;
+        console.log('内容未变化，保留原 generated_at：' + body.meta.generated_at);
+      }
+    } catch (e) { /* 旧文件损坏时按新内容写入 */ }
+  }
+  fs.writeFileSync(OUT_FILE, JSON.stringify(body, null, 2) + '\n');
+  console.log('已生成 ' + OUT_FILE + '（' + out.length + ' 例）');
+}
+
+finalize(result.meta);
