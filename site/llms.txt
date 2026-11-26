@@ -11,6 +11,10 @@
 > 信源台账（1,247 条信源的可回溯元数据、正文引用句与 Wayback 存档，JSON）：https://opc-story.top/data/sources.json
 > 数据洞察（赛道分布、时间趋势、收入分布与口径构成、Top 10、核验强度，可筛选导出）：https://opc-story.top/insights/
 >
+> 关于本站与联系方式：
+> - 关于本站（我们是谁、案例如何入选、数据从哪来）：https://opc-story.top/about/
+> - 联系我们（勘误、授权、合作）：https://opc-story.top/contact/
+> - 隐私政策（收集什么、第三方 Cookie 与广告）：https://opc-story.top/privacy/
 > 方法论（建议优先阅读）：
 > - 什么是 OPC（定义与判定标准）：https://opc-story.top/what-is-opc/
 > - 信源核验标准（A-/B+/B 分级与流程）：https://opc-story.top/method/
