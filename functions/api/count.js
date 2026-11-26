@@ -27,11 +27,19 @@ export async function onRequestGet({ request, env }) {
   const slugs = [...new Set(raw.split(','))].filter(s => SLUG.test(s)).slice(0, 200);
   if (!slugs.length) return json({ ok: true, data: {} });
 
-  const { results } = await env.DB.prepare(
-    `SELECT slug, kind, n FROM counter WHERE slug IN (${slugs.map(() => '?').join(',')})`
-  ).bind(...slugs).all();
+  /* D1 单条 SQL 的绑定变量上限为 100，超出会抛异常 → Worker 500（error 1101）。
+     实测 100 条正常、110 条即 500，故按 50 一批分片，留出余量。 */
+  const CHUNK = 50;
+  const rows = [];
+  for (let i = 0; i < slugs.length; i += CHUNK) {
+    const part = slugs.slice(i, i + CHUNK);
+    const { results } = await env.DB.prepare(
+      `SELECT slug, kind, n FROM counter WHERE slug IN (${part.map(() => '?').join(',')})`
+    ).bind(...part).all();
+    rows.push(...(results || []));
+  }
 
-  return json({ ok: true, data: shape(results || [], slugs) });
+  return json({ ok: true, data: shape(rows, slugs) });
 }
 
 export async function onRequestPost({ request, env }) {

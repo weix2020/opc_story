@@ -394,8 +394,8 @@ function render() {
       <div class="oc-foot">
         <span class="oc-cats">${GROUP_LABEL[c.g]}</span>
         <div class="oc-actions">
-          <span class="op-views" title="阅读量：点击本项目卡片累计（仅保存在本机）">${EYE} <b data-vc>0</b></span>
-          <button type="button" class="op-btn" data-like="${c.r}" aria-pressed="false" title="点赞（仅保存在本机）">${HEART} <b data-lc>0</b></button>
+          <span class="op-views" title="阅读量：点击本项目卡片累计（全站共享）">${EYE} <b data-vc>0</b></span>
+          <button type="button" class="op-btn" data-like="${c.r}" aria-pressed="false" title="点赞（全站共享）">${HEART} <b data-lc>0</b></button>
           <button type="button" class="op-btn" data-share="${c.r}" title="分享到微信 / 朋友圈 / 小红书 / 微博">${SHARE} <b data-sc>0</b></button>
         </div>
       </div>
@@ -431,13 +431,15 @@ function paintCounts(r) {
   const likeBtn = card.querySelector('[data-like]');
   likeBtn.classList.toggle('liked', liked);
   likeBtn.setAttribute('aria-pressed', liked ? 'true' : 'false');
-  likeBtn.querySelector('[data-lc]').textContent = v.like;
-  card.querySelector('[data-vc]').textContent = v.view;
-  card.querySelector('[data-sc]').textContent = v.share;
+  /* 接口不可用时显示「—」而非 0，避免把「读取失败」误读成「计数为零」 */
+  const num = n => (LIVE ? String(n) : '—');
+  likeBtn.querySelector('[data-lc]').textContent = num(v.like);
+  card.querySelector('[data-vc]').textContent = num(v.view);
+  card.querySelector('[data-sc]').textContent = num(v.share);
 }
 function repaintAll() { CASES.forEach(c => paintCounts(c.r)); }
 
-/* 拉取全站计数；失败时退回本机缓存，保证本地预览/离线仍可用 */
+/* 拉取全站计数；接口不可用时标记为离线，显示「—」而非伪造的 0 */
 async function loadCounts() {
   try {
     const res = await fetch('/api/count?slugs=' + encodeURIComponent(CASES.map(c => c.s).join(',')), { cache: 'no-store' });
@@ -447,13 +449,8 @@ async function loadCounts() {
     LIVE = true;
   } catch {
     LIVE = false;
-    CASES.forEach(c => {
-      CNT[c.s] = {
-        view: parseInt(lsGet('opc:view:' + c.s) || '0', 10),
-        like: likedOf(c.s) ? 1 : 0,
-        share: parseInt(lsGet('opc:share:' + c.s) || '0', 10),
-      };
-    });
+    /* 本机缓存只在本机做过互动时才有值，不能代表全站计数，故留空 */
+    CASES.forEach(c => { CNT[c.s] = { view: 0, like: 0, share: 0 }; });
   }
   repaintAll();
 }
@@ -461,10 +458,11 @@ async function loadCounts() {
 /* 计数变更：先本地乐观更新，再异步写服务端；返回后以服务端值为准 */
 async function bump(c, kind, delta = 1) {
   if (!c) return;
+  /* 接口不可用时不伪造本地数字（显示为「—」），避免与全站计数混淆 */
+  if (!LIVE) return;
   const v = C(c.s);
   v[kind] = Math.max(0, (v[kind] || 0) + delta);
   paintCounts(c.r);
-  if (!LIVE) { lsSet('opc:' + kind + ':' + c.s, String(v[kind])); return; }
   try {
     const res = await fetch('/api/count', {
       method: 'POST',
