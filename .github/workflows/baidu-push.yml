@@ -1,0 +1,65 @@
+name: 百度主动推送
+
+on:
+  schedule:
+    # 每天 08:10（北京时间）推送一次，配合百度普通收录的每日配额重置
+    - cron: '10 0 * * *'
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: '本次最多推送多少条 URL（留空则用脚本默认值 10）'
+        required: false
+        type: string
+
+concurrency:
+  group: baidu-push
+  cancel-in-progress: false
+
+jobs:
+  push:
+    name: 提交 sitemap URL 到百度站长
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 恢复上次的推送进度
+        id: restore
+        uses: actions/cache/restore@v4
+        with:
+          path: .baidu-push-state.json
+          key: baidu-push-state-${{ github.run_id }}
+          restore-keys: |
+            baidu-push-state-
+
+      - name: 推送
+        env:
+          BAIDU_TOKEN: ${{ secrets.BAIDU_TOKEN }}
+        run: |
+          set -o pipefail
+          if [ -n "${{ github.event.inputs.limit }}" ]; then
+            node scripts/baidu-push.js --limit "${{ github.event.inputs.limit }}"
+          else
+            node scripts/baidu-push.js
+          fi
+
+      - name: 保存推送进度
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: .baidu-push-state.json
+          key: baidu-push-state-${{ github.run_id }}
+
+      - name: 写入 Job Summary
+        if: always()
+        run: |
+          {
+            echo '## 百度主动推送'
+            echo ''
+            echo '```'
+            node scripts/baidu-push.js --status 2>&1 || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

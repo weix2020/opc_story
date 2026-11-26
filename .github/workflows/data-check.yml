@@ -46,6 +46,9 @@ jobs:
         with:
           node-version: '20'
 
+      - name: 加密实现自测（libsodium 向量）
+        run: node scripts/test-crypto.js
+
       - name: 重建派生数据（bi.json / feed.json / 信源台账）
         run: |
           node scripts/build-source-ledger.js

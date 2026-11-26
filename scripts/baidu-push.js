@@ -30,8 +30,11 @@ const STATE_FILE = path.join(ROOT, '.baidu-push-state.json');
 const SITE_URL = 'https://opc-story.top';
 /* 百度提交接口的 site 参数需为裸域（不带协议），否则返回 site init fail */
 const SITE_PARAM = 'opc-story.top';
-const DEFAULT_TOKEN = 'RidsSynkTGGWSKpi';
-const TOKEN = process.env.BAIDU_TOKEN || DEFAULT_TOKEN;
+/* token 只从环境变量读取：
+   - CI 中由 GitHub Actions Secret BAIDU_TOKEN 注入
+   - 本地可用 `BAIDU_TOKEN=xxx node scripts/baidu-push.js`
+   仓库为公开仓库，故不再内置默认 token */
+const TOKEN = process.env.BAIDU_TOKEN;
 const DAILY_LIMIT = 10;
 
 /* ---------- 参数 ---------- */
@@ -159,6 +162,11 @@ async function main() {
     saveState({ pushed: [], dates: {} });
     console.log('已清空推送状态。');
     return;
+  }
+
+  if (!TOKEN) {
+    console.error('缺少百度站长 API token。请设置环境变量 BAIDU_TOKEN（CI 中由 Secret 注入）。');
+    process.exit(1);
   }
 
   const xml = fs.readFileSync(SITEMAP, 'utf8');
