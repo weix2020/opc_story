@@ -297,14 +297,19 @@ function poly1305(key32, msg) {
 
 /**
  * crypto_secretbox_xsalsa20poly1305（detached 形式）
- *   polyKey = XSalsa20(k, n, 0)[0:32]
- *   cipher  = XSalsa20(k, n, 0) ⊕ m
+ * libsodium 的实现约定：
+ *   crypto_stream_xsalsa20_xor(c, m, mlen, n, k)   → c[j] = m[j] ⊕ keystream[j]
+ *   crypto_onetimeauth_poly1305(c + 16, c + 32, mlen - 32, c)
+ * 因 NaCl 约定下 m[0..31] 为零，故：
+ *   polyKey = keystream[0:32]
+ *   cipher  = m ⊕ keystream[32:32+len]   ← 密文从偏移 32 处开始异或
  *   mac     = Poly1305(polyKey, cipher)
  */
 function secretboxXSalsa20Poly1305(msg, nonce24, key32) {
-  const stream = xsalsa20Xor(key32, nonce24, 0n, msg);
-  const polyKey = xsalsa20Xor(key32, nonce24, 0n, Buffer.alloc(32));
-  const cipher = Buffer.from(stream);
+  const ks = xsalsa20Xor(key32, nonce24, 0n, Buffer.alloc(32 + msg.length));
+  const polyKey = ks.subarray(0, 32);
+  const cipher = Buffer.alloc(msg.length);
+  for (let i = 0; i < msg.length; i++) cipher[i] = msg[i] ^ ks[32 + i];
   const mac = poly1305(polyKey, cipher);
   return { mac: mac, cipher: cipher };
 }

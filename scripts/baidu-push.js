@@ -13,7 +13,7 @@
  *   node scripts/baidu-push.js --reset    # 清空推送状态（谨慎使用）
  *
  * 环境变量：
- *   BAIDU_TOKEN  百度站长 API token（未设置时回退到默认值）
+ *   BAIDU_TOKEN  百度站长 API token（CI 中由 Secret 注入；仅 --status 不需要）
  */
 'use strict';
 
@@ -164,11 +164,6 @@ async function main() {
     return;
   }
 
-  if (!TOKEN) {
-    console.error('缺少百度站长 API token。请设置环境变量 BAIDU_TOKEN（CI 中由 Secret 注入）。');
-    process.exit(1);
-  }
-
   const xml = fs.readFileSync(SITEMAP, 'utf8');
   const all = readSitemap();
   const ordered = prioritize(all, xml);
@@ -206,6 +201,11 @@ async function main() {
     return;
   }
 
+  if (!TOKEN) {
+    console.error('缺少百度站长 API token。请设置环境变量 BAIDU_TOKEN（CI 中由 Secret 注入）。');
+    process.exit(1);
+  }
+
   let batch = pending.slice(0, Math.min(limit, remainToday));
   if (!batch.length) {
     console.log('没有待推送的新 URL。');
@@ -220,6 +220,7 @@ async function main() {
   let remain = null;
   let notValid = [];
   let attempts = 0;
+  let quotaExhausted = false;
 
   while (batch.length && attempts < 6) {
     attempts++;
@@ -236,7 +237,11 @@ async function main() {
       /* 批量超过服务端剩余配额 → 减半重试 */
       const smaller = Math.floor(batch.length / 2);
       console.log('配额不足（over quota），降批至 ' + smaller + ' 条重试…');
-      if (smaller < 1) { console.log('剩余配额不足 1 条，明日再推。'); break; }
+      if (smaller < 1) {
+        console.log('今日配额已用完，明日再推。');
+        quotaExhausted = true;
+        break;
+      }
       batch = batch.slice(0, smaller);
       continue;
     }
@@ -267,6 +272,9 @@ async function main() {
     if (successCount < batch.length) {
       console.log('未受理 ' + (batch.length - successCount) + ' 条，将于下次重试。');
     }
+  } else if (quotaExhausted) {
+    /* 配额用尽属于正常状态，不应让 CI 报红 */
+    console.log('今日配额已用尽，本次未推送任何条目；明日自动继续。');
   } else {
     console.log('本次无条目被受理，不写入状态（可重试）。');
     process.exitCode = 1;

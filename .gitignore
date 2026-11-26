@@ -2,5 +2,5 @@
 .trae-html-share-packages/
 archive/
 
-# 百度主动推送的本地进度记录（含本机状态，不入库）
-.baidu-push-state.json
+# 百度主动推送的进度记录入库，作为 CI 的基线；
+# CI 侧再用 actions/cache 增量累积，避免重复提交占用每日配额。

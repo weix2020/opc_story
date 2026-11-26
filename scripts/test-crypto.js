@@ -5,10 +5,10 @@ const path = require('path');
 const src = fs.readFileSync(path.join(__dirname, 'set-gh-secret.js'), 'utf8');
 const body = src
   .replace(/^#![^\n]*\n/, '')
-  .replace(/\nasync function main\(\)[\s\S]*$/, '\nmodule.exports = { hsalsa20, xsalsa20Xor, poly1305, blake2b };\n');
+  .replace(/\nasync function main\(\)[\s\S]*$/, '\nmodule.exports = { hsalsa20, xsalsa20Xor, poly1305, blake2b, secretboxXSalsa20Poly1305 };\n');
 const m = { exports: {} };
 new Function('module', 'exports', 'require', body)(m, m.exports, require);
-const { xsalsa20Xor, poly1305, blake2b } = m.exports;
+const { xsalsa20Xor, poly1305, blake2b, secretboxXSalsa20Poly1305 } = m.exports;
 
 let pass = 0, fail = 0;
 function check(name, got, exp) {
@@ -44,6 +44,11 @@ const ks = xsalsa20Xor(key, nonce, 0n, Buffer.alloc(32 + cipher.length));
 check('XSalsa20 解密(secretbox2)',
   Buffer.from(cipher.map((b, i) => b ^ ks[32 + i])).toString('hex'),
   plain.toString('hex'));
+
+/* ---- 1b) secretbox 加密方向：密文必须从 keystream 偏移 32 处异或 ---- */
+const sb = secretboxXSalsa20Poly1305(plain, nonce, key);
+check('secretbox 密文（偏移 32）', sb.cipher.toString('hex'), CT);
+check('secretbox MAC', sb.mac.toString('hex'), MAC);
 
 /* ---- 2) RFC 8439 §2.5.2 Poly1305 ---- */
 const pKey = Buffer.from('85d6be7857556d337f4452fe42d506a80103808afb0db2fd4abff6af4149f51b', 'hex');

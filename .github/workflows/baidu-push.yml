@@ -1,21 +1,24 @@
-name: Baidu Push
+name: 百度主动推送
 
 on:
-  push:
-    paths:
-      - '.github/workflows/baidu-push.yml'
+  # 只保留定时与手动触发：push 触发会白白消耗每日配额
   workflow_dispatch:
+    inputs:
+      limit:
+        description: '本次推送条数上限（百度新站每日配额 10 条）'
+        required: false
+        default: '10'
   schedule:
-    # 每周一 09:00（北京时间）跑一次全量检查
-    - cron: '0 1 * * 1'
+    # 每天 08:10（北京时间）推送当日配额
+    - cron: '10 0 * * *'
 
 concurrency:
   group: baidu-push
   cancel-in-progress: true
 
 jobs:
-  check:
-    name: 校验 cases.json 与全部案例报告
+  push:
+    name: 向百度站长提交 sitemap 中的新 URL
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,7 +27,43 @@ jobs:
         with:
           node-version: '20'
 
+      - name: 恢复推送进度
+        uses: actions/cache/restore@v4
+        with:
+          path: .baidu-push-state.json
+          key: baidu-push-state-${{ github.run_id }}
+          restore-keys: |
+            baidu-push-state-
+
       - name: 推送
         env:
           BAIDU_TOKEN: ${{ secrets.BAIDU_TOKEN }}
-        run: node scripts/baidu-push.js
+          PUSH_LIMIT: ${{ inputs.limit || '10' }}
+        run: |
+          set -o pipefail
+          node scripts/baidu-push.js --limit "$PUSH_LIMIT" | tee /tmp/push.log
+
+      - name: 持久化推送进度
+        if: always()
+        run: |
+          # 无状态文件时补一个空壳，保证 cache/save 不因缺文件而失败
+          [ -f .baidu-push-state.json ] || echo '{"pushed":[],"dates":{}}' > .baidu-push-state.json
+
+      - name: 写入缓存
+        if: always()
+        continue-on-error: true
+        uses: actions/cache/save@v4
+        with:
+          path: .baidu-push-state.json
+          key: baidu-push-state-${{ github.run_id }}
+
+      - name: 写入 Job Summary
+        if: always()
+        run: |
+          {
+            echo '## 百度主动推送'
+            echo ''
+            echo '```'
+            head -c 20000 /tmp/push.log
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
