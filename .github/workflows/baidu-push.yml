@@ -1,4 +1,4 @@
-name: 百度主动推送
+name: Baidu Push
 
 on:
   push:
@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   push:
-    name: 提交 sitemap URL 到百度站长
+    name: Push sitemap URLs to Baidu
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
