@@ -9,8 +9,11 @@ on:
         required: false
         default: '10'
   schedule:
-    # 每天 08:10（北京时间）推送当日配额
-    - cron: '10 0 * * *'
+    # 每天 UTC 22:10（北京时间 06:10）推送当日配额。
+    # GitHub Actions 的 cron 触发常有数小时延迟（实测首次触发延迟约 8 小时），
+    # 故把目标时间提前到早晨，留出缓冲，避免延迟后跨过北京时间日切
+    # （配额按北京时间 00:00 重置，跨日会导致刚推完就判定为「今日已用尽」）。
+    - cron: '10 22 * * *'
 
 concurrency:
   group: baidu-push
@@ -30,6 +33,9 @@ jobs:
         with:
           node-version: '20'
 
+      - name: 备份仓库中的推送状态
+        run: cp .baidu-push-state.json /tmp/state-repo.json
+
       - name: 恢复推送进度
         uses: actions/cache/restore@v4
         with:
@@ -37,6 +43,15 @@ jobs:
           key: baidu-push-state-${{ github.run_id }}
           restore-keys: |
             baidu-push-state-
+
+      - name: 合并仓库与缓存中的推送状态
+        run: |
+          # cache 的 restore-keys 回溯命中的是「最近创建」的条目，可能比仓库里
+          # 回写的状态更旧（例：仓库已记 20 条，缓存仍是 10 条）。若直接以缓存
+          # 覆盖仓库状态，会重复提交已推过的 URL、白白浪费每日配额。
+          # 故以仓库状态为基准，取两者的并集：既不丢已推记录，也不重复提交。
+          set -o pipefail
+          node scripts/merge-push-state.js /tmp/state-repo.json .baidu-push-state.json
 
       - name: 推送
         env:
