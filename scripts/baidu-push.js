@@ -18,24 +18,25 @@
 'use strict';
 
 const fs = require('fs');
-const path = require('path');
 const http = require('http');
 const https = require('https');
 
-const ROOT = path.resolve(__dirname, '..');
-const SITE = path.join(ROOT, 'site');
-const SITEMAP = path.join(SITE, 'sitemap.xml');
-const STATE_FILE = path.join(ROOT, '.baidu-push-state.json');
+const shared = require('./lib/baidu-shared');
+const SITE_URL = shared.SITE_URL;
+const SITE_PARAM = shared.SITE_PARAM;
+const SITEMAP = shared.SITEMAP;
+const DAILY_LIMIT = shared.DAILY_LIMIT;
+const readSitemap = shared.readSitemap;
+const prioritize = shared.prioritize;
+const loadState = shared.loadState;
+const saveState = shared.saveState;
+const today = shared.today;
 
-const SITE_URL = 'https://opc-story.top';
-/* 百度提交接口的 site 参数需为裸域（不带协议），否则返回 site init fail */
-const SITE_PARAM = 'opc-story.top';
 /* token 只从环境变量读取：
    - CI 中由 GitHub Actions Secret BAIDU_TOKEN 注入
    - 本地可用 `BAIDU_TOKEN=xxx node scripts/baidu-push.js`
    仓库为公开仓库，故不再内置默认 token */
 const TOKEN = process.env.BAIDU_TOKEN;
-const DAILY_LIMIT = 10;
 
 /* ---------- 参数 ---------- */
 const args = process.argv.slice(2);
@@ -49,85 +50,7 @@ const reset = args.indexOf('--reset') >= 0;
 /* 手工推送过或从其它途径消耗配额时，用 --remain 告知服务端真实剩余 */
 const remainOverride = getArg('--remain') !== null ? parseInt(getArg('--remain'), 10) : null;
 
-/* ---------- 读取 sitemap ---------- */
-function readSitemap() {
-  const xml = fs.readFileSync(SITEMAP, 'utf8');
-  const urls = [];
-  const re = /<loc>([^<]+)<\/loc>/g;
-  let m;
-  while ((m = re.exec(xml)) !== null) urls.push(m[1].trim());
-  return urls;
-}
-
-/**
- * 优先级排序：
- * 1) 站点主页与核心聚合页
- * 2) 案例报告页（按 sitemap 中 lastmod 从新到旧）
- * 3) 长青说明页
- */
-function prioritize(urls, xml) {
-  const lastmod = {};
-  const re = /<url><loc>([^<]+)<\/loc><lastmod>([^<]+)<\/lastmod>/g;
-  let m;
-  while ((m = re.exec(xml)) !== null) lastmod[m[1].trim()] = m[2].trim();
-
-  const isCore = function (u) {
-    return [
-      SITE_URL + '/',
-      SITE_URL + '/all',
-      SITE_URL + '/insights/',
-    ].indexOf(u) >= 0;
-  };
-  const isGuide = function (u) {
-    return ['/what-is-opc/', '/method/', '/data-notes/'].some(function (p) {
-      return u.endsWith(p);
-    });
-  };
-
-  return urls.slice().sort(function (a, b) {
-    const score = function (u) {
-      if (isCore(u)) return 0;
-      if (u.indexOf('/report/') >= 0) return 1;
-      if (isGuide(u)) return 2;
-      return 3;
-    };
-    const d = score(a) - score(b);
-    if (d !== 0) return d;
-    /* 同组内 lastmod 新的优先 */
-    const la = lastmod[a] || '';
-    const lb = lastmod[b] || '';
-    if (la !== lb) return lb < la ? -1 : 1;
-    return a < b ? -1 : 1;
-  });
-}
-
-/* ---------- 状态 ---------- */
-function loadState() {
-  if (!fs.existsSync(STATE_FILE)) return { pushed: [], dates: {}, invalid: [] };
-  try {
-    const s = JSON.parse(fs.readFileSync(STATE_FILE, 'utf8'));
-    if (!Array.isArray(s.pushed)) s.pushed = [];
-    if (!s.dates) s.dates = {};
-    if (!Array.isArray(s.invalid)) s.invalid = [];
-    return s;
-  } catch (e) {
-    return { pushed: [], dates: {}, invalid: [] };
-  }
-}
-
-function saveState(state) {
-  fs.writeFileSync(STATE_FILE, JSON.stringify(state, null, 2) + '\n');
-}
-
-/**
- * 配额日切基准日（北京时间）。
- * 百度站长的每日配额按北京时间 00:00 重置，而 new Date().toISOString()
- * 取的是 UTC 日期：在北京时间 00:00–08:00 区间两者相差一天，会误判
- * “今日配额已用尽” 而空跑。故统一用 UTC+8 的日期作为配额日。
- */
-function today() {
-  return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
-}
+/* ---------- 读取 sitemap / 状态：见 scripts/lib/baidu-shared.js ---------- */
 
 /* ---------- 推送 ---------- */
 /**

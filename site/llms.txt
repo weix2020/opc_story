@@ -15,6 +15,7 @@
 > - 关于本站（我们是谁、案例如何入选、数据从哪来）：https://opc-story.top/about/
 > - 联系我们（勘误、授权、合作）：https://opc-story.top/contact/
 > - 隐私政策（收集什么、第三方 Cookie 与广告）：https://opc-story.top/privacy/
+> - 百度收录进度（主动推送状态、每日配额与预计完成时间）：https://opc-story.top/push-status/
 > 方法论（建议优先阅读）：
 > - 什么是 OPC（定义与判定标准）：https://opc-story.top/what-is-opc/
 > - 信源核验标准（A-/B+/B 分级与流程）：https://opc-story.top/method/

@@ -16,6 +16,9 @@ concurrency:
   group: baidu-push
   cancel-in-progress: true
 
+permissions:
+  contents: write
+
 jobs:
   push:
     name: 向百度站长提交 sitemap 中的新 URL
@@ -56,6 +59,28 @@ jobs:
         with:
           path: .baidu-push-state.json
           key: baidu-push-state-${{ github.run_id }}
+
+      - name: 生成站内进度数据
+        if: always()
+        run: node scripts/build-push-status.js
+
+      - name: 回写推送状态与进度数据
+        if: always()
+        continue-on-error: true
+        run: |
+          # 状态文件与站内进度数据回写仓库，站点上的「收录进度」页随之自动更新。
+          # 回写失败不影响本次推送结果，故 continue-on-error。
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .baidu-push-state.json site/data/push-status.json
+          if git diff --staged --quiet; then
+            echo "无变化，无需提交。"
+            exit 0
+          fi
+          git commit -m "chore: 更新百度主动推送进度 $(date -u +%Y-%m-%d)"
+          # 期间可能有其它提交，rebase 后再推
+          git pull --rebase origin main
+          git push origin HEAD:main
 
       - name: 写入 Job Summary
         if: always()

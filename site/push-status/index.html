@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>百度收录进度 · 主动推送状态与排期 · OPC Story</title>
+<meta name="description" content="OPC Story 的百度主动推送实时进度：已推送 URL 数、待推送数、每日配额使用情况、按日推送记录与预计完成时间。数据由自动化流程每日更新。">
+<link rel="canonical" href="https://opc-story.top/push-status/">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="百度收录进度 · 主动推送状态与排期">
+<meta property="og:description" content="已推送 URL 数、待推送数、每日配额使用情况与预计完成时间。数据由自动化流程每日更新。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://opc-story.top/push-status/">
+<meta property="og:image" content="https://opc-story.top/og/push-status.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="百度收录进度">
+<meta property="og:site_name" content="OPC Story">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="百度收录进度 · 主动推送状态与排期">
+<meta name="twitter:image" content="https://opc-story.top/og/push-status.jpg">
+<link rel="icon" href="../favicon.svg">
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X58DBX1NCM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag("js", new Date());
+gtag("config", "G-X58DBX1NCM");
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebPage","name":"百度收录进度 · 主动推送状态与排期","description":"OPC Story 的百度主动推送实时进度：已推送 URL 数、待推送数、每日配额使用情况、按日推送记录与预计完成时间。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"OPC Story","url":"https://opc-story.top/"},"datePublished":"2026-11-27","dateModified":"2026-11-27"},
+{"@type":"BreadcrumbList","itemListProperty":[],"itemListElement":[{"@type":"ListItem","position":1,"name":"案例墙","item":"https://opc-story.top/"},{"@type":"ListItem","position":2,"name":"百度收录进度","item":"https://opc-story.top/push-status/"}]}
+]}
+</script>
+<style>*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"PingFang SC","Microsoft YaHei",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafbfc;color:#2c3e50;line-height:1.85;font-size:15.5px}
+.hero{background:linear-gradient(135deg,#0a1f3d 0%,#1e3a5f 55%,#c9a961 100%);color:#fff;padding:56px 24px 46px;text-align:center}
+.hero .m{font-size:12px;letter-spacing:3px;opacity:.8;margin-bottom:16px}
+.hero h1{font-size:38px;font-weight:800;line-height:1.3;margin-bottom:12px}
+.hero p{font-size:15.5px;opacity:.9;max-width:740px;margin:0 auto}
+.wrap{max-width:860px;margin:0 auto;padding:0 24px 70px}
+.crumb{font-size:13px;color:#8b97a6;margin:26px 0 30px}
+.crumb a{color:#2980b9;text-decoration:none}
+.lead{font-size:17px;color:#3c4c5e;border-left:4px solid #c9a961;padding-left:18px;margin-bottom:30px}
+h2{font-size:24px;color:#1e3a5f;margin:40px 0 14px;padding-bottom:10px;border-bottom:2px solid #e3e8ef;font-weight:800}
+h3{font-size:17.5px;color:#1e3a5f;margin:24px 0 8px;font-weight:700}
+p{margin-bottom:14px}
+ul,ol{margin:0 0 16px 22px}
+li{margin-bottom:8px}
+a{color:#1e6ba8}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:18px 0;background:#fff}
+th{background:#1e3a5f;color:#fff;text-align:left;padding:10px 12px;font-size:13.5px;font-weight:600}
+td{padding:9px 12px;border-bottom:1px solid #edf0f4;vertical-align:top}
+tr:nth-child(even) td{background:#f7f9fb}
+.box{border-left:4px solid;border-radius:4px;padding:16px 20px;margin:20px 0;font-size:14.8px}
+.box.note{background:#fdf9ef;border-color:#c9a961}
+.box.warn{background:#fdf1f0;border-color:#c0392b}
+.box.info{background:#f0f7fb;border-color:#2980b9}
+.box b{color:#1e3a5f}
+.stat{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e3e8ef;border:1px solid #e3e8ef;margin:24px 0;border-radius:4px;overflow:hidden}
+.stat div{background:#fff;padding:16px 10px;text-align:center}
+.stat .v{font-size:24px;font-weight:800;color:#1e3a5f;line-height:1.3}
+.stat .k{font-size:12px;color:#6b7a8c;margin-top:4px}
+.bar{height:12px;background:#e3e8ef;border-radius:6px;overflow:hidden;margin:10px 0 6px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,#c9a961,#1e3a5f);border-radius:6px;transition:width .6s ease}
+.bar-note{display:flex;justify-content:space-between;font-size:13px;color:#6b7a8c}
+.more{background:#f4f6f9;border-radius:6px;padding:20px 24px;margin:36px 0 0}
+.more h3{margin-top:0}
+.more a{display:block;padding:6px 0;text-decoration:none;font-weight:600}
+.err{background:#fdf1f0;border-left:4px solid #c0392b;padding:14px 18px;border-radius:4px;color:#8b2f24;font-size:14.5px;display:none}
+footer{border-top:2px solid #1e3a5f;margin-top:44px;padding-top:22px;text-align:center;color:#8b97a6;font-size:12.5px;line-height:2}
+footer a{color:#2980b9;text-decoration:none}
+code{background:#f0f3f7;padding:1px 5px;border-radius:3px;font-size:13px}
+@media(max-width:720px){.hero h1{font-size:27px}.hero{padding:40px 18px 34px}.wrap{padding:0 16px 50px}h2{font-size:21px}table{font-size:13px}.stat{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="m">OPC STORY · PUSH STATUS</div>
+  <h1>百度收录进度</h1>
+  <p>主动推送的实时状态：已提交多少、还剩多少、什么时候推完</p>
+</div>
+<div class="wrap">
+  <div class="crumb"><a href="/">← 返回案例墙</a> · <a href="/sitemap.xml">站点地图</a> · <a href="/about/">关于本站</a> · <a href="/contact/">联系我们</a></div>
+
+  <p class="lead">本站通过百度站长「链接提交 · 普通收录」的主动推送接口提交新页面。新站每日配额为 10 条，因此全部页面需要分多日推完。本页数据由自动化流程每日更新，无需人工干预。</p>
+
+  <div class="err" id="err">进度数据加载失败，请刷新页面重试。所需的 <code>/data/push-status.json</code> 未返回。</div>
+
+  <div class="stat" id="stat">
+    <div><div class="v" id="s-pushed">—</div><div class="k">已推送 URL</div></div>
+    <div><div class="v" id="s-total">—</div><div class="k">sitemap 总数</div></div>
+    <div><div class="v" id="s-pending">—</div><div class="k">待推送</div></div>
+    <div><div class="v" id="s-days">—</div><div class="k">预计还需天数</div></div>
+  </div>
+
+  <div id="bar-wrap" style="display:none">
+    <div class="bar"><i id="bar" style="width:0"></i></div>
+    <div class="bar-note"><span id="bar-left">—</span><span id="bar-right">—</span></div>
+  </div>
+
+  <h2 id="daily">一、按日推送记录</h2>
+  <table>
+    <thead><tr><th>日期</th><th>当日提交条数</th><th>说明</th></tr></thead>
+    <tbody id="daily-body">
+      <tr><td colspan="3">加载中…</td></tr>
+    </tbody>
+  </table>
+  <p>每日配额按<b>北京时间 00:00</b> 重置。提交失败的条目不会占用配额，会在次日自动重试，因此实际收录进度不会因失败而落后。</p>
+
+  <h2 id="next">二、下一批将推送的页面</h2>
+  <table>
+    <thead><tr><th>#</th><th>URL</th><th>类型</th></tr></thead>
+    <tbody id="next-body">
+      <tr><td colspan="3">加载中…</td></tr>
+    </tbody>
+  </table>
+  <p>推送顺序为：站点主页与核心聚合页 → 案例报告页（按最近更新优先）→ 长青说明页。</p>
+
+  <h2 id="how">三、我们做了什么</h2>
+  <ul>
+    <li><b>主动推送。</b>新页面上线后次日自动提交给百度，不依赖被抓取才发现。</li>
+    <li><b>不重复提交。</b>已提交过的 URL 记录在状态文件中，不会反复占用配额；被判非法的条目会被排除出队列。</li>
+    <li><b>配额用满即停。</b>服务端返回的剩余额度是唯一约束，脚本会探测真实余额后精确推完，不浪费也不越限。</li>
+    <li><b>全过程留痕。</b>推送状态文件与本页数据都提交在公开仓库中，可逐日核对。</li>
+  </ul>
+  <div class="box info">
+    <b>关于收录时间：</b>提交到百度之后，何时被抓取与收录由百度决定，通常在数天到数周内不等，站长后台可以查看更细的索引量数据。本页只反映「已提交」的数量，不等同于「已收录」的数量。
+  </div>
+
+  <div class="more">
+    <h3>相关页面</h3>
+    <a href="/sitemap.xml">站点地图 · 全部 119 个页面的清单</a>
+    <a href="/data/cases.json">案例数据集 · 结构化 JSON</a>
+    <a href="/data/sources.json">信源台账 · 1,247 条信源元数据</a>
+    <a href="/insights/">数据洞察 · 赛道分布与核验强度</a>
+    <a href="/method/">信源核验标准 · 五步流程与三种核验等级</a>
+    <a href="/about/">关于本站 · 我们是谁、数据从哪来</a>
+  </div>
+
+  <footer>
+    <a href="/">← 返回「国内 AI 一人公司案例墙」</a><br>
+    OPC Story · 收录 110 例 · 数据检索截止 2026-11-26 · 所有经营数据标注口径，不构成投资建议
+  </footer>
+</div>
+<script>
+(function () {
+  var errEl = document.getElementById('err');
+  function fail(msg) {
+    errEl.style.display = 'block';
+    errEl.textContent = '进度数据加载失败' + (msg ? '：' + msg : '，请刷新页面重试。');
+  }
+  function kindOf(u) {
+    if (u.indexOf('/report/') >= 0) return '案例报告';
+    if (/\/(what-is-opc|method|data-notes|about|contact|privacy)\/$/.test(u)) return '说明页';
+    if (/\/(insights)\/$/.test(u)) return '数据页';
+    if (/\/$/.test(u) || /\/all$/.test(u)) return '核心页';
+    return '其它';
+  }
+  fetch('../data/push-status.json')
+    .then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    })
+    .then(function (j) {
+      var p = j.progress || {};
+      document.getElementById('s-pushed').textContent = p.pushed_total != null ? p.pushed_total : '—';
+      document.getElementById('s-total').textContent = p.sitemap_total != null ? p.sitemap_total : '—';
+      document.getElementById('s-pending').textContent = p.pending_total != null ? p.pending_total : '—';
+      document.getElementById('s-days').textContent = p.days_left != null ? p.days_left : '—';
+
+      var w = document.getElementById('bar-wrap');
+      w.style.display = 'block';
+      var pct = p.percent != null ? p.percent : 0;
+      document.getElementById('bar').style.width = Math.max(0, Math.min(100, pct)) + '%';
+      document.getElementById('bar-left').textContent = '已完成 ' + pct + '%';
+      document.getElementById('bar-right').textContent =
+        '今日已提交 ' + (p.pushed_today != null ? p.pushed_today : '—') +
+        ' / ' + (p.daily_limit != null ? p.daily_limit : '—') + ' 条配额';
+
+      var body = document.getElementById('daily-body');
+      var rows = j.daily || [];
+      if (!rows.length) {
+        body.innerHTML = '<tr><td colspan="3">暂无推送记录</td></tr>';
+      } else {
+        body.innerHTML = rows.slice().reverse().map(function (d) {
+          var note = d.date === j.meta.quota_date ? '当日配额' : '已归档';
+          return '<tr><td>' + d.date + '</td><td>' + d.count + ' 条</td><td>' + note + '</td></tr>';
+        }).join('');
+      }
+
+      var nb = document.getElementById('next-body');
+      var next = j.next_batch || [];
+      if (!next.length) {
+        nb.innerHTML = '<tr><td colspan="3">全部 URL 均已提交</td></tr>';
+      } else {
+        nb.innerHTML = next.map(function (u, i) {
+          var href = u.replace('https://opc-story.top', '');
+          return '<tr><td>' + (i + 1) + '</td><td><a href="' + href + '">' + u + '</a></td><td>' + kindOf(u) + '</td></tr>';
+        }).join('');
+      }
+    })
+    .catch(function (e) { fail(e && e.message ? e.message : ''); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+{
+  "meta": {
+    "generated_at": "2026-11-27",
+    "site": "https://opc-story.top",
+    "quota_date": "2026-11-27"
+  },
+  "progress": {
+    "sitemap_total": 120,
+    "pushed_total": 20,
+    "pending_total": 100,
+    "invalid_total": 0,
+    "daily_limit": 10,
+    "pushed_today": 10,
+    "remaining_quota": 0,
+    "days_left": 10,
+    "percent": 16.7
+  },
+  "daily": [
+    {
+      "date": "2026-11-26",
+      "count": 10
+    },
+    {
+      "date": "2026-11-27",
+      "count": 10
+    }
+  ],
+  "next_batch": [
+    "https://opc-story.top/report/kre-ai/",
+    "https://opc-story.top/report/mars-wave/",
+    "https://opc-story.top/report/shouyi-compute/",
+    "https://opc-story.top/report/shuoshu-community/",
+    "https://opc-story.top/report/smart-money/",
+    "https://opc-story.top/report/suanli-yunchao/",
+    "https://opc-story.top/report/umi-ocr/",
+    "https://opc-story.top/report/wall-ball-bag/",
+    "https://opc-story.top/report/xu-fei-manju/",
+    "https://opc-story.top/report/yizhang-panda/"
+  ]
+}

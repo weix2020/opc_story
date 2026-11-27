@@ -22,6 +22,8 @@ const ROOT = path.resolve(__dirname, '..');
 const CASES_FILE = path.join(ROOT, 'site/data/cases.json');
 const LEDGER_FILE = path.join(ROOT, 'site/data/sources.json');
 const REPORT_DIR = path.join(ROOT, 'site/report');
+const PUSH_STATUS_FILE = path.join(ROOT, 'site/data/push-status.json');
+const SITEMAP_FILE = path.join(ROOT, 'site/sitemap.xml');
 const TRACKS = ['作品型', '内容创作', '垂直应用', '营销电商', '开发者工具'];
 const VERIFICATIONS = ['verified', 'cross', 'partial'];
 const JSON_OUT = process.argv.includes('--json');
@@ -253,6 +255,36 @@ function main() {
         info('*', 'uncited', '38 条未逐句引用的信源已标注为同稿转载/背景对照资料');
       }
     }
+  }
+
+  // 7.6 百度推送进度与 sitemap 口径一致
+  if (fs.existsSync(PUSH_STATUS_FILE) && fs.existsSync(SITEMAP_FILE)) {
+    const ps = JSON.parse(fs.readFileSync(PUSH_STATUS_FILE, 'utf8'));
+    const sitemapXml = fs.readFileSync(SITEMAP_FILE, 'utf8');
+    const sitemapUrls = (sitemapXml.match(/<loc>([^<]+)<\/loc>/g) || [])
+      .map(function (m) { return m.replace(/<\/?loc>/g, '').trim(); });
+
+    const prog = ps.progress || {};
+    if (prog.sitemap_total !== sitemapUrls.length) {
+      err('*', 'push-status', 'push-status.json 的 sitemap_total(' + prog.sitemap_total +
+        ') 与 sitemap.xml 实际 URL 数(' + sitemapUrls.length + ') 不一致，请重新运行 build-push-status.js');
+    }
+    if (prog.pushed_total + prog.pending_total + prog.invalid_total !== prog.sitemap_total) {
+      err('*', 'push-status', '已推(' + prog.pushed_total + ') + 待推(' + prog.pending_total +
+        ') + 非法(' + prog.invalid_total + ') ≠ 总数(' + prog.sitemap_total + ')');
+    }
+    /* 进度页本身必须被 sitemap 收录，否则不会被推送给百度 */
+    if (sitemapUrls.indexOf('https://opc-story.top/push-status/') < 0) {
+      err('*', 'push-status', 'sitemap.xml 未收录 /push-status/ 页面');
+    }
+    /* next_batch 里的 URL 必须真实存在于 sitemap，避免推送无效地址 */
+    (ps.next_batch || []).forEach(function (u) {
+      if (sitemapUrls.indexOf(u) < 0) {
+        err('*', 'push-status', 'next_batch 中的 URL 不在 sitemap 内：' + u);
+      }
+    });
+  } else {
+    warn('*', 'push-status', '未找到 site/data/push-status.json，跳过推送进度校验（运行 node scripts/build-push-status.js 生成）');
   }
 
   // 8. 汇总输出
