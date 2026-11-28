@@ -46,7 +46,7 @@ function wan(v) {
 
 /* ============ all.html ============ */
 {
-  const f = path.join(SITE, 'all.html');
+  const f = path.join(SITE, 'all', 'index.html');
   let h = fs.readFileSync(f, 'utf8');
 
   h = h.replace(/收录 100 个中国 AI 一人公司案例/g, '收录 ' + TOTAL + ' 个中国 AI 一人公司案例');
@@ -152,7 +152,7 @@ PAGES.forEach(function (p) {
       '$1' + srcData.meta.total_sources.toLocaleString('en-US') + '$2'],
     [/(：)[\d,]+( 例未披露收入)/g, '$1' + (TOTAL - withRev.length) + '$2'],
   ];
-  const files = ['all.html', 'method/index.html', 'what-is-opc/index.html', 'data-notes/index.html', 'insights/index.html', 'index.html', 'llms.txt', 'llms-full.txt'];
+  const files = ['all/index.html', 'method/index.html', 'what-is-opc/index.html', 'data-notes/index.html', 'insights/index.html', 'index.html', 'llms.txt', 'llms-full.txt'];
   files.forEach(function (rel) {
     const f = path.join(SITE, rel);
     if (!fs.existsSync(f)) return;

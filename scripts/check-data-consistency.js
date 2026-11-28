@@ -24,6 +24,7 @@ const LEDGER_FILE = path.join(ROOT, 'site/data/sources.json');
 const REPORT_DIR = path.join(ROOT, 'site/report');
 const PUSH_STATUS_FILE = path.join(ROOT, 'site/data/push-status.json');
 const SITEMAP_FILE = path.join(ROOT, 'site/sitemap.xml');
+const SITE_DIR = path.join(ROOT, 'site');
 const TRACKS = ['作品型', '内容创作', '垂直应用', '营销电商', '开发者工具'];
 const VERIFICATIONS = ['verified', 'cross', 'partial'];
 const JSON_OUT = process.argv.includes('--json');
@@ -287,7 +288,57 @@ function main() {
     warn('*', 'push-status', '未找到 site/data/push-status.json，跳过推送进度校验（运行 node scripts/build-push-status.js 生成）');
   }
 
-  // 7.7 robots.txt：百度等中文搜索爬虫必须可抓取
+  // 7.7 sitemap 与实际页面一一对应，且末尾斜杠规则统一
+  {
+    const xml = fs.readFileSync(SITEMAP_FILE, 'utf8');
+    const urls = (xml.match(/<loc>([^<]+)<\/loc>/g) || [])
+      .map(function (m) { return m.replace(/<\/?loc>/g, '').trim(); });
+
+    /* 目录型页面必须带末尾斜杠：Cloudflare Pages 对目录 index.html 统一加斜杠，
+       写成无斜杠会让 Google 抓到后被 308，判定为「网页会重新定向」而不索引 */
+    urls.forEach(function (u) {
+      const p = u.replace('https://opc-story.top', '');
+      if (p === '/' || p === '') return;
+      if (p.indexOf('/report/') === 0) {
+        /* 报告页：必须以 / 结尾 */
+        if (p.charAt(p.length - 1) !== '/') {
+          err('*', 'sitemap', '报告页 URL 缺少末尾斜杠：' + u);
+        }
+        return;
+      }
+      /* 其它目录页同样必须带末尾斜杠 */
+      if (p.charAt(p.length - 1) !== '/') {
+        err('*', 'sitemap', '目录型页面 URL 缺少末尾斜杠（会被 308 判定为重新定向）：' + u);
+      }
+    });
+
+    /* sitemap 必须覆盖全部实际页面 */
+    const actual = [];
+    (function walk(dir) {
+      fs.readdirSync(dir).forEach(function (name) {
+        const p = path.join(dir, name);
+        if (fs.statSync(p).isDirectory()) {
+          if (name === 'node_modules' || name.startsWith('.')) return;
+          walk(p);
+        } else if (name === 'index.html') {
+          const rel = path.relative(SITE_DIR, p).replace(/index\.html$/, '');
+          actual.push('https://opc-story.top/' + rel);
+        }
+      });
+    })(SITE_DIR);
+    actual.forEach(function (u) {
+      if (urls.indexOf(u) < 0) {
+        err('*', 'sitemap', 'sitemap.xml 缺少页面：' + u);
+      }
+    });
+    urls.forEach(function (u) {
+      if (actual.indexOf(u) < 0) {
+        err('*', 'sitemap', 'sitemap.xml 中的 URL 没有对应页面：' + u);
+      }
+    });
+  }
+
+  // 7.8 robots.txt：百度等中文搜索爬虫必须可抓取
   {
     const robotsFile = path.join(ROOT, 'site/robots.txt');
     if (fs.existsSync(robotsFile)) {

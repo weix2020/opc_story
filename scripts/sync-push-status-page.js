@@ -7,7 +7,7 @@
  *   - site/llms.txt           顶部索引加入新页面
  *   - site/llms-full.txt      顶部索引加入新页面
  *   - site/index.html         侧边指南导航 + 页脚
- *   - site/all.html           页脚
+ *   - site/all/index.html    页脚
  *   - site/report 各报告页页脚
  *
  * 幂等：重复运行不会重复插入。
@@ -107,7 +107,7 @@ const LASTMOD = '2026-11-27';
 /* ---------- 4. all.html 与报告页页脚 ---------- */
 {
   const targets = [];
-  const allFile = path.join(SITE, 'all.html');
+  const allFile = path.join(SITE, 'all', 'index.html');
   if (fs.existsSync(allFile)) targets.push({ f: allFile, rel: '/push-status/' });
 
   if (fs.existsSync(REPORT_DIR)) {

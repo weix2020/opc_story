@@ -1,0 +1,44 @@
+name: GSC Sitemap
+
+on:
+  schedule:
+    # 每天 UTC 01:10（北京时间 09:10）重新提交一次站点地图。
+    # GitHub Actions 的 cron 常有数小时延迟，故提前到 UTC 01:00 触发，
+    # 给延迟留出缓冲。
+    - cron: '10 1 * * *'
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: '预留参数（当前脚本不使用）'
+        required: false
+        default: '1'
+
+concurrency:
+  group: gsc-submit
+  cancel-in-progress: true
+
+jobs:
+  submit:
+    name: 向 Google Search Console 提交站点地图
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 提交站点地图
+        env:
+          GSC_TOKEN: ${{ secrets.GSC_TOKEN }}
+          GSC_SITE_URL: 'https://opc-story.top/'
+          GSC_SITEMAP: 'https://opc-story.top/sitemap.xml'
+        run: |
+          if [ -z "$GSC_TOKEN" ]; then
+            echo "::warning::未配置 Secret GSC_TOKEN，跳过本次提交。"
+            exit 0
+          fi
+          node scripts/gsc-submit-sitemap.js
+
+      - name: 校验 robots.txt 对搜索引擎爬虫可抓取
+        run: node scripts/check-robots-crawlable.js

@@ -77,7 +77,7 @@ const PUB_ID = process.argv[2] || process.env.ADSEENSE_PUB_ID || 'ca-pub-0000000
 
 /* ---------- 2. all.html 页脚 ---------- */
 {
-  const f = path.join(SITE, 'all.html');
+  const f = path.join(SITE, 'all', 'index.html');
   let h = fs.readFileSync(f, 'utf8');
   if (h.indexOf('/privacy/') < 0) {
     h = h.replace(

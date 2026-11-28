@@ -63,18 +63,19 @@ jobs:
       - name: 校验 robots.txt 对搜索引擎爬虫可抓取
         run: node scripts/check-robots-crawlable.js --local
 
-      - name: 重建派生数据（bi.json / feed.json / 信源台账 / 推送进度）
+      - name: 重建派生数据（bi.json / feed.json / 信源台账 / 推送进度 / sitemap）
         run: |
           node scripts/build-source-ledger.js
           node scripts/build-bi.js
           node scripts/build-feed.js
           node scripts/build-push-status.js
+          node scripts/build-sitemap.js
 
       - name: 校验派生数据无漂移
         run: |
           set -o pipefail
-          git diff --exit-code -- site/data/bi.json site/data/sources.json site/feed.json site/data/push-status.json || {
-            echo '::error::派生数据与源数据不一致，请重新运行 build-bi.js / build-source-ledger.js / build-feed.js / build-push-status.js'
+          git diff --exit-code -- site/data/bi.json site/data/sources.json site/feed.json site/data/push-status.json site/sitemap.xml || {
+            echo '::error::派生数据与源数据不一致，请重新运行 build-bi.js / build-source-ledger.js / build-feed.js / build-push-status.js / build-sitemap.js'
             exit 1
           }
 
