@@ -27,20 +27,10 @@ const PAGE_PATH = '/push-status/';
 const PAGE_URL = 'https://opc-story.top' + PAGE_PATH;
 const LASTMOD = '2026-11-27';
 
-/* ---------- 1. sitemap.xml ---------- */
-{
-  const f = path.join(SITE, 'sitemap.xml');
-  let h = fs.readFileSync(f, 'utf8');
-  if (h.indexOf(PAGE_URL) < 0) {
-    const entry = '  <url><loc>' + PAGE_URL + '</loc><lastmod>' + LASTMOD +
-      '</lastmod><changefreq>daily</changefreq><priority>0.4</priority></url>\n';
-    h = h.replace('</urlset>', entry + '</urlset>');
-    fs.writeFileSync(f, h);
-    console.log('sitemap.xml：已收录 ' + PAGE_URL);
-  } else {
-    console.log('sitemap.xml：已收录，跳过');
-  }
-}
+/* ---------- 1. sitemap.xml ----------
+ * sitemap.xml 改由 scripts/build-sitemap.js 统一生成（按站点实际页面遍历），
+ * 新页面只要建成目录即自动收录，此处不再插入条目。 */
+console.log('sitemap.xml：由 build-sitemap.js 统一生成，本脚本不再插入');
 
 /* ---------- 2. llms.txt / llms-full.txt ---------- */
 {

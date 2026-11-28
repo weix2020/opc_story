@@ -135,23 +135,10 @@ if (fs.existsSync(path.join(SITE, 'ads.txt'))) {
   console.log('ads.txt：已写入 ' + PUB_ID);
 }
 
-/* ---------- 5. sitemap.xml ---------- */
-{
-  const f = path.join(SITE, 'sitemap.xml');
-  let h = fs.readFileSync(f, 'utf8');
-  const pages = [
-    { loc: 'https://opc-story.top/about/', pri: '0.6' },
-    { loc: 'https://opc-story.top/contact/', pri: '0.5' },
-    { loc: 'https://opc-story.top/privacy/', pri: '0.5' },
-  ];
-  pages.forEach(function (p) {
-    if (h.indexOf(p.loc) >= 0) return;
-    h = h.replace('</urlset>',
-      '  <url><loc>' + p.loc + '</loc><lastmod>' + TODAY + '</lastmod><changefreq>yearly</changefreq><priority>' + p.pri + '</priority></url>\n</urlset>');
-  });
-  fs.writeFileSync(f, h);
-  console.log('sitemap.xml：三个新页面已收录');
-}
+/* ---------- 5. sitemap.xml ----------
+ * sitemap.xml 改由 scripts/build-sitemap.js 统一生成（按站点实际页面遍历，
+ * lastmod 取内容真实变更日期），此处不再插入条目，避免两处来源不一致。 */
+console.log('sitemap.xml：由 build-sitemap.js 统一生成，本脚本不再插入');
 
 /* ---------- 6. llms.txt / llms-full.txt ---------- */
 {
