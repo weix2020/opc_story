@@ -1,0 +1,487 @@
+{
+  "meta": {
+    "generated_at": "2026-11-28"
+  },
+  "pages": {
+    "about/index.html": {
+      "fingerprint": "5f64901837df7e32",
+      "lastmod": "2026-11-26"
+    },
+    "all/index.html": {
+      "fingerprint": "937e06e220701acb",
+      "lastmod": "2026-11-28"
+    },
+    "contact/index.html": {
+      "fingerprint": "f25e909c4b75f8de",
+      "lastmod": "2026-11-26"
+    },
+    "data-notes/index.html": {
+      "fingerprint": "09b218a6871b0331",
+      "lastmod": "2026-11-21"
+    },
+    "index.html": {
+      "fingerprint": "584423dd93befe5c",
+      "lastmod": "2026-11-27"
+    },
+    "insights/index.html": {
+      "fingerprint": "fc0ee1b3f3ba0cb6",
+      "lastmod": "2026-11-22"
+    },
+    "method/index.html": {
+      "fingerprint": "ec198f0d49867f13",
+      "lastmod": "2026-11-21"
+    },
+    "privacy/index.html": {
+      "fingerprint": "16f24e8059a04270",
+      "lastmod": "2026-11-26"
+    },
+    "push-status/index.html": {
+      "fingerprint": "7fdd69c0e81a49fd",
+      "lastmod": "2026-11-27"
+    },
+    "report/aichu-dai/index.html": {
+      "fingerprint": "4364e178ffd63fb0",
+      "lastmod": "2026-11-25"
+    },
+    "report/aiclient-2-api/index.html": {
+      "fingerprint": "4f9305deccee447d",
+      "lastmod": "2026-11-18"
+    },
+    "report/aixuanxiaoniao/index.html": {
+      "fingerprint": "4dec6babae8d4c31",
+      "lastmod": "2026-11-18"
+    },
+    "report/anhui-xiaomujiang/index.html": {
+      "fingerprint": "b27df6a3aa90f9af",
+      "lastmod": "2026-11-18"
+    },
+    "report/avante-nvim/index.html": {
+      "fingerprint": "cb7de63a1cf2f646",
+      "lastmod": "2026-11-18"
+    },
+    "report/baidaizi/index.html": {
+      "fingerprint": "68100187a7dce142",
+      "lastmod": "2026-11-18"
+    },
+    "report/bettafish/index.html": {
+      "fingerprint": "95bcd6dc2f0aff41",
+      "lastmod": "2026-11-18"
+    },
+    "report/bibigpt/index.html": {
+      "fingerprint": "ae739bf4e3d33f5b",
+      "lastmod": "2026-11-18"
+    },
+    "report/bob-translate/index.html": {
+      "fingerprint": "3e20e4e726266652",
+      "lastmod": "2026-11-18"
+    },
+    "report/buzhengjing-yaojie/index.html": {
+      "fingerprint": "03f3d18ebc08ca19",
+      "lastmod": "2026-11-18"
+    },
+    "report/caileme/index.html": {
+      "fingerprint": "16954491fc55a271",
+      "lastmod": "2026-11-18"
+    },
+    "report/caiyanguess/index.html": {
+      "fingerprint": "11bbff8878d06dfe",
+      "lastmod": "2026-11-18"
+    },
+    "report/chaishao-kuajing/index.html": {
+      "fingerprint": "57bd20dbcf7fc420",
+      "lastmod": "2026-11-25"
+    },
+    "report/chali-na/index.html": {
+      "fingerprint": "ebb61ca70fa436f1",
+      "lastmod": "2026-11-18"
+    },
+    "report/chat-memo/index.html": {
+      "fingerprint": "07340589af676cac",
+      "lastmod": "2026-11-18"
+    },
+    "report/chatgpt-on-wechat/index.html": {
+      "fingerprint": "fc7d4facdb6ff72d",
+      "lastmod": "2026-11-18"
+    },
+    "report/chatgptbox/index.html": {
+      "fingerprint": "be5e3dad85da0218",
+      "lastmod": "2026-11-18"
+    },
+    "report/chatnio/index.html": {
+      "fingerprint": "4770f268aa84a34a",
+      "lastmod": "2026-11-18"
+    },
+    "report/chatwise/index.html": {
+      "fingerprint": "2efeedd331843908",
+      "lastmod": "2026-11-18"
+    },
+    "report/chenyuming/index.html": {
+      "fingerprint": "7b57c75b7b91fe32",
+      "lastmod": "2026-11-18"
+    },
+    "report/cherry-studio/index.html": {
+      "fingerprint": "12a454a97a331070",
+      "lastmod": "2026-11-18"
+    },
+    "report/chongsheng-tanglang/index.html": {
+      "fingerprint": "c44323072a1cc054",
+      "lastmod": "2026-11-18"
+    },
+    "report/claude-code-router/index.html": {
+      "fingerprint": "4f880e51e49b403b",
+      "lastmod": "2026-11-18"
+    },
+    "report/conghua-touyan/index.html": {
+      "fingerprint": "86e55cb5dd7f751f",
+      "lastmod": "2026-11-25"
+    },
+    "report/daisen-cloud/index.html": {
+      "fingerprint": "fe7d930fd9b1db88",
+      "lastmod": "2026-11-18"
+    },
+    "report/daozai-ecommerce/index.html": {
+      "fingerprint": "c46d0dd929bab468",
+      "lastmod": "2026-11-18"
+    },
+    "report/desktop-raid/index.html": {
+      "fingerprint": "448792bb7ad45603",
+      "lastmod": "2026-11-18"
+    },
+    "report/easydict/index.html": {
+      "fingerprint": "98dd866e529c6ef8",
+      "lastmod": "2026-11-18"
+    },
+    "report/emoease/index.html": {
+      "fingerprint": "8d5dd3d647beb5d5",
+      "lastmod": "2026-11-18"
+    },
+    "report/fapei-bianguan/index.html": {
+      "fingerprint": "6a8593110e6b224b",
+      "lastmod": "2026-11-18"
+    },
+    "report/feiyaozai/index.html": {
+      "fingerprint": "ab8477237c063b18",
+      "lastmod": "2026-11-18"
+    },
+    "report/gongchun/index.html": {
+      "fingerprint": "4ea08531200f0335",
+      "lastmod": "2026-11-18"
+    },
+    "report/gpt-academic/index.html": {
+      "fingerprint": "9c63db12c0bb4725",
+      "lastmod": "2026-11-18"
+    },
+    "report/gpt-sovits/index.html": {
+      "fingerprint": "45fb3532137e06c5",
+      "lastmod": "2026-11-18"
+    },
+    "report/guixu/index.html": {
+      "fingerprint": "f708f326a085108f",
+      "lastmod": "2026-11-18"
+    },
+    "report/hemu-tiktok/index.html": {
+      "fingerprint": "e6fd5134be22cc02",
+      "lastmod": "2026-11-18"
+    },
+    "report/heyi-manju/index.html": {
+      "fingerprint": "88875e43932681ec",
+      "lastmod": "2026-11-25"
+    },
+    "report/hivision-idphotos/index.html": {
+      "fingerprint": "1845b6613f826e05",
+      "lastmod": "2026-11-18"
+    },
+    "report/honghong/index.html": {
+      "fingerprint": "a764a218e85fb6c0",
+      "lastmod": "2026-11-18"
+    },
+    "report/huluobo-xuer/index.html": {
+      "fingerprint": "d3fdc5f7e2244761",
+      "lastmod": "2026-11-18"
+    },
+    "report/humi-tech/index.html": {
+      "fingerprint": "00d0653601bdcb7d",
+      "lastmod": "2026-11-18"
+    },
+    "report/hupocad/index.html": {
+      "fingerprint": "342f4e94b73440c9",
+      "lastmod": "2026-11-18"
+    },
+    "report/idoubi/index.html": {
+      "fingerprint": "8cd60d58d4c93442",
+      "lastmod": "2026-11-18"
+    },
+    "report/immersive-translate/index.html": {
+      "fingerprint": "4a12f06b7b1cd818",
+      "lastmod": "2026-11-18"
+    },
+    "report/justai-xiaojia/index.html": {
+      "fingerprint": "a5c958b182ac0d75",
+      "lastmod": "2026-11-18"
+    },
+    "report/ka-dian-rezero/index.html": {
+      "fingerprint": "cdc9daa800d544b9",
+      "lastmod": "2026-11-18"
+    },
+    "report/knock-ai/index.html": {
+      "fingerprint": "b33c2aceb9733263",
+      "lastmod": "2026-11-18"
+    },
+    "report/kre-ai/index.html": {
+      "fingerprint": "4f4f2ef1f2b139bd",
+      "lastmod": "2026-11-18"
+    },
+    "report/kuge-kanworld/index.html": {
+      "fingerprint": "99aebac4d952c8cd",
+      "lastmod": "2026-11-18"
+    },
+    "report/late-ming-reborn/index.html": {
+      "fingerprint": "9684b28d69753e59",
+      "lastmod": "2026-11-18"
+    },
+    "report/leadmore-ai/index.html": {
+      "fingerprint": "431d1f3ffc14ea84",
+      "lastmod": "2026-11-18"
+    },
+    "report/longgu-animation/index.html": {
+      "fingerprint": "18d85ba929341566",
+      "lastmod": "2026-11-25"
+    },
+    "report/lsaiah-music/index.html": {
+      "fingerprint": "f5a604a2d79ec5bf",
+      "lastmod": "2026-11-18"
+    },
+    "report/mars-wave/index.html": {
+      "fingerprint": "0e168de769842f82",
+      "lastmod": "2026-11-25"
+    },
+    "report/meiju-wuyu/index.html": {
+      "fingerprint": "01e6b5e92c99f9b5",
+      "lastmod": "2026-11-18"
+    },
+    "report/min-denghua/index.html": {
+      "fingerprint": "91b3444d1680b65b",
+      "lastmod": "2026-11-18"
+    },
+    "report/moneyprinter-turbo/index.html": {
+      "fingerprint": "217196ba92d50196",
+      "lastmod": "2026-11-18"
+    },
+    "report/mumu-ainovel/index.html": {
+      "fingerprint": "cec04c751626bb27",
+      "lastmod": "2026-11-18"
+    },
+    "report/new-api/index.html": {
+      "fingerprint": "4af5030f2fd64c63",
+      "lastmod": "2026-11-18"
+    },
+    "report/nextchat/index.html": {
+      "fingerprint": "ccb33479bc6b80c3",
+      "lastmod": "2026-11-18"
+    },
+    "report/nuxtpro/index.html": {
+      "fingerprint": "03826e0288508cce",
+      "lastmod": "2026-11-18"
+    },
+    "report/obsidian-copilot/index.html": {
+      "fingerprint": "33dc2a8bb871d04e",
+      "lastmod": "2026-11-18"
+    },
+    "report/one-api/index.html": {
+      "fingerprint": "61779065d8380130",
+      "lastmod": "2026-11-18"
+    },
+    "report/panghaoyang/index.html": {
+      "fingerprint": "30330caa5b9f9292",
+      "lastmod": "2026-11-18"
+    },
+    "report/paywallpro/index.html": {
+      "fingerprint": "5bf397c56cabf350",
+      "lastmod": "2026-11-18"
+    },
+    "report/pdf2zh/index.html": {
+      "fingerprint": "bf9cf9726a694876",
+      "lastmod": "2026-11-18"
+    },
+    "report/qiguang/index.html": {
+      "fingerprint": "0ceadc6d1ce0ee28",
+      "lastmod": "2026-11-18"
+    },
+    "report/qiuzhi-jingling/index.html": {
+      "fingerprint": "b743aed4ae6d524c",
+      "lastmod": "2026-11-18"
+    },
+    "report/raphael-ai/index.html": {
+      "fingerprint": "94b2af25fa522245",
+      "lastmod": "2026-11-18"
+    },
+    "report/redink/index.html": {
+      "fingerprint": "ad4926891074a988",
+      "lastmod": "2026-11-18"
+    },
+    "report/sakura-journey/index.html": {
+      "fingerprint": "cc8d99c4fae493c6",
+      "lastmod": "2026-11-18"
+    },
+    "report/shengxu-ai/index.html": {
+      "fingerprint": "b654e5c14a682660",
+      "lastmod": "2026-11-18"
+    },
+    "report/shouyi-compute/index.html": {
+      "fingerprint": "730ce2c47fafb72f",
+      "lastmod": "2026-11-25"
+    },
+    "report/shuoshu-community/index.html": {
+      "fingerprint": "79d8f3267a720ba5",
+      "lastmod": "2026-11-25"
+    },
+    "report/sifengrui/index.html": {
+      "fingerprint": "5711bf8ea1fe0b7a",
+      "lastmod": "2026-11-18"
+    },
+    "report/simen-ai/index.html": {
+      "fingerprint": "82815a5a56d6109f",
+      "lastmod": "2026-11-18"
+    },
+    "report/sitesfy/index.html": {
+      "fingerprint": "c768d0787973f6b0",
+      "lastmod": "2026-11-18"
+    },
+    "report/smart-money/index.html": {
+      "fingerprint": "5bda6d248ebc275c",
+      "lastmod": "2026-11-18"
+    },
+    "report/snowie-ai/index.html": {
+      "fingerprint": "d2c4883e87e01517",
+      "lastmod": "2026-11-18"
+    },
+    "report/suanli-yunchao/index.html": {
+      "fingerprint": "237f97e393a6293f",
+      "lastmod": "2026-11-25"
+    },
+    "report/sword-sect/index.html": {
+      "fingerprint": "6ddf25c808dd3bc9",
+      "lastmod": "2026-11-18"
+    },
+    "report/tanjiquan/index.html": {
+      "fingerprint": "7b75be8b60219339",
+      "lastmod": "2026-11-18"
+    },
+    "report/tata-pose/index.html": {
+      "fingerprint": "bb096542109dbea9",
+      "lastmod": "2026-11-18"
+    },
+    "report/tianzhiling/index.html": {
+      "fingerprint": "863aa98f65ba9d63",
+      "lastmod": "2026-11-18"
+    },
+    "report/umi-ocr/index.html": {
+      "fingerprint": "6f6febabc4f2ccda",
+      "lastmod": "2026-11-18"
+    },
+    "report/videolingo/index.html": {
+      "fingerprint": "cd343455d030ea4c",
+      "lastmod": "2026-11-18"
+    },
+    "report/wabo-tech/index.html": {
+      "fingerprint": "ed7073321fd00cfd",
+      "lastmod": "2026-11-18"
+    },
+    "report/wai-paper-phone/index.html": {
+      "fingerprint": "c5c004ce7dc7e268",
+      "lastmod": "2026-11-18"
+    },
+    "report/wall-ball-bag/index.html": {
+      "fingerprint": "5d93c73207745561",
+      "lastmod": "2026-11-25"
+    },
+    "report/wangteng-export/index.html": {
+      "fingerprint": "f5d3fa0b948ff1cf",
+      "lastmod": "2026-11-18"
+    },
+    "report/weizhishu/index.html": {
+      "fingerprint": "1f6eb6e853f35f66",
+      "lastmod": "2026-11-18"
+    },
+    "report/wushi-ai/index.html": {
+      "fingerprint": "0606300e22f7878f",
+      "lastmod": "2026-11-18"
+    },
+    "report/wutong-ai/index.html": {
+      "fingerprint": "438e1be2a9c5bd88",
+      "lastmod": "2026-11-18"
+    },
+    "report/xiaomao-light/index.html": {
+      "fingerprint": "5e591ed0bf565f6e",
+      "lastmod": "2026-11-18"
+    },
+    "report/xiaotianle/index.html": {
+      "fingerprint": "0f4e2d54dae7a049",
+      "lastmod": "2026-11-18"
+    },
+    "report/xingjing-engine/index.html": {
+      "fingerprint": "0b6f3adc427a011c",
+      "lastmod": "2026-11-18"
+    },
+    "report/xingzhi-tech/index.html": {
+      "fingerprint": "135d1693bce2a412",
+      "lastmod": "2026-11-18"
+    },
+    "report/xinyang-trade/index.html": {
+      "fingerprint": "f22f04c8ae0490a3",
+      "lastmod": "2026-11-18"
+    },
+    "report/xu-fei-manju/index.html": {
+      "fingerprint": "c7bf5e1e12b8af56",
+      "lastmod": "2026-11-18"
+    },
+    "report/yanbian-qingmei/index.html": {
+      "fingerprint": "5fa5ffbccd1a6a6a",
+      "lastmod": "2026-11-18"
+    },
+    "report/ye-chunjun/index.html": {
+      "fingerprint": "edeacc501ce9872f",
+      "lastmod": "2026-11-18"
+    },
+    "report/yijing-cards/index.html": {
+      "fingerprint": "b1b2eea9b89fb896",
+      "lastmod": "2026-11-18"
+    },
+    "report/yinxing-sanjie/index.html": {
+      "fingerprint": "ea549da203ebc8d7",
+      "lastmod": "2026-11-18"
+    },
+    "report/yizhang-panda/index.html": {
+      "fingerprint": "5150ef17e4b1e5b2",
+      "lastmod": "2026-11-18"
+    },
+    "report/youchai/index.html": {
+      "fingerprint": "fdb2746905c0cd79",
+      "lastmod": "2026-11-18"
+    },
+    "report/zhang-sir/index.html": {
+      "fingerprint": "984f516dfc2c419f",
+      "lastmod": "2026-11-18"
+    },
+    "report/zhang-zhengqian/index.html": {
+      "fingerprint": "ef9a4606cce28719",
+      "lastmod": "2026-11-18"
+    },
+    "report/zhongxin-shutong/index.html": {
+      "fingerprint": "72cd5cca72c43e4f",
+      "lastmod": "2026-11-18"
+    },
+    "report/zombie-cleaner/index.html": {
+      "fingerprint": "8e13d06788d22378",
+      "lastmod": "2026-11-18"
+    },
+    "report/zuowenshuo/index.html": {
+      "fingerprint": "3b42a502ac915bdc",
+      "lastmod": "2026-11-18"
+    },
+    "what-is-opc/index.html": {
+      "fingerprint": "6d0f3229846cd0e6",
+      "lastmod": "2026-11-21"
+    }
+  }
+}
