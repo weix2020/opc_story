@@ -5,12 +5,12 @@
   },
   "progress": {
     "sitemap_total": 120,
-    "pushed_total": 20,
-    "pending_total": 100,
+    "pushed_total": 30,
+    "pending_total": 90,
     "invalid_total": 0,
     "daily_limit": 10,
-    "days_left": 10,
-    "percent": 16.7
+    "days_left": 9,
+    "percent": 25
   },
   "daily": [
     {
@@ -20,18 +20,22 @@
     {
       "date": "2026-11-27",
       "count": 10
+    },
+    {
+      "date": "2026-11-28",
+      "count": 10
     }
   ],
   "next_batch": [
-    "https://opc-story.top/report/kre-ai/",
-    "https://opc-story.top/report/mars-wave/",
-    "https://opc-story.top/report/shouyi-compute/",
-    "https://opc-story.top/report/shuoshu-community/",
-    "https://opc-story.top/report/smart-money/",
-    "https://opc-story.top/report/suanli-yunchao/",
-    "https://opc-story.top/report/umi-ocr/",
-    "https://opc-story.top/report/wall-ball-bag/",
-    "https://opc-story.top/report/xu-fei-manju/",
-    "https://opc-story.top/report/yizhang-panda/"
+    "https://opc-story.top/report/zhongxin-shutong/",
+    "https://opc-story.top/report/zombie-cleaner/",
+    "https://opc-story.top/report/aiclient-2-api/",
+    "https://opc-story.top/report/anhui-xiaomujiang/",
+    "https://opc-story.top/report/avante-nvim/",
+    "https://opc-story.top/report/baidaizi/",
+    "https://opc-story.top/report/bibigpt/",
+    "https://opc-story.top/report/bob-translate/",
+    "https://opc-story.top/report/buzhengjing-yaojie/",
+    "https://opc-story.top/report/caileme/"
   ]
 }
