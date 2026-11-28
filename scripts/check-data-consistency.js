@@ -287,6 +287,21 @@ function main() {
     warn('*', 'push-status', '未找到 site/data/push-status.json，跳过推送进度校验（运行 node scripts/build-push-status.js 生成）');
   }
 
+  // 7.7 robots.txt：百度等中文搜索爬虫必须可抓取
+  {
+    const robotsFile = path.join(ROOT, 'site/robots.txt');
+    if (fs.existsSync(robotsFile)) {
+      const robots = fs.readFileSync(robotsFile, 'utf8');
+      /* 中文搜索引擎爬虫若被 Disallow，主动推送的页面不会被抓取收录 */
+      ['Baiduspider', 'Baiduspider-image', 'Baiduspider-news', 'Baiduspider-render', 'PetalBot'].forEach(function (ua) {
+        const re = new RegExp('User-agent:\\s*' + ua + '\\s*\\n\\s*Allow:\\s*/', 'i');
+        if (!re.test(robots)) {
+          err('*', 'robots', 'site/robots.txt 未显式放行 ' + ua + '，百度爬虫将拒绝抓取');
+        }
+      });
+    }
+  }
+
   // 8. 汇总输出
   const byCheck = function (list) {
     const m = {};

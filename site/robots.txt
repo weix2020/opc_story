@@ -30,23 +30,16 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-User-agent: Bytespider
-Allow: /
-
 User-agent: Amazonbot
 Allow: /
 
 User-agent: meta-externalagent
 Allow: /
 
-# 显式放行中文搜索引擎爬虫。
-# Cloudflare 的「托管内容」会在本文件开头注入
-#   User-agent: Baiduspider / Disallow: /
-#   User-agent: Baiduspider-image / Disallow: /
-#   User-agent: Bytespider / Disallow: /
-#   User-agent: PetalBot / Disallow: /
-# 若不在此覆盖，蜘蛛会按「同一 UA 取最严格规则」处理，导致百度无法抓取，
-# 主动推送的页面也就不会被收录。这里显式 Allow 以覆盖前面的 Disallow。
+# 放行中文搜索引擎爬虫。
+# Cloudflare 的「托管 robots.txt」会注入这些爬虫的 Disallow: /，
+# 不显式放行会导致百度无法抓取，主动推送的页面也就不会被收录。
+# 覆盖百度的全部蜘蛛变体：主蜘蛛、图片、新闻、渲染（PC 端主力）。
 
 User-agent: Baiduspider
 Allow: /
@@ -55,6 +48,9 @@ User-agent: Baiduspider-image
 Allow: /
 
 User-agent: Baiduspider-news
+Allow: /
+
+User-agent: Baiduspider-render
 Allow: /
 
 User-agent: Bytespider

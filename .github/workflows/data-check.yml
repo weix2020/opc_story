@@ -60,6 +60,9 @@ jobs:
           }
           cp /tmp/state.bak .baidu-push-state.json
 
+      - name: 校验 robots.txt 对搜索引擎爬虫可抓取
+        run: node scripts/check-robots-crawlable.js --local
+
       - name: 重建派生数据（bi.json / feed.json / 信源台账 / 推送进度）
         run: |
           node scripts/build-source-ledger.js
