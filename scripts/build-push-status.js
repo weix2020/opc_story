@@ -47,11 +47,14 @@ function main() {
   const state = shared.loadState();
   const p = shared.computeProgress(state, xml);
 
+  /* 只输出与状态文件、sitemap 强相关的字段。
+     「今日已推送 / 剩余配额」这类随日期滚动的量会天天变化，若写进本文件，
+     每天都会产生一处 diff，导致 CI 的「派生数据无漂移」检查必然失败。
+     故把它们交给前端按 daily 数组自行计算，保证本文件是状态文件的纯函数。 */
   const body = {
     meta: {
       generated_at: new Date().toISOString().slice(0, 10),
       site: shared.SITE_URL,
-      quota_date: p.quota_date,
     },
     progress: {
       sitemap_total: p.sitemap_total,
@@ -59,8 +62,6 @@ function main() {
       pending_total: p.pending_total,
       invalid_total: p.invalid_total,
       daily_limit: p.daily_limit,
-      pushed_today: p.pushed_today,
-      remaining_quota: p.remaining_quota,
       days_left: p.days_left,
       percent: p.sitemap_total ? Math.round(p.pushed_total / p.sitemap_total * 1000) / 10 : 0,
     },

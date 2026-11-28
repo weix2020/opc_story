@@ -1,8 +1,7 @@
 {
   "meta": {
-    "generated_at": "2026-11-27",
-    "site": "https://opc-story.top",
-    "quota_date": "2026-11-27"
+    "generated_at": "2026-11-28",
+    "site": "https://opc-story.top"
   },
   "progress": {
     "sitemap_total": 120,
@@ -10,8 +9,6 @@
     "pending_total": 100,
     "invalid_total": 0,
     "daily_limit": 10,
-    "pushed_today": 10,
-    "remaining_quota": 0,
     "days_left": 10,
     "percent": 16.7
   },

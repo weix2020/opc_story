@@ -172,22 +172,28 @@ code{background:#f0f3f7;padding:1px 5px;border-radius:3px;font-size:13px}
       document.getElementById('s-pending').textContent = p.pending_total != null ? p.pending_total : '—';
       document.getElementById('s-days').textContent = p.days_left != null ? p.days_left : '—';
 
+      /* 配额按北京时间 00:00 重置，故以 UTC+8 日期作为「今日」 */
+      var today = new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
+      var rows = j.daily || [];
+      var todayRow = null;
+      rows.forEach(function (d) { if (d.date === today) todayRow = d; });
+      var pushedToday = todayRow ? todayRow.count : 0;
+      var limit = p.daily_limit != null ? p.daily_limit : 10;
+
       var w = document.getElementById('bar-wrap');
       w.style.display = 'block';
       var pct = p.percent != null ? p.percent : 0;
       document.getElementById('bar').style.width = Math.max(0, Math.min(100, pct)) + '%';
       document.getElementById('bar-left').textContent = '已完成 ' + pct + '%';
       document.getElementById('bar-right').textContent =
-        '今日已提交 ' + (p.pushed_today != null ? p.pushed_today : '—') +
-        ' / ' + (p.daily_limit != null ? p.daily_limit : '—') + ' 条配额';
+        '今日已提交 ' + pushedToday + ' / ' + limit + ' 条配额';
 
       var body = document.getElementById('daily-body');
-      var rows = j.daily || [];
       if (!rows.length) {
         body.innerHTML = '<tr><td colspan="3">暂无推送记录</td></tr>';
       } else {
         body.innerHTML = rows.slice().reverse().map(function (d) {
-          var note = d.date === j.meta.quota_date ? '当日配额' : '已归档';
+          var note = d.date === today ? '当日配额' : '已归档';
           return '<tr><td>' + d.date + '</td><td>' + d.count + ' 条</td><td>' + note + '</td></tr>';
         }).join('');
       }
